@@ -1,0 +1,166 @@
+{
+    "contentsId": "java_conditional",
+    "title": "Javaの条件分岐問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "javaConditional_1",
+            "title": "if文",
+            "question": "整数xが5より大きい場合、「x is greater than 5」と出力するプログラムを作成してください。x = 10とします。",
+            "explanation": "if文を使って、整数xが5より大きいかどうかを判定し、条件が成立した場合にメッセージを出力します。",
+            "answer": "public class Main {\n public static void main(String[] args) {\n int x = 10; // xを10に設定\n if (x > 5) {\n System.out.println(\"x is greater than 5\"); // xが5より大きい場合にメッセージを出力\n }\n }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "javaConditional_2",
+            "title": "if-else文",
+            "question": "整数xが5より大きい場合、「x is greater than 5」と出力し、それ以外の場合、「x is not greater than 5」と出力するプログラムを作成してください。x = 3とします。",
+            "explanation": "if-else文を使って、整数xが5より大きいかどうかを判定し、条件が成立した場合にメッセージを出力します。それ以外の場合は、別のメッセージを出力します。",
+            "answer": "public class Main {\n public static void main(String[] args) {\n int x = 3; // xを3に設定\n if (x > 5) {\n System.out.println(\"x is greater than 5\"); // xが5より大きい場合にメッセージを出力\n } else {\n System.out.println(\"x is not greater than 5\"); // xが5以下の場合にメッセージを出力\n }\n }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "javaConditional_3",
+            "title": "else if文",
+            "question": "整数xが10より大きい場合、「x is greater than 10」と出力し、xが5より大きい場合、「x is greater than 5」と出力し、それ以外の場合、「x is not greater than 5」と出力するプログラムを作成してください。x = 7とします。",
+            "explanation": "if-else if-else文を使って、整数xが10より大きいか、5より大きいか、それ以外かを判定し、各条件が成立した場合に対応するメッセージを出力します。",
+            "answer": "public class Main {\n public static void main(String[] args) {\n int x = 7; // xを7に設定\n    if (x > 10) {\n            System.out.println(\"x is greater than 10\"); // xが10より大きい場合にメッセージを出力\n        } else if (x > 5) {\n            System.out.println(\"x is greater than 5\"); // xが5より大きい場合にメッセージを出力\n        } else {\n            System.out.println(\"x is not greater than 5\"); // xが5以下の場合にメッセージを出力\n        }\n    }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "javaConditional_4",
+            "title": "switch文",
+            "question": "整数xに対して、xが1の場合、「one」と出力し、xが2の場合、「two」と出力し、xが3の場合、「three」と出力し、それ以外の場合、「other」と出力するプログラムを作成してください。x = 2とします。",
+            "explanation": "switch文を使って、整数xが1, 2, 3のいずれかに該当するかどうかを判定し、各条件が成立した場合に対応するメッセージを出力します。それ以外の場合は、別のメッセージを出力します。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        int x = 2; // xを2に設定\n\n        switch (x) {\n            case 1:\n                System.out.println(\"one\"); // xが1の場合にメッセージを出力\n                break;\n            case 2:\n                System.out.println(\"two\"); // xが2の場合にメッセージを出力\n                break;\n            case 3:\n                System.out.println(\"three\"); // xが3の場合にメッセージを出力\n                break;\n            default:\n                System.out.println(\"other\"); // xが1, 2, 3以外の場合にメッセージを出力\n        }\n    }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "javaConditional_5",
+            "title": "三項演算子",
+            "question": "整数xが5より大きい場合、「x is greater than 5」と出力し、それ以外の場合、「x is not greater than 5」と出力するプログラムを作成してください。ただし、三項演算子を使用してください。x = 8とします。",
+            "explanation": "三項演算子を使って、整数xが5より大きいかどうかを判定し、条件が成立した場合にメッセージを出力します。それ以外の場合は、別のメッセージを出力します。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        int x = 8; // xを8に設定\n        String result = x > 5 ? \"x is greater than 5\" : \"x is not    greater than 5\"; // 三項演算子を使って条件を判定し、結果をresultに代入\n        System.out.println(result); // 結果を出力\n    }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "javaConditional_6",
+            "title": "繰り返しと条件分岐",
+            "question": "1から10までの整数のうち、偶数だけを出力するプログラムを作成してください。ただし、for文を使用してください。",
+            "explanation": "for文を使って1から10までの整数を繰り返し処理し、if文を使って偶数を判定して出力します。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        for (int i = 1; i <= 10; i++) { // 1から10までの整数を繰り返し処理\n            if (i % 2 == 0) { // iが偶数の場合\n                System.out.println(i); // 偶数を出力\n            }\n        }\n    }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "javaConditional_7",
+            "title": "ネストした条件分岐",
+            "question": "整数xとyに対して、xが5より大きく、かつyが10より大きい場合、「x is greater than 5 and y is greater than 10」と出力するプログラムを作成してください。x = 6, y = 12とします。",
+            "explanation": "ネストしたif文を使って、整数xが5より大きく、かつ整数yが10より大きいかどうかを判定し、条件が成立した場合にメッセージを出力します。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        int x = 6; // xを6に設定\n        int y = 12; // yを12に設定\n\n        if (x > 5) { // xが5より大きい場合\n            if (y > 10) { // yが10より大きい場合\n                System.out.println(\"x is greater than 5 and y is greater than 10\"); // メッセージを出力\n            }\n        }\n    }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "javaConditional_8",
+            "title": "論理演算子と条件分岐",
+            "question": "整数xとyに対して、xが5より大きく、かつyが10より大きい場合、「x is greater than 5 and y is greater than 10」と出力するプログラムを作成してください。ただし、論理演算子を使用してください。x = 7, y = 11とします。",
+            "explanation": "論理演算子を使って、整数xが5より大きく、かつ整数yが10より大きいかどうかを判定し、条件が成立した場合にメッセージを出力します。",
+            "answer": "public class Main {\n public static void main(String[] args) {\n int x = 7; // xを7に設定\n int y = 11; // yを11に設定\n\n if (x > 5 && y > 10) { // xが5より大きく、かつyが10より大きい場合\n System.out.println(\"x is greater than 5 and y is greater than 10\"); // メッセージを出力\n }\n }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "javaConditional_9",
+            "title": "条件分岐と配列",
+            "question": "整数型の配列arrに対して、arrの要素が偶数であれば、その要素を2で割った値を出力し、奇数であれば、その要素に1を足した値を出力するプログラムを作成してください。arr = {1, 2, 3, 4, 5}とします。",
+            "explanation": "配列の要素を繰り返し処理し、各要素が偶数か奇数かを判定して、条件に応じて出力を変更します。",
+            "answer": "public class Main {\n public static void main(String[] args) {\n int[] arr = {1, 2, 3, 4, 5}; // 配列を設定\n\n for (int num : arr) { // 配列の要素を繰り返し処理\n if (num % 2 == 0) { // 偶数の場合\n System.out.println(num / 2); // 要素を2で割った値を出力\n } else { // 奇数の場合\n System.out.println(num + 1); // 要素に1を足した値を出力\n }\n }\n }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "javaConditional_10",
+            "title": "条件分岐と関数",
+            "question": "整数xを引数に取り、xが偶数であれば、「even」という文字列を返し、奇数であれば、「odd」という文字列を返す関数isEvenOrOddを作成し、その関数を呼び出して結果を出力するプログラムを作成してください。x = 9とします。",
+            "explanation": "関数isEvenOrOddを作成し、引数として渡された整数が偶数か奇数かを判定して、対応する文字列を返します。そして、関数を呼び出して結果を出力します。",
+            "answer": "public class Main {\n public static void main(String[] args) {\nint x = 9; // xを9に設定\n System.out.println(isEvenOrOdd(x)); // 関数を呼び出して結果を出力\n }\n\n // isEvenOrOdd関数の定義\n public static String isEvenOrOdd(int x) {\n if (x % 2 == 0) { // xが偶数の場合\n return \"even\"; // \"even\"を返す\n } else { // xが奇数の場合\n return \"odd\"; // \"odd\"を返す\n }\n }\n}"
+        },
+        {
+            "id": 11,
+            "questionId": "javaConditional_11",
+            "title": "条件分岐とクラス",
+            "question": "整数型の変数ageを持つPersonクラスを作成し、そのクラスのインスタンスを作成してageを設定し、ageが18歳以上であれば、「You are an adult」と出力し、それ以外の場合、「You are not an adult」と出力するプログラムを作成してください。age = 20とします。",
+            "explanation": "Personクラスを作成し、整数型の変数ageを持たせます。インスタンスを作成し、ageを設定した後、条件分岐を使って成人かどうかを判定し、結果を出力します。",
+            "answer": "public class Main {\n public static void main(String[] args) {\n Person person = new Person(); // Personクラスのインスタンスを作成\n person.age = 20; // ageを20に設定\n\n if (person.age >= 18) { // ageが18以上の場合\n System.out.println(\"You are an adult\"); // メッセージを出力\n } else { // ageが18未満の場合\n System.out.println(\"You are not an adult\"); // メッセージを出力\n }\n }\n}\n\n// Personクラスの定義\nclass Person {\n int age; // age変数の定義\n}"
+        },
+        {
+            "id": 12,
+            "questionId": "javaConditional_12",
+            "title": "条件分岐と入力値",
+            "question": "整数xをキーボードから入力し、xが5より大きい場合、「x is greater than 5」と出力し、それ以外の場合、「x is not greater than 5」と出力するプログラムを作成してください。",
+            "explanation": "Scannerクラスを使用して整数xをキーボードから入力し、条件分岐を使ってxが5より大きいかどうかを判定し、結果を出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in); // Scannerクラスのインスタンスを作成\n System.out.print(\"Enter an integer: \");\n int x = scanner.nextInt(); //整数xを入力\n\n if (x > 5) { // xが5より大きい場合\n System.out.println(\"x is greater than 5\"); // メッセージを出力\n } else { // xが5以下の場合\n System.out.println(\"x is not greater than 5\"); // メッセージを出力\n }\n\n scanner.close(); // スキャナーを閉じる\n }\n}"
+        },
+        {
+            "id": 13,
+            "questionId": "javaConditional_13",
+            "title": "条件分岐と繰り返し",
+            "question": "整数型の配列arrに対して、arrの要素が10以上であれば、その要素に2を足した値を出力し、10未満であれば、その要素に1を足した値を出力するプログラムを作成してください。arr = {3, 11, 7, 15, 9}とします。",
+            "explanation": "配列の要素を繰り返し処理し、各要素が10以上か10未満かを判定して、条件に応じて出力を変更します。",
+            "answer": "public class Main {\n public static void main(String[] args) {\n int[] arr = {3, 11, 7, 15, 9}; // 配列を設定\n\n for (int num : arr) { // 配列の要素を繰り返し処理\n if (num >= 10) { // 要素が10以上の場合\n System.out.println(num + 2); // 要素に2を足した値を出力\n } else { // 要素が10未満の場合\n System.out.println(num + 1); // 要素に1を足した値を出力\n }\n }\n }\n}"
+        },
+        {
+            "id": 14,
+            "questionId": "javaConditional_14",
+            "title": "条件分岐と複数の条件",
+            "question": "整数xが0より大きく、かつ100以下である場合、「x is between 1 and 100」と出力するプログラムを作成してください。x = 50とします。",
+            "explanation": "条件分岐を使って、整数xが0より大きく、かつ100以下かどうかを判定し、条件が成立した場合にメッセージを出力します。",
+            "answer": "public class Main {\n public static void main(String[] args) {\n int x = 50; // xを50に設定\n\n if (x > 0 && x <= 100) { // xが0より大きく、かつ100以下の場合\n System.out.println(\"x is between 1 and 100\"); // メッセージを出力\n }\n }\n}"
+        },
+        {
+            "id": 15,
+            "questionId": "javaConditional_15",
+            "title": "条件分岐と文字列",
+            "question": "文字列strが「hello」であれば、「Hello, world!」と出力し、それ以外の場合、「Goodbye, world!」と出力するプログラムを作成してください。str = \"hello\"とします。",
+            "explanation": "条件分岐を使って、文字列strが「hello」かどうかを判定し、条件に応じて出力を変更します。",
+            "answer": "public class Main {\n public static void main(String[] args) {\n String str = \"hello\"; // strを\"hello\"に設定\n\n if (str.equals(\"hello\")) { // strが\"hello\"と等しい場合\n System.out.println(\"Hello, world!\"); // メッセージを出力\n } else { // strが\"hello\"と等しくない場合\n System.out.println(\"Goodbye, world!\"); // メッセージを出力\n }\n }\n}"
+        },
+        {
+            "id": 16,
+            "questionId": "javaConditional_16",
+            "title": "条件分岐と複数の変数",
+            "question": "整数xと整数yを比較し、xがyより大きい場合、「x is greater than y」、xがyより小さい場合、「x is less than y」、xとyが等しい場合、「x and y are equal」と出力するプログラムを作成してください。x = 8、y = 4とします。",
+            "explanation": "条件分岐を使って、整数xと整数yの大小関係を判定し、結果に応じて出力を変更します。",
+            "answer": "public class Main {\n public static void main(String[] args) {\n int x = 8; // xを8に設定\n int y = 4; // yを4に設定\n\n if (x > y) { // xがyより大きい場合\n System.out.println(\"x is greater than y\"); // メッセージを出力\n } else if (x < y) { // xがyより小さい場合\n System.out.println(\"x is less than y\"); // メッセージを出力\n } else { // xとyが等しい場合\n System.out.println(\"x and y are equal\"); // メッセージを出力\n }\n }\n}"
+        },
+        {
+            "id": 17,
+            "questionId": "javaConditional_17",
+            "title": "条件分岐と論理演算子",
+            "question": "整数xと整数yを比較し、xが0より大きく、かつyが0より大きい場合、「Both x and y are positive」と出力するプログラムを作成してください。x = 3、y = 7とします。",
+            "explanation": "条件分岐を使って、整数xが0より大きく、かつ整数yが0より大きいかどうかを判定し、条件が成立した場合にメッセージを出力します。",
+            "answer": "public class Main {\n public static void main(String[] args) {\n int x = 3; // xを3に設定\n int y = 7; // yを7に設定\n\n if (x > 0 && y > 0) { // xが0より大きく、かつyが0より大きい場合\n System.out.println(\"Both x and y are positive\"); // メッセージを出力\n }\n }\n}"
+        },
+        {
+            "id": 18,
+            "questionId": "javaConditional_18",
+            "title": "条件分岐とswitch文",
+            "question": "整数型の変数dayOfWeekに対して、曜日を表す英語の文字列を出力するプログラムを作成してください。ただし、dayOfWeekは1から7までの整数を格納し、1は\"Sunday\"、2は\"Monday\"、…、7は\"Saturday\"に対応するものとします。dayOfWeek = 5とします。",
+            "explanation": "switch文を使って、整数型の変数dayOfWeekに格納された数値に応じて曜日を表す英語の文字列を出力します。",
+            "answer": "public class Main {\n public static void main(String[] args) {\n int dayOfWeek = 5; // dayOfWeekを5に設定\n\n switch (dayOfWeek) { // dayOfWeekの値に応じて分岐\n case 1:\n System.out.println(\"Sunday\");\n break;\n case 2:\n System.out.println(\"Monday\");\n break;\n case 3:\n System.out.println(\"Tuesday\");\n break;\n case 4:\n System.out.println(\"Wednesday\");\n break;\n case 5:\n System.out.println(\"Thursday\");\n break;\n case 6:\n System.out.println(\"Friday\");\n break;\n case 7:\n System.out.println(\"Saturday\");\n break;\n }\n }\n}"
+        },
+        {
+            "id": 19,
+            "questionId": "javaConditional_19",
+            "title": "条件分岐と範囲",
+            "question": "整数xが1から10の範囲にある場合、「x is in the range of 1 to 10」と出力するプログラムを作成してください。x = 6とします。",
+            "explanation": "条件分岐を使って、整数xが1から10の範囲にあるかどうかを判定し、条件が成立した場合にメッセージを出力します。",
+            "answer": "public class Main {\n public static void main(String[] args) {\n int x = 6; // xを6に設定\n\n if (x >= 1 && x <= 10) { // xが1から10の範囲にある場合\n System.out.println(\"x is in the range of 1 to 10\"); // メッセージを出力\n }\n }\n}"
+        },
+        {
+            "id": 20,
+            "questionId": "javaConditional_20",
+            "title": "条件分岐と入力値",
+            "question": "整数xを入力し、xが偶数であれば「x is an even number」と出力し、奇数であれば「x is an odd number」と出力するプログラムを作成してください。",
+            "explanation": "条件分岐を使って、整数xが偶数か奇数かを判定し、結果に応じて出力を変更します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in); // スキャナーを作成\n\n System.out.print(\"Enter an integer: \");\n int x = scanner.nextInt(); // 整数xを入力\n\n if (x % 2 == 0) { // xが偶数の場合\n System.out.println(\"x is an even number\"); // メッセージを出力\n } else { // xが奇数の場合\n System.out.println(\"x is an odd number\"); // メッセージを出力\n }\n\n scanner.close(); // スキャナーを閉じる\n }\n}"
+        }
+    ]
+}

@@ -1,0 +1,170 @@
+{
+    "contentsId": "javascript1",
+    "title": "javascriptのデータ型問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "javascript1_19",
+            "title": "厳密等価演算子と等価演算子",
+            "question": "以下のコードを実行した場合、表示される内容を選んでください。\n\nconsole.log(1 == '1');\nconsole.log(1 === '1');",
+            "explanation": "厳密等価演算子(===)は、比較する際に型も比較します。一方、等価演算子(==)は、比較する際に型を考慮せず、暗黙的な型変換を行ってから比較します。\n\n1 == '1' は true となります。暗黙的な型変換により、文字列の '1' が数値の 1 に変換され、2つの値が等しいためです。\n\n1 === '1' は false となります。厳密等価演算子は、型が異なる場合は等しくないと判定します。",
+            "answer": "true\nfalse"
+        },
+        {
+            "id": 2,
+            "questionId": "javascript1_20",
+            "title": "オブジェクトの比較",
+            "question": "以下のコードを実行した場合、表示される内容を選んでください。\n\nconsole.log({} === {});\nconsole.log({} == {});",
+            "explanation": "オブジェクト同士の比較は、その参照先が同じかどうかで判断されます。つまり、同じオブジェクトを指している場合には true になり、そうでない場合には false になります。\n\n{} === {} は false となります。{} はオブジェクトを生成するたびに新しいオブジェクトを生成するため、異なる参照先を持ちます。\n\n{} == {} も false となります。等価演算子(==)も、比較する際に参照先が同じかどうかで判断されます。",
+            "answer": "false\nfalse"
+        }, {
+            "id": 3,
+            "questionId": "javascript3_1",
+            "title": "スコープの概念",
+            "question": "以下のコードを実行した場合、コンソールに表示される出力結果は？\n\n```\nvar x = 10;\n(function () {\n    console.log(x);\n    var x = 20;\n})();\n```",
+            "explanation": "JavaScriptにおいては、宣言がされる前の変数はundefinedとなります。\nしたがって、上記のコードにおいて、console.logの実行時に変数xはすでに宣言されていますが、値が代入されていないためundefinedとなります。\nまた、var宣言は関数スコープであり、内部での宣言が優先されるため、最終的な出力結果はundefinedとなります。",
+            "answer": "undefined"
+        },
+        {
+            "id": 4,
+            "questionId": "javascript3_2",
+            "title": "thisキーワード",
+            "question": "以下のコードを実行した場合、コンソールに表示される出力結果は？\n\n```\nvar name = 'John';\nvar person = {\n    name: 'Bob',\n    getName: function () {\n        return this.name;\n    }\n};\nvar result = person.getName.call({ name: 'Tom' });\nconsole.log(result);\n```",
+            "explanation": "上記のコードにおいて、getName関数内でのthisは、メソッドが呼び出されたオブジェクトを参照します。\nしかし、callメソッドによって、このメソッドが実行される際のthisを、引数として渡されたオブジェクトに変更することができます。\nしたがって、上記のコードにおいて、getNameメソッドが呼び出された際のthisが{name: 'Tom'}に変更されるため、最終的に出力される結果は'Tom'となります。",
+            "answer": "Tom"
+        }, {
+            "id": 5,
+            "questionId": "javascript5",
+            "title": "オブジェクトのデータ型変換",
+            "question": "以下のオブジェクトの型を変換してください。\n\nconst num = { num1: 100, num2: 200 };\n\n",
+            "explanation": "オブジェクトの型変換には、Object.keysやObject.valuesなどが使えます。これらの関数を使用することで、オブジェクトのキーまたは値を配列として取得し、その後配列の各要素を適宜変換することができます。",
+            "answer": "const arr = Object.keys(num).map((key) => parseInt(num[key]));\n// [100, 200]が出力される"
+        },
+        {
+            "id": 6,
+            "questionId": "javascript6",
+            "title": "変数の型判定",
+            "question": "以下の変数の型を判定してください。\n\nlet value = 1234;\n\n",
+            "explanation": "typeof演算子を使用することで、変数の型を取得することができます。ただし、typeof演算子によって返される型は文字列で返されます。",
+            "answer": "typeof value === 'number';\n// trueが出力される"
+        }, {
+            "id": 7,
+            "questionId": "javascript7",
+            "title": "オブジェクトのプロパティのデータ型",
+            "question": "次のコードを実行した結果は何ですか？\n\n```let obj = {a: '10', b: 20, c: true}\nfor(let prop in obj){\n  console.log(typeof prop)\n}\n```",
+            "explanation": "for...in文でオブジェクトのプロパティを列挙すると、各プロパティのキー（名前）が文字列として返されます。したがって、出力されるtypeof propは全てstringになります。",
+            "answer": "string\nstring\nstring"
+        },
+        {
+            "id": 8,
+            "questionId": "javascript8",
+            "title": "オブジェクトのプロパティに対する操作",
+            "question": "以下のコードを実行した結果は何ですか？\n\n```let obj = {a: '10', b: 20, c: true}\nobj.d = 30;\nconsole.log(obj)\n```",
+            "explanation": "オブジェクトに新しいプロパティを追加する場合、プロパティ名を指定して値を代入するだけでよいです。その後、オブジェクトをコンソールに出力すると、追加されたプロパティが表示されます。",
+            "answer": "{\"a\":\"10\",\"b\":20,\"c\":true,\"d\":30}"
+        }, {
+            "id": 9,
+            "questionId": "javascript9",
+            "title": "非同期処理",
+            "question": "以下のコードを実行した際の出力結果を選択肢から選び、解説を述べてください。\n\n```\nconsole.log('a');\nsetTimeout(() => console.log('b'), 0);\nconsole.log('c');\n```\n",
+            "options": [
+                "a b c",
+                "a c b",
+                "c a b",
+                "c b a"
+            ],
+            "explanation": "JavaScriptでは、setTimeout()関数は非同期処理を行います。\nsetTimeout()関数で指定した処理は、コールスタックから削除され、指定した時間後にタスクキューに追加されます。\nタスクキューは、イベントループによって処理され、コールスタックが空の場合に非同期処理が実行されます。\n\nつまり、実行結果は、``a c b``となります。``a``が出力され、setTimeout()関数で指定された``console.log('b')``は、実行待ちになります。その後、``c``が出力され、コールスタックが空の状態であるため、タスクキューから``console.log('b')``が取り出され、実行されます。\n",
+            "answer": "1"
+        },
+        {
+            "id": 10,
+            "questionId": "javascript10",
+            "title": "クロージャー",
+            "question": "以下のコードを実行した際の出力結果を選択肢から選び、解説を述べてください。\n\n```\nfunction foo() {\n  var a = 1;\n  function bar() {\n    console.log(a);\n  }\n  return bar;\n}\nvar baz = foo();\nbaz();\n```\n",
+            "options": [
+                "1",
+                "undefined",
+                "null",
+                "error"
+            ],
+            "explanation": "このコードはクロージャーの例です。\n``foo()``関数は、``bar()``関数を戻り値として返しています。\n戻り値として返された``bar()``関数は、``foo()``関数内で定義された変数``a``にアクセスできます。\n\n``baz()``関数を実行した際、``foo()``関数内で``a``に代入された``1``が出力されます。\n",
+            "answer": "1"
+        }, {
+            "id": 11,
+            "questionId": "javascript1_11",
+            "title": "配列のデータ型判別",
+            "question": "次の配列の各要素のデータ型を判別して、配列resultに格納してください。ただし、判別できない場合は「不明」としてください。\nconst arr = [1, 2.5, 'apple', true, {name: 'John'}, ['red', 'blue'], null];",
+            "explanation": "JavaScriptの配列は、一つの配列に複数のデータ型が混在することが可能です。しかし、実際の開発では、配列の要素がどのようなデータ型であるかを正確に判別する必要があることがあります。そのためには、各要素のデータ型を判別する方法を知る必要があります。",
+            "answer": "const arr = [1, 2.5, 'apple', true, {name: 'John'}, ['red', 'blue'], null];\nconst result = arr.map(item => typeof item);\nconsole.log(result); // ['number', 'number', 'string', 'boolean', 'object', 'object', 'object']"
+        },
+        {
+            "id": 12,
+            "questionId": "javascript1_12",
+            "title": "配列の中身をランダムに並び替える",
+            "question": "以下の配列の中身をランダムに並び替えて、配列resultに格納してください。\nconst arr = ['apple', 'banana', 'cherry', 'orange', 'grape', 'lemon'];",
+            "explanation": "JavaScriptの配列には、sortメソッドが用意されており、配列の要素を昇順または降順に並び替えることができます。しかし、要素をランダムに並び替える方法はありません。そのため、ランダムに並び替える方法を知る必要があります。",
+            "answer": "const arr = ['apple', 'banana', 'cherry', 'orange', 'grape', 'lemon'];\nconst result = arr.sort(() => Math.random() - 0.5);\nconsole.log(result);"
+        }, {
+            "id": 13,
+            "questionId": "javascript3_1",
+            "title": "型の不一致",
+            "question": "以下のコードを実行するとどうなるか。\n\n```js\nconst x = 10;\nconst y = '5';\nconsole.log(x + y);\n```",
+            "explanation": "このコードでは、数値型と文字列型を加算しています。JavaScriptでは、数値型と文字列型を加算すると、文字列型が自動的に数値型に変換され、2つの数値型が加算された結果が返されます。そのため、このコードの実行結果は「105」となります。",
+            "answer": "105"
+        },
+        {
+            "id": 14,
+            "questionId": "javascript3_2",
+            "title": "型の不一致",
+            "question": "以下のコードを実行するとどうなるか。\n\n```js\nconst x = 5;\nconst y = '10';\nconsole.log(y - x);\n```",
+            "explanation": "このコードでは、文字列型と数値型の減算を行っています。文字列型が数値型に変換される場合は、その文字列が数値に変換できる場合に限られます。このコードでは、文字列「'10'」は数値に変換できるため、「10 - 5」の計算が行われ、実行結果は「5」となります。",
+            "answer": "5"
+        },
+        {
+            "id": 15,
+            "questionId": "javascript1_15",
+            "title": "型変換",
+            "question": "次のコードを実行したとき、コンソールに表示される値を答えてください。\n\n```\nlet x = '42';\nlet y = 7;\nconsole.log(x - y);\n```",
+            "explanation": "JavaScriptでは、型変換が行われた後に演算が実行されます。この問題では、文字列'42'が数値42に変換され、その後7が引かれます。そのため、答えは35となります。",
+            "answer": "35"
+        }, {
+            "id": 16,
+            "questionId": "javascript1_16",
+            "title": "オブジェクトのプロパティ",
+            "question": "以下のオブジェクトのプロパティ値を変更した後、コンソールに出力されるオブジェクトの内容を答えてください。\n\n```\nlet obj = { a: 1, b: 2 };\nobj.a = 3;\nconsole.log(obj);\n```",
+            "explanation": "この問題では、オブジェクトのプロパティ値を変更しています。obj.a = 3; により、オブジェクト obj のプロパティ a の値が 3 に変更されます。そのため、コンソールには { a: 3, b: 2 } と出力されます。",
+            "answer": "{ a: 3, b: 2 }"
+        }, {
+            "id": 17,
+            "questionId": "javascript1_17",
+            "title": "型変換",
+            "question": "文字列\"100\"を数値に変換し、10を加えた結果を表示するプログラムを作成してください。",
+            "explanation": "文字列を数値に変換するにはparseInt()関数を使用します。parseInt()関数は、引数に与えられた文字列を整数に変換します。そのため、文字列\"100\"をparseInt()関数で変換すると、数値100が得られます。\nただし、数値に変換できない文字列を引数に与えた場合、NaN（Not a Number）が返されます。\nこの問題では、数値100に10を加えた結果を表示することが要求されています。変数を用いて計算し、結果をconsole.log()関数で表示してください。",
+            "answer": "// 文字列\"100\"を数値に変換し、10を加えた結果を表示するプログラム\n\nlet str = \"100\";\nlet num = parseInt(str);\nnum += 10;\nconsole.log(num); // 110が表示される\n"
+        },
+        {
+            "id": 18,
+            "questionId": "javascript1_18",
+            "title": "型変換",
+            "question": "以下のプログラムを実行した場合、出力結果は何になりますか？\nlet a = \"10\";\nlet b = \"20\";\nlet c = a + b;\nconsole.log(c);",
+            "explanation": "この問題では、文字列として宣言された変数aと変数bを、+演算子で連結した結果を変数cに代入することが要求されています。\n結果として、変数cには文字列\"1020\"が代入されます。\nこれは、+演算子が文字列の場合、文字列を連結する演算子として働くためです。",
+            "answer": "// 文字列として宣言された変数aと変数bを、+演算子で連結した結果を変数cに代入する\nlet a = \"10\";\nlet b = \"20\";\nlet c = a + b;\nconsole.log(c); // \"1020\"が表示される\n"
+        },
+        {
+            "id": 19,
+            "questionId": "javascript1_19",
+            "title": "正規表現",
+            "question": "文字列「1234」をパターンに合わせて加工し、文字列「1,234」に変換してください。",
+            "explanation": "正規表現は、パターンにマッチする文字列を効率的に検索、置換できる方法です。パターンは、文字列中に存在する文字列や文字クラス、繰り返し、グループ化などの仕組みを使って指定します。\nここでは、「1234」という文字列を「1,234」という形式に変換するために、正規表現を使った処理を実装してください。",
+            "answer": "// 元の文字列\nconst str = '1234';\n\n// パターンにマッチする部分を取り出し、変換する\nconst result = str.replace(/(\\d)(?=(\\d{3})+$)/g, '$1,');\n\n// 結果を出力\nconsole.log(result); // 1,234\n\n// 解説\n// 正規表現 /\\d(?=(\\d{3})+$)/ は、\n// 「3桁の数字に続いて桁数が3の倍数となる数字」というパターンを表します。\n// このパターンにマッチする箇所（ここでは1つしかない）を $1 で置換しています。\n// 置換する前に、マッチする部分を () でグループ化しています。"
+        },
+        {
+            "id": 20,
+            "questionId": "javascript1_19",
+            "title": "オブジェクトの値渡し/参照渡し",
+            "question": "javascriptでは、オブジェクトの引数を関数に渡す場合、その値渡し/参照渡しはどうなりますか？\n\n以下の関数を実行したとき、出力結果として正しいものを選択してください。\n\nfunction test(obj) {\n    obj = {a: 2};\n}\n\nconst x = {a: 1};\n\nconsole.log(x);\ntest(x);\nconsole.log(x);\n",
+            "explanation": "javascriptでは、オブジェクトは参照渡しとなります。そのため、関数にオブジェクトを引数として渡した場合、オブジェクトのコピーが作成されるわけではなく、元のオブジェクトへの参照が渡されます。したがって、関数内でオブジェクトを変更すると、呼び出し元のオブジェクトも変更されます。\n\n例えば、以下のようなコードがある場合、\n\nfunction test(obj) {\n    obj.a = 2;\n}\n\nconst x = {a: 1};\n\ntest(x);\nconsole.log(x);\n\n呼び出し元で宣言したオブジェクトのプロパティaを関数内で変更していますが、呼び出し元のconsole.log(x)の出力結果は{a: 2}となります。\n\nしたがって、19番目の問題の正しい回答は「{a: 1}\n{a: 1}」となります。",
+            "answer": "function test(obj) {\n    obj = {a: 2};\n}\n\nconst x = {a: 1};\n\nconsole.log(x);\ntest(x);\nconsole.log(x);\n\n// 実行結果\n// {a: 1}\n// {a: 1}\n"
+        }
+    ]
+}

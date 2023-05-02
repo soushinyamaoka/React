@@ -1,0 +1,166 @@
+{
+    "contentsId": "java_argument_1",
+    "title": "Javaの引数問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java2_1",
+            "title": "引数を受け取るメソッド",
+            "question": "整数型の引数を受け取り、その引数を表示するメソッド「printNumber」を作成してください。",
+            "explanation": "メソッドを定義し、引数を受け取り、それをSystem.out.printlnを使って表示します。",
+            "answer": "public static void printNumber(int number) {\n  // 引数を表示\n  System.out.println(number);\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  printNumber(5);\n  // 出力: 5\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java2_2",
+            "title": "複数の引数を受け取るメソッド",
+            "question": "2つの整数型の引数を受け取り、それらの合計値を表示するメソッド「printSum」を作成してください。",
+            "explanation": "メソッドを定義し、2つの引数を受け取り、それらの合計値をSystem.out.printlnを使って表示します。",
+            "answer": "public static void printSum(int num1, int num2) {\n  // 引数の合計値を計算\n  int sum = num1 + num2;\n  // 合計値を表示\n  System.out.println(sum);\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  printSum(3, 4);\n  // 出力: 7\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java2_3",
+            "title": "文字列の引数を受け取るメソッド",
+            "question": "文字列型の引数を受け取り、その引数を表示するメソッド「printText」を作成してください。",
+            "explanation": "メソッドを定義し、文字列型の引数を受け取り、それをSystem.out.printlnを使って表示します。",
+            "answer": "public static void printText(String text) {\n  // 引数を表示\n  System.out.println(text);\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  printText(\"Hello, Java!\");\n  // 出力: Hello, Java!\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java2_4",
+            "title": "複数の型を受け取るメソッド",
+            "question": "整数型と文字列型の引数を受け取り、それらを表示するメソッド「printMixed」を作成してください。",
+            "explanation": "メソッドを定義し、整数型と文字列型の引数を受け取り、それらをSystem.out.printlnを使って表示します。",
+            "answer": "public static void printMixed(int number, String text) {\n  // 引数を表示\n  System.out.println(number + \": \" + text);\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  printMixed(1, \"Hello, Java!\");\n  // 出力: 1: Hello, Java!\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java2_5",
+            "title": "引数を使った計算",
+            "question": "2つの整数型の引数を受け取り、それらの積を表示するメソッド「printProduct」を作成してください。",
+            "explanation": "メソッドを定義し、2つの整数型の引数を受け取り、それらの積をSystem.out.printlnを使って表示します。",
+            "answer": "public static void printProduct(int num1, int num2) {\n  // 引数の積を計算\n  int product = num1 * num2;\n  // 積を表示\n  System.out.println(product);\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  printProduct(3, 4);\n  // 出力: 12\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java2_6",
+            "title": "メソッドで条件判断",
+            "question": "整数型の引数を受け取り、その引数が偶数か奇数かを判断して表示するメソッド「printEvenOrOdd」を作成してください。",
+            "explanation": "メソッドを定義し、整数型の引数を受け取り、偶数か奇数かを判断し、それをSystem.out.printlnを使って表示します。",
+            "answer": "public static void printEvenOrOdd(int number) {\n  // 引数が偶数か奇数かを判断\n  if (number % 2 == 0) {\n    System.out.println(number + \" is even\");\n  } else {\n    System.out.println(number + \" is odd\");\n  }\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  printEvenOrOdd(5);\n  // 出力: 5 is odd\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java2_7",
+            "title": "文字列と整数の引数を使ったメソッド",
+            "question": "文字列型と整数型の引数を受け取り、文字列を整数の回数分繰り返して表示するメソッド「repeatText」を作成してください。",
+            "explanation": "メソッドを定義し、文字列型と整数型の引数を受け取り、文字列を整数の回数分繰り返してSystem.out.printlnを使って表示します。",
+            "answer": "public static void repeatText(String text, int times) {\n  // 文字列を指定回数繰り返す\n  for (int i = 0; i < times; i++) {\n    System.out.println(text);\n  }\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  repeatText(\"Hello, Java!\", 3);\n  // 出力:\n  // Hello, Java!\n  // Hello, Java!\n  // Hello, Java!\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java2_8",
+            "title": "配列を引数に取るメソッド",
+            "question": "整数型の配列を引数に取り、配列内のすべての要素の合計値を表示するメソッド「printArraySum」を作成してください。",
+            "explanation": "メソッドを定義し、整数型の配列を引数に取り、配列内のすべての要素の合計値をSystem.out.printlnを使って表示します。",
+            "answer": "public static void printArraySum(int[] numbers) {\n  // 合計値を計算\n  int sum = 0;\n  for (int number : numbers) {\n    sum += number;\n  }\n  // 合計値を表示\n  System.out.println(sum);\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  int[] array = {1, 2, 3, 4, 5};\n  printArraySum(array);\n  // 出力: 15\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java2_9",
+            "title": "可変長引数を使ったメソッド",
+            "question": "可変長引数を用いて整数の合計値を表示するメソッド「printVarargsSum」を作成してください。",
+            "explanation": "メソッドを定義し、可変長引数を用いて複数の整数を引数に取り、それらの合計値をSystem.out.printlnを使って表示します。",
+            "answer": "public static void printVarargsSum(int... numbers) {\n  // 合計値を計算\n  int sum = 0;\n  for (      int number : numbers) {\n    sum += number;\n  }\n  // 合計値を表示\n  System.out.println(sum);\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  printVarargsSum(1, 2, 3, 4, 5);\n  // 出力: 15\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java2_10",
+            "title": "戻り値を持つメソッド",
+            "question": "整数型の引数を受け取り、その引数に2を乗算した結果を戻り値とするメソッド「multiplyByTwo」を作成してください。",
+            "explanation": "メソッドを定義し、整数型の引数を受け取り、その引数に2を乗算した結果を戻り値として返します。",
+            "answer": "public static int multiplyByTwo(int number) {\n  // 引数に2を乗算した結果を返す\n  return number * 2;\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  int result = multiplyByTwo(4);\n  System.out.println(result);\n  // 出力: 8\n}"
+        },
+        {
+            "id": 11,
+            "questionId": "java2_11",
+            "title": "2つの引数を使った戻り値",
+            "question": "2つの整数型の引数を受け取り、それらの積を戻り値とするメソッド「multiply」を作成してください。",
+            "explanation": "メソッドを定義し、2つの整数型の引数を受け取り、それらの積を戻り値として返します。",
+            "answer": "public static int multiply(int num1, int num2) {\n  // 引数の積を計算し、結果を返す\n  return num1 * num2;\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  int result = multiply(3, 4);\n  System.out.println(result);\n  // 出力: 12\n}"
+        },
+        {
+            "id": 12,
+            "questionId": "java2_12",
+            "title": "文字列を結合するメソッド",
+            "question": "2つの文字列型の引数を受け取り、それらを結合した結果を戻り値とするメソッド「concatenate」を作成してください。",
+            "explanation": "メソッドを定義し、2つの文字列型の引数を受け取り、それらを結合した結果を戻り値として返します。",
+            "answer": "public static String concatenate(String str1, String str2) {\n  // 引      数の文字列を結合し、結果を返す\n  return str1 + str2;\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  String result = concatenate(\"Hello, \", \"Java!\");\n  System.out.println(result);\n  // 出力: Hello, Java!\n}"
+        },
+        {
+            "id": 13,
+            "questionId": "java2_13",
+            "title": "引数を使った配列操作",
+            "question": "整数型の引数を受け取り、その引数の長さの配列を作成し、各要素にその要素のインデックスを格納して表示するメソッド「createAndPrintArray」を作成してください。",
+            "explanation": "メソッドを定義し、整数型の引数を受け取り、その引数の長さの配列を作成し、各要素にその要素のインデックスを格納してSystem.out.printlnを使って表示します。",
+            "answer": "public static void createAndPrintArray(int length) {\n  // 配列を作成\n  int[] array = new int[length];\n\n  // 配列の要素にインデックスを格納\n  for (int i = 0; i < length; i++) {\n    array[i] = i;\n  }\n\n  // 配列を表示\n  for (int element : array) {\n    System.out.println(element);\n  }\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  createAndPrintArray(5);\n  // 出力:\n  // 0\n  // 1\n  // 2\n  // 3\n  // 4\n}"
+        },
+        {
+            "id": 14,
+            "questionId": "java2_14",
+            "title": "条件分岐を含むメソッド",
+            "question": "整数型の引数を受け取り、その引数が正の数か負の数か0かを判断して表示するメソッド「printPositiveNegativeOrZero」を作成してください。",
+            "explanation": "メソッドを定義し、整数型の引数を受け取り、その引数が正の数か負の数か0かを判断し、それをSystem.out.printlnを使って表示します。",
+            "answer": "public static void printPositiveNegativeOrZero(int number) {\n  // 引数が正の数か負の数か0かを判断\n  if (number > 0) {\n    System.out.println(number + \" is positive\");\n  } else if (number < 0) {\n    System.out.println(number + \" is negative\");\n  } else {\n    System.out.println(number + \" is zero\");\n  }\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  printPositiveNegativeOrZero(-2);\n  // 出      力: -2 is negative\n}"
+        },
+        {
+            "id": 15,
+            "questionId": "java2_15",
+            "title": "整数の偶奇判定",
+            "question": "整数型の引数を受け取り、その引数が偶数か奇数かを判断して表示するメソッド「printEvenOrOdd」を作成してください。",
+            "explanation": "メソッドを定義し、整数型の引数を受け取り、その引数が偶数か奇数かを判断し、それをSystem.out.printlnを使って表示します。",
+            "answer": "public static void printEvenOrOdd(int number) {\n  // 引数が偶数か奇数かを判断\n  if (number % 2 == 0) {\n    System.out.println(number + \" is even\");\n  } else {\n    System.out.println(number + \" is odd\");\n  }\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  printEvenOrOdd(7);\n  // 出力: 7 is odd\n}"
+        },
+        {
+            "id": 16,
+            "questionId": "java2_16",
+            "title": "整数の範囲判定",
+            "question": "2つの整数型の引数を受け取り、第1引数が第2引数の範囲内（第2引数±10）かを判断して表示するメソッド「printInRange」を作成してください。",
+            "explanation": "メソッドを定義し、2つの整数型の引数を受け取り、第1引数が第2引数の範囲内（第2引数±10）かを判断し、それをSystem.out.printlnを使って表示します。",
+            "answer": "public static void printInRange(int num1, int num2) {\n  // 引数が範囲内か判断\n  if (num1 >= num2 - 10 && num1 <= num2 + 10) {\n    System.out.println(num1 + \" is in range of \" + num2);\n  } else {\n    System.out.println(num1 + \" is out of range of \" + num2);\n  }\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  printInRange(25, 30);\n  // 出力: 25 is in range of 30\n}"
+        },
+        {
+            "id": 17,
+            "questionId": "java2_17",
+            "title": "最大値の取得",
+            "question": "2つの整数型の引数を受け取り、それらの最大値を表示するメソッド「printMax」を作成してください。",
+            "explanation": "メソッドを定義し、2つの整数型の引数を受け取り、それらの最大値をSystem.out.printlnを使って表示します。",
+            "answer": "public static void printMax(int num1, int num2) {\n  // 最大値を取得\n  int max = num1 > num2 ? num1 : num2;\n\n  // 最大値を表示\n  System.out.println(\"Max: \" + max);\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  printMax(12, 8);\n  // 出力: Max: 12\n}"
+        },
+        {
+            "id": 18,
+            "questionId": "java2_18",
+            "title": "最小値の取得",
+            "question": "2つの整数型の引数を受け取り、それらの最小値を表示するメソッド「printMin」を作成してください。",
+            "explanation": "メソッドを定義し、2つの整数型の引数を受け取り、それらの最小値をSystem.out.printlnを使って表示します。",
+            "answer": "public static void printMin(int num1, int num2) {\n  // 最小値を取得\n  int min = num1 < num2 ? num1 : num2;\n\n  // 最小値を表示\n  System.out.println(\"Min: \" + min);\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  printMin(12, 8);\n  // 出力: Min: 8\n}"
+        },
+        {
+            "id": 19,
+            "questionId": "java2_19",
+            "title": "範囲内の整数の和",
+            "question": "2つの整数型の引数を受け取り、それらの範囲内の整数の和を表示するメソッド「printSumInRange」を作成してください。",
+            "explanation": "メソッドを定義し、2つの整数型の引数を受け取り、それらの範囲内の整数の和をSystem.out.printlnを使って表示します。",
+            "answer": "public static void printSumInRange(int num1, int num2) {\n  int sum = 0;\n  // 引数の範囲内の整数の和を計算\n  for (int i = num1; i <= num2; i++) {\n    sum += i;\n  }\n\n  // 和を表示\n  System.out.println(\"Sum: \" + sum);\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  printSumInRange(1, 5);\n  // 出力: Sum: 15\n}"
+        },
+        {
+            "id": 20,
+            "questionId": "java2_20",
+            "title": "引数の平均値",
+            "question": "2つの整数型の引数を受け取り、それらの平均値を表示するメソッド「printAverage」を作成してください。",
+            "explanation": "メソッドを定義し、2つの整数型の引数を受け取り、それらの平均値をSystem.out.printlnを使って表示します。",
+            "answer": "public static void printAverage(int num1, int num2) {\n  // 平均値を計算\n  double average = (num1 + num2) / 2.0;\n\n  // 平均値を表示\n  System.out.println(\"Average: \" + average);\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  printAverage(4, 8);\n  // 出力: Average: 6.0\n}"
+        }
+    ]
+}

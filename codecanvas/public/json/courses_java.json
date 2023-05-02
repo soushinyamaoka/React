@@ -1,0 +1,25 @@
+[{
+        "id": 1,
+        "title": "Javaの基本構文",
+        "description": "データ型、変数、定数、条件分岐、繰り返し、関数、引数、戻り値、クラス、オブジェクト、メソッド、コンストラクタ",
+        "link": "/JavaLearnPage?id=java1"
+    },
+    {
+        "id": 2,
+        "title": "Javaの基本ライブラリ",
+        "description": "(準備中)文字列操作、配列、リスト、マップ、入出力処理、日付、時間処理、例外処理",
+        "link": "/JavaLearnPage?id=java2"
+    },
+    {
+        "id": 3,
+        "title": "オブジェクト指向プログラミングの基礎",
+        "description": "(準備中)クラスの継承、ポリモーフィズム、抽象クラス、インターフェース、カプセル化、継承、ポリモーフィズム、オーバーライド、",
+        "link": "/JavaLearnPage?id=java3"
+    },
+    {
+        "id": 4,
+        "title": "Javaの開発環境",
+        "description": "(準備中)JDK、Eclipse、NetBeansなどのインストール、コンパイル、実行方法、デバッグ",
+        "link": "/JavaLearnPage?id=java4"
+    }
+]

@@ -1,0 +1,166 @@
+{
+    "contentsId": "java_variable",
+    "title": "Javaの変数問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java1_1",
+            "title": "変数宣言",
+            "question": "以下のint型の変数「age」を宣言し、値「20」を代入してください。",
+            "explanation": "Javaでは、変数を宣言する際にデータ型と変数名を指定し、値を代入するには「=」演算子を使います。",
+            "answer": "int age = 20;"
+        },
+        {
+            "id": 2,
+            "questionId": "java1_2",
+            "title": "変数宣言",
+            "question": "以下のdouble型の変数「height」を宣言し、値「170.5」を代入してください。",
+            "explanation": "double型は浮動小数点数を表すデータ型です。",
+            "answer": "double height = 170.5;"
+        },
+        {
+            "id": 3,
+            "questionId": "java1_3",
+            "title": "変数宣言",
+            "question": "以下のchar型の変数「gender」を宣言し、値「M」を代入してください。",
+            "explanation": "char型は単一の文字を表すデータ型です。",
+            "answer": "char gender = 'M';"
+        },
+        {
+            "id": 4,
+            "questionId": "java1_4",
+            "title": "変数宣言",
+            "question": "以下のboolean型の変数「isStudent」を宣言し、値「true」を代入してください。",
+            "explanation": "boolean型はtrueまたはfalseの値を表すデータ型です。",
+            "answer": "boolean isStudent = true;"
+        },
+        {
+            "id": 5,
+            "questionId": "java1_5",
+            "title": "変数宣言",
+            "question": "以下のString型の変数「name」を宣言し、値「\"John Doe\"」を代入してください。",
+            "explanation": "String型は文字列を表すデータ型です。",
+            "answer": "String name = \"John Doe\";"
+        },
+        {
+            "id": 6,
+            "questionId": "java1_6",
+            "title": "変数の値の更新",
+            "question": "整数型の変数「count」に「10」を代入し、その後「count」の値を「5」で更新してください。",
+            "explanation": "変数の値を更新するには、再度「=」演算子を使って新しい値を代入します。",
+            "answer": "int count = 10;\ncount = 5;"
+        },
+        {
+            "id": 7,
+            "questionId": "java1_7",
+            "title": "算術演算子を使った変数の操作",
+            "question": "int型の変数「num1」に「10」を代入し、int型の変数「num2」に「5」を代入した後、int型の変数「result」に「num1」と「num2」の和を代入してください。",
+            "explanation": "Javaの算術演算子を使って、変数同士の加算ができます。",
+            "answer": "int num1 = 10;\nint num2 = 5;\nint result = num1 + num2;"
+        },
+        {
+            "id": 8,
+            "questionId": "java1_8",
+            "title": "算術演算子を使った変数の操作",
+            "question": "int型の変数「num1」に「10」を代入し、int型の変数「num2」に「5」を代入した後、int型の変数「result」に「num1」から「num2」を引いた値を代入してください。",
+            "explanation": "Javaの算術演算子を使って、変数同士の減算ができます。",
+            "answer": "int num1 = 10;\nint num2 = 5;\nint result = num1 - num2;"
+        },
+        {
+            "id": 9,
+            "questionId": "java1_9",
+            "title": "算術演算子を使った変数の操作",
+            "question": "int型の変数「num1」に「10」を代入し、int型の変数「num2」に「5」を代入した後、int型の変数「result」に「num1」と「num2」の積を代入してください。",
+            "explanation": "Javaの算術演算子を使って、変数同士の乗算ができます。",
+            "answer": "int num1 = 10;\nint num2 = 5;\nint result = num1 * num2;"
+        },
+        {
+            "id": 10,
+            "questionId": "java1_10",
+            "title": "算術演算子を使った変数の操作",
+            "question": "int型の変数「num1」に「10」を代入し、int型の変数「num2」に「5」を代入した後、int型の変数「result」に「num1」を「num2」で割った値を代入してください。",
+            "explanation": "Javaの算術演算子を使って、変数同士の除算ができます。",
+            "answer": "int num1 = 10;\nint num2 = 5;\nint result = num1 / num2;"
+        },
+        {
+            "id": 11,
+            "questionId": "java1_11",
+            "title": "インクリメント演算子",
+            "question": "int型の変数「count」に「0」を代入した後、インクリメント演算子を使って「count」の値を1増やしてください。",
+            "explanation": "インクリメント演算子「++」を使って、変数の値を1増やすことができます。",
+            "answer": "int count = 0;\ncount++;"
+        },
+        {
+            "id": 12,
+            "questionId": "java1_12",
+            "title": "デクリメント演算子",
+            "question": "int型の変数「count」に「5」を代入した後、デクリメント演算子を使って「count」の値を1減らしてください。",
+            "explanation": "デクリメント演算子「--」を使って、変数の値を1減らすことができます。",
+            "answer": "int count = 5;\ncount--;"
+        },
+        {
+            "id": 13,
+            "questionId": "java1_13",
+            "title": "代入演算子を使った変数の操作",
+            "question": "int型の変数「num」に「10」を代入し、その後「num」の値に「5」を足してください。",
+            "explanation": "代入演算子「+=」を使って、変数の値に別の値を足すことができます。",
+            "answer": "int num = 10;\nnum += 5;"
+        },
+        {
+            "id": 14,
+            "questionId": "java1_14",
+            "title": "代入演算子を使った変数の操作",
+            "question": "int型の変数「num」に「10」を代入し、その後「num」の値から「5」を引いてください。",
+            "explanation": "代入演算子「-=」を使って、変数の値から別の値を引くことができます。",
+            "answer": "int num = 10;\nnum -= 5;"
+        },
+        {
+            "id": 15,
+            "questionId": "java1_15",
+            "title": "代入演算子を使った変数の操作",
+            "question": "int型の変数「num」に「10」を代入し、その後「num」の値に「5」を掛けてください。",
+            "explanation": "代入演算子「*=」を使って、変数の値に別の値を掛けることができます。",
+            "answer": "int num = 10;\nnum *= 5;"
+        },
+        {
+            "id": 16,
+            "questionId": "java1_16",
+            "title": "代入演算子を使った変数の操作",
+            "question": "int型の変数「num」に「10」を代入し、その後「num」の値を「5」で割ってください。",
+            "explanation": "代入演算子「/=」を使って、変数の値を別の値で割ることができます。",
+            "answer": "int num = 10;\nnum /= 5;"
+        },
+        {
+            "id": 17,
+            "questionId": "java1_17",
+            "title": "代入演算子を使った変数の操作",
+            "question": "int型の変数「num」に「10」を代入し、その後「num」の値を「3」で割った余りを求めてください。",
+            "explanation": "代入演算子「%=」を使って、変数の値を別の値で割った余りを求めることができます。",
+            "answer": "int num = 10;\nnum %= 3;"
+        },
+        {
+            "id": 18,
+            "questionId": "java1_18",
+            "title": "変数の型変換",
+            "question": "double型の変数「num1」に「3.14」を代入し、その値をint型の変数「num2」に代入してください。",
+            "explanation": "Javaでは、キャスト演算子を使って変数の型を変換できます。ただし、情報の喪失が発生することがあります。",
+            "answer": "double num1 = 3.14;\nint num2 = (int) num1;"
+        },
+        {
+            "id": 19,
+            "questionId": "java1_19",
+            "title": "文字列と数値の連結",
+            "question": "String型の変数「message」に「\"Your score is \"」を代入し、int型の変数「score」に「85」を代入した後、String型の変数「result」に「message」と「score」を連結してください。",
+            "explanation": "Javaでは、「+」演算子を使って文字列と数値を連結することができます。",
+            "answer": "String message = \"Your score is \";\nint score = 85;\nString result = message + score;"
+        },
+        {
+            "id": 20,
+            "questionId": "java1_20",
+            "title": "変数の表示",
+            "question": "int型の変数「age」に「25」を代入し、System.out.printlnを使って「age」の値を表示してください。",
+            "explanation": "Javaでは、System.out.printlnメソッドを使って変数の値をコンソールに表示することができます。",
+            "answer": "int age = 25;\nSystem.out.println(age);"
+        }
+    ]
+}

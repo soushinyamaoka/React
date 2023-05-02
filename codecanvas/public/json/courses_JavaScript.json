@@ -1,0 +1,25 @@
+[{
+        "id": 1,
+        "title": "JavaScriptの基本構文",
+        "description": "データ型、変数、定数、条件分岐、繰り返し、関数、引数、戻り値、オブジェクト、メソッド",
+        "link": "/JavaScriptLearnPage?id=js1"
+    },
+    {
+        "id": 2,
+        "title": "JavaScriptの配列",
+        "description": "配列の作成、要素の追加・削除、多次元配列、配列の操作",
+        "link": "/JavaScriptLearnPage?id=js2"
+    },
+    {
+        "id": 3,
+        "title": "DOMの操作",
+        "description": "要素の取得、属性の変更、クラスの操作、イベントの設定",
+        "link": "/JavaScriptLearnPage?id=js3"
+    },
+    {
+        "id": 4,
+        "title": "jQueryの基礎",
+        "description": "セレクタ、イベントの設定、アニメーション、Ajax通信",
+        "link": "/JavaScriptLearnPage?id=js4"
+    }
+]

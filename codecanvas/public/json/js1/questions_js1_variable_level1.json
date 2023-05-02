@@ -1,0 +1,184 @@
+{
+    "contentsId": "javascript1",
+    "title": "Javascriptの変数問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "javascript1_1",
+            "title": "変数の宣言",
+            "question": "変数名をageとし、値として数字の「20」を代入するJavaScriptのコードを記述してください。",
+            "explanation": "JavaScriptで変数を宣言する際は、「var」、「let」、「const」のキーワードを使用します。「var」は古い書き方で、スコープの扱いがわかりにくいため、新しい書き方である「let」、「const」を使用することが推奨されています。\n変数に値を代入する場合は、変数名に続いて「=」演算子を使用し、その後に代入したい値を記述します。",
+            "answer": "let age = 20;\n"
+        },
+        {
+            "id": 2,
+            "questionId": "javascript1_2",
+            "title": "変数の更新",
+            "question": "変数名をnumberとし、最初に値として数字の「10」を代入した後、次の行で「20」を代入して、最後にconsole.logでnumberの値を表示するJavaScriptのコードを記述してください。",
+            "explanation": "変数に値を代入する場合は、「=」演算子を使用しますが、既に値が代入されている変数に再度値を代入することで、値を更新することができます。\nconsole.log()は、引数に指定した値をコンソールに表示するJavaScriptの関数です。",
+            "answer": "let number = 10;\nnumber = 20;\nconsole.log(number);\n"
+        },
+        {
+            "id": 3,
+            "questionId": "javascript1_3",
+            "title": "変数の宣言と初期化",
+            "question": "変数`x`に数値`5`を代入してください。",
+            "explanation": "`=`を使うことで、変数に値を代入できます。`x`という変数には、`5`という数値が代入されます。",
+            "answer": "let x = 5;"
+        },
+        {
+            "id": 4,
+            "questionId": "javascript1_4",
+            "title": "変数の再代入",
+            "question": "`x`に`3`を代入し、その後に再び`x`に`7`を代入してください。",
+            "explanation": "変数には複数回値を代入することができます。2回目の代入の時点で、変数`x`の値は`3`ではなく`7`に更新されます。",
+            "answer": "let x = 3;\nx = 7;"
+        },
+        {
+            "id": 5,
+            "questionId": "javascript1_5",
+            "title": "変数の宣言",
+            "question": "変数num1に数字の1を代入してください。\nその後、変数num2に変数num1を代入してください。",
+            "explanation": "変数には様々な値を代入することができます。\nまた、変数同士の代入も可能です。\n例えば、num1という変数に1という数字を代入する場合は、以下のように記述します。\nvar num1 = 1;\n\n次に、num2にnum1を代入する場合は、以下のように記述します。\nvar num2 = num1;",
+            "answer": "var num1 = 1;\nvar num2 = num1;"
+        },
+        {
+            "id": 6,
+            "questionId": "javascript1_6",
+            "title": "変数の再代入",
+            "question": "変数nameに文字列「山田太郎」を代入してください。\nその後、変数nameに文字列「田中次郎」を再代入してください。",
+            "explanation": "変数には値を再代入することができます。\n再代入する場合は、変数名の前にvarを書く必要はありません。\n例えば、nameという変数に「山田太郎」という文字列を代入する場合は、以下のように記述します。\nvar name = '山田太郎';\n\n次に、nameに「田中次郎」という文字列を再代入する場合は、以下のように記述します。\nname = '田中次郎';",
+            "answer": "var name = '山田太郎';\nname = '田中次郎';"
+        },
+        {
+            "id": 7,
+            "questionId": "js1_7",
+            "title": "変数の宣言",
+            "question": "次のうち、変数を宣言していないものを選択肢から選びなさい。",
+            "options": [
+                "let num = 10;",
+                "const str = 'Hello, World!';",
+                "var bool = true;",
+                "char = 'a';"
+            ],
+            "answer": "char = 'a';",
+            "explanation": "JavaScriptでは、変数を宣言する際には必ず「let」、「const」、「var」のいずれかのキーワードを使用します。選択肢の中で「char」は宣言されていません。このようにキーワードを使用せずに変数に値を代入すると、グローバル変数が作成されるため、意図しないバグを生み出す可能性があります。"
+        },
+        {
+            "id": 8,
+            "questionId": "js1_8",
+            "title": "変数の命名規則",
+            "question": "変数を宣言するときの、命名規則について以下の説明の中で正しいものを選んでください。\n\n1. 変数名の先頭には数字が使えます。\n2. 変数名にスペースを含めることができます。\n3. 変数名にアンダースコア(_)を使うことができます。\n4. 変数名は、英字、数字、アンダースコアのみを使って構成されます。",
+            "explanation": "変数名の命名規則は次のようになります。\n\n1. 変数名の先頭には数字は使えません。\n2. 変数名にはスペースを含めることができません。\n3. 変数名にはアンダースコア(_)を使うことができます。\n4. 変数名は、英字、数字、アンダースコアのみを使って構成されます。",
+            "answer": "const message = 'Hello World!';\nconsole.log(message);\n\n// 出力結果\n// Hello World!"
+        },
+        {
+            "id": 9,
+            "questionId": "javascript1_9",
+            "title": "変数のスコープ",
+            "question": "以下のコードを実行した場合、コンソールにどのような結果が表示されるか答えてください。\n\n```js\nlet x = 10;\nif (true) {\n    let x = 5;\n}\nconsole.log(x);\n```\n",
+            "explanation": "変数 `x` はif文のブロックスコープで再宣言されています。したがって、ブロックスコープ内で `x` を設定しても、他の場所の `x` には影響を与えません。if文のブロックスコープ外の `x` は、ブロック内で宣言された変数とは異なります。従って、出力は `10` になります。",
+            "answer": "10"
+        },
+        {
+            "id": 10,
+            "questionId": "javascript1_10",
+            "title": "変数のスコープ",
+            "question": "以下のコードを実行した場合、コンソールにどのような結果が表示されるか答えてください。\n\n```js\nlet x = 1;\n{\n    let x = 2;\n    {\n        let x = 3;\n        console.log(x);\n    }\n    console.log(x);\n}\nconsole.log(x);\n```\n",
+            "explanation": "このコードは、3つのブロックスコープを含んでいます。最初の `x` はグローバルスコープにあり、値は `1` です。2番目の `x` は、最初のブロックスコープ内にあり、値は `2` です。3番目の `x` は、最初のブロックスコープの内側にあり、値は `3` です。従って、出力は `3 2 1` になります。",
+            "answer": "3 2 1"
+        },
+        {
+            "id": 11,
+            "questionId": "javascript1_11",
+            "title": "変数の宣言",
+            "question": "以下のコードを実行した場合、コンソールには何が表示されますか？\n\nlet a = 1;\nlet b = 2;\nlet c = a + b;\nconsole.log(c);",
+            "explanation": "letというキーワードを使って変数を宣言し、初期値としてそれぞれ1, 2を代入しています。次に、変数aと変数bを加算し、その結果を変数cに代入しています。最後に、変数cの値をconsole.log()メソッドを使って出力しています。\n\n変数aの値は1、変数bの値は2なので、変数cにはa + b = 1 + 2 = 3が代入されます。そのため、コンソールには3が表示されます。",
+            "answer": "3"
+        },
+        {
+            "id": 12,
+            "questionId": "javascript1_12",
+            "title": "変数の再代入",
+            "question": "以下のコードを実行した場合、コンソールには何が表示されますか？\n\nlet a = 1;\nconsole.log(a);\na = 2;\nconsole.log(a);",
+            "explanation": "letというキーワードを使って変数aを宣言し、初期値として1を代入しています。次に、変数aの値をconsole.log()メソッドを使って出力しています。その後、変数aに2を代入しています。最後に、再度変数aの値をconsole.log()メソッドを使って出力しています。\n\n最初のconsole.log()メソッドで変数aの値である1が表示されます。次に、変数aに2が代入されるため、2が表示されます。",
+            "answer": "1\n2"
+        },
+        {
+            "id": 13,
+            "questionId": "js0101",
+            "title": "変数の宣言",
+            "question": "以下のうち、変数xに数値100を代入する正しいコードはどれでしょうか？",
+            "explanation": "変数xに数値100を代入するには、以下のように変数宣言と代入を行います。\nvar x = 100;",
+            "options": [
+                "var x = \"100\";",
+                "var x = 100;",
+                "x = 100;",
+                "100 = x;"
+            ],
+            "answer": "var x = 100;"
+        },
+        {
+            "id": 14,
+            "questionId": "js0102",
+            "title": "変数の宣言",
+            "question": "以下のコードの実行結果として、コンソールに表示されるものは何でしょうか？\n\nvar x = 10;\nvar y = 20;\nvar z = x + y;\nconsole.log(z);",
+            "explanation": "変数xに10、変数yに20を代入し、それらを加算した値を変数zに代入しています。その後、変数zの値をコンソールに出力しています。\n実行結果は、30となります。",
+            "answer": "30"
+        },
+        {
+            "id": 15,
+            "questionId": "javascript1_15",
+            "title": "変数の再代入",
+            "question": "以下のコードを実行した場合、変数`x`の値はどうなりますか？\n```\nvar x = 5;\nx = 3;\n```",
+            "explanation": "変数は再代入可能です。したがって、変数`x`に最初に5が代入され、次に3が代入されます。そのため、変数`x`の値は3になります。",
+            "answer": "変数`x`の値は3になる。\n```var x = 5;\nx = 3;\n```"
+        },
+        {
+            "id": 16,
+            "questionId": "javascript1_16",
+            "title": "変数のスコープ",
+            "question": "以下のコードを実行した場合、コンソールに表示される値は何ですか？\n```\nvar x = 5;\nfunction myFunction() {\n  var x = 3;\n  console.log(x);\n}\nmyFunction();\nconsole.log(x);\n```",
+            "explanation": "関数内で変数を宣言した場合、その変数はローカル変数となり、関数外で宣言された同名の変数とは異なります。したがって、myFunction()内で宣言された変数`x`の値は3であり、関数外で宣言された変数`x`の値は5です。コンソールに表示される値は、3と5です。",
+            "answer": "コンソールに表示される値は,、以下の通りです。\n3\n5\n```var x = 5;\nfunction myFunction() {\n  var x = 3;\n  console.log(x);\n}\nmyFunction();\nconsole.log(x);\n```"
+        },
+        {
+            "id": 17,
+            "questionId": "js1-17",
+            "title": "変数の宣言",
+            "question": "変数「text」に「Hello World」という文字列を代入してください。",
+            "explanation": "変数「text」に「Hello World」という文字列を代入するためには、以下のように記述します。\nvar text = \"Hello World\";\n\nvar」は変数を宣言するための予約語です。「text」という変数名は任意の名前を使用できます。「=\"Hello World\"」は変数「text」に代入される値で、必ず文字列を\"\"で囲む必要があります。",
+            "answer": "var text = \"Hello World\";"
+        },
+        {
+            "id": 18,
+            "questionId": "js1-18",
+            "title": "変数の出力",
+            "question": "先程宣言した変数「text」の値をconsole.log()で出力してください。",
+            "explanation": "変数「text」に代入された「Hello World」という文字列をconsole.log()で出力するには、以下のように記述します。\nconsole.log(text);\n\nconsole.log()は、()内に指定した値をコンソールに出力するためのメソッドです。「text」は変数名で、変数に代入された値が出力されます。",
+            "answer": "console.log(text);"
+        },
+        {
+            "id": 19,
+            "questionId": "js1_19",
+            "title": "変数の初期化",
+            "question": "以下のプログラムの実行結果を選択肢から選んでください。\n\nvar a;\nconsole.log(a);",
+            "explanation": "変数aを宣言しているが、値を代入していないため、undefinedという値が出力されます。\nundefinedとは、JavaScriptの内部的な値で、値が未定義であることを表します。",
+            "options": [
+                "undefined",
+                "null",
+                "0",
+                "エラー"
+            ],
+            "answer": "undefined"
+        },
+        {
+            "id": 20,
+            "questionId": "js1_20",
+            "title": "変数の宣言",
+            "question": "変数に格納できるデータ型は次のうちどれですか？\n1. 文字列\n2. 数値\n3. 真偽値\n4. オブジェクト\n\n解答となる選択肢の番号を記入してください。",
+            "explanation": "JavaScriptで使用できるデータ型は多岐にわたりますが、変数に格納できるデータ型としては、文字列、数値、真偽値、オブジェクトなどがあります。",
+            "answer": "1,2,3,4"
+        }
+    ]
+}

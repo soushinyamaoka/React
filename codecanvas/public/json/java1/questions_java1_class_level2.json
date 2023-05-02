@@ -1,0 +1,166 @@
+{
+    "contentsId": "java2",
+    "title": "Javaのクラス問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java3_1",
+            "title": "Javaのクラス - 中級",
+            "question": "クラス名「Person」を定義し、以下の属性を持たせてください。\n- name (String型)\n- age (int型)\n\n以下のメソッドを実装してください。\n- getName(): String\n- setName(String name): void\n- getAge(): int\n- setAge(int age): void\n\nまた、コンストラクタで名前と年齢を設定できるようにし、名前と年齢を表示する「printInfo()」メソッドを実装してください。",
+            "explanation": "クラスの属性とメソッド、コンストラクタを理解し、適切に実装できるようになりましょう。",
+            "answer": "public class Person {\n\n  private String name;\n  private int age;\n\n  public Person(String name, int age) {\n    this.name = name;\n    this.age = age;\n  }\n\n  public String getName() {\n    return name;\n  }\n\n  public void setName(String name) {\n    this.name = name;\n  }\n\n  public int getAge() {\n    return age;\n  }\n\n  public void setAge(int age) {\n    this.age = age;\n  }\n\n  public void printInfo() {\n    System.out.println(\"Name: \" + name + \", Age: \" + age);\n  }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java3_2",
+            "title": "Javaのクラス - 中級",
+            "question": "クラス名「BankAccount」を定義し、以下の属性を持たせてください。\n- accountNumber (String型)\n- balance (double型)\n\n以下のメソッドを実装してください。\n- deposit(double amount): void\n- withdraw(double amount): void\n\nまた、コンストラクタで口座番号を設定できるようにし、口座番号と残高を表示する「printAccountDetails()」メソッドを実装してください。ただし、引き出し時の残高がマイナスにならないようにしてください。",
+            "explanation": "クラスの属性とメソッド、コンストラクタを理解し、適切に実装できるようになりましょう。",
+            "answer": "public class BankAccount {\n\n  private String accountNumber;\n  private double balance;\n\n  public BankAccount(String accountNumber) {\n    this.accountNumber = accountNumber;\n    this.balance = 0;\n  }\n\n  public void deposit(double amount) {\n    balance += amount;\n  }\n\n  public void withdraw(double amount) {\n    if (balance >= amount) {\n      balance -= amount;\n    } else {\n      System.out.println(\"Insufficient balance.\");\n    }\n  }\n\n  public void printAccountDetails() {\n    System.out.println(\"Account Number: \" + accountNumber + \", Balance: \" + balance);\n  }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java3_3",
+            "title": "Javaのクラス - 中級",
+            "question": "「Person」クラスを作成して、以下の属性を持たせてください。\n- name (String型)\n- age (int型)\n- address (String型)\n\n以下のメソッドを実装してください。\n- setName(String name): void\n- setAge(int age): void\n- setAddress(String address): void\n\nまた、コンストラクタで名前、年齢、住所を設定できるようにし、それぞれの属性を表示する「printPersonDetails()」メソッドを実装してください。",
+            "explanation": "クラスの属性とメソッド、コンストラクタを理解し、適切に実装できるようになりましょう。",
+            "answer": "public class Person {\n\n  private String name;\n  private int age;\n  private String address;\n\n  public Person(String name, int age, String address) {\n    this.name = name;\n    this.age = age;\n    this.address = address;\n  }\n\n  public void setName(String name) {\n    this.name = name;\n  }\n\n  public void setAge(int age) {\n    this.age = age;\n  }\n\n  public void setAddress(String address) {\n    this.address = address;\n  }\n\n  public void printPersonDetails() {\n    System.out.println(\"Name: \" + name + \", Age: \" + age + \", Address: \" + address);\n  }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java3_4",
+            "title": "Javaのクラス - 中級",
+            "question": "「Car」クラスを作成し、以下の属性とメソッドを持たせてください。\n- make (String型)\n- model (String型)\n- year (int型)\n- speed (double型)\n\n以下のメソッドを実装してください。\n- accelerate(double increment): void\n- decelerate(double decrement): void\n- printCarDetails(): void\n\nコンストラクタを使用して、make, model, year, speedを設定できるようにしてください。\naccelerateメソッドで速度を上げ、decelerateメソッドで速度を下げることができるように実装し、printCarDetailsメソッドで車の詳細を出力してください。",
+            "explanation": "クラスの属性とメソッド、コンストラクタを理解し、適切に実装できるようになりましょう。",
+            "answer": "public class Car {\n\n  private String make;\n  private String model;\n  private int year;\n  private double speed;\n\n  public Car(String make, String model, int year, double speed) {\n    this.make = make;\n    this.model = model;\n    this.year = year;\n    this.speed = speed;\n  }\n\n  public void accelerate(double increment) {\n    this.speed += increment;\n  }\n\n  public void decelerate(double decrement) {\n    this.speed -= decrement;\n  }\n\n  public void printCarDetails() {\n    System.out.println(\"Make: \" + make + \", Model: \" + model + \", Year: \" + year + \", Speed: \" + speed);\n  }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java3_5",
+            "title": "Javaのクラス - 中級",
+            "question": "「Person」クラスを作成し、以下の属性とメソッドを持たせてください。\n- firstName (String型)\n- lastName (String型)\n- age (int型)\n\n以下のメソッドを実装してください。\n- getFullName(): String\n\nコンストラクタを使用して、firstName, lastName, ageを設定できるようにしてください。\ngetFullNameメソッドでは、firstNameとlastNameを組み合わせたフルネームを返すように実装してください。",
+            "explanation": "クラスの属性とメソッド、コンストラクタを理解し、適切に実装できるようになりましょう。",
+            "answer": "public class Person {\n\n  private String firstName;\n  private String lastName;\n  private int age;\n\n  public Person(String firstName, String lastName, int age) {\n    this.firstName = firstName;\n    this.lastName = lastName;\n    this.age = age;\n  }\n\n  public String getFullName() {\n    return firstName + \" \" + lastName;\n  }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java3_6",
+            "title": "Javaのクラス - 中級",
+            "question": "「Vehicle」クラスを作成し、以下の属性とメソッドを持たせてください。\n- make (String型)\n- model (String型)\n- year (int型)\n\n以下のメソッドを実装してください。\n- display(): void\n\nコンストラクタを使用して、make, model, yearを設定できるようにしてください。\ndisplayメソッドでは、車の情報を表示するように実装してください。",
+            "explanation": "クラスの属性、メソッド、コンストラクタを理解し、適切に実装できるようになりましょう。",
+            "answer": "public class Vehicle {\n\n  private String make;\n  private String model;\n  private int year;\n\n  public Vehicle(String make, String model, int year) {\n    this.make = make;\n    this.model = model;\n    this.year = year;\n  }\n\n  public void display() {\n    System.out.println(\"Make: \" + make + \"\\nModel: \" + model + \"\\nYear: \" + year);\n  }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java3_7",
+            "title": "Javaのクラス - 中級",
+            "question": "「Employee」クラスを作成し、以下の属性とメソッドを持たせてください。\n- name (String型)\n- age (int型)\n- salary (double型)\n\n以下のメソッドを実装してください。\n- raiseSalary(double percent): void\n\nコンストラクタを使用して、name, age, salaryを設定できるようにしてください。\nraiseSalaryメソッドでは、引数として与えられたパーセント分だけ給与を上げるように実装してください。",
+            "explanation": "クラスの属性、メソッド、コンストラクタを理解し、適切に実装できるようになりましょう。",
+            "answer": "public class Employee {\n\n  private String name;\n  private int age;\n  private double salary;\n\n  public Employee(String name, int age, double salary) {\n    this.name = name;\n    this.age = age;\n    this.salary = salary;\n  }\n\n  public void raiseSalary(double percent) {\n    salary += salary * percent / 100;\n  }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java3_8",
+            "title": "Javaのクラス - 中級",
+            "question": "クラス「Circle」を作成し、以下の属性を持たせてください。\n- radius (double型)\n\n次に、以下のメソッドを実装してください。\n- getArea(): double\n- getCircumference(): double\n\nコンストラクタでradiusを設定できるようにし、getAreaメソッドでは円の面積を計算し、getCircumferenceメソッドでは円周の長さを計算して返すようにしてください。円周率にはMath.PIを使用してください。",
+            "explanation": "クラスの属性、メソッド、コンストラクタを理解し、適切に実装できるようになりましょう。",
+            "answer": "public class Circle {\n\n  private double radius;\n\n  public Circle(double radius) {\n    this.radius = radius;\n  }\n\n  public double getArea() {\n    return Math.PI * radius * radius;\n  }\n\n  public double getCircumference() {\n    return 2 * Math.PI * radius;\n  }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java3_9",
+            "title": "Javaのクラス - 中級",
+            "question": "以下の条件を満たすクラス「Person」を作成してください。\n\n1. 属性「name」（String型）と「age」（int型）を持つ。\n2. nameとageの値をコンストラクタで設定できる。\n3. nameとageのゲッター(getName, getAge)とセッター(setName, setAge)を実装する。\n4. メソッド「toString」をオーバーライドして、以下のような文字列を返すようにする。\n   形式: \"Name: <name>, Age: <age>\"\n\nサンプルコードでPersonオブジェクトを作成し、toStringメソッドを呼び出して出力してください。",
+            "explanation": "クラスの属性、コンストラクタ、ゲッター、セッター、toStringメソッドのオーバーライドの理解を深めましょう。",
+            "answer": "public class Person {\n\n  private String name;\n  private int age;\n\n  public Person(String name, int age) {\n    this.name = name;\n    this.age = age;\n  }\n\n  public String getName() {\n    return name;\n  }\n\n  public void setName(String name) {\n    this.name = name;\n  }\n\n  public int getAge() {\n    return age;\n  }\n\n  public void setAge(int age) {\n    this.age = age;\n  }\n\n  @Override\n  public String toString() {\n    return \"Name: \" + name + \", Age: \" + age;\n  }\n}\n\npublic class Main {\n\n  public static void main(String[] args) {\n    Person person = new Person(\"John Doe\", 25);\n    System.out.println(person.toString()); // Expected output: \"Name: John Doe, Age: 25\"\n  }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java3_10",
+            "title": "Javaのクラス - 中級",
+            "question": "以下の条件を満たすクラス「BankAccount」を作成してください。\n\n1. 属性「balance」（double型）を持つ。\n2. balanceの初期値は0.0で設定される。\n3. メソッド「deposit」を作成し、引数で受け取った金額をbalanceに加算する。\n4. メソッド「withdraw」を作成し、引数で受け取った金額をbalanceから減算する。\n5. メソッド「getBalance」を作成し、balanceを返す。\n\nサンプルコードでBankAccountオブジェクトを作成し、depositメソッド、withdrawメソッドを呼び出し、最後にgetBalanceメソッドを呼び出して出力してください。",
+            "explanation": "クラスの属性とメソッドの定義、およびオブジェクトの生成と操作について理解を深めましょう。",
+            "answer": "public class BankAccount {\n\n  private double balance;\n\n  public BankAccount() {\n    balance = 0.0;\n  }\n\n  public void deposit(double amount) {\n    balance += amount;\n  }\n\n  public void withdraw(double amount) {\n    balance -= amount;\n  }\n\n  public double getBalance() {\n    return balance;\n  }\n}\n\npublic class Main {\n\n  public static void main(String[] args) {\n    BankAccount account = new BankAccount();\n    account.deposit(1000);\n    account.withdraw(500);\n    System.out.println(account.getBalance()); // Expected output: 500.0\n  }\n}"
+        },
+        {
+            "id": 11,
+            "questionId": "java3_11",
+            "title": "Javaのクラス - 中級",
+            "question": "継承を用いて、次の条件に従ったクラス「Student」を作成してください。\n\n1. 親クラス「Person」を作成し、属性「name」（String型）と「age」（int型）を持つ。\n2. Personクラスに、nameとageを引数に持つコンストラクタを作成する。\n3. 子クラス「Student」を作成し、Personクラスを継承する。\n4. Studentクラスに、属性「studentId」（String型）を追加する。\n5. Studentクラスに、name、age、studentIdを引数に持つコンストラクタを作成する。\n\nサンプルコードでStudentオブジェクトを作成し、name、age、studentIdを設定して出力してください。",
+            "explanation": "継承によるクラスの拡張とコンストラクタのチェーンについて理解しましょう。",
+            "answer": "public class Person {\n\n  protected String name;\n  protected int age;\n\n  public Person(String name, int age) {\n    this.name = name;\n    this.age = age;\n  }\n}\n\npublic class Student extends Person {\n\n  private String studentId;\n\n  public Student(String name, int age, String studentId) {\n    super(name, age);\n    this.studentId = studentId;\n  }\n\n  public String toString() {\n    return \"Name: \" + name + \"\\nAge: \" + age + \"\\nStudent ID: \" + studentId;\n  }\n}\n\npublic class Main {\n\n  public static void main(String[] args) {\n    Student student = new Student(\"Alice\", 20, \"12345\");\n    System.out.println(student.toString());\n    // Expected output:\n    // Name: Alice\n    // Age: 20\n    // Student ID: 12345\n  }\n}"
+        },
+        {
+            "id": 12,
+            "questionId": "java3_12",
+            "title": "Javaのクラス - 中級",
+            "question": "抽象クラスを用いて次の条件に従ったクラス「Dog」を作成してください。\n\n1. 抽象クラス「Animal」を作成し、属性「name」（String型）を持つ。\n2. Animalクラスに、nameを引数に持つコンストラクタを作成する。\n3. Animalクラスに、「speak」メソッド（抽象メソッド）を定義する。\n4. 「Dog」クラスを作成し、Animalクラスを継承する。\n5. Dogクラスに、speakメソッドを実装し、\"{name} says: Woof!\"と出力する。\n\nサンプルコードでDogオブジェクトを作成し、speakメソッドを呼び出して出力してください。",
+            "explanation": "抽象クラスを用いて、サブクラスにメソッドの実装を強制する方法を理解しましょう。",
+            "answer": "abstract class Animal {\n\n  protected String name;\n\n  public Animal(String name) {\n    this.name = name;\n  }\n\n  public abstract void speak();\n}\n\npublic class Dog extends Animal {\n\n  public Dog(String name) {\n    super(name);\n  }\n\n  public void speak() {\n    System.out.println(name + \" says: Woof!\");\n  }\n}\n\npublic class Main {\n\n  public static void main(String[] args) {\n    Dog dog = new Dog(\"Buddy\");\n    dog.speak();\n    // Expected output:\n    // Buddy says: Woof!\n  }\n}"
+        },
+        {
+            "id": 13,
+            "questionId": "java3_13",
+            "title": "Javaのクラス - 中級",
+            "question": "インターフェースを用いて次の条件に従ったクラス「Bird」を作成してください。\n\n1. インターフェース「Flyable」を作成し、「fly」メソッドを定義する。\n2. クラス「Bird」を作成し、属性「name」（String型）を持つ。\n3. Birdクラスに、nameを引数に持つコンストラクタを作成する。\n4. Birdクラスに、Flyableインターフェースを実装する。\n5. Birdクラスに、flyメソッドを実装し、\"{name} is flying!\"と出力する。\n\nサンプルコードでBirdオブジェクトを作成し、flyメソッドを呼び出して出力してください。",
+            "explanation": "インターフェースを用いて、実装クラスにメソッドの実装を強制する方法を理解しましょう。",
+            "answer": "interface Flyable {\n\n  void fly();\n}\n\npublic class Bird implements Flyable {\n\n  private String name;\n\n  public Bird(String name) {\n    this.name = name;\n  }\n\n  public void fly() {\n    System.out.println(name + \" is flying!\");\n  }\n}\n\npublic class Main {\n\n  public static void main(String[] args) {\n    Bird bird = new Bird(\"Eagle\");\n    bird.fly();\n    // Expected output:\n    // Eagle is flying!\n  }\n}"
+        },
+        {
+            "id": 14,
+            "questionId": "java3_14",
+            "title": "Javaのクラス - 中級",
+            "question": "以下の条件に従って、クラス「Circle」を作成し、クラスを使用するサンプルコードを提供してください。\n\n1. クラス「Circle」を作成し、属性「radius」（double型）を持つ。\n2. Circleクラスに、radiusを引数に持つコンストラクタを作成する。\n3. Circleクラスに、「getArea」メソッドを作成し、円の面積を返す。円の面積 = π * radius * radius\n4. Circleクラスに、「getCircumference」メソッドを作成し、円の周長を返す。円の周長 = 2 * π * radius\n\nサンプルコードでCircleオブジェクトを作成し、getAreaメソッドとgetCircumferenceメソッドを呼び出して出力してください。",
+            "explanation": "クラスを作成し、属性とメソッドを実装する方法を学びましょう。",
+            "answer": "public class Circle {\n\n  private double radius;\n\n  public Circle(double radius) {\n    this.radius = radius;\n  }\n\n  public double getArea() {\n    return Math.PI * radius * radius;\n  }\n\n  public double getCircumference() {\n    return 2 * Math.PI * radius;\n  }\n}\n\npublic class Main {\n\n  public static void main(String[] args) {\n    Circle circle = new Circle(5);\n    System.out.println(\"Area: \" + circle.getArea());\n    System.out.println(\"Circumference: \" + circle.getCircumference());\n    // Expected output:\n    // Area: 78.53981633974483\n    // Circumference: 31.41592653589793\n  }\n}"
+        },
+        {
+            "id": 15,
+            "questionId": "java3_15",
+            "title": "Javaのクラス - 中級",
+            "question": "以下の条件に従って、クラス「Rectangle」を作成し、クラスを使用するサンプルコードを提供してください。\n\n1. クラス「Rectangle」を作成し、属性「width」（double型）と「height」（double型）を持つ。\n2. Rectangleクラスに、widthとheightを引数に持つコンストラクタを作成する。\n3. Rectangleクラスに、「getArea」メソッドを作成し、長方形の面積を返す。長方形の面積 = width * height\n4. Rectangleクラスに、「getPerimeter」メソッドを作成し、長方形の周囲の長さを返す。長方形の周囲の長さ = 2 * (width + height)\n\nサンプルコードでRectangleオブジェクトを作成し、getAreaメソッドとgetPerimeterメソッドを呼び出して出力してください。",
+            "explanation": "クラスを作成し、属性とメソッドを実装する方法を学びましょう。",
+            "answer": "public class Rectangle {\n\n  private double width;\n  private double height;\n\n  public Rectangle(double width, double height) {\n    this.width = width;\n    this.height = height;\n  }\n\n  public double getArea() {\n    return width * height;\n  }\n\n  public double getPerimeter() {\n    return 2 * (width + height);\n  }\n}\n\npublic class Main {\n\n  public static void main(String[] args) {\n    Rectangle rectangle = new Rectangle(4, 5);\n    System.out.println(\"Area: \" + rectangle.getArea());\n    System.out.println(\"Perimeter: \" + rectangle.getPerimeter());\n    // Expected output:\n    // Area: 20.0\n    // Perimeter: 18.0\n  }\n}"
+        },
+        {
+            "id": 16,
+            "questionId": "java3_16",
+            "title": "Javaのクラス - 中級",
+            "question": "以下の条件に従って、クラス「Circle」を作成し、クラスを使用するサンプルコードを提供してください。\n\n1. クラス「Circle」を作成し、属性「radius」（double型）を持つ。\n2. Circleクラスに、radiusを引数に持つコンストラクタを作成する。\n3. Circleクラスに、「getArea」メソッドを作成し、円の面積を返す。円の面積 = π * radius * radius\n4. Circleクラスに、「getCircumference」メソッドを作成し、円の周囲の長さを返す。円の周囲の長さ = 2 * π * radius\n\nサンプルコードでCircleオブジェクトを作成し、getAreaメソッドとgetCircumferenceメソッドを呼び出して出力してください。",
+            "explanation": "クラスを作成し、属性とメソッドを実装する方法を学びましょう。",
+            "answer": "public class Circle {\n\n  private double radius;\n\n  public Circle(double radius) {\n    this.radius = radius;\n  }\n\n  public double getArea() {\n    return Math.PI * radius * radius;\n  }\n\n  public double getCircumference() {\n    return 2 * Math.PI * radius;\n  }\n}\n\npublic class Main {\n\n  public static void main(String[] args) {\n    Circle circle = new Circle(5);\n    System.out.println(\"Area: \" + circle.getArea());\n    System.out.println(\"Circumference: \" + circle.getCircumference());\n    // Expected output:\n    // Area: 78.53981633974483\n    // Circumference: 31.41592653589793\n  }\n}"
+        },
+        {
+            "id": 17,
+            "questionId": "java3_17",
+            "title": "Javaのクラス - 中級",
+            "question": "継承を使用して以下の条件に従ったクラス「Vehicle」および「Car」を作成してください。\n\n1. クラス「Vehicle」を作成し、属性「make」（String型）と「model」（String型）を持つ。\n2. Vehicleクラスに、makeとmodelを引数に持つコンストラクタを作成する。\n3. Vehicleクラスに、「getInfo」メソッドを作成し、以下の形式で車両情報を返す。「[Make: make, Model: model]」\n\n4. Vehicleクラスを継承したクラス「Car」を作成する。\n5. Carクラスに、属性「numberOfDoors」（int型）を追加する。\n6. Carクラスに、make、model、numberOfDoorsを引数に持つコンストラクタを作成する。コンストラクタ内で、親クラスのコンストラクタを呼び出すこと。\n7. Carクラスに、「getInfo」メソッドをオーバーライドし、以下の形式で車両情報を返す。「[Make: make, Model: model, Doors: numberOfDoors]」\n\nサンプルコードでCarオブジェクトを作成し、getInfoメソッドを呼び出して出力してください。",
+            "explanation": "この問題では、継承とオーバーライドの概念を理解し、実装することが目的です。",
+            "answer": "public class Vehicle {\n\n  protected String make;\n  protected String model;\n\n  public Vehicle(String make, String model) {\n    this.make = make;\n    this.model = model;\n  }\n\n  public String getInfo() {\n    return \"[Make: \" + make + \", Model: \" + model + \"]\";\n  }\n}\n\npublic class Car extends Vehicle {\n\n  private int numberOfDoors;\n\n  public Car(String make, String model, int numberOfDoors) {\n    super(make, model);\n    this.numberOfDoors = numberOfDoors;\n  }\n\n  @Override\n  public String getInfo() {\n    return \"[Make: \" + make + \", Model: \" + model + \", Doors: \" + numberOfDoors + \"]\";\n  }\n}\n\npublic class Main {\n\n  public static void main(String[] args) {\n    Car car = new Car(\"Toyota\", \"Camry\", 4);\n    System.out.println(car.getInfo());\n    // Expected output:\n    // [Make: Toyota, Model: Camry, Doors: 4]\n  }\n}"
+        },
+        {
+            "id": 18,
+            "questionId": "java3_18",
+            "title": "Javaのクラス - 中級",
+            "question": "以下の条件に従った抽象クラス「Animal」および具象クラス「Dog」と「Cat」を作成してください。\n\n1. 抽象クラス「Animal」を作成し、属性「name」（String型）と「age」（int型）を持つ。\n2. Animalクラスに、nameとageを引数に持つコンストラクタを作成する。\n3. Animalクラスに、「speak」メソッドを抽象メソッドとして定義する。\n\n4. Animalクラスを継承した具象クラス「Dog」を作成する。\n5. Dogクラスに、nameとageを引数に持つコンストラクタを作成し、親クラスのコンストラクタを呼び出すこと。\n6. Dogクラスで「speak」メソッドをオーバーライドし、\"Woof!\"を出力する。\n\n7. Animalクラスを継承した具象クラス「Cat」を作成する。\n8. Catクラスに、nameとageを引数に持つコンストラクタを作成し、親クラスのコンストラクタを呼び出すこと。\n9. Catクラスで「speak」メソッドをオーバーライドし、\"Meow!\"を出力する。\n\nサンプルコードでDogオブジェクトとCatオブジェクトを作成し、それぞれのspeakメソッドを呼び出して出力してください。",
+            "explanation": "この問題では、抽象クラスと具象クラスの作成、抽象メソッドのオーバーライドなど、オブジェクト指向プログラミングの基本概念を理解し、実装することが目的です。",
+            "answer": "abstract class Animal {\n\n  protected String name;\n  protected int age;\n\n  public Animal(String name, int age) {\n    this.name = name;\n    this.age = age;\n  }\n\n  public abstract void speak();\n}\n\npublic class Dog extends Animal {\n\n  public Dog(String name, int age) {\n    super(name, age);\n  }\n\n  @Override\n  public void speak() {\n    System.out.println(\"Woof!\");\n  }\n}\n\npublic class Cat extends Animal {\n\n  public Cat(String name, int age) {\n    super(name, age);\n  }\n\n  @Override\n  public void speak() {\n    System.out.println(\"Meow!\");\n  }\n}\n\npublic class Main {\n\n  public static void main(String[] args) {\n    Dog dog = new Dog(\"Buddy\", 3);\n    Cat cat = new Cat(\"Luna\", 2);\n\n    dog.speak(); // Woof!\n    cat.speak(); // Meow!\n  }\n}\n"
+        },
+        {
+            "id": 19,
+            "questionId": "java3_19",
+            "title": "Javaのクラス - 中級",
+            "question": "インターフェイス「Resizable」を実装した「ResizableCircle」というクラスを作成してください。\n\n1. インターフェイス「Resizable」を作成し、void型の「resize」メソッドを持つ。このメソッドは、引数にint型の「percentage」という引数を取る。\n\n2. クラス「Circle」を作成し、属性「radius」（double型）を持つ。\n3. Circleクラスに、radiusを引数に持つコンストラクタを作成する。\n4. Circleクラスに、円の面積を返す「getArea」メソッドを作成する。\n\n5. Circleクラスを継承し、インターフェイスResizableを実装した「ResizableCircle」クラスを作成する。\n6. ResizableCircleクラスに、radiusを引数に持つコンストラクタを作成し、親クラスのコンストラクタを呼び出すこと。\n7. ResizableCircleクラスで「resize」メソッドをオーバーライドし、円の半径を「percentage」分だけ変更する。\n\nサンプルコードでResizableCircleオブジェクトを作成し、resizeメソッドを呼び出して半径を変更し、変更後の面積を出力してください。",
+            "explanation": "この問題では、インターフェイスを実装し、メソッドをオーバーライドすることで、クラスの振る舞いを拡張する方法を学びます。",
+            "answer": "interface Resizable {\n\n  void resize(int percentage);\n}\n\npublic class Circle {\n\n  protected double radius;\n\n  public Circle(double radius) {\n    this.radius = radius;\n  }\n\n  public double getArea() {\n    return Math.PI * Math.pow(radius, 2);\n  }\n}\n\npublic class ResizableCircle extends Circle implements Resizable {\n\n  public ResizableCircle(double radius) {\n    super(radius);\n  }\n\n  @Override\n  public void resize(int percentage) {\n    radius *= (1 + (double) percentage / 100);\n  }\n}\n\npublic class Main {\n\n  public static void main(String[] args) {\n    ResizableCircle circle = new ResizableCircle(5);\n    circle.resize(10);\n    System.out.println(circle.getArea()); // 95.03317777109125\n  }\n}\n"
+        },
+        {
+            "id": 20,
+            "questionId": "java3_20",
+            "title": "Javaのクラス - 中級",
+            "question": "「Employee」クラスを作成し、継承を使用して「Manager」クラスを作成してください。\n\n1. クラス「Employee」を作成し、属性「name」（String型）、「salary」（double型）を持つ。\n2. Employeeクラスに、nameとsalaryを引数に持つコンストラクタを作成する。\n3. Employeeクラスに、「getSalary」メソッドを作成し、salaryを返す。\n\n4. Employeeクラスを継承した「Manager」クラスを作成する。\n5. Managerクラスに、属性「bonus」（double型）を追加する。\n6. Managerクラスに、name、salary、bonusを引数に持つコンストラクタを作成し、親クラスのコンストラクタを呼び出すこと。\n7. Managerクラスで、「getSalary」メソッドをオーバーライドし、salaryとbonusの合計を返す。\n\nサンプルコードでManagerオブジェクトを作成し、getSalaryメソッドを呼び出して、salaryとbonusの合計を出力してください。",
+            "explanation": "この問題では、継承とオーバーライドを使用して、既存のクラスを拡張し、新たなクラスを作成する方法を学びます。",
+            "answer": "public class Employee {\n\n  protected String name;\n  protected double salary;\n\n  public Employee(String name, double salary) {\n    this.name = name;\n    this.salary = salary;\n  }\n\n  public double getSalary() {\n    return salary;\n  }\n}\n\npublic class Manager extends Employee {\n\n  private double bonus;\n\n  public Manager(String name, double salary, double bonus) {\n    super(name, salary);\n    this.bonus = bonus;\n  }\n\n  @Override\n  public double getSalary() {\n    return salary + bonus;\n  }\n}\n\npublic class Main {\n\n  public static void main(String[] args) {\n    Manager manager = new Manager(\"John Doe\", 5000, 1000);\n    System.out.println(manager.getSalary()); // 6000.0\n  }\n}\n"
+        }
+    ]
+}

@@ -1,0 +1,90 @@
+{
+    "contentsId": "java1",
+    "title": "Javaの基本構文問題集ページ",
+    "subtitle": "Javaプログラミング言語の基本的なコンセプト",
+    "questions": [{
+            "id": 1,
+            "questionId": "java1_dataType",
+            "title": "データ型",
+            "question": "Javaは静的型付け言語であり、変数の宣言時にデータ型を指定する必要があります。データ型は、変数が保持できるデータの種類や範囲を定義します。Javaには主に2種類のデータ型があります: プリミティブ型と参照型です。\nプリミティブ型は、数値や文字、真偽値などの基本的なデータを表現するための型で、以下の8つがあります。\n1. byte (整数、8ビット)\n2. short (整数、16ビット)\n3. int (整数、32ビット)\n4. long (整数、64ビット)\n5. float (浮動小数点数、32ビット)\n6. double (浮動小数点数、64ビット)\n7. char (Unicode文字、16ビット)\n8. boolean (真偽値、trueまたはfalse)\n参照型は、オブジェクトや配列などの複雑なデータ構造を表現するための型で、クラス、インタフェース、配列などがあります。参照型の変数は、オブジェクトへの参照（アドレス）を保持します。",
+            "answer": "public class DataTypesExample {\n   public static void main(String[] args) {\n        // プリミティブ型\n        byte myByte = 10;\n        short myShort = 3000;\n        int myInt = 100000;\n        long myLong = 5000000000L;\n        float myFloat = 3.14f;\n        double myDouble = 1.23456789;\n        char myChar = 'A';\n        boolean myBoolean = true;\n       \n        System.out.println(\"Byte: \" + myByte);\n        System.out.println(\"Short: \" + myShort);\n        System.out.println(\"Int: \" + myInt);\n        System.out.println(\"Long: \" + myLong);\n        System.out.println(\"Float: \" + myFloat);\n        System.out.println(\"Double: \" + myDouble);\n        System.out.println(\"Char: \" + myChar);\n        System.out.println(\"Boolean: \" + myBoolean);\n       \n        // 参照型\n        String myString = \"Hello, Java!\";\n        int[] myIntArray = {1, 2, 3, 4, 5};\n        System.out.println(\"String: \" + myString);\n        System.out.print(\"IntArray: \");\n        for (int i : myIntArray) {\n            System.out.print(i + \" \");\n        }\n    }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java1_variable",
+            "title": "変数",
+            "question": "Javaの変数は、データを一時的に保持するためのコンテナです。変数を使用することで、データを操作したり、後で使用したりできます。Javaでは、変数を宣言する際に、データ型を指定する必要があります。データ型は、変数が保持できるデータの種類や範囲を定義します。変数を宣言する際には、以下の構文を使用します。\n\nデータ型 変数名 = 値;\n\n変数名には、アルファベット、数字、アンダースコア、およびドル記号が使用できますが、数字で始めることはできません。また、Javaの予約語を変数名として使用することはできません。",
+            "answer": "public class VariablesExample {\n public static void main(String[] args) {\n // 整数型の変数を宣言し、値を代入\n int age = 25;\n\n // 文字型の変数を宣言し、値を代入\n char initial = 'A';\n\n // 浮動小数点型の変数を宣言し、値を代入\n double height = 175.5;\n\n // 真偽値型の変数を宣言し、値を代入\n boolean isStudent = true;\n\n // 変数の値を出力\n System.out.println(\"Age: \" + age);\n System.out.println(\"Initial: \" + initial);\n System.out.println(\"Height: \" + height + \" cm\");\n System.out.println(\"Is student: \" + isStudent);\n }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java1_constant",
+            "title": "定数",
+            "question": "定数は、値が変わらない変数のようなものです。\n定数を使うと、プログラム中で値が変わっては困るものを保護できます。",
+            "answer": "/* 定数の宣言と代入 */\nfinal double PI = 3.14;\n\n/* 定数の値を表示する */\nSystem.out.println(PI);"
+        },
+        {
+            "id": 4,
+            "questionId": "java1_conditional",
+            "title": "条件分岐",
+            "question": "条件分岐は、プログラムの流れを条件によって分けることができます。\n例えば、「もしAならBを行い、そうでなければCを行う」といったことができます。",
+            "answer": "int age = 12;\n\nif (age >= 13) {\n  System.out.println(\"ティーンエイジャーです。\");\n} else {\n  System.out.println(\"ティーンエイジャーではありません。\");\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java1_loops",
+            "title": "繰り返し",
+            "question": "繰り返しは、同じ処理を何度も行うことができます。\n例えば、1から10までの数字を表示するときに、繰り返しを使って簡単にできます。",
+            "answer": "/* for文を使った繰り返し */\nfor (int i = 1; i <= 10; i++) {\n  System.out.println(i);\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java1_method",
+            "title": "関数",
+            "question": "関数は、特定の処理を行うまとまったコードのことです。\n関数を使うと、同じ処理を何度も書かずに済み、コードが短くなります。",
+            "answer": "/* 関数の定義 */\npublic static void sayHello() {\n  System.out.println(\"こんにちは！\");\n}\n\n/* 関数の呼び出し */\nsayHello();"
+        },
+        {
+            "id": 7,
+            "questionId": "java1_argument",
+            "title": "引数",
+            "question": "引数は、関数に情報を渡すために使われます。\n引数を使って、関数にデータを渡し、処理を行わせることができます。",
+            "answer": "/* 引数を持つ関数の定義 */\npublic static void greet(String name) {\n  System.out.println(\"こんにちは、\" + name + \"さん！\");\n}\n\n/* 関数の呼び出し */\ngreet(\"太郎\");"
+        },
+        {
+            "id": 8,
+            "questionId": "java1_return",
+            "title": "戻り値",
+            "question": "戻り値は、関数が結果を返すために使われます。\n戻り値を使って、関数の処理結果を受け取り、他の処理で使うことができます。",
+            "answer": "/* 戻り値を持つ関数の定義 */\npublic static int add(int a, int b) {\n  return a + b;\n}\n\n/* 関数の呼び出し */\nint result = add(3, 4);\nSystem.out.println(result);"
+        },
+        {
+            "id": 9,
+            "questionId": "java1_class",
+            "title": "クラス",
+            "question": "クラスは、オブジェクト指向プログラミングの基本的な概念で、データと処理をひとまとめにしたものです。\nクラスを使って、現実世界の物や概念をプログラムで表現できます。",
+            "answer": "/* クラスの定義 */\npublic class Dog {\n  String name;\n\n  public void bark() {\n    System.out.println(name + \"は、ワンワンと鳴く。\");\n  }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java1_object",
+            "title": "オブジェクト",
+            "question": "オブジェクトは、クラスを元に作られた実体のことです。\nオブジェクトを作成して、クラスに定義されたデータやメソッドを使うことができます。",
+            "answer": "/* クラスの定義 */\npublic class Dog {\n  String name;\n\n  public void bark() {\n    System.out.println(name + \"は、ワンワンと鳴く。\");\n  }\n}\n\n/* オブジェクトの作成 */\nDog myDog = new Dog();\n\n/* オブジェクトのデータを設定 */\nmyDog.name = \"ポチ\";\n\n/* オブジェクトのメソッドを呼び出し */\nmyDog.bark();"
+        },
+        {
+            "id": 11,
+            "questionId": "java1_001",
+            "title": "メソッド",
+            "question": "メソッドは、クラス内に定義された関数のことです。\nメソッドを使って、オブジェクトに対して処理を行わせることができます。",
+            "answer": "/* クラス内にメソッドを定義 */\npublic class Dog {\n  String name;\n\n  public void bark() {\n    System.out.println(name + \"は、ワンワンと鳴く。\");\n  }\n}\n\n/* メソッドの呼び出し */\nDog myDog = new Dog();\nmyDog.name = \"ポチ\";\nmyDog.bark();"
+        },
+        {
+            "id": 12,
+            "questionId": "java1_001",
+            "title": "コンストラクタ",
+            "question": "コンストラクタは、オブジェクトを作成するときに自動的に呼ばれる特殊なメソッドです。\nコンストラクタを使って、オブジェクトの初期化を行うことができます。",
+            "answer": "/* コンストラクタを持つクラスの定義 */\npublic class Dog {\n  String name;\n\n  public Dog(String name) {\n    this.name = name;\n  }\n\n  public void bark() {\n    System.out.println(name + \"は、ワンワンと鳴く。\");\n  }\n}\n\n/* オブジェクトの生成と初期化 */\nDog myDog = new Dog(\"ポチ\");\nmyDog.bark();"
+        }
+    ]
+}

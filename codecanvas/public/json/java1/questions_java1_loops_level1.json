@@ -1,0 +1,195 @@
+{
+    "contentsId": "java_loops",
+    "title": "Javaの繰り返し問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_loops_1",
+            "title": "1から10までの和",
+            "question": "1から10までの和を求めるプログラムを作成してください。\n",
+            "explanation": "この問題では、1から10までの和を求めるプログラムを作成します。for文を使って1から10までの数をループさせ、和を計算します。",
+            "answer": "public class Sum {\n\n public static void main(String[] args) {\n int sum = 0;\n\n // 1から10までのループ\n for (int i = 1; i <= 10; i++) {\n sum += i; // 和を計算\n }\n\n System.out.println(\"The sum of numbers from 1 to 10 is: \" + sum);\n }\n}",
+            "output": "The sum of numbers from 1 to 10 is: 55"
+        },
+        {
+            "id": 2,
+            "questionId": "java_loops_2",
+            "title": "偶数の表示",
+            "question": "1から10までの偶数を表示するプログラムを作成してください。\n",
+            "explanation": "この問題では、1から10までの偶数を表示するプログラムを作成します。for文を使って1から10までの数をループさせ、偶数かどうかを判断して表示します。",
+            "answer": "public class EvenNumbers {\n\n public static void main(String[] args) {\n\n // 1から10までのループ\n for (int i = 1; i <= 10; i++) {\n // 偶数かどうかを判断\n if (i % 2 == 0) {\n System.out.println(i); // 偶数の場合、表示\n }\n }\n }\n}",
+            "output": "2\n4\n6\n8\n10"
+        },
+        {
+            "id": 3,
+            "questionId": "java_loops_3",
+            "title": "5の倍数",
+            "question": "1から50までの5の倍数を表示するプログラムを作成してください。\n",
+            "explanation": "この問題では、1から50までの5の倍数を表示するプログラムを作成します。for文を使って1から50までの数をループさせ、5の倍数かどうかを判断して表示します。",
+            "answer": "public class MultipleOfFive {\n\n public static void main(String[] args) {\n\n // 1から50までのループ\n for (int i = 1; i <= 50; i++) {\n // 5の倍数かどうかを判断\n if (i % 5 == 0) {\n System.out.println(i); // 5の倍数の場合、表示\n }\n }\n }\n}",
+            "output": "5\n10\n15\n20\n25\n30\n35\n40\n45\n50"
+        },
+        {
+            "id": 4,
+            "questionId": "java_loops_4",
+            "title": "while文を使ったカウントダウン",
+            "question": "10から1までのカウントダウンを表示するプログラムを、while文を使って作成してください。\n",
+            "explanation": "この問題では、10から1までのカウントダウンを表示するプログラムを作成します。while文を使って10から1までの数をループさせ、表示します。",
+            "answer": "public class Countdown {\n\n public static void main(String[] args) {\n int i = 10;\n\n // 10から1までのカウントダウン\n while (i > 0) {\n System.out.println(i);\n i--; // iをデクリメント\n }\n }\n}",
+            "output": "10\n9\n8\n7\n6\n5\n4\n3\n2\n1"
+        },
+        {
+            "id": 5,
+            "questionId": "java_loops_5",
+            "title": "do-while文を使った入力値の合計",
+            "question": "ユーザーが0を入力するまで、整数を入力させ、入力された整数の合計を表示するプログラムを、do-while文を使って作成してください。\n",
+            "explanation": "この問題では、ユーザーが0を入力するまで整数を入力させ、入力された整数の合計を表示するプログラムを作成します。do-while文を使って入力された値が0でない間、ループを繰り返し、合計を計算します。",
+            "answer": "import java.util.Scanner;\n\npublic class InputSum {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n int input;\n int sum = 0;\n\n // 0が入力されるまでループ\n do {\n System.out.print(\"Enter an integer (0 to stop): \");\n input = scanner.nextInt();\n sum += input; // 合計に入力値を追加\n } while (input != 0);\n\n System.out.println(\"The sum of the input integers is: \" + sum);\n }\n}",
+            "output": "Enter an integer (0 to stop): 5\nEnter an integer (0 to stop): 3\nEnter an integer (0 to stop): 7\nEnter an integer (0 to stop): 0\nThe sum of the input integers is: 15"
+        },
+        {
+            "id": 6,
+            "questionId": "java_loops_6",
+            "title": "二重ループで四角形を描画",
+            "question": "for文を使って、縦5行、横5列の四角形を描画するプログラムを作成してください。\n",
+            "explanation": "この問題では、二重ループを使って縦5行、横5列の四角形を描画するプログラムを作成します。外側のループで行数を制御し、内側のループで列数を制御します。",
+            "answer": "public class Rectangle {\n\n public static void main(String[] args) {\n // 外側のループで行数を制御\n for (int i = 0; i < 5; i++) {\n // 内側のループで列数を制御\n for (int j = 0; j < 5; j++) {\n System.out.print(\"*\");\n }\n System.out.println();\n }\n }\n}",
+            "output": "\n\n*****\n*****\n*****"
+        },
+        {
+            "id": 7,
+            "questionId": "java_loops_7",
+            "title": "入れ子のループで九九の表を作成",
+            "question": "for文を使って、九九の表を作成するプログラムを作成してください。\n",
+            "explanation": "この問題では、入れ子のループを使って九九の表を作成するプログラムを作成します。外側のループで行数を制御し、内側のループで列数を制御します。",
+            "answer": "public class MultiplicationTable {\n\n public static void main(String[] args) {\n // 外側のループで行数を制御\n for (int i = 1; i <= 9; i++) {\n // 内側のループで列数を制御\n for (int j = 1; j <= 9; j++) {\n System.out.print(i * j + \"\t\");\n }\n System.out.println();\n }\n }\n}",
+            "output": "1\t2\t3\t4\t5\t6\t7\t8\t9\n2\t4\t6\t8\t10\t12\t14\t16\t18\n3\t6\t9\t12\t15\t18\t21\t24\t27\n4\t8\t12\t16\t20\t24\t28\t32\t36\n5\t10\t15\t20\t25\t30\t35\t40\t45\n6\t12\t18\t24\t30\t36\t42\t48\t54\n7\t14\t21\t28\t35\t42\t49\t56\t63\n8\t16\t24\t8\t32\t40\t48\t56\t64\t72\n9\t18\t27\t36\t45\t54\t63\t72\t81"
+        },
+        {
+            "id": 8,
+            "questionId": "java_loops_8",
+            "title": "偶数の合計",
+            "question": "1から100までの偶数の合計を求めるプログラムを作成してください。\n",
+            "explanation": "この問題では、1から100までの偶数の合計を求めるプログラムを作成します。for文を使って、1から100までの数を繰り返し処理し、偶数の場合に合計に加算します。",
+            "answer": "public class EvenSum {\n\n public static void main(String[] args) {\n int sum = 0;\n\n // 1から100までの数を繰り返し処理\n for (int i = 1; i <= 100; i++) {\n // 偶数の場合、合計に加算\n if (i % 2 == 0) {\n sum += i;\n }\n }\n\n System.out.println(\"1から100までの偶数の合計: \" + sum);\n }\n}",
+            "output": "1から100までの偶数の合計: 2550"
+        },
+        {
+            "id": 9,
+            "questionId": "java_loops_9",
+            "title": "while文を使用して素数を判定",
+            "question": "整数nが与えられた場合、nが素数かどうかを判定するプログラムをwhile文を使用して作成してください。\n",
+            "explanation": "この問題では、整数nが与えられた場合、nが素数かどうかを判定するプログラムを作成します。while文を使用して、2からn-1までの数でnを割り切れるかどうかを判定します。",
+            "answer": "import java.util.Scanner;\n\npublic class PrimeCheck {\n\n public static void main(String[] args) {\n Scanner sc = new Scanner(System.in);\n System.out.print(\"整数を入力してください: \");\n int n = sc.nextInt();\n sc.close();\n\n boolean isPrime = true;\n int i = 2;\n\n // 2からn-1までの数で割り切れるかどうかを判定\n while (i <= n / 2) {\n if (n % i == 0) {\n isPrime = false;\n break;\n }\n i++;\n }\n\n if (isPrime) {\n System.out.println(n + \"は素数です。\");\n } else {\n System.out.println(n + \"は素数ではありません。\");\n }\n }\n}",
+            "output": "整数を入力してください: 7\n7は素数です。"
+        },
+        {
+            "id": 10,
+            "questionId": "java_loops_10",
+            "title": "do-while文を使用して逆数の合計",
+            "question": "do-while文を使用して、1から100までの逆数の合計を求めるプログラムを作成してください。\n",
+            "explanation": "この問題では、1から100までの逆数の合計を求めるプログラムを作成します。do-while文を使用して、1から100までの数の逆数を繰り返し処理し、合計に加算します。",
+            "answer": "public class InverseSum {\n\n public static void main(String[] args) {\n double sum = 0;\n int i = 1;\n\n // 1から100までの逆数を繰り返し処理\n do {\n sum += 1.0 / i;\n i++;\n } while (i <= 100);\n\n System.out.println(\"1から100までの逆数の合計: \" + sum);\n }\n}",
+            "output": "1から100までの逆数の合計: 5.187377517639621"
+        },
+        {
+            "id": 11,
+            "questionId": "java_loops_11",
+            "title": "入力された数値の階乗を計算",
+            "question": "ユーザーに整数を入力してもらい、その整数の階乗を計算して出力するプログラムを作成してください。\n",
+            "explanation": "この問題では、ユーザーが入力した整数の階乗を計算するプログラムを作成します。for文を使用して、1から入力された数までの積を求めます。",
+            "answer": "import java.util.Scanner;\n\npublic class Factorial {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n System.out.print(\"整数を入力してください: \");\n int input = scanner.nextInt();\n int factorial = 1;\n\n for (int i = 1; i <= input; i++) {\n factorial *= i;\n }\n\n System.out.println(input + \"の階乗: \" + factorial);\n scanner.close();\n }\n}",
+            "output": "整数を入力してください: 5\n5の階乗: 120"
+        },
+        {
+            "id": 12,
+            "questionId": "java_loops_12",
+            "title": "九九の表を作成",
+            "question": "九九の表を作成し、出力するプログラムを作成してください。\n",
+            "explanation": "この問題では、九九の表を作成して出力するプログラムを作成します。for文を2つネストして使用し、1から9までの数の積を計算し、出力します。",
+            "answer": "public class MultiplicationTable {\n\n public static void main(String[] args) {\n for (int i = 1; i <= 9; i++) {\n for (int j = 1; j <= 9; j++) {\n System.out.print(i * j + \"\t\");\n }\n System.out.println();\n }\n }\n}",
+            "output": "1\t2\t3\t4\t5\t6\t7\t8\t9\n2\t4\t6\t8\t10\t12\t14\t16\t18\n3\t6\t9\t12\t15\t18\t21\t24\t27\n4\t8\t12\t16\t20\t24\t28\t32\t36\n5\t10\t15\t20\t25\t30\t35\t40\t45\n6\t12\t18\t24\t30\t36\t42\t48\t54\n7\t14\t21\t28\t35\t42\t49\t56\t63\n8\t16\t24\t32\t40\t48\t56\t64\t72\n9\t18\t27\t36\t45\t54\t63\t72\t81"
+        },
+        {
+            "id": 13,
+            "questionId": "java_loops_13",
+            "title": "逆三角形のパターンを描画",
+            "question": "ユーザーに整数を入力してもらい、その整数の数だけの逆三角形のパターンを描画して出力するプログラムを作成してください。\n",
+            "explanation": "この問題では、ユーザーが入力した整数の数だけの逆三角形のパターンを描画するプログラムを作成します。for文を2つネストして使用し、入力された数から1までの逆三角形を描画します。",
+            "answer": "import java.util.Scanner;\n\npublic class InvertedTriangle {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n System.out.print(\"整数を入力してください: \");\n int input = scanner.nextInt();\n\n for (int i = input; i > 0; i--) {\n for (int j = 1; j <= i; j++) {\n System.out.print(\"\");\n }\n System.out.println();\n }\n\n scanner.close();\n }\n}",
+            "output": "整数を入力してください: 5\n*****\n***\n***\n**\n*"
+        },
+        {
+            "id": 14,
+            "questionId": "java_loops_14",
+            "title": "偶数の和を計算",
+            "question": "ユーザーに整数を入力してもらい、その整数までの偶数の和を計算して出力するプログラムを作成してください。\n",
+            "explanation": "この問題では、ユーザーが入力した整数までの偶数の和を計算するプログラムを作成します。for文を使用して、1から入力された数まで繰り返し処理を行い、偶数であれば和に加えます。",
+            "answer": "import java.util.Scanner;\n\npublic class SumOfEvens {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n System.out.print(\"整数を入力してください: \");\n int input = scanner.nextInt();\n int sum = 0;\n\n for (int i = 1; i <= input; i++) {\n if (i % 2 == 0) {\n sum += i;\n }\n }\n\n System.out.println(\"偶数の和: \" + sum);\n scanner.close();\n }\n}",
+            "output": "整数を入力してください: 10\n偶数の和: 30"
+        },
+        {
+            "id": 15,
+            "questionId": "java_loops_15",
+            "title": "指定された文字を繰り返す",
+            "question": "ユーザーに文字列と整数を入力してもらい、その文字列を指定された回数だけ繰り返して出力するプログラムを作成してください。\n",
+            "explanation": "この問題では、ユーザーが入力した文字列を指定された回数だけ繰り返して出力するプログラムを作成します。for文を使用して、入力された回数だけ繰り返し処理を行い、文字列を出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class RepeatString {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n System.out.print(\"文字列を入力してください: \");\n String inputString = scanner.nextLine();\n System.out.print(\"繰り返し回数を入力してください: \");\n int repeatTimes = scanner.nextInt();\n\n for (int i = 0; i < repeatTimes; i++) {\n System.out.print(inputString);\n }\n\n System.out.println();\n scanner.close();\n }\n}",
+            "output": "文字列を入力してください: Hello\n繰り返し回数を入力してください: 3\nHelloHelloHello"
+        },
+        {
+            "id": 16,
+            "questionId": "java_loops_16",
+            "title": "FizzBuzzプログラム",
+            "question": "1から入力された整数までのFizzBuzzプログラムを作成してください。ただし、3で割り切れる場合は「Fizz」、5で割り切れる場合は「Buzz」、両方で割り切れる場合は「FizzBuzz」と表示します。\n",
+            "explanation": "この問題では、1から入力された整数までのFizzBuzzプログラムを作成します。for文を使用して、1から入力された数まで繰り返し処理を行い、3で割り切れる場合、5で割り切れる場合、両方で割り切れる場合のそれぞれの処理を行います。",
+            "answer": "import java.util.Scanner;\n\npublic class FizzBuzz {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n System.out.print(\"整数を入力してください: \");\n int input = scanner.nextInt();\n\n for (int i = 1; i <= input; i++) {\n if (i % 3 == 0 && i % 5 == 0) {\n System.out.println(\"FizzBuzz\");\n } else if (i % 3 == 0) {\n System.out.println(\"Fizz\");\n } else if (i % 5 == 0) {\n System.out.println(\"Buzz\");\n } else {\n System.out.println(i);\n }\n }\n\n scanner.close();\n }\n}",
+            "output": "整数を入力してください: 15\n1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz"
+        },
+        {
+            "id": 17,
+            "questionId": "java_loops_17",
+            "title": "奇数の積を計算",
+            "question": "ユーザーに整数を入力してもらい、その整数までの奇数の積を計算して出力するプログラムを作成してください。\n",
+            "explanation": "この問題では、ユーザーが入力した整数までの奇数の積を計算するプログラムを作成します。for文を使用して、1から入力された数まで繰り返し処理を行い、奇数であれば積に乗じます。",
+            "answer": "import java.util.Scanner;\n\npublic class ProductOfOdds {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n System.out.print(\"整数を入力してください: \");\n int input = scanner.nextInt();\n int product = 1;\n\n for (int i = 1; i <= input; i++) {\n if (i % 2 != 0) {\n product *= i;\n }\n }\n\n System.out.println(\"奇数の積: \" + product);\n scanner.close();\n }\n}",
+            "output": "整数を入力してください: 5\n奇数の積: 15"
+        },
+        {
+            "id": 18,
+            "questionId": "java_loops_18",
+            "title": "数列の和を計算",
+            "question": "ユーザーに整数を入力してもらい、その整数までの数列の和を計算して出力するプログラムを作成してください。ただし、数列は次のようになります: 1 - 2 + 3 - 4 + 5 - 6 + ...。\n",
+            "explanation": "この問題では、ユーザーが入力した整数までの数列の和を計算するプログラムを作成します。for文を使用して、1から入力された数まで繰り返し処理を行い、奇数であれば和に加え、偶数であれば和から引きます。",
+            "answer": "import java.util.Scanner;\n\npublic class AlternatingSum {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n System.out.print(\"整数を入力してください: \");\n int input = scanner.nextInt();\n int sum = 0;\n\n for (int i = 1; i <= input; i++) {\n if (i % 2 == 0) {\n sum -= i;\n } else {\n sum += i;\n }\n }\n\n System.out.println(\"数列の和: \" + sum);\n scanner.close();\n }\n}",
+            "output": "整数を入力してください: 5\n数列の和: 3"
+        },
+        {
+            "id": 19,
+            "questionId": "java_loops_19",
+            "title": "素数を判定",
+            "question": "ユーザーに整数を入力してもらい、その整数が素数かどうかを判定して出力するプログラムを作成してください。\n",
+            "explanation": "この問題では、ユーザーが入力した整数が素数かどうかを判定するプログラムを作成します。for文を使用して、2から入力された数の平方根まで繰り返し処理を行い、割り切れる数があるかどうかをチェックします。",
+            "answer": "import java.util.Scanner;\n\npublic class PrimeCheck {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n System.out.print(\"整数を入力してください: \");\n int input = scanner.nextInt();\n boolean isPrime = true;\n\n if (input <= 1) {\n isPrime = false;\n } else {\n for (int i = 2; i <= Math.sqrt(input); i++) {\n if (input % i == 0) {\n isPrime = false;\n break;\n }\n }\n }\n\n if (isPrime) {\n System.out.println(input + \"は素数です。\");\n } else {\n System.out.println(input + \"は素数ではありません。\");\n }\n\n scanner.close();\n }\n}",
+            "output": "整数を入力してください: 7\n7は素数です。"
+        },
+        {
+            "id": 20,
+            "questionId": "java_loops_20",
+            "title": "指定範囲内の素数を出力",
+            "question": "ユーザーに2つの整数を入力してもらい、その範囲内の素数を出力するプログラムを作成してください。\n",
+            "explanation": "この問題では、ユーザーが入力した範囲内の素数を出力するプログラムを作成します。ネストしたfor文を使用して、指定された範囲内の整数に対して素数判定を行い、素数であれば出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class PrimeRange {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n System.out.print(\"範囲の最初の整数を入力してください: \");\n int start = scanner.nextInt();\n System.out.print(\"範囲の最後の整数を入力してください: \");\n int end = scanner.nextInt();\n\n for (int i = start; i <= end; i++) {\n boolean isPrime = true;\n if (i <= 1) {\n isPrime = false;\n } else {\n for (int j = 2; j <= Math.sqrt(i); j++) {\n if (i % j == 0) {\n isPrime = false;\n break;\n }\n }\n }\n\n if (isPrime) {\n System.out.print(i + \" \");\n }\n }\n\n System.out.println();\n scanner.close();\n }\n}",
+            "output": "範囲の最初の整数を入力してください: 10\n範囲の最後の整数を入力してください: 50\n11 13 17 19 23 29 31 37 41 43 47 "
+        },
+        {
+            "id": 21,
+            "questionId": "java_loops_21",
+            "title": "乗算表を表示",
+            "question": "ユーザーに整数を入力してもらい、その整数までの乗算表を表示するプログラムを作成してください。\n",
+            "explanation": "この問題では、ユーザーが入力した整数までの乗算表を表示するプログラムを作成します。ネストしたfor文を使用して、1から入力された数までの乗算表を作成し、出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class MultiplicationTable {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n System.out.print(\"整数を入力してください: \");\n int input = scanner.nextInt();\n\n for (int i = 1; i <= input; i++) {\n for (int j = 1; j <= input; j++) {\n System.out.print(i * j + \"\t\");\n }\n System.out.println();\n }\n\n scanner.close();\n }\n}",
+            "output": "整数を入力してください: 5\n1\t2\t3\t4\t5\t\n2\t4\t6\t8\t10\t\n3\t6\t9\t12\t15\t\n4\t8\t12\t16\t20\t\n5\t10\t15\t20\t25\t"
+        }
+    ]
+}

@@ -1,0 +1,167 @@
+{
+    "contentsId": "javascript1",
+    "title": "javascriptのデータ型問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "javascript1_1",
+            "title": "データ型",
+            "question": "文字列「123」を数値に変換するにはどうすればよいでしょうか？",
+            "explanation": "JavaScriptでは、parseInt関数を使って文字列を整数に変換できます。",
+            "answer": "「123」を数値に変換するには、parseInt関数を使用する。\n\nvar str = \"123\";\nvar num = parseInt(str);\nconsole.log(num); // 結果は123となる。"
+        },
+        {
+            "id": 2,
+            "questionId": "javascript1_2",
+            "title": "オブジェクト型",
+            "question": "オブジェクトのプロパティにアクセスする方法を説明してください。",
+            "explanation": "オブジェクトのプロパティにアクセスするには、ドット記法またはブラケット記法を使用します。",
+            "answer": "オブジェクトのプロパティにアクセスするには、ドット記法またはブラケット記法を使用する。\n\n// ドット記法\nvar obj = {name: \"John\", age: 25};\nconsole.log(obj.name); // 結果は\"John\"となる。\n\n// ブラケット記法\nvar obj2 = {\"name\": \"Mary\", \"age\": 30};\nconsole.log(obj2[\"age\"]); // 結果は30となる。"
+        },
+        {
+            "id": 3,
+            "questionId": "javascript2_1",
+            "title": "データ型の変換",
+            "question": "以下のコードを実行した際に表示される値を選びなさい。\n```\nlet num1 = '10';\nlet num2 = '5';\nconsole.log(num1 - num2);\n```",
+            "explanation": "このコードは文字列型の変数`num1`と`num2`を定義し、それぞれに文字列の`'10'`と`'5'`を代入しています。その後、`num1`から`num2`を引いた値をコンソールに出力しています。しかし、文字列型の変数から文字列型の変数を引くことはできません。そこで、JavaScriptでは自動的に文字列型から数値型に変換されて計算が行われます。したがって、このコードを実行した場合、コンソールには`5`という数値が出力されます。",
+            "answer": "3"
+        },
+        {
+            "id": 4,
+            "questionId": "javascript2_2",
+            "title": "真偽値の変換",
+            "question": "以下のコードを実行した際に表示される値を選びなさい。\n```\nlet str1 = 'Hello';\nlet str2 = '';\nlet bool1 = Boolean(str1);\nlet bool2 = Boolean(str2);\nconsole.log(bool1);\nconsole.log(bool2);\n```",
+            "explanation": "このコードでは、文字列型の変数`str1`と`str2`を定義し、それぞれに`'Hello'`と空文字列`''`を代入しています。その後、`Boolean()`関数を使ってそれぞれの変数を真偽値に変換しています。`Boolean()`関数は引数として与えられた値を真偽値に変換する関数で、文字列型の場合は空文字列以外の文字列は`true`、数値型の場合は`0`以外の数値は`true`、オブジェクトの場合は`null`以外は`true`、`undefined`の場合は`false`となります。したがって、このコードを実行した場合、コンソールには`true`と`false`という真偽値が出力されます。",
+            "answer": "2"
+        },
+        {
+            "id": 5,
+            "questionId": "js_5",
+            "title": "スコープ",
+            "question": "以下のプログラムを実行したとき、コンソールに出力される値は何ですか？\n\n```js\nvar x = 1;\nfunction test() {\n  var x = 2;\n  console.log(x);\n}\ntest();\nconsole.log(x);\n```",
+            "explanation": "この問題では、JavaScriptのスコープについて確認することができます。\n\n変数xは、`var x = 1`で定義されており、グローバルスコープで宣言されています。\n一方で、`function test()`内で変数xが宣言されているため、このxは関数スコープ内でのみアクセス可能です。\nつまり、`test()`関数の中で宣言された変数xは、関数外からはアクセスできません。\n\nよって、コンソールに出力される値は以下のようになります。\n```\n2\n1\n```",
+            "answer": "var x = 1;\nfunction test() {\n  var x = 2;\n  console.log(x);\n}\ntest();\nconsole.log(x);\n// => 2\n// => 1"
+        },
+        {
+            "id": 6,
+            "questionId": "js_6",
+            "title": "undefinedとnull",
+            "question": "次のうち、変数aに格納される値として正しいものを全て選んでください。\n\n```js\nvar a = null || undefined;\n```",
+            "explanation": "`||`演算子は左辺がfalsyである場合に右辺を返します。nullとundefinedは、両方ともfalsyな値です。したがって、`var a = null || undefined;`の実行結果は、`undefined`となります。\n\n一方、以下のコードは`null`を代入しています。\n```\nvar b = null;\n```",
+            "answer": "undefined"
+        },
+        {
+            "id": 7,
+            "questionId": "javascript1_7",
+            "title": "関数の戻り値の型",
+            "question": "以下のJavaScriptコードの実行結果として、表示される値のデータ型を答えてください。\n\n```javascript\nfunction getPrice() {\n  return 1280.99;\n}\n\nconsole.log(typeof getPrice());\n```\n",
+            "explanation": "typeof演算子は、値のデータ型を文字列で返す演算子です。getPrice関数の戻り値は、数値型であるため、コンソールには\"number\"と表示されます。",
+            "answer": "\"number\""
+        },
+        {
+            "id": 8,
+            "questionId": "javascript1_8",
+            "title": "条件演算子の戻り値の型",
+            "question": "以下のJavaScriptコードの実行結果として、表示される値のデータ型を答えてください。\n\n```javascript\nconst isAdult = true;\nconst result = isAdult ? '成人' : '未成年';\n\nconsole.log(typeof result);\n```\n",
+            "explanation": "条件演算子は、条件に応じて異なる値を返す演算子です。ここではisAdult変数がtrueであるため、result変数には\"成人\"という文字列が代入されます。文字列型のデータが代入されるため、コンソールには\"string\"と表示されます。",
+            "answer": "\"string\""
+        },
+        {
+            "id": 9,
+            "questionId": "javascript2_1",
+            "title": "オブジェクト型",
+            "question": "以下のオブジェクトを作成してください。\n・key1の値は\"value1\"\n・key2の値は\"value2\"\n・key3の値は3\n・key4の値はtrue\n",
+            "explanation": "オブジェクト型は、値にキーを設定することができるデータ型です。キーと値は\"キー名: 値\"という形で記述し、カンマで区切ります。また、オブジェクト型の場合、キー名はダブルクォーテーションで囲む必要があります。",
+            "answer": "{\n  \"key1\": \"value1\",\n  \"key2\": \"value2\",\n  \"key3\": 3,\n  \"key4\": true\n}\n"
+        },
+        {
+            "id": 10,
+            "questionId": "javascript2_2",
+            "title": "オブジェクト型",
+            "question": "以下のオブジェクトに、key5というキーを追加してください。key5の値は\"value5\"です。\nobj = {\n  \"key1\": \"value1\",\n  \"key2\": \"value2\",\n  \"key3\": 3,\n  \"key4\": true\n}",
+            "explanation": "オブジェクト型のキーを追加するには、以下のように記述します。\nobj[\"追加したいキー名\"] = 追加したい値",
+            "answer": "{\n  \"key1\": \"value1\",\n  \"key2\": \"value2\",\n  \"key3\": 3,\n  \"key4\": true,\n  \"key5\": \"value5\"\n}\n"
+        },
+        {
+            "id": 11,
+            "questionId": "javascript2_1",
+            "title": "型変換",
+            "question": "以下のコードを実行した場合、コンソールに表示される結果は何でしょうか？\n\nlet str = '5';\nlet num = 2;\nconsole.log(str + num);\n",
+            "explanation": "この問題では、文字列と数値の加算について考えます。strには文字列'5'が代入され、numには数値2が代入されます。このとき、strとnumを'+'で結合すると、文字列'52'が得られます。\n文字列と数値の演算では、数値を文字列に変換してから結合が行われます。\n",
+            "answer": "結果は'52'となる\n"
+        },
+        {
+            "id": 12,
+            "questionId": "javascript2_2",
+            "title": "型変換",
+            "question": "以下のコードを実行した場合、コンソールに表示される結果は何でしょうか？\n\nlet str = '5';\nlet num = 2;\nconsole.log(str - num);\n",
+            "explanation": "この問題では、文字列と数値の減算について考えます。strには文字列'5'が代入され、numには数値2が代入されます。このとき、strは数値に変換され、numとの減算が行われます。文字列'5'は数値5に変換されます。\n数値と数値の演算では、減算が行われます。\n",
+            "answer": "結果は3となる\n"
+        },
+        {
+            "id": 13,
+            "questionId": "javascript13",
+            "title": "データ型の変換",
+            "question": "次のコードの実行結果として、正しいものを選択肢から選んでください。\n\n```\nconst x = '1';\nconst y = parseInt(x);\nconst z = y + 2;\nconsole.log(z);\n```\n",
+            "explanation": "まず、`x`は文字列型の値`'1'`です。`parseInt(x)`によって、文字列の`'1'`が数値型の`1`に変換され、変数`y`に代入されます。その後、`y`に整数値`2`を加算した結果が変数`z`に代入され、`z`の値`3`がコンソールに出力されます。",
+            "answer": "3"
+        },
+        {
+            "id": 14,
+            "questionId": "javascript14",
+            "title": "配列の結合",
+            "question": "次のコードを実行した場合、コンソールに出力される値として、正しいものを選択肢から選んでください。\n\n```\nconst arr1 = [1, 2];\nconst arr2 = [3, 4];\nconst arr3 = arr1.concat(arr2);\nconsole.log(arr3);\n```\n",
+            "explanation": "`arr1`と`arr2`は、配列の要素として、それぞれ数値型の値`1`と`2`、`3`と`4`を持っています。そして、`concat()`メソッドによって、`arr1`と`arr2`の要素を結合して、`arr3`に代入しています。従って、`arr3`には、`[1, 2, 3, 4]`という配列が代入され、コンソールには`[1, 2, 3, 4]`という値が出力されます。",
+            "answer": "[1, 2, 3, 4]"
+        },
+        {
+            "id": 15,
+            "questionId": "javascript15",
+            "title": "演算子の挙動",
+            "question": "以下のコードを実行した際の出力結果として、正しいものを選択してください。\n```const a = 5;\nconst b = 2;\nconsole.log(a / b);\n```",
+            "explanation": "JavaScriptでは、整数同士の割り算をした場合でも、結果が整数でない場合があります。上記の例では、aとbはともに整数のため、割り算の結果が小数になります。結果は2.5になるため、正解は「2.5」になります。",
+            "options": ["2", "2.5", "3", "3.5"],
+            "answer": "2.5"
+        }, {
+            "id": 16,
+            "questionId": "javascript16",
+            "title": "演算子の挙動",
+            "question": "以下のコードを実行した際の出力結果として、正しいものを選択してください。\n```const a = 5;\nconst b = 2;\nconsole.log(a % b);\n```",
+            "explanation": "JavaScriptの剰余演算子は、a % bの結果は、aをbで割った余りを返します。上記の例では、aは5でbは2なので、5を2で割った余りは1です。したがって、正解は「1」になります。",
+            "options": ["1", "2", "3", "4"],
+            "answer": "1"
+        },
+        {
+            "id": 17,
+            "questionId": "js1-q17",
+            "title": "配列の要素を取得する",
+            "question": "配列`array`の3番目の要素を取得してください。",
+            "explanation": "配列の要素を取得するには、インデックスを指定します。配列のインデックスは0から始まるため、3番目の要素は`array[2]`で取得できます。",
+            "answer": "const array = ['a', 'b', 'c', 'd'];\nconst thirdElement = array[2];\nconsole.log(thirdElement); // 'c'"
+        },
+        {
+            "id": 18,
+            "questionId": "js1-q18",
+            "title": "配列の要素を更新する",
+            "question": "配列`array`の3番目の要素を`'f'`に更新してください。",
+            "explanation": "配列の要素を更新するには、インデックスを指定して代入します。配列のインデックスは0から始まるため、3番目の要素は`array[2]`です。この要素を`'f'`に更新するには、`array[2] = 'f'`とします。",
+            "answer": "let array = ['a', 'b', 'c', 'd'];\narray[2] = 'f';\nconsole.log(array); // ['a', 'b', 'f', 'd']"
+        },
+        {
+            "id": 19,
+            "questionId": "javascript2_1",
+            "title": "配列とオブジェクト",
+            "question": "以下の配列から、インデックスが1の要素を取り出してください。\n['apple', 'banana', 'orange']",
+            "explanation": "配列は複数の値を格納することができるデータ型で、それぞれの要素はインデックス番号によってアクセスすることができます。\nJavaScriptでは、配列のインデックスは0から始まるため、'apple'のインデックスは0、'banana'のインデックスは1、'orange'のインデックスは2となります。",
+            "answer": "const fruits = ['apple', 'banana', 'orange'];\nconst banana = fruits[1];\nconsole.log(banana); // 出力結果: banana"
+        },
+        {
+            "id": 20,
+            "questionId": "javascript2_2",
+            "title": "配列とオブジェクト",
+            "question": "以下のオブジェクトの「name」プロパティの値を取り出してください。\n{ name: 'John', age: 24, job: 'engineer' }",
+            "explanation": "オブジェクトは、複数のプロパティとその値を持つデータ型です。JavaScriptでは、オブジェクトのプロパティにアクセスするにはドット記法またはブラケット記法を使います。\nドット記法は、オブジェクト名の後ろにドット（.）を置き、その後にプロパティ名を記述します。ブラケット記法は、オブジェクト名の後ろに[ ]を置き、その中にプロパティ名を文字列で記述します。",
+            "answer": "const person = { name: 'John', age: 24, job: 'engineer' };\nconst name = person.name;\nconsole.log(name); // 出力結果: John"
+        }
+    ]
+}

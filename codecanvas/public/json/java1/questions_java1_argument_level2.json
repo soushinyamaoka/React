@@ -1,0 +1,166 @@
+{
+    "contentsId": "java_arguments_intermediate",
+    "title": "Javaの引数問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_arguments_intermediate_1",
+            "title": "可変長引数",
+            "question": "可変長引数を使用して、任意の数の整数を受け取り、それらの合計値を表示するメソッドを作成してください。",
+            "explanation": "可変長引数は、メソッドの引数の数が可変であることを示します。これは、メソッドのシグネチャにint型の可変長引数（例：int... numbers）を指定することで実現できます。その後、for文を使用して、引数の合計値を計算し、表示します。",
+            "answer": "public static void printSum(int... numbers) {\n  int sum = 0;\n  // 引数の合計値を計算\n  for (int number : numbers) {\n    sum += number;\n  }\n\n  // 合計値を表示\n  System.out.println(\"Sum: \" + sum);\n}\n\npublic static void main(String[] args) {\n  // メソッドを呼び出し\n  printSum(1, 2, 3, 4, 5);\n  // 出力: Sum: 15\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java_arguments_intermediate_2",
+            "title": "オーバーロード",
+            "question": "引数の数が異なる同名のメソッド（オーバーロード）を作成し、それらを呼び出す例を作成してください。",
+            "explanation": "メソッドオーバーロードとは、引数の型、数、並びが異なる同名のメソッドを定義することです。オーバーロードされたメソッドは、引数の数や型に応じて適切なメソッドが呼び出されます。",
+            "answer": "public static void printMessage(String message) {\n  System.out.println(message);\n}\n\npublic static void printMessage(String message, int times) {\n  for (int i = 0; i < times; i++) {\n    System.out.println(message);\n  }\n}\n\npublic static void main(String[] args) {\n  // オーバーロードされたメソッドを呼び出し\n  printMessage(\"Hello\");\n  // 出力: Hello\n  printMessage(\"Hello\", 3);\n  // 出力:\n  // Hello\n  // Hello\n  // Hello\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java_arguments_intermediate_3",
+            "title": "コンストラクタオーバーロード",
+            "question": "異なる数の引数を受け取るコンストラクタを持つクラス（コンストラクタオーバーロード）を作成し、それらを呼び出す例を作成してください。",
+            "explanation": "コンストラクタオーバーロードとは、クラスのコンストラクタに異なる引数の数や型を持たせることです。これにより、オブジェクト生成時に異なる引数を使用してインスタンスを作成することができます。",
+            "answer": "public class Person {\n  String name;\n  int age;\n\n  // コンストラクタ1\n  public Person(String name) {\n    this.name = name;\n    this.age = 0;\n  }\n\n  // コンストラクタ2\n  public Person(String name, int age) {\n    this.name = name;\n    this.age = age;\n  }\n\n  public static void main(String[] args) {\n    // コンストラクタオーバーロードを呼び出し\n    Person person1 = new Person(\"John\");\n    System.out.println(person1.name + \", \" + person1.age);\n    // 出力: John, 0\n\n    Person person2 = new Person(\"Jane\", 30);\n    System.out.println(person2.name + \", \" + person2.age);\n    // 出力: Jane, 30\n  }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java_arguments_4",
+            "title": "配列要素の2倍",
+            "question": "引数として与えられた整数の配列の各要素を2倍し、その結果を表示するプログラムを作成してください。",
+            "explanation": "コマンドライン引数として与えられた整数の配列の各要素を2倍し、その結果を表示します。",
+            "answer": "public class Main {\\n    public static void main(String[] args) {\\n        // 引数の整数の配列を2倍する\\n        for (String arg : args) {\\n            int num = Integer.parseInt(arg);\\n            int doubled = num * 2;\\n            System.out.println(\\\"2倍: \\\" + doubled);\\n        }\\n        // 予想される出力結果: 2倍: (各要素の2倍の値が表示される)\\n    }\\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java_arguments_intermediate_5",
+            "title": "オブジェクト引数",
+            "question": "オブジェクトを引数として受け取るメソッドを作成し、それを呼び出す例を作成してください。具体的には、Personクラスのオブジェクトを引数として受け取り、その名前と年齢を表示するメソッドを作成してください。",
+            "explanation": "オブジェクトを引数としてメソッドに渡すことができます。この場合、メソッドはオブジェクトの参照を受け取ることになります。そのため、メソッド内でオブジェクトのフィールドやメソッドにアクセスすることができます。",
+            "answer": "public class Person {\n  String name;\n  int age;\n\n  public Person(String name, int age) {\n    this.name = name;\n    this.age = age;\n  }\n\n  public static void printPersonInfo(Person person) {\n    System.out.println(\"Name: \" + person.name + \", Age: \" + person.age);\n  }\n\n  public static void main(String[] args) {\n    // オブジェクト引数のメソッドを呼び出し\n    Person person = new Person(\"John\", 30);\n    printPersonInfo(person);\n    // 出力: Name: John, Age: 30\n  }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java_arguments_intermediate_6",
+            "title": "配列引数",
+            "question": "配列を引数として受け取るメソッドを作成し、それを呼び出す例を作成してください。具体的には、整数の配列を引数として受け取り、その要素の合計値を返すメソッドを作成してください。",
+            "explanation": "配列を引数としてメソッドに渡すことができます。この場合も、メソッドは配列の参照を受け取ることになります。メソッド内で配列の要素にアクセスして、操作や計算を行うことができます。",
+            "answer": "public static int sumArray(int[] numbers) {\n  int sum = 0;\n  for (int number : numbers) {\n    sum += number;\n  }\n  return sum;\n}\n\npublic static void main(String[] args) {\n  // 配列引数のメソッドを呼び出し\n  int[] numbers = {1, 2, 3, 4, 5};\n  int sum = sumArray(numbers);\n  System.out.println(\"Sum: \" + sum);\n  // 出力: Sum: 15\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java_arguments_intermediate_7",
+            "title": "ラッパークラス引数",
+            "question": "プリミティブ型のラッパークラスを引数として受け取るメソッドを作成し、それを呼び出す例を作成してください。具体的には、Integer型の引数を受け取り、その値を2倍にして表示するメソッドを作成してください。",
+            "explanation": "プリミティブ型のラッパークラスを引数としてメソッドに渡すことができます。これにより、プリミティブ型をオブジェクトとして扱うことができます。メソッド内でラッパークラスのインスタンスメソッドやフィールドにアクセスすることができます。",
+            "answer": "public static void printDoubleValue(Integer number) {\n  int doubleValue = number * 2;\n  System.out.println(\"Double value: \" + doubleValue);\n}\n\npublic static void main(String[] args) {\n  // ラッパークラス引数のメソッドを呼び出し\n  Integer number = 10;\n  printDoubleValue(number);\n  // 出力: Double value: 20\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java_arguments_intermediate_8",
+            "title": "メソッド参照",
+            "question": "メソッド参照を使用して、引数に対する処理を実行する例を作成してください。具体的には、Stringのリストを引数に持つメソッドを作成し、そのリストの各要素に対して、メソッド参照を使用して要素を表示する処理を実行してください。",
+            "explanation": "メソッド参照は、既存のメソッドをラムダ式の代わりに使用する機能です。これにより、コードが簡潔になり、可読性が向上します。メソッド参照の構文は、「::」を使用してクラス名またはオブジェクト名とメソッド名をつなげます。",
+            "answer": "import java.util.Arrays;\nimport java.util.List;\n\npublic class Main {\n\n  public static void printStrings(List<String> strings) {\n    // メソッド参照を使用して要素を表示\n    strings.forEach(System.out::println);\n  }\n\n  public static void main(String[] args) {\n    // メソッド参照の例\n    List<String> strings = Arrays.asList(\"Hello\", \"World\");\n    printStrings(strings);\n    // 出力:\n    // Hello\n    // World\n  }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java_arguments_intermediate_9",
+            "title": "可変長引数",
+            "question": "可変長引数を使用して、任意の個数の引数を受け取るメソッドを作成し、それを呼び出す例を作成してください。具体的には、可変長引数で受け取った整数の合計値を計算して表示するメソッドを作成してください。",
+            "explanation": "可変長引数を使用すると、任意の個数の引数をメソッドに渡すことができます。引数の型の後に「...」を記述することで、可変長引数を宣言します。メソッド内では、可変長引数は配列として扱われます。",
+            "answer": "public static void printSum(int... numbers) {\n  int sum = 0;\n  for (int number : numbers) {\n    sum += number;\n  }\n  System.out.println(\"Sum: \" + sum);\n}\n\npublic static void main(String[] args) {\n  // 可変長引数のメソッドを呼び出し\n  printSum(1, 2, 3);\n  // 出力: Sum: 6\n\n  printSum(4, 5, 6, 7);\n  // 出力: Sum: 22\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java_arguments_intermediate_10",
+            "title": "引数と戻り値の型変換",
+            "question": "引数と戻り値の型変換を行うメソッドを作成し、それを呼び出す例を作成してください。具体的には、double型の引数を受け取り、その値を四捨五入してint型に変換して返すメソッドを作成してください。",
+            "explanation": "メソッドの引数と戻り値で型変換を行う場合、キャスト演算子を使用して型を変換します。ただし、プリミティブ型とラッパークラス間の変換は、オートボクシングとアンボクシングが自動的に行われます。",
+            "answer": "public static int roundDouble(double number) {\n  return (int) Math.round(number);\n}\n\npublic static void main(String[] args) {\n  // 引数と戻り値の型変換を行うメソッドを呼び出し\n  double number = 3.7;\n  int roundedNumber = roundDouble(number);\n  System.out.println(\"Rounded number: \" + roundedNumber);\n  // 出力: Rounded number: 4\n}"
+        },
+        {
+            "id": 11,
+            "questionId": "java2_11",
+            "title": "可変長引数",
+            "question": "Javaで可変長引数を使用して、与えられた整数の平均値を計算するメソッドを作成してください。メソッド名はaverageIntegersで、int型の可変長引数を受け取ります。",
+            "explanation": "可変長引数は、メソッドに可変個数の引数を渡すことができる機能です。引数の型の後ろに「...」を記述することで、可変長引数を宣言できます。",
+            "answer": "public static double averageIntegers(int... numbers) {\n    int sum = 0;\n    for (int number : numbers) {\n        sum += number;\n    }\n    return (double) sum / numbers.length;\n}\n\n// 例:\n// System.out.println(averageIntegers(1, 2, 3, 4, 5));\n// 出力結果: 3.0"
+        },
+        {
+            "id": 12,
+            "questionId": "java2_12",
+            "title": "オーバーロード",
+            "question": "引数の型が異なる場合にメソッドのオーバーロードを行い、整数と実数の2つの数値を受け取ってそれらの和を計算するメソッドを作成してください。メソッド名はaddNumbersで、int型とdouble型の引数を受け取ります。",
+            "explanation": "オーバーロードとは、同じ名前のメソッドを異なる引数の型や引数の数で複数定義することです。これにより、同じ機能を持つメソッドを異なる引数で使用することができます。",
+            "answer": "public static double addNumbers(int a, double b) {\n    return a + b;\n}\n\npublic static double addNumbers(double a, int b) {\n    return a + b;\n}\n\n// 例:\n// System.out.println(addNumbers(1, 2.5));\n// 出力結果: 3.5\n// System.out.println(addNumbers(2.5, 1));\n// 出力結果: 3.5"
+        },
+        {
+            "id": 13,
+            "questionId": "java_arguments_13",
+            "title": "最小値の探索",
+            "question": "引数として与えられた整数の配列から最小値を見つけ、その最小値を表示するプログラムを作成してください。",
+            "explanation": "コマンドライン引数として与えられた整数の配列から最小値を見つけ、その最小値を表示します。",
+            "answer": "public class Main {\\n    public static void main(String[] args) {\\n        int minValue = Integer.parseInt(args[0]);\\n        // 最小値を探索\\n        for (int i = 1; i < args.length; i++) {\\n            int num = Integer.parseInt(args[i]);\\n            if (num < minValue) {\\n                minValue = num;\\n            }\\n        }\\n        // 最小値を表示\\n        System.out.println(\\\"最小値: \\\" + minValue);\\n        // 予想される出力結果: 最小値: (入力された整数の配列の最小値)\\n    }\\n}"
+        },
+        {
+            "id": 14,
+            "questionId": "java2_14",
+            "title": "配列を引数とするメソッド",
+            "question": "int型の配列を引数として受け取り、配列内の最大値を返すメソッドを作成してください。メソッド名はfindMaxで、int型の配列を受け取ります。",
+            "explanation": "配列を引数としてメソッドに渡すことができます。配列内の要素にアクセスするには、通常の配列と同じ方法でインデックスを使用します。",
+            "answer": "public static int findMax(int[] numbers) {\n    int max = numbers[0];\n    for (int number : numbers) {\n        if (number > max) {\n            max = number;\n        }\n    }\n    return max;\n}\n\n// 例:\n// int[] nums = {1, 5, 2, 8, 3};\n// System.out.println(findMax(nums));\n// 出力結果: 8"
+        },
+        {
+            "id": 15,
+            "questionId": "java2_15",
+            "title": "オブジェクトを引数とするメソッド",
+            "question": "独自のクラス「Circle」を作成し、そのオブジェクトを引数として受け取り、円の面積を計算するメソッドを作成してください。メソッド名はcalculateAreaで、Circle型のオブジェクトを受け取ります。Circleクラスには半径を表すradiusフィールドがあります。",
+            "explanation": "オブジェクトも引数としてメソッドに渡すことができます。オブジェクトのフィールドにアクセスするには、オブジェクトの参照変数とドット演算子を使用します。",
+            "answer": "class Circle {\n    double radius;\n\n    Circle(double radius) {\n        this.radius = radius;\n    }\n}\n\npublic static double calculateArea(Circle circle) {\n    return Math.PI * circle.radius * circle.radius;\n}\n\n// 例:\n// Circle c = new Circle(5);\n// System.out.println(calculateArea(c));\n// 出力結果: 78.53981633974483\n}"
+        },
+        {
+            "id": 16,
+            "questionId": "java2_16",
+            "title": "配列を引数とするメソッド",
+            "question": "整数型の配列を引数として受け取り、その配列の全ての要素の合計を返すメソッドを作成してください。メソッド名はsumArrayで、int型の配列を受け取ります。",
+            "explanation": "配列も引数としてメソッドに渡すことができます。forループを使って配列の要素を順番に処理し、合計値を求めます。",
+            "answer": "public static int sumArray(int[] array) {\n    int sum = 0;\n    for (int num : array) {\n        sum += num;\n    }\n    return sum;\n}\n\n// 例:\n// int[] numbers = {1, 2, 3, 4, 5};\n// System.out.println(sumArray(numbers));\n// 出力結果: 15\n}"
+        },
+        {
+            "id": 17,
+            "questionId": "java2_17",
+            "title": "オブジェクトを引数とするメソッド",
+            "question": "次のクラスを用いて、Circleオブジェクトを引数として受け取り、円の面積を返すメソッドを作成してください。\n\nクラス定義:\n\npublic class Circle {\n    private double radius;\n\n    public Circle(double radius) {\n        this.radius = radius;\n    }\n\n    public double getRadius() {\n        return radius;\n    }\n}\n\nメソッド名はcalculateAreaで、Circle型の引数を受け取ります。",
+            "explanation": "オブジェクトも引数としてメソッドに渡すことができます。CircleオブジェクトのgetRadiusメソッドを使って半径を取得し、面積を求めます。",
+            "answer": "public static double calculateArea(Circle circle) {\n    double radius = circle.getRadius();\n    double area = Math.PI * Math.pow(radius, 2);\n    return area;\n}\n\n// 例:\n// Circle circle = new Circle(5);\n// System.out.println(calculateArea(circle));\n// 出力結果: 78.53981633974483\n}"
+        },
+        {
+            "id": 18,
+            "questionId": "java2_18",
+            "title": "可変長引数",
+            "question": "可変長引数を使って、int型の引数の合計を計算するメソッドを作成してください。メソッド名はsumIntegersで、可変長引数はint型の整数を受け取ります。",
+            "explanation": "可変長引数を使用することで、任意の個数の引数を受け取ることができます。引数は配列として扱われるため、forループを使用して合計を求めます。",
+            "answer": "public static int sumIntegers(int... integers) {\n    int sum = 0;\n    for (int i : integers) {\n        sum += i;\n    }\n    return sum;\n}\n\n// 例:\n// System.out.println(sumIntegers(1, 2, 3, 4, 5));\n// 出力結果: 15\n}"
+        },
+        {
+            "id": 19,
+            "questionId": "java2_19",
+            "title": "オーバーロードと可変長引数",
+            "question": "次の2つのメソッドをオーバーロードしてください。\n1. メソッド名: printArguments、引数: int型の可変長引数、戻り値: なし\n2. メソッド名: printArguments、引数: String型の可変長引数、戻り値: なし\n\n各メソッドは、引数として渡された値をコンソールに出力します。引数が複数ある場合は、カンマで区切って出力してください。",
+            "explanation": "オーバーロードを使用することで、同じ名前のメソッドを異なる引数で定義できます。可変長引数を使用して、任意の個数の引数を受け取ります。",
+            "answer": "public static void printArguments(int... integers) {\n    for (int i = 0; i < integers.length; i++) {\n        System.out.print(integers[i]);\n        if (i != integers.length - 1) {\n            System.out.print(\", \");\n        }\n    }\n    System.out.println();\n}\n\npublic static void printArguments(String... strings) {\n    for (int i = 0; i < strings.length; i++) {\n        System.out.print(strings[i]);\n        if (i != strings.length - 1) {\n            System.out.print(\", \");\n        }\n    }\n    System.out.println();\n}\n\n// 例:\n// printArguments(1, 2, 3, 4, 5);\n// 出力結果: 1, 2, 3, 4, 5\n// printArguments(\"apple\", \"banana\", \"cherry\");\n// 出力結果: apple, banana, cherry\n"
+        },
+        {
+            "id": 20,
+            "questionId": "java_arguments_20",
+            "title": "文字列の回数表示",
+            "question": "引数として与えられた文字列と回数nを受け取り、その文字列をn回繰り返して表示するプログラムを作成してください。",
+            "explanation": "コマンドライン引数として与えられた文字列と回数nを受け取り、その文字列をn回繰り返して表示します。",
+            "answer": "public class Main {\\n    public static void main(String[] args) {\\n        String input = args[0];\\n        int n = Integer.parseInt(args[1]);\\n        StringBuilder result = new StringBuilder();\\n        // 文字列をn回繰り返す\\n        for (int i = 0; i < n; i++) {\\n            result.append(input);\\n        }\\n        // 結果を表示\\n        System.out.println(\\\"繰り返し: \\\" + result.toString());\\n        // 予想される出力結果: 繰り返し: (入力された文字列がn回繰り返されたもの)\\n    }\\n}"
+        }
+    ]
+}

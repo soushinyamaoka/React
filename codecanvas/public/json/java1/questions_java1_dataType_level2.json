@@ -1,0 +1,166 @@
+{
+    "contentsId": "java_data_types",
+    "title": "Javaのデータ型問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_data_types_intermediate_1",
+            "title": "中級 - 自動ボクシングとアンボクシング",
+            "question": "次のコードは正しく動作しますか？理由も述べてください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    Integer a = 5;\n    int b = a + 10;\n  }\n}\n```",
+            "explanation": "このコードは正しく動作します。これは、Javaの自動ボクシングとアンボクシング機能が働いているためです。自動ボクシングは、プリミティブ型の値を対応するラッパークラスのオブジェクトに自動的に変換するプロセスです。逆に、アンボクシングは、ラッパークラスのオブジェクトを対応するプリミティブ型の値に自動的に変換するプロセスです。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    Integer a = 5; // 自動ボクシング: intからIntegerに変換\n    int b = a + 10; // アンボクシング: Integerからintに変換して加算\n  }\n}\n```"
+        },
+        {
+            "id": 2,
+            "questionId": "java_data_types_intermediate_2",
+            "title": "中級 - 文字列から整数への変換",
+            "question": "次のコードにおいて、文字列型の変数「strNumber」を整数型の変数「intNumber」に変換するコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    String strNumber = \"123\";\n    // ここに変換のコードを記述してください。\n  }\n}\n```",
+            "explanation": "文字列から整数への変換には、`Integer.parseInt()`メソッドを使用します。このメソッドは、引数に与えられた文字列を整数に変換し、その整数を返します。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    String strNumber = \"123\";\n    int intNumber = Integer.parseInt(strNumber); // 変換のコード\n  }\n}\n```"
+        },
+        {
+            "id": 3,
+            "questionId": "java_data_types_intermediate_3",
+            "title": "中級 - 整数から文字列への変換",
+            "question": "次のコードにおいて、整数型の変数「num」を文字列型の変数「strNum」に変換するコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    int num = 123;\n    // ここに変換のコードを記述してください。\n  }\n}\n```",
+            "explanation": "整数から文字列への変換には、`Integer.toString()`メソッドを使用します。このメソッドは、引数に与えられた整数を文字列に変換し、その文字列を返します。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    int num = 123;\n    String strNum = Integer.toString(num); // 変換のコード\n  }\n}\n```"
+        },
+        {
+            "id": 4,
+            "questionId": "java_data_types_intermediate_4",
+            "title": "中級 - 文字列から浮動小数点数への変換",
+            "question": "次のコードにおいて、文字列型の変数「strFloat」を浮動小数点数型の変数「floatNumber」に変換するコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    String strFloat = \"123.45\";\n    // ここに変換のコードを記述してください。\n  }\n}\n```",
+            "explanation": "文字列から浮動小数点数への変換には、`Float.parseFloat()`メソッドを使用します。このメソッドは、引数に与えられた文字列を浮動小数点数に変換し、その浮動小数点数を返します。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    String strFloat = \"123.45\";\n    float floatNumber = Float.parseFloat(strFloat); // 変換のコード\n  }\n}\n```"
+        },
+        {
+            "id": 5,
+            "questionId": "java_data_types_intermediate_5",
+            "title": "中級 - 浮動小数点数から文字列への変換",
+            "question": "次のコードにおいて、浮動小数点数型の変数「floatValue」を文字列型の変数「strFloatValue」に変換するコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    float floatValue = 123.45f;\n    // ここに変換のコードを記述してください。\n  }\n}\n```",
+            "explanation": "浮動小数点数から文字列への変換には、`Float.toString()`メソッドを使用します。このメソッドは、引数に与えられた浮動小数点数を文字列に変換し、その文字列を返します。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    float floatValue = 123.45f;\n    String strFloatValue = Float.toString(floatValue); // 変換のコード\n  }\n}\n```"
+        },
+        {
+            "id": 6,
+            "questionId": "java_data_types_intermediate_6",
+            "title": "中級 - 文字列から論理値への変換",
+            "question": "次のコードにおいて、文字列型の変数「strBool」を論理値型の変数「boolValue」に変換するコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    String strBool = \"true\";\n    // ここに変換のコードを記述してください。\n  }\n}\n```",
+            "explanation": "文字列から論理値への変換には、`Boolean.parseBoolean()`メソッドを使用します。このメソッドは、引数に与えられた文字列を論理値に変換し、その論理値を返します。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    String strBool = \"true\";\n    boolean boolValue = Boolean.parseBoolean(strBool); // 変換のコード\n  }\n}\n```"
+        },
+        {
+            "id": 7,
+            "questionId": "java_data_types_intermediate_7",
+            "title": "中級 - 論理値から文字列への変換",
+            "question": "次のコードにおいて、論理値型の変数「boolValue」を文字列型の変数「strBoolValue」に変換するコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    boolean boolValue = true;\n    // ここに変換のコードを記述してください。\n  }\n}\n```",
+            "explanation": "論理値から文字列への変換には、`Boolean.toString()`メソッドを使用します。このメソッドは、引数に与えられた論理値を文字列に変換し、その文字列を返します。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    boolean boolValue = true;\n    String strBoolValue = Boolean.toString(boolValue); // 変換のコード\n  }\n}\n```"
+        },
+        {
+            "id": 8,
+            "questionId": "java_data_types_intermediate_8",
+            "title": "中級 - 文字列から文字への変換",
+            "question": "次のコードにおいて、文字列型の変数「strChar」を文字型の変数「charValue」に変換するコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    String strChar = \"A\";\n    // ここに変換のコードを記述してください。\n  }\n}\n```",
+            "explanation": "文字列から文字への変換は、`charAt()`メソッドを使用して行います。このメソッドは、引数に与えられたインデックスにある文字を取得し、その文字を返します。インデックスが0の場合、最初の文字が返されます。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    String strChar = \"A\";\n    char charValue = strChar.charAt(0); // 変換のコード\n  }\n}\n```"
+        },
+        {
+            "id": 9,
+            "questionId": "java_data_types_intermediate_9",
+            "title": "中級 - 文字から文字列への変換",
+            "question": "次のコードにおいて、文字型の変数「charValue」を文字列型の変数「strCharValue」に変換するコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    char charValue = 'A';\n    // ここに変換のコードを記述してください。\n  }\n}\n```",
+            "explanation": "文字から文字列への変換は、`Character.toString()`メソッドを使用して行います。このメソッドは、引数に与えられた文字を文字列に変換し、その文字列を返します。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    char charValue = 'A';\n    String strCharValue = Character.toString(charValue); // 変換のコード\n  }\n}\n```"
+        },
+        {
+            "id": 10,
+            "questionId": "java_data_types_intermediate_10",
+            "title": "中級 - 整数から16進数文字列への変換",
+            "question": "次のコードにおいて、整数型の変数「intValue」を16進数表現の文字列型の変数「hexStringValue」に変換するコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    int intValue = 255;\n    // ここに変換のコードを記述してください。\n  }\n}\n```",
+            "explanation": "整数から16進数表現の文字列への変換は、`Integer.toHexString()`メソッドを使用して行います。このメソッドは、引数に与えられた整数を16進数表現の文字列に変換し、その文字列を返します。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    int intValue = 255;\n    String hexStringValue = Integer.toHexString(intValue); // 変換のコード\n  }\n}\n```"
+        },
+        {
+            "id": 11,
+            "questionId": "java_data_types_intermediate_11",
+            "title": "中級 - 16進数文字列から整数への変換",
+            "question": "次のコードにおいて、16進数表現の文字列型の変数「hexStringValue」を整数型の変数「intValue」に変換するコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    String hexStringValue = \"FF\";\n    // ここに変換のコードを記述してください。\n  }\n}\n```",
+            "explanation": "16進数表現の文字列から整数への変換は、`Integer.parseInt()`メソッドを使用して行います。このメソッドは、第一引数に与えられた文字列を第二引数に指定された基数（今回は16）で解釈して整数に変換し、その整数を返します。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    String hexStringValue = \"FF\";\n    int intValue = Integer.parseInt(hexStringValue, 16); // 変換のコード\n  }\n}\n```"
+        },
+        {
+            "id": 12,
+            "questionId": "java_data_types_intermediate_12",
+            "title": "中級 - 浮動小数点数の丸め",
+            "question": "次のコードにおいて、浮動小数点数型の変数「doubleValue」を小数点以下2桁に丸めた結果を変数「roundedValue」に代入するコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    double doubleValue = 3.14159;\n    // ここに変換のコードを記述してください。\n  }\n}\n```",
+            "explanation": "浮動小数点数の丸めを行うには、`Math.round()`メソッドを使用します。このメソッドは、引数に与えられた数値を最も近い整数に丸めて返します。小数点以下の桁数を指定して丸めるためには、数値を10のべき乗倍してから丸め、その後10のべき乗で割ります。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    double doubleValue = 3.14159;\n    double roundedValue = Math.round(doubleValue * 100) / 100.0; // 変換のコード\n  }\n}\n```"
+        },
+        {
+            "id": 13,
+            "questionId": "java_data_types_intermediate_13",
+            "title": "中級 - 文字列をchar型配列に変換",
+            "question": "次のコードにおいて、文字列型の変数「str」をchar型の配列「charArray」に変換するコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    String str = \"Java\";\n    // ここに変換のコードを記述してください。\n  }\n}\n```",
+            "explanation": "文字列をchar型の配列に変換するには、`String`クラスの`toCharArray()`メソッドを使用します。このメソッドは、文字列の各文字を要素とするchar型の配列を返します。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    String str = \"Java\";\n    char[] charArray = str.toCharArray(); // 変換のコード\n  }\n}\n```"
+        },
+        {
+            "id": 14,
+            "questionId": "java_data_types_intermediate_14",
+            "title": "中級 - クラス型変数のnullチェック",
+            "question": "次のコードにおいて、`Person`クラスのインスタンスを参照する変数`person`がnullでない場合のみ、`person`の`greet()`メソッドを呼び出すコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    Person person = null;\n    // ここにnullチェックとgreet()メソッド呼び出しのコードを記述してください。\n  }\n}\n\nclass Person {\n  void greet() {\n    System.out.println(\"Hello!\");\n  }\n}\n```",
+            "explanation": "nullチェックは、if文を使って行います。変数がnullでない場合のみ、その後の処理を実行します。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    Person person = null;\n    if (person != null) { // nullチェック\n      person.greet(); // greet()メソッド呼び出し\n    }\n  }\n}\n\nclass Person {\n  void greet() {\n    System.out.println(\"Hello!\");\n  }\n}\n```"
+        },
+        {
+            "id": 15,
+            "questionId": "java_data_types_intermediate_15",
+            "title": "中級 - 比較演算子によるDouble型の比較",
+            "question": "次のコードにおいて、Double型の変数「num1」と「num2」が等しいかどうかを判定し、等しい場合は「Equal」と表示し、異なる場合は「Not equal」と表示するコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    Double num1 = 3.14;\n    Double num2 = 3.14;\n    // ここに比較のコードを記述してください。\n  }\n}\n```",
+            "explanation": "Double型の数値を比較する際は、`equals()`メソッドを使用してください。比較演算子`==`は参照の比較を行い、数値の比較には適切ではありません。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    Double num1 = 3.14;\n    Double num2 = 3.14;\n    if (num1.equals(num2)) {\n      System.out.println(\"Equal\");\n    } else {\n      System.out.println(\"Not equal\");\n    }\n  }\n}\n```"
+        },
+        {
+            "id": 16,
+            "questionId": "java_data_types_intermediate_16",
+            "title": "中級 - int型の範囲",
+            "question": "次のコードにおいて、int型の最大値と最小値を表示するコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    // ここにint型の最大値と最小値を表示するコードを記述してください。\n  }\n}\n```",
+            "explanation": "int型の最大値と最小値は、`Integer`クラスの定数`MAX_VALUE`および`MIN_VALUE`を使用して取得できます。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    System.out.println(\"int型の最大値: \" + Integer.MAX_VALUE);\n    System.out.println(\"int型の最小値: \" + Integer.MIN_VALUE);\n  }\n}\n```"
+        },
+        {
+            "id": 17,
+            "questionId": "java_data_types_intermediate_17",
+            "title": "中級 - 二進数表記",
+            "question": "次のコードにおいて、整数「42」を二進数表記で表示するコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    int number = 42;\n    // ここに二進数表記で表示するコードを記述してください。\n  }\n}\n```",
+            "explanation": "整数を二進数表記に変換するには、`Integer.toBinaryString()`メソッドを使用できます。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    int number = 42;\n    String binaryRepresentation = Integer.toBinaryString(number);\n    System.out.println(\"二進数表記: \" + binaryRepresentation);\n  }\n}\n```"
+        },
+        {
+            "id": 18,
+            "questionId": "java_data_types_intermediate_18",
+            "title": "中級 - 16進数表記",
+            "question": "次のコードにおいて、整数「42」を16進数表記で表示するコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    int number = 42;\n    // ここに16進数表記で表示するコードを記述してください。\n  }\n}\n```",
+            "explanation": "整数を16進数表記に変換するには、`Integer.toHexString()`メソッドを使用できます。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    int number = 42;\n    String hexRepresentation = Integer.toHexString(number);\n    System.out.println(\"16進数表記: \" + hexRepresentation);\n  }\n}\n```"
+        },
+        {
+            "id": 19,
+            "questionId": "java_data_types_intermediate_19",
+            "title": "中級 - ユニコード値の取得",
+            "question": "次のコードにおいて、文字「あ」のユニコード値を表示するコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    char ch = 'あ';\n    // ここにユニコード値を表示するコードを記述してください。\n  }\n}\n```",
+            "explanation": "文字のユニコード値は、文字をint型にキャストすることで取得できます。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    char ch = 'あ';\n    int unicodeValue = (int) ch;\n    System.out.println(\"ユニコード値: \" + unicodeValue);\n  }\n}\n```"
+        },
+        {
+            "id": 20,
+            "questionId": "java_data_types_intermediate_20",
+            "title": "中級 - ユニコード文字の取得",
+            "question": "次のコードにおいて、整数「12354」のユニコード文字を表示するコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    int unicodeValue = 12354;\n    // ここにユニコード文字を表示するコードを記述してください。\n  }\n}\n```",
+            "explanation": "整数のユニコード値から文字を取得するには、int型をchar型にキャストすることで変換できます。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    int unicodeValue = 12354;\n    char ch = (char) unicodeValue;\n    System.out.println(\"ユニコード文字: \" + ch);\n  }\n}\n```"
+        }
+    ]
+}

@@ -1,0 +1,166 @@
+{
+    "contentsId": "javaConditionalIntermediate",
+    "title": "Javaの条件分岐問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "javaConditionalIntermediate_1",
+            "title": "if-else if-else構文",
+            "question": "整数xを入力し、xが正の数であれば「x is positive」、0であれば「x is zero」、負の数であれば「x is negative」と出力するプログラムを作成してください。",
+            "explanation": "if-else if-else構文を使って、整数xが正の数、0、負の数のどれかを判定し、結果に応じて出力を変更します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in); // スキャナーを作成\n\n System.out.print(\"Enter an integer: \");\n int x = scanner.nextInt(); // 整数xを入力\n\n if (x > 0) { // xが正の数の場合\n System.out.println(\"x is positive\"); // メッセージを出力\n } else if (x == 0) { // xが0の場合\n System.out.println(\"x is zero\"); // メッセージを出力\n } else { // xが負の数の場合\n System.out.println(\"x is negative\"); // メッセージを出力\n }\n\n scanner.close(); // スキャナーを閉じる\n }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "javaConditionalIntermediate_2",
+            "title": "成績判定",
+            "question": "点数を整数で入力し、その点数に応じて成績を出力するプログラムを作成してください。成績の判定は以下の通りです。\n\n- 90点以上: A\n- 80点以上, 90点未満: B\n- 70点以上, 80点未満: C\n- 60点以上, 70点未満: D\n- 60点未満: F",
+            "explanation": "if-else if-else構文を使って、入力された点数に応じて成績を判定し、結果に応じて出力を変更します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in); // スキャナーを作成\n\n System.out.print(\"Enter your score: \");\n int score = scanner.nextInt(); // 点数を入力\n\n if (score >= 90) { // 90点以上の場合\n System.out.println(\"Grade: A\"); // Aを出力\n } else if (score >= 80) { // 80点以上の場合\n System.out.println(\"Grade: B\"); // Bを出力\n } else if (score >= 70) { // 70点以上の場合\n System.out.println(\"Grade: C\"); // Cを出力\n } else if (score >= 60) { // 60点以上の場合\n System.out.println(\"Grade: D\"); // Dを出力\n } else { // 60点未満の場合\n System.out.println(\"Grade: F\"); // Fを出力\n }\n\n scanner.close(); // スキャナーを閉じる\n }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "javaConditionalIntermediate_3",
+            "title": "うるう年の判定",
+            "question": "年を表す整数を入力し、その年がうるう年であるかどうかを判定するプログラムを作成してください。うるう年の判定は以下の通りです。\n\n- 4で割り切れる年はうるう年\n- ただし、100で割り切れる年はうるう年ではない\n- しかし、400で割り切れる年はうるう年",
+            "explanation": "条件分岐を使って、入力された年がうるう年かどうかを判定し、結果に応じて出力を変更します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in); // スキャナーを作成\n\n System.out.print(\"Enter a year: \");\n int year = scanner.nextInt(); // 年を入力\n\n if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) { // うるう年の条件\n System.out.println(year + \" is a leap year\"); // うるう年であることを出力\n } else { // うるう年でない場合\n System.out.println(year + \" is not a leap year\"); // うるう年ではないことを出力\n }\n\n scanner.close(); // スキャナーを閉じる\n }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "javaConditionalIntermediate_4",
+            "title": "最大値の判定",
+            "question": "3つの整数a, b, cを入力し、その中で最大の値を出力するプログラムを作成してください。",
+            "explanation": "条件分岐を使って、入力された整数a, b, cの最大値を判定し、最大値を出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in); // スキャナーを作成\n\n System.out.print(\"Enter three integers (a, b, c): \");\n int a = scanner.nextInt(); // 整数aを入力\n int b = scanner.nextInt(); // 整数bを入力\n int c = scanner.nextInt(); // 整数cを入力\n\n int max = a; // 最大値をaと仮定\n\n if (b > max) { // bが最大値より大きい場合\n max = b; // 最大値をbに更新\n }\n if (c > max) { // cが最大値より大きい場合\n max = c; // 最大値をcに更新\n }\n\n System.out.println(\"The maximum value is: \" + max); // 最大値を出力\n\n scanner.close(); // スキャナーを閉じる\n }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "javaConditionalIntermediate_5",
+            "title": "文字の分類",
+            "question": "1つの文字を入力し、その文字が大文字、小文字、数字、またはその他の文字であるかを判定するプログラムを作成してください。",
+            "explanation": "条件分岐を使って、入力された文字が大文字、小文字、数字、またはその他の文字のどれであるかを判定し、結果に応じて出力を変更します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in); // スキャナーを作成\n\n System.out.print(\"Enter a single character: \");\n char ch = scanner.next().charAt(0); // 文字を入力\n\n if (Character.isUpperCase(ch)) { // 大文字の場合\n System.out.println(ch + \" is an uppercase letter\"); // 大文字であることを出力\n } else if (Character.isLowerCase(ch)) { // 小文字の場合\n System.out.println(ch + \" is a lowercase letter\"); // 小文字であることを出力\n } else if (Character.isDigit(ch)) { // 数字の場合\n System.out.println(ch + \" is a digit\"); // 数字であることを出力\n } else { // その他の場合\n System.out.println(ch + \" is a special character\"); // 特殊文字であることを出力\n }\n\n scanner.close(); // スキャナーを閉じる\n }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "javaConditionalIntermediate_6",
+            "title": "絶対値の計算",
+            "question": "1つの整数を入力し、その整数の絶対値を出力するプログラムを作成してください。",
+            "explanation": "条件分岐を使って、入力された整数の符号を判定し、絶対値を計算して出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in); // スキャナーを作成\n\n System.out.print(\"Enter an integer: \");\n int num = scanner.nextInt(); // 整数を入力\n\n int absValue; // 絶対値を格納する変数\n\n if (num >= 0) { // 入力された整数が正の数または0の場合\n absValue = num; // 絶対値はそのままの値\n } else { // 入力された整数が負の数の場合\n absValue = -num; // 絶対値は符号を反転した値\n }\n\n System.out.println(\"The absolute value of \" + num + \" is \" + absValue); // 絶対値を出力\n\n scanner.close(); // スキャナーを閉じる\n }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "javaConditionalIntermediate_7",
+            "title": "switch文を用いた計算機",
+            "question": "2つの整数と1つの演算子('+', '-', '*', '/')を入力し、演算子に応じた計算結果を出力するプログラムを作成してください。switch文を使って実装してください。",
+            "explanation": "switch文を使って、入力された演算子に応じて計算を行い、結果を出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in); // スキャナーを作成\n\n System.out.print(\"Enter two integers: \");\n int num1 = scanner.nextInt(); // 整数1を入力\n int num2 = scanner.nextInt(); // 整数2を入力\n\n System.out.print(\"Enter an operator (+, -, , /): \");\n char operator = scanner.next().charAt(0); // 演算子を入力\n\n int result; // 計算結果を格納する変数\n\n switch (operator) { // 演算子に応じて処理を分岐\n case '+':\n result = num1 + num2;\n break;\n case '-':\n result = num1 - num2;\n break;\n case '':\n result = num1 * num2;\n break;\n case '/':\n result = num1 / num2;\n break;\n default:\n System.out.println(\"Invalid operator\");\n scanner.close();\n return;\n }\n\n System.out.println(num1 + \" \" + operator + \" \" + num2 + \" = \" + result); // 計算結果を出力\n\n scanner.close(); // スキャナーを閉じる\n }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "javaConditionalIntermediate_8",
+            "title": "三角形の判定",
+            "question": "3つの整数a, b, cを入力し、それらが三角形の辺の長さになり得るかどうかを判定するプログラムを作成してください。三角形の条件は、任意の2辺の長さの和が残りの1辺の長さよりも大きくなければなりません。",
+            "explanation": "条件分岐を使って、入力された整数a, b, cが三角形の辺の長さになり得るかどうかを判定し、結果に応じて出力を変更します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in); // スキャナーを作成\n\n System.out.print(\"Enter three integers (a, b, c): \");\n int a = scanner.nextInt(); // 整数aを入力\n int b = scanner.nextInt(); // 整数bを入力\n int c = scanner.nextInt(); // 整数cを入力\n\n if (a + b > c && a + c > b && b + c > a) { // 三角形の条件を満たす場合\n System.out.println(\"The sides can form a triangle\"); // 三角形が作れることを出力\n } else { // 三角形の条件を満たさない場合\n System.out.println(\"The sides cannot form a triangle\"); // 三角形が作れないことを出力\n }\n\n scanner.close(); // スキャナーを閉じる\n }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "javaConditionalIntermediate_9",
+            "title": "文字列の比較",
+            "question": "2つの文字列を入力し、それらが同じ文字列であるかどうかを判定するプログラムを作成してください。",
+            "explanation": "条件分岐を使って、入力された文字列が同じ文字列であるかどうかを判定し、結果に応じて出力を変更します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in); // スキャナーを作成\n\n System.out.print(\"Enter the first string: \");\n String str1 = scanner.nextLine(); // 文字列1を入力\n\n System.out.print(\"Enter the second string: \");\n String str2 = scanner.nextLine(); // 文字列2を入力\n\n if (str1.equals(str2)) { // 文字列が同じ場合\n System.out.println(\"The strings are the same\"); // 同じであることを出力\n } else { // 文字列が異なる場合\n System.out.println(\"The strings are different\"); // 異なることを出力\n }\n\n scanner.close(); // スキャナーを閉じる\n }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "javaConditionalIntermediate_10",
+            "title": "成績の評価",
+            "question": "0から100までの整数で表される成績を入力し、それに対応する評価（A, B, C, D, F）を出力するプログラムを作成してください。評価は以下の通りです。\n\nA: 90-100\nB: 80-89\nC: 70-79\nD: 60-69\nF: 0-59",
+            "explanation": "条件分岐を使って、入力された成績に対応する評価を判定し、結果を出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in); // スキャナーを作成\n\n        System.out.print(\"Enter a grade (0-100): \");\n        int grade = scanner.nextInt(); // 成績を入力\n\n        if (grade >= 90) { // 成績が90以上の場合\n            System.out.println(\"Your grade is A\"); // 評価Aを出力\n        } else if (grade >= 80) { // 成績が80以上の場合\n            System.out.println(\"Your grade is B\"); // 評価Bを出力\n        } else if (grade >= 70) { // 成績が70以上の場合\n            System.out.println(\"Your grade is C\"); // 評価Cを出力\n        } else if (grade >= 60) { // 成績が60以上の場合\n            System.out.println(\"Your grade is D\"); // 評価Dを出力\n        } else { // 成績が59以下の場合\n            System.out.println(\"Your grade is F\"); // 評価Fを出力\n        }\n\n        scanner.close(); // スキャナーを閉じる\n    }\n}"
+        },
+        {
+            "id": 11,
+            "questionId": "javaConditionalIntermediate_11",
+            "title": "奇数・偶数",
+            "question": "整数を入力し、その整数が奇数か偶数かを判断するプログラムを作成してください。",
+            "explanation": "入力された整数を2で割った余りを使って、奇数か偶数かを判断します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        System.out.print(\"Enter an integer: \");\n        int number = scanner.nextInt();\n\n        if (number % 2 == 0) {\n            System.out.println(number + \" is even\");\n        } else {\n            System.out.println(number + \" is odd\");\n        }\n\n        scanner.close();\n    }\n}"
+        },
+        {
+            "id": 12,
+            "questionId": "javaConditionalIntermediate_12",
+            "title": "最大値",
+            "question": "3つの整数を入力し、それらの中で最も大きい数を出力するプログラムを作成してください。",
+            "explanation": "入力された整数同士を比較して、最も大きい数を判断します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        System.out.print(\"Enter three integers: \");\n        int num1 = scanner.nextInt();\n        int num2 = scanner.nextInt();\n        int num3 = scanner.nextInt();\n\n        int max = num1;\n\n        if (num2 > max) {\n            max = num2;\n        }\n        if (num3 > max) {\n            max = num3;\n        }\n\n        System.out.println(\"The largest number is \" + max);\n\n        scanner.close();\n    }\n}"
+        },
+        {
+            "id": 13,
+            "questionId": "javaConditionalIntermediate_13",
+            "title": "閏年",
+            "question": "年を入力し、その年が閏年かどうかを判断するプログラムを作成してください。閏年の条件は以下の通りです。\n\n1. 4で割り切れる年は閏年\n2. ただし、100で割り切れる年は閏年ではない\n3. しかし、400で割り切れる年は閏年",
+            "explanation": "条件分岐を使って、入力された年に対応する閏年の条件を判断します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        System.out.print(\"Enter a year: \");\n        int year = scanner.nextInt();\n\n        if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {\n            System.out.println(year + \" is a leap year\");\n        } else {\n            System.out.println(year + \" is not a leap year\");\n        }\n\n        scanner.close();\n    }\n}"
+        },
+        {
+            "id": 14,
+            "questionId": "javaConditionalIntermediate_14",
+            "title": "FizzBuzz",
+            "question": "1から100までの整数を出力し、その数が3で割り切れる場合は「Fizz」、5で割り切れる場合は「Buzz」、3と5で割り切れる場合は「FizzBuzz」と表示するプログラムを作成してください。",
+            "explanation": "1から100までの整数を順番にチェックし、それぞれの数に対応する条件を満たす場合、指定された文字列を出力します。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        for (int i = 1; i <= 100; i++) {\n            if (i % 3 == 0 && i % 5 == 0) {\n                System.out.println(\"FizzBuzz\");\n            } else if (i % 3 == 0) {\n                System.out.println(\"Fizz\");\n            } else if (i % 5 == 0) {\n                System.out.println(\"Buzz\");\n            } else {\n                System.out.println(i);\n            }\n        }\n    }\n}"
+        },
+        {
+            "id": 15,
+            "questionId": "javaConditionalIntermediate_15",
+            "title": "成績評価",
+            "question": "0～100の範囲の整数を入力し、その数値に応じて以下の評価を出力するプログラムを作成してください。\n\n1. 90以上: A\n2. 80以上、90未満: B\n3. 70以上、80未満: C\n4. 60以上、70未満: D\n5. 60未満: F",
+            "explanation": "条件分岐を使って、入力された数値に対応する評価を判断します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        System.out.print(\"Enter your score: \");\n        int score = scanner.nextInt();\n\n        if (score >= 90) {\n            System.out.println(\"Grade: A\");\n        } else if (score >= 80) {\n            System.out.println(\"Grade: B\");\n        } else if (score >= 70) {\n            System.out.println(\"Grade: C\");\n        } else if (score >= 60) {\n            System.out.println(\"Grade: D\");\n        } else {\n            System.out.println(\"Grade: F\");\n        }\n\n        scanner.close();\n    }\n}"
+        },
+        {
+            "id": 16,
+            "questionId": "javaConditionalIntermediate_16",
+            "title": "文字列の逆順",
+            "question": "文字列を入力し、その文字列を逆順に出力するプログラムを作成してください。",
+            "explanation": "文字列の長さを取得し、逆順に文字を取り出して新しい文字列に追加します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        System.out.print(\"Enter a string: \");\n        String input = scanner.nextLine();\n\n        String reversed = \"\";\n        for (int i = input.length() - 1; i >= 0; i--) {\n            reversed += input.charAt(i);\n        }\n\n        System.out.println(\"Reversed string: \" + reversed);\n\n        scanner.close();\n    }\n}"
+        },
+        {
+            "id": 17,
+            "questionId": "javaConditionalIntermediate_17",
+            "title": "素数判定",
+            "question": "整数を入力し、その整数が素数かどうかを判断するプログラムを作成してください。",
+            "explanation": "2から入力された整数の平方根までの範囲で、割り切れる数がないかチェックし、素数かどうかを判断します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        System.out.print(\"Enter an integer: \");\n        int num = scanner.nextInt();\n\n        boolean isPrime = true;\n\n        if (num <= 1) {\n            isPrime = false;\n        } else {\n            for (int i = 2; i <= Math.sqrt(num); i++) {\n                if (num % i == 0) {\n                    isPrime = false;\n                    break;\n                }\n            }\n        }\n\n        if (isPrime) {\n            System.out.println(num + \" is a prime number\");\n        } else {\n            System.out.println(num + \" is not a prime number\");\n        }\n\n        scanner.close();\n    }\n}"
+        },
+        {
+            "id": 18,
+            "questionId": "javaConditionalIntermediate_18",
+            "title": "最大公約数",
+            "question": "2つの整数を入力し、それらの最大公約数を求めるプログラムを作成してください。",
+            "explanation": "ユークリッドの互除法を使用して、2つの整数の最大公約数を求めます。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        System.out.print(\"Enter two integers: \");\n        int num1 = scanner.nextInt();\n        int num2 = scanner.nextInt();\n\n        while (num1 != num2) {\n            if (num1 > num2) {\n                num1 -= num2;\n                        } else {\n                num2 -= num1;\n            }\n        }\n\n        System.out.println(\"Greatest common divisor: \" + num1);\n\n        scanner.close();\n    }\n}"
+        },
+        {
+            "id": 19,
+            "questionId": "javaConditionalIntermediate_19",
+            "title": "日付の有効性",
+            "question": "年、月、日の3つの整数を入力し、その日付が有効かどうかを判断するプログラムを作成してください。",
+            "explanation": "入力された年、月、日を使用して、日付が有効かどうかを判断します。その際、閏年の条件も考慮します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        System.out.print(\"Enter year, month, and day: \");\n        int year = scanner.nextInt();\n        int month = scanner.nextInt();\n        int day = scanner.nextInt();\n\n        boolean isValid = true;\n        int[] daysInMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};\n\n        if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {\n            daysInMonth[1] = 29;\n        }\n\n        if (month < 1 || month > 12) {\n            isValid = false;\n        } else if (day < 1 || day > daysInMonth[month - 1]) {\n            isValid = false;\n        }\n\n        if (isValid) {\n            System.out.println(\"Valid date\");\n        } else {\n            System.out.println(\"Invalid date\");\n        }\n\n        scanner.close();\n    }\n}"
+        },
+        {
+            "id": 20,
+            "questionId": "javaConditionalIntermediate_20",
+            "title": "文字列の回文判定",
+            "question": "文字列を入力し、その文字列が回文かどうかを判断するプログラムを作成してください。回文とは、逆順に読んでも同じ文字列のことを指します。",
+            "explanation": "文字列の長さを取得し、文字列の前半と後半を逆順に比較して、回文かどうかを判断します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        System.out.print(\"Enter a string: \");\n        String input = scanner.nextLine();\n\n        boolean isPalindrome = true;\n        int length = input.length();\n\n        for (int i = 0; i < length / 2; i++) {\n            if (input.charAt(i) != input.charAt(length - i - 1)) {\n                isPalindrome = false;\n                break;\n            }\n        }\n\n        if (isPalindrome) {\n            System.out.println(\"The string is a palindrome\");\n                } else {\n            System.out.println(\"The string is not a palindrome\");\n        }\n\n        scanner.close();\n    }\n}"
+        }
+    ]
+}

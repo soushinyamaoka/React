@@ -1,0 +1,166 @@
+{
+    "contentsId": "java2",
+    "title": "Javaの戻り値問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java3_1",
+            "title": "Javaの戻り値 - 上級",
+            "question": "再帰を使用して、与えられた整数nに対して、1からnまでのすべての整数の和を計算して戻り値として返すメソッドを実装してください。",
+            "explanation": "再帰を使用して、1からnまでの整数の和を計算する方法は、nが1の場合は1を返し、そうでない場合はnに、n-1までの和を追加した値を返すというアプローチを取ります。",
+            "answer": "public class SumRecursive {\n  public static void main(String[] args) {\n    System.out.println(sum(5)); // 予想される出力: 15\n  }\n\n  public static int sum(int n) {\n    if (n == 1) {\n      return 1;\n    } else {\n      return n + sum(n - 1);\n    }\n  }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java3_2",
+            "title": "Javaの戻り値 - 上級",
+            "question": "与えられた整数の配列内で最大値を見つけ、その最大値を戻り値として返すメソッドを実装してください。",
+            "explanation": "最大値を見つけるためには、配列の要素を反復処理し、最大値を追跡する変数を使用して、それまでの最大値と各要素を比較します。",
+            "answer": "public class FindMax {\n  public static void main(String[] args) {\n    int[] array = {1, 5, 8, 2, 9, 3};\n    System.out.println(findMax(array)); // 予想される出力: 9\n  }\n\n  public static int findMax(int[] array) {\n    int max = array[0];\n    for (int i = 1; i < array.length; i++) {\n      if (array[i] > max) {\n        max = array[i];\n      }\n    }\n    return max;\n  }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java3_3",
+            "title": "Javaの戻り値 - 上級",
+            "question": "与えられた整数のリストを引数として受け取り、そのリスト内の偶数のみを含む新しいリストを作成して戻り値として返すメソッドを実装してください。",
+            "explanation": "与えられたリスト内の偶数を見つけるには、リストの要素を反復処理し、各要素が偶数かどうかを確認して新しいリストに追加します。",
+            "answer": "import java.util.List;\nimport java.util.ArrayList;\n\npublic class FilterEven {\n  public static void main(String[] args) {\n    List<Integer> list = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);\n    System.out.println(filterEven(list)); // 予想される出力: [2, 4, 6, 8]\n  }\n\n  public static List<Integer> filterEven(List<Integer> list) {\n    List<Integer> evenList = new ArrayList<>();\n    for (Integer num : list) {\n      if (num % 2 == 0) {\n        evenList.add(num);\n      }\n    }\n    return evenList;\n  }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java3_4",
+            "title": "Javaの戻り値 - 上級",
+            "question": "与えられた整数nが素数であるかどうかを判定し、その結果を戻り値として返すメソッドを実装してください。",
+            "explanation": "素数は、1とその数自身以外に約数を持たない数です。2からn-1までの数でnを割り切れるかどうかをチェックすることで、素数かどうかを判定できます。",
+            "answer": "public class PrimeChecker {\n  public static void main(String[] args) {\n    System.out.println(isPrime(7)); // 予想される出力: true\n    System.out.println(isPrime(12)); // 予想される出力: false\n  }\n\n  public static boolean isPrime(int n) {\n    if (n <= 1) {\n      return false;\n    }\n    for (int i = 2; i < n; i++) {\n      if (n % i == 0) {\n        return false;\n      }\n    }\n    return true;\n  }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java3_5",
+            "title": "Javaの戻り値 - 上級",
+            "question": "与えられた整数のリストを引数として受け取り、そのリスト内の最小公倍数を戻り値として返すメソッドを実装してください。",
+            "explanation": "最小公倍数は、与えられた整数のリストに含まれるすべての数で割り切れる最小の数です。リスト内のすべての数の最小公倍数を求めるには、最大公約数を使用してリスト内の各ペアの数の最小公倍数を求めます。",
+            "answer": "import java.util.List;\n\npublic class LCMFinder {\n  public static void main(String[] args) {\n    List<Integer> list = List.of(2, 3, 4);\n    System.out.println(findLCM(list)); // 予想される出力: 12\n  }\n\n  public static int findLCM(List<Integer> list) {\n    int lcm = list.get(0);\n    for (int i = 1; i < list.size(); i++) {\n      lcm = (lcm * list.get(i)) / gcd(lcm, list.get(i));\n    }\n    return lcm;\n  }\n\n  public static int gcd(int a, int b) {\n    if (b == 0) {\n      return a;\n    }\n    return gcd(b, a % b);\n  }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java3_6",
+            "title": "Javaの戻り値 - 上級",
+            "question": "与えられた整数nに対して、n番目のフィボナッチ数を返すメソッドを実装してください。ただし、再帰を使用せずに実装してください。",
+            "explanation": "フィボナッチ数列は、最初の2つの数が1であり、それ以降の数は直前の2つの数の和となる数列です。つまり、1, 1, 2, 3, 5, 8, 13, ...と続きます。再帰を使用せずにフィボナッチ数を求めるには、繰り返し（ループ）を使用して計算します。",
+            "answer": "public class FibonacciCalculator {\n  public static void main(String[] args) {\n    System.out.println(fibonacci(5)); // 予想される出力: 5\n    System.out.println(fibonacci(7)); // 予想される出力: 13\n  }\n\n  public static int fibonacci(int n) {\n    if (n <= 1) {\n      return n;\n    }\n    int a = 0;\n    int b = 1;\n    int sum;\n    for (int i = 2; i <= n; i++) {\n      sum = a + b;\n      a = b;\n      b = sum;\n    }\n    return b;\n  }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java3_7",
+            "title": "Javaの戻り値 - 上級",
+            "question": "与えられた整数nに対して、n以下のすべての素数をリストとして返すメソッドを実装してください。",
+            "explanation": "素数は、1とその数自身以外に約数を持たない数です。2からnまでの数を調べ、各数が素数であるかどうかを判定して、素数であればリストに追加します。",
+            "answer": "import java.util.ArrayList;\nimport java.util.List;\n\npublic class PrimeListGenerator {\n  public static void main(String[] args) {\n    System.out.println(generatePrimes(10)); // 予想される出力: [2, 3, 5, 7]\n  }\n\n  public static List<Integer> generatePrimes(int n) {\n    List<Integer> primes = new ArrayList<>();\n    for (int i = 2; i <= n; i++) {\n      if (isPrime(i)) {\n        primes.add(i);\n      }\n    }\n    return primes;\n  }\n\n  public static boolean isPrime(int num) {\n    if (num <= 1) {\n      return false;\n    }\n    for (int i = 2; i * i <= num; i++) {\n      if (num % i == 0) {\n        return false;\n      }\n    }\n    return true;\n  }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java3_8",
+            "title": "Javaの戻り値 - 上級",
+            "question": "与えられた整数の配列の最大値と最小値を返すメソッドを実装してください。ただし、返り値はint型の配列で、0番目の要素に最小値、1番目の要素に最大値が入るようにしてください。",
+            "explanation": "最大値と最小値を求めるために、配列の要素を順番に調べていきます。最大値と最小値を格納する変数を用意し、配列の要素が現在の最大値や最小値よりも大きい（または小さい）場合に更新していきます。",
+            "answer": "public class MinMaxFinder {\n  public static void main(String[] args) {\n    int[] array = {3, 1, 7, 4, 9, 2};\n    int[] result = findMinMax(array);\n    System.out.println(\"最小値: \" + result[0]); // 予想される出力: 最小値: 1\n    System.out.println(\"最大値: \" + result[1]); // 予想される出力: 最大値: 9\n  }\n\n  public static int[] findMinMax(int[] arr) {\n    int[] minMax = new int[2];\n    minMax[0] = arr[0];\n    minMax[1] = arr[0];\n    for (int i = 1; i < arr.length; i++) {\n      if (arr[i] < minMax[0]) {\n        minMax[0] = arr[i];\n      }\n      if (arr[i] > minMax[1]) {\n        minMax[1] = arr[i];\n      }\n    }\n    return minMax;\n  }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java3_9",
+            "title": "Javaの戻り値 - 上級",
+            "question": "与えられたリスト内の各文字列の頻度を計算して、その結果をマップとして返すメソッドを実装してください。例えば、[\"apple\", \"orange\", \"apple\", \"banana\"]が与えられた場合、{\"apple\": 2, \"orange\": 1, \"banana\": 1}を返します。",
+            "explanation": "空のマップを作成し、リスト内の各文字列を調べます。マップ内にすでにその文字列が存在する場合は、その文字列の頻度をインクリメントします。存在しない場合は、新たにマップに追加し、頻度を1に設定します。",
+            "answer": "import java.util.ArrayList;\nimport java.util.HashMap;\nimport java.util.List;\nimport java.util.Map;\n\npublic class StringFrequencyCalculator {\n  public static void main(String[] args) {\n    List<String> fruits = new ArrayList<>();\n    fruits.add(\"apple\");\n    fruits.add(\"orange\");\n    fruits.add(\"apple\");\n    fruits.add(\"banana\");\n    System.out.println(calculateFrequency(fruits)); // 予想される出力: {apple=2, orange=1, banana=1}\n  }\n\n  public static Map<String, Integer> calculateFrequency(List<String> list) {\n    Map<String, Integer> frequencyMap = new HashMap<>();\n    for (String item : list) {\n      frequencyMap.put(item, frequencyMap.getOrDefault(item, 0) + 1);\n    }\n    return frequencyMap;\n  }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java3_10",
+            "title": "Javaの戻り値 - 上級",
+            "question": "与えられた整数nに対して、n番目のフィボナッチ数を返す再帰メソッドを実装してください。ただし、nは0以上の整数とします。例えば、n = 5の場合、5番目のフィボナッチ数は3を返します。",
+            "explanation": "フィボナッチ数列は、最初の2つの数は0と1で、それ以降の数は直前の2つの数の和となる数列です。再帰メソッドを使用して、n番目のフィボナッチ数を計算します。",
+            "answer": "public class FibonacciCalculator {\n\n  public static void main(String[] args) {\n    int n = 5;\n    System.out.println(fibonacci(n)); // 予想される出力: 3\n  }\n\n  public static int fibonacci(int n) {\n    if (n <= 1) {\n      return n;\n    } else {\n      return fibonacci(n - 1) + fibonacci(n - 2);\n    }\n  }\n}"
+        },
+        {
+            "id": 11,
+            "questionId": "java3_11",
+            "title": "Javaの戻り値 - 上級",
+            "question": "与えられた整数のリストの中から最大値と最小値を返すメソッドを実装してください。ただし、最大値と最小値は長さが2の整数配列として返します。例えば、リスト[3, 5, 2, 8, 1]が与えられた場合、[1, 8]を返します。",
+            "explanation": "リストの最初の要素を最大値と最小値に設定し、リストの各要素を調べます。各要素が最大値より大きい場合は、最大値を更新し、最小値より小さい場合は、最小値を更新します。最終的に最大値と最小値を含む整数配列を返します。",
+            "answer": "import java.util.Arrays;\nimport java.util.List;\n\npublic class MinMaxCalculator {\n\n  public static void main(String[] args) {\n    List<Integer> numbers = Arrays.asList(3, 5, 2, 8, 1);\n    System.out.println(Arrays.toString(minMax(numbers))); // 予想される出力: [1, 8]\n  }\n\n  public static int[] minMax(List<Integer> list) {\n    int min = list.get(0);\n    int max = list.get(0);\n    for (int num : list) {\n      if (num < min) {\n        min = num;\n      }\n      if (num > max) {\n        max = num;\n      }\n    }\n    return new int[]{min, max};\n  }\n}"
+        },
+        {
+            "id": 12,
+            "questionId": "java3_12",
+            "title": "Javaの戻り値 - 上級",
+            "question": "与えられた整数のリストに対して、リスト内の各要素が偶数の場合は2で割り、奇数の場合は3倍する関数を実装してください。変換後のリストを返してください。例えば、リスト[2, 5, 6, 9, 11]が与えられた場合、[1, 15, 3, 27, 33]を返します。",
+            "explanation": "リストの各要素をループで処理し、偶数か奇数かを判断します。偶数の場合は2で割り、奇数の場合は3倍し、結果を新しいリストに追加します。変換が終わったら、新しいリストを返します。",
+            "answer": "import java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.List;\n\npublic class NumberTransformer {\n\n  public static void main(String[] args) {\n    List<Integer> numbers = Arrays.asList(2, 5, 6, 9, 11);\n    System.out.println(transform(numbers)); // 予想される出力: [1, 15, 3, 27, 33]\n  }\n\n  public static List<Integer> transform(List<Integer> list) {\n    List<Integer> result = new ArrayList<>();\n    for (int num : list) {\n      if (num % 2 == 0) {\n        result.add(num / 2);\n      } else {\n        result.add(num * 3);\n      }\n    }\n    return result;\n  }\n}"
+        },
+        {
+            "id": 13,
+            "questionId": "java3_13",
+            "title": "Javaの戻り値 - 上級",
+            "question": "与えられた2つの整数リスト（リストAとリストB）を引数として取り、リストAの各要素にリストBの対応する要素を掛け算して新しいリストを作成して返す関数を実装してください。ただし、リストAとリストBは同じ長さであることが保証されています。例えば、リストA=[1, 2, 3, 4, 5]、リストB=[6, 7, 8, 9, 10]が与えられた場合、[6, 14, 24, 36, 50]を返します。",
+            "explanation": "リストAとリストBを同時にループで処理し、対応する要素を掛け算します。その結果を新しいリストに追加します。処理が終わったら、新しいリストを返します。",
+            "answer": "import java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.List;\n\npublic class ListMultiplier {\n\n  public static void main(String[] args) {\n    List<Integer> listA = Arrays.asList(1, 2, 3, 4, 5);\n    List<Integer> listB = Arrays.asList(6, 7, 8, 9, 10);\n    System.out.println(multiply(listA, listB)); // 予想される出力: [6, 14, 24, 36, 50]\n  }\n\n  public static List<Integer> multiply(List<Integer> listA, List<Integer> listB) {\n    List<Integer> result = new ArrayList<>();\n    for (int i = 0; i < listA.size(); i++) {\n      result.add(listA.get(i) * listB.get(i));\n    }\n    return result;\n  }\n}"
+        },
+        {
+            "id": 14,
+            "questionId": "java3_14",
+            "title": "Javaの戻り値 - 上級",
+            "question": "与えられた整数リストを引数として取り、リスト内のすべての要素の平均値を計算して返す関数を実装してください。ただし、計算結果は小数第2位まで四捨五入されたdouble型として返してください。例えば、リスト=[1, 2, 3, 4, 5]が与えられた場合、3.0を返します。",
+            "explanation": "リスト内のすべての要素の合計値を計算し、リストの長さで割ります。その結果を四捨五入して小数第2位まで表示し、返します。",
+            "answer": "import java.util.Arrays;\nimport java.util.List;\n\npublic class ListAverage {\n\n  public static void main(String[] args) {\n    List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);\n    System.out.println(average(list)); // 予想される出力: 3.0\n  }\n\n  public static double average(List<Integer> list) {\n    double sum = 0;\n    for (int num : list) {\n      sum += num;\n    }\n    double result = sum / list.size();\n    return Math.round(result * 100.0) / 100.0;\n  }\n}"
+        },
+        {
+            "id": 15,
+            "questionId": "java3_15",
+            "title": "Javaの戻り値 - 上級",
+            "question": "与えられた整数リストを引数として取り、リスト内の偶数要素のみを抽出して新たなリストに格納し、そのリストを返す関数を実装してください。例えば、リスト=[1, 2, 3, 4, 5, 6]が与えられた場合、[2, 4, 6]を返します。",
+            "explanation": "リスト内のすべての要素をループで走査し、偶数である場合に新しいリストに追加します。最後に新しいリストを返します。",
+            "answer": "import java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.List;\n\npublic class EvenNumbers {\n\n  public static void main(String[] args) {\n    List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);\n    System.out.println(evenNumbers(list)); // 予想される出力: [2, 4, 6]\n  }\n\n  public static List<Integer> evenNumbers(List<Integer> list) {\n    List<Integer> result = new ArrayList<>();\n    for (int num : list) {\n      if (num % 2 == 0) {\n        result.add(num);\n      }\n    }\n    return result;\n  }\n}"
+        },
+        {
+            "id": 16,
+            "questionId": "java3_16",
+            "title": "Javaの戻り値 - 上級",
+            "question": "与えられた整数リストを引数として取り、リスト内の値の平均値を返す関数を実装してください。例えば、リスト=[2, 4, 6]が与えられた場合、4.0を返します。",
+            "explanation": "リスト内のすべての要素をループで走査し、要素の合計値を計算します。その後、合計値をリストの要素数で割り、平均値を求めます。最後に平均値を返します。",
+            "answer": "import java.util.Arrays;\nimport java.util.List;\n\npublic class AverageValue {\n\n  public static void main(String[] args) {\n    List<Integer> list = Arrays.asList(2, 4, 6);\n    System.out.println(average(list)); // 予想される出力: 4.0\n  }\n\n  public static double average(List<Integer> list) {\n    int sum = 0;\n    for (int num : list) {\n      sum += num;\n    }\n    return (double) sum / list.size();\n  }\n}"
+        },
+        {
+            "id": 17,
+            "questionId": "java3_17",
+            "title": "Javaの戻り値 - 上級",
+            "question": "与えられた半径rの球の体積を計算して返す関数を実装してください。ただし、球の体積の計算式は V = 4/3 × π × r^3 であり、Math.PI を使用してπの値を取得できます。",
+            "explanation": "与えられた半径rに対して、球の体積の計算式を使用して体積を計算します。その後、計算された体積を返します。",
+            "answer": "public class SphereVolume {\n\n  public static void main(String[] args) {\n    double radius = 3;\n    System.out.println(volume(radius)); // 予想される出力: 113.09733552923254\n  }\n\n  public static double volume(double r) {\n    return 4.0 / 3.0 * Math.PI * Math.pow(r, 3);\n  }\n}"
+        },
+        {
+            "id": 18,
+            "questionId": "java3_18",
+            "title": "Javaの戻り値 - 上級",
+            "question": "与えられた配列の中で最大値と最小値の差を計算し返す関数を実装してください。ただし、配列の要素は整数で、配列の要素数は最低1つ以上とします。",
+            "explanation": "最大値と最小値の初期値を配列の先頭の要素で設定します。その後、for文で配列の各要素に対して、最大値と最小値を更新していきます。最後に最大値と最小値の差を計算し返します。",
+            "answer": "public class Difference {\n\n  public static void main(String[] args) {\n    int[] numbers = {1, 2, 4, 6, 9};\n    System.out.println(difference(numbers)); // 予想される出力: 8\n  }\n\n  public static int difference(int[] arr) {\n    int max = arr[0];\n    int min = arr[0];\n\n    for (int i : arr) {\n      max = Math.max(max, i);\n      min = Math.min(min, i);\n    }\n\n    return max - min;\n  }\n}"
+        },
+        {
+            "id": 19,
+            "questionId": "java3_19",
+            "title": "Javaの戻り値 - 上級",
+            "question": "二次元配列の各行について、各行の最大値を取得し、それらの平均値を計算して返す関数を実装してください。ただし、配列の要素は整数で、二次元配列の各行の要素数は最低1つ以上とします。",
+            "explanation": "各行の最大値を取得するために、二次元配列の行数分のfor文を使用します。次に、各行の最大値を取得するために、二次元配列の各行の要素数分のfor文を使用します。最後に、各行の最大値の合計を行数で割って平均値を求めます。",
+            "answer": "public class MatrixAverage {\n\n  public static void main(String[] args) {\n    int[][] matrix = {{1, 2, 4}, {6, 9, 8}, {5, 3, 7}};\n    System.out.println(averageOfRowMax(matrix)); // 予想される出力: 7.0\n  }\n\n  public static double averageOfRowMax(int[][] arr) {\n    int sum = 0;\n    int rowCount = arr.length;\n\n    for (int i = 0; i < rowCount; i++) {\n      int rowMax = arr[i][0];\n      for (int j = 1; j < arr[i].length; j++) {\n        rowMax = Math.max(rowMax, arr[i][j]);\n      }\n      sum += rowMax;\n    }\n\n    return (double) sum / rowCount;\n  }\n}"
+        },
+        {
+            "id": 20,
+            "questionId": "java3_20",
+            "title": "Javaの戻り値 - 上級",
+            "question": "与えられた整数型配列に対して、配列の中の偶数の数値を総和し、その総和が奇数である場合は「true」、偶数である場合は「false」を返す関数を実装してください。",
+            "explanation": "整数型配列の各要素に対して、偶数であるかどうかを判定し、偶数であれば総和に加算します。最後に総和が奇数であるかどうかを判定し、結果を返します。",
+            "answer": "public class EvenSumOdd {\n\n  public static void main(String[] args) {\n    int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};\n    System.out.println(isSumOfEvensOdd(arr)); // 予想される出力: true\n  }\n\n  public static boolean isSumOfEvensOdd(int[] arr) {\n    int sum = 0;\n\n    for (int num : arr) {\n      if (num % 2 == 0) {\n        sum += num;\n      }\n    }\n\n    return sum % 2 != 0;\n  }\n}"
+        }
+    ]
+}

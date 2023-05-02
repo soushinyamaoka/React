@@ -1,0 +1,62 @@
+{
+    "contentsId": "javascript2",
+    "title": "JavaScriptの変数中級問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "javascript2_1",
+            "title": "変数宣言",
+            "question": "以下のコードを実行した場合、どのような結果が返ってくるか選択してください。\n\n```\nvar a = 10;\nif (a > 5) {\n  var b = 5;\n}\nconsole.log(b);\n```\n",
+            "explanation": "変数`b`はブロック内で宣言されているため、ブロック外からでもアクセス可能です。したがって、変数`b`の値は`5`となります。",
+            "answer": "5"
+        },
+        {
+            "id": 2,
+            "questionId": "javascript2_2",
+            "title": "スコープ",
+            "question": "以下のコードを実行した場合、どのような結果が返ってくるか選択してください。\n\n```\nvar a = 10;\nfunction test() {\n  console.log(a);\n  var a = 5;\n}\ntest();\n```\n",
+            "explanation": "関数内で変数`a`が宣言されているため、関数内の変数`a`が優先されます。そのため、変数`a`の値は`undefined`となります。",
+            "answer": "undefined"
+        },
+        {
+            "id": 3,
+            "questionId": "javascript2_3",
+            "title": "スコープ",
+            "question": "以下のコードを実行した場合、どのような結果が返ってくるか選択してください。\n\n```\nvar a = 10;\nfunction test() {\n  var a = 5;\n}\ntest();\nconsole.log(a);\n```\n",
+            "explanation": "関数内で宣言された変数`a`は、関数内でのみ有効であり、関数外での変数`a`には影響しません。したがって、変数`a`の値は`10`となります。",
+            "answer": "10"
+        },
+        {
+            "id": 4,
+            "questionId": "js2_1",
+            "title": "データ型の自動変換",
+            "question": "以下のコードを実行したときに、表示される値は？\n\nvar x = 10;\nvar y = '5';\nconsole.log(x + y);",
+            "explanation": "文字列と数値を結合すると、JavaScriptは自動的に文字列を数値に変換します。\n変換された値の結果、10と5が加算された後、文字列'105'が出力されます。",
+            "answer": "105"
+        },
+        {
+            "id": 5,
+            "questionId": "js2_2",
+            "title": "変数のスコープ",
+            "question": "以下のコードを実行したときに、表示される値は？\n\nvar x = 10;\nfunction myFunction() {\n  var x = 2;\n}\nmyFunction();\nconsole.log(x);",
+            "explanation": "myFunction() 関数内で定義された x 変数のスコープは、関数自体の中に限られています。\nしたがって、関数の外で定義された x 変数（値は10）を参照することになります。\nそのため、出力される値は10となります。",
+            "answer": "10"
+        },
+        {
+            "id": 6,
+            "questionId": "javascript6",
+            "title": "変数のスコープ",
+            "question": "以下のコードを実行した際に表示される値は何ですか？",
+            "explanation": "このコードでは、if文の中で宣言された変数「x」がif文の外でも参照可能です。これは、JavaScriptの変数のスコープが関数スコープではなく、ブロックスコープではないためです。",
+            "answer": "2\n"
+        },
+        {
+            "id": 7,
+            "questionId": "javascript7",
+            "title": "変数の名前の付け方",
+            "question": "JavaScriptの変数名に関する説明として、正しいものを1つ選択してください。",
+            "explanation": "JavaScriptの変数名には、文字、数字、アンダースコア（ _ ）、ドル記号（ $ ）を使用できます。ただし、数字から始めることはできません。",
+            "answer": "a. 変数名は、数字から始めても構わない\nb. 変数名には、文字、数字、アンダースコア（ _ ）、ドル記号（ $ ）以外は使用できない\nc. 変数名は、英語の単語をすべて大文字で繋げたものにするのが望ましい\nd. 変数名は、アルファベット以外の文字を含むことはできない\n"
+        }
+    ]
+}

@@ -1,0 +1,166 @@
+{
+    "contentsId": "java_arguments_advanced",
+    "title": "Javaの引数問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_arguments_advanced_1",
+            "title": "引数の数による挙動の変更",
+            "question": "引数の数によって異なる挙動をするプログラムを作成してください。引数が1つの場合はその数値の2倍を表示し、引数が2つの場合は2つの数値の積を表示し、引数が3つの場合は3つの数値の合計を表示してください。",
+            "explanation": "引数の数に応じて、数値の2倍、数値の積、数値の合計を計算して表示します。",
+            "answer": "public class Main {\\n    public static void main(String[] args) {\\n        // 引数の数に応じて異なる挙動をする\\n        switch (args.length) {\\n            case 1:\\n                int num1 = Integer.parseInt(args[0]);\\n                System.out.println(\\\"2倍: \\\" + (num1 * 2));\\n                // 予想される出力結果: 2倍: (引数の2倍の値)\\n                break;\\n            case 2:\\n                int num2 = Integer.parseInt(args[0]);\\n                int num3 = Integer.parseInt(args[1]);\\n                System.out.println(\\\"積: \\\" + (num2 * num3));\\n                // 予想される出力結果: 積: (引数の積の値)\\n                break;\\n            case 3:\\n                int num4 = Integer.parseInt(args[0]);\\n                int num5 = Integer.parseInt(args[1]);\\n                int num6 = Integer.parseInt(args[2]);\\n                System.out.println(\\\"合計: \\\" + (num4 + num5 + num6));\\n                // 予想される出力結果: 合計: (引数の合計の値)\\n                break;\\n            default:\\n                System.out.println(\\\"引数は1〜3個を指定してください。\\\");\\n                break;\\n        }\\n    }\\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java_arguments_advanced_2",
+            "title": "数値の範囲指定",
+            "question": "引数で与えられた数値が範囲内にあるかどうかを判定するプログラムを作成してください。引数には最小値、最大値、判定対象の数値の3つが与えられます。範囲内にある場合は「範囲内」と表示し、範囲外の場合は「範囲外」と表示してください。",
+            "explanation": "引数で与えられた最小値、最大値、判定対象の数値を用いて範囲内にあるかどうかを判定します。",
+            "answer": "public class Main {\\n    public static void main(String[] args) {\\n        int minValue = Integer.parseInt(args[0]);\\n        int maxValue = Integer.parseInt(args[1]);\\n        int targetValue = Integer.parseInt(args[2]);\\n\\n        // 範囲内かどうか判定\\n        if (targetValue >= minValue && targetValue <= maxValue) {\\n            System.out.println(\\\"範囲内\\\");\\n            // 予想される出力結果: 範囲内\\n        } else {\\n            System.out.println(\\\"範囲外\\\");\\n            // 予想される出力結果: 範囲外\\n        }\\n    }\\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java_arguments_advanced_3",
+            "title": "コマンドライン引数の合計",
+            "question": "与えられたコマンドライン引数をすべて整数に変換し、合計を計算し表示するプログラムを作成してください。",
+            "explanation": "コマンドライン引数を整数に変換し、合計を求めます。",
+            "answer": "public class Main {\\n    public static void main(String[] args) {\\n        int sum = 0;\\n\\n        // コマンドライン引数を順番に処理\\n        for (String arg : args) {\\n            int value = Integer.parseInt(arg);\\n            sum += value;\\n        }\\n\\n        System.out.println(\\\"合計: \\\" + sum);\\n        // 予想される出力結果: 合計: <引数の合計>\\n    }\\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java_arguments_advanced_4",
+            "title": "コマンドライン引数の偶数のみの合計",
+            "question": "与えられたコマンドライン引数をすべて整数に変換し、偶数のみの合計を計算し表示するプログラムを作成してください。",
+            "explanation": "コマンドライン引数を整数に変換し、偶数のみの合計を求めます。",
+            "answer": "public class Main {\\n    public static void main(String[] args) {\\n        int sum = 0;\\n\\n        // コマンドライン引数を順番に処理\\n        for (String arg : args) {\\n            int value = Integer.parseInt(arg);\\n\\n            // 値が偶数の場合のみ合計に加算\\n            if (value % 2 == 0) {\\n                sum += value;\\n            }\\n        }\\n\\n        System.out.println(\\\"偶数の合計: \\\" + sum);\\n        // 予想される出力結果: 偶数の合計: <偶数引数の合計>\\n    }\\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java_arguments_advanced_5",
+            "title": "コマンドライン引数の最大値",
+            "question": "与えられたコマンドライン引数をすべて整数に変換し、最大値を計算し表示するプログラムを作成してください。",
+            "explanation": "コマンドライン引数を整数に変換し、最大値を求めます。",
+            "answer": "public class Main {\\n    public static void main(String[] args) {\\n        if (args.length == 0) {\\n            System.out.println(\\\"引数がありません\\\");\\n            return;\\n        }\\n\\n        int maxValue = Integer.parseInt(args[0]);\\n\\n        // コマンドライン引数を順番に処理\\n        for (String arg : args) {\\n            int value = Integer.parseInt(arg);\\n\\n            // 現在の最大値より大きい場合、最大値を更新\\n            if (value > maxValue) {\\n                maxValue = value;\\n            }\\n        }\\n\\n        System.out.println(\\\"最大値: \\\" + maxValue);\\n        // 予想される出力結果: 最大値: <最大値>\\n    }\\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java_arguments_advanced_6",
+            "title": "コマンドライン引数の平均値",
+            "question": "与えられたコマンドライン引数をすべて整数に変換し、平均値を計算し表示するプログラムを作成してください。",
+            "explanation": "コマンドライン引数を整数に変換し、平均値を求めます。",
+            "answer": "public class Main {\\n    public static void main(String[] args) {\\n        if (args.length == 0) {\\n            System.out.println(\\\"引数がありません\\\");\\n            return;\\n        }\\n\\n        int sum = 0;\\n\\n        // コマンドライン引数を順番に処理\\n        for (String arg : args) {\\n            int value = Integer.parseInt(arg);\\n            sum += value;\\n        }\\n\\n        double average = (double)sum / args.length;\\n        System.out.println(\\\"平均値: \\\" + average);\\n        // 予想される出力結果: 平均値: <平均値>\\n    }\\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java_arguments_advanced_7",
+            "title": "コマンドライン引数に基づく文字列の繰り返し",
+            "question": "最初のコマンドライン引数に文字列、2番目のコマンドライン引数に整数nが与えられます。指定された文字列をn回繰り返して表示するプログラムを作成してください。",
+            "explanation": "指定された文字列と整数nを使用して、文字列をn回繰り返します。",
+            "answer": "public class Main {\\n    public static void main(String[] args) {\\n        if (args.length < 2) {\\n            System.out.println(\\\"引数が足りません\\\");\\n            return;\\n        }\\n\\n        String text = args[0];\\n        int repeatCount = Integer.parseInt(args[1]);\\n        StringBuilder sb = new StringBuilder();\\n\\n        // 文字列を指定回数繰り返す\\n        for (int i = 0; i < repeatCount; i++) {\\n            sb.append(text);\\n        }\\n\\n        System.out.println(sb.toString());\\n        // 予想される出力結果: <text>が<repeatCount>回繰り返された文字列\\n    }\\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java_arguments_advanced_8",
+            "title": "コマンドライン引数で指定されたファイルの行数カウント",
+            "question": "コマンドライン引数で指定されたテキストファイルの行数をカウントするプログラムを作成してください。",
+            "explanation": "java.io.BufferedReaderを使用して、指定されたテキストファイルの行数をカウントします。",
+            "answer": "import java.io.BufferedReader;\\nimport java.io.FileReader;\\nimport java.io.IOException;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        if (args.length == 0) {\\n            System.out.println(\\\"引数がありません\\\");\\n            return;\\n        }\\n\\n        String filePath = args[0];\\n        int lineCount = 0;\\n\\n        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {\\n            while (br.readLine() != null) {\\n                lineCount++;\\n            }\\n        } catch (IOException e) {\\n            e.printStackTrace();\\n        }\\n\\n        System.out.println(\\\"行数: \\\" + lineCount);\\n        // 予想される出力結果: 行数: <行数>\\n    }\\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java_arguments_advanced_9",
+            "title": "コマンドライン引数で入力された数値の最大公約数を計算する",
+            "question": "2つの整数がコマンドライン引数で与えられるとき、それらの最大公約数を求めるプログラムを作成してください。",
+            "explanation": "ユークリッドの互除法を使用して、2つの整数の最大公約数を計算します。",
+            "answer": "public class Main {\\n    public static void main(String[] args) {\\n        if (args.length < 2) {\\n            System.out.println(\\\"引数が足りません\\\");\\n            return;\\n        }\\n\\n        int num1 = Integer.parseInt(args[0]);\\n        int num2 = Integer.parseInt(args[1]);\\n\\n        System.out.println(\\\"最大公約数: \\\" + gcd(num1, num2));\\n        // 予想される出力結果: 最大公約数: <最大公約数>\\n    }\\n\\n    // ユークリッドの互除法を使用して最大公約数を計算するメソッド\\n    public static int gcd(int a, int b) {\\n        if (b == 0) {\\n            return a;\\n        }\\n        return gcd(b, a % b);\\n    }\\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java_arguments_advanced_10",
+            "title": "コマンドライン引数で指定された日付の曜日を表示する",
+            "question": "コマンドライン引数で指定された日付（YYYY-MM-DD形式）の曜日を表示するプログラムを作成してください。",
+            "explanation": "java.time.LocalDateを使用して、指定された日付の曜日を表示します。",
+            "answer": "import java.time.LocalDate;\\nimport java.time.format.DateTimeFormatter;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        if (args.length == 0) {\\n            System.out.println(\\\"引数がありません\\\");\\n            return;\\n        }\\n\\n        String dateStr = args[0];\\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\\\"yyyy-MM-dd\\\");\\n        LocalDate date = LocalDate.parse(dateStr, formatter);\\n\\n        System.out.println(\\\"曜日: \\\" + date.getDayOfWeek());\\n        // 予想される出力結果: 曜日: <曜日>\\n    }\\n}"
+        },
+        {
+            "id": 11,
+            "questionId": "java_arguments_advanced_11",
+            "title": "コマンドライン引数で入力された配列を逆順に表示する",
+            "question": "コマンドライン引数で与えられた任意の文字列配列を逆順に表示するプログラムを作成してください。",
+            "explanation": "配列を逆順にするために、反復処理を使用し、最後の要素から最初の要素まで順に表示します。",
+            "answer": "public class Main {\\n    public static void main(String[] args) {\\n        if (args.length == 0) {\\n            System.out.println(\\\"引数がありません\\\");\\n            return;\\n        }\\n\\n        System.out.print(\\\"逆順: \\\");\\n        for (int i = args.length - 1; i >= 0; i--) {\\n            System.out.print(args[i] + (i == 0 ? \\\"\\\" : \\\", \\\"));\\n        }\\n        System.out.println();\\n        // 予想される出力結果: 逆順: <逆順に並べられた引数>\\n    }\\n}"
+        },
+        {
+            "id": 12,
+            "questionId": "java_arguments_advanced_12",
+            "title": "コマンドライン引数で与えられた数値を二次元配列に格納する",
+            "question": "コマンドライン引数で与えられた数値を、3行3列の二次元配列に格納し、その二次元配列を表示するプログラムを作成してください。ただし、引数が9個以外の場合はエラーメッセージを表示してください。",
+            "explanation": "二次元配列を生成し、コマンドライン引数で与えられた数値を行ごとに格納し、表示します。",
+            "answer": "public class Main {\\n    public static void main(String[] args) {\\n        if (args.length != 9) {\\n            System.out.println(\\\"引数が9個ではありません\\\");\\n            return;\\n        }\\n\\n        int[][] matrix = new int[3][3];\\n        for (int i = 0; i < 3; i++) {\\n            for (int j = 0; j < 3; j++) {\\n                matrix[i][j] = Integer.parseInt(args[i * 3 + j]);\\n            }\\n        }\\n\\n        for (int i = 0; i < 3; i++) {\\n            for (int j = 0; j < 3; j++) {\\n                System.out.print(matrix[i][j] + (j == 2 ? \\\"\\\" : \\\", \\\"));\\n            }\\n            System.out.println();\\n        }\\n        // 予想される出力結果: 二次元配列の各行が表示される\\n    }\\n}"
+        },
+        {
+            "id": 13,
+            "questionId": "java_arguments_advanced_13",
+            "title": "コマンドライン引数で与えられたファイル名を使用してファイルを読み込む",
+            "question": "コマンドライン引数で与えられたファイル名を使用して、ファイルを読み込み、その内容を表示するプログラムを作成してください。ただし、引数が1つ以外の場合はエラーメッセージを表示してください。また、ファイルが見つからない場合やエラーが発生した場合は、適切なメッセージを表示してください。",
+            "explanation": "java.ioパッケージのBufferedReaderクラスを使用して、ファイルを読み込み、その内容を表示します。",
+            "answer": "import java.io.BufferedReader;\\nimport java.io.FileReader;\\nimport java.io.IOException;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        if (args.length != 1) {\\n            System.out.println(\\\"引数が1つではありません\\\");\\n            return;\\n        }\\n\\n        try (BufferedReader reader = new BufferedReader(new FileReader(args[0]))) {\\n            String line;\\n            while ((line = reader.readLine()) != null) {\\n                System.out.println(line);\\n            }\\n        } catch (IOException e) {\\n            System.out.println(\\\"ファイルの読み込み中にエラーが発生しました: \\\" + e.getMessage());\\n        }\\n        // 予想される出力結果: ファイルの内容が表示される\\n    }\\n}"
+        },
+        {
+            "id": 14,
+            "questionId": "java_arguments_advanced_14",
+            "title": "可変長引数を利用した合計値計算メソッド",
+            "question": "可変長引数を利用して、整数の合計値を計算するメソッドを実装し、そのメソッドを呼び出して結果を表示してください。",
+            "explanation": "可変長引数を使用して、引数の数が不定である場合でもメソッドを呼び出すことができます。この例では、可変長引数を使用して整数の合計値を計算するメソッドを実装します。",
+            "answer": "public class Main {\\n\\n    public static void main(String[] args) {\\n        System.out.println(sum(1, 2, 3, 4, 5)); // 予想される出力結果: 15\\n        System.out.println(sum(10, 20, 30));   // 予想される出力結果: 60\\n    }\\n\\n    public static int sum(int... numbers) {\\n        int total = 0;\\n        for (int number : numbers) {\\n            total += number;\\n        }\\n        return total;\\n    }\\n}"
+        },
+        {
+            "id": 15,
+            "questionId": "java_arguments_advanced_15",
+            "title": "ラムダ式を引数として受け取るメソッド",
+            "question": "ラムダ式を引数として受け取るメソッドを実装し、そのメソッドを呼び出して結果を表示してください。",
+            "explanation": "ラムダ式を使用することで、関数型インターフェースのインスタンスを簡潔に作成できます。この例では、ラムダ式を引数として受け取るメソッドを実装し、そのメソッドを呼び出して結果を表示します。",
+            "answer": "import java.util.function.IntBinaryOperator;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        int result1 = calculate(2, 3, (a, b) -> a * b);\\n        int result2 = calculate(10, 20, (a, b) -> a + b);\\n\\n        System.out.println(result1); // 予想される出力結果: 6\\n        System.out.println(result2); // 予想される出力結果: 30\\n    }\\n\\n    public static int calculate(int a, int b, IntBinaryOperator operator) {\\n        return operator.applyAsInt(a, b);\\n    }\\n}"
+        },
+        {
+            "id": 16,
+            "questionId": "java_arguments_advanced_16",
+            "title": "メソッド参照を引数として受け取るメソッド",
+            "question": "メソッド参照を引数として受け取るメソッドを実装し、そのメソッドを呼び出して結果を表示してください。",
+            "explanation": "メソッド参照を使用することで、既存のメソッドを関数型インターフェースのインスタンスとして参照できます。この例では、メソッド参照を引数として受け取るメソッドを実装し、そのメソッドを呼び出して結果を表示します。",
+            "answer": "import java.util.function.BiFunction;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        BiFunction<Integer, Integer, Integer> add = Integer::sum;\\n        int result = process(10, 20, add);\\n        System.out.println(result); // 予想される出力結果: 30\\n    }\\n\\n    public static int process(int a, int b, BiFunction<Integer, Integer, Integer> function) {\\n        return function.apply(a, b);\\n    }\\n}"
+        },
+        {
+            "id": 17,
+            "questionId": "java_arguments_advanced_17",
+            "title": "コンストラクタ参照を引数として受け取るメソッド",
+            "question": "コンストラクタ参照を引数として受け取るメソッドを実装し、そのメソッドを呼び出して結果を表示してください。",
+            "explanation": "コンストラクタ参照を使用することで、既存のコンストラクタを関数型インターフェースのインスタンスとして参照できます。この例では、コンストラクタ参照を引数として受け取るメソッドを実装し、そのメソッドを呼び出して結果を表示します。",
+            "answer": "import java.util.function.Function;\\n\\nclass Person {\\n    private String name;\\n\\n    public Person(String name) {\\n        this.name = name;\\n    }\\n\\n    public String getName() {\\n        return name;\\n    }\\n}\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        Function<String, Person> personConstructor = Person::new;\\n        Person person = createPerson(\"John Doe\", personConstructor);\\n        System.out.println(person.getName()); // 予想される出力結果: \"John Doe\"\\n    }\\n\\n    public static Person createPerson(String name, Function<String, Person> constructor) {\\n        return constructor.apply(name);\\n    }\\n}"
+        },
+        {
+            "id": 18,
+            "questionId": "java_arguments_advanced_18",
+            "title": "ラムダ式を引数として受け取るメソッド",
+            "question": "ラムダ式を引数として受け取るメソッドを実装し、そのメソッドを呼び出して結果を表示してください。",
+            "explanation": "ラムダ式を使用することで、関数型インターフェースのインスタンスを簡潔に表現できます。この例では、ラムダ式を引数として受け取るメソッドを実装し、そのメソッドを呼び出して結果を表示します。",
+            "answer": "import java.util.function.BiFunction;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        BiFunction<Integer, Integer, Integer> multiply = (a, b) -> a * b;\\n        int result = process(10, 20, multiply);\\n        System.out.println(result); // 予想される出力結果: 200\\n    }\\n\\n    public static int process(int a, int b, BiFunction<Integer, Integer, Integer> function) {\\n        return function.apply(a, b);\\n    }\\n}"
+        },
+        {
+            "id": 19,
+            "questionId": "java_arguments_advanced_19",
+            "title": "カスタムアノテーションを引数として使用する",
+            "question": "カスタムアノテーションを作成し、そのアノテーションを引数として使用してメソッドを実行してください。",
+            "explanation": "カスタムアノテーションを作成し、そのアノテーションを引数として使用することで、メタデータを提供し、コードの意味を明確にすることができます。この例では、カスタムアノテーションを作成し、そのアノテーションを引数として使用してメソッドを実行します。",
+            "answer": "import java.lang.annotation.ElementType;\\nimport java.lang.annotation.Retention;\\nimport java.lang.annotation.RetentionPolicy;\\nimport java.lang.annotation.Target;\\n\\n@Retention(RetentionPolicy.RUNTIME)\\n@Target(ElementType.METHOD)\\n@interface CustomAnnotation {\\n    String value() default \"default\";\\n}\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        Main main = new Main();\\n        main.annotatedMethod(\"Hello, world!\");\\n    }\\n\\n    @CustomAnnotation(value = \"custom\")\\n    public void annotatedMethod(String message) {\\n        CustomAnnotation annotation = null;\\n        try {\\n            annotation = this.getClass().getMethod(\"annotatedMethod\", String.class).getAnnotation(CustomAnnotation.class);\\n        } catch (NoSuchMethodException e) {\\n            e.printStackTrace();\\n        }\\n        System.out.println(\"Message: \" + message + \", Annotation value: \" + annotation.value()); // 予想される出力結果: \"Message: Hello, world!, Annotation value: custom\"\\n    }\\n}"
+        },
+        {
+            "id": 20,
+            "questionId": "java_arguments_advanced_20",
+            "title": "関数型インターフェースを引数として使用する",
+            "question": "関数型インターフェースを引数として受け取り、ラムダ式を使用してメソッドを実行してください。",
+            "explanation": "関数型インターフェースを引数として使用することで、コードの柔軟性が向上し、ラムダ式を活用できます。この例では、関数型インターフェースを引数として受け取り、ラムダ式を使用してメソッドを実行します。",
+            "answer": "interface StringManipulation {\\n    String manipulate(String input);\\n}\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        Main main = new Main();\\n\\n        StringManipulation upperCaseManipulation = (input) -> input.toUpperCase();\\n        StringManipulation lowerCaseManipulation = (input) -> input.toLowerCase();\\n\\n        String result1 = main.applyManipulation(\"Hello, World!\", upperCaseManipulation);\\n        String result2 = main.applyManipulation(\"Hello, World!\", lowerCaseManipulation);\\n\\n        System.out.println(result1); // 予想される出力結果: \"HELLO, WORLD!\"\\n        System.out.println(result2); // 予想される出力結果: \"hello, world!\"\\n    }\\n\\n    public String applyManipulation(String input, StringManipulation manipulation) {\\n        return manipulation.manipulate(input);\\n    }\\n}"
+        }
+    ]
+}

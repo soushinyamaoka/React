@@ -1,0 +1,47 @@
+{
+    "contentsId": "java2",
+    "title": "Javaのオブジェクト問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java4_1",
+            "title": "初級: オブジェクトの作成",
+            "question": "次の要件を満たすプログラムを作成してください。\n\n1. Dogクラスを作成する\n2. Dogクラスにnameという文字列型のインスタンス変数を作成する\n3. mainメソッド内でDogクラスのオブジェクトを作成し、nameに\"Hachi\"という名前を代入する\n4. System.out.printlnを使ってオブジェクトのnameを出力する",
+            "explanation": "オブジェクトは、クラスを元に作成されるインスタンスであり、プログラム内で操作されるデータのまとまりを表します。オブジェクトの作成は、クラス名とnew演算子を使って行います。",
+            "answer": "class Dog {\n    String name;\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Dog dog = new Dog();\n        dog.name = \"Hachi\";\n        System.out.println(dog.name);\n    }\n}\n"
+        },
+        {
+            "id": 2,
+            "questionId": "java4_2",
+            "title": "初級: オブジェクトのメソッドを呼び出す",
+            "question": "次の要件を満たすプログラムを作成してください。\n\n1. Dogクラスを作成する\n2. Dogクラスにbarkメソッドを作成し、メソッド内で\"Woof!\"と出力する\n3. mainメソッド内でDogクラスのオブジェクトを作成し、barkメソッドを呼び出す",
+            "explanation": "オブジェクトのメソッドは、そのオブジェクトに関連する振る舞いを表現します。オブジェクトのメソッドを呼び出すには、オブジェクト名.メソッド名()の形式で記述します。",
+            "answer": "class Dog {\n    void bark() {\n        System.out.println(\"Woof!\");\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Dog dog = new Dog();\n        dog.bark();\n    }\n}\n"
+        },
+        {
+            "id": 3,
+            "questionId": "java4_3",
+            "title": "初級: コンストラクタを使ったオブジェクトの初期化",
+            "question": "次の要件を満たすプログラムを作成してください。\n\n1. Dogクラスを作成する\n2. Dogクラスにnameという文字列型のインスタンス変数を作成する\n3. Dogクラスに引数として名前を受け取るコンストラクタを作成し、name変数に代入する\n4. mainメソッド内でDogクラスのオブジェクトを作成し、コンストラクタで\"Hachi\"という名前を代入する\n5. System.out.printlnを使ってオブジェクトのnameを出力する",
+            "explanation": "コンストラクタは、オブジェクトが作成されるときに呼び出される特殊なメソッドで、オブジェクトの初期化を行います。コンストラクタは、クラス名と同じ名前を持ち、戻り値の型を持ちません。",
+            "answer": "class Dog {\n    String name;\n\n    Dog(String dogName) {\n        name = dogName;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Dog dog = new Dog(\"Hachi\");\n        System.out.println(dog.name);\n    }\n}\n"
+        },
+        {
+            "id": 4,
+            "questionId": "java4_4",
+            "title": "初級: オブジェクトのメソッドを呼び出す",
+            "question": "次の要件を満たすプログラムを作成してください。\n\n1. Dogクラスを作成する\n2. Dogクラスにnameという文字列型のインスタンス変数を作成する\n3. Dogクラスに引数として名前を受け取るコンストラクタを作成し、name変数に代入する\n4. Dogクラスに「bark」というメソッドを作成し、System.out.printlnを使って\"[name] is barking!\"と出力する。ここで、[name]はインスタンス変数のnameの値\n5. mainメソッド内でDogクラスのオブジェクトを作成し、コンストラクタで\"Hachi\"という名前を代入する\n6. オブジェクトのbarkメソッドを呼び出す",
+            "explanation": "オブジェクトのメソッドを呼び出すには、オブジェクト名.メソッド名()の形式で記述します。この問題では、Dogクラスのオブジェクトであるdogのbarkメソッドを呼び出すため、dog.bark()と記述します。",
+            "answer": "class Dog {\n    String name;\n\n    Dog(String dogName) {\n        name = dogName;\n    }\n\n    void bark() {\n        System.out.println(name + \" is barking!\");\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Dog dog = new Dog(\"Hachi\");\n        dog.bark();\n    }\n}\n"
+        },
+        {
+            "id": 5,
+            "questionId": "java5_5",
+            "title": "初級: オブジェクトのメソッドに引数を渡す",
+            "question": "次の要件を満たすプログラムを作成してください。\n\n1. Catクラスを作成する\n2. Catクラスにnameという文字列型のインスタンス変数を作成する\n3. Catクラスに引数として名前を受け取るコンストラクタを作成し、name変数に代入する\n4. Catクラスに「say」というメソッドを作成し、引数としてString型のwordを受け取る\n5. sayメソッド内で、System.out.printlnを使って\"[name] says [word]\"と出力する。ここで、[name]はインスタンス変数のnameの値、[word]は引数で受け取ったwordの値\n6. mainメソッド内でCatクラスのオブジェクトを作成し、コンストラクタで\"Tama\"という名前を代入する\n7. オブジェクトのsayメソッドを呼び出し、\"meow\"という文字列を引数として渡す",
+            "explanation": "オブジェクトのメソッドに引数を渡すには、オブジェクト名.メソッド名(引数)の形式で記述します。この問題では、Catクラスのオブジェクトであるcatのsayメソッドに\"meow\"という文字列を引数として渡すため、cat.say(\"meow\")と記述します。",
+            "answer": "class Cat {\n    String name;\n\n    Cat(String catName) {\n        name = catName;\n    }\n\n    void say(String word) {\n        System.out.println(name + \" says \" + word);\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Cat cat = new Cat(\"Tama\");\n        cat.say(\"meow\");\n    }\n}\n"
+        }
+
+    ]
+}

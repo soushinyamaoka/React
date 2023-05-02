@@ -1,0 +1,103 @@
+.question {
+    margin-top: 2rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    overflow: hidden;
+}
+
+.question h2 {
+    color: #333;
+}
+
+.question p {
+    font-size: 1.2rem;
+    color: #282c34;
+    margin-bottom: 1rem;
+    white-space: pre-wrap;
+}
+
+.answer {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    background-color: #282c34;
+    width: 100%;
+    color: #abb2bf;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, padding-top 0.3s ease-in-out, padding-bottom 0.3s ease-in-out;
+}
+
+.explanation {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    width: 100%;
+    color: #282c34;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, padding-top 0.3s ease-in-out, padding-bottom 0.3s ease-in-out;
+}
+
+.show {
+    max-height: 1000px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.hide {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.showAnswer {
+    margin-top: 1rem;
+    background-color: #0070f3;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.quizButton {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    background-color: #0070f3;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.pre {
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.code {
+    font-size: 1.2rem;
+    font-family: "Fira Code", monospace;
+}
+
+@media screen and (max-width: 600px) {
+    .h1 {
+        font-size: 1.5rem;
+    }
+    .p {
+        font-size: 1rem;
+    }
+    .pre {
+        font-size: 0.8rem;
+    }
+    .code {
+        font-size: 0.8rem;
+    }
+}

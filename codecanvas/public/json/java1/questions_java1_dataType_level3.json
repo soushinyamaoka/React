@@ -1,0 +1,166 @@
+{
+    "contentsId": "java_data_types",
+    "title": "Javaのデータ型問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_data_types_advanced_1",
+            "title": "上級 - 自動ボクシングとアンボクシング",
+            "question": "次のコードにおいて、自動ボクシングとアンボクシングが行われる箇所を指摘し、その理由を説明してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    Integer num1 = 42;\n    int num2 = num1 + 10;\n  }\n}\n```",
+            "explanation": "自動ボクシングは、プリミティブ型の値を対応するラッパークラスのオブジェクトに自動的に変換することです。アンボクシングは、逆にラッパークラスのオブジェクトからプリミティブ型の値を取り出すことです。このコードでは、次の箇所で自動ボクシングとアンボクシングが行われています。\n\n1. `Integer num1 = 42;` では、int型のリテラル42がIntegerオブジェクトに自動ボクシングされています。\n2. `int num2 = num1 + 10;` では、num1のIntegerオブジェクトがint型にアンボクシングされ、10と加算されています。",
+            "answer": "解答は説明の内容になります。ソースコードは変更不要です。"
+        },
+        {
+            "id": 2,
+            "questionId": "java_data_types_advanced_2",
+            "title": "上級 - BigIntegerを使った演算",
+            "question": "次のコードにおいて、BigIntegerを使用して、2つの非常に大きな数値の加算、減算、乗算、および除算を実行するコードを記述してください。\n\n```\nimport java.math.BigInteger;\n\npublic class Main {\n  public static void main(String[] args) {\n    String num1 = \"12345678901234567890\";\n    String num2 = \"98765432109876543210\";\n\n    // ここでBigIntegerを使って、num1とnum2を加算、減算、乗算、および除算してください。\n  }\n}\n```",
+            "explanation": "BigIntegerクラスは、任意の精度の整数を表すことができます。これを使用すると、大きな数値を扱うことができます。以下のコードでは、BigIntegerを使用して2つの大きな数値を加算、減算、乗算、および除算しています。",
+            "answer": "```\nimport java.math.BigInteger;\n\npublic class Main {\n  public static void main(String[] args) {\n    String num1 = \"12345678901234567890\";\n    String num2 = \"98765432109876543210\";\n\n    BigInteger bigNum1 = new BigInteger(num1);\n    BigInteger bigNum2 = new BigInteger(num2);\n\n    BigInteger sum = bigNum1.add(bigNum2);\n    BigInteger difference = bigNum1.subtract(bigNum2);\n    BigInteger product = bigNum1.multiply(bigNum2);\n    BigInteger quotient = bigNum1.divide(bigNum2);\n\n    System.out.println(\"Sum: \" + sum);\n    System.out.println(\"Difference: \" + difference);\n    System.out.println(\"Product: \" + product);\n    System.out.println(\"Quotient: \" + quotient);\n  }\n}\n```"
+        },
+        {
+            "id": 3,
+            "questionId": "java_data_types_advanced_3",
+            "title": "上級 - データ型の変換",
+            "question": "次のコードで、整数型から浮動小数点型にキャストする際に、どのような問題が発生するか説明してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    int num = 1000000000;\n    float f = num;\n  }\n}\n```",
+            "explanation": "int型からfloat型に変換する際には、精度の喪失が発生する可能性があります。float型は単精度浮動小数点数であり、有効桁数が限られています。大きな整数をfloat型に変換すると、小数部分の精度が失われることがあります。",
+            "answer": "解答は説明の内容になります。ソースコードは変更不要です。"
+        },
+        {
+            "id": 4,
+            "questionId": "java_data_types_advanced_4",
+            "title": "上級 - 暗黙の型変換",
+            "question": "次のコードで、暗黙的な型変換が行われる箇所を特定し、その理由を説明してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    byte b = 10;\n    short s = b;\n    int i = s;\n    long l = i;\n    float f = l;\n    double d = f;\n  }\n}\n```",
+            "explanation": "暗黙の型変換は、互換性のあるデータ型間で自動的に行われる型変換です。次の箇所で暗黙的な型変換が行われています。\n\n1. `short s = b;` では、byte型の変数bがshort型に自動的に変換されています。\n2. `int i = s;` では、short型の変数sがint型に自動的に変換されています。\n3. `long l = i;` では、int型の変数iがlong型に自動的に変換されています。\n4. `float f = l;` では、long型の変数lがfloat型に自動的に変換されています。\n5. `double d = f;` では、float型の変数fがdouble型に自動的に変換されています。",
+            "answer": "解答は説明の内容になります。ソースコードは変更不要です。"
+        },
+        {
+            "id": 5,
+            "questionId": "java_data_types_advanced_5",
+            "title": "上級 - 明示的な型変換",
+            "question": "次のコードで、明示的な型変換が必要な箇所を特定し、その理由を説明してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    double d = 10.5;\n    float f = d;\n    long l = f;\n    int i = l;\n    short s = i;\n    byte b = s;\n  }\n}\n```",
+            "explanation": "明示的な型変換は、互換性のあるデータ型間でコンパイラによって自動的に型変換が行われない場合に、手動で型変換を行う必要がある場合です。次の箇所で明示的な型変換が必要です。\n\n1. `float f = d;` では、double型の変数dをfloat型に変換する必要があります。これは、double型からfloat型への変換では精度が失われる可能性があるためです。\n2. `long l = f;` では、float型の変数fをlong型に変換する必要があります。これは、float型からlong型への変換では小数部分が切り捨てられるためです。\n3. `int i = l;` では、long型の変数lをint型に変換する必要があります。これは、long型からint型への変換ではデータの範囲が狭まるためです。\n4. `short s = i;` では、int型の変数iをshort型に変換する必要があります。これは、int型からshort型への変換ではデータの範囲が狭まるためです。\n5. `byte b = s;` では、short型の変数sをbyte型に変換する必要があります。これは、short型からbyte型への変換ではデータの範囲が狭まるためです。",
+            "answer": "解答は説明の内容になります。ソースコードは変更不要です。"
+        },
+        {
+            "id": 6,
+            "questionId": "java_data_types_advanced_6",
+            "title": "上級 - 不適切な型キャスト",
+            "question": "次のコードで、不適切な型キャストが行われている箇所を特定し、その理由を説明してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    String str = \"100\";\n    int num = (int) str;\n    System.out.println(num);\n  }\n}\n```",
+            "explanation": "不適切な型キャストが行われている箇所は、`int num = (int) str;` です。これは、String型とint型は互換性がなく、直接キャストできないためです。この場合、`Integer.parseInt()` メソッドを使ってString型からint型に変換する必要があります。",
+            "answer": "不適切な型キャストが行われている箇所は `int num = (int) str;` です。以下のようにコードを修正してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    String str = \"100\";\n    int num = Integer.parseInt(str);\n    System.out.println(num);\n  }\n}\n```"
+        },
+        {
+            "id": 7,
+            "questionId": "java_data_types_advanced_7",
+            "title": "上級 - オートボクシングとアンボクシング",
+            "question": "オートボクシングとアンボクシングについて説明し、次のコードでそれぞれがどこで行われているかを特定してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    Integer i = 10;\n    int j = i;\n    System.out.println(\"i: \" + i + \"\\n\" + \"j: \" + j);\n  }\n}\n```",
+            "explanation": "オートボクシングは、プリミティブ型の値を対応するラッパークラスのオブジェクトに自動的に変換することです。アンボクシングは、ラッパークラスのオブジェクトを対応するプリミティブ型の値に自動的に変換することです。\n\nこのコードでは、オートボクシングは `Integer i = 10;` で行われています。プリミティブ型の `int` 値 `10` が `Integer` オブジェクトに変換されています。アンボクシングは `int j = i;` で行われており、`Integer` オブジェクト `i` がプリミティブ型の `int` 値に変換されています。",
+            "answer": "オートボクシングとアンボクシングについての説明:\nオートボクシングは、プリミティブ型の値を対応するラッパークラスのオブジェクトに自動的に変換することです。アンボクシングは、ラッパークラスのオブジェクトを対応するプリミティブ型の値に自動的に変換することです。\n\nコード内でのオートボクシングとアンボクシング:\nオートボクシングは `Integer i = 10;` で行われており、プリミティブ型の `int` 値 `10` が `Integer` オブジェクトに変換されています。アンボクシングは `int j = i;` で行われており、`Integer` オブジェクト `i` がプリミティブ型の `int` 値に変換されています。"
+        },
+        {
+            "id": 8,
+            "questionId": "java_data_types_advanced_8",
+            "title": "上級 - BigDecimal",
+            "question": "次の要件を満たすプログラムを作成してください。\n\n要件:\n1. BigDecimal クラスを使って、小数を正確に計算するプログラムを作成してください。\n2. ユーザーに2つの小数を入力させ、それらの和、差、積、商を表示します。\n3. 結果は小数点以下3桁まで表示し、四捨五入してください。\n\n解答のサンプルコードを提出してください。",
+            "explanation": "BigDecimal クラスは、浮動小数点数の正確な計算を可能にするために使用されます。double や float のようなプリミティブ型の浮動小数点数は、計算上の誤差が発生することがありますが、BigDecimal を使うことでその誤差を回避できます。",
+            "answer": "import java.math.BigDecimal;\nimport java.math.RoundingMode;\nimport java.util.Scanner;\n\npublic class Main {\n  public static void main(String[] args) {\n    Scanner scanner = new Scanner(System.in);\n\n    // ユーザーに2つの小数を入力させる\n    System.out.print(\"Enter the first decimal number: \");\n    BigDecimal num1 = new BigDecimal(scanner.nextLine());\n    System.out.print(\"Enter the second decimal number: \");\n    BigDecimal num2 = new BigDecimal(scanner.nextLine());\n\n    // 和、差、積、商を計算する\n    BigDecimal sum = num1.add(num2);\n    BigDecimal difference = num1.subtract(num2);\n    BigDecimal product = num1.multiply(num2);\n    BigDecimal quotient = num1.divide(num2, 3, RoundingMode.HALF_UP);\n\n    // 結果を表示する\n    System.out.println(\"\\nSum: \" + sum);\n    System.out.println(\"Difference: \" + difference);\n    System.out.println(\"Product: \" + product);\n    System.out.println(\"Quotient: \" + quotient);\n  }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java_data_types_advanced_9",
+            "title": "上級 - ビット操作",
+            "question": "次の要件を満たすプログラムを作成してください。\n\n要件:\n1. 整数のビット操作を行うプログラムを作成します。\n2. ユーザーに1つの整数を入力させます。\n3. 入力された整数の各ビットを反転させた値を計算して表示します。\n\n解答のサンプルコードを提出してください。",
+            "explanation": "ビット操作では、整数のビット表現を直接操作することができます。ビット反転を行うには、ビット反転演算子 '~' を使用します。これにより、入力された整数の各ビットが反転され、0 は 1 に、1 は 0 になります。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n  public static void main(String[] args) {\n    Scanner scanner = new Scanner(System.in);\n\n    // ユーザーに整数を入力させる\n    System.out.print(\"Enter an integer: \");\n    int num = Integer.parseInt(scanner.nextLine());\n\n    // ビット反転を行う\n    int invertedNum = ~num;\n\n    // 結果を表示する\n    System.out.println(\"The inverted number is: \" + invertedNum);\n  }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java_data_types_advanced_10",
+            "title": "上級 - ジェネリクスとリスト",
+            "question": "次の要件を満たすプログラムを作成してください。\n\n要件:\n1. 2つの異なるデータ型を持つジェネリクスクラス「Pair」を作成します。\n2. このクラスには、それぞれのデータ型の値を設定・取得できるgetterおよびsetterメソッドがあります。\n3. Pairクラスのオブジェクトを2つ作成し、それぞれ異なるデータ型の値を設定してリストに追加します。\n4. リスト内のPairオブジェクトの値をすべて表示します。\n\n解答のサンプルコードを提出してください。",
+            "explanation": "ジェネリクスを使用することで、型パラメータを持つクラスやインターフェースを作成できます。これにより、異なるデータ型を柔軟に扱うことができます。Pairクラスには、2つの異なるデータ型を設定し、それぞれの値を取得できるように設計します。そして、リストに追加して、リスト内のすべての要素を表示します。",
+            "answer": "import java.util.ArrayList;\nimport java.util.List;\n\npublic class Main {\n  public static void main(String[] args) {\n    Pair<String, Integer> pair1 = new Pair<>();\n    pair1.setFirst(\"apple\");\n    pair1.setSecond(3);\n\n    Pair<String, Double> pair2 = new Pair<>();\n    pair2.setFirst(\"banana\");\n    pair2.setSecond(2.5);\n\n    List<Pair<?, ?>> list = new ArrayList<>();\n    list.add(pair1);\n    list.add(pair2);\n\n    for (Pair<?, ?> pair : list) {\n      System.out.println(\"First: \" + pair.getFirst() + \", Second: \" + pair.getSecond());\n    }\n  }\n}\n\nclass Pair<T1, T2> {\n  private T1 first;\n  private T2 second;\n\n  public T1 getFirst() {\n    return first;\n  }\n\n  public void setFirst(T1 first) {\n    this.first = first;\n  }\n\n  public T2 getSecond() {\n    return second;\n  }\n\n  public void setSecond(T2 second) {\n    this.second = second;\n  }\n}"
+        },
+        {
+            "id": 11,
+            "questionId": "java_data_types_advanced_11",
+            "title": "上級 - 配列のソート",
+            "question": "次の要件を満たすプログラムを作成してください。\n\n要件:\n1. 整数型の配列を作成し、10個のランダムな整数を格納します。(1～100の範囲内)\n2. 配列を昇順にソートし、ソートされた配列を表示します。\n3. 配列を降順にソートし、ソートされた配列を表示します。\n\n解答のサンプルコードを提出してください。",
+            "explanation": "配列のソートには、Arraysクラスのsortメソッドを使用できます。sortメソッドを使用することで、配列を昇順にソートできます。降順にソートするには、Comparatorを使用して配列をソートすることができます。また、ランダムな整数を生成するには、Randomクラスを使用します。",
+            "answer": "import java.util.Arrays;\nimport java.util.Comparator;\nimport java.util.Random;\n\npublic class Main {\n  public static void main(String[] args) {\n    Integer[] array = new Integer[10];\n    Random random = new Random();\n\n    // 配列にランダムな整数を代入\n    for (int i = 0; i < array.length; i++) {\n      array[i] = random.nextInt(100) + 1;\n    }\n\n    // 昇順にソート\n    Arrays.sort(array);\n    System.out.println(\"昇順: \" + Arrays.toString(array));\n\n    // 降順にソート\n    Arrays.sort(array, Comparator.reverseOrder());\n    System.out.println(\"降順: \" + Arrays.toString(array));\n  }\n}"
+        },
+        {
+            "id": 12,
+            "questionId": "java_data_types_advanced_12",
+            "title": "上級 - リストのソート",
+            "question": "次の要件を満たすプログラムを作成してください。\n\n要件:\n1. 整数型のArrayListを作成し、10個のランダムな整数を格納します。(1～100の範囲内)\n2. リストを昇順にソートし、ソートされたリストを表示します。\n3. リストを降順にソートし、ソートされたリストを表示します。\n\n解答のサンプルコードを提出してください。",
+            "explanation": "リストのソートには、Collectionsクラスのsortメソッドを使用できます。sortメソッドを使用することで、リストを昇順にソートできます。降順にソートするには、Collections.reverseOrder()を使用してリストをソートすることができます。また、ランダムな整数を生成するには、Randomクラスを使用します。",
+            "answer": "import java.util.ArrayList;\nimport java.util.Collections;\nimport java.util.Random;\n\npublic class Main {\n  public static void main(String[] args) {\n    ArrayList<Integer> list = new ArrayList<>();\n    Random random = new Random();\n\n    // リストにランダムな整数を追加\n    for (int i = 0; i < 10; i++) {\n      list.add(random.nextInt(100) + 1);\n    }\n\n    // 昇順にソート\n    Collections.sort(list);\n    System.out.println(\"昇順: \" + list);\n\n    // 降順にソート\n    Collections.sort(list, Collections.reverseOrder());\n    System.out.println(\"降順: \" + list);\n  }\n}"
+        },
+        {
+            "id": 13,
+            "questionId": "java_data_types_advanced_13",
+            "title": "上級 - ファイルの書き込み",
+            "question": "次の要件を満たすプログラムを作成してください。\n\n要件:\n1. 文字列型のArrayListを作成し、「Hello, World!」、「Java」、「Programming」の3つの文字列を格納します。\n2. 作成したリストをテキストファイルに書き込みます。各要素はファイル内で改行されるようにしてください。\n3. ファイル名は「output.txt」としてください。\n\n解答のサンプルコードを提出してください。",
+            "explanation": "ファイルへの書き込みには、try-with-resources構文を使用してFileWriterクラスとBufferedWriterクラスを利用できます。BufferedWriterを使用することで、ファイルへの書き込みが効率的に行われます。また、改行を行うには、BufferedWriterのnewLine()メソッドを使用します。",
+            "answer": "import java.io.BufferedWriter;\nimport java.io.FileWriter;\nimport java.io.IOException;\nimport java.util.ArrayList;\n\npublic class Main {\n  public static void main(String[] args) {\n    ArrayList<String> list = new ArrayList<>();\n    list.add(\"Hello, World!\");\n    list.add(\"Java\");\n    list.add(\"Programming\");\n\n    try (FileWriter fw = new FileWriter(\"output.txt\");\n         BufferedWriter bw = new BufferedWriter(fw)) {\n      for (String str : list) {\n        bw.write(str);\n        bw.newLine();\n      }\n    } catch (IOException e) {\n      e.printStackTrace();\n    }\n  }\n}"
+        },
+        {
+            "id": 14,
+            "questionId": "java_data_types_advanced_14",
+            "title": "上級 - ファイルの読み込み",
+            "question": "「output.txt」という名前のテキストファイルを読み込んで、その内容をコンソールに出力するプログラムを作成してください。この問題は、先ほど書き込んだファイルを読み込むことを想定しています。\n\n解答のサンプルコードを提出してください。",
+            "explanation": "ファイルの読み込みには、try-with-resources構文を使用してFileReaderクラスとBufferedReaderクラスを利用できます。BufferedReaderを使用することで、ファイルからの読み込みが効率的に行われます。また、ファイルの内容を行単位で読み込むには、BufferedReaderのreadLine()メソッドを使用します。",
+            "answer": "import java.io.BufferedReader;\nimport java.io.FileReader;\nimport java.io.IOException;\n\npublic class Main {\n  public static void main(String[] args) {\n    try (FileReader fr = new FileReader(\"output.txt\");\n         BufferedReader br = new BufferedReader(fr)) {\n      String line;\n      while ((line = br.readLine()) != null) {\n        System.out.println(line);\n      }\n    } catch (IOException e) {\n      e.printStackTrace();\n    }\n  }\n}"
+        },
+        {
+            "id": 15,
+            "questionId": "java_data_types_advanced_15",
+            "title": "上級 - ファイルの読み込みと書き込み",
+            "question": "「input.txt」という名前のテキストファイルを読み込んで、その内容を変更し、「output.txt」という名前のテキストファイルに書き込むプログラムを作成してください。具体的には、input.txtファイルの内容にあるすべてのアルファベットを大文字に変換してください。\n\n解答のサンプルコードを提出してください。",
+            "explanation": "ファイルの読み込みには、FileReaderクラスとBufferedReaderクラスを使用します。ファイルの書き込みには、FileWriterクラスとBufferedWriterクラスを使用します。BufferedReaderを使用してファイルから行単位で読み込み、toUpperCase()メソッドを使用して文字列を大文字に変換し、BufferedWriterを使用して新しいファイルに書き込むことができます。",
+            "answer": "import java.io.BufferedReader;\nimport java.io.BufferedWriter;\nimport java.io.FileReader;\nimport java.io.FileWriter;\nimport java.io.IOException;\n\npublic class Main {\n  public static void main(String[] args) {\n    try (FileReader fr = new FileReader(\"input.txt\");\n         BufferedReader br = new BufferedReader(fr);\n         FileWriter fw = new FileWriter(\"output.txt\");\n         BufferedWriter bw = new BufferedWriter(fw)) {\n      String line;\n      while ((line = br.readLine()) != null) {\n        bw.write(line.toUpperCase());\n        bw.newLine();\n      }\n    } catch (IOException e) {\n      e.printStackTrace();\n    }\n  }\n}"
+        },
+        {
+            "id": 16,
+            "questionId": "java_data_types_advanced_16",
+            "title": "上級 - ジェネリックスを使用したコレクション",
+            "question": "整数と文字列を保持できる、ジェネリックスを使用したコレクションクラスを作成してください。このクラスには、要素を追加するメソッドと、指定されたインデックスの要素を取得するメソッドが含まれている必要があります。\n\n解答のサンプルコードを提出してください。",
+            "explanation": "ジェネリックスを使用して複数の型をサポートするコレクションクラスを作成できます。ここでは、IntegerとStringの両方をサポートするクラスを作成します。クラス内のメソッドでジェネリック型を使用し、型安全性を確保します。",
+            "answer": "import java.util.ArrayList;\nimport java.util.List;\n\npublic class GenericCollection<T> {\n  private List<T> items;\n\n  public GenericCollection() {\n    items = new ArrayList<>();\n  }\n\n  public void add(T item) {\n    items.add(item);\n  }\n\n  public T get(int index) {\n    return items.get(index);\n  }\n\n  public static void main(String[] args) {\n    GenericCollection<Integer> intCollection = new GenericCollection<>();\n    intCollection.add(1);\n    intCollection.add(2);\n    System.out.println(\"Integer Collection: \" + intCollection.get(0) + \", \" + intCollection.get(1));\n\n    GenericCollection<String> strCollection = new GenericCollection<>();\n    strCollection.add(\"Hello\");\n    strCollection.add(\"World\");\n    System.out.println(\"String Collection: \" + strCollection.get(0) + \", \" + strCollection.get(1));\n  }\n}"
+        },
+        {
+            "id": 17,
+            "questionId": "java_data_types_advanced_17",
+            "title": "上級 - オートボクシングとアンボクシング",
+            "question": "Javaのオートボクシングとアンボクシングの仕組みを説明し、それぞれの例をコードで示してください。\n\n解答のサンプルコードを提出してください。",
+            "explanation": "オートボクシングはプリミティブ型の値を対応するラッパークラスのオブジェクトに自動的に変換する機能で、アンボクシングはその逆の変換を行います。Javaはオートボクシングとアンボクシングを自動的に行うので、プログラマーが明示的に変換する必要はありません。",
+            "answer": "public class AutoboxingUnboxingExample {\n\n  public static void main(String[] args) {\n    // オートボクシング: intをIntegerに変換\n    int primitiveInt = 42;\n    Integer boxedInt = primitiveInt; // オートボクシングが発生\n    System.out.println(\"Boxed Integer: \" + boxedInt);\n\n    // アンボクシング: Integerをintに変換\n    Integer anotherBoxedInt = 55;\n    int unboxedInt = anotherBoxedInt; // アンボクシングが発生\n    System.out.println(\"Unboxed Integer: \" + unboxedInt);\n  }\n}"
+        },
+        {
+            "id": 18,
+            "questionId": "java_data_types_advanced_18",
+            "title": "上級 - 二次元配列の合計",
+            "question": "二次元配列の要素の合計を計算するプログラムを作成してください。\n\n以下の二次元配列を使用してください。\n\nint[][] matrix = {\n  {1, 2, 3},\n  {4, 5, 6},\n  {7, 8, 9}\n};\n\n解答のサンプルコードを提出してください。",
+            "explanation": "二次元配列の要素の合計を計算するには、二重のforループを使用して各要素にアクセスし、合計変数に加算します。最後に合計変数を表示します。",
+            "answer": "public class MatrixSum {\n\n  public static void main(String[] args) {\n    int[][] matrix = {\n      {1, 2, 3},\n      {4, 5, 6},\n      {7, 8, 9}\n    };\n\n    int sum = 0;\n\n    // 二次元配列の要素にアクセスして合計を計算\n    for (int i = 0; i < matrix.length; i++) {\n      for (int j = 0; j < matrix[i].length; j++) {\n        sum += matrix[i][j];\n      }\n    }\n\n    System.out.println(\"The sum of the matrix elements is: \" + sum);\n  }\n}"
+        },
+        {
+            "id": 19,
+            "questionId": "java_data_types_advanced_19",
+            "title": "上級 - 乱数で配列を生成",
+            "question": "1から100までの整数の乱数を10個格納する配列を生成し、その中で最大値と最小値を表示するプログラムを作成してください。\n\n解答のサンプルコードを提出してください。",
+            "explanation": "乱数を生成するには、java.util.Randomクラスを使用します。配列に乱数を格納し、最大値と最小値を求めるために、forループを使用して配列を走査します。",
+            "answer": "import java.util.Random;\n\npublic class RandomArray {\n\n  public static void main(String[] args) {\n    Random random = new Random();\n    int[] numbers = new int[10];\n\n    // 乱数で配列を生成\n    for (int i = 0; i < numbers.length; i++) {\n      numbers[i] = random.nextInt(100) + 1;\n    }\n\n    int minValue = numbers[0];\n    int maxValue = numbers[0];\n\n    // 配列の最大値と最小値を見つける\n    for (int i = 1; i < numbers.length; i++) {\n      if (numbers[i] < minValue) {\n        minValue = numbers[i];\n      }\n      if (numbers[i] > maxValue) {\n        maxValue = numbers[i];\n      }\n    }\n\n    System.out.println(\"Minimum value: \" + minValue);\n    System.out.println(\"Maximum value: \" + maxValue);\n  }\n}"
+        },
+        {
+            "id": 20,
+            "questionId": "java_data_types_advanced_20",
+            "title": "上級 - ジェネリック型の実装",
+            "question": "ジェネリック型を用いたシンプルなペアクラス（2つの要素を持つ）を実装してください。このペアクラスは、任意の型の2つの要素を持ち、それぞれの要素へのゲッターとセッターを提供します。\n\n解答のサンプルコードを提出してください。",
+            "explanation": "ジェネリック型を使用することで、クラスやメソッドに汎用性を持たせることができます。ジェネリック型を使用してペアクラスを実装することで、任意の型の2つの要素を持つペアを簡単に作成することができます。",
+            "answer": "public class Pair<T, U> {\n\n  private T first;\n  private U second;\n\n  public Pair(T first, U second) {\n    this.first = first;\n    this.second = second;\n  }\n\n  public T getFirst() {\n    return first;\n  }\n\n  public void setFirst(T first) {\n    this.first = first;\n  }\n\n  public U getSecond() {\n    return second;\n  }\n\n  public void setSecond(U second) {\n    this.second = second;\n  }\n}"
+        }
+    ]
+}

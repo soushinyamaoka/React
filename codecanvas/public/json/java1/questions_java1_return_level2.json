@@ -1,0 +1,167 @@
+{
+    "contentsId": "java2",
+    "title": "Javaの戻り値問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java2_1",
+            "title": "戻り値を持つメソッドの作成",
+            "question": "次の仕様を満たすメソッドを作成し、メソッドの戻り値を表示してください。\n\n仕様:\n1. メソッド名: multiply\n2. 引数: 整数a、整数b\n3. 戻り値: aとbの積\n4. メソッド内で計算し、戻り値を返す\n5. メソッドの呼び出し時にa=5、b=3とする",
+            "explanation": "multiplyメソッドを定義し、引数で受け取った値を掛け算して戻り値として返します。メインメソッド内でmultiplyメソッドを呼び出し、その戻り値を表示します。",
+            "answer": "public class ReturnValue {\n\n    public static int multiply(int a, int b) {\n        return a * b;\n    }\n\n    public static void main(String[] args) {\n        int result = multiply(5, 3);\n        System.out.println(result);\n        // 出力: 15\n    }\n}\n"
+        },
+        {
+            "id": 2,
+            "questionId": "java2_2",
+            "title": "再帰を用いた階乗計算",
+            "question": "次の仕様を満たすメソッドを作成し、メソッドの戻り値を表示してください。\n\n仕様:\n1. メソッド名: factorial\n2. 引数: 整数\n3. 戻り値: 引数の階乗\n4. メソッド内で再帰を用いて階乗計算を行い、戻り値を返す\n5. メソッドの呼び出し時に整数5を渡す",
+            "explanation": "factorialメソッドを定義し、引数で受け取った整数の階乗を再帰を用いて計算して戻り値として返します。メインメソッド内でfactorialメソッドを呼び出し、その戻り値を表示します。",
+            "answer": "public class ReturnValue {\n\n    public static int factorial(int n) {\n        if (n == 1) {\n            return 1;\n        }\n        return n * factorial(n - 1);\n    }\n\n    public static void main(String[] args) {\n        int result = factorial(5);\n        System.out.println(result);\n        // 出力: 120\n    }\n}\n"
+        },
+        {
+            "id": 3,
+            "questionId": "java2_3",
+            "title": "配列の合計を計算するメソッド",
+            "question": "次の仕様を満たすメソッドを作成し、メソッドの戻り値を表示してください。\\n\\n仕様:\\n1. メソッド名: arraySum\\n2. 引数: 整数配列\\n3. 戻り値: 配列の要素の合計\\n4. メソッド内で配列の要素を合計し、戻り値を返す\\n5. メソッドの呼び出し時に整数配列{1, 2, 3, 4, 5}を渡す",
+            "explanation": "arraySumメソッドを定義し、引数で受け取った整数配列の要素の合計を計算して戻り値として返します。メインメソッド内でarraySumメソッドを呼び出し、その戻り値を表示します。",
+            "answer": "public class ReturnValue {\\n\\n    public static int arraySum(int[] arr) {\\n        int sum = 0;\\n        for (int i = 0; i < arr.length; i++) {\\n            sum += arr[i];\\n        }\\n        return sum;\\n    }\\n\\n    public static void main(String[] args) {\\n        int[] numbers = {1, 2, 3, 4, 5};\\n        int result = arraySum(numbers);\\n        System.out.println(result);\\n        // 出力: 15\\n    }\\n}\\n"
+        },
+        {
+            "id": 4,
+            "questionId": "java2_4",
+            "title": "絶対値を返すメソッド",
+            "question": "次の仕様を満たすメソッドを作成し、メソッドの戻り値を表示してください。\\n\\n仕様:\\n1. メソッド名: absoluteValue\\n2. 引数: 整数\\n3. 戻り値: 引数の絶対値\\n4. メソッド内で引数の絶対値を計算し、戻り値を返す\\n5. メソッドの呼び出し時に整数-5を渡す",
+            "explanation": "absoluteValueメソッドを定義し、引数で受け取った整数の絶対値を計算して戻り値として返します。メインメソッド内でabsoluteValueメソッドを呼び出し、その戻り値を表示します。",
+            "answer": "public class ReturnValue {\\n\\n    public static int absoluteValue(int num) {\\n        if (num < 0) {\\n            return -num;\\n        }\\n        return num;\\n    }\\n\\n    public static void main(String[] args) {\\n        int number = -5;\\n        int result = absoluteValue(number);\\n        System.out.println(result);\\n        // 出力: 5\\n    }\\n}\\n"
+        },
+        {
+            "id": 5,
+            "questionId": "java2_5",
+            "title": "文字列の長さを返すメソッド",
+            "question": "次の仕様を満たすメソッドを作成し、メソッドの戻り値を表示してください。\\n\\n仕様:\\n1. メソッド名: stringLength\\n2. 引数: 文字列\\n3. 戻り値: 引数の文字列の長さ\\n4. メソッド内で引数の文字列の長さを計算し、戻り値を返す\\n5. メソッドの呼び出し時に文字列\"OpenAI\"を渡す",
+            "explanation": "stringLengthメソッドを定義し、引数で受け取った文字列の長さを計算して戻り値として返します。メインメソッド内でstringLengthメソッドを呼び出し、その戻り値を表示します。",
+            "answer": "public class ReturnValue {\\n\\n    public static int stringLength(String str) {\\n        return str.length();\\n    }\\n\\n    public static void main(String[] args) {\\n        String input = \"OpenAI\";\\n        int result = stringLength(input);\\n        System.out.println(result);\\n        // 出力: 6\\n    }\\n}\\n"
+        },
+        {
+            "id": 6,
+            "questionId": "java2_6",
+            "title": "2つの整数の最小値を返すメソッド",
+            "question": "次の仕様を満たすメソッドを作成し、メソッドの戻り値を表示してください。\\n\\n仕様:\\n1. メソッド名: minInteger\\n2. 引数: 2つの整数\\n3. 戻り値: 2つの整数のうち最小の整数\\n4. メソッド内で引数の2つの整数の最小値を計算し、戻り値を返す\\n5. メソッドの呼び出し時に整数12と25を渡す",
+            "explanation": "minIntegerメソッドを定義し、引数で受け取った2つの整数の最小値を計算して戻り値として返します。メインメソッド内でminIntegerメソッドを呼び出し、その戻り値を表示します。",
+            "answer": "public class ReturnValue {\\n\\n    public static int minInteger(int num1, int num2) {\\n        return Math.min(num1, num2);\\n    }\\n\\n    public static void main(String[] args) {\\n        int result = minInteger(12, 25);\\n        System.out.println(result);\\n        // 出力: 12\\n    }\\n}\\n"
+        },
+        {
+            "id": 7,
+            "questionId": "java2_7",
+            "title": "文字列を連結して返すメソッド",
+            "question": "次の仕様を満たすメソッドを作成し、メソッドの戻り値を表示してください。\\n\\n仕様:\\n1. メソッド名: concatenateStrings\\n2. 引数: 2つの文字列\\n3. 戻り値: 2つの文字列を連結した文字列\\n4. メソッド内で引数の2つの文字列を連結し、戻り値を返す\\n5. メソッドの呼び出し時に文字列\"Hello\"と\"World\"を渡す",
+            "explanation": "concatenateStringsメソッドを定義し、引数で受け取った2つの文字列を連結して戻り値として返します。メインメソッド内でconcatenateStringsメソッドを呼び出し、その戻り値を表示します。",
+            "answer": "public class ReturnValue {\\n\\n    public static String concatenateStrings(String str1, String str2) {\\n        return str1 + str2;\\n    }\\n\\n    public static void main(String[] args) {\\n        String result = concatenateStrings(\"Hello\", \"World\");\\n        System.out.println(result);\\n        // 出力: HelloWorld\\n    }\\n}\\n"
+        },
+        {
+            "id": 8,
+            "questionId": "java2_8",
+            "title": "配列の要素を合計するメソッド",
+            "question": "次の仕様を満たすメソッドを作成し、メソッドの戻り値を表示してください。\\n\\n仕様:\\n1. メソッド名: sumArray\\n2. 引数: 整数型の配列\\n3. 戻り値: 配列の要素の合計値\\n4. メソッド内で引数の配列の要素を合計し、戻り値を返す\\n5. メソッドの呼び出し時に配列{1, 2, 3, 4, 5}を渡す",
+            "explanation": "sumArrayメソッドを定義し、引数で受け取った整数型の配列の要素を合計して戻り値として返します。メインメソッド内でsumArrayメソッドを呼び出し、その戻り値を表示します。",
+            "answer": "public class ReturnValue {\\n\\n    public static int sumArray(int[] array) {\\n        int sum = 0;\\n        for (int num : array) {\\n            sum += num;\\n        }\\n        return sum;\\n    }\\n\\n    public static void main(String[] args) {\\n        int[] numbers = {1, 2, 3, 4, 5};\\n        int result = sumArray(numbers);\\n        System.out.println(result);\\n        // 出力: 15\\n    }\\n}\\n"
+        },
+        {
+            "id": 9,
+            "questionId": "java2_9",
+            "title": "文字列を逆順にするメソッド",
+            "question": "次の仕様を満たすメソッドを作成し、メソッドの戻り値を表示してください。\\n\\n仕様:\\n1. メソッド名: reverseString\\n2. 引数: 文字列型\\n3. 戻り値: 逆順にした文字列\\n4. メソッド内で引数の文字列を逆順にし、戻り値を返す\\n5. メソッドの呼び出し時に文字列\"Hello\"を渡す",
+            "explanation": "reverseStringメソッドを定義し、引数で受け取った文字列を逆順にして戻り値として返します。メインメソッド内でreverseStringメソッドを呼び出し、その戻り値を表示します。",
+            "answer": "public class ReturnValue {\\n\\n    public static String reverseString(String s) {\\n        StringBuilder sb = new StringBuilder(s);\\n        return sb.reverse().toString();\\n    }\\n\\n    public static void main(String[] args) {\\n        String input = \"Hello\";\\n        String result = reverseString(input);\\n        System.out.println(result);\\n        // 出力: olleH\\n    }\\n}\\n"
+        },
+        {
+            "id": 10,
+            "questionId": "java2_10",
+            "title": "文字列の長さを2倍にするメソッド",
+            "question": "次の仕様を満たすメソッドを作成し、メソッドの戻り値を表示してください。\\n\\n仕様:\\n1. メソッド名: doubleLength\\n2. 引数: 文字列型\\n3. 戻り値: 文字列型\\n4. メソッド内で引数の文字列を2倍の長さにする\\n5. メソッドの呼び出し時に文字列\"Hello\"を渡す",
+            "explanation": "doubleLengthメソッドを定義し、引数で受け取った文字列の長さを2倍にして戻り値として返します。メインメソッド内でdoubleLengthメソッドを呼び出し、その戻り値を表示します。",
+            "answer": "public class ReturnValue {\\n\\n    public static String doubleLength(String s) {\\n        StringBuilder sb = new StringBuilder();\\n        for (int i = 0; i < 2; i++) {\\n            sb.append(s);\\n        }\\n        return sb.toString();\\n    }\\n\\n    public static void main(String[] args) {\\n        String input = \"Hello\";\\n        String result = doubleLength(input);\\n        System.out.println(result);\\n        // 出力: HelloHello\\n    }\\n}\\n"
+        },
+        {
+            "id": 11,
+            "questionId": "java2_11",
+            "title": "リスト内の最大値を求めるメソッド",
+            "question": "次の仕様を満たすメソッドを作成し、メソッドの戻り値を表示してください。\\n\\n仕様:\\n1. メソッド名: findMax\\n2. 引数: 整数のリスト(List<Integer>)\\n3. 戻り値: 整数型\\n4. メソッド内でリスト内の最大値を求める\\n5. メソッドの呼び出し時に整数のリスト[1, 7, 3, 4, 9, 2]を渡す",
+            "explanation": "findMaxメソッドを定義し、引数で受け取った整数のリスト内の最大値を求めて戻り値として返します。メインメソッド内でfindMaxメソッドを呼び出し、その戻り値を表示します。",
+            "answer": "import java.util.Arrays;\\nimport java.util.List;\\n\\npublic class ReturnValue {\\n\\n    public static int findMax(List<Integer> numbers) {\\n        int max = Integer.MIN_VALUE;\\n        for (int number : numbers) {\\n            if (number > max) {\\n                max = number;\\n            }\\n        }\\n        return max;\\n    }\\n\\n    public static void main(String[] args) {\\n        List<Integer> numbers = Arrays.asList(1, 7, 3, 4, 9, 2);\\n        int max = findMax(numbers);\\n        System.out.println(max);\\n        // 出力: 9\\n    }\\n}\\n"
+        },
+        {
+            "id": 12,
+            "questionId": "java2_12",
+            "title": "文字列を逆順にするメソッド",
+            "question": "次の仕様を満たすメソッドを作成し、メソッドの戻り値を表示してください。\\n\\n仕様:\\n1. メソッド名: reverseString\\n2. 引数: 文字列(String)\\n3. 戻り値: 文字列(String)\\n4. メソッド内で引数の文字列を逆順にする\\n5. メソッドの呼び出し時に文字列\"Hello, Java!\"を渡す",
+            "explanation": "reverseStringメソッドを定義し、引数で受け取った文字列を逆順にして戻り値として返します。メインメソッド内でreverseStringメソッドを呼び出し、その戻り値を表示します。",
+            "answer": "public class ReturnValue {\\n\\n    public static String reverseString(String input) {\\n        StringBuilder reversed = new StringBuilder(input);\\n        return reversed.reverse().toString();\\n    }\\n\\n    public static void main(String[] args) {\\n        String input = \"Hello, Java!\";\\n        String reversed = reverseString(input);\\n        System.out.println(reversed);\\n        // 出力: !avaJ ,olleH\\n    }\\n}\\n"
+        },
+        {
+            "id": 13,
+            "questionId": "java2_13",
+            "title": "文字列から特定の文字を削除するメソッド",
+            "question": "次の仕様を満たすメソッドを作成し、メソッドの戻り値を表示してください。\\n\\n仕様:\\n1. メソッド名: removeChar\\n2. 引数: 文字列(String), 削除対象の文字(char)\\n3. 戻り値: 文字列(String)\\n4. メソッド内で引数の文字列から削除対象の文字を削除する\\n5. メソッドの呼び出し時に文字列\"Hello, Java!\"と削除対象の文字'a'を渡す",
+            "explanation": "removeCharメソッドを定義し、引数で受け取った文字列から削除対象の文字を削除して戻り値として返します。メインメソッド内でremoveCharメソッドを呼び出し、その戻り値を表示します。",
+            "answer": "public class ReturnValue {\\n\\n    public static String removeChar(String input, char target) {\\n        return input.replaceAll(Character.toString(target), \"\");\\n    }\\n\\n    public static void main(String[] args) {\\n        String input = \"Hello, Java!\";\\n        char target = 'a';\\n        String result = removeChar(input, target);\\n        System.out.println(result);\\n        // 出力: Hello, Jv!\\n    }\\n}\\n"
+        },
+        {
+            "id": 14,
+            "questionId": "java2_14",
+            "title": "2つのリストの共通要素を返すメソッド",
+            "question": "次の仕様を満たすメソッドを作成し、メソッドの戻り値を表示してください。\\n\\n仕様:\\n1. メソッド名: findCommonElements\\n2. 引数: 2つのリスト(List<Integer>)\\n3. 戻り値: リスト(List<Integer>)\\n4. メソッド内で引数の2つのリストに共通する要素を抽出し、リストに格納して戻り値として返す\\n5. メソッドの呼び出し時に、1つ目のリストには[1, 2, 3, 4, 5]、2つ目のリストには[4, 5, 6, 7, 8]を渡す",
+            "explanation": "findCommonElementsメソッドを定義し、引数で受け取った2つのリストから共通する要素を抽出して戻り値として返します。メインメソッド内でfindCommonElementsメソッドを呼び出し、その戻り値を表示します。",
+            "answer": "import java.util.ArrayList;\\nimport java.util.Arrays;\\nimport java.util.List;\\n\\npublic class ReturnValue {\\n\\n    public static List<Integer> findCommonElements(List<Integer> list1, List<Integer> list2) {\\n        List<Integer> commonElements = new ArrayList<>();\\n        for (Integer element : list1) {\\n            if (list2.contains(element)) {\\n                commonElements.add(element);\\n            }\\n        }\\n        return commonElements;\\n    }\\n\\n    public static void main(String[] args) {\\n        List<Integer> list1 = Arrays.asList(1, 2, 3, 4, 5);\\n        List<Integer> list2 = Arrays.asList(4, 5, 6, 7, 8);\\n        List<Integer> commonElements = findCommonElements(list1, list2);\\n        System.out.println(commonElements);\\n        // 出力: [4, 5]\\n    }\\n}\\n"
+        },
+        {
+            "id": 15,
+            "questionId": "java2_15",
+            "title": "戻り値がOptionalのメソッド",
+            "question": "戻り値がOptional<Integer>型である次の仕様を満たすメソッドを作成し、メソッドの戻り値を表示してください。\\n\\n仕様:\\n1. メソッド名: getMiddleElement\\n2. 引数: リスト(List<Integer>)\\n3. 戻り値: Optional<Integer>\\n4. メソッド内で引数で受け取ったリストの要素数が奇数個であれば、中央の要素を返す。要素数が偶数個であれば、空のOptionalを返す。\\n5. メソッドの呼び出し時に、リストには[1, 2, 3, 4, 5]を渡す",
+            "explanation": "getMiddleElementメソッドを定義し、引数で受け取ったリストの要素数が奇数個であれば、中央の要素をOptionalでラップして返し、偶数個であれば空のOptionalを返します。メインメソッド内でgetMiddleElementメソッドを呼び出し、その戻り値を表示します。",
+            "answer": "import java.util.Arrays;\\nimport java.util.List;\\nimport java.util.Optional;\\n\\npublic class ReturnValue {\\n\\n    public static Optional<Integer> getMiddleElement(List<Integer> list) {\\n        if (list.size() % 2 == 0) {\\n            return Optional.empty();\\n        }\\n        int middleIndex = list.size() / 2;\\n        return Optional.of(list.get(middleIndex));\\n    }\\n\\n    public static void main(String[] args) {\\n        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);\\n        Optional<Integer> middleElement = getMiddleElement(list);\\n        System.out.println(middleElement);\\n        // 出力: Optional[3]\\n    }\\n}\\n"
+        },
+        {
+            "id": 16,
+            "questionId": "java2_16",
+            "title": "最大値と最小値を戻すメソッド",
+            "question": "リストの最大値と最小値を戻すメソッドを作成してください。戻り値はTuple2<Integer, Integer>型とし、最小値と最大値を格納してください。\\n\\n仕様:\\n1. メソッド名: getMinMax\\n2. 引数: リスト(List<Integer>)\\n3. 戻り値: Tuple2<Integer, Integer>\\n4. メソッド内で、リストの最大値と最小値を求め、Tuple2に格納して返します。\\n5. メソッドの呼び出し時に、リストには[3, 5, 1, 9, 7]を渡す。",
+            "explanation": "getMinMaxメソッドを定義し、引数で受け取ったリストの最大値と最小値を求め、Tuple2に格納して返します。メインメソッド内でgetMinMaxメソッドを呼び出し、その戻り値を表示します。",
+            "answer": "import java.util.Arrays;\\nimport java.util.List;\\nimport java.util.stream.Collectors;\\n\\npublic class ReturnValue {\\n\\n    public static class Tuple2<A, B> {\\n        public final A _1;\\n        public final B _2;\\n\\n        public Tuple2(A _1, B _2) {\\n            this._1 = _1;\\n            this._2 = _2;\\n        }\\n\\n        @Override\\n        public String toString() {\\n            return \"(\" + _1 + \", \" + _2 + \")\";\\n        }\\n    }\\n\\n    public static Tuple2<Integer, Integer> getMinMax(List<Integer> list) {\\n        int min = list.stream().min(Integer::compare).get();\\n        int max = list.stream().max(Integer::compare).get();\\n        return new Tuple2<>(min, max);\\n    }\\n\\n    public static void main(String[] args) {\\n        List<Integer> list = Arrays.asList(3, 5, 1, 9, 7);\\n        Tuple2<Integer, Integer> minMax = getMinMax(list);\\n        System.out.println(minMax);\\n        // 出力: (1, 9)\\n    }\\n}\\n"
+        },
+        {
+            "id": 17,
+            "questionId": "java2_17",
+            "title": "戻り値が配列のメソッド",
+            "question": "与えられた整数の配列から、偶数だけを抽出し、新しい配列に格納して返すメソッドを作成してください。\\n\\n仕様:\\n1. メソッド名: filterEvenNumbers\\n2. 引数: 整数の配列(int[])\\n3. 戻り値: 整数の配列(int[])\\n4. メソッド内で、引数の配列から偶数だけを抽出し、新しい配列に格納して返します。\\n5. メソッドの呼び出し時に、配列には{1, 2, 3, 4, 5, 6}を渡す。",
+            "explanation": "filterEvenNumbersメソッドを定義し、引数で受け取った整数の配列から偶数だけを抽出し、新しい配列に格納して返します。メインメソッド内でfilterEvenNumbersメソッドを呼び出し、その戻り値を表示します。",
+            "answer": "import java.util.Arrays;\\n\\npublic class ReturnValue {\\n\\n    public static int[] filterEvenNumbers(int[] numbers) {\\n        return Arrays.stream(numbers).filter(x -> x % 2 == 0).toArray();\\n    }\\n\\n    public static void main(String[] args) {\\n        int[] numbers = {1, 2, 3, 4, 5, 6};\\n        int[] evenNumbers = filterEvenNumbers(numbers);\\n        System.out.println(Arrays.toString(evenNumbers));\\n        // 出力: [2, 4, 6]\\n    }\\n}\\n"
+        },
+        {
+            "id": 18,
+            "questionId": "java2_18",
+            "title": "最大値を見つけるメソッド",
+            "question": "与えられた整数の配列の最大値を返すメソッドを作成してください。\\n\\n仕様:\\n1. メソッド名: findMax\\n2. 引数: 整数の配列(int[])\\n3. 戻り値: 整数(int)\\n4. メソッド内で、引数の配列の最大値を見つけて返します。\\n5. メソッドの呼び出し時に、配列には{7, 5, 9, 1, 3}を渡す。",
+            "explanation": "findMaxメソッドを定義し、引数で受け取った整数の配列の最大値を見つけて返します。メインメソッド内でfindMaxメソッドを呼び出し、その戻り値を表示します。",
+            "answer": "import java.util.Arrays;\\n\\npublic class ReturnValue {\\n\\n    public static int findMax(int[] numbers) {\\n        return Arrays.stream(numbers).max().getAsInt();\\n    }\\n\\n    public static void main(String[] args) {\\n        int[] numbers = {7, 5, 9, 1, 3};\\n        int max = findMax(numbers);\\n        System.out.println(max);\\n        // 出力: 9\\n    }\\n}\\n"
+        },
+        {
+            "id": 19,
+            "questionId": "java2_19",
+            "title": "最小値を見つけるメソッド",
+            "question": "与えられた整数の配列の最小値を返すメソッドを作成してください。\\n\\n仕様:\\n1. メソッド名: findMin\\n2. 引数: 整数の配列(int[])\\n3. 戻り値: 整数(int)\\n4. メソッド内で、引数の配列の最小値を見つけて返します。\\n5. メソッドの呼び出し時に、配列には{7, 5, 9, 1, 3}を渡す。",
+            "explanation": "findMinメソッドを定義し、引数で受け取った整数の配列の最小値を見つけて返します。メインメソッド内でfindMinメソッドを呼び出し、その戻り値を表示します。",
+            "answer": "import java.util.Arrays;\\n\\npublic class ReturnValue {\\n\\n    public static int findMin(int[] numbers) {\\n        return Arrays.stream(numbers).min().getAsInt();\\n    }\\n\\n    public static void main(String[] args) {\\n        int[] numbers = {7, 5, 9, 1, 3};\\n        int min = findMin(numbers);\\n        System.out.println(min);\\n        // 出力: 1\\n    }\\n}\\n"
+        },
+        {
+            "id": 20,
+            "questionId": "java2_20",
+            "title": "文字列の配列を結合するメソッド",
+            "question": "与えられた文字列の配列を結合して、1つの文字列を返すメソッドを作成してください。\\n\\n仕様:\\n1. メソッド名: joinStrings\\n2. 引数: 文字列の配列(String[])\\n3. 戻り値: 文字列(String)\\n4. メソッド内で、引数の文字列の配列を結合して返します。\\n5. メソッドの呼び出し時に、配列には{\"Java\", \"is\", \"awesome\"}を渡す。",
+            "explanation": "joinStringsメソッドを定義し、引数で受け取った文字列の配列を結合して返します。メインメソッド内でjoinStringsメソッドを呼び出し、その戻り値を表示します。",
+            "answer": "public class ReturnValue {\\n\\n    public static String joinStrings(String[] strings) {\\n        StringBuilder sb = new StringBuilder();\\n        for (String s : strings) {\\n            sb.append(s);\\n        }\\n        return sb.toString();\\n    }\\n\\n    public static void main(String[] args) {\\n        String[] strings = {\"Java\", \"is\", \"awesome\"};\\n        String result = joinStrings(strings);\\n        System.out.println(result);\\n        // 出力: Javaisawesome\\n    }\\n}\\n"
+        }
+
+    ]
+}

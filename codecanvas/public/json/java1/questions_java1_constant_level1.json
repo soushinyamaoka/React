@@ -1,0 +1,167 @@
+{
+    "contentsId": "java4",
+    "title": "Javaの定数問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java4_1",
+            "title": "定数の宣言",
+            "question": "Javaで定数を宣言するためにはどのようなキーワードを使用する必要がありますか？",
+            "explanation": "Javaで定数を宣言するためには、finalキーワードを使用します。finalキーワードを変数宣言の前に付けることで、その変数は定数となり、値の変更ができなくなります。",
+            "answer": "final"
+        },
+        {
+            "id": 2,
+            "questionId": "java4_2",
+            "title": "定数の初期化",
+            "question": "次のコードで定数PIを宣言し、初期値として3.14を設定してください。\n\npublic class Main {\n    public static void main(String[] args) {\n        // ここに定数PIを宣言し、初期値3.14を設定\n    }\n}",
+            "explanation": "定数PIを宣言するには、finalキーワードを使用し、初期値を設定します。例: final double PI = 3.14;",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        final double PI = 3.14; // 定数PIを宣言し、初期値3.14を設定\n    }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java4_3",
+            "title": "定数と変数の違い",
+            "question": "定数と変数の違いを説明してください。",
+            "explanation": "定数は、プログラムが実行される間、その値が変わらないものです。一度初期化されると、値を変更することはできません。変数は、プログラムが実行される間、その値が変わることが許されるものです。変数は、値を変更することができます。",
+            "answer": "定数は値が変わらないが、変数は値が変わることが許される。"
+        },
+        {
+            "id": 4,
+            "questionId": "java4_4",
+            "title": "定数の利点",
+            "question": "定数を使用することの利点を説明してください。",
+            "explanation": "定数を使用することの利点は、以下の通りです。\n1. 値が変わらないことを保証することで、コードの安全性が向上します。\n2. 定数を使用することで、コードの可読性が向上し、定数名からその目的や意味が明確になります。\n3. 定数を使うことで、同じ値を繰り返し使う場合でも一箇所で変更できるため、コードの保守性が向上します。",
+            "answer": "1. コードの安全性向上 2. コードの可読性向上 3. コードの保守性向上"
+        },
+        {
+            "id": 5,
+            "questionId": "java4_5",
+            "title": "定数の命名規則",
+            "question": "Javaで定数を宣言する際の一般的な命名規則は何ですか？",
+            "explanation": "Javaで定数を宣言する際の一般的な命名規則は、すべて大文字の単語をアンダースコア(_)で区切る形式です。例: FINAL_VALUE",
+            "answer": "すべて大文字の単語をアンダースコア(_)で区切る形式。例: FINAL_VALUE"
+        },
+        {
+            "id": 6,
+            "questionId": "java4_6",
+            "title": "定数と変数の宣言",
+            "question": "次のコードで、定数「RATE」を宣言し、初期値として0.08を設定してください。また、変数「price」を宣言し、初期値として1000を設定してください。\n\npublic class Main {\n    public static void main(String[] args) {\n        // ここに定数RATEと変数priceを宣言し、初期値を設定\n    }\n}",
+            "explanation": "定数「RATE」を宣言し、初期値として0.08を設定するには、finalキーワードを使用し、変数「price」を宣言し、初期値として1000を設定するには、int型を使用します。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        final double RATE = 0.08; // 定数RATEを宣言し、初期値0.08を設定\n        int price = 1000; // 変数priceを宣言し、初期値1000を設定\n    }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java4_7",
+            "title": "定数の使用",
+            "question": "次のコードで、定数「RATE」と変数「price」を使用して、消費税込みの価格を計算し、その結果を出力してください。\n\npublic class Main {\n    public static void main(String[] args) {\n        final double RATE = 0.08;\n        int price = 1000;\n        // ここで消費税込みの価格を計算し、結果を出力\n    }\n}",
+            "explanation": "定数「RATE」と変数「price」を使用して、消費税込みの価格を計算するには、priceにpriceとRATEをかけた値を加えます。その結果をSystem.out.printlnで出力します。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        final double RATE = 0.08;\n        int price = 1000;\n        int totalPrice = (int) (price + price * RATE); // 消費税込みの価格を計算\n        System.out.println(totalPrice); // 結果を出力\n    }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java4_8",
+            "title": "定数の使用例",
+            "question": "円周率を表す定数PIを宣言し、初期値として3.14159を設定してください。次に、半径が5の円の面積を計算し、その結果を出力してください。\n\npublic class Main {\n    public static void main(String[] args) {\n        // ここに定数PIを宣言し、初期値3.14159を設定\n        // ここで半径が5の円の面積を計算し、結果を出力\n    }\n}",
+            "explanation": "定数PIを宣言し、初期値として3.14159を設定するには、finalキーワードを使用します。半径が5の円の面積を計算するには、PI * 半径 * 半径 を計算し、その結果をSystem.out.printlnで出力します。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        final double PI = 3.14159; // 定数PIを宣言し、初期値3.14159を設定\n        int radius = 5;\n        double area = PI * radius * radius; // 半径が5の円の面積を計算\n        System.out.println(area); // 結果を出力\n    }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java4_9",
+            "title": "定数のスコープ",
+            "question": "定数のスコープについて説明してください。",
+            "explanation": "定数のスコープは、その定数が宣言された範囲内でのみアクセスできる範囲のことです。定数がメソッド内で宣言された場合、そのメソッド内でのみアクセスできます。定数がクラス内で宣言された場合、そのクラス内のすべてのメソッドでアクセスできます。",
+            "answer": "定数のスコープは、定数が宣言された範囲内でのみアクセスできる範囲。メソッド内で宣言された場合は、そのメソッド内でのみアクセス可能。クラス内で宣言された場合は、そのクラス内のすべてのメソッドでアクセス可能。"
+        },
+        {
+            "id": 10,
+            "questionId": "java4_10",
+            "title": "クラス定数",
+            "question": "次のコードで、クラス定数「MAX_VALUE」を宣言し、初期値として100を設定してください。また、その定数を使用して、変数「value」がMAX_VALUEを超えているかどうかを判定し、結果を出力してください。\n\npublic class Main {\n    // ここにクラス定数MAX_VALUEを宣言し、初期値100を設定\n\n    public static void main(String[] args) {\n        int value = 120;\n        // ここでvalueがMAX_VALUEを超えているかどうかを判定し、結果を出力\n    }\n}",
+            "explanation": "クラス定数「MAX_VALUE」を宣言し、初期値として100を設定するには、static finalキーワードを使用します。valueがMAX_VALUEを超えているかどうかを判定するには、value > MAX_VALUEの条件式を使用し、その結果をSystem.out.printlnで出力します。",
+            "answer": "public class Main {\n    static final int MAX_VALUE = 100; // クラス定数MAX_VALUEを宣言し、初期値100を設定\n\n    public static void main(String[] args) {\n        int value = 120;\n        boolean isOverMax = value > MAX_VALUE; // valueがMAX_VALUEを超えているかどうかを判定\n        System.out.println(isOverMax); // 結果を出力\n    }\n}"
+        },
+        {
+            "id": 11,
+            "questionId": "java4_11",
+            "title": "定数の計算",
+            "question": "次のクラス定数を宣言し、定数同士の計算を行い、結果を出力してください。\n\npublic class Main {\n    // 定数Aを宣言し、初期値20を設定\n    // 定数Bを宣言し、初期値30を設定\n\n    public static void main(String[] args) {\n        // 定数Aと定数Bの和を出力\n        // 定数Aと定数Bの差を出力\n        // 定数Aと定数Bの積を出力\n        // 定数Aと定数Bの商を出力\n    }\n}",
+            "explanation": "定数Aと定数Bを宣言するには、static finalキーワードを使用します。定数同士の計算結果は、System.out.printlnメソッドを使用して出力します。",
+            "answer": "public class Main {\n    static final int A = 20; // 定数Aを宣言し、初期値20を設定\n    static final int B = 30; // 定数Bを宣言し、初期値30を設定\n\n    public static void main(String[] args) {\n        System.out.println(A + B); // 定数Aと定数Bの和を出力\n        System.out.println(A - B); // 定数Aと定数Bの差を出力\n        System.out.println(A * B); // 定数Aと定数Bの積を出力\n        System.out.println((double) A / B); // 定数Aと定数Bの商を出力\n    }\n}"
+        },
+        {
+            "id": 12,
+            "questionId": "java4_12",
+            "title": "円周率の定数",
+            "question": "次のクラス定数を宣言し、円周率を表現してください。また、その定数を使用して、半径5の円の周囲の長さと面積を計算し、結果を出力してください。\n\npublic class Main {\n    // 定数PIを宣言し、初期値3.14159を設定\n\n    public static void main(String[] args) {\n        int radius = 5;\n        // 半径5の円の周囲の長さを計算し、出力\n        // 半径5の円の面積を計算し、出力\n    }\n}",
+            "explanation": "定数PIを宣言するには、static finalキーワードを使用します。半径5の円の周囲の長さは、2 * PI * radiusで計算できます。円の面積は、PI * radius * radiusで計算できます。計算結果は、System.out.printlnメソッドを使用して出力します。",
+            "answer": "public class Main {\n static final double PI = 3.14159; // 定数PIを宣言し、初期値3.14159を設定\n\n public static void main(String[] args) {\n int radius = 5;\n double circumference = 2 * PI * radius; // 半径5の円の周囲の長さを計算\n double area = PI * radius * radius; // 半径5の円の面積を計算\n\n System.out.println(circumference); // 周囲の長さを出力\n System.out.println(area); // 面積を出力\n }\n}"
+        },
+        {
+            "id": 13,
+            "questionId": "java4_13",
+            "title": "定数の条件分岐",
+            "question": "次のクラス定数を宣言し、定数Aが定数Bよりも大きいかどうかを判定してください。結果を出力してください。\n\npublic class Main {\n // 定数Aを宣言し、初期値50を設定\n // 定数Bを宣言し、初期値25を設定\n\n public static void main(String[] args) {\n // 定数Aが定数Bより大きいかどうかを判定し、結果を出力\n }\n}",
+            "explanation": "定数Aと定数Bを宣言するには、static finalキーワードを使用します。定数Aが定数Bよりも大きいかどうかを判定するには、条件分岐を使用します。結果は、System.out.printlnメソッドを使用して出力します。",
+            "answer": "public class Main {\n static final int A = 50; // 定数Aを宣言し、初期値50を設定\n static final int B = 25; // 定数Bを宣言し、初期値25を設定\n\n public static void main(String[] args) {\n if (A > B) {\n System.out.println(\"A is greater than B\"); // 定数Aが定数Bより大きい場合の出力\n } else {\n System.out.println(\"A is not greater than B\"); // 定数Aが定数Bより大きくない場合の出力\n }\n }\n}"
+        },
+        {
+            "id": 14,
+            "questionId": "java4_14",
+            "title": "定数と変数の組み合わせ",
+            "question": "次のクラス定数を宣言し、定数Aに変数xを加算した結果を出力してください。\n\npublic class Main {\n // 定数Aを宣言し、初期値100を設定\n\n public static void main(String[] args) {\n int x = 5;\n // 定数Aに変数xを加算し、結果を出力\n }\n}",
+            "explanation": "定数Aを宣言するには、static finalキーワードを使用します。定数Aに変数xを加算した結果は、System.out.printlnメソッドを使用して出力します。",
+            "answer": "public class Main {\n static final int A = 100; // 定数Aを宣言し、初期値100を設定\n\n public static void main(String[] args) {\n int x = 5;\n System.out.println(A + x); // 定数Aに変数xを加算し、結果を出力\n }\n}"
+        },
+        {
+            "id": 15,
+            "questionId": "java4_15",
+            "title": "定数の配列",
+            "question": "次のクラス定数を宣言し、定数配列Aの各要素を出力してください。\n\npublic class Main {\n // 定数配列Aを宣言し、初期値{1, 2, 3, 4, 5}を設定\n\n public static void main(String[] args) {\n // 定数配列Aの各要素を出力\n }\n}",
+            "explanation": "定数配列Aを宣言するには、static finalキーワードを使用します。定数配列Aの各要素を出力するには、for文を使用して要素を順番に出力します。",
+            "answer": "public class Main {\n static final int[] A = {1, 2, 3, 4, 5}; // 定数配列Aを宣言し、初期値{1, 2, 3, 4, 5}を設定\n\n public static void main(String[] args) {\n for (int i = 0; i < A.length; i++) {\n System.out.println(A[i]); // 定数配列Aの各要素を出力\n }\n }\n}"
+        },
+        {
+            "id": 16,
+            "questionId": "java4_16",
+            "title": "定数と演算子",
+            "question": "次のクラス定数を宣言し、定数Aと定数BのAND演算結果を出力してください。\n\npublic class Main {\n // 定数Aを宣言し、初期値0b1100を設定\n // 定数Bを宣言し、初期値0b1010を設定\n\n public static void main(String[] args) {\n // 定数Aと定数BのAND演算結果を出力\n }\n}",
+            "explanation": "定数Aと定数Bを宣言するには、static finalキーワードを使用します。定数Aと定数BのAND演算結果は、System.out.printlnメソッドを使用して出力します。",
+            "answer": "public class Main {\n static final int A = 0b1100; // 定数Aを宣言し、初期値0b1100を設定\n static final int B = 0b1010; // 定数Bを宣言し、初期値0b1010を設定\n\n public static void main(String[] args) {\n System.out.println(A & B); // 定数Aと定数BのAND演算結果を出力\n }\n}"
+        },
+        {
+            "id": 17,
+            "questionId": "java4_17",
+            "title": "定数とStringの組み合わせ",
+            "question": "次のクラス定数を宣言し、定数Aに文字列を結合した結果を出力してください。\n\npublic class Main {\n // 定数Aを宣言し、初期値\"Hello\"を設定\n\n public static void main(String[] args) {\n String s = \" World!\";\n // 定数Aに文字列sを結合し、結果を出力\n }\n}",
+            "explanation": "定数Aを宣言するには、static finalキーワードを使用します。定数Aに文字列sを結合した結果は、System.out.printlnメソッドを使用して出力します。",
+            "answer": "public class Main {\n static final String A = \"Hello\"; // 定数Aを宣言し、初期値\"Hello\"を設定\n\n public static void main(String[] args) {\n String s = \" World!\";\n System.out.println(A + s); // 定数Aに文字列sを結合し、結果を出力\n }\n}"
+        },
+        {
+            "id": 18,
+            "questionId": "java4_18",
+            "title": "定数とメソッド",
+            "question": "次のクラス定数を宣言し、定数Aを引数としてメソッドsquareを呼び出し、結果を出力してください。\n\npublic class Main {\n // 定数Aを宣言し、初期値10を設定\n\n public static void main(String[] args) {\n // 定数Aを引数としてメソッドsquareを呼び出し、結果を出力\n }\n\n // 引数の二乗を返すメソッドsquareを定義\n}",
+            "explanation": "定数Aを宣言するには、static finalキーワードを使用します。定数Aを引数としてメソッドsquareを呼び出し、結果はSystem.out.printlnメソッドを使用して出力します。メソッドsquareは引数の二乗を返すように定義します。",
+            "answer": "public class Main {\n static final int A = 10; // 定数Aを宣言し、初期値10を設定\n\n public static void main(String[] args) {\n System.out.println(square(A)); // 定数Aを引数としてメソッドsquareを呼び出し、結果を出力\n }\n\n // 引数の二乗を返すメソッドsquareを定義\n public static int square(int num) {\n return num * num;\n }\n}"
+        },
+        {
+            "id": 19,
+            "questionId": "java4_19",
+            "title": "定数とクラス変数",
+            "question": "次のクラス定数を宣言し、定数Aをクラス変数xに代入して、結果を出力してください。\n\npublic class Main {\n // 定数Aを宣言し、初期値100を設定\n\n static int x; // クラス変数x\n\n public static void main(String[] args) {\n // 定数Aをクラス変数xに代入\n // クラス変数xの値を出力\n }\n}",
+            "explanation": "定数Aを宣言するには、static finalキーワードを使用します。定数Aをクラス変数xに代入し、結果はSystem.out.printlnメソッドを使用して出力します。",
+            "answer": "public class Main {\n static final int A = 100; // 定数Aを宣言し、初期値100を設定\n\n static int x; // クラス変数x\n\n public static void main(String[] args) {\n x = A; // 定数Aをクラス変数xに代入\n System.out.println(x); // クラス変数xの値を出力\n }\n}"
+        },
+        {
+            "id": 20,
+            "questionId": "java4_20",
+            "title": "定数とインスタンス変数",
+            "question": "次のクラス定数を宣言し、定数Aをインスタンス変数xに代入して、結果を出力してください。\n\npublic class Main {\n // 定数Aを宣言し、初期値100を設定\n\n int x; // インスタンス変数x\n\n public static void main(String[] args) {\n Main obj = new Main();\n // 定数Aをインスタンス変数xに代入\n // インスタンス変数xの値を出力\n }\n}",
+            "explanation": "定数Aを宣言するには、static finalキーワードを使用します。定数Aをインスタンス変数xに代入し、結果はSystem.out.printlnメソッドを使用して出力します。インスタンス変数にアクセスするには、オブジェクトを作成してアクセスします。",
+            "answer": "public class Main {\n static final int A = 100; // 定数Aを宣言し、初期値100を設定\n\n int x; // インスタンス変数x\n\npublic static void main(String[] args) {\n        Main obj = new Main(); // Mainオブジェクトを作成\n        obj.x = A; // 定数Aをインスタンス変数xに代入\n        System.out.println(obj.x); // インスタンス変数xの値を出力\n    }\n}"
+        }
+
+    ]
+}

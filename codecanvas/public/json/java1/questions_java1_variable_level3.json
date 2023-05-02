@@ -1,0 +1,166 @@
+{
+    "contentsId": "java_variables",
+    "title": "Javaの変数問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_vars_1",
+            "title": "変数の宣言と代入",
+            "question": "整数型の変数xを宣言し、10を代入した後、2倍した値を出力するプログラムを作成してください。",
+            "explanation": "変数を宣言し、値を代入してから、計算結果を出力することができます。",
+            "answer": "public class DoubleValue {\n\n public static void main(String[] args) {\n int x = 10;\n int result = x * 2;\n System.out.println(result);\n }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java_vars_2",
+            "title": "変数のスコープ",
+            "question": "次のコードの実行結果を予測してください。\n\npublic class VariableScope {\n\n public static void main(String[] args) {\n int x = 10;\n\n if (x > 5) {\n int y = x * 2;\n System.out.println(y);\n }\n\n System.out.println(x);\n }\n}",
+            "explanation": "変数のスコープは、変数が宣言されているブロック内に限定されます。この例では、yはif文のブロック内で宣言されており、その外ではアクセスできません。",
+            "answer": "実行結果：\n20\n10"
+        },
+        {
+            "id": 3,
+            "questionId": "java_vars_3",
+            "title": "型変換",
+            "question": "整数型の変数xと整数型の変数yにそれぞれ10と3を代入し、xをyで割った結果を小数点以下まで表示するプログラムを作成してください。",
+            "explanation": "整数型同士の割り算では、結果も整数になります。小数点以下を表示するには、少なくとも一方の変数を浮動小数点型に変換する必要があります。",
+            "answer": "public class DivisionWithDecimal {\n\n public static void main(String[] args) {\n int x = 10;\n int y = 3;\n double result = (double) x / y;\n System.out.println(result);\n }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java_vars_4",
+            "title": "文字列連結",
+            "question": "整数型の変数xに10を代入し、「xの値は」という文字列とxの値を連結して出力するプログラムを作成してください。",
+            "explanation": "文字列と整数型の変数を連結するには、+演算子を使用します。整数型の変数は自動的に文字列に変換されます。",
+            "answer": "public class StringConcatenation {\n\n public static void main(String[] args) {\n int x = 10;\n String result = \"xの値は\" + x;\n System.out.println(result);\n }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java_vars_5",
+            "title": "条件演算子",
+            "question": "整数型の変数xに任意の整数を代入し、xが偶数の場合は\"even\"、奇数の場合は\"odd\"と出力するプログラムを作成してください。条件演算子を使用してください。",
+            "explanation": "条件演算子は、条件によって異なる値を返すことができます。この例では、xが偶数か奇数かによって出力する文字列が変わります。",
+            "answer": "public class EvenOrOdd {\n\n public static void main(String[] args) {\n int x = 10;\n String result = (x % 2 == 0) ? \"even\" : \"odd\";\n System.out.println(result);\n }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java_vars_6",
+            "title": "配列の長さ",
+            "question": "整数型の配列が与えられたとき、配列の長さを出力するプログラムを作成してください。",
+            "explanation": "配列の長さは、配列変数の後に.lengthをつけることで取得できます。",
+            "answer": "public class ArrayLength {\n\n public static void main(String[] args) {\n int[] numbers = {1, 2, 3, 4, 5};\n int length = numbers.length;\n System.out.println(length);\n }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java_vars_7",
+            "title": "2次元配列",
+            "question": "2次元の整数型配列が与えられたとき、左上から右下にかけての対角線上の要素の和を出力するプログラムを作成してください。",
+            "explanation": "2次元配列の要素にアクセスするには、行と列のインデックスを指定します。対角線上の要素の和は、行と列のインデックスが一致する要素の和です。",
+            "answer": "public class DiagonalSum {\n\n public static void main(String[] args) {\n int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};\n int sum = 0;\n for (int i = 0; i < matrix.length; i++) {\n sum += matrix[i][i];\n }\n System.out.println(sum);\n }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java_vars_8",
+            "title": "可変長引数",
+            "question": "可変長引数を用いて、与えられた整数の合計を計算し、出力するメソッドを実装してください。",
+            "explanation": "可変長引数は、引数の数が可変であるメソッドを定義する際に使用されます。引数の型の後に「...」をつけることで、可変長引数を定義できます。",
+            "answer": "public class VarArgsSum {\n\n public static void main(String[] args) {\n System.out.println(sum(1, 2, 3, 4, 5));\n }\n\n public static int sum(int... numbers) {\n int sum = 0;\n for (int number : numbers) {\n sum += number;\n }\n return sum;\n }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java_vars_9",
+            "title": "ラッパークラス",
+            "question": "整数型の変数xをIntegerクラスのオブジェクトに変換し、その後、xの値を2倍して、再びint型に変換して出力するプログラムを作成してください。",
+            "explanation": "Javaの基本データ型には、それぞれ対応するラッパークラスがあります。これにより、基本データ型の値をオブジェクトとして扱うことができます。",
+            "answer": "public class WrapperClassExample {\n\n public static void main(String[] args) {\n int x = 10;\n Integer xObj = x;\n int doubledX = xObj * 2;\n System.out.println(doubledX);\n }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java_vars_10",
+            "title": "ローカル変数の初期化",
+            "question": "次のプログラムを実行したとき、コンパイルエラーが発生するか、実行時エラーが発生するか、または正常に実行されるかを予想してください。\n\npublic class LocalVariableInitialization {\n\n public static void main(String[] args) {\n int x;\n System.out.println(x);\n }\n}",
+            "explanation": "ローカル変数は、明示的に初期化されていない場合、コンパイルエラーが発生します。ローカル変数を使用する前に、初期値を代入する必要があります。",
+            "answer": "コンパイルエラーが発生します。"
+        },
+        {
+            "id": 11,
+            "questionId": "java_vars_11",
+            "title": "BigInteger",
+            "question": "非常に大きな整数値を扱うために、BigIntegerクラスを使用して、2つの非常に大きな整数値（10^50と10^100）の積を計算し、結果を出力するプログラムを作成してください。",
+            "explanation": "Javaの標準の整数型であるintやlongでは扱えない大きな整数値を扱うために、BigIntegerクラスを使用することができます。",
+            "answer": "import java.math.BigInteger;\n\npublic class BigIntegerExample {\n\n    public static void main(String[] args) {\n        BigInteger a = new BigInteger(\"100000000000000000000000000000000000000000000000000\");\n        BigInteger b = new BigInteger(\"10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\");\n        BigInteger result = a.multiply(b);\n        System.out.println(result);\n    }\n}"
+        },
+        {
+            "id": 12,
+            "questionId": "java_vars_12",
+            "title": "BigDecimal",
+            "question": "正確な小数の計算を行うために、BigDecimalクラスを使用して、次の計算を行い、結果を出力するプログラムを作成してください。\n\n1.23 * 4.56 + 7.89",
+            "explanation": "Javaの標準の小数型であるfloatやdoubleでは、正確な小数の計算ができないことがあります。正確な計算を行うために、BigDecimalクラスを使用することができます。",
+            "answer": "import java.math.BigDecimal;\n\npublic class BigDecimalExample {\n\n    public static void main(String[] args) {\n        BigDecimal a = new BigDecimal(\"1.23\");\n        BigDecimal b = new BigDecimal(\"4.56\");\n        BigDecimal c = new BigDecimal(\"7.89\");\n        BigDecimal result = a.multiply(b).add(c);\n        System.out.println(result);\n    }\n}"
+        },
+        {
+            "id": 13,
+            "questionId": "java_vars_13",
+            "title": "スコープ",
+            "question": "次のプログラムを実行したとき、コンパイルエラーが発生するか、実行時エラーが発生するか、または正常に実行されるかを予想してください。\n\npublic class VariableScope {\n\n    public static void main(String[] args) {\n        int x = 10;\n        if (x > 5) {\n            int y = 20;\n            System.out.println(x + y);\n}\n\n    System.out.println(y);\n }\n}\n\nこのプログラムはどうなるでしょうか？",
+            "explanation": "変数yはifブロック内で宣言されているため、ブロックの外でyを参照しようとすると、コンパイルエラーが発生します。変数のスコープは、宣言されたブロック内に限定されます。",
+            "answer": "コンパイルエラーが発生します。"
+        },
+        {
+            "id": 14,
+            "questionId": "java_vars_14",
+            "title": "型変換",
+            "question": "次のプログラムを実行したとき、出力される結果を予想してください。\n\npublic class TypeCasting {\n\n public static void main(String[] args) {\n double a = 10.0;\n double b = 3.0;\n int result = (int) (a / b);\n System.out.println(result);\n }\n}",
+            "explanation": "プログラムでは、double型のaとbを割り算しています。その結果をint型にキャストして、整数の結果を得ています。キャストを行うことで、小数部分が切り捨てられます。",
+            "answer": "3"
+        },
+        {
+            "id": 15,
+            "questionId": "java_vars_15",
+            "title": "変数のスワップ",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class SwapVariables {\n\n public static void main(String[] args) {\n int a = 10;\n int b = 20;\n a = a + b;\n b = a - b;\n a = a - b;\n System.out.println(\"a: \" + a + \", b: \" + b);\n }\n}",
+            "explanation": "プログラムでは、変数aとbの値をスワップしています。加算と減算を使って、2つの変数の値を交換することができます。",
+            "answer": "a: 20, b: 10"
+        },
+        {
+            "id": 16,
+            "questionId": "java_vars_16",
+            "title": "遅延初期化",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class LazyInitialization {\n\n public static void main(String[] args) {\n int x;\n if (args.length > 0) {\n x = Integer.parseInt(args[0]);\n } else {\n x = 42;\n }\n System.out.println(x);\n }\n}",
+            "explanation": "プログラムでは、変数xを遅延初期化しています。つまり、xの初期値は、プログラムの実行時に決まります。コマンドライン引数が1つ以上与えられた場合、最初の引数を整数に変換してxに代入し、そうでない場合、xに42を代入しています。このプログラムは、入力によって出力が変わります。コマンドライン引数がない場合、出力は「42」となります。",
+            "answer": "コマンドライン引数がない場合、出力は「42」です。"
+        },
+        {
+            "id": 17,
+            "questionId": "java_vars_17",
+            "title": "クラス変数",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class ClassVariable {\n\n static int counter = 0;\n\n public static void main(String[] args) {\n for (int i = 0; i < 10; i++) {\n incrementCounter();\n }\n System.out.println(counter);\n }\n\n public static void incrementCounter() {\n counter++;\n }\n}",
+            "explanation": "プログラムでは、クラス変数counterを用いて、incrementCounterメソッドが呼び出された回数をカウントしています。10回繰り返して呼び出されているので、最終的なcounterの値は10となります。",
+            "answer": "10"
+        },
+        {
+            "id": 18,
+            "questionId": "java_vars_18",
+            "title": "文字列の連結",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class StringConcatenation {\n\n public static void main(String[] args) {\n String s1 = \"Hello, \";\n String s2 = \"World!\";\n String s3 = s1 + s2;\n System.out.println(s3);\n }\n}",
+            "explanation": "プログラムでは、2つの文字列s1とs2を連結して、新しい文字列s3を作成しています。s1には「Hello, 」が、s2には「World!」が代入されているため、s3の値は「Hello, World!」となります。",
+            "answer": "Hello, World!"
+        },
+        {
+            "id": 19,
+            "questionId": "java_vars_19",
+            "title": "文字列の比較",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class StringComparison {\n\n public static void main(String[] args) {\n String s1 = \"Hello\";\n String s2 = \"Hel\" + \"lo\";\n System.out.println(s1 == s2);\n }\n}",
+            "explanation": "プログラムでは、2つの文字列s1とs2を比較しています。しかし、文字列の比較にはequalsメソッドを使用する必要があります。このプログラムでは、'=='演算子を使用していますが、これはオブジェクトの参照を比較するためのもので、文字列の内容を比較するものではありません。ただし、この特定のケースでは、コンパイラが定数式の最適化を行い、同じリテラル文字列を指すため、出力は「true」となります。",
+            "answer": "true"
+        },
+        {
+            "id": 20,
+            "questionId": "java_vars_20",
+            "title": "文字列の部分文字列",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class SubstringExample {\n\n public static void main(String[] args) {\n String s = \"Java is fun\";\n String sub = s.substring(5, 7);\n System.out.println(sub);\n }\n}",
+            "explanation": "プログラムでは、文字列sから部分文字列を取得しています。substringメソッドは、開始インデックスから終了インデックスの直前までの部分文字列を返します。この場合、開始インデックスが5で、終了インデックスが7なので、部分文字列は「is」となります。",
+            "answer": "is"
+        }
+    ]
+}

@@ -1,0 +1,166 @@
+{
+    "contentsId": "java_data_types",
+    "title": "Javaのデータ型問題集ページ - 初級",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_data_types_1",
+            "title": "初級 - int型変数の宣言",
+            "question": "int型の変数「age」を宣言して、27という値を代入してください。",
+            "explanation": "int型の変数宣言は以下のように行います。",
+            "answer": "// int型の変数ageを宣言し、27を代入\nint age = 27;"
+        },
+        {
+            "id": 2,
+            "questionId": "java_data_types_2",
+            "title": "初級 - double型変数の宣言",
+            "question": "double型の変数「height」を宣言して、175.5という値を代入してください。",
+            "explanation": "double型の変数宣言は以下のように行います。",
+            "answer": "// double型の変数heightを宣言し、175.5を代入\ndouble height = 175.5;"
+        },
+        {
+            "id": 3,
+            "questionId": "java_data_types_3",
+            "title": "初級 - char型変数の宣言",
+            "question": "char型の変数「gender」を宣言して、'M'という値を代入してください。",
+            "explanation": "char型の変数宣言は以下のように行います。",
+            "answer": "// char型の変数genderを宣言し、'M'を代入\nchar gender = 'M';"
+        },
+        {
+            "id": 4,
+            "questionId": "java_data_types_4",
+            "title": "初級 - boolean型変数の宣言",
+            "question": "boolean型の変数「isStudent」を宣言して、trueという値を代入してください。",
+            "explanation": "boolean型の変数宣言は以下のように行います。",
+            "answer": "// boolean型の変数isStudentを宣言し、trueを代入\nboolean isStudent = true;"
+        },
+        {
+            "id": 5,
+            "questionId": "java_data_types_5",
+            "title": "初級 - 文字列型変数の宣言",
+            "question": "String型の変数「name」を宣言して、\"John\"という値を代入してください。",
+            "explanation": "String型の変数宣言は以下のように行います。",
+            "answer": "// String型の変数nameを宣言し、\"John\"を代入\nString name = \"John\";"
+        },
+        {
+            "id": 6,
+            "questionId": "java_data_types_6",
+            "title": "初級 - データ型のサイズ",
+            "question": "Javaにおいて、次のデータ型のサイズ（ビット数）を答えてください：\n1. byte\n2. short\n3. int\n4. long",
+            "explanation": "Javaでは、各データ型に対して一定のビット数が割り当てられており、それぞれのデータ型のサイズは次のようになります。\n1. byte: 8ビット\n2. short: 16ビット\n3. int: 32ビット\n4. long: 64ビット",
+            "answer": "1. byte: 8ビット\n2. short: 16ビット\n3. int: 32ビット\n4. long: 64ビット"
+        },
+        {
+            "id": 7,
+            "questionId": "java_data_types_7",
+            "title": "初級 - int型とdouble型の変数の加算",
+            "question": "int型の変数「a」が5、double型の変数「b」が2.5のとき、a + b の結果を出力してください。",
+            "explanation": "異なる型の数値を加算する場合、一方の型をもう一方の型にキャストする必要があります。",
+            "answer": "int a = 5;\ndouble b = 2.5;\n\n// int型の変数aをdouble型にキャストして加算\nSystem.out.println((double) a + b);"
+        },
+        {
+            "id": 8,
+            "questionId": "java_data_types_8",
+            "title": "初級 - int型変数の割り算",
+            "question": "int型の変数「x」が10、int型の変数「y」が3のとき、x / y の結果を出力してください。",
+            "explanation": "int型変数同士の割り算は、結果もint型となり、小数点以下は切り捨てられます。",
+            "answer": "int x = 10;\nint y = 3;\n\n// int型変数同士の割り算\nSystem.out.println(x / y);"
+        },
+        {
+            "id": 9,
+            "questionId": "java_data_types_9",
+            "title": "初級 - int型変数の割り算の余り",
+            "question": "int型の変数「x」が10、int型の変数「y」が3のとき、x % y の結果を出力してください。",
+            "explanation": "int型変数同士の割り算の余りは、% 演算子を使って求めることができます。",
+            "answer": "int x = 10;\nint y = 3;\n\n// int型変数同士の割り算の余り\nSystem.out.println(x % y);"
+        },
+        {
+            "id": 10,
+            "questionId": "java_data_types_10",
+            "title": "初級 - インクリメント演算子",
+            "question": "int型の変数「count」が3のとき、インクリメント演算子を使ってcountを1増やし、その値を出力してください。",
+            "explanation": "インクリメント演算子は、変数の値を1増やすために使用されます。",
+            "answer": "int count = 3;\n\n// インクリメント演算子を使ってcountを1増やす\ncount++;\n\n// 値を出力する\nSystem.out.println(count);"
+        },
+        {
+            "id": 11,
+            "questionId": "java_data_types_11",
+            "title": "初級 - 文字列の長さ",
+            "question": "String型の変数「word」が\"programming\"のとき、wordの長さを出力してください。",
+            "explanation": "文字列の長さは、length()メソッドを使って求めることができます。",
+            "answer": "String word = \"programming\";\n\n// 文字列の長さを出力\nSystem.out.println(word.length());"
+        },
+        {
+            "id": 12,
+            "questionId": "java_data_types_12",
+            "title": "初級 - 文字列の特定の文字",
+            "question": "String型の変数「word」が\"programming\"のとき、wordの3番目の文字を出力してください。",
+            "explanation": "文字列の特定の文字は、charAt()メソッドを使って取得することができます。",
+            "answer": "String word = \"programming\";\n\n// 文字列の3番目の文字を出力\nSystem.out.println(word.charAt(2));"
+        },
+        {
+            "id": 13,
+            "questionId": "java_data_types_13",
+            "title": "初級 - 文字列の部分文字列",
+            "question": "String型の変数「word」が\"programming\"のとき、wordの3番目から6番目までの部分文字列を出力してください。",
+            "explanation": "文字列の部分文字列は、substring()メソッドを使って取得することができます。",
+            "answer": "String word = \"programming\";\n\n// 文字列の3番目から6番目までの部分文字列を出力\nSystem.out.println(word.substring(2, 6));"
+        },
+        {
+            "id": 14,
+            "questionId": "java_data_types_14",
+            "title": "初級 - 文字列の置換",
+            "question": "String型の変数「word」が\"apple\"のとき、wordの中の\"a\"を\"A\"に置換して出力してください。",
+            "explanation": "文字列の置換は、replace()メソッドを使って行うことができます。",
+            "answer": "String word = \"apple\";\n\n// 文字列の中の\"a\"を\"A\"に置換して出力\nSystem.out.println(word.replace(\"a\", \"A\"));"
+        },
+        {
+            "id": 15,
+            "questionId": "java_data_types_15",
+            "title": "初級 - 文字列の連結",
+            "question": "以下のコードにおいて、文字列型の変数「firstName」と「lastName」を連結し、変数「fullName」に格納するコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    String firstName = \"John\";\n    String lastName = \"Doe\";\n    // ここに連結のコードを記述してください。\n  }\n}\n```",
+            "explanation": "文字列の連結には、「+」演算子を使用します。2つの文字列を連結するには、単に「+」演算子を使ってそれらをつなぎ合わせます。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    String firstName = \"John\";\n    String lastName = \"Doe\";\n    String fullName = firstName + \" \" + lastName; // 連結のコード\n  }\n}\n```"
+        },
+        {
+            "id": 16,
+            "questionId": "java_data_types_16",
+            "title": "初級 - 整数値を文字列に変換",
+            "question": "int型の変数「num」が42のとき、numをString型に変換して出力してください。",
+            "explanation": "整数値を文字列に変換するには、String.valueOf()メソッドを使います。",
+            "answer": "int num = 42;\n\n// 整数値を文字列に変換して出力\nSystem.out.println(String.valueOf(num));"
+        },
+        {
+            "id": 17,
+            "questionId": "java_data_types_17",
+            "title": "初級 - 文字列の比較",
+            "question": "String型の変数「str1」が\"hello\"、String型の変数「str2」が\"world\"のとき、str1とstr2が同じかどうかを判定して出力してください。",
+            "explanation": "文字列の比較は、equals()メソッドを使って行うことができます。",
+            "answer": "String str1 = \"hello\";\nString str2 = \"world\";\n\n// 文字列の比較を行い、結果を出力\nSystem.out.println(str1.equals(str2));"
+        },
+        {
+            "id": 18,
+            "questionId": "java_data_types_18",
+            "title": "初級 - 文字列の大文字・小文字変換",
+            "question": "String型の変数「word」が\"Java\"のとき、wordを大文字に変換して出力し、次に小文字に変換して出力してください。",
+            "explanation": "文字列を大文字に変換するにはtoUpperCase()メソッド、小文字に変換するにはtoLowerCase()メソッドを使います。",
+            "answer": "String word = \"Java\";\n\n// 文字列を大文字に変換して出力\nSystem.out.println(word.toUpperCase());\n\n// 文字列を小文字に変換して出力\nSystem.out.println(word.toLowerCase());"
+        },
+        {
+            "id": 19,
+            "questionId": "java_data_types_19",
+            "title": "初級 - キャスト",
+            "question": "以下のコードにおいて、double型の変数「doubleValue」をint型にキャストするために必要なコードを記述してください。\n\n```\npublic class Main {\n  public static void main(String[] args) {\n    double doubleValue = 3.14;\n    // ここにキャストのコードを記述してください。\n  }\n}\n```",
+            "explanation": "キャストを行うには、変換先のデータ型をカッコ内に記述し、変換元の変数の前に置きます。この場合、double型からint型へのキャストが必要です。",
+            "answer": "```\npublic class Main {\n  public static void main(String[] args) {\n    double doubleValue = 3.14;\n    int intValue = (int) doubleValue; // キャストのコード\n  }\n}\n```"
+        },
+        {
+            "id": 20,
+            "questionId": "java_data_types_20",
+            "title": "初級 - 文字コードからchar型の文字への変換",
+            "question": "int型の変数「charCode」が65のとき、charCodeをchar型の文字に変換して出力してください。",
+            "explanation": "文字コードをchar型の文字に変換するには、char型にキャストします。",
+            "answer": "int charCode = 65;\n\n// 文字コードをchar型の文字に変換して出力\nSystem.out.println((char) charCode);"
+        }
+    ]
+}

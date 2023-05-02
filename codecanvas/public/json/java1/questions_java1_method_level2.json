@@ -1,0 +1,166 @@
+{
+    "contentsId": "java2",
+    "title": "Javaの関数問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_functions_mid1",
+            "title": "引数の合計値を計算する関数",
+            "question": "整数の可変長引数を受け取り、その合計値を計算して返す関数を作成してください。\n\n関数名: sum\n引数: int... numbers\n戻り値: int\n\nmain関数で関数を呼び出し、結果を出力してください。",
+            "explanation": "可変長引数を受け取る関数を定義し、for-eachループを使って引数の合計値を計算します。main関数で関数を呼び出し、結果を出力します。",
+            "answer": "public class SumFunction {\n\n    public static void main(String[] args) {\n        // 関数を呼び出して合計値を出力する\n        System.out.println(\"合計値: \" + sum(1, 2, 3, 4, 5));\n    }\n\n    // sum関数の定義\n    public static int sum(int... numbers) {\n        int total = 0;\n        for (int num : numbers) {\n            total += num;\n        }\n        return total;\n    }\n}\n"
+        },
+        {
+            "id": 2,
+            "questionId": "java_functions_mid2",
+            "title": "二次方程式の解を求める関数",
+            "question": "二次方程式の係数を引数として受け取り、解を求める関数を作成してください。ただし、解が複素数になる場合は、その旨を出力するものとします。\n\n関数名: quadraticEquation\n引数: double a, double b, double c\n戻り値: なし\n\nmain関数で関数を呼び出し、結果を出力してください。",
+            "explanation": "判別式を使って二次方程式の解を求める関数を作成します。判別式の値によって、解が実数か複素数かを判断し、それぞれの場合に対応した結果を出力します。",
+            "answer": "public class QuadraticEquation {\n\n    public static void main(String[] args) {\n        // 関数を呼び出して二次方程式の解を求める\n        quadraticEquation(1, -3, 2);\n    }\n\n    public static void quadraticEquation(double a, double b, double c) {\n        double discriminant = b * b - 4 * a * c;\n\n        if (discriminant > 0) {\n            double x1 = (-b + Math.sqrt(discriminant)) / (2 * a);\n            double x2 = (-b - Math.sqrt(discriminant)) / (2 * a);\n            System.out.println(\"解は実数です: x1 = \" + x1 + \", x2 = \" + x2);\n        } else if (discriminant == 0) {\n            double x = -b / (2 * a);\n            System.out.println(\"解は重解です: x = \" + x);\n        } else {\n            System.out.println(\"解は複素数です。\");\n        }\n    }\n}\n"
+        },
+        {
+            "id": 3,
+            "questionId": "java_functions_mid3",
+            "title": "最大公約数を求める関数",
+            "question": "2つの整数の最大公約数を求める関数を作成してください。\n\n関数名: gcd\n引数: int num1, int num2\n戻り値: int\n\nmain関数で関数を呼び出し、結果を出力してください。",
+            "explanation": "ユークリッドの互除法を用いて、2つの整数の最大公約数を求める関数を作成します。",
+            "answer": "public class GCD {\n\n    public static void main(String[] args) {\n        int result = gcd(56, 98);\n        System.out.println(\"最大公約数: \" + result);\n    }\n\n    public static int gcd(int num1, int num2) {\n        while (num2 != 0) {\n            int temp = num2;\n            num2 = num1 % num2;\n            num1 = temp;\n        }\n        return num1;\n    }\n}\n"
+        },
+        {
+            "id": 4,
+            "questionId": "java_functions_mid4",
+            "title": "配列の要素の平均値を求める関数",
+            "question": "整数型の配列の要素の平均値を求める関数を作成してください。\n\n関数名: average\n引数: int[] numbers\n戻り値: double\n\nmain関数で関数を呼び出し、結果を出力してください。",
+            "explanation": "配列の要素の合計を求め、要素数で割って平均値を算出します。",
+            "answer": "public class Average {\n\n    public static void main(String[] args) {\n        int[] numbers = {1, 2, 3, 4, 5};\n        double result = average(numbers);\n        System.out.println(\"平均値: \" + result);\n    }\n\n    public static double average(int[] numbers) {\n        int sum = 0;\n        for (int number : numbers) {\n            sum += number;\n        }\n        return (double) sum / numbers.length;\n    }\n}\n"
+        },
+        {
+            "id": 5,
+            "questionId": "java_functions_mid5",
+            "title": "文字列を逆順にする関数",
+            "question": "与えられた文字列を逆順にする関数を作成してください。\n\n関数名: reverseString\n引数: String input\n戻り値: String\n\nmain関数で関数を呼び出し、結果を出力してください。",
+            "explanation": "文字列を逆順にするには、StringBuilderを使用して文字列を逆にした後、toStringメソッドで新しい文字列を取得します。",
+            "answer": "public class ReverseString {\n\n    public static void main(String[] args) {\n        String input = \"Hello, World!\";\n        String result = reverseString(input);\n        System.out.println(\"逆順の文字列: \" + result);\n    }\n\n    public static String reverseString(String input) {\n        StringBuilder stringBuilder = new StringBuilder(input);\n        return stringBuilder.reverse().toString();\n    }\n}\n"
+        },
+        {
+            "id": 6,
+            "questionId": "java_functions_mid6",
+            "title": "素数判定関数",
+            "question": "与えられた整数が素数であるかどうかを判定する関数を作成してください。\n\n関数名: isPrime\n引数: int number\n戻り値: boolean\n\nmain関数で関数を呼び出し、結果を出力してください。",
+            "explanation": "素数判定には、2から与えられた数の平方根までの整数で割り切れるかどうかを調べます。割り切れる場合、素数ではありません。",
+            "answer": "public class PrimeCheck {\n\n    public static void main(String[] args) {\n        int number = 7;\n        if (isPrime(number)) {\n            System.out.println(number + \" は素数です。\");\n        } else {\n            System.out.println(number + \" は素数ではありません。\");\n        }\n    }\n\n    public static boolean isPrime(int number) {\n        if (number <= 1) {\n            return false;\n        }\n        for (int i = 2; i <= Math.sqrt(number); i++) {\n            if (number % i == 0) {\n                return false;\n            }\n        }\n        return true;\n    }\n}\n"
+        },
+        {
+            "id": 7,
+            "questionId": "java_functions_mid7",
+            "title": "最大公約数関数",
+            "question": "与えられた2つの整数の最大公約数を求める関数を作成してください。\n\n関数名: gcd\n引数1: int a\n引数2: int b\n戻り値: int\n\nmain関数で関数を呼び出し、結果を出力してください。",
+            "explanation": "ユークリッドの互除法を使用して、2つの整数の最大公約数を求めます。このアルゴリズムは、割られる数と割る数の余りを計算し、割られる数と余りで繰り返します。割る数が0になったときの割られる数が最大公約数です。",
+            "answer": "public class GCD {\n\n    public static void main(String[] args) {\n        int a = 56;\n        int b = 48;\n        System.out.println(\"最大公約数: \" + gcd(a, b));\n    }\n\n    public static int gcd(int a, int b) {\n        while (b != 0) {\n            int remainder = a % b;\n            a = b;\n            b = remainder;\n        }\n        return a;\n    }\n}\n"
+        },
+        {
+            "id": 8,
+            "questionId": "java_functions_mid8",
+            "title": "バブルソート関数",
+            "question": "与えられた整数配列をバブルソートで昇順にソートする関数を作成してください。\n\n関数名: bubbleSort\n引数1: int[] arr\n戻り値: なし\n\nmain関数で関数を呼び出し、結果を出力してください。",
+            "explanation": "バブルソートは、隣接する要素を比較して、必要に応じて入れ替えることでソートを行うアルゴリズムです。配列の最後まで比較と入れ替えを繰り返し、最後にソートされた要素が配列の最後に追加されます。次のイテレーションでは、最後の要素は無視し、それ以外の要素に対して同じプロセスを繰り返します。",
+            "answer": "public class BubbleSort {\n\n    public static void main(String[] args) {\n        int[] arr = {5, 3, 8, 1, 6};\n        bubbleSort(arr);\n\n        System.out.print(\"ソート後の配列: \");\n        for (int num : arr) {\n            System.out.print(num + \" \");\n        }\n    }\n\n    public static void bubbleSort(int[] arr) {\n        int n = arr.length;\n        for (int i = 0; i < n - 1; i++) {\n            for (int j = 0; j < n - i - 1; j++) {\n                if (arr[j] > arr[j + 1]) {\n                    int temp = arr[j];\n                    arr[j] = arr[j + 1];\n                    arr[j + 1] = temp;\n                }\n            }\n        }\n    }\n}\n"
+        },
+        {
+            "id": 9,
+            "questionId": "java_functions_mid9",
+            "title": "配列の最小値と最大値を返す関数",
+            "question": "与えられた整数配列の最小値と最大値を返す関数を2つ作成してください。\n\n関数名1: findMin\n引数1: int[] arr\n戻り値: int (最小値)\n\n関数名2: findMax\n引数1: int[] arr\n戻り値: int (最大値)\n\nmain関数で関数を呼び出し、結果を出力してください。",
+            "explanation": "配列の最小値と最大値を求めるには、配列の要素を走査して、最小値と最大値を更新する必要があります。初期値として、最小値にはInteger.MAX_VALUE、最大値にはInteger.MIN_VALUEを設定します。その後、配列の要素を1つずつ調べ、より小さい値が現れた場合は最小値を更新し、より大きい値が現れた場合は最大値を更新します。",
+            "answer": "public class MinMaxArray {\n\n    public static void main(String[] args) {\n        int[] arr = {5, 3, 8, 1, 6};\n        int min = findMin(arr);\n        int max = findMax(arr);\n\n        System.out.println(\"最小値: \" + min);\n        System.out.println(\"最大値: \" + max);\n    }\n\n    public static int findMin(int[] arr) {\n        int min = Integer.MAX_VALUE;\n        for (int num : arr) {\n            if (num < min) {\n                min = num;\n            }\n        }\n        return min;\n    }\n\n    public static int findMax(int[] arr) {\n        int max = Integer.MIN_VALUE;\n        for (int num : arr) {\n            if (num > max) {\n                max = num;\n            }\n        }\n        return max;\n    }\n}\n"
+        },
+        {
+            "id": 10,
+            "questionId": "java_functions_mid10",
+            "title": "文字列の連結関数",
+            "question": "与えられた2つの文字列を連結し、結果を返す関数を作成してください。\n\n関数名: concatenateStrings\n引数1: String str1\n引数2: String str2\n戻り値: String (連結した文字列)\n\nmain関数で関数を呼び出し、結果を出力してください。",
+            "explanation": "文字列を連結するには、+演算子を使用して2つの文字列を繋げるだけです。concatenateStrings関数内で、引数の2つの文字列を連結し、その結果を返します。",
+            "answer": "public class ConcatenateStrings {\n\n    public static void main(String[] args) {\n        String str1 = \"Hello, \";\n        String str2 = \"World!\";\n        String result = concatenateStrings(str1, str2);\n\n        System.out.println(result);\n    }\n\n    public static String concatenateStrings(String str1, String str2) {\n        return str1 + str2;\n    }\n}\n"
+        },
+        {
+            "id": 11,
+            "questionId": "java_functions_mid11",
+            "title": "数値範囲内の合計",
+            "question": "指定された2つの整数の範囲内にあるすべての整数の合計を計算する関数を作成してください。範囲は両端の数値を含みます。\n\n関数名: sumInRange\n引数1: int start\n引数2: int end\n戻り値: int (合計)\n\nmain関数で関数を呼び出し、結果を出力してください。",
+            "explanation": "指定された範囲内のすべての整数の合計を求めるには、forループを使用して範囲内のすべての整数を繰り返し処理し、それらを合計に加算します。sumInRange関数内で、引数のstartからendまでの整数をループし、合計を計算して返します。",
+            "answer": "public class SumInRange {\n\n    public static void main(String[] args) {\n        int start = 1;\n        int end = 5;\n        int result = sumInRange(start, end);\n\n        System.out.println(\"The sum from \" + start + \" to \" + end + \" is: \" + result);\n    }\n\n    public static int sumInRange(int start, int end) {\n        int sum = 0;\n        for (int i = start; i <= end; i++) {\n            sum += i;\n        }\n        return sum;\n    }\n}\n"
+        },
+        {
+            "id": 12,
+            "questionId": "java_functions_mid12",
+            "title": "文字列の反転",
+            "question": "与えられた文字列を反転させる関数を作成してください。\n\n関数名: reverseString\n引数1: String input\n戻り値: String (反転された文字列)\n\nmain関数で関数を呼び出し、結果を出力してください。",
+            "explanation": "文字列を反転させるには、文字列の長さを取得し、その長さの半分を繰り返し処理し、最初と最後の文字を交換していきます。reverseString関数内で、StringBuilderを使用して文字列の長さの半分だけ繰り返し処理を行い、対応する文字を交換します。最後に、反転されたStringBuilderをStringに変換して返します。",
+            "answer": "public class ReverseString {\n\n    public static void main(String[] args) {\n        String input = \"Java functions\";\n        String reversed = reverseString(input);\n\n        System.out.println(\"The reversed string is: \" + reversed);\n    }\n\n    public static String reverseString(String input) {\n        StringBuilder sb = new StringBuilder(input);\n        int n = sb.length();\n        for (int i = 0; i < n / 2; i++) {\n            char temp = sb.charAt(i);\n            sb.setCharAt(i, sb.charAt(n - 1 - i));\n            sb.setCharAt(n - 1 - i, temp);\n        }\n        return sb.toString();\n    }\n}\n"
+        },
+        {
+            "id": 13,
+            "questionId": "java_functions_mid13",
+            "title": "最大公約数",
+            "question": "与えられた2つの整数の最大公約数を求める関数を作成してください。\n\n関数名: gcd\n引数1: int a\n引数2: int b\n戻り値: int (最大公約数)\n\nmain関数で関数を呼び出し、結果を出力してください。",
+            "explanation": "最大公約数を求めるためには、ユークリッドの互除法を使用します。ユークリッドの互除法は、2つの数aとbの最大公約数は、aとbの剰余を求めた後、bとその剰余の最大公約数と同じであるという性質を利用します。gcd関数内で、bが0でない場合、再帰的にgcd関数を呼び出し、最大公約数を求めます。",
+            "answer": "public class GCD {\n\n    public static void main(String[] args) {\n        int a = 56;\n        int b = 98;\n        int result = gcd(a, b);\n\n        System.out.println(\"The GCD of \" + a + \" and \" + b + \" is: \" + result);\n    }\n\n    public static int gcd(int a, int b) {\n        if (b == 0) {\n            return a;\n        }\n        return gcd(b, a % b);\n    }\n}\n"
+        },
+        {
+            "id": 14,
+            "questionId": "java_functions_mid14",
+            "title": "文字列の逆順",
+            "question": "与えられた文字列を逆順にする関数を作成してください。\n\n関数名: reverseString\n引数1: String str\n戻り値: String (逆順にした文字列)\n\nmain関数で関数を呼び出し、結果を出力してください。",
+            "explanation": "文字列を逆順にするには、StringBuilderクラスを使用し、appendメソッドで文字を追加し、最後にtoStringメソッドで文字列に変換します。reverseString関数では、for文を使って、文字列の末尾から先頭に向かって文字をStringBuilderに追加していきます。",
+            "answer": "public class ReverseString {\n\n    public static void main(String[] args) {\n        String input = \"Hello, World!\";\n        String result = reverseString(input);\n\n        System.out.println(\"Original string: \" + input);\n        System.out.println(\"Reversed string: \" + result);\n    }\n\n    public static String reverseString(String str) {\n        StringBuilder reversed = new StringBuilder();\n\n        for (int i = str.length() - 1; i >= 0; i--) {\n            reversed.append(str.charAt(i));\n        }\n\n        return reversed.toString();\n    }\n}\n"
+        },
+        {
+            "id": 15,
+            "questionId": "java_functions_mid15",
+            "title": "2次元配列の転置",
+            "question": "与えられた2次元配列の転置を求める関数を作成してください。\n\n関数名: transposeMatrix\n引数1: int[][] matrix (NxMの2次元整数配列。1 <= N, M <= 100)\n戻り値: int[][] (転置されたMxNの2次元整数配列)\n\nmain関数で関数を呼び出し、結果を出力してください。",
+            "explanation": "2次元配列の転置は、元の配列の行と列を入れ替えることです。transposeMatrix関数では、新しい配列を作成し、元の配列の行と列のインデックスを入れ替えて要素をコピーします。",
+            "answer": "public class TransposeMatrix {\n\n    public static void main(String[] args) {\n        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};\n        int[][] result = transposeMatrix(matrix);\n\n        System.out.println(\"Original matrix:\");\n        printMatrix(matrix);\n        System.out.println(\"Transposed matrix:\");\n        printMatrix(result);\n    }\n\n    public static int[][] transposeMatrix(int[][] matrix) {\n        int rows = matrix.length;\n        int cols = matrix[0].length;\n        int[][] transposed = new int[cols][rows];\n\n        for (int i = 0; i < rows; i++) {\n            for (int j = 0; j < cols; j++) {\n                transposed[j][i] = matrix[i][j];\n            }\n        }\n\n        return transposed;\n    }\n\n    public static void printMatrix(int[][] matrix) {\n        for (int[] row : matrix) {\n            for (int element : row) {\n                System.out.print(element + \" \");\n            }\n            System.out.println();\n        }\n    }\n}\n"
+        },
+        {
+            "id": 16,
+            "questionId": "java_functions_mid16",
+            "title": "文字列の回文チェック",
+            "question": "与えられた文字列が回文かどうかをチェックする関数を作成してください。回文は前から読んでも後ろから読んでも同じになる文字列です。\n\n関数名: isPalindrome\n引数1: String str (1 <= str.length() <= 1000)\n戻り値: boolean (true: 回文, false: 非回文)\n\nmain関数で関数を呼び出し、結果を出力してください。",
+            "explanation": "isPalindrome関数では、文字列の最初と最後の文字を比較し、等しければ次の文字に進みます。これを中央まで繰り返し、すべての文字が等しければ回文と判定します。",
+            "answer": "public class PalindromeCheck {\n\n    public static void main(String[] args) {\n        String str = \"racecar\";\n        System.out.println(\"Input string: \" + str);\n        System.out.println(\"Is palindrome? \" + isPalindrome(str));\n    }\n\n    public static boolean isPalindrome(String str) {\n        int length = str.length();\n\n        for (int i = 0; i < length / 2; i++) {\n            if (str.charAt(i) != str.charAt(length - 1 - i)) {\n                return false;\n            }\n        }\n\n        return true;\n    }\n}\n"
+        },
+        {
+            "id": 17,
+            "questionId": "java_functions_mid17",
+            "title": "最大公約数",
+            "question": "与えられた2つの整数の最大公約数を求める関数を作成してください。\n\n関数名: gcd\n引数1: int a (1 <= a <= 1000)\n引数2: int b (1 <= b <= 1000)\n戻り値: int (最大公約数)\n\nmain関数で関数を呼び出し、結果を出力してください。",
+            "explanation": "ユークリッドの互除法を使用して、最大公約数を求めます。ユークリッドの互除法では、2つの数の最大公約数は、その数とその数を割った余りの最大公約数に等しいという性質を利用します。",
+            "answer": "public class GCD {\n\n    public static void main(String[] args) {\n        int a = 56;\n        int b = 98;\n        System.out.println(\"a: \" + a + \", b: \" + b);\n        System.out.println(\"GCD: \" + gcd(a, b));\n    }\n\n    public static int gcd(int a, int b) {\n        if (b == 0) {\n            return a;\n        }\n        return gcd(b, a % b);\n    }\n}\n"
+        },
+        {
+            "id": 18,
+            "questionId": "java_functions_mid18",
+            "title": "配列の平均値",
+            "question": "与えられた整数型配列の平均値を求める関数を作成してください。\n\n関数名: average\n引数1: int[] numbers (1 <= numbers.length <= 100, -1000 <= numbers[i] <= 1000)\n戻り値: double (平均値)\n\nmain関数で関数を呼び出し、結果を出力してください。",
+            "explanation": "配列内の全ての要素の合計を求め、要素数で割ることで平均値を算出できます。",
+            "answer": "public class ArrayAverage {\n\n    public static void main(String[] args) {\n        int[] numbers = {3, 8, 15, -6, 23, 7};\n        System.out.println(\"Average: \" + average(numbers));\n    }\n\n    public static double average(int[] numbers) {\n        int sum = 0;\n        for (int number : numbers) {\n            sum += number;\n        }\n        return (double) sum / numbers.length;\n    }\n}\n"
+        },
+        {
+            "id": 19,
+            "questionId": "java_functions_mid19",
+            "title": "文字列の回文チェック",
+            "question": "与えられた文字列が回文であるかどうかを判定する関数を作成してください。回文とは、前から読んでも後ろから読んでも同じ文字列のことを指します。\n\n関数名: isPalindrome\n引数1: String str (1 <= str.length() <= 1000)\n戻り値: boolean (true: 回文, false: 非回文)\n\nmain関数で関数を呼び出し、結果を出力してください。",
+            "explanation": "文字列の長さの半分に対して、前と後ろから文字を比較していき、一致しない場合はfalseを返します。すべて一致した場合はtrueを返します。",
+            "answer": "public class PalindromeCheck {\n\n    public static void main(String[] args) {\n        String str = \"madam\";\n        System.out.println(\"Is palindrome: \" + isPalindrome(str));\n    }\n\n    public static boolean isPalindrome(String str) {\n        int len = str.length();\n        for (int i = 0; i < len / 2; i++) {\n            if (str.charAt(i) != str.charAt(len - i - 1)) {\n                return false;\n            }\n        }\n        return true;\n    }\n}\n"
+        },
+        {
+            "id": 20,
+            "questionId": "java_functions_mid20",
+            "title": "最小公倍数を求める関数",
+            "question": "与えられた2つの整数の最小公倍数（LCM）を求める関数を作成してください。\n\n関数名: findLCM\n引数1: int num1 (1 <= num1 <= 1000)\n引数2: int num2 (1 <= num2 <= 1000)\n戻り値: int (最小公倍数)\n\nmain関数で関数を呼び出し、結果を出力してください。",
+            "explanation": "最小公倍数は、2つの数の積を最大公約数（GCD）で割ったものです。最大公約数を求める関数を作成し、その結果を使用して最小公倍数を求めます。",
+            "answer": "public class LCM {\n\n    public static void main(String[] args) {\n        int num1 = 12;\n        int num2 = 15;\n        System.out.println(\"LCM: \" + findLCM(num1, num2));\n    }\n\n    public static int findLCM(int num1, int num2) {\n        return (num1 * num2) / findGCD(num1, num2);\n    }\n\n    public static int findGCD(int num1, int num2) {\n        if (num2 == 0) {\n            return num1;\n        }\n        return findGCD(num2, num1 % num2);\n    }\n}\n"
+        }
+    ]
+}

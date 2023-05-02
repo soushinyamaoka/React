@@ -1,0 +1,166 @@
+{
+    "contentsId": "java2",
+    "title": "Javaのクラス問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java2_1",
+            "title": "Javaのクラス - 初級",
+            "question": "次のクラスを定義してください。\nクラス名: Dog\n属性: name (String型)、age (int型)\nデフォルトコンストラクタを含めます。",
+            "explanation": "Javaでクラスを定義する方法を理解し、属性とデフォルトコンストラクタを定義できるようになりましょう。",
+            "answer": "public class Dog {\n\n  String name;\n  int age;\n\n  public Dog() {\n  }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java2_2",
+            "title": "Javaのクラス - 初級",
+            "question": "以下のクラスを定義してください。\nクラス名: Cat\n属性: name (String型)、age (int型)\n引数付きコンストラクタを含めます。",
+            "explanation": "Javaでクラスを定義する方法を理解し、属性と引数付きコンストラクタを定義できるようになりましょう。",
+            "answer": "public class Cat {\n\n  String name;\n  int age;\n\n  public Cat(String name, int age) {\n    this.name = name;\n    this.age = age;\n  }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java2_3",
+            "title": "Javaのクラス - 初級",
+            "question": "「Cat」クラスのオブジェクトを作成し、そのオブジェクトのname属性に「\"Tama\"」、age属性に「5」を設定して、System.out.printlnを使って表示してください。",
+            "explanation": "Javaでオブジェクトを作成し、その属性に値を設定し、表示する方法を理解しましょう。",
+            "answer": "public class Main {\n\n  public static void main(String[] args) {\n    Cat cat = new Cat(\"Tama\", 5);\n    System.out.println(\"Cat's name: \" + cat.name + \", age: \" + cat.age); // 予想される出力: Cat's name: Tama, age: 5\n  }\n}\n\npublic class Cat {\n\n  String name;\n  int age;\n\n  public Cat(String name, int age) {\n    this.name = name;\n    this.age = age;\n  }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java2_4",
+            "title": "Javaのクラス - 初級",
+            "question": "次のクラスを定義してください。\nクラス名: Car\n属性: brand (String型)、model (String型)、year (int型)\n引数付きコンストラクタを含めます。\nさらに、Carオブジェクトの情報を表示する「displayInfo()」メソッドを作成してください。",
+            "explanation": "Javaでクラスを定義し、引数付きコンストラクタとメソッドを作成する方法を理解しましょう。",
+            "answer": "public class Car {\n\n  String brand;\n  String model;\n  int year;\n\n  public Car(String brand, String model, int year) {\n    this.brand = brand;\n    this.model = model;\n    this.year = year;\n  }\n\n  public void displayInfo() {\n    System.out.println(\"Brand: \" + brand + \", Model: \" + model + \", Year: \" + year);\n  }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java2_5",
+            "title": "Javaのクラス - 初級",
+            "question": "次のクラスを定義してください。\nクラス名: Rectangle\n属性: width (int型)、height (int型)\n引数付きコンストラクタを含めます。\nさらに、Rectangleオブジェクトの面積を計算する「calculateArea()」メソッドを作成してください。",
+            "explanation": "Javaでクラスを定義し、引数付きコンストラクタとメソッドを作成する方法を理解しましょう。",
+            "answer": "public class Rectangle {\n\n  int width;\n  int height;\n\n  public Rectangle(int width, int height) {\n    this.width = width;\n    this.height = height;\n  }\n\n  public int calculateArea() {\n    return width * height;\n  }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java2_6",
+            "title": "Javaのクラス - 初級",
+            "question": "次のクラスを定義してください。\nクラス名: Circle\n属性: radius (double型)\n引数付きコンストラクタを含めます。\nさらに、Circleオブジェクトの円周を計算する「calculateCircumference()」メソッドを作成してください。",
+            "explanation": "Javaでクラスを定義し、引数付きコンストラクタとメソッドを作成する方法を理解しましょう。",
+            "answer": "public class Circle {\n\n  double radius;\n\n  public Circle(double radius) {\n    this.radius = radius;\n  }\n\n  public double calculateCircumference() {\n    return 2 * Math.PI * radius;\n  }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java2_7",
+            "title": "Javaのクラス - 初級",
+            "question": "次のクラスを定義してください。\nクラス名: Student\n属性: name (String型)、age (int型)\n引数付きコンストラクタを含めます。\nさらに、Studentオブジェクトの情報を表示する「printInfo()」メソッドを作成してください。",
+            "explanation": "Javaでクラスを定義し、引数付きコンストラクタとメソッドを作成する方法を理解しましょう。",
+            "answer": "public class Student {\n\n  String name;\n  int age;\n\n  public Student(String name, int age) {\n    this.name = name;\n    this.age = age;\n  }\n\n  public void printInfo() {\n    System.out.println(\"Name: \" + name + \"\\nAge: \" + age);\n  }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java2_8",
+            "title": "Javaのクラス - 初級",
+            "question": "次のクラスを定義してください。\nクラス名: BankAccount\n属性: accountNumber (String型)、balance (double型)\n引数付きコンストラクタを含めます。\nさらに、BankAccountオブジェクトの残高を表示する「printBalance()」メソッドを作成してください。",
+            "explanation": "Javaでクラスを定義し、引数付きコンストラクタとメソッドを作成する方法を理解しましょう。",
+            "answer": "public class BankAccount {\n\n  String accountNumber;\n  double balance;\n\n  public BankAccount(String accountNumber, double balance) {\n    this.accountNumber = accountNumber;\n    this.balance = balance;\n  }\n\n  public void printBalance() {\n    System.out.println(\"Account Number: \" + accountNumber + \"\\nBalance: \" + balance);\n  }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java2_9",
+            "title": "Javaのクラス - 初級",
+            "question": "次のクラスを定義してください。\nクラス名: Rectangle\n属性: length (double型)、width (double型)\n引数付きコンストラクタを含めます。\nさらに、Rectangleオブジェクトの面積を計算して表示する「printArea()」メソッドを作成してください。",
+            "explanation": "Javaでクラスを定義し、引数付きコンストラクタとメソッドを作成する方法を理解しましょう。",
+            "answer": "public class Rectangle {\n\n  double length;\n  double width;\n\n  public Rectangle(double length, double width) {\n    this.length = length;\n    this.width = width;\n  }\n\n  public void printArea() {\n    double area = length * width;\n    System.out.println(\"Area: \" + area);\n  }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java2_10",
+            "title": "Javaのクラス - 初級",
+            "question": "次のクラスを定義してください。\nクラス名: Circle\n属性: radius (double型)\n引数付きコンストラクタを含めます。\nさらに、Circleオブジェクトの円周を計算して表示する「printCircumference()」メソッドを作成してください。円周の計算には、Math.PIを使用してください。",
+            "explanation": "Javaでクラスを定義し、引数付きコンストラクタとメソッドを作成する方法を理解しましょう。",
+            "answer": "public class Circle {\n\n  double radius;\n\n  public Circle(double radius) {\n    this.radius = radius;\n  }\n\n  public void printCircumference() {\n    double circumference = 2 * Math.PI * radius;\n    System.out.println(\"Circumference: \" + circumference);\n  }\n}"
+        },
+        {
+            "id": 11,
+            "questionId": "java2_11",
+            "title": "Javaのクラス - 初級",
+            "question": "次のクラスを定義してください。\nクラス名: Triangle\n属性: base (double型)、height (double型)\n引数付きコンストラクタを含めます。\nさらに、Triangleオブジェクトの面積を計算して表示する「printArea()」メソッドを作成してください。",
+            "explanation": "Javaでクラスを定義し、引数付きコンストラクタとメソッドを作成する方法を理解しましょう。",
+            "answer": "public class Triangle {\n\n  double base;\n  double height;\n\n  public Triangle(double base, double height) {\n    this.base = base;\n    this.height = height;\n  }\n\n  public void printArea() {\n    double area = 0.5 * base * height;\n    System.out.println(\"Area: \" + area);\n  }\n}"
+        },
+        {
+            "id": 12,
+            "questionId": "java2_12",
+            "title": "Javaのクラス - 初級",
+            "question": "次のクラスを定義してください。\nクラス名: Sphere\n属性: radius (double型)\n引数付きコンストラクタを含めます。\nさらに、Sphereオブジェクトの表面積を計算して表示する「printSurfaceArea()」メソッドを作成してください。表面積の計算には、Math.PIを使用してください。",
+            "explanation": "Javaでクラスを定義し、引数付きコンストラクタとメソッドを作成する方法を理解しましょう。",
+            "answer": "public class Sphere {\n\n  double radius;\n\n  public Sphere(double radius) {\n    this.radius = radius;\n  }\n\n  public void printSurfaceArea() {\n    double surfaceArea = 4 * Math.PI * Math.pow(radius, 2);\n    System.out.println(\"Surface Area: \" + surfaceArea);\n  }\n}"
+        },
+        {
+            "id": 13,
+            "questionId": "java2_13",
+            "title": "Javaのクラス - 初級",
+            "question": "次のクラスを定義してください。\nクラス名: Rectangle\n属性: length (double型)、width (double型)\n引数付きコンストラクタを含めます。\nさらに、Rectangleオブジェクトの周囲の長さを計算して表示する「printPerimeter()」メソッドを作成してください。",
+            "explanation": "Javaでクラスを定義し、引数付きコンストラクタとメソッドを作成する方法を理解しましょう。",
+            "answer": "public class Rectangle {\n\n  double length;\n  double width;\n\n  public Rectangle(double length, double width) {\n    this.length = length;\n    this.width = width;\n  }\n\n  public void printPerimeter() {\n    double perimeter = 2 * (length + width);\n    System.out.println(\"Perimeter: \" + perimeter);\n  }\n}"
+        },
+        {
+            "id": 14,
+            "questionId": "java2_14",
+            "title": "Javaのクラス - 初級",
+            "question": "次のクラスを定義してください。\nクラス名: BankAccount\n属性: balance (double型)\n引数付きコンストラクタを含めます。\nさらに、BankAccountオブジェクトの残高を表示する「printBalance()」メソッドを作成してください。",
+            "explanation": "Javaでクラスを定義し、引数付きコンストラクタとメソッドを作成する方法を理解しましょう。",
+            "answer": "public class BankAccount {\n\n  double balance;\n\n  public BankAccount(double balance) {\n    this.balance = balance;\n  }\n\n  public void printBalance() {\n    System.out.println(\"Balance: \" + balance);\n  }\n}"
+        },
+        {
+            "id": 15,
+            "questionId": "java2_15",
+            "title": "Javaのクラス - 初級",
+            "question": "次のクラスを定義してください。\nクラス名: Book\n属性: title (String型)、author (String型)、price (double型)\n引数付きコンストラクタを含めます。\nさらに、Bookオブジェクトの詳細情報を表示する「printDetails()」メソッドを作成してください。",
+            "explanation": "Javaでクラスを定義し、引数付きコンストラクタとメソッドを作成する方法を理解しましょう。",
+            "answer": "public class Book {\n\n  String title;\n  String author;\n  double price;\n\n  public Book(String title, String author, double price) {\n    this.title = title;\n    this.author = author;\n    this.price = price;\n  }\n\n  public void printDetails() {\n    System.out.println(\"Title: \" + title);\n    System.out.println(\"Author: \" + author);\n    System.out.println(\"Price: \" + price);\n  }\n}"
+        },
+        {
+            "id": 16,
+            "questionId": "java2_16",
+            "title": "Javaのクラス - 初級",
+            "question": "次のクラスを定義してください。\nクラス名: Circle\n属性: radius (double型)\n引数付きコンストラクタを含めます。\nさらに、Circleオブジェクトの面積を計算して表示する「printArea()」メソッドを作成してください。\n\nヒント: 円の面積の計算には、半径の二乗に円周率（Math.PI）を掛けます。",
+            "explanation": "Javaでクラスを定義し、引数付きコンストラクタとメソッドを作成する方法を理解しましょう。",
+            "answer": "public class Circle {\n\n  double radius;\n\n  public Circle(double radius) {\n    this.radius = radius;\n  }\n\n  public void printArea() {\n    double area = Math.PI * radius * radius;\n    System.out.println(\"Area: \" + area);\n  }\n}"
+        },
+        {
+            "id": 17,
+            "questionId": "java2_17",
+            "title": "Javaのクラス - 初級",
+            "question": "次のクラスを定義してください。\nクラス名: Rectangle\n属性: length (double型)、width (double型)\n引数付きコンストラクタを含めます。\nさらに、Rectangleオブジェクトの面積を計算して表示する「printArea()」メソッドを作成してください。",
+            "explanation": "Javaでクラスを定義し、引数付きコンストラクタとメソッドを作成する方法を理解しましょう。",
+            "answer": "public class Rectangle {\n\n  double length;\n  double width;\n\n  public Rectangle(double length, double width) {\n    this.length = length;\n    this.width = width;\n  }\n\n  public void printArea() {\n    double area = length * width;\n    System.out.println(\"Area: \" + area);\n  }\n}"
+        },
+        {
+            "id": 18,
+            "questionId": "java2_18",
+            "title": "Javaのクラス - 初級",
+            "question": "次のクラスを定義してください。\nクラス名: Employee\n属性: name (String型)、salary (double型)\n引数付きコンストラクタを含めます。\nさらに、Employeeオブジェクトの詳細情報を表示する「printDetails()」メソッドを作成してください。",
+            "explanation": "Javaでクラスを定義し、引数付きコンストラクタとメソッドを作成する方法を理解しましょう。",
+            "answer": "public class Employee {\n\n  String name;\n  double salary;\n\n  public Employee(String name, double salary) {\n    this.name = name;\n    this.salary = salary;\n  }\n\n  public void printDetails() {\n    System.out.println(\"Name: \" + name);\n    System.out.println(\"Salary: \" + salary);\n  }\n}"
+        },
+        {
+            "id": 19,
+            "questionId": "java2_19",
+            "title": "Javaのクラス - 初級",
+            "question": "次のクラスを定義してください。\nクラス名: Circle\n属性: radius (double型)\n引数付きコンストラクタを含めます。\nさらに、Circleオブジェクトの円周と面積を計算して表示する「printCircumferenceAndArea()」メソッドを作成してください。",
+            "explanation": "Javaでクラスを定義し、引数付きコンストラクタとメソッドを作成する方法を理解しましょう。",
+            "answer": "public class Circle {\n\n  double radius;\n\n  public Circle(double radius) {\n    this.radius = radius;\n  }\n\n  public void printCircumferenceAndArea() {\n    double circumference = 2 * Math.PI * radius;\n    double area = Math.PI * Math.pow(radius, 2);\n    System.out.println(\"Circumference: \" + circumference);\n    System.out.println(\"Area: \" + area);\n  }\n}"
+        },
+        {
+            "id": 20,
+            "questionId": "java2_20",
+            "title": "Javaのクラス - 初級",
+            "question": "次のクラスを定義してください。\nクラス名: Car\n属性: make (String型)、model (String型)、year (int型)\n引数付きコンストラクタを含めます。\nさらに、Carオブジェクトの詳細情報を表示する「printDetails()」メソッドを作成してください。",
+            "explanation": "Javaでクラスを定義し、引数付きコンストラクタとメソッドを作成する方法を理解しましょう。",
+            "answer": "public class Car {\n\n  String make;\n  String model;\n  int year;\n\n  public Car(String make, String model, int year) {\n    this.make = make;\n    this.model = model;\n    this.year = year;\n  }\n\n  public void printDetails() {\n    System.out.println(\"Make: \" + make);\n    System.out.println(\"Model: \" + model);\n    System.out.println(\"Year: \" + year);\n  }\n}"
+        }
+    ]
+}

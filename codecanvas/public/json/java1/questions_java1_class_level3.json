@@ -1,0 +1,166 @@
+{
+    "contentsId": "java2",
+    "title": "Javaのクラス問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java4_1",
+            "title": "Javaのクラス - 上級",
+            "question": "次の条件に従って、「Shape」インターフェースを実装した「Circle」、「Rectangle」クラスを作成してください。\n\n1. インターフェース「Shape」を作成し、メソッド「double getArea()」、「double getPerimeter()」を定義する。\n\n2. クラス「Circle」を作成し、「Shape」インターフェースを実装する。\n3. Circleクラスには、「radius」（double型）属性を持つ。\n4. Circleクラスには、radiusを引数に持つコンストラクタを作成する。\n5. Circleクラスで、「getArea()」と「getPerimeter()」メソッドを実装し、面積と円周の長さを計算する。\n\n6. クラス「Rectangle」を作成し、「Shape」インターフェースを実装する。\n7. Rectangleクラスには、「width」（double型）、「height」（double型）属性を持つ。\n8. Rectangleクラスには、widthとheightを引数に持つコンストラクタを作成する。\n9. Rectangleクラスで、「getArea()」と「getPerimeter()」メソッドを実装し、面積と周囲の長さを計算する。\n\nサンプルコードでCircleオブジェクトとRectangleオブジェクトを作成し、getArea()とgetPerimeter()メソッドを呼び出して、面積と周囲の長さを出力してください。",
+            "explanation": "この問題では、インターフェースを使って共通の振る舞いを定義し、異なるクラスで実装する方法を学びます。",
+            "answer": "public interface Shape {\\n\\n  double getArea();\\n\\n  double getPerimeter();\\n}\\n\\npublic class Circle implements Shape {\\n\\n  private double radius;\\n\\n  public Circle(double radius) {\\n    this.radius = radius;\\n  }\\n\\n  @Override\\n  public double getArea() {\\n    return Math.PI * radius * radius;\\n  }\\n\\n  @Override\\n  public double getPerimeter() {\\n    return 2 * Math.PI * radius;\\n  }\\n}\\n\\npublic class Rectangle implements Shape {\\n\\n  private double width;\\n  private double height;\\n\\n  public Rectangle(double width, double height) {\\n    this.width = width;\\n    this.height = height;\\n  }\\n\\n  @Override\\n  public double getArea() {\\n    return width * height;\\n  }\\n\\n  @Override\\n  public double getPerimeter() {\\n    return 2 * (width + height);\\n  }\\n}\\n\\npublic class Main {\\n\\n  public static void main(String[] args) {\\n    Circle circle = new Circle(5);"
+        },
+        {
+            "id": 2,
+            "questionId": "java3_2",
+            "title": "抽象クラスとインターフェイス",
+            "question": "以下のコードが実行できるよう、Animal抽象クラスとMammalとBirdインターフェイスを実装してください。\n\n```\npublic class Main {\n    public static void main(String[] args) {\n        Animal dog = new Dog();\n        dog.makeSound();\n\n        Animal eagle = new Eagle();\n        eagle.makeSound();\n    }\n}\n```\n",
+            "explanation": "抽象クラスは実装が不完全なメソッドを持ち、インターフェイスは実装が全くないメソッドを持ちます。抽象クラスを継承して具象クラスを作成し、インターフェイスのメソッドを実装することで、指定された機能を持ったオブジェクトを作成することができます。",
+            "answer": "abstract class Animal {\n    abstract void makeSound();\n}\n\ninterface Mammal {\n    void makeSound();\n}\n\ninterface Bird {\n    void makeSound();\n}\n\nclass Dog extends Animal implements Mammal {\n    void makeSound() {\n        System.out.println(\"Woof!\");\n    }\n}\n\nclass Eagle extends Animal implements Bird {\n    void makeSound() {\n        System.out.println(\"Screech!\");\n    }\n}\n"
+        },
+        {
+            "id": 3,
+            "questionId": "java3_3",
+            "title": "ジェネリッククラス",
+            "question": "以下のコードが実行できるよう、ジェネリッククラスPairを実装してください。\n\n```\npublic class Main {\n    public static void main(String[] args) {\n        Pair<Integer, String> pair = new Pair<>(1, \"one\");\n        System.out.println(\"First: \" + pair.getFirst());\n        System.out.println(\"Second: \" + pair.getSecond());\n    }\n}\n```\n",
+            "explanation": "ジェネリッククラスは、型パラメータを使って、さまざまな型のオブジェクトを扱うことができるクラスです。ジェネリッククラスを定義するときには、クラス名の後ろに角括弧<>で囲まれた型パラメータを指定します。",
+            "answer": "class Pair<T1, T2> {\n    private T1 first;\n    private T2 second;\n\n    public Pair(T1 first, T2 second) {\n        this.first = first;\n        this.second = second;\n    }\n\n    public T1 getFirst() {\n        return first;\n    }\n\n    public T2 getSecond() {\n        return second;\n    }\n}\n"
+        },
+        {
+            "id": 4,
+            "questionId": "java3_4",
+            "title": "インターフェース",
+            "question": "以下のコードが実行できるよう、インターフェースShapeと、Shapeを実装したクラスCircleとRectangleを実装してください。\n\n```\npublic class Main {\n    public static void main(String[] args) {\n        Shape circle = new Circle(5);\n        Shape rectangle = new Rectangle(3, 4);\n        System.out.println(\"Circle area: \" + circle.calculateArea());\n        System.out.println(\"Rectangle area: \" + rectangle.calculateArea());\n    }\n}\n```\n",
+            "explanation": "インターフェースは、クラスが実装すべきメソッドのシグニチャを定義します。インターフェースを実装するクラスは、インターフェースで定義されたすべてのメソッドを実装する必要があります。",
+            "answer": "interface Shape {\n    double calculateArea();\n}\n\nclass Circle implements Shape {\n    private double radius;\n\n    public Circle(double radius) {\n        this.radius = radius;\n    }\n\n    public double calculateArea() {\n        return Math.PI * radius * radius;\n    }\n}\n\nclass Rectangle implements Shape {\n    private double width;\n    private double height;\n\n    public Rectangle(double width, double height) {\n        this.width = width;\n        this.height = height;\n    }\n\n    public double calculateArea() {\n        return width * height;\n    }\n}\n"
+        },
+        {
+            "id": 5,
+            "questionId": "java3_5",
+            "title": "抽象クラスとインターフェース",
+            "question": "以下の条件を満たすように、抽象クラスAnimal、インターフェースSwim、そしてDogとFishクラスを実装してください。\n\n1. Animalは抽象クラスで、abstractメソッドspeak()を持つ\n2. Swimはインターフェースで、メソッドswim()を持つ\n3. DogはAnimalを継承し、speak()で\"Woof!\"を出力する\n4. FishはAnimalを継承し、Swimインターフェースを実装し、speak()で\"Blub!\"を出力し、swim()で\"Fish is swimming\"を出力する",
+            "explanation": "抽象クラスは、部分的に実装されたクラスで、継承によって完全に実装されることを想定しています。インターフェースは、クラスが実装するメソッドのシグニチャのみを定義します。",
+            "answer": "abstract class Animal {\n    abstract void speak();\n}\n\ninterface Swim {\n    void swim();\n}\n\nclass Dog extends Animal {\n    void speak() {\n        System.out.println(\"Woof!\");\n    }\n}\n\nclass Fish extends Animal implements Swim {\n    void speak() {\n        System.out.println(\"Blub!\");\n    }\n\n    public void swim() {\n        System.out.println(\"Fish is swimming\");\n    }\n}\n"
+        },
+        {
+            "id": 6,
+            "questionId": "java3_6",
+            "title": "内部クラス",
+            "question": "以下の条件を満たすように、OuterクラスとInnerクラスを実装してください。\n\n1. Outerクラスにはprivate変数xがあり、コンストラクタで初期化される\n2. InnerクラスはOuterクラスの内部クラスであり、private変数yがあり、コンストラクタで初期化される\n3. Outerクラスに、Innerクラスのオブジェクトを作成し、xとyの合計を出力するメソッドsum()を実装する",
+            "explanation": "内部クラスは、他のクラスの内部に定義されたクラスで、その外部クラスと密接な関係があります。内部クラスは、外部クラスのメンバーにアクセスできるため、外部クラスとのやり取りが容易になります。",
+            "answer": "class Outer {\n    private int x;\n\n    Outer(int x) {\n        this.x = x;\n    }\n\n    class Inner {\n        private int y;\n\n        Inner(int y) {\n            this.y = y;\n        }\n    }\n\n    int sum() {\n        Inner inner = new Inner(5);\n        return x + inner.y;\n    }\n}\n"
+        },
+        {
+            "id": 7,
+            "questionId": "java3_7",
+            "title": "抽象クラス",
+            "question": "Animalクラスを抽象クラスとして定義し、次の条件を満たすように実装してください。\n\n1. Animalクラスには抽象メソッドmakeSound()がある\n2. DogクラスとCatクラスは、Animalクラスを継承する\n3. DogクラスとCatクラスは、それぞれmakeSound()メソッドをオーバーライドし、それぞれ\"Woof\"と\"Meow\"と出力する",
+            "explanation": "抽象クラスは、具体的な実装がないメソッド（抽象メソッド）を持つことができるクラスです。抽象クラスは、継承されることを前提として設計され、具象クラス（通常のクラス）が抽象クラスを継承することで、抽象メソッドの実装を強制することができます。",
+            "answer": "abstract class Animal {\n    abstract void makeSound();\n}\n\nclass Dog extends Animal {\n    void makeSound() {\n        System.out.println(\"Woof\");\n    }\n}\n\nclass Cat extends Animal {\n    void makeSound() {\n        System.out.println(\"Meow\");\n    }\n}\n"
+        },
+        {
+            "id": 8,
+            "questionId": "java3_8",
+            "title": "インターフェース",
+            "question": "以下の条件に従って、インターフェースとクラスを実装してください。\n\n1. Flyableインターフェースを作成し、fly()メソッドを定義する\n2. Birdクラスを作成し、Flyableインターフェースを実装する\n3. Birdクラスのfly()メソッドをオーバーライドし、\"Bird is flying\"と出力する",
+            "explanation": "インターフェースは、メソッドのシグネチャのみを定義し、実装を持たない機能の契約を表します。クラスは、インターフェースを実装することで、その契約に従ったメソッドを提供することを約束します。インターフェースは抽象メソッドの集まりであり、複数のインターフェースを同時に実装することができます。",
+            "answer": "interface Flyable {\n    void fly();\n}\n\nclass Bird implements Flyable {\n    public void fly() {\n        System.out.println(\"Bird is flying\");\n    }\n}\n"
+        },
+        {
+            "id": 9,
+            "questionId": "java3_9",
+            "title": "ジェネリッククラス",
+            "question": "ジェネリッククラスを使用して、任意の型の値を保持できるクラス「Container」を作成してください。\n\n1. T型のプライベートフィールド「value」を持つ\n2. valueにアクセスするためのgetterおよびsetterメソッドを実装する\n3. mainメソッドで、Containerクラスを使用して、整数と文字列の値を保持し、それらを出力する",
+            "explanation": "ジェネリッククラスは、型パラメータを持つクラスです。これにより、クラス内で型を抽象化し、インスタンス化するときに具体的な型を指定できます。ジェネリッククラスは、コードの再利用性を向上させるために使用されます。",
+            "answer": "class Container<T> {\n    private T value;\n\n    public T getValue() {\n        return value;\n    }\n\n    public void setValue(T value) {\n        this.value = value;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Container<Integer> intContainer = new Container<>();\n        intContainer.setValue(42);\n        System.out.println(intContainer.getValue());\n\n        Container<String> strContainer = new Container<>();\n        strContainer.setValue(\"Hello, world!\");\n        System.out.println(strContainer.getValue());\n    }\n}\n"
+        },
+        {
+            "id": 10,
+            "questionId": "java3_10",
+            "title": "インターフェイスの実装",
+            "question": "次のインターフェイスを持つクラスを作成してください。\n\n1. インターフェイス「Printable」を作成します。\n  - void print()メソッドを持つ\n\n2. クラス「Document」を作成し、Printableインターフェイスを実装します。\n  - privateフィールドとしてString型の「content」を持つ\n  - コンストラクタでcontentを設定する\n  - printメソッドでcontentを出力する\n\n3. mainメソッドで、Documentクラスをインスタンス化し、printメソッドを呼び出して、contentを出力します。",
+            "explanation": "インターフェイスは、クラスに実装されるべきメソッドのシグネチャを定義するために使用されます。Javaでは、インターフェイスを実装するクラスは、そのインターフェイスが定義するすべてのメソッドを実装する必要があります。",
+            "answer": "interface Printable {\n    void print();\n}\n\nclass Document implements Printable {\n    private String content;\n\n    public Document(String content) {\n        this.content = content;\n    }\n\n    @Override\n    public void print() {\n        System.out.println(content);\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Document doc = new Document(\"This is a document.\");\n        doc.print();\n    }\n}\n"
+        },
+        {
+            "id": 11,
+            "questionId": "java3_11",
+            "title": "ジェネリックメソッド",
+            "question": "ジェネリックメソッドを使用して、2つの異なる型の引数を受け取り、それらを表示するメソッドを作成してください。\n\n1. クラス「GenericPrinter」を作成します。\n  - ジェネリックメソッド「print」を作成し、2つの異なる型の引数（TとU）を受け取ります。\n  - printメソッドは、引数の値を表示します。\n\n2. mainメソッドで、GenericPrinterクラスのインスタンスを作成し、printメソッドを呼び出して、2つの異なる型の値を表示します。",
+            "explanation": "ジェネリックメソッドは、型パラメータを持つメソッドで、異なる型の引数を受け取ることができます。メソッドシグネチャに型パラメータを含めることで、コンパイル時に型安全性を保証し、キャストの必要性を減らすことができます。",
+            "answer": "class GenericPrinter {\n    public <T, U> void print(T arg1, U arg2) {\n        System.out.println(\"First argument: \" + arg1);\n        System.out.println(\"Second argument: \" + arg2);\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        GenericPrinter printer = new GenericPrinter();\n        printer.print(\"Hello, world!\", 42);\n    }\n}\n"
+        },
+        {
+            "id": 12,
+            "questionId": "java3_12",
+            "title": "カスタム例外クラスの作成",
+            "question": "カスタム例外クラスを作成し、特定の条件が満たされない場合に例外をスローするメソッドを作成してください。\n\n1. クラス「CustomException」を作成し、Exceptionクラスを継承します。\n2. CustomExceptionクラスに、コンストラクタを追加し、エラーメッセージを引数に受け取ります。\n3. クラス「TestException」を作成し、mainメソッドを持ちます。\n4. mainメソッドで、入力された整数が10未満の場合、CustomExceptionをスローします。\n5. mainメソッドで、例外をキャッチし、エラーメッセージを表示します。",
+            "explanation": "カスタム例外クラスを作成することで、独自のエラー状況に対応することができます。カスタム例外クラスは、通常Exceptionクラスまたはそのサブクラスを継承し、必要に応じてコンストラクタやメソッドを追加します。",
+            "answer": "class CustomException extends Exception {\n    public CustomException(String errorMessage) {\n        super(errorMessage);\n    }\n}\n\npublic class TestException {\n    public static void main(String[] args) {\n        int input = 5;\n        try {\n            if (input < 10) {\n                throw new CustomException(\"The input is less than 10.\");\n            }\n        } catch (CustomException e) {\n            System.out.println(e.getMessage());\n        }\n    }\n}\n"
+        },
+        {
+            "id": 13,
+            "questionId": "java3_13",
+            "title": "練習問題: ジェネリックメソッド",
+            "question": "次の要件を満たすジェネリックメソッドを作成してください。\n\n1. メソッド名: printArray\n2. 引数: ジェネリック型の配列\n3. 戻り値: なし\n4. 機能: 配列の要素を順番に出力する\n\n上記のメソッドを使用して、整数配列および文字列配列を出力するmainメソッドを作成してください。",
+            "explanation": "ジェネリックメソッドは、型パラメータを使用して、異なる型の引数で同じ動作を実現できます。これにより、コードの再利用性が向上し、型安全性が確保されます。",
+            "answer": "public class GenericMethod {\n    public static <T> void printArray(T[] array) {\n        for (T element : array) {\n            System.out.println(element);\n        }\n    }\n\n    public static void main(String[] args) {\n        Integer[] intArray = {1, 2, 3, 4, 5};\n        String[] stringArray = {\"Java\", \"Python\", \"C++\"};\n\n        printArray(intArray);\n        printArray(stringArray);\n    }\n}\n"
+        },
+        {
+            "id": 14,
+            "questionId": "java3_14",
+            "title": "練習問題: Comparatorインターフェース",
+            "question": "次の要件を満たすコンパレータを実装し、配列内のPersonオブジェクトを年齢でソートして出力してください。\n\n1. Personクラスが次のフィールドを持つとします:\n  - String name\n  - int age\n2. 年齢で昇順にソートするコンパレータを作成する\n3. Arrays.sort()メソッドを使用して、Personオブジェクトの配列をソートする\n4. ソートされた配列を出力する\n\nPersonクラスを作成し、上記の要件を満たすmainメソッドを実装してください。",
+            "explanation": "Comparatorインターフェースを使用して、オブジェクトのカスタム比較を実装できます。これにより、Arrays.sort()メソッドやCollections.sort()メソッドを使用して、オブジェクトの配列やリストをソートすることができます。",
+            "answer": "import java.util.Arrays;\nimport java.util.Comparator;\n\npublic class PersonComparator {\n\n    static class Person {\n        String name;\n        int age;\n\n        Person(String name, int age) {\n            this.name = name;\n            this.age = age;\n        }\n\n        @Override\n        public String toString() {\n            return name + \": \" + age;\n        }\n    }\n\n    public static void main(String[] args) {\n        Person[] people = new Person[]{\n            new Person(\"Alice\", 30),\n            new Person(\"Bob\", 25),\n            new Person(\"Charlie\", 35)\n        };\n\n        Arrays.sort(people, Comparator.comparingInt(person -> person.age));\n\n        for (Person person : people) {\n            System.out.println(person);\n        }\n    }\n}\n"
+        },
+        {
+            "id": 15,
+            "questionId": "java3_15",
+            "title": "練習問題: ジェネリッククラス",
+            "question": "次の要件を満たすジェネリッククラス「Pair」を作成してください。\n\n1. Pairクラスは2つの異なる型のオブジェクトを保持できる\n2. Pairクラスには、それぞれのオブジェクトにアクセスするためのgetterメソッドがある\n\nPairクラスを作成し、2つの異なる型のオブジェクトを保持しているペアをインスタンス化して、getterメソッドを使用してそれらのオブジェクトにアクセスするmainメソッドを実装してください。",
+            "explanation": "ジェネリッククラスは、型パラメータを使用して汎用的なコードを記述できるクラスです。これにより、さまざまな型のオブジェクトを操作できるクラスを作成できます。",
+            "answer": "public class PairDemo {\n\n    static class Pair<T, U> {\n        private final T first;\n        private final U second;\n\n        public Pair(T first, U second) {\n            this.first = first;\n            this.second = second;\n        }\n\n        public T getFirst() {\n            return first;\n        }\n\n        public U getSecond() {\n            return second;\n        }\n    }\n\n    public static void main(String[] args) {\n        Pair<String, Integer> pair = new Pair<>(\"Alice\", 30);\n\n        System.out.println(\"Name: \" + pair.getFirst());\n        System.out.println(\"Age: \" + pair.getSecond());\n    }\n}\n"
+        },
+        {
+            "id": 16,
+            "questionId": "java3_16",
+            "title": "練習問題: インナークラスとスコープ",
+            "question": "次の要件を満たすクラス「Outer」を作成してください。\n\n1. Outerクラスにはprivateなint型のメンバ変数「x」がある\n2. Outerクラスには、内部に「Inner」クラスがあり、Innerクラスにはint型のメンバ変数「y」がある\n3. Outerクラスには、Innerクラスのインスタンスを作成し、Innerクラスの「y」変数にOuterクラスの「x」変数を加算するメソッド「add」がある\n\nOuterクラスとInnerクラスを作成し、addメソッドを使用してOuterクラスの「x」変数とInnerクラスの「y」変数の合計値を出力するmainメソッドを実装してください。",
+            "explanation": "インナークラスは、他のクラスの内部で定義されたクラスです。インナークラスは、外部クラスのメンバ変数にアクセスできるため、外部クラスと密接に連携するコードを記述するのに役立ちます。",
+            "answer": "public class OuterInnerDemo {\n\n    class Outer {\n        private int x;\n\n        class Inner {\n            private int y;\n\n            public int add(int value) {\n                x = value;\n                return x + y;\n            }\n        }\n\n        public Inner createInner() {\n            return new Inner();\n        }\n    }\n\n    public static void main(String[] args) {\n        Outer outer = new Outer();\n        Outer.Inner inner = outer.createInner();\n\n        int result = inner.add(10);\n        System.out.println(\"Sum: \" + result);\n    }\n}\n"
+        },
+        {
+            "id": 17,
+            "questionId": "java3_17",
+            "title": "練習問題: ジェネリクス",
+            "question": "以下の要件を満たすジェネリクスを使用した「Pair」クラスを作成してください。\n\n1. ジェネリクスを使用して、異なる型の2つのオブジェクトをペアで保持できるクラス「Pair」を作成します。\n2. Pairクラスには、2つのオブジェクトを受け取るコンストラクタがある\n3. Pairクラスには、保持されている2つのオブジェクトを取得するためのgetterメソッドがある\n\nPairクラスを使用して、異なる型のオブジェクトペアを作成し、mainメソッドで保持されているオブジェクトを出力してください。",
+            "explanation": "ジェネリクスは、クラスやインターフェース、メソッドに型パラメータを追加することで、型安全性を向上させるJavaの機能です。ジェネリクスを使用すると、コンパイル時に型エラーを検出でき、キャストの必要性を減らすことができます。",
+            "answer": "public class PairDemo {\n\n    public static class Pair<T, U> {\n        private T first;\n        private U second;\n\n        public Pair(T first, U second) {\n            this.first = first;\n            this.second = second;\n        }\n\n        public T getFirst() {\n            return first;\n        }\n\n        public U getSecond() {\n            return second;\n        }\n    }\n\n    public static void main(String[] args) {\n        Pair<String, Integer> pair = new Pair<>(\"Hello\", 42);\n        System.out.println(\"First: \" + pair.getFirst() + \", Second: \" + pair.getSecond());\n    }\n}\n"
+        },
+        {
+            "id": 18,
+            "questionId": "java3_18",
+            "title": "練習問題: コレクションのソート",
+            "question": "次の要件を満たすプログラムを作成してください。\n\n1. Studentクラスを作成し、フィールドとして名前（String型）と点数（int型）を持たせる\n2. コンストラクタで名前と点数を初期化できるようにする\n3. 名前と点数のgetterメソッドを作成する\n4. mainメソッド内で、Studentオブジェクトを格納するArrayListを作成し、いくつかのStudentオブジェクトを追加する\n5. Collections.sort()メソッドを使用して、点数の降順でStudentオブジェクトをソートする\n6. ソートされたStudentオブジェクトのリストを出力する\n\nヒント: Comparatorインターフェースを実装するか、ラムダ式を使用してソート条件を定義する必要があります。",
+            "explanation": "Javaのコレクションフレームワークでは、Collections.sort()メソッドを使用してリスト内の要素をソートできます。カスタムクラスをソートする場合、Comparatorインターフェースを実装するか、ラムダ式を使用してソート条件を定義することができます。",
+            "answer": "import java.util.ArrayList;\nimport java.util.Collections;\nimport java.util.Comparator;\n\npublic class StudentSortDemo {\n\n    public static class Student {\n        private String name;\n        private int score;\n\n        public Student(String name, int score) {\n            this.name = name;\n            this.score = score;\n        }\n\n        public String getName() {\n            return name;\n        }\n\n        public int getScore() {\n            return score;\n        }\n\n        @Override\n        public String toString() {\n            return name + \": \" + score;\n        }\n    }\n\n    public static void main(String[] args) {\n        ArrayList<Student> students = new ArrayList<>();\n        students.add(new Student(\"Alice\", 90));\n        students.add(new Student(\"Bob\", 85));\n        students.add(new Student(\"Charlie\", 95));\n\n        Collections.sort(students, (s1, s2) -> s2.getScore() - s1.getScore());\n\n        for (Student student : students) {\n            System.out.println(student);\n        }\n    }\n}\n"
+        },
+        {
+            "id": 19,
+            "questionId": "java3_19",
+            "title": "練習問題: スレッド間のデータ共有",
+            "question": "次の要件を満たすプログラムを作成してください。\n\n1. スレッド間で共有されるCounterクラスを作成し、int型のフィールドcountを持たせる\n2. countをインクリメントするincrementメソッドを作成し、synchronizedキーワードを使用してスレッドセーフにする\n3. Runnableインターフェースを実装したMyRunnableクラスを作成し、Counterオブジェクトをフィールドとして持たせる\n4. MyRunnableクラスのrunメソッド内で、Counterオブジェクトのincrementメソッドを複数回呼び出す\n5. mainメソッド内で、MyRunnableオブジェクトを複数のスレッドで実行し、最後にカウンターの値を出力する",
+            "explanation": "複数のスレッドが同じデータにアクセスする際に、データの競合を避けるためにsynchronizedキーワードを使用できます。synchronizedキーワードを使用してメソッドを修飾することで、そのメソッドは同時に1つのスレッドしか実行できません。",
+            "answer": "class Counter {\n    private int count = 0;\n\n    public synchronized void increment() {\n        count++;\n    }\n\n    public int getCount() {\n        return count;\n    }\n}\n\nclass MyRunnable implements Runnable {\n    private Counter counter;\n\n    public MyRunnable(Counter counter) {\n        this.counter = counter;\n    }\n\n    @Override\n    public void run() {\n        for (int i = 0; i < 1000; i++) {\n            counter.increment();\n        }\n    }\n}\n\npublic class ThreadSafeDemo {\n    public static void main(String[] args) throws InterruptedException {\n        Counter counter = new Counter();\n        MyRunnable myRunnable = new MyRunnable(counter);\n\n        Thread t1 = new Thread(myRunnable);\n        Thread t2 = new Thread(myRunnable);\n\n        t1.start();\n        t2.start();\n\n        t1.join();\n        t2.join();\n\n        System.out.println(\"Counter: \" + counter.getCount());\n    }\n}\n"
+        },
+        {
+            "id": 20,
+            "questionId": "java3_20",
+            "title": "練習問題: JavaのExecutorServiceとFutureを使った非同期処理",
+            "question": "次の要件を満たすプログラムを作成してください。\n\n1. Callableインターフェースを実装したMyCallableクラスを作成し、Integer型を返すようにする\n2. MyCallableクラスのcallメソッド内で、1から10までの数字を足し合わせた結果を返す\n3. mainメソッド内で、ExecutorServiceを作成し、MyCallableオブジェクトをsubmitして非同期で実行する\n4. submitした結果をFutureオブジェクトとして受け取り、getメソッドで結果を取得し出力する",
+            "explanation": "JavaのExecutorServiceは、非同期タスクをスレッドプールで実行するためのフレームワークです。Callableインターフェースを実装したタスクは、submitメソッドでExecutorServiceに渡すことができます。submitメソッドは、タスクの実行結果を取得するためのFutureオブジェクトを返します。",
+            "answer": "import java.util.concurrent.Callable;\nimport java.util.concurrent.ExecutionException;\nimport java.util.concurrent.ExecutorService;\nimport java.util.concurrent.Executors;\nimport java.util.concurrent.Future;\n\nclass MyCallable implements Callable<Integer> {\n\n    @Override\n    public Integer call() throws Exception {\n        int sum = 0;\n        for (int i = 1; i <= 10; i++) {\n            sum += i;\n        }\n        return sum;\n    }\n}\n\npublic class AsyncDemo {\n\n    public static void main(String[] args) throws InterruptedException, ExecutionException {\n        ExecutorService executorService = Executors.newSingleThreadExecutor();\n\n        MyCallable myCallable = new MyCallable();\n        Future<Integer> future = executorService.submit(myCallable);\n\n        System.out.println(\"Sum: \" + future.get());\n\n        executorService.shutdown();\n    }\n}\n"
+        }
+    ]
+}

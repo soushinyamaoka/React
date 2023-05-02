@@ -1,0 +1,167 @@
+{
+    "contentsId": "java3",
+    "title": "Javaの繰り返し問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_loops_1",
+            "title": "for文の逆順",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class ReverseFor {\n\n public static void main(String[] args) {\n for (int i = 5; i > 0; i--) {\n System.out.println(i);\n }\n }\n}",
+            "explanation": "このプログラムは、for文でカウンタ変数iを5から始めて、iが0より大きい間繰り返します。iは1ずつ減らされます。各繰り返しで、iの値が出力されます。",
+            "answer": "5\n4\n3\n2\n1"
+        },
+        {
+            "id": 2,
+            "questionId": "java_loops_2",
+            "title": "ネストされたfor文",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class NestedFor {\n\n public static void main(String[] args) {\n for (int i = 1; i <= 3; i++) {\n for (int j = 1; j <= 3; j++) {\n System.out.print(i * j + \" \");\n }\n System.out.println();\n }\n }\n}",
+            "explanation": "このプログラムでは、ネストされたfor文が使用されています。外側のfor文はiを1から3まで繰り返し、内側のfor文はjを1から3まで繰り返します。内側のfor文の中で、iとjの積が出力されます。内側のfor文が終了するたびに、改行が出力されます。",
+            "answer": "1 2 3 \n2 4 6 \n3 6 9 "
+        },
+        {
+            "id": 3,
+            "questionId": "java_loops_3",
+            "title": "while文とカウンタ",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class WhileCounter {\n\n public static void main(String[] args) {\n int counter = 1;\n int sum = 0;\n\n while (sum < 30) {\n sum += counter;\n counter++;\n }\n\n System.out.println(\"Sum: \" + sum + \", Counter: \" + (counter - 1));\n }\n}",
+            "explanation": "このプログラムでは、while文とカウンタ変数を使用して、合計が30を超えるまでの数値を計算しています。sumが30未満の間、sumにカウンタの値が加算され、カウンタがインクリメントされます。ループが終了したら、sumとカウンタの最後の値（-1して調整）が出力されます。",
+            "answer": "Sum: 36, Counter: 8"
+        },
+        {
+            "id": 4,
+            "questionId": "java_loops_4",
+            "title": "do-while文",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class DoWhileExample {\n\n public static void main(String[] args) {\n int number = 10;\n int sum = 0;\n\n do {\n sum += number;\n number -= 2;\n } while (number > 0);\n\n System.out.println(\"Sum: \" + sum);\n }\n}",
+            "explanation": "このプログラムでは、do-while文が使用されています。numberが0より大きい間、sumにnumberを加算し、numberを2減らします。ループが終了したら、sumが出力されます。",
+            "answer": "Sum: 30"
+        },
+        {
+            "id": 5,
+            "questionId": "java_loops_5",
+            "title": "break文と繰り返し",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class BreakExample {\n\n public static void main(String[] args) {\n int sum = 0;\n\n for (int i = 1; i <= 10; i++) {\n sum += i;\n if (sum >= 15) {\n break;\n }\n }\n\n System.out.println(\"Sum: \" + sum);\n }\n}",
+            "explanation": "このプログラムでは、for文とbreak文が使用されています。sumが15以上になったら、ループが終了します。ループが終了したら、sumが出力されます。",
+            "answer": "Sum: 15"
+        },
+        {
+            "id": 6,
+            "questionId": "java_loops_6",
+            "title": "continue文と繰り返し",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class ContinueExample {\n\n public static void main(String[] args) {\n int sum = 0;\n\n for (int i = 1; i <= 10; i++) {\n if (i % 2 == 0) {\n continue;\n }\n sum += i;\n }\n\n System.out.println(\"Sum: \" + sum);\n }\n}",
+            "explanation": "このプログラムでは、for文とcontinue文が使用されています。iが偶数の場合、ループの残りの部分をスキップして次の繰り返しに移ります。ループが終了したら、sumが出力されます。",
+            "answer": "Sum: 25"
+        },
+        {
+            "id": 7,
+            "questionId": "java_loops_7",
+            "title": "二次元配列と繰り返し",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class MatrixSum {\n\n public static void main(String[] args) {\n int[][] matrix = {\n {1, 2, 3},\n {4, 5, 6},\n {7, 8, 9}\n };\n\n int sum = 0;\n\n for (int i = 0; i < matrix.length; i++) {\n for (int j = 0; j < matrix[i].length; j++) {\n sum += matrix[i][j];\n }\n }\n\n System.out.println(\"Sum: \" + sum);\n }\n}",
+            "explanation": "このプログラムでは、二次元配列と二重のfor文が使用されています。外側のfor文は、行のインデックスを繰り返し、内側のfor文は、列のインデックスを繰り返します。各繰り返しで、対応する行と列の要素がsumに加算されます。ループが終了したら、sumが出力されます。",
+            "answer": "Sum: 45"
+        },
+        {
+            "id": 8,
+            "questionId": "java_loops_8",
+            "title": "繰り返しと条件分岐",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class EvenOddSum {\n\n public static void main(String[] args) {\n int evenSum = 0;\n int oddSum = 0;\n\n for (int i = 1; i <= 10; i++) {\n if (i % 2 == 0) {\n evenSum += i;\n } else {\n oddSum += i;\n }\n }\n\n System.out.println(\"Even sum: \" + evenSum + \", Odd sum: \" + oddSum);\n }\n}",
+            "explanation": "このプログラムでは、for文と条件分岐が使用されています。1から10までの数値で、偶数と奇数の合計をそれぞれ計算します。ループが終了したら、evenSumとoddSumが出力されます。",
+            "answer": "Even sum: 30, Odd sum: 25"
+        },
+        {
+            "id": 9,
+            "questionId": "java_loops_9",
+            "title": "配列と繰り返し",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class ArraySum {\n\n public static void main(String[] args) {\n int[] numbers = {2, 4, 6, 8, 10};\n int sum = 0;\n\n for (int number : numbers) {\n sum += number;\n }\n\n System.out.println(\"Sum: \" + sum);\n}\n}",
+            "explanation": "このプログラムでは、配列と拡張for文が使用されています。配列numbersのすべての要素に対して、その要素をsumに加算します。ループが終了したら、sumが出力されます。",
+            "answer": "Sum: 30"
+        },
+        {
+            "id": 10,
+            "questionId": "java_loops_10",
+            "title": "文字列と繰り返し",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class StringReversal {\n\n public static void main(String[] args) {\n String input = \"Hello, World!\";\n String reversed = \"\";\n\n for (int i = input.length() - 1; i >= 0; i--) {\n reversed += input.charAt(i);\n }\n\n System.out.println(\"Reversed: \" + reversed);\n }\n}",
+            "explanation": "このプログラムでは、文字列とfor文が使用されています。入力文字列を逆順に並べ替えるために、文字列の最後の文字から最初の文字まで繰り返します。各繰り返しで、reversedに現在の文字が追加されます。ループが終了したら、reversedが出力されます。",
+            "answer": "Reversed: !dlroW ,olleH"
+        },
+        {
+            "id": 11,
+            "questionId": "java_loops_11",
+            "title": "二次元配列と繰り返し",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class MatrixSum {\n\n public static void main(String[] args) {\n int[][] matrix = {\n {1, 2, 3},\n {4, 5, 6},\n {7, 8, 9}\n };\n\n int sum = 0;\n\n for (int i = 0; i < matrix.length; i++) {\n for (int j = 0; j < matrix[i].length; j++) {\n sum += matrix[i][j];\n }\n }\n\n System.out.println(\"Sum: \" + sum);\n }\n}",
+            "explanation": "このプログラムでは、二次元配列と二重for文が使用されています。二重for文を使用して、すべての要素にアクセスし、その値をsumに加算します。ループが終了したら、sumが出力されます。",
+            "answer": "Sum: 45"
+        },
+        {
+            "id": 12,
+            "questionId": "java_loops_12",
+            "title": "Fibonacci数列",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class Fibonacci {\n\n public static void main(String[] args) {\n int n = 10;\n int[] fibonacci = new int[n];\n\n fibonacci[0] = 0;\n fibonacci[1] = 1;\n\n for (int i = 2; i < n; i++) {\n fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];\n }\n\n System.out.println(\"The \" + n + \"th Fibonacci number is: \" + fibonacci[n - 1]);\n }\n}",
+            "explanation": "このプログラムでは、Fibonacci数列の最初のn個の数を計算しています。Fibonacci数列は、各数が前の2つの数の和である数列です。このプログラムでは、10番目のFibonacci数を計算して出力します。",
+            "answer": "The 10th Fibonacci number is: 34"
+        },
+        {
+            "id": 13,
+            "questionId": "java_loops_13",
+            "title": "奇数の総和",
+            "question": "1から100までの奇数の総和を求めるプログラムを作成してください。\n",
+            "explanation": "この問題では、1から100までの奇数の総和を求めるプログラムを作成します。for文を使って1から100までの数をループさせ、奇数かどうかを判断して総和に加算します。",
+            "answer": "public class OddSum {\n\n public static void main(String[] args) {\n int sum = 0;\n\n // 1から100までのループ\n for (int i = 1; i <= 100; i++) {\n // 奇数かどうかを判断\n if (i % 2 != 0) {\n sum += i; // 奇数の場合、総和に加算\n }\n }\n\n System.out.println(\"The sum of odd numbers from 1 to 100 is: \" + sum);\n }\n}",
+            "output": "The sum of odd numbers from 1 to 100 is: 2500"
+        },
+        {
+            "id": 14,
+            "questionId": "java_loops_14",
+            "title": "繰り返しと文字列",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class StringLoop {\n\n public static void main(String[] args) {\n String str = \"Hello, World!\";\n int count = 0;\n\n for (int i = 0; i < str.length(); i++) {\n if (str.charAt(i) == 'o') {\n count++;\n }\n }\n\n System.out.println(\"The letter 'o' appears \" + count + \" times.\");\n }\n}",
+            "explanation": "このプログラムでは、文字列中の特定の文字が何回登場するかをカウントしています。このプログラムでは、文字列\"Hello, World!\"で文字'o'が何回登場するかをカウントし、結果を出力します。",
+            "answer": "The letter 'o' appears 2 times."
+        },
+        {
+            "id": 15,
+            "questionId": "java_loops_15",
+            "title": "逆数の和",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class HarmonicSum {\n\n public static void main(String[] args) {\n int n = 10;\n double sum = 0;\n\n for (int i = 1; i <= n; i++) {\n sum += 1.0 / i;\n }\n\n System.out.printf(\"The harmonic sum of the first %d numbers is: %.2f\", n, sum);\n }\n}",
+            "explanation": "このプログラムでは、最初のn個の正の整数の逆数の和（ハーモニック和）を計算しています。このプログラムでは、最初の10個の正の整数のハーモニック和を計算し、結果を出力します。",
+            "answer": "The harmonic sum of the first 10 numbers is: 2.93"
+        },
+        {
+            "id": 16,
+            "questionId": "java_loops_16",
+            "title": "累乗",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class Power {\n\npublic static void main(String[] args) {\n int base = 2;\n int exponent = 10;\n int result = 1;\n\n for (int i = 0; i < exponent; i++) {\n result = base;\n }\n\n System.out.printf(\"%d to the power of %d is: %d\", base, exponent, result);\n }\n}",
+            "explanation": "このプログラムでは、ある数の累乗を計算しています。このプログラムでは、基数が2で、指数が10の累乗を計算し、結果を出力します。",
+            "answer": "2 to the power of 10 is: 1024"
+        },
+        {
+            "id": 17,
+            "questionId": "java_loops_17",
+            "title": "ピラミッド",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class Pyramid {\n\n public static void main(String[] args) {\n int n = 5;\n\n for (int i = 1; i <= n; i++) {\n for (int j = 1; j <= n - i; j++) {\n System.out.print(\" \");\n }\n\n for (int k = 1; k <= 2 * i - 1; k++) {\n System.out.print(\"\");\n }\n\n System.out.println();\n }\n }\n}",
+            "explanation": "このプログラムでは、ピラミッド形状のパターンを表示しています。このプログラムでは、高さが5のピラミッドを表示します。",
+            "answer": " *\n ***\n ***\n \n"
+        },
+        {
+            "id": 18,
+            "questionId": "java_loops_18",
+            "title": "奇数の合計",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class OddSum {\n\n public static void main(String[] args) {\n int n = 10;\n int sum = 0;\n\n for (int i = 1; i <= n; i += 2) {\n sum += i;\n }\n\n System.out.printf(\"The sum of the first %d odd numbers is: %d\", n, sum);\n }\n}",
+            "explanation": "このプログラムでは、最初のn個の奇数の合計を計算しています。このプログラムでは、最初の10個の奇数の合計を計算し、結果を出力します。",
+            "answer": "The sum of the first 10 odd numbers is: 25"
+        },
+        {
+            "id": 19,
+            "questionId": "java_loops_19",
+            "title": "配列の最大値",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class MaxValue {\n\n public static void main(String[] args) {\n int[] numbers = {3,8, 2, 7, 5, 11, 20, 1};\n int max = numbers[0];\n\n for (int i = 1; i < numbers.length; i++) {\n if (numbers[i] > max) {\n max = numbers[i];\n }\n }\n\n System.out.println(\"The maximum value in the array is: \" + max);\n }\n}",
+            "explanation": "このプログラムでは、整数配列内の最大値を見つけています。このプログラムでは、配列{3, 8, 2, 7, 5, 11, 20, 1}内の最大値を見つけ、結果を出力します。",
+            "answer": "The maximum value in the array is: 20"
+        },
+        {
+            "id": 20,
+            "questionId": "java_loops_20",
+            "title": "九九の表",
+            "question": "次のプログラムの実行結果を予想してください。\n\npublic class MultiplicationTable {\n\n public static void main(String[] args) {\n for (int i = 1; i <= 9; i++) {\n for (int j = 1; j <= 9; j++) {\n System.out.printf(\"%3d\", i * j);\n }\n System.out.println();\n }\n }\n}",
+            "explanation": "このプログラムでは、九九の表を表示しています。for文を2つネストして、1から9までの掛け算の結果を表示します。",
+            "answer": " 1 2 3 4 5 6 7 8 9\n 2 4 6 8 10 12 14 16 18\n 3 6 9 12 15 18 21 24 27\n 4 8 12 16 20 24 28 32 36\n 5 10 15 20 25 30 35 40 45\n 6 12 18 24 30 36 42 48 54\n 7 14 21 28 35 42 49 56 63\n 8 16 24 32 40 48 56 64 72\n 9 18 27 36 45 54 63 72 81"
+        }
+    ]
+}

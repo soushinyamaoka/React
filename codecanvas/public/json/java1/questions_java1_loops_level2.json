@@ -1,0 +1,166 @@
+{
+    "contentsId": "java_loops",
+    "title": "Javaの繰り返し問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_loops_mid1",
+            "title": "1からnまでの合計",
+            "question": "整数nが与えられた場合、1からnまでの合計を計算して出力するプログラムを作成してください。\n\n入力:\n- int型の変数nが与えられます。\n\n出力:\n- 1からnまでの合計を計算し、System.out.printlnメソッドで出力してください。",
+            "explanation": "forループを使用して1からnまでの整数を順番に足していきます。ループ変数を初期値1から始め、ループ変数がn以下の間、ループ変数を1ずつ増やして繰り返します。合計を格納する変数にループ変数を加算していき、最後に合計を出力します。",
+            "answer": "public class SumFromOneToN {\n\n  public static void main(String[] args) {\n    int n = 10;\n    int sum = 0;\n\n    for (int i = 1; i <= n; i++) {\n      sum += i;\n    }\n\n    System.out.println(sum);\n    // 出力: 55\n  }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java_loops_mid2",
+            "title": "偶数のみの合計",
+            "question": "整数nが与えられた場合、1からnまでの偶数のみの合計を計算して出力するプログラムを作成してください。\n\n入力:\n- int型の変数nが与えられます。\n\n出力:\n- 1からnまでの偶数のみの合計を計算し、System.out.printlnメソッドで出力してください。",
+            "explanation": "forループを使用して1からnまでの整数を順番に足していきますが、偶数のみを対象とします。ループ変数を初期値2から始め、ループ変数がn以下の間、ループ変数を2ずつ増やして繰り返します。合計を格納する変数にループ変数を加算していき、最後に合計を出力します。",
+            "answer": "public class SumEvenNumbers {\n\n  public static void main(String[] args) {\n    int n = 10;\n    int sum = 0;\n\n    for (int i = 2; i <= n; i += 2) {\n      sum += i;\n    }\n\n    System.out.println(sum);\n    // 出力: 30\n  }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java_loops_mid3",
+            "title": "奇数の乗算",
+            "question": "整数nが与えられた場合、1からnまでの奇数の乗算の結果を計算して出力するプログラムを作成してください。\n\n入力:\n- int型の変数nが与えられます。\n\n出力:\n- 1からnまでの奇数の乗算の結果を計算し、System.out.printlnメソッドで出力してください。",
+            "explanation": "forループを使用して1からnまでの整数を順番に乗算していきますが、奇数のみを対象とします。ループ変数を初期値1から始め、ループ変数がn以下の間、ループ変数を2ずつ増やして繰り返します。乗算結果を格納する変数にループ変数を乗算していき、最後に乗算結果を出力します。",
+            "answer": "public class MultiplyOddNumbers {\n\n  public static void main(String[] args) {\n    int n = 7;\n    int product = 1;\n\n    for (int i = 1; i <= n; i += 2) {\n      product *= i;\n    }\n\n    System.out.println(product);\n    // 出力: 105\n  }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java_loops_mid4",
+            "title": "2つの整数間の数値を逆順で出力",
+            "question": "2つの整数aおよびbが与えられた場合、aからbまでの数値を逆順で出力するプログラムを作成してください。\n\n入力:\n- int型の変数aおよびbが与えられます。\n\n出力:\n- aからbまでの数値を逆順で出力してください。出力にはSystem.out.printlnメソッドを使用してください。",
+            "explanation": "forループを使用して、初期値をaとし、終了条件にb以下として、ループ変数を1ずつ減らして繰り返します。ループの中でループ変数を出力します。",
+            "answer": "public class ReverseNumbers {\n\n  public static void main(String[] args) {\n    int a = 5;\n    int b = 1;\n\n    for (int i = a; i >= b; i--) {\n      System.out.println(i);\n      // 出力: 5, 4, 3, 2, 1\n    }\n  }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java_loops_mid5",
+            "title": "偶数のみ出力する",
+            "question": "整数nが与えられた場合、1からnまでの偶数を出力するプログラムを作成してください。\n\n入力:\n- int型の変数nが与えられます。\n\n出力:\n- 1からnまでの偶数を出力してください。出力にはSystem.out.printlnメソッドを使用してください。",
+            "explanation": "forループを使用して、初期値を1とし、終了条件にn以下として、ループ変数を1ずつ増やして繰り返します。ループの中で、ループ変数が偶数であるかどうかを確認し、偶数であれば出力します。",
+            "answer": "public class EvenNumbers {\n\n  public static void main(String[] args) {\n    int n = 10;\n\n    for (int i = 1; i <= n; i++) {\n      if (i % 2 == 0) {\n        System.out.println(i);\n        // 出力: 2, 4, 6, 8, 10\n      }\n    }\n  }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java_loops_mid6",
+            "title": "3と5の倍数",
+            "question": "整数nが与えられた場合、1からnまでの数のうち、3の倍数、5の倍数、および3と5の倍数をそれぞれ出力するプログラムを作成してください。\n\n入力:\n- int型の変数nが与えられます。\n\n出力:\n- 1からnまでの数のうち、3の倍数、5の倍数、および3と5の倍数をそれぞれ出力してください。出力にはSystem.out.printlnメソッドを使用してください。",
+            "explanation": "forループを使用して、初期値を1とし、終了条件にn以下として、ループ変数を1ずつ増やして繰り返します。ループの中で、ループ変数が3の倍数、5の倍数、および3と5の倍数であるかどうかを確認し、該当する場合に出力します。",
+            "answer": "public class MultipleThreeFive {\n\n  public static void main(String[] args) {\n    int n = 30;\n\n    for (int i = 1; i <= n; i++) {\n      if (i % 3 == 0 && i % 5 == 0) {\n        System.out.println(i + \" is a multiple of 3 and 5.\");\n      } else if (i % 3 == 0) {\n        System.out.println(i + \" is a multiple of 3.\");\n      } else if (i % 5 == 0) {\n        System.out.println(i + \" is a multiple of 5.\");\n      }\n    }\n  }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java_loops_mid7",
+            "title": "偶数番目の数の合計",
+            "question": "整数配列が与えられた場合、偶数番目の数の合計を計算するプログラムを作成してください。\n\n入力:\n- int[]型の変数numsが与えられます。\n\n出力:\n- 偶数番目の数の合計を計算し、System.out.printlnメソッドを使用して出力してください。",
+            "explanation": "forループを使用して、初期値を1とし、終了条件に配列の長さ以下として、ループ変数を2ずつ増やして繰り返します。ループの中で、偶数番目の数を合計する変数に加算します。ループが終了したら、合計を出力します。",
+            "answer": "public class SumEvenElements {\n\n  public static void main(String[] args) {\n    int[] nums = {3, 5, 7, 2, 8, 10, 11, 65, 72, 81, 99, 100, 150, 30};\n    int sum = 0;\n\n    for (int i = 1; i < nums.length; i += 2) {\n      sum += nums[i];\n    }\n\n    System.out.println(\"The sum of even elements is: \" + sum);\n  }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java_loops_mid8",
+            "title": "配列の要素を逆順に表示",
+            "question": "整数配列が与えられた場合、配列の要素を逆順に表示するプログラムを作成してください。\n\n入力:\n- int[]型の変数numsが与えられます。\n\n出力:\n- 配列の要素を逆順に表示するプログラムを作成し、System.out.printlnメソッドを使用して出力してください。",
+            "explanation": "forループを使用して、初期値を配列の長さ-1とし、終了条件に0以上として、ループ変数を1ずつ減らして繰り返します。ループの中で、配列の要素を逆順に出力します。",
+            "answer": "public class ReverseArray {\n\n  public static void main(String[] args) {\n    int[] nums = {3, 5, 7, 2, 8, 10, 11, 65, 72, 81, 99, 100, 150, 30};\n\n    System.out.println(\"Reversed array:\");\n    for (int i = nums.length - 1; i >= 0; i--) {\n      System.out.print(nums[i] + \" \");\n    }\n  }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java_loops_mid9",
+            "title": "2次元配列の合計",
+            "question": "2次元配列が与えられた場合、すべての要素の合計を計算するプログラムを作成してください。\n\n入力:\n- int[][]型の変数matrixが与えられます。\n\n出力:\n- 2次元配列のすべての要素の合計を計算し、System.out.printlnメソッドを使用して出力してください。",
+            "explanation": "2つのネストされたforループを使用して、2次元配列のすべての要素を巡回し、合計を計算します。外側のループは行を、内側のループは列を繰り返します。",
+            "answer": "public class MatrixSum {\n\n  public static void main(String[] args) {\n    int[][] matrix = {\n        {1, 2, 3},\n        {4, 5, 6},\n        {7, 8, 9}\n    };\n\n    int sum = 0;\n    for (int i = 0; i < matrix.length; i++) {\n      for (int j = 0; j < matrix[i].length; j++) {\n        sum += matrix[i][j];\n      }\n    }\n\n    System.out.println(\"Total sum: \" + sum);\n  }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java_loops_mid10",
+            "title": "逆三角形の表示",
+            "question": "次の条件に従って、逆三角形を表示するプログラムを作成してください。\n\n入力:\n- int型の変数nが与えられます。\n\n出力:\n- n行の逆三角形を表示します。各行にはアスタリスク(*)が表示され、各行のアスタリスクの数は、最初の行でn個から始まり、各行で1つずつ減らしていきます。\n- System.out.printlnメソッドを使用して出力してください。",
+            "explanation": "forループを使って行を繰り返し、ネストされたforループを使って各行のアスタリスクを表示します。内側のループは、各行に必要なアスタリスクの数に基づいて繰り返されます。",
+            "answer": "public class InvertedTriangle {\n\n  public static void main(String[] args) {\n    int n = 5;\n\n    for (int i = n; i > 0; i--) {\n      for (int j = 0; j < i; j++) {\n        System.out.print(\"*\");\n      }\n      System.out.println();\n    }\n  }\n}"
+        },
+        {
+            "id": 11,
+            "questionId": "java_loops_mid11",
+            "title": "配列の合計",
+            "question": "次の条件に従って、int型配列の要素の合計を計算するプログラムを作成してください。\n\n入力:\n- int型の配列arrが与えられます。\n\n出力:\n- 配列arrの要素の合計を計算し、System.out.printlnメソッドを使用して出力してください。",
+            "explanation": "forループを使って配列の各要素にアクセスし、その値を合計変数に加算します。ループが終了したら、合計変数の値を出力します。",
+            "answer": "public class ArraySum {\n\n  public static void main(String[] args) {\n    int[] arr = {1, 2, 3, 4, 5};\n    int sum = 0;\n\n    for (int i = 0; i < arr.length; i++) {\n      sum += arr[i];\n    }\n\n    System.out.println(\"合計: \" + sum);\n    // 予想される出力結果: 合計: 15\n  }\n}"
+        },
+        {
+            "id": 12,
+            "questionId": "java_loops_mid12",
+            "title": "偶数のみを表示",
+            "question": "1からnまでの整数のうち、偶数のみを表示するプログラムを作成してください。\n\n入力:\n- int型の変数nが与えられます。\n\n出力:\n- 1からnまでの整数のうち、偶数のみをSystem.out.printlnメソッドを使用して出力してください。",
+            "explanation": "forループを使って1からnまでの整数にアクセスし、条件分岐を使って偶数のみを出力します。",
+            "answer": "public class EvenNumbers {\n\n  public static void main(String[] args) {\n    int n = 10;\n\n    for (int i = 1; i <= n; i++) {\n      if (i % 2 == 0) {\n        System.out.println(i);\n        // 予想される出力結果: 2, 4, 6, 8, 10\n      }\n    }\n  }\n}"
+        },
+        {
+            "id": 13,
+            "questionId": "java_loops_mid13",
+            "title": "逆三角形の描画",
+            "question": "次のような逆三角形を描画するプログラムを作成してください。\n\n```\n*****\n ****\n  ***\n   **\n    *\n```\n\n入力:\n- int型の変数nが与えられます。この場合、n = 5です。\n\n出力:\n- n行の逆三角形をSystem.out.printlnメソッドを使用して出力してください。",
+            "explanation": "forループを2つ使用して、空白とアスタリスクを適切な数だけ出力することで逆三角形を描画します。",
+            "answer": "public class InvertedTriangle {\n\n  public static void main(String[] args) {\n    int n = 5;\n\n    for (int i = 0; i < n; i++) {\n      for (int j = 0; j < i; j++) {\n        System.out.print(' ');\n      }\n      for (int k = n - i; k > 0; k--) {\n        System.out.print('*');\n      }\n      System.out.println();\n      // 予想される出力結果:\n      // *****\n      //  ****\n      //   ***\n      //    **\n      //     *\n    }\n  }\n}"
+        },
+        {
+            "id": 14,
+            "questionId": "java_loops_mid14",
+            "title": "FizzBuzzゲーム",
+            "question": "1からnまでの数字について、次のルールに従ってFizzBuzzゲームを実装してください。\n\n- 数字が3の倍数のとき、\"Fizz\"と出力する。\n- 数字が5の倍数のとき、\"Buzz\"と出力する。\n- 数字が3と5の両方の倍数のとき、\"FizzBuzz\"と出力する。\n- それ以外の場合、その数字を出力する。\n\n入力:\n- int型の変数nが与えられます。この場合、n = 15です。\n\n出力:\n- 1からnまでの数字に対して、上記ルールに従った結果をSystem.out.printlnメソッドを使用して出力してください。",
+            "explanation": "forループを使用して1からnまでの数字に対して、条件分岐を行い、FizzBuzzゲームのルールに従って出力します。",
+            "answer": "public class FizzBuzz {\n\n  public static void main(String[] args) {\n    int n = 15;\n\n    for (int i = 1; i <= n; i++) {\n      if (i % 3 == 0 && i % 5 == 0) {\n        System.out.println(\"FizzBuzz\");\n      } else if (i % 3 == 0) {\n        System.out.println(\"Fizz\");\n      } else if (i % 5 == 0) {\n        System.out.println(\"Buzz\");\n      } else {\n        System.out.println(i);\n      }\n      // 予想される出力結果:\n      // 1\n      // 2\n      // Fizz\n      // 4\n      // Buzz\n      // ... 以下同様\n    }\n  }\n}"
+        },
+        {
+            "id": 15,
+            "questionId": "java_loops_mid15",
+            "title": "指定範囲内の素数",
+            "question": "指定された範囲内で、素数を見つけて出力するJavaプログラムを作成してください。\n\n入力:\n- int型の変数startとendが与えられます。この場合、start = 10, end = 50です。\n\n出力:\n- startからendまでの範囲内にある素数を、System.out.printlnメソッドを使用して出力してください。",
+            "explanation": "範囲内の数に対して、素数かどうかをチェックする関数を作成し、範囲内のすべての数について素数かどうかをチェックします。素数である場合、その数を出力します。",
+            "answer": "public class PrimeNumbers {\n\n  public static void main(String[] args) {\n    int start = 10;\n    int end = 50;\n\n    for (int i = start; i <= end; i++) {\n      if (isPrime(i)) {\n        System.out.println(i);\n        // 予想される出力結果の一部:\n        // 11\n        // 13\n        // 17\n        // ...\n      }\n    }\n  }\n\n  public static boolean isPrime(int num) {\n    if (num <= 1) {\n      return false;\n    }\n    for (int i = 2; i <= Math.sqrt(num); i++) {\n      if (num % i == 0) {\n        return false;\n      }\n    }\n    return true;\n  }\n}"
+        },
+        {
+            "id": 16,
+            "questionId": "java_loops_mid16",
+            "title": "FizzBuzz問題",
+            "question": "1から100までの数字に対して、FizzBuzz問題を解くJavaプログラムを作成してください。\n\n出力:\n- 3の倍数のときは「Fizz」を、5の倍数のときは「Buzz」を、3と5の両方の倍数のときは「FizzBuzz」を出力します。\n- それ以外の場合、数字自体を出力します。\n- 各数字の出力は、System.out.printlnメソッドを使用して行ってください。",
+            "explanation": "1から100までのループを作成し、各数字について3と5の倍数であるかどうかをチェックします。それに応じて、適切な出力を行います。",
+            "answer": "public class FizzBuzz {\n\n  public static void main(String[] args) {\n    for (int i = 1; i <= 100; i++) {\n      if (i % 3 == 0 && i % 5 == 0) {\n        System.out.println(\"FizzBuzz\");\n        // 予想される出力結果の一部:\n        // 15\n        // 30\n        // 45\n        // ...\n      } else if (i % 3 == 0) {\n        System.out.println(\"Fizz\");\n        // 予想される出力結果の一部:\n        // 3\n        // 6\n        // 9\n        // ...\n      } else if (i % 5 == 0) {\n        System.out.println(\"Buzz\");\n        // 予想される出力結果の一部:\n        // 5\n        // 10\n        // 20\n        // ...\n      } else {\n        System.out.println(i);\n      }\n    }\n  }\n}"
+        },
+        {
+            "id": 17,
+            "questionId": "java_loops_mid17",
+            "title": "2次元配列の合計",
+            "question": "次のような5x5の整数型2次元配列を作成し、配列内のすべての要素の合計を求めて表示してください。\n\n1  2  3  4  5\n6  7  8  9  10\n11 12 13 14 15\n16 17 18 19 20\n21 22 23 24 25\n\nSystem.out.printlnメソッドを使用し、出力結果は次の形式で表示してください:\n\n\"Sum: \" + 合計値",
+            "explanation": "5x5の2次元配列を作成し、ネストされたforループを使用して各要素にアクセスし、合計値を求めます。最後に、合計値を表示します。",
+            "answer": "public class ArraySum {\n\n  public static void main(String[] args) {\n    int[][] array = {\n      {1, 2, 3, 4, 5},\n      {6, 7, 8, 9, 10},\n      {11, 12, 13, 14, 15},\n      {16, 17, 18, 19, 20},\n      {21, 22, 23, 24, 25}\n    };\n\n    int sum = 0;\n\n    for (int i = 0; i < array.length; i++) {\n      for (int j = 0; j < array[i].length; j++) {\n        sum += array[i][j];\n      }\n    }\n\n    System.out.println(\"Sum: \" + sum);\n    // 予想される出力結果: Sum: 325\n  }\n}"
+        },
+        {
+            "id": 18,
+            "questionId": "java_loops_mid18",
+            "title": "九九表を表示",
+            "question": "九九表を表示するJavaプログラムを作成してください。各行には1から9までの数値が表示され、各列にも1から9までの数値が表示されるようにしてください。System.out.printfメソッドを使用して、表示される数値が3桁で揃うようにフォーマットしてください。\n\n出力結果の例:\n\n001 002 003 004 005 006 007 008 009\n002 004 006 008 010 012 014 016 018\n...\n...",
+            "explanation": "ネストされたforループを使用して、1から9までの数値を繰り返し乗算し、九九表を作成します。System.out.printfを使用して3桁で数値をフォーマットします。",
+            "answer": "public class MultiplicationTable {\n\n  public static void main(String[] args) {\n    for (int i = 1; i <= 9; i++) {\n      for (int j = 1; j <= 9; j++) {\n        System.out.printf(\"%03d \", i * j);\n      }\n      System.out.println();\n    }\n  }\n}"
+        },
+        {
+            "id": 19,
+            "questionId": "java_loops_mid19",
+            "title": "素数の判定",
+            "question": "与えられた整数が素数であるかどうかを判定するプログラムを作成してください。素数とは、1とその数自身以外に正の約数を持たない1より大きな整数です。\n\n入力:\n素数判定を行う整数n (2 <= n <= 1000)\n\n出力:\n素数であれば\"nは素数です。\"\n素数でなければ\"nは素数ではありません。\"\n\n例:\n\n入力:\n7\n\n出力:\n7は素数です。",
+            "explanation": "素数判定の方法として、与えられた整数nに対して2からn-1までの数で割り切れるかどうかを調べる方法があります。割り切れる数がなければ、その数は素数です。",
+            "answer": "import java.util.Scanner;\n\npublic class PrimeChecker {\n\n  public static void main(String[] args) {\n    Scanner scanner = new Scanner(System.in);\n    int n = scanner.nextInt();\n    boolean isPrime = true;\n\n    for (int i = 2; i < n; i++) {\n      if (n % i == 0) {\n        isPrime = false;\n        break;\n      }\n    }\n\n    if (isPrime) {\n      System.out.println(n + \"は素数です。\");\n    } else {\n      System.out.println(n + \"は素数ではありません。\");\n    }\n  }\n}"
+        },
+        {
+            "id": 20,
+            "questionId": "java_loops_mid20",
+            "title": "フィボナッチ数列の生成",
+            "question": "与えられた整数nに対して、フィボナッチ数列の最初のn項を生成してください。フィボナッチ数列は、最初の2項が1であり、その後の項は前の2つの項の和である数列です。\n\n入力:\nフィボナッチ数列の最初のn項を生成する整数n (1 <= n <= 30)\n\n出力:\nフィボナッチ数列の最初のn項をスペース区切りで出力してください。\n\n例:\n\n入力:\n5\n\n出力:\n1 1 2 3 5",
+            "explanation": "フィボナッチ数列は、最初の2項が1であり、その後の項は前の2つの項の和である数列です。ループを使用して、最初のn項を生成することができます。",
+            "answer": "import java.util.Scanner;\n\npublic class FibonacciGenerator {\n\n  public static void main(String[] args) {\n    Scanner scanner = new Scanner(System.in);\n    int n = scanner.nextInt();\n    int first = 1;\n    int second = 1;\n    int current;\n\n    System.out.print(first + \" \" + second);\n\n    for (int i = 3; i <= n; i++) {\n      current = first + second;\n      System.out.print(\" \" + current);\n      first = second;\n      second = current;\n    }\n\n    System.out.println();\n  }\n}"
+        }
+    ]
+}

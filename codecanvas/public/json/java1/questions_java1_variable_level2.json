@@ -1,0 +1,158 @@
+{
+    "contentsId": "java_variable",
+    "title": "Javaの変数問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java2_1",
+            "title": "配列の宣言と初期化",
+            "question": "int型の配列「numbers」を宣言し、その配列に「3, 5, 8, 13, 21」の5つの要素を持たせてください。",
+            "explanation": "Javaでは、配列を宣言する際には型と変数名の後に「[]」を付け、初期化の際には「{要素1, 要素2, ...}」の形式で要素を記述します。",
+            "answer": "int[] numbers = {3, 5, 8, 13, 21};"
+        },
+        {
+            "id": 2,
+            "questionId": "java2_2",
+            "title": "配列の要素にアクセス",
+            "question": "int型の配列「numbers」が「{1, 2, 3, 4, 5}」で初期化されていると仮定した場合、配列の3番目の要素をSystem.out.printlnで表示してください。",
+            "explanation": "Javaの配列は0から始まるため、3番目の要素にアクセスするにはインデックスとして「2」を使います。",
+            "answer": "int[] numbers = {1, 2, 3, 4, 5};\nSystem.out.println(numbers[2]); // 予想される出力: 3"
+        },
+        {
+            "id": 3,
+            "questionId": "java2_3",
+            "title": "配列の長さを取得",
+            "question": "int型の配列「numbers」が「{2, 4, 6, 8, 10}」で初期化されていると仮定した場合、配列の長さをSystem.out.printlnで表示してください。",
+            "explanation": "配列の長さは「配列名.length」で取得できます。",
+            "answer": "int[] numbers = {2, 4, 6, 8, 10};\nSystem.out.println(numbers.length); // 予想される出力: 5"
+        },
+        {},
+        {
+            "id": 5,
+            "questionId": "java2_5",
+            "title": "forループを使った配列の要素の表示",
+            "question": "int型の配列「numbers」が「{5, 10, 15, 20, 25}」で初期化されていると仮定した場合、forループを使って配列の全要素をSystem.out.printlnで表示してください。",
+            "explanation": "forループを使って配列の要素にアクセスする際には、ループカウンタをインデックスとして使用します。",
+            "answer": "int[] numbers = {5, 10, 15, 20, 25};\nfor(int i = 0; i < numbers.length; i++) {\n  System.out.println(numbers[i]);\n  // 予想される出力: 5, 10, 15, 20, 25\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java2_6",
+            "title": "配列の要素の合計を計算",
+            "question": "int型の配列「numbers」が「{3, 6, 9, 12, 15}」で初期化されていると仮定した場合、forループを使って配列の要素の合計を計算し、System.out.printlnで表示してください。",
+            "explanation": "forループを使って配列の要素にアクセスし、合計を求める変数に加算していきます。",
+            "answer": "int[] numbers = {3, 6, 9, 12, 15};\nint sum = 0;\nfor(int i = 0; i < numbers.length; i++) {\n  sum += numbers[i];\n}\nSystem.out.println(sum); // 予想される出力: 45"
+        },
+        {
+            "id": 7,
+            "questionId": "java2_7",
+            "title": "2次元配列の宣言と初期化",
+            "question": "int型の2次元配列「matrix」を宣言し、その配列に以下の要素を持たせてください。\n{\n  {1, 2, 3},\n  {4, 5, 6},\n  {7, 8, 9}\n}",
+            "explanation": "2次元配列は、配列の要素が配列である配列です。宣言と初期化は、1次元配列の場合と同様に行います。",
+            "answer": "int[][] matrix = {\n  {1, 2, 3},\n  {4, 5, 6},\n  {7, 8, 9}\n};"
+        },
+        {
+            "id": 8,
+            "questionId": "java2_8",
+            "title": "2次元配列の要素にアクセス",
+            "question": "int型の2次元配列「matrix」が以下のように初期化  されていると仮定した場合、\n{\n  {1, 2, 3},\n  {4, 5, 6},\n  {7, 8, 9}\n}\n2行目3列目の要素をSystem.out.printlnで表示してください。",
+            "explanation": "2次元配列の要素にアクセスするには、2つのインデックスを使います。Javaの配列は0から始まるため、2行目3列目の要素にアクセスするにはインデックスとして「1」と「2」を使います。",
+            "answer": "int[][] matrix = {\n  {1, 2, 3},\n  {4, 5, 6},\n  {7, 8, 9}\n};\nSystem.out.println(matrix[1][2]); // 予想される出力: 6"
+        },
+        {
+            "id": 9,
+            "questionId": "java2_9",
+            "title": "2次元配列の行数と列数を取得",
+            "question": "int型の2次元配列「matrix」が以下のように初期化されていると仮定した場合、\n{\n  {1, 2, 3},\n  {4, 5, 6},\n  {7, 8, 9}\n}\n配列の行数と列数をSystem.out.printlnで表示してください。",
+            "explanation": "2次元配列の行数は「配列名.length」で取得できます。列数は「配列名[0].length」のように、1行目の列数を取得することができます。",
+            "answer": "int[][] matrix = {\n  {1, 2, 3},\n  {4, 5, 6},\n  {7, 8, 9}\n};\nSystem.out.println(\"Rows: \" + matrix.length);\nSystem.out.println(\"Columns: \" + matrix[0].length); // 予想される出力: Rows: 3, Columns: 3"
+        },
+        {
+            "id": 10,
+            "questionId": "java2_10",
+            "title": "2次元配列の要素の合計を計算",
+            "question": "int型の2次元配列「matrix」が以下のように初期化されていると仮定した場合、\n{\n  {1, 2, 3},\n  {4, 5, 6},\n  {7, 8, 9}\n}\nforループを使って配列の要素の合計を計算し、System.out.printlnで表示してください。",
+            "explanation": "2次元配列の要素にアクセスするには、2つのforループを使って行と列のインデックスを指定します。合計を求める変数に加算していきます。",
+            "answer": "int[][] matrix = {\n  {1, 2, 3},\n  {4, 5, 6},\n {7, 8, 9}\n};\nint sum = 0;\nfor (int i = 0; i < matrix.length; i++) {\n for (int j = 0; j < matrix[i].length; j++) {\n sum += matrix[i][j];\n }\n}\nSystem.out.println(sum); // 予想される出力: 45"
+        },
+        {
+            "id": 11,
+            "questionId": "java2_11",
+            "title": "Listの宣言と初期化",
+            "question": "整数の要素を持つArrayListを宣言し、初期化してください。",
+            "explanation": "Listはインターフェースで、実装クラスの1つであるArrayListを使って宣言と初期化を行います。ジェネリクスを使って要素の型を指定します。",
+            "answer": "import java.util.ArrayList;\nimport java.util.List;\n\nList<Integer> list = new ArrayList<>();"
+        },
+        {
+            "id": 12,
+            "questionId": "java2_12",
+            "title": "Listに要素を追加",
+            "question": "整数の要素を持つArrayListが宣言されていると仮定した場合、要素として「10, 20, 30」を追加してください。",
+            "explanation": "Listに要素を追加するには、addメソッドを使用します。",
+            "answer": "import java.util.ArrayList;\nimport java.util.List;\n\nList<Integer> list = new ArrayList<>();\nlist.add(10);\nlist.add(20);\nlist.add(30);"
+        },
+        {
+            "id": 13,
+            "questionId": "java2_13",
+            "title": "Listの要素にアクセス",
+            "question": "整数の要素を持つArrayListが以下のように初期化されていると仮定した場合、\n{10, 20, 30}\n1番目の要素をSystem.out.printlnで表示してください。",
+            "explanation": "Listの要素にアクセスするには、getメソッドとインデックスを使用します。Javaの配列は0から始まるため、1番目の要素にアクセスするにはインデックスとして「0」を使います。",
+            "answer": "import java.util.ArrayList;\nimport java.util.List;\n\nList<Integer> list = new ArrayList<>();\nlist.add(10);\nlist.add(20);\nlist.add(30);\n\nSystem.out.println(list.get(0)); // 予想される出力: 10"
+        },
+        {
+            "id": 14,
+            "questionId": "java2_14",
+            "title": "Listの要素を削除",
+            "question": "整数の要素を持つArrayListが以下のように初期化されていると仮定した場合、\n{10, 20, 30}\n2番目の要素を削除してください。",
+            "explanation": "Listの要素を削除するには、removeメソッドとインデックスを使用します。Javaの配列は0から始まるため、2番目の要素を削除するにはインデックスとして「1」を使います。",
+            "answer": "import java.util.ArrayList;\nimport java.util.List;\n\nList<Integer> list = new ArrayList<>();\nlist.add(10);\nlist.add(20);\nlist.add(30);\n\nlist.remove(1);"
+        },
+        {
+            "id": 15,
+            "questionId": "java2_15",
+            "title": "Listの要素数を取得",
+            "question": "整数の要素を持つArrayListが以下のように初期化されていると仮定した場合、\n{10, 20, 30}\nListの要素数をSystem.out.printlnで表示してください。",
+            "explanation": "Listの要素数を取得するには、sizeメソッドを使用します。",
+            "answer": "import java.util.ArrayList;\nimport java.util.List;\n\nList<Integer> list = new ArrayList<>();\nlist.add(10);\nlist.add(20);\nlist.add(30);\n\nSystem.out.println(list.size()); // 予想される出力: 3"
+        },
+        {
+            "id": 16,
+            "questionId": "java2_16",
+            "title": "Listの要素をforループで処理",
+            "question": "整数の要素を持つArrayListが以下のように初期化されていると仮定した場合、\n{10, 20, 30}\nforループを使って、Listの要素をそれぞれSystem.out.printlnで表示してください。",
+            "explanation": "Listの要素をforループで処理する方法は2つあります。1つ目は、インデックスを使って要素にアクセスする方法です。2つ目は、拡張forループ（foreach）を使って要素にアクセスする方法です。",
+            "answer": "import java.util.ArrayList;\nimport java.util.List;\n\nList<Integer> list = new ArrayList<>();\nlist.add(10);\nlist.add(20);\nlist.add(30);\n\n// 方法1: インデックスを使う\nfor (int i = 0; i < list.size(); i++) {\n System.out.println(list.get(i));\n}\n\n// 方法2: 拡張forループを使う\nfor (int num : list) {\n System.out.println(num);\n}\n\n// 予想される出力: 10, 20, 30 (2回表示される)"
+        },
+        {
+            "id": 17,
+            "questionId": "java2_17",
+            "title": "配列をListに変換",
+            "question": "整数の配列が以下のように初期化されていると仮定した場合、\nint[] arr = {1, 2, 3};\n配列をArrayListに変換し、そのArrayListをSystem.out.printlnで表示してください。",
+            "explanation": "配列をListに変換するには、ArraysクラスのasListメソッドを使用して、配列を一時的なListに変換し、その後に新しいArrayListに変換します。",
+            "answer": "import java.util.Arrays;\nimport java.util.ArrayList;\nimport java.util.List;\n\nint[] arr = {1, 2, 3};\nList<Integer> list = new ArrayList<>(Arrays.asList(arr));\nSystem.out.println(list); // 予想される出力: [1, 2, 3]"
+        },
+        {
+            "id": 18,
+            "questionId": "java2_18",
+            "title": "Listを配列に変換",
+            "question": "整数の要素を持つArrayListが以下のように初期化されていると仮定した場合、\n{10, 20, 30}\nListを整数型の配列に変換し、その配列の要素をforループで表示してください。",
+            "explanation": "Listを配列に変換するには、toArrayメソッドを使用して新しい配列に変換します。",
+            "answer": "import java.util.ArrayList;\nimport java.util.List;\n\nList<Integer> list = new ArrayList<>();\nlist.add(10);\nlist.add(20);\nlist.add(30);\n\nInteger[] arr = list.toArray(new Integer[0]);\nfor (int num : arr) {\n System.out.println(num);\n}\n\n// 予想される出力: 10, 20, 30"
+        },
+        {
+            "id": 19,
+            "questionId": "java2_19",
+            "title": "Listの要素を逆順に並べ替え",
+            "question": "整数の要素を持つArrayListが以下のように初期化されていると仮定した場合、\n{10, 20, 30}\nListの要素を逆順に並べ替えて、System.out.printlnで表示してください。",
+            "explanation": "Listの要素を逆順に並べ替えるには、Collectionsクラスのreverseメソッドを使用します。",
+            "answer": "import java.util.ArrayList;\nimport java.util.List;\nimport java.util.Collections;\n\nList<Integer> list = new ArrayList<>();\nlist.add(10);\nlist.add(20);\nlist.add(30);\n\nCollections.reverse(list);\nSystem.out.println(list); // 予想される出力: [30, 20, 10]"
+        },
+        {
+            "id": 20,
+            "title": "Listの要素をソート",
+            "question": "整数の要素を持つArrayListが以下のように初期化されていると仮定した場合、\n{30, 10, 20}\nListの要素を昇順に並べ替えて、System.out.printlnで表示してください。",
+            "explanation": "Listの要素を昇順にソートするには、Collectionsクラスのsortメソッドを使用します。",
+            "answer": "import java.util.ArrayList;\nimport java.util.List;\nimport java.util.Collections;\n\nList<Integer> list = new ArrayList<>();\nlist.add(30);\nlist.add(10);\nlist.add(20);\n\nCollections.sort(list);\nSystem.out.println(list); // 予想される出力: [10, 20, 30]"
+        }
+    ]
+}

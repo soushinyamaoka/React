@@ -1,0 +1,166 @@
+{
+    "contentsId": "javascript1",
+    "title": "javascriptのデータ型問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "javascript1_1",
+            "title": "データ型",
+            "question": "以下のデータ型のうち、正しいものを選択しなさい。\n1. number\n2. string\n3. boolean\n4. all of the above",
+            "explanation": "JavaScriptにおいて、numberは数値、stringは文字列、booleanは真偽値を表します。従って、正しい選択肢は4となります。",
+            "answer": "4"
+        },
+        {
+            "id": 2,
+            "questionId": "javascript1_2",
+            "title": "数値型",
+            "question": "以下のうち、数値型として扱われないものはどれでしょうか？\n1. 3.14\n2. 0\n3. \"123\"\n4. NaN",
+            "explanation": "JavaScriptにおいて、numberは数値を表します。従って、数値型として扱われるのは1と2のみです。3は文字列型であり、4はNot a Number（NaN）という特殊な値です。",
+            "answer": "3"
+        },
+        {
+            "id": 3,
+            "questionId": "javascript1_3",
+            "title": "文字列型",
+            "question": "以下のうち、文字列型として扱われるものはどれでしょうか？\n1. 3.14\n2. true\n3. \"Hello, world!\"\n4. undefined",
+            "explanation": "JavaScriptにおいて、stringは文字列を表します。従って、文字列型として扱われるのは3のみです。1は数値型、2は真偽値型、4は未定義値（undefined）です。",
+            "answer": "3"
+        },
+        {
+            "id": 4,
+            "questionId": "javascript1_4",
+            "title": "真偽値型",
+            "question": "以下のうち、真偽値型として扱われるものはどれでしょうか？\n1. 3.14\n2. false\n3. \"true\"\n4. null",
+            "explanation": "JavaScriptにおいて、booleanは真偽値を表します。従って、真偽値型として扱われるのは2のみです。1は数値型、3は文字列型、4はnullという特殊な値です。",
+            "answer": "2"
+        },
+        {
+            "id": 5,
+            "questionId": "javascript1_5",
+            "title": "undefinedとnull",
+            "question": "undefinedとnullの違いについて説明してください。",
+            "explanation": "undefinedとnullはどちらも値が存在しないことを表しますが、その理由が異なります。undefinedは、変数が宣言されているが、値が代入されていない場合や、オブジェクトのプロパティが存在しない場合に発生します。一方、nullはプログラマーが値が存在しないことを明示的に指定した場合に使用されます。",
+            "answer": "// undefinedとnullの違いは、undefinedは変数が宣言されているが、値が代入されていない場合や、オブジェクトのプロパティが存在しない場合に発生し、nullはプログラマーが値が存在しないことを明示的に指定した場合に使用されます。"
+        },
+        {
+            "id": 6,
+            "questionId": "javascript1_6",
+            "title": "型変換",
+            "question": "以下のコードを実行した場合、どのような結果になるでしょうか？\n\nvar x = \"5\";\nvar y = 2;\nconsole.log(x + y);",
+            "explanation": "文字列と数値を足し算すると、文字列として連結されます。従って、xとyを足し算した結果は「52」となります。",
+            "answer": "// 結果は「52」となる。"
+        },
+        {
+            "id": 7,
+            "questionId": "javascript1_7",
+            "title": "Boolean()関数",
+            "question": "Boolean(\"Hello, world!\")の戻り値は何でしょうか？",
+            "explanation": "Boolean()関数は引数を真偽値型に変換します。文字列型の場合、空文字列以外はtrueとなります。従って、Boolean(\"Hello, world!\")の戻り値はtrueとなります。",
+            "answer": "true"
+        },
+        {
+            "id": 8,
+            "questionId": "javascript1_8",
+            "title": "Number()関数",
+            "question": "以下のコードを実行した場合、どのような結果になるでしょうか？\n\nNumber(\"3.14\")",
+            "explanation": "Number()関数は引数を数値型に変換します。文字列型の場合、数値に変換可能な文字列であれば数値に変換されます。従って、Number(\"3.14\")の戻り値は3.14となります。",
+            "answer": "// 結果は3.14となる。"
+        },
+        {
+            "id": 9,
+            "questionId": "javascript1_9",
+            "title": "String()関数",
+            "question": "以下のコードを実行した場合、どのような結果になるでしょうか？\n\nString(123)",
+            "explanation": "String()関数は引数を文字列型に変換します。数値型の場合、数値を文字列に変換します。従って、String(123)の戻り値は\"123\"となります。",
+            "answer": "// 結果は\"123\"となる。"
+        },
+        {
+            "id": 10,
+            "questionId": "javascript1_10",
+            "title": "型変換",
+            "question": "以下のコードを実行した場合、どのような結果になるでしょうか？\n\nvar x = 10;\nvar y = \"5\";\nconsole.log(x - y);",
+            "explanation": "文字列と数値を引き算すると、文字列が数値に変換されます。従って、yが数値に変換され、xから引かれた結果は5となります。",
+            "answer": "// 結果は5となる。"
+        },
+        {
+            "id": 11,
+            "questionId": "javascript1_11",
+            "title": "型変換",
+            "question": "以下のコードを実行した場合、どのような結果になるでしょうか？\n\nvar x = true;\nvar y = false;\nconsole.log(x + y);",
+            "explanation": "trueは数値型で1、falseは数値型で0として扱われます。従って、xとyを足し算した結果は1+0=1となります。",
+            "answer": "// 結果は1となる。"
+        },
+        {
+            "id": 12,
+            "questionId": "javascript1_12",
+            "title": "型変換",
+            "question": "以下のコードを実行した場合、どのような結果になるでしょうか？\n\nvar x = 10;\nvar y = \"5\";\nconsole.log(x + y);",
+            "explanation": "文字列と数値を足し算すると、文字列として連結されます。従って、xとyを足し算した結果は「105」となります。",
+            "answer": "// 結果は「105」となる。"
+        },
+        {
+            "id": 13,
+            "questionId": "javascript1_13",
+            "title": "nullとundefined",
+            "question": "nullとundefinedの違いは何でしょうか？",
+            "explanation": "nullとundefinedは、どちらも値が存在しないことを表しますが、その原因が異なります。nullはプログラマが値が存在しないことを明示的に指定した場合に用いられます。一方、undefinedは変数に値が代入されていない、またはオブジェクトに存在しないプロパティにアクセスした場合に用いられます。",
+            "answer": "nullはプログラマが値が存在しないことを明示的に指定した場合に用いられ、undefinedは変数に値が代入されていない、またはオブジェクトに存在しないプロパティにアクセスした場合に用いられる。"
+        },
+        {
+            "id": 14,
+            "questionId": "javascript1_14",
+            "title": "nullとundefined",
+            "question": "以下のコードを実行した場合、どのような結果になるでしょうか？\n\nvar x;\nconsole.log(x);",
+            "explanation": "変数xには値が代入されていないため、xの値はundefinedとなります。",
+            "answer": "// 結果はundefinedとなる。"
+        },
+        {
+            "id": 15,
+            "questionId": "javascript1_15",
+            "title": "nullとundefined",
+            "question": "以下のコードを実行した場合、どのような結果になるでしょうか？\n\nvar x = null;\nconsole.log(x);",
+            "explanation": "変数xにnullが代入されているため、xの値はnullとなります。",
+            "answer": "// 結果はnullとなる。"
+        },
+        {
+            "id": 16,
+            "questionId": "javascript1_16",
+            "title": "真偽値",
+            "question": "以下のコードを実行した場合、どのような結果になるでしょうか？\n\nvar x = 0;\nconsole.log(Boolean(x));",
+            "explanation": "0は偽と判定されます。従って、Boolean関数によって変換された結果はfalseとなります。",
+            "answer": "// 結果はfalseとなる。"
+        },
+        {
+            "id": 17,
+            "questionId": "javascript1_17",
+            "title": "真偽値",
+            "question": "以下のコードを実行した場合、どのような結果になるでしょうか？\n\nvar x = 1;\nconsole.log(Boolean(x));",
+            "explanation": "0以外の数値は真と判定されます。従って、Boolean関数によって変換された結果はtrueとなります。",
+            "answer": "// 結果はtrueとなる。"
+        },
+        {
+            "id": 18,
+            "questionId": "javascript1_18",
+            "title": "真偽値",
+            "question": "以下のコードを実行した場合、どのような結果になるでしょうか？\n\nvar x = \"\";\nconsole.log(Boolean(x));",
+            "explanation": "空文字列は偽と判定されます。従って、Boolean関数によって変換された結果はfalseとなります。",
+            "answer": "// 結果はfalseとなる。"
+        },
+        {
+            "id": 19,
+            "questionId": "javascript1_19",
+            "title": "NaN",
+            "question": "NaNとは何の略称でしょうか？",
+            "explanation": "NaNはNot a Numberの略称です。数値ではない値を表すために用いられます。",
+            "answer": "NaNはNot a Numberの略称で、数値ではない値を表すために用いられる。"
+        },
+        {
+            "id": 20,
+            "questionId": "javascript1_20",
+            "title": "NaN",
+            "question": "以下のコードを実行した場合、どのような結果になるでしょうか？\n\nvar x = 0/0;\nconsole.log(x);",
+            "explanation": "0を0で割った結果は数学的に未定義です。従って、その結果はNaNとなります。",
+            "answer": "// 結果はNaNとなる。"
+        }
+    ]
+}

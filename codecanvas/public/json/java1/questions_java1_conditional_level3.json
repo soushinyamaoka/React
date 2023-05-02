@@ -1,0 +1,166 @@
+{
+    "contentsId": "java3",
+    "title": "Javaの条件分岐問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java3_1",
+            "title": "条件分岐",
+            "question": "与えられた整数nについて、nが3の倍数の場合は\"Fizz\"、5の倍数の場合は\"Buzz\"、15の倍数の場合は\"FizzBuzz\"、それ以外の場合はnを出力するプログラムを作成してください。",
+            "explanation": "この問題では、条件分岐を使って、与えられた整数が3の倍数、5の倍数、15の倍数、またはそれ以外の場合に対応する出力を行います。15の倍数の場合は、3と5の両方の倍数であるため、\"FizzBuzz\"と出力されます。",
+            "answer": "import java.util.Scanner;\n\npublic class FizzBuzz {\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        int n = scanner.nextInt();\n\n        if (n % 15 == 0) {\n            System.out.println(\"FizzBuzz\");\n        } else if (n % 3 == 0) {\n            System.out.println(\"Fizz\");\n        } else if (n % 5 == 0) {\n            System.out.println(\"Buzz\");\n        } else {\n            System.out.println(n);\n        }\n\n        scanner.close();\n    }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java3_2",
+            "title": "条件分岐",
+            "question": "与えられた整数が素数であるかどうかを判定するプログラムを作成してください。",
+            "explanation": "素数は、1とその数自身以外に約数を持たない整数です。この問題では、与えられた整数が素数かどうかを判定するために、2からその数の平方根までの範囲で割り切れるかどうかを調べます。割り切れる場合は素数ではないと判定されます。",
+            "answer": "import java.util.Scanner;\n\npublic class PrimeNumber {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n int n = scanner.nextInt();\n boolean isPrime = true;\n\n if (n <= 1) {\n isPrime = false;\n } else {\n for (int i = 2; i <= Math.sqrt(n); i++) {\n if (n % i == 0) {\n isPrime = false;\n break;\n }\n }\n }\n\n if (isPrime) {\n System.out.println(\"素数です\");\n } else {\n System.out.println(\"素数ではありません\");\n }\n\n scanner.close();\n }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java3_3",
+            "title": "条件分岐",
+            "question": "与えられた年がうるう年かどうかを判定するプログラムを作成してください。うるう年は以下の条件を満たすものとします。\n\n1. 4で割り切れる年\n2. 100で割り切れる年はうるう年ではない\n3. ただし、400で割り切れる年はうるう年",
+            "explanation": "この問題では、与えられた年がうるう年かどうかを判定するために、条件分岐を使用します。条件を満たす場合には、うるう年であることを出力し、そうでない場合には、うるう年ではないことを出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class LeapYear {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n int year = scanner.nextInt();\n\n if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {\n System.out.println(\"うるう年です\");\n } else {\n System.out.println(\"うるう年ではありません\");\n }\n\n scanner.close();\n }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java3_4",
+            "title": "条件分岐",
+            "question": "与えられた整数nについて、nが1から9の間の整数であれば、「1桁の正の整数です」と出力し、それ以外の場合は、「1桁の正の整数ではありません」と出力するプログラムを作成してください。",
+            "explanation": "この問題では、与えられた整数が1桁の正の整数かどうかを判定するために、条件分岐を使用します。条件を満たす場合には、「1桁の正の整数です」と出力し、そうでない場合には、「1桁の正の整数ではありません」と出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class SingleDigit {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n int n = scanner.nextInt();\n\n if (n >= 1 && n <= 9) {\n System.out.println(\"1桁の正の整数です\");\n } else {\n System.out.println(\"1桁の正の整数ではありません\");\n }\n\n scanner.close();\n }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java3_5",
+            "title": "条件分岐",
+            "question": "与えられた整数nについて、nが1から9の間の整数であれば、「1桁の正の整数です」と出力し、nが10から99の間の整数であれば、「2桁の正の整数です」と出力し、それ以外の場合は、「2桁以下の正の整数ではありません」と出力するプログラムを作成してください。",
+            "explanation": "この問題では、与えられた整数が1桁の正の整数か2桁の正の整数か、それ以外かを判定するために、条件分岐を使用します。条件を満たす場合には、対応するメッセージを出力し、そうでない場合には、「2桁以下の正の整数ではありません」と出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class PositiveInteger {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n int n = scanner.nextInt();\n\n if (n >= 1 && n <= 9) {\n System.out.println(\"1桁の正の整数です\");\n } else if (n >= 10 && n <= 99) {\n System.out.println(\"2桁の正の整数です\");\n } else {\n System.out.println(\"2桁以下の正の整数ではありません\");\n }\n\n scanner.close();\n }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java3_6",
+            "title": "条件分岐",
+            "question": "与えられた3つの整数a、b、cについて、その中で最も大きい整数を出力するプログラムを作成してください。",
+            "explanation": "この問題では、与えられた3つの整数の中で最も大きい整数を求めるために、条件分岐を使用します。最大値を求めるために、最初にaとbを比較し、次にその結果とcを比較します。",
+            "answer": "import java.util.Scanner;\n\npublic class LargestNumber {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n int a = scanner.nextInt();\n int b = scanner.nextInt();\n int c = scanner.nextInt();\n\n int max = a;\n\n if (b > max) {\n max = b;\n }\n if (c > max) {\n max = c;\n }\n\n System.out.println(\"最大値: \" + max);\n\n scanner.close();\n }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java3_7",
+            "title": "条件分岐",
+            "question": "与えられた整数nについて、nが偶数であれば、「偶数です」と出力し、奇数であれば、「奇数です」と出力するプログラムを作成してください。",
+            "explanation": "この問題では、与えられた整数が偶数か奇数かを判定するために、条件分岐を使用します。条件を満たす場合には、対応するメッセージを出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class EvenOrOdd {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n int n = scanner.nextInt();\n\n if (n % 2 == 0) {\n System.out.println(\"偶数です\");\n } else {\n System.out.println(\"奇数です\");\n }\n\n scanner.close();\n }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java3_8",
+            "title": "条件分岐",
+            "question": "与えられた整数nについて、nが正の整数であれば、「正の整数です」と出力し、負の整数であれば、「負の整数です」と出力し、0であれば、「0です」と出力するプログラムを作成してください。",
+            "explanation": "この問題では、与えられた整数が正の整数か負の整数か、それとも0かを判定するために、条件分岐を使用します。条件を満たす場合には、対応するメッセージを出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class PositiveNegativeOrZero {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n int n = scanner.nextInt();\n\n if (n > 0) {\n System.out.println(\"正の整数です\");\n } else if (n < 0) {\n System.out.println(\"負の整数です\");\n } else {\n System.out.println(\"0です\");\n }\n\n scanner.close();\n }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java3_9",
+            "title": "条件分岐",
+            "question": "与えられた整数nについて、nが3の倍数であれば、「3の倍数です」と出力し、3の倍数でなければ、「3の倍数ではありません」と出力するプログラムを作成してください。",
+            "explanation": "この問題では、与えられた整数が3の倍数かどうかを判定するために、条件分岐を使用します。条件を満たす場合には、対応するメッセージを出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class MultipleOfThree {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n int n = scanner.nextInt();\n\n if (n % 3 == 0) {\n System.out.println(\"3の倍数です\");\n } else {\n System.out.println(\"3の倍数ではありません\");\n }\n\n scanner.close();\n }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java3_10",
+            "title": "条件分岐",
+            "question": "与えられた2つの整数aとbについて、aとbの大小関係を出力するプログラムを作成してください。aがbより大きい場合、「a > b」、aがbより小さい場合、「a < b」、aとbが等しい場合、「a == b」と出力してください。",
+            "explanation": "この問題では、与えられた2つの整数の大小関係を判定するために、条件分岐を使用します。条件を満たす場合には、対応するメッセージを出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class CompareTwoIntegers {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n int a = scanner.nextInt();\n int b = scanner.nextInt();\n\n if (a > b) {\n System.out.println(\"a > b\");\n } else if (a < b) {\n System.out.println(\"a < b\");\n } else {\n System.out.println(\"a == b\");\n }\n\n scanner.close();\n }\n}"
+        },
+        {
+            "id": 11,
+            "questionId": "java3_11",
+            "title": "条件分岐",
+            "question": "与えられた整数nについて、nが偶数であれば、「偶数です」と出力し、奇数であれば、「奇数です」と出力するプログラムを作成してください。",
+            "explanation": "この問題では、与えられた整数が偶数か奇数かを判定するために、条件分岐を使用します。条件を満たす場合には、対応するメッセージを出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class EvenOrOdd {\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        int n = scanner.nextInt();\n\n        if (n % 2 == 0) {\n            System.out.println(\"偶数です\");\n        } else {\n            System.out.println(\"奇数です\");\n        }\n\n        scanner.close();\n    }\n}"
+        },
+        {
+            "id": 12,
+            "questionId": "java3_12",
+            "title": "条件分岐",
+            "question": "与えられた整数nについて、nが5の倍数であれば、「5の倍数です」と出力し、5の倍数でなければ、「5の倍数ではありません」と出力するプログラムを作成してください。",
+            "explanation": "この問題では、与えられた整数が5の倍数かどうかを判定するために、条件分岐を使用します。条件を満たす場合には、対応するメッセージを出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class MultipleOfFive {\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        int n = scanner.nextInt();\n\n        if (n % 5 == 0) {\n            System.out.println(\"5の倍数です\");\n        } else {\n            System.out.println(\"5の倍数ではありません\");\n        }\n\n        scanner.close();\n    }\n}"
+        },
+        {
+            "id": 13,
+            "questionId": "java3_13",
+            "title": "条件分岐",
+            "question": "与えられた整数nについて、nが正の数であれば、「正の数です」と出力し、負の数であれば、「負の数です」と出力するプログラムを作成してください。",
+            "explanation": "この問題では、与えられた整数が正の数か負の数かを判定するために、条件分岐を使用します。条件を満たす場合には、対応するメッセージを出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class PositiveOrNegative {\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n int n = scanner.nextInt();\n\n if (n > 0) {\n System.out.println(\"正の数です\");\n } else if (n < 0) {\n System.out.println(\"負の数です\");\n } else {\n System.out.println(\"0です\");\n }\n\n scanner.close();\n }\n}"
+        },
+        {
+            "id": 14,
+            "questionId": "java3_14",
+            "title": "条件分岐",
+            "question": "与えられた整数nについて、nが3の倍数かつ5の倍数であれば、「3と5の倍数です」と出力し、それ以外の場合には、「3と5の倍数ではありません」と出力するプログラムを作成してください。",
+            "explanation": "この問題では、与えられた整数が3の倍数かつ5の倍数かどうかを判定するために、条件分岐を使用します。条件を満たす場合には、対応するメッセージを出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class MultipleOfThreeAndFive {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n int n = scanner.nextInt();\n\n if (n % 3 == 0 && n % 5 == 0) {\n System.out.println(\"3と5の倍数です\");\n } else {\n System.out.println(\"3と5の倍数ではありません\");\n }\n\n scanner.close();\n }\n}"
+        },
+        {
+            "id": 15,
+            "questionId": "java3_15",
+            "title": "条件分岐",
+            "question": "与えられた整数nについて、nが2の倍数かつ4の倍数であれば、「2と4の倍数です」と出力し、それ以外の場合には、「2と4の倍数ではありません」と出力するプログラムを作成してください。",
+            "explanation": "この問題では、与えられた整数が2の倍数かつ4の倍数かどうかを判定するために、条件分岐を使用します。条件を満たす場合には、対応するメッセージを出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class MultipleOfTwoAndFour {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n int n = scanner.nextInt();\n\n if (n % 2 == 0 && n % 4 == 0) {\n System.out.println(\"2と4の倍数です\");\n } else {\n System.out.println(\"2と4の倍数ではありません\");\n }\n\n scanner.close();\n }\n}"
+        },
+        {
+            "id": 16,
+            "questionId": "java3_16",
+            "title": "条件分岐",
+            "question": "与えられた整数nについて、nが7の倍数であれば、「7の倍数です」と出力し、7の倍数でなければ、「7の倍数ではありません」と出力するプログラムを作成してください。",
+            "explanation": "この問題では、与えられた整数が7の倍数かどうかを判定するために、条件分岐を使用します。条件を満たす場合には、対応するメッセージを出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class MultipleOfSeven {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n int n = scanner.nextInt();\n\n if (n % 7 == 0) {\n System.out.println(\"7の倍数です\");\n } else {\n System.out.println(\"7の倍数ではありません\");\n }\n\n scanner.close();\n }\n}"
+        },
+        {
+            "id": 17,
+            "questionId": "java3_17",
+            "title": "条件分岐",
+            "question": "与えられた整数nについて、nが6の倍数であれば、「6の倍数です」と出力し、6の倍数でなければ、「6の倍数ではありません」と出力するプログラムを作成してください。",
+            "explanation": "この問題では、与えられた整数が6の倍数かどうかを判定するために、条件分岐を使用します。条件を満たす場合には、対応するメッセージを出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class MultipleOfSix {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n int n = scanner.nextInt();\n\n if (n % 6 == 0) {\n System.out.println(\"6の倍数です\");\n } else {\n System.out.println(\"6の倍数ではありません\");\n }\n\n scanner.close();\n }\n}"
+        },
+        {
+            "id": 18,
+            "questionId": "java3_18",
+            "title": "条件分岐",
+            "question": "与えられた整数nについて、nが10の倍数であれば、「10の倍数です」と出力し、10の倍数でなければ、「10の倍数ではありません」と出力するプログラムを作成してください。",
+            "explanation": "この問題では、与えられた整数が10の倍数かどうかを判定するために、条件分岐を使用します。条件を満たす場合には、対応するメッセージを出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class MultipleOfTen {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n int n = scanner.nextInt();\n\nif (n % 10 == 0) {\n System.out.println(\"10の倍数です\");\n } else {\n System.out.println(\"10の倍数ではありません\");\n }\n\n scanner.close();\n }\n}"
+        },
+        {
+            "id": 19,
+            "questionId": "java3_19",
+            "title": "条件分岐",
+            "question": "与えられた整数nについて、nが8の倍数であれば、「8の倍数です」と出力し、8の倍数でなければ、「8の倍数ではありません」と出力するプログラムを作成してください。",
+            "explanation": "この問題では、与えられた整数が8の倍数かどうかを判定するために、条件分岐を使用します。条件を満たす場合には、対応するメッセージを出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class MultipleOfEight {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n int n = scanner.nextInt();\n\n if (n % 8 == 0) {\n System.out.println(\"8の倍数です\");\n } else {\n System.out.println(\"8の倍数ではありません\");\n }\n\n scanner.close();\n }\n}"
+        },
+        {
+            "id": 20,
+            "questionId": "java3_20",
+            "title": "条件分岐",
+            "question": "与えられた整数nについて、nが9の倍数であれば、「9の倍数です」と出力し、9の倍数でなければ、「9の倍数ではありません」と出力するプログラムを作成してください。",
+            "explanation": "この問題では、与えられた整数が9の倍数かどうかを判定するために、条件分岐を使用します。条件を満たす場合には、対応するメッセージを出力します。",
+            "answer": "import java.util.Scanner;\n\npublic class MultipleOfNine {\n\n public static void main(String[] args) {\n Scanner scanner = new Scanner(System.in);\n int n = scanner.nextInt();\n\n if (n % 9 == 0) {\n System.out.println(\"9の倍数です\");\n } else {\n System.out.println(\"9の倍数ではありません\");\n }\n\n scanner.close();\n }\n}"
+        }
+    ]
+}
