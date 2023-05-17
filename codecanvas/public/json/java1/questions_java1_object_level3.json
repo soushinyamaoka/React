@@ -1,0 +1,166 @@
+{
+    "contentsId": "java3",
+    "title": "Javaのオブジェクト問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_object_a3_1",
+            "title": "オブジェクトと配列の複合利用",
+            "question": "次のようなクラスが与えられたとします。\n\npublic class Student {\n  private String name;\n  private int age;\n\n  public Student(String name, int age) {\n    this.name = name;\n    this.age = age;\n  }\n\n  public String getName() {\n    return name;\n  }\n\n  public int getAge() {\n    return age;\n  }\n}\n\nこのクラスを使用して、以下の問題を解決してください。\n\n1. サイズ5のStudentオブジェクト配列を作成し、その要素に適切な名前と年齢を持つStudentオブジェクトを代入してください。\n2. その配列の中で、年齢が18歳以上の学生のみを表示してください。\n\nまた、そのサンプルコードを提供してください。コメントも忘れずに入れてください。",
+            "explanation": "配列にオブジェクトを格納し、特定の条件に基づいてオブジェクトのプロパティを操作したり取得したりすることができます。この問題では、Studentオブジェクトの配列を作成し、年齢が18歳以上の学生を検索して表示することが求められています。",
+            "answer": "public class Main {\n  public static void main(String[] args) {\n    // サイズ5のStudentオブジェクト配列を作成\n    Student[] students = new Student[5];\n\n    // 配列にStudentオブジェクトを代入\n    students[0] = new Student(\"Alice\", 17);\n    students[1] = new Student(\"Bob\", 18);\n    students[2] = new Student(\"Charlie\", 19);\n    students[3] = new Student(\"David\", 17);\n    students[4] = new Student(\"Eve\", 20);\n\n    // 年齢が18歳以上の学生を表示\n    for (Student student : students) {\n      if (student.getAge() >= 18) {\n        System.out.println(student.getName() + \": \" + student.getAge());\n      }\n    }\n  }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java_object_a3_2",
+            "title": "ジェネリック型を用いたリスト",
+            "question": "次のようなクラスが与えられたとします。\n\npublic class Product {\n  private String name;\n  private double price;\n\n  public Product(String name, double price) {\n    this.name = name;\n    this.price = price;\n  }\n\n  public String getName() {\n    return name;\n  }\n\n  public double getPrice() {\n    return price;\n  }\n}\n\nこのクラスを使用して、以下の問題を解決してください。\n\n1. Productクラスをジェネリック型でリストに追加してください。\n2. 追加したリスト内のProductオブジェクトの名前と価格を表示してください。\n\nまた、そのサンプルコードを提供してください。コメントも忘れずに入れてください。",
+            "explanation": "ジェネリック型を使用すると、コレクション（リスト、セット、マップなど）に特定の型のオブジェクトのみを追加できます。この問題では、Productオブジェクトをジェネリック型でリストに追加し、リスト内のオブジェクトの名前と価格を表示することが求められています。",
+            "answer": "import java.util.ArrayList;\nimport java.util.List;\n\npublic class Main {\n  public static void main(String[] args) {\n    // ジェネリック型でProductリストを作成\n    List<Product> products = new ArrayList<>();\n\n    // リストにProductオブジェクトを追加\n    products.add(new Product(\"Product A\", 50.0));\n    products.add(new Product(\"Product B\", 30.0));\n    products.add(new Product(\"Product C\", 70.0));\n\n    // リスト内のProductオブジェクトの名前と価格を表示\n    for (Product product : products) {\n      System.out.println(product.getName() + \": \" + product.getPrice());\n    }\n  }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java_object_a3_3",
+            "title": "抽象クラスとインターフェース",
+            "question": "以下の問題を解決してください。\n\n1. 抽象クラスAnimalを作成してください。この抽象クラスには、抽象メソッドmakeSound()が含まれている必要があります。\n2. インターフェースSwimmableを作成してください。このインターフェースには、メソッドswim()が含まれている必要があります。\n3. Animalクラスを継承し、Swimmableインターフェースを実装したDuckクラスを作成してください。Duckクラスは、makeSound()とswim()メソッドを実装する必要があります。\n4. Duckクラスのオブジェクトを作成し、makeSound()とswim()メソッドを呼び出して、結果を表示してください。\n\nまた、そのサンプルコードを提供してください。コメントも忘れずに入れてください。",
+            "explanation": "抽象クラスは具体的な実装が含まれていないメソッドを持つことができます。これは、サブクラスで必ず実装されることが期待されるメソッドです。インターフェースは抽象メソッドのみを持つことができます。これらは複数のインターフェースを実装できるため、柔軟性があります。",
+            "answer": "abstract class Animal {\n  public abstract void makeSound();\n}\n\ninterface Swimmable {\n  void swim();\n}\n\nclass Duck extends Animal implements Swimmable {\n  @Override\n  public void makeSound() {\n    System.out.println(\"Quack!\");\n  }\n\n  @Override\n  public void swim() {\n    System.out.println(\"The duck is swimming.\");\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    // Duckクラスのオブジェクトを作成\n    Duck duck = new Duck();\n\n    // makeSound()メソッドを呼び出す\n    duck.makeSound(); // 出力: Quack!\n\n    // swim()メソッドを呼び出す\n    duck.swim(); // 出力: The duck is swimming.\n  }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java_object_a3_4",
+            "title": "内部クラス",
+            "question": "以下の問題を解決してください。\n\n1. Outerクラスを作成してください。このクラスには、private変数valueを持っている必要があります。\n2. Outerクラスに、内部クラスInnerを作成してください。Innerクラスには、displayValue()メソッドを持っている必要があります。このメソッドは、Outerクラスのvalueを表示するものです。\n3. mainメソッドの中で、Outerクラスのオブジェクトを作成し、Innerクラスのオブジェクトを作成してdisplayValue()メソッドを呼び出してください。\n\nまた、そのサンプルコードを提供してください。コメントも忘れずに入れてください。",
+            "explanation": "内部クラスは、外部クラスの内部で定義されたクラスです。内部クラスは外部クラスのメンバーにアクセスできるため、非常に密接な関係を持つ2つのクラスの実装を行うことができます。",
+            "answer": "class Outer {\n  private int value = 42;\n\n  class Inner {\n    public void displayValue() {\n      System.out.println(\"Value: \" + value);\n    }\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    // Outerクラスのオブジェクトを作成\n    Outer outer = new Outer();\n\n    // Innerクラスのオブジェクトを作成\n    Outer.Inner inner = outer.new Inner();\n\n    // displayValue()メソッドを呼び出す\n    inner.displayValue(); // 出力: Value: 42\n  }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java_object_a3_5",
+            "title": "抽象クラスとインタフェースの違い",
+            "question": "抽象クラスとインタフェースの違いに関連したプログラムを作成してください。以下の手順に従って実装してください。\n\n1. 抽象クラスAnimalを作成し、abstractメソッドspeak()を定義してください。\n2. インタフェースWalkを作成し、メソッドwalk()を定義してください。\n3. Dogクラスを作成し、Animalクラスを継承し、Walkインタフェースを実装してください。Dogクラスはspeak()メソッドとwalk()メソッドを実装する必要があります。\n4. mainメソッドの中でDogクラスのオブジェクトを作成し、speak()メソッドとwalk()メソッドを呼び出してください。\n\nまた、そのサンプルコードを提供してください。コメントも忘れずに入れてください。",
+            "explanation": "抽象クラスは一部またはすべてのメソッドが実装されていないクラスで、継承の際に具体的な実装を提供することが期待されています。インタフェースはすべてのメソッドが実装されていないメソッドの集合で、複数のインタフェースを同時に実装することができます。",
+            "answer": "abstract class Animal {\n  public abstract void speak();\n}\n\ninterface Walk {\n  void walk();\n}\n\nclass Dog extends Animal implements Walk {\n  public void speak() {\n    System.out.println(\"Dog says: Woof!\");\n  }\n\n  public void walk() {\n    System.out.println(\"Dog is walking.\");\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Dog dog = new Dog();\n    dog.speak(); // 出力: Dog says: Woof!\n    dog.walk(); // 出力: Dog is walking.\n  }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java_object_a3_6",
+            "title": "練習問題: ジェネリック",
+            "question": "以下の指示に従って、ジェネリックを使用したプログラムを作成してください。\n\n1. ジェネリックを使用してペアの値を保持するクラス「Pair<T, U>」を作成してください。クラスには2つのフィールド「first」および「second」が含まれます。\n2. Pairクラスのコンストラクタで2つの引数を受け取り、それらをフィールドに代入してください。\n3. getFirst()およびgetSecond()メソッドを追加し、それぞれ対応するフィールドの値を返してください。\n4. mainメソッドでPairオブジェクトを作成し、異なる型のペア（例: StringとInteger）を保持して、getFirst()およびgetSecond()メソッドを呼び出し、出力してください。\n\nまた、そのサンプルコードを提供してください。コメントも忘れずに入れてください。",
+            "explanation": "ジェネリックは、コードの再利用性を高めるために使用されるJavaの機能であり、型パラメータを使用してクラスやインタフェース、メソッドに抽象型を適用できます。この機能により、複数の型に対応する1つのクラスまたはメソッドを作成できます。",
+            "answer": "class Pair<T, U> {\n  private T first;\n  private U second;\n\n  public Pair(T first, U second) {\n    this.first = first;\n    this.second = second;\n  }\n\n  public T getFirst() {\n    return first;\n  }\n\n  public U getSecond() {\n    return second;\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Pair<String, Integer> pair = new Pair<>(\"Hello\", 42);\n    System.out.println(pair.getFirst()); // 出力: Hello\n    System.out.println(pair.getSecond()); // 出力: 42\n  }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java_object_a3_7",
+            "title": "練習問題: インナークラス",
+            "question": "以下の指示に従って、インナークラスを使用したプログラムを作成してください。\n\n1. 外部クラス「Outer」を作成してください。\n2. Outerクラスには、インナークラス「Inner」があり、その中に「public void displayMessage()」メソッドが含まれます。このメソッドは、文字列「Hello from Inner class!」を出力します。\n3. mainメソッドを含む「Main」クラスを作成し、そこでOuterクラスのインスタンスを作成し、Innerクラスのインスタンスを作成して、displayMessageメソッドを呼び出してください。\n\nまた、そのサンプルコードを提供してください。コメントも忘れずに入れてください。",
+            "explanation": "インナークラスは、クラス内に別のクラスが存在する場合に使用されます。インナークラスは、外部クラスと密接な関係があり、外部クラスのメンバーにアクセスできることがあります。インナークラスは、カプセル化やコードの整理を強化するために使用されます。",
+            "answer": "class Outer {\n  class Inner {\n    public void displayMessage() {\n      System.out.println(\"Hello from Inner class!\");\n    }\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Outer outer = new Outer();\n    Outer.Inner inner = outer.new Inner();\n    inner.displayMessage(); // 出力: Hello from Inner class!\n  }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java_object_a3_8",
+            "title": "練習問題: インターフェイスの実装",
+            "question": "以下の指示に従って、インターフェイスを使用したプログラムを作成してください。\n\n1. インターフェイス「Drawable」を作成し、抽象メソッド「void draw()」を定義してください。\n2. Drawableインターフェイスを実装する「Circle」クラスを作成し、drawメソッドの実装を行ってください。drawメソッドは、「Drawing a circle.」と出力するものとします。\n3. mainメソッドを含む「Main」クラスを作成し、Circleクラスのインスタンスを作成して、drawメソッドを呼び出してください。\n\nまた、そのサンプルコードを提供してください。コメントも忘れずに入れてください。",
+            "explanation": "インターフェイスは、Javaで抽象メソッドの集合を定義する方法です。インターフェイスは、そのメソッドを実装するクラスで機能を提供することができます。この方法で、クラス間の依存関係を疎にすることができます。",
+            "answer": "interface Drawable {\n  void draw();\n}\n\nclass Circle implements Drawable {\n  public void draw() {\n    System.out.println(\"Drawing a circle.\");\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Circle circle = new Circle();\n    circle.draw(); // 出力: Drawing a circle.\n  }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java_object_a3_9",
+            "title": "練習問題: インナークラスの作成",
+            "question": "以下の指示に従って、インナークラスを使用したプログラムを作成してください。\n\n1. 「Outer」クラスを作成してください。\n2. Outerクラスの内部に、「Inner」クラスを作成してください。\n3. Innerクラスには、「printGreeting」メソッドを作成し、「Hello from Inner class!」と出力するようにしてください。\n4. Outerクラスには、インナークラスのインスタンスを作成し、printGreetingメソッドを呼び出す「callInner」メソッドを作成してください。\n5. mainメソッドを含む「Main」クラスを作成し、Outerクラスのインスタンスを作成し、callInnerメソッドを呼び出してください。\n\nまた、そのサンプルコードを提供してください。コメントも忘れずに入れてください。",
+            "explanation": "インナークラスとは、他のクラスの内部に定義されたクラスのことです。インナークラスは、外部クラスと密接な関係があり、外部クラスのメンバーにアクセスできる特権を持っています。インナークラスを使用することで、外部クラスと密接に関連するクラスをカプセル化し、コードの整理と再利用性を向上させることができます。",
+            "answer": "class Outer {\n  class Inner {\n    public void printGreeting() {\n      System.out.println(\"Hello from Inner class!\");\n    }\n  }\n\n  public void callInner() {\n    Inner inner = new Inner();\n    inner.printGreeting();\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Outer outer = new Outer();\n    outer.callInner(); // 出力: Hello from Inner class!\n  }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java_object_a3_10",
+            "title": "練習問題: インターフェースと抽象クラスの実装",
+            "question": "以下の指示に従って、インターフェースと抽象クラスを使用したプログラムを作成してください。\n\n1. 名前が「Drawable」で、引数なしのメソッド「draw」を持つインターフェースを作成してください。\n2. 「Shape」という名前の抽象クラスを作成し、「color」という文字列型のフィールドを持たせてください。\n3. Shapeクラスに、Drawableインターフェースを実装させてください。\n4. Shapeクラスに、「Rectangle」と「Circle」という2つのサブクラスを作成し、それぞれのクラスで「draw」メソッドをオーバーライドして、形状の名前と色を出力してください。\n5. mainメソッドを含む「Main」クラスを作成し、RectangleとCircleクラスのインスタンスを作成し、それぞれのdrawメソッドを呼び出してください。\n\nまた、そのサンプルコードを提供してください。コメントも忘れずに入れてください。",
+            "explanation": "インターフェースは、クラスが実装すべきメソッドのみを定義します。抽象クラスは、完全な実装がないメソッド（抽象メソッド）を含むクラスです。インターフェースと抽象クラスは、複数のクラスで共通の機能を定義し、実装を共有するために使用されます。インターフェースと抽象クラスを使用することで、コードの再利用性と拡張性が向上します。",
+            "answer": "interface Drawable {\n  void draw();\n}\n\nabstract class Shape implements Drawable {\n  protected String color;\n\n  public Shape(String color) {\n    this.color = color;\n  }\n}\n\nclass Rectangle extends Shape {\n  public Rectangle(String color) {\n    super(color);\n  }\n\n  @Override\n  public void draw() {\n    System.out.println(\"Drawing a \" + color + \" rectangle.\");\n  }\n}\n\nclass Circle extends Shape {\n  public Circle(String color) {\n    super(color);\n  }\n\n  @Override\n  public void draw() {\n    System.out.println(\"Drawing a \" + color + \" circle.\");\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Rectangle rectangle = new Rectangle(\"red\");\n    Circle circle = new Circle(\"blue\");\n\n    rectangle.draw(); // 出力: Drawing a red rectangle.\n    circle.draw(); // 出力: Drawing a blue circle. }\n}\n```"
+        },
+        {
+            "id": 11,
+            "questionId": "java3_11",
+            "title": "匿名クラス",
+            "question": "Runnableインターフェイスの匿名クラスを作成し、スレッドで実行してください。",
+            "explanation": "匿名クラスは、クラス宣言とオブジェクトインスタンス化が同時に行われるクラスです。Javaでは、簡潔な記述でインターフェイスを実装するために、匿名クラスを使用することができます。 Runnableインターフェイスは、Javaが提供するインターフェイスの一つで、Threadクラスで使用されます。",
+            "answer": "```java\npublic class AnonymousClassExample {\n\n    public static void main(String[] args) {\n        // Runnableインターフェイスの匿名クラスを作成\n        Runnable runnable = new Runnable() {\n            @Override\n            public void run() {\n                System.out.println(\"匿名クラスによるスレッド実行\");\n            }\n        };\n\n        // スレッドで実行\n        Thread thread = new Thread(runnable);\n        thread.start();\n\n        // 予想される出力: \"匿名クラスによるスレッド実行\"\n    }\n}\n```"
+        },
+        {
+            "id": 12,
+            "questionId": "java3_12",
+            "title": "ラムダ式",
+            "question": "Runnableインターフェイスのラムダ式を使用して、スレッドで実行してください。",
+            "explanation": "ラムダ式は、Java 8で導入された機能で、無名関数を表現することができます。ラムダ式は、関数型インターフェースを簡潔に実装するために使用されます。関数型インターフェイスは、1つの抽象メソッドを持つインターフェイスです。Runnableインターフェイスは関数型インターフェイスの一例であり、runメソッドがその抽象メソッドです。",
+            "answer": "```java\npublic class LambdaExample {\n\n    public static void main(String[] args) {\n        // Runnableインターフェイスのラムダ式を使用\n        Runnable runnable = () -> System.out.println(\"ラムダ式によるスレッド実行\");\n\n        // スレッドで実行\n        Thread thread = new Thread(runnable);\n        thread.start();\n\n        // 予想される出力: \"ラムダ式によるスレッド実行\"\n    }\n}\n```"
+        },
+        {
+            "id": 13,
+            "questionId": "java3_13",
+            "title": "ストリームAPI",
+            "question": "次のList<Integer>から偶数だけを抽出し、昇順にソートして表示してください。利用するList<Integer>は、Arrays.asList(3, 7, 2, 9, 6, 1, 8)です。ストリームAPIを使用してください。",
+            "explanation": "ストリームAPIはJava 8で導入され、集合データの操作を効率的に行うことができます。リスト内の要素をフィルタリング、変換、集約するための宣言型プログラミング手法を提供します。",
+            "answer": "```java\nimport java.util.Arrays;\nimport java.util.List;\n\npublic class StreamExample {\n\n    public static void main(String[] args) {\n        List<Integer> numbers = Arrays.asList(3, 7, 2, 9, 6, 1, 8);\n\n        // ストリームAPIを使用して偶数のみを抽出し、昇順にソートして表示\n        numbers.stream()\n            .filter(number -> number % 2 == 0)\n            .sorted()\n            .forEach(System.out::println);\n\n        // 予想される出力:\n        // 2\n        // 6\n        // 8\n    }\n}\n```"
+        },
+        {
+            "id": 14,
+            "questionId": "java3_14",
+            "title": "リフレクション",
+            "question": "JavaのリフレクションAPIを使用して、与えられたクラス名のインスタンスを作成し、そのクラスのすべてのメソッド名を表示するプログラムを作成してください。この問題では、「java.util.ArrayList」をクラス名として使用してください。",
+            "explanation": "リフレクションAPIを使用することで、プログラムの実行中にクラスやメソッドの情報を取得したり、インスタンスを作成したりすることができます。これにより、動的にオブジェクトを生成・操作することが可能になります。",
+            "answer": "```java\nimport java.lang.reflect.Method;\n\npublic class ReflectionExample {\n\n    public static void main(String[] args) {\n        try {\n            Class<?> clazz = Class.forName(\"java.util.ArrayList\");\n            Object instance = clazz.newInstance();\n\n            Method[] methods = clazz.getDeclaredMethods();\n            for (Method method : methods) {\n                System.out.println(method.getName());\n            }\n\n        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {\n            e.printStackTrace();\n        }\n\n        // 予想される出力（一部抜粋）:\n        // add\n        // remove\n        // size\n        // ... (その他のメソッド名)\n    }\n}\n```"
+        },
+        {
+            "id": 15,
+            "questionId": "java3_15",
+            "title": "ユーザー定義例外",
+            "question": "Javaで独自の例外クラス「InvalidNameException」を作成し、名前に数字を含んでいる場合に例外をスローするプログラムを作成してください。以下の条件を満たすことが求められます。\n1. InvalidNameExceptionクラスはExceptionクラスを継承します。\n2. 名前に数字が含まれている場合、例外メッセージとして\"Name should not contain any digits.\"を表示します。\n3. メインメソッドで検証し、例外が発生した場合にキャッチし、例外メッセージを表示します。",
+            "explanation": "独自の例外クラスを作成することで、アプリケーション固有のエラー状況を扱いやすくなります。また、プログラムの可読性とメンテナンス性が向上します。",
+            "answer": "```java\n// InvalidNameExceptionクラス\nclass InvalidNameException extends Exception {\n    public InvalidNameException(String message) {\n        super(message);\n    }\n}\n\n// メインクラス\npublic class CustomExceptionExample {\n\n    public static void main(String[] args) {\n        String name = \"John1\";\n\n        try {\n            validateName(name);\n        } catch (InvalidNameException e) {\n            System.out.println(e.getMessage());\n            // 予想される出力: Name should not contain any digits.\n        }\n    }\n\n    private static void validateName(String name) throws InvalidNameException {\n        if (name.matches(\".*\\d.*\")) {\n            throw new InvalidNameException(\"Name should not contain any digits.\");\n        }\n    }\n}\n```"
+        },
+        {
+            "id": 16,
+            "questionId": "java3_16",
+            "title": "インナークラスとラムダ式",
+            "question": "Javaのインナークラスとラムダ式を用いて、以下の仕様を満たすプログラムを作成してください。\n\n- Calculatorクラスを定義\n- Calculatorクラスにはcomputeメソッドを定義し、引数で渡されたOperation型のインターフェースを用いて、2つの数値の計算結果を返す\n- Operationインターフェースを定義し、executeメソッドを定義\n- mainメソッドでラムダ式を用いてインナークラスのインスタンスを生成し、足し算と引き算の結果を表示する",
+            "explanation": "インナークラスとラムダ式はJavaで機能性と柔軟性を高めるために用いられる機能です。インナークラスはクラス内に定義されるクラスで、ラムダ式は関数型インターフェースの簡潔な記述方法です。",
+            "answer": "```java\npublic class Calculator {\n\n    interface Operation {\n        int execute(int a, int b);\n    }\n\n    public int compute(int a, int b, Operation operation) {\n        return operation.execute(a, b);\n    }\n\n    public static void main(String[] args) {\n        Calculator calculator = new Calculator();\n\n        // ラムダ式で足し算のインスタンスを生成\n        Operation addition = (a, b) -> a + b;\n\n        // ラムダ式で引き算のインスタンスを生成\n        Operation subtraction = (a, b) -> a - b;\n\n        System.out.println(\"10 + 5 = \" + calculator.compute(10, 5, addition)); // 予想される出力: 10 + 5 = 15\n        System.out.println(\"10 - 5 = \" + calculator.compute(10, 5, subtraction)); // 予想される出力: 10 - 5 = 5\n    }\n}\n```"
+        },
+        {
+            "id": 17,
+            "questionId": "java3_17",
+            "title": "ジェネリクスとコレクション",
+            "question": "ジェネリクスとコレクションを用いて、以下の仕様を満たすプログラムを作成してください。\n\n- ジェネリクスを用いてスタック(Stack)クラスを作成\n- スタックは、push、pop、isEmptyのメソッドを持つ\n- スタック内部には、ArrayListを用いて要素を保持する\n- mainメソッドで、整数(Integer)型のスタックを作成し、push、pop、isEmptyの動作を確認する",
+            "explanation": "ジェネリクスを使用することで、型安全性を向上させ、コードの再利用性を高めることができます。また、コレクションはデータを保持し、操作するためのJavaのフレームワークです。",
+            "answer": "```java\nimport java.util.ArrayList;\n\npublic class Stack<T> {\n    private ArrayList<T> stack = new ArrayList<>();\n\n    public void push(T value) {\n        stack.add(value);\n    }\n\n    public T pop() {\n        if (isEmpty()) {\n            return null;\n        }\n        return stack.remove(stack.size() - 1);\n    }\n\n    public boolean isEmpty() {\n        return stack.isEmpty();\n    }\n\n    public static void main(String[] args) {\n        Stack<Integer> integerStack = new Stack<>();\n\n        integerStack.push(1);\n        integerStack.push(2);\n        integerStack.push(3);\n\n        System.out.println(\"Pop: \" + integerStack.pop()); // 予想される出力: Pop: 3\n        System.out.println(\"Pop: \" + integerStack.pop()); // 予想される出力: Pop: 2\n\n        System.out.println(\"Is stack empty? \" + integerStack.isEmpty()); // 予想される出力: Is stack empty? false\n    }\n}\n```"
+        },
+        {
+            "id": 18,
+            "questionId": "java3_18",
+            "title": "ラムダ式とストリームAPI",
+            "question": "次のリストから奇数のみをフィルタし、それらを昇順にソートした結果を表示するプログラムを、ラムダ式とストリームAPIを使用して作成してください。\n\nリスト: [7, 3, 14, 1, 8, 11]",
+            "explanation": "ラムダ式は、関数型プログラミングをサポートするJavaの機能です。ストリームAPIは、データの操作や処理を効率的に行うことができるフレームワークです。これらを組み合わせることで、簡潔なコードでリスト操作を行うことができます。",
+            "answer": "```java\nimport java.util.Arrays;\nimport java.util.List;\n\npublic class LambdaStreamExample {\n    public static void main(String[] args) {\n        List<Integer> numbers = Arrays.asList(7, 3, 14, 1, 8, 11);\n\n        numbers.stream()\n               .filter(n -> n % 2 != 0)\n               .sorted()\n               .forEach(System.out::println);\n        // 予想される出力:\n        // 1\n        // 3\n        // 7\n        // 11\n    }\n}\n```"
+        },
+        {
+            "id": 19,
+            "questionId": "java3_19",
+            "title": "カスタム例外の作成と使用",
+            "question": "以下の要件を満たすカスタム例外クラスを作成し、それを使用して例外をスローしてみてください。\n\n要件:\n1. 例外クラスの名前は「InvalidInputException」\n2. 例外メッセージを受け取り、親クラスのコンストラクタに渡す機能\n\nその後、次の条件を満たす整数を入力するプログラムを作成し、例外が発生した場合は、InvalidInputExceptionをスローします。\n\n条件: 1から10までの整数",
+            "explanation": "カスタム例外を作成することで、アプリケーション固有のエラーをより適切に処理できます。カスタム例外は、通常、既存の例外クラスを継承して作成されます。この問題では、InvalidInputExceptionというカスタム例外を作成し、適切な入力がない場合にスローします。",
+            "answer": "```java\n// カスタム例外クラス\nclass InvalidInputException extends Exception {\n    public InvalidInputException(String message) {\n        super(message);\n    }\n}\n\npublic class CustomExceptionExample {\n\n    public static void main(String[] args) {\n        try {\n            int input = 15;\n            checkInput(input);\n        } catch (InvalidInputException e) {\n            System.out.println(e.getMessage());\n            // 予想される出力: \"Invalid input: 15\"\n        }\n    }\n\n    public static void checkInput(int input) throws InvalidInputException {\n        if (input < 1 || input > 10) {\n            throw new InvalidInputException(\"Invalid input: \" + input);\n        }\n    }\n}\n```"
+        },
+        {
+            "id": 20,
+            "questionId": "java3_20",
+            "title": "オブジェクトシリアライズとデシリアライズ",
+            "question": "次の要件を満たすシリアライズ可能なPersonクラスを作成してください。\n\n要件:\n1. Personクラスには、名前と年齢のプロパティがあります。\n2. Personクラスは、シリアライズ可能である必要があります。\n\n次に、シリアライズされたPersonオブジェクトをファイルに保存し、その後ファイルからPersonオブジェクトをデシリアライズしてください。",
+            "explanation": "Javaでは、オブジェクトの状態を永続化するためにシリアライズを使用できます。これは、オブジェクトをバイトストリームに変換するプロセスです。デシリアライズは、バイトストリームをオブジェクトに再構築するプロセスです。オブジェクトをシリアライズ可能にするには、クラスがSerializableインターフェイスを実装する必要があります。",
+            "answer": "```java\nimport java.io.*;\n\n// シリアライズ可能なPersonクラス\nclass Person implements Serializable {\n    String name;\n    int age;\n\n    public Person(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n}\n\npublic class SerializationExample {\n\n    public static void main(String[] args) {\n        Person person = new Person(\"John\", 30);\n\n        try {\n            // シリアライズ\n            FileOutputStream fos = new FileOutputStream(\"person.ser\");\n            ObjectOutputStream oos = new ObjectOutputStream(fos);\n            oos.writeObject(person);\n            oos.close();\n            fos.close();\n\n            // デシリアライズ\n            FileInputStream fis = new FileInputStream(\"person.ser\");\n            ObjectInputStream ois = new ObjectInputStream(fis);\n            Person deserializedPerson = (Person) ois.readObject();\n            ois.close();\n            fis.close();\n\n            System.out.println(\"Deserialized Person: \" + deserializedPerson.name + \", \" + deserializedPerson.age);\n            // 予想される出力: \"Deserialized Person: John, 30\"\n\n        } catch (IOException | ClassNotFoundException e) {\n            e.printStackTrace();\n        }\n    }\n}\n```"
+        }
+    ]
+}

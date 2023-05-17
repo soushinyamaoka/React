@@ -1,166 +1,166 @@
 {
-    "contentsId": "java_functions",
-    "title": "Javaの関数問題集ページ",
+    "contentsId": "java2",
+    "title": "Javaのメソッド問題集ページ",
     "subtitle": "初級",
     "questions": [{
             "id": 1,
-            "questionId": "java_functions_1",
-            "title": "関数の定義と呼び出し",
-            "question": "次の仕様を満たす関数を定義し、main関数から呼び出してください。\n\n仕様:\n- 関数名: printHello\n- 引数: なし\n- 戻り値: なし\n- 機能: \"Hello, World!\" を出力する",
-            "explanation": "関数を定義するには、関数名、引数、戻り値の型を指定し、機能を実装します。main関数から定義した関数を呼び出すには、関数名と引数を指定して呼び出します。",
-            "answer": "public class HelloWorld {\n\n    public static void main(String[] args) {\n        // printHello関数を呼び出す\n        printHello();\n    }\n\n    // printHello関数の定義\n    public static void printHello() {\n        // \"Hello, World!\" を出力する\n        System.out.println(\"Hello, World!\");\n    }\n}"
+            "questionId": "java1_1",
+            "title": "メソッドの作成",
+            "question": "「Hello, World!」と出力するメソッド「printHelloWorld」を作成し、mainメソッドから呼び出してください。",
+            "explanation": "メソッドは、特定のタスクを実行するためのコードのまとまりです。mainメソッドから他のメソッドを呼び出すことで、コードの再利用性と可読性が向上します。",
+            "answer": "public class HelloWorld {\n\n    public static void printHelloWorld() {\n        System.out.println(\"Hello, World!\");\n    }\n\n    public static void main(String[] args) {\n        printHelloWorld(); // 予想される出力結果: Hello, World!\n    }\n\n}"
         },
         {
             "id": 2,
-            "questionId": "java_functions_2",
-            "title": "引数を持つ関数",
-            "question": "次の仕様を満たす関数を定義し、main関数から呼び出してください。\n\n仕様:\n- 関数名: greet\n- 引数: String name\n- 戻り値: なし\n- 機能: 引数で渡された名前に対して、\"Hello, [name]!\" を出力する",
-            "explanation": "引数を持つ関数を定義するには、関数の引数リストに引数の型と名前を記述します。関数を呼び出すときには、引数リストに値を渡します。",
-            "answer": "public class Greeting {\n\n    public static void main(String[] args) {\n        // greet関数を呼び出す\n        greet(\"John\");\n    }\n\n    // greet関数の定義\n    public static void greet(String name) {\n        // \"Hello, [name]!\" を出力する\n        System.out.println(\"Hello, \" + name + \"!\");\n    }\n}"
+            "questionId": "java1_2",
+            "title": "メソッドの引数",
+            "question": "整数の引数aとbを受け取り、その合計値を出力するメソッド「printSum」を作成し、mainメソッドから呼び出してください。",
+            "explanation": "メソッドの引数は、メソッドに渡される変数です。引数を使用することで、メソッドが汎用的になり、さまざまな値を処理できます。",
+            "answer": "public class Sum {\n\n    public static void printSum(int a, int b) {\n        int sum = a + b;\n        System.out.println(\"Sum: \" + sum);\n    }\n\n    public static void main(String[] args) {\n        printSum(5, 3); // 予想される出力結果: Sum: 8\n    }\n\n}"
         },
         {
             "id": 3,
-            "questionId": "java_functions_3",
-            "title": "戻り値を持つ関数",
-            "question": "次の仕様を満たす関数を定義し、main関数から呼び出して結果を出力してください。\n\n仕様:\n- 関数名: add\n- 引数: int a, int b\n- 戻り値: int\n- 機能: 引数で渡された2つの整数の和を返す",
-            "explanation": "戻り値を持つ関数を定義するには、関数の戻り値の型を指定し、return文で戻り値を返します。関数を呼び出して戻り値を受け取るには、代入文や出力文の中で関数を呼び出します。",
-            "answer": "public class AddNumbers {\n\n    public static void main(String[] args) {\n        // add関数を呼び出し、結果を出力する\n        System.out.println(add(3, 5));\n    }\n\n    // add関数の定義\n    public static int add(int a, int b) {\n        // 引数で渡された2つの整数の和を返す\n        return a + b;\n    }\n}"
+            "questionId": "java1_3",
+            "title": "メソッドの戻り値",
+            "question": "整数の引数aとbを受け取り、その合計値を返すメソッド「calculateSum」を作成し、mainメソッドで呼び出して結果を出力してください。",
+            "explanation": "メソッドの戻り値は、メソッドが実行した結果を呼び出し元に返すためのものです。戻り値を利用することで、結果を変数に代入して別の処理に利用することができます。",
+            "answer": "public class Sum {\n\n    public static int calculateSum(int a, int b) {\n        int sum = a + b;\n        return sum;\n    }\n\n    public static void main(String[] args) {\n        int result = calculateSum(5, 3);\n        System.out.println(\"Sum: \" + result); // 予想される出力結果: Sum: 8\n    }\n\n}"
         },
         {
             "id": 4,
-            "questionId": "java_functions_4",
-            "title": "関数を利用した計算",
-            "question": "次の仕様を満たす関数を定義し、main関数で利用してください。\n\n仕様:\n- 関数名: square\n- 引数: int x\n- 戻り値: int\n- 機能: 引数で渡された整数の2乗を返す\n\nmain関数で、2つの整数（例: 3と4）のそれぞれの2乗の和を計算し、出力してください。",
-            "explanation": "関数を利用して計算するには、関数を呼び出して戻り値を受け取り、計算式に組み込みます。計算結果を出力するには、System.out.printlnメソッドを使用します。",
-            "answer": "public class SquareNumbers {\n\n    public static void main(String[] args) {\n        // 2つの整数のそれぞれの2乗の和を計算し、出力する\n        System.out.println(square(3) + square(4));\n    }\n\n    // square関数の定義\n    public static int square(int x) {\n        // 引数で渡された整数の2乗を返す\n        return x * x;\n    }\n}"
+            "questionId": "java1_4",
+            "title": "メソッドのオーバーロード",
+            "question": "整数として引数aとbを受け取り、その合計値を返すメソッド「add」を作成し、続いて、浮動小数点数として引数aとbを受け取り、その合計値を返す同名のメソッド「add」を作成してください。メソッドのオーバーロードを利用して、2つの異なる型の引数に対応するメソッドを実装します。mainメソッドで呼び出して結果を出力してください。",
+            "explanation": "メソッドのオーバーロードは、同じ名前のメソッドを引数の型や個数が異なることで複数定義できる機能です。これにより、異なる型や個数の引数に対して同じ名前のメソッドで処理を行うことができます。",
+            "answer": "public class Overload {\n\n    public static int add(int a, int b) {\n        return a + b;\n    }\n\n    public static double add(double a, double b) {\n        return a + b;\n    }\n\n    public static void main(String[] args) {\n        int intResult = add(5, 3);\n        System.out.println(\"Int Sum: \" + intResult); // 予想される出力結果: Int Sum: 8\n\n        double doubleResult = add(5.5, 3.3);\n        System.out.println(\"Double Sum: \" + doubleResult); // 予想される出力結果: Double Sum: 8.8\n    }\n\n}"
         },
         {
             "id": 5,
-            "questionId": "java_functions_5",
-            "title": "文字列を結合する関数",
-            "question": "次の仕様を満たす関数を定義し、main関数で利用してください。\n\n仕様:\n- 関数名: concatenateStrings\n- 引数: String str1, String str2\n- 戻り値: String\n- 機能: 引数で渡された2つの文字列を結合して返す\n\nmain関数で、2つの文字列（例: \"Hello, \"と\"World!\")を結合し、出力してください。",
-            "explanation": "文字列を結合するには、+演算子を使用します。関数を定義して文字列を結合し、戻り値として返します。main関数で関数を呼び出し、結果を出力します。",
-            "answer": "public class ConcatenateStrings {\n\n    public static void main(String[] args) {\n        // 2つの文字列を結合し、出力する\n        System.out.println(concatenateStrings(\"Hello, \", \"World!\"));\n    }\n\n    // concatenateStrings関数の定義\n    public static String concatenateStrings(String str1, String str2) {\n        // 引数で渡された2つの文字列を結合して返す\n        return str1 + str2;\n    }\n}\n"
+            "questionId": "java1_5",
+            "title": "再帰メソッド",
+            "question": "整数の引数nを受け取り、nから1までの階乗値を計算して返す再帰メソッド「factorial」を作成し、mainメソッドで呼び出して結果を出力してください。再帰メソッドとは、メソッドの中で自分自身を呼び出すことによって処理を行う方法です。",
+            "explanation": "再帰メソッドは、メソッドの中で自分自身を呼び出すことで、繰り返し処理を行う方法です。再帰メソッドを適切に利用することで、繰り返し処理を行うコードを簡潔に記述することができます。",
+            "answer": "public class Factorial {\n\n    public static int factorial(int n) {\n        if (n == 1) {\n            return 1;\n        }\n        return n * factorial(n - 1);\n    }\n\n    public static void main(String[] args) {\n        int result = factorial(5);\n        System.out.println(\"Factorial: \" + result); // 予想される出力結果: Factorial: 120\n    }\n\n}"
         },
         {
             "id": 6,
-            "questionId": "java_functions_6",
-            "title": "配列内の最大値を返す関数",
-            "question": "次の仕様を満たす関数を定義し、main関数で利用してください。\n\n仕様:\n- 関数名: findMax\n- 引数: int[] numbers\n- 戻り値: int\n- 機能: 引数で渡された整数型配列内の最大値を返す\n\nmain関数で、整数型配列（例: {4, 2, 9, 7, 5}）を宣言し、配列内の最大値を出力してください。",
-            "explanation": "配列内の最大値を見つけるには、一時的な最大値変数を初期化し、配列内の各要素と比較して最大値を更新します。関数を定義して最大値を見つけ、戻り値として返します。main関数で関数を呼び出し、結果を出力します。",
-            "answer": "public class FindMax {\n\n    public static void main(String[] args) {\n        int[] numbers = {4, 2, 9, 7, 5};\n        // 配列内の最大値を出力する\n        System.out.println(findMax(numbers));\n    }\n\n    // findMax関数の定義\n    public static int findMax(int[] numbers) {\n        int max = numbers[0]; // 最大値の初期化\n\n        // 配列内の要素と比較して最大値を更新\n        for (int number : numbers) {\n            if (number > max) {\n                max = number;\n            }\n        }\n\n        return max;\n    }\n}\n"
+            "questionId": "java1_6",
+            "title": "配列を引数に取るメソッド",
+            "question": "int型の配列を引数に取り、配列内の要素の合計値を返すメソッド「sumArray」を作成してください。mainメソッドで呼び出し、結果を出力してください。int型の配列「numbers」には、{1, 2, 3, 4, 5}という要素が格納されているとします。",
+            "explanation": "配列を引数に取るメソッドを作成することで、配列内の要素を処理するプログラムを効率的に記述できます。この問題では、配列内の要素の合計値を返すメソッドを作成し、mainメソッドで呼び出して結果を出力します。",
+            "answer": "public class SumArray {\n\n    public static int sumArray(int[] numbers) {\n        int sum = 0;\n        for (int number : numbers) {\n            sum += number;\n        }\n        return sum;\n    }\n\n    public static void main(String[] args) {\n        int[] numbers = {1, 2, 3, 4, 5};\n        int result = sumArray(numbers);\n        System.out.println(\"Sum: \" + result); // 予想される出力結果: Sum: 15\n    }\n\n}"
         },
         {
             "id": 7,
-            "questionId": "java_functions_7",
-            "title": "文字列の配列を逆順に並び替える関数",
-            "question": "次の仕様を満たす関数を定義し、main関数で利用してください。\n\n仕様:\n- 関数名: reverseStrings\n- 引数: String[] strings\n- 戻り値: String[]\n- 機能: 引数で渡された文字列の配列を逆順に並び替えて返す\n\nmain関数で、文字列の配列（例: {\"apple\", \"banana\", \"cherry\"}）を宣言し、配列を逆順に並び替えて出力してください。",
-            "explanation": "文字列の配列を逆順に並び替えるには、新しい配列を作成し、元の配列の後ろから前に向かって要素を新しい配列にコピーします。関数を定義して配列を逆順に並び替え、戻り値として返します。main関数で関数を呼び出し、結果を出力します。",
-            "answer": "public class ReverseStrings {\n\n    public static void main(String[] args) {\n        String[] strings = {\"apple\", \"banana\", \"cherry\"};\n        String[] reversed = reverseStrings(strings);\n\n        // 逆順に並び替えられた配列を出力する\n        for (String str : reversed) {\n            System.out.print(str + \" \");\n        }\n    }\n\n    // reverseStrings関数の定義\n    public static String[] reverseStrings(String[] strings) {\n        String[] reversed = new String[strings.length];\n\n        // 配列を逆順にコピーする\n        for (int i = 0; i < strings.length; i++) {\n            reversed[i] = strings[strings.length - 1 - i];\n        }\n\n        return reversed;\n    }\n}\n"
+            "questionId": "java1_7",
+            "title": "引数の個数が可変のメソッド",
+            "question": "引数の個数が可変で、int型の引数をすべて足し合わせた結果を返すメソッド「sum」を作成してください。メソッドをmainメソッド内で呼び出し、結果を出力してください。このとき、引数は3, 5, 2とします。",
+            "explanation": "Javaでは、可変引数を使用することで、メソッドの引数の個数を柔軟に設定することができます。この問題では、引数の個数が可変で、int型の引数をすべて足し合わせるメソッドを作成します。",
+            "answer": "public class VarArgsSum {\n\n    public static int sum(int... numbers) {\n        int total = 0;\n        for (int number : numbers) {\n            total += number;\n        }\n        return total;\n    }\n\n    public static void main(String[] args) {\n        int result = sum(3, 5, 2);\n        System.out.println(\"Sum: \" + result); // 予想される出力結果: Sum: 10\n    }\n\n}"
         },
         {
             "id": 8,
-            "questionId": "java_functions_8",
-            "title": "与えられた整数の合計を計算する関数",
-            "question": "次の仕様を満たす関数を定義し、main関数で利用してください。\n\n仕様:\n- 関数名: sumOfIntegers\n- 引数: int[] numbers\n- 戻り値: int\n- 機能: 引数で渡された整数の配列の合計を計算して返す\n\nmain関数で、整数の配列（例: {1, 2, 3, 4, 5}）を宣言し、配列の合計を計算して出力してください。",
-            "explanation": "整数の配列の合計を計算するには、配列の各要素を一つずつ加算していきます。関数を定義して配列の合計を計算し、戻り値として返します。main関数で関数を呼び出し、結果を出力します。",
-            "answer": "public class SumOfIntegers {\n\n    public static void main(String[] args) {\n        int[] numbers = {1, 2, 3, 4, 5};\n        int sum = sumOfIntegers(numbers);\n\n        // 配列の合計を出力する\n        System.out.println(\"Sum: \" + sum);\n    }\n\n    // sumOfIntegers関数の定義\n    public static int sumOfIntegers(int[] numbers) {\n        int sum = 0;\n\n        // 配列の各要素を加算する\n        for (int num : numbers) {\n            sum += num;\n        }\n\n        return sum;\n    }\n}\n"
+            "questionId": "java1_8",
+            "title": "再帰を用いた計算",
+            "question": "再帰を用いて、与えられた整数nに対して、1からnまでの数値をすべて掛け合わせる「factorial」メソッドを作成してください。メソッドをmainメソッド内で呼び出し、結果を出力してください。このとき、引数は5とします。",
+            "explanation": "再帰とは、あるメソッド内で自分自身を呼び出すことです。この問題では、再帰を用いて、与えられた整数nに対して、1からnまでの数値をすべて掛け合わせる「factorial」メソッドを作成します。",
+            "answer": "public class Factorial {\n\n    public static int factorial(int n) {\n        if (n == 1) {\n            return 1;\n        }\n        return n * factorial(n - 1);\n    }\n\n    public static void main(String[] args) {\n        int result = factorial(5);\n        System.out.println(\"Factorial: \" + result); // 予想される出力結果: Factorial: 120\n    }\n\n}"
         },
         {
             "id": 9,
-            "questionId": "java_functions_9",
-            "title": "入力された文字列の長さを返す関数",
-            "question": "次の仕様を満たす関数を定義し、main関数で利用してください。\n\n仕様:\n- 関数名: stringLength\n- 引数: String input\n- 戻り値: int\n- 機能: 引数で渡された文字列の長さを返す\n\nmain関数で、任意の文字列（例: \"Hello, world!\"）を宣言し、文字列の長さを計算して出力してください。",
-            "explanation": "文字列の長さを取得するには、Stringクラスのlengthメソッドを使用します。関数を定義して文字列の長さを取得し、戻り値として返します。main関数で関数を呼び出し、結果を出力します。",
-            "answer": "public class StringLength {\n\n    public static void main(String[] args) {\n        String input = \"Hello, world!\";\n        int length = stringLength(input);\n\n        // 文字列の長さを出力する\n        System.out.println(\"Length: \" + length);\n    }\n\n    // stringLength関数の定義\n    public static int stringLength(String input) {\n        return input.length();\n    }\n}\n"
+            "questionId": "java1_9",
+            "title": "オーバーロード",
+            "question": "同じ名前のメソッドを複数定義してオーバーロードを実装してください。メソッド名は「printInfo」で、次の2つのパターンでオーバーロードを実現してください。\n1. 引数が「String name」の場合、nameを出力します。\n2. 引数が「String name, int age」の場合、nameとageを出力します。\nメインメソッドでこれらのメソッドを呼び出して、結果を表示してください。",
+            "explanation": "オーバーロードとは、同じ名前のメソッドを異なる引数で定義することです。この問題では、同じ名前の「printInfo」メソッドを2つの異なる引数で定義し、オーバーロードを実装します。",
+            "answer": "public class OverloadExample {\n\n    public static void printInfo(String name) {\n        System.out.println(\"Name: \" + name);\n    }\n\n    public static void printInfo(String name, int age) {\n        System.out.println(\"Name: \" + name + \", Age: \" + age);\n    }\n\n    public static void main(String[] args) {\n        printInfo(\"Alice\"); // 予想される出力結果: Name: Alice\n        printInfo(\"Bob\", 25); // 予想される出力結果: Name: Bob, Age: 25\n    }\n\n}"
         },
         {
             "id": 10,
-            "questionId": "java_functions_10",
-            "title": "リストの要素の合計を計算する関数",
-            "question": "次の仕様を満たす関数を定義し、main関数で利用してください。\n\n仕様:\n- 関数名: sumOfList\n- 引数: ArrayList<Integer> numbers\n- 戻り値: int\n- 機能: 引数で渡されたリストの要素の合計を返す\n\nmain関数で、任意の整数のリスト（例: [1, 2, 3, 4, 5]）を宣言し、リストの要素の合計を計算して出力してください。",
-            "explanation": "ArrayListの要素を合計するには、forループを使用して各要素を加算します。関数を定義してリストの要素を合計し、戻り値として返します。main関数で関数を呼び出し、結果を出力します。",
-            "answer": "import java.util.ArrayList;\nimport java.util.Arrays;\n\npublic class SumOfList {\n\n    public static void main(String[] args) {\n        ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));\n        int sum = sumOfList(numbers);\n\n        // リストの要素の合計を出力する\n        System.out.println(\"Sum: \" + sum);\n    }\n\n    // sumOfList関数の定義\n    public static int sumOfList(ArrayList<Integer> numbers) {\n        int sum = 0;\n        for (int number : numbers) {\n            sum += number;\n        }\n        return sum;\n    }\n}\n"
+            "questionId": "java1_10",
+            "title": "再帰メソッド",
+            "question": "再帰メソッドを用いて、整数nの階乗を計算する「factorial」メソッドを作成してください。メインメソッドでこのメソッドを呼び出し、結果を表示してください。例えば、nが5の場合、出力結果は120になります。",
+            "explanation": "再帰メソッドは、メソッドが自分自身を呼び出すことによって実行されます。この問題では、階乗を計算する再帰メソッド「factorial」を作成します。nの階乗は、n * (n - 1) * (n - 2) * ... * 1 です。",
+            "answer": "public class RecursiveExample {\n\n    public static int factorial(int n) {\n        if (n == 0) {\n            return 1;\n        }\n        return n * factorial(n - 1);\n    }\n\n    public static void main(String[] args) {\n        int result = factorial(5);\n        System.out.println(\"Factorial of 5 is: \" + result); // 予想される出力結果: Factorial of 5 is: 120\n    }\n\n}"
         },
         {
             "id": 11,
-            "questionId": "java_functions_11",
-            "title": "文字列配列の長さを計算する関数",
-            "question": "次の仕様を満たす関数を定義し、main関数で利用してください。\n\n仕様:\n- 関数名: stringArrayLength\n- 引数: String[] strings\n- 戻り値: int\n- 機能: 引数で渡された文字列配列の長さを返す\n\nmain関数で、任意の文字列の配列（例: {\"apple\", \"banana\", \"orange\"}）を宣言し、配列の長さを計算して出力してください。",
-            "explanation": "配列の長さを計算するには、配列のlengthプロパティを使用します。関数を定義して配列の長さを返し、main関数で関数を呼び出し、結果を出力します。",
-            "answer": "public class StringArrayLength {\n\n    public static void main(String[] args) {\n        String[] strings = {\"apple\", \"banana\", \"orange\"};\n        int length = stringArrayLength(strings);\n\n        // 配列の長さを出力する\n        System.out.println(\"Length: \" + length);\n    }\n\n    // stringArrayLength関数の定義\n    public static int stringArrayLength(String[] strings) {\n        return strings.length;\n    }\n}\n"
+            "questionId": "java1_11",
+            "title": "可変長引数",
+            "question": "可変長引数を使用して、複数の整数の平均を計算する「calculateAverage」メソッドを作成してください。メインメソッドでこのメソッドを呼び出し、結果を表示してください。例えば、引数に1, 2, 3, 4, 5を渡した場合、出力結果は3になります。",
+            "explanation": "可変長引数は、メソッドに任意の数の引数を渡すことができる機能です。この問題では、可変長引数を使用して複数の整数の平均を計算する「calculateAverage」メソッドを作成します。",
+            "answer": "public class VarArgsExample {\n\n    public static double calculateAverage(int... numbers) {\n        int sum = 0;\n        for (int number : numbers) {\n            sum += number;\n        }\n        return (double) sum / numbers.length;\n    }\n\n    public static void main(String[] args) {\n        double average = calculateAverage(1, 2, 3, 4, 5);\n        System.out.println(\"The average is: \" + average); // 予想される出力結果: The average is: 3.0\n    }\n\n}"
         },
         {
             "id": 12,
-            "questionId": "java_functions_12",
-            "title": "リスト内の最大値を求める関数",
-            "question": "次の仕様を満たす関数を定義し、main関数で利用してください。\n\n仕様:\n- 関数名: findMax\n- 引数: List<Integer> numbers\n- 戻り値: int\n- 機能: 引数で渡された整数リスト内の最大値を返す\n\nmain関数で、任意の整数リスト（例: Arrays.asList(1, 5, 8, 3, 6)）を宣言し、リスト内の最大値を計算して出力してください。",
-            "explanation": "リスト内の最大値を計算するには、リストの各要素をループで処理し、最大値を更新していく方法があります。関数を定義し、リスト内の最大値を返し、main関数で関数を呼び出し、結果を出力します。",
-            "answer": "import java.util.Arrays;\nimport java.util.List;\n\npublic class FindMax {\n\n    public static void main(String[] args) {\n        List<Integer> numbers = Arrays.asList(1, 5, 8, 3, 6);\n        int max = findMax(numbers);\n\n        // リスト内の最大値を出力する\n        System.out.println(\"Max: \" + max);\n    }\n\n    // findMax関数の定義\n    public static int findMax(List<Integer> numbers) {\n        int max = numbers.get(0);\n        for (int number : numbers) {\n            if (number > max) {\n                max = number;\n            }\n        }\n        return max;\n    }\n}\n"
+            "questionId": "java1_12",
+            "title": "オーバーロード",
+            "question": "オーバーロードを使用して、2つの整数を受け取りその和を返すメソッド「add」を作成してください。さらに、2つのdouble型の数値を受け取りその和を返す別の「add」メソッドを作成してください。メインメソッドで両方の「add」メソッドを呼び出し、結果を表示してください。",
+            "explanation": "オーバーロードとは、メソッド名は同じでも引数の型や個数が異なる複数のメソッドを作成することです。この問題では、オーバーロードを使用して整数とdouble型の数値の和を計算する「add」メソッドを作成します。",
+            "answer": "public class OverloadExample {\n\n    public static int add(int a, int b) {\n        return a + b;\n    }\n\n    public static double add(double a, double b) {\n        return a + b;\n    }\n\n    public static void main(String[] args) {\n        System.out.println(\"Sum of integers: \" + add(3, 4)); // 予想される出力結果: Sum of integers: 7\n        System.out.println(\"Sum of doubles: \" + add(3.5, 4.5)); // 予想される出力結果: Sum of doubles: 8.0\n    }\n\n}"
         },
         {
             "id": 13,
-            "questionId": "java_functions_13",
-            "title": "リスト内の奇数の数を求める関数",
-            "question": "次の仕様を満たす関数を定義し、main関数で利用してください。\n\n仕様:\n- 関数名: countOdds\n- 引数: List<Integer> numbers\n- 戻り値: int\n- 機能: 引数で渡された整数リスト内の奇数の数を返す\n\nmain関数で、任意の整数リスト（例: Arrays.asList(1, 5, 8, 3, 6)）を宣言し、リスト内の奇数の数を計算して出力してください。",
-            "explanation": "リスト内の奇数の数を求めるには、リストの各要素をループで処理し、奇数である場合カウントをインクリメントしていく方法があります。関数を定義し、リスト内の奇数の数を返し、main関数で関数を呼び出し、結果を出力します。",
-            "answer": "import java.util.Arrays;\nimport java.util.List;\n\npublic class CountOdds {\n\n    public static void main(String[] args) {\n        List<Integer> numbers = Arrays.asList(1, 5, 8, 3, 6);\n        int oddCount = countOdds(numbers);\n\n        // リスト内の奇数の数を出力する\n        System.out.println(\"Number of odd numbers: \" + oddCount);\n    }\n\n    // countOdds関数の定義\n    public static int countOdds(List<Integer> numbers) {\n        int count = 0;\n        for (int number : numbers) {\n            if (number % 2 != 0) {\n                count++;\n            }\n        }\n        return count;\n    }\n}\n"
+            "questionId": "java1_13",
+            "title": "再帰",
+            "question": "再帰を使用して、与えられた整数の階乗を計算するメソッド「factorial」を作成してください。メインメソッドで「factorial」メソッドを呼び出し、結果を表示してください。",
+            "explanation": "再帰とは、メソッドが自分自身を呼び出すことです。この問題では、再帰を使用して整数の階乗を計算する「factorial」メソッドを作成します。",
+            "answer": "public class RecursionExample {\n\n    public static int factorial(int n) {\n        if (n == 0) {\n            return 1;\n        } else {\n            return n * factorial(n - 1);\n        }\n    }\n\n    public static void main(String[] args) {\n        System.out.println(\"Factorial of 5: \" + factorial(5)); // 予想される出力結果: Factorial of 5: 120\n    }\n\n}"
         },
         {
             "id": 14,
-            "questionId": "java_functions_14",
-            "title": "リスト内の最大値を求める関数",
-            "question": "次の仕様を満たす関数を定義し、main関数で利用してください。\n\n仕様:\n- 関数名: findMax\n- 引数: List<Integer> numbers\n- 戻り値: int\n- 機能: 引数で渡された整数リスト内の最大値を返す\n\nmain関数で、任意の整数リスト（例: Arrays.asList(1, 5, 8, 3, 6)）を宣言し、リスト内の最大値を計算して出力してください。",
-            "explanation": "リスト内の最大値を求めるには、リストの各要素をループで処理し、最大値として保持している値と比較して大きければ、最大値を更新する方法があります。関数を定義し、リスト内の最大値を返し、main関数で関数を呼び出し、結果を出力します。",
-            "answer": "import java.util.Arrays;\nimport java.util.List;\n\npublic class FindMax {\n\n    public static void main(String[] args) {\n        List<Integer> numbers = Arrays.asList(1, 5, 8, 3, 6);\n        int maxNumber = findMax(numbers);\n\n        // リスト内の最大値を出力する\n        System.out.println(\"Maximum number: \" + maxNumber);\n    }\n\n    // findMax関数の定義\n    public static int findMax(List<Integer> numbers) {\n        int max = Integer.MIN_VALUE;\n        for (int number : numbers) {\n            if (number > max) {\n                max = number;\n            }\n        }\n        return max;\n    }\n}\n"
+            "questionId": "java1_14",
+            "title": "オーバーロード",
+            "question": "同じ名前のメソッドを複数定義する方法である、オーバーロードを使用して、整数および浮動小数点数の2つの値を加算するaddメソッドを作成してください。メインメソッドで両方のaddメソッドを呼び出し、結果を表示してください。",
+            "explanation": "オーバーロードとは、同じ名前のメソッドを異なる引数の組み合わせで複数定義することです。この問題では、オーバーロードを使用して、整数および浮動小数点数の2つの値を加算するaddメソッドを作成します。",
+            "answer": "public class OverloadExample {\n\n    public static int add(int a, int b) {\n        return a + b;\n    }\n\n    public static double add(double a, double b) {\n        return a + b;\n    }\n\n    public static void main(String[] args) {\n        System.out.println(\"Integers addition: \" + add(5, 6)); // 予想される出力結果: Integers addition: 11\n        System.out.println(\"Doubles addition: \" + add(5.0, 6.5)); // 予想される出力結果: Doubles addition: 11.5\n    }\n\n}"
         },
         {
             "id": 15,
-            "questionId": "java_functions_15",
-            "title": "リスト内の最小値を求める関数",
-            "question": "次の仕様を満たす関数を定義し、main関数で利用してください。\n\n仕様:\n- 関数名: findMin\n- 引数: List<Integer> numbers\n- 戻り値: int\n- 機能: 引数で渡された整数リスト内の最小値を返す\n\nmain関数で、任意の整数リスト（例: Arrays.asList(1, 5, 8, 3, 6)）を宣言し、リスト内の最小値を計算して出力してください。",
-            "explanation": "リスト内の最小値を求めるには、リストの各要素をループで処理し、最小値として保持している値と比較して小さければ、最小値を更新する方法があります。関数を定義し、リスト内の最小値を返し、main関数で関数を呼び出し、結果を出力します。",
-            "answer": "import java.util.Arrays;\nimport java.util.List;\n\npublic class FindMin {\n\n    public static void main(String[] args) {\n        List<Integer> numbers = Arrays.asList(1, 5, 8, 3, 6);\n        int minNumber = findMin(numbers);\n\n        // リスト内の最小値を出力する\n        System.out.println(\"Minimum number: \" + minNumber);\n    }\n\n    // findMin関数の定義\n    public static int findMin(List<Integer> numbers) {\n        int min = Integer.MAX_VALUE;\n        for (int number : numbers) {\n            if (number < min) {\n                min = number;\n            }\n        }\n        return min;\n    }\n}\n"
+            "questionId": "java1_15",
+            "title": "再帰メソッド",
+            "question": "再帰メソッドを使用して、指定された整数までの和を計算するsumメソッドを作成してください。メインメソッドでsumメソッドを呼び出し、結果を表示してください。",
+            "explanation": "再帰メソッドとは、メソッドの中で自分自身を呼び出すメソッドのことです。この問題では、再帰メソッドを使用して、指定された整数までの和を計算するsumメソッドを作成します。",
+            "answer": "public class RecursiveSum {\n\n    public static int sum(int n) {\n        if (n == 1) {\n            return 1;\n        }\n        return n + sum(n - 1);\n    }\n\n    public static void main(String[] args) {\n        System.out.println(\"Sum up to 5: \" + sum(5)); // 予想される出力結果: Sum up to 5: 15\n    }\n\n}"
         },
         {
             "id": 16,
-            "questionId": "java_functions_16",
-            "title": "文字列を反転させる関数",
-            "question": "次の仕様を満たす関数を定義し、main関数で利用してください。\n\n仕様:\n- 関数名: reverseString\n- 引数: String input\n- 戻り値: String\n- 機能: 引数で渡された文字列を反転させて返す\n\nmain関数で、任意の文字列（例: \"Hello, world!\"）を宣言し、関数を呼び出して反転させた文字列を出力してください。",
-            "explanation": "文字列を反転させるには、文字列の長さを取得し、ループで文字列の末尾から先頭に向かって1文字ずつ取り出し、新しい文字列に追加していく方法があります。関数を定義し、文字列を反転させた結果を返し、main関数で関数を呼び出し、結果を出力します。",
-            "answer": "public class ReverseString {\n\n    public static void main(String[] args) {\n        String input = \"Hello, world!\";\n        String reversedString = reverseString(input);\n\n        // 反転させた文字列を出力する\n        System.out.println(\"Reversed string: \" + reversedString);\n    }\n\n    // reverseString関数の定義\n    public static String reverseString(String input) {\n        StringBuilder reversed = new StringBuilder();\n        for (int i = input.length() - 1; i >= 0; i--) {\n            reversed.append(input.charAt(i));\n        }\n        return reversed.toString();\n    }\n}\n"
+            "questionId": "java1_16",
+            "title": "可変長引数",
+            "question": "可変長引数を使用して、与えられた整数の合計を計算するsumメソッドを作成してください。メインメソッドでsumメソッドを呼び出し、結果を表示してください。",
+            "explanation": "可変長引数とは、メソッドの引数の数が可変であることを示します。この問題では、可変長引数を使用して、与えられた整数の合計を計算するsumメソッドを作成します。",
+            "answer": "public class VarArgsSum {\n\n    public static int sum(int... numbers) {\n        int total = 0;\n        for (int number : numbers) {\n            total += number;\n        }\n        return total;\n    }\n\n    public static void main(String[] args) {\n        System.out.println(\"Sum: \" + sum(1, 2, 3, 4, 5)); // 予想される出力結果: Sum: 15\n    }\n\n}"
         },
         {
             "id": 17,
-            "questionId": "java_functions_17",
-            "title": "フィボナッチ数列を計算する関数",
-            "question": "次の仕様を満たす関数を定義し、main関数で利用してください。\n\n仕様:\n- 関数名: fibonacci\n- 引数: int n\n- 戻り値: int\n- 機能: 引数で渡されたn番目のフィボナッチ数を返す\n\nmain関数で、任意の整数（例: 10）を宣言し、関数を呼び出してn番目のフィボナッチ数を出力してください。",
-            "explanation": "フィボナッチ数列は、最初の2つの数が1で、その後の数が直前の2つの数の和であるような数列です。再帰を使用してn番目のフィボナッチ数を計算する関数を定義し、main関数で関数を呼び出し、結果を出力します。",
-            "answer": "public class Fibonacci {\n\n    public static void main(String[] args) {\n        int n = 10;\n        int result = fibonacci(n);\n\n        // n番目のフィボナッチ数を出力する\n        System.out.println(n + \"番目のフィボナッチ数: \" + result);\n    }\n\n    // fibonacci関数の定義\n    public static int fibonacci(int n) {\n        if (n <= 1) {\n            return n;\n        }\n        return fibonacci(n - 1) + fibonacci(n - 2);\n    }\n}\n"
+            "questionId": "java1_17",
+            "title": "メソッドのオーバーロード",
+            "question": "同じ名前のメソッドを異なる引数で定義することをメソッドのオーバーロードと言います。次の条件に従って、整数の二乗および実数の二乗を計算するsquareメソッドをオーバーロードしてください。\n\n1. 引数がint型の場合、整数の二乗を返す\n2. 引数がdouble型の場合、実数の二乗を返す\n\nメインメソッドでsquareメソッドを呼び出し、結果を表示してください。",
+            "explanation": "メソッドのオーバーロードとは、同じ名前のメソッドを異なる引数で定義することです。この問題では、整数の二乗および実数の二乗を計算するsquareメソッドをオーバーロードします。",
+            "answer": "public class OverloadedSquare {\n\n    public static int square(int num) {\n        return num * num;\n    }\n\n    public static double square(double num) {\n        return num * num;\n    }\n\n    public static void main(String[] args) {\n        System.out.println(\"Square of 4: \" + square(4)); // 予想される出力結果: Square of 4: 16\n        System.out.println(\"Square of 4.5: \" + square(4.5)); // 予想される出力結果: Square of 4.5: 20.25\n    }\n\n}"
         },
         {
             "id": 18,
-            "questionId": "java_functions_18",
-            "title": "文字列の逆転",
-            "question": "次の仕様を満たす関数を定義し、main関数で利用してください。\n\n仕様:\n- 関数名: reverseString\n- 引数: String str\n- 戻り値: String\n- 機能: 引数で渡された文字列を逆転させて返す\n\nmain関数で、任意の文字列（例: \"Hello, Java!\"）を宣言し、関数を呼び出して逆転した文字列を出力してください。",
-            "explanation": "引数で渡された文字列を逆転させる関数を作成します。文字列の長さを取得し、最後の文字から順に新しい文字列に追加していくことで、逆転した文字列を作成します。main関数で関数を呼び出し、結果を出力します。",
-            "answer": "public class ReverseString {\n\n    public static void main(String[] args) {\n        String str = \"Hello, Java!\";\n        String reversed = reverseString(str);\n\n        // 逆転した文字列を出力する\n        System.out.println(\"逆転した文字列: \" + reversed);\n    }\n\n    // reverseString関数の定義\n    public static String reverseString(String str) {\n        StringBuilder reversed = new StringBuilder();\n        for (int i = str.length() - 1; i >= 0; i--) {\n            reversed.append(str.charAt(i));\n        }\n        return reversed.toString();\n    }\n}\n"
+            "questionId": "java1_18",
+            "title": "メソッドを呼び出す",
+            "question": "次の条件に従って、総和を計算するsumメソッドを作成し、メインメソッドから呼び出してください。\n\n1. 引数はint型の配列である\n2. 配列内のすべての要素の総和を返す\n\nメインメソッドでsumメソッドを呼び出し、結果を表示してください。",
+            "explanation": "この問題では、総和を計算するsumメソッドを作成し、メインメソッドから呼び出します。",
+            "answer": "public class ArraySum {\n\n    public static int sum(int[] numbers) {\n        int total = 0;\n        for (int number : numbers) {\n            total += number;\n        }\n        return total;\n    }\n\n    public static void main(String[] args) {\n        int[] numbers = {1, 2, 3, 4, 5};\n        System.out.println(\"Sum of the array elements: \" + sum(numbers)); // 予想される出力結果: Sum of the array elements: 15\n    }\n\n}"
         },
         {
             "id": 19,
-            "questionId": "java_functions_19",
-            "title": "合計と平均を求める関数",
-            "question": "次の仕様を満たす関数を定義し、main関数で利用してください。\n\n仕様:\n- 関数名: calculateSumAndAverage\n- 引数: int[] numbers\n- 戻り値: double[]\n- 機能: 引数で渡された整数の配列の合計と平均を計算し、要素数2のdouble型配列に格納して返す。配列のインデックス0に合計、インデックス1に平均を格納する。\n\nmain関数で、任意の整数の配列（例: {1, 2, 3, 4, 5}）を宣言し、関数を呼び出して合計と平均を出力してください。",
-            "explanation": "引数で渡された整数の配列の合計と平均を計算する関数を作成します。配列の各要素をループで合計に追加し、最後に要素数で割って平均を求めます。main関数で関数を呼び出し、結果を出力します。",
-            "answer": "public class SumAndAverage {\n\n    public static void main(String[] args) {\n        int[] numbers = {1, 2, 3, 4, 5};\n        double[] result = calculateSumAndAverage(numbers);\n\n        // 合計と平均を出力する\n        System.out.println(\"合計: \" + result[0]);\n        System.out.println(\"平均: \" + result[1]);\n    }\n\n    // calculateSumAndAverage関数の定義\n    public static double[] calculateSumAndAverage(int[] numbers) {\n        double sum = 0;\n        for (int number : numbers) {\n            sum += number;\n        }\n        double average = sum / numbers.length;\n        return new double[]{sum, average};\n    }\n}\n"
+            "questionId": "java1_19",
+            "title": "文字列の長さを返すメソッド",
+            "question": "次の条件に従って、文字列の長さを返すメソッドを作成してください。\n\n1. メソッド名はlengthOfString\n2. 引数はString型\n3. 文字列の長さをint型で返す\n\nメインメソッドでlengthOfStringメソッドを呼び出し、結果を表示してください。",
+            "explanation": "この問題では、文字列の長さを返すlengthOfStringメソッドを作成し、メインメソッドから呼び出します。",
+            "answer": "public class StringLength {\n\n    public static int lengthOfString(String str) {\n        return str.length();\n    }\n\n    public static void main(String[] args) {\n        String input = \"Hello, World!\";\n        System.out.println(\"Length of the string '\" + input + \"': \" + lengthOfString(input)); // 予想される出力結果: Length of the string 'Hello, World!': 13\n    }\n\n}"
         },
         {
             "id": 20,
-            "questionId": "java_functions_20",
-            "title": "最大公約数を求める関数",
-            "question": "次の仕様を満たす関数を定義し、main関数で利用してください。\n\n仕様:\n- 関数名: gcd\n- 引数: int a, int b\n- 戻り値: int\n- 機能: 引数で渡された2つの整数の最大公約数を求める。\n\nmain関数で、任意の整数のペア（例: 56と98）を宣言し、関数を呼び出して最大公約数を出力してください。",
-            "explanation": "ユークリッドの互除法を使用して2つの整数の最大公約数を求める関数を作成します。ユークリッドの互除法では、2つの数を繰り返し割り算していき、余りが0になったときの割る数が最大公約数になります。main関数で関数を呼び出し、結果を出力します。",
-            "answer": "public class GCD {\n\n    public static void main(String[] args) {\n        int a = 56;\n        int b = 98;\n\n        // 最大公約数を出力する\n        System.out.println(\"最大公約数: \" + gcd(a, b));\n    }\n\n    // gcd関数の定義\n    public static int gcd(int a, int b) {\n        while (b != 0) {\n            int temp = b;\n            b = a % b;\n            a = temp;\n        }\n        return a;\n    }\n}\n"
+            "questionId": "java1_20",
+            "title": "配列の合計値を返すメソッド",
+            "question": "次の条件に従って、整数型配列の合計値を返すメソッドを作成してください。\n\n1. メソッド名はsumOfArray\n2. 引数はint[]型\n3. 配列の合計値をint型で返す\n\nメインメソッドでsumOfArrayメソッドを呼び出し、結果を表示してください。",
+            "explanation": "この問題では、整数型配列の合計値を返すsumOfArrayメソッドを作成し、メインメソッドから呼び出します。",
+            "answer": "public class ArraySum {\n\n    public static int sumOfArray(int[] numbers) {\n        int sum = 0;\n        for (int number : numbers) {\n            sum += number;\n        }\n        return sum;\n    }\n\n    public static void main(String[] args) {\n        int[] array = {1, 2, 3, 4, 5};\n        System.out.println(\"Sum of the array: \" + sumOfArray(array)); // 予想される出力結果: Sum of the array: 15\n    }\n\n}"
         }
     ]
 }

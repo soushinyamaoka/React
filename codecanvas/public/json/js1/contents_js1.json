@@ -1,0 +1,78 @@
+{
+    "contentsId": "js",
+    "title": "JavaScriptの基本構文問題集ページ",
+    "subtitle": "JavaScriptの基本構文",
+    "questions": [{
+            "id": 1,
+            "questionId": "js1_dataType",
+            "title": "Javascriptのデータ型",
+            "question": "JavaScriptには6つのプリミティブ型（基本型）とオブジェクト型があります。プリミティブ型には、Boolean、Null、Undefined、Number、String、Symbol（ES6で追加）があります。オブジェクト型は、複数の値を一つの変数で扱えるコンテナのようなもので、オブジェクトリテラル、配列、関数、Dateなどがあります。",
+            "answer": "/* プリミティブ型の例 */\nvar myBoolean = true; // Boolean\nvar myNull = null; // Null\nvar myUndefined; // Undefined\nvar myNumber = 123; // Number\nvar myString = \"Hello\"; // String\nvar mySymbol = Symbol(\"sym\"); // Symbol (ES6以降)\n\n/* オブジェクト型の例 */\nvar myObject = {key: \"value\"}; // オブジェクトリテラル\nvar myArray = [1, 2, 3]; // 配列\nvar myFunction = function() { return \"Hello\"; }; // 関数\nvar myDate = new Date(); // Date"
+        },
+        {
+            "id": 2,
+            "questionId": "js1_variable",
+            "title": "変数",
+            "question": "JavaScriptでは、データを保存するために変数を使用します。変数はlet、const、varの3つのキーワードを使用して宣言できます。letはブロックスコープの変数を宣言し、varは関数スコープまたはグローバルスコープの変数を宣言します。constはブロックスコープの定数を宣言し、一度代入すると再代入できません。",
+            "answer": "/* letを使用した変数宣言 */\nlet myVariable = 5;\n\n/* varを使用した変数宣言 */\nvar myOldVariable = \"Hello\";\n\n/* constを使用した定数宣言 */\nconst myConstant = 3.14;\n\n/* 再代入の例 */\nmyVariable = 10; // letおよびvar宣言の変数は再代入可能\n// myConstant = 1.5; // この行をコメントアウトを外すとエラーになります。const宣言の変数は再代入不可"
+        },
+        {
+            "id": 3,
+            "questionId": "js1_constant",
+            "title": "定数",
+            "question": "JavaScriptでは、値が変更されない変数、つまり定数を宣言するために「const」キーワードを使用します。一度「const」で宣言された変数に値が割り当てられると、その値は変更できません。つまり、再代入は不可能です。",
+            "answer": "/* constを使用した定数宣言 */\nconst myConstant = 3.14;\n\n/* constで宣言された定数の値は変更できません */\n// myConstant = 1.5; // この行のコメントを外すとエラーになります。\n\n/* constはブロックスコープのルールに従います */\nif (true) {\n  const insideBlock = \"visible inside this block\";\n  console.log(insideBlock); // \"visible inside this block\"\n}\n// console.log(insideBlock); // この行のコメントを外すとエラーになります。ブロックの外からは参照できません。"
+        },
+        {
+            "id": 4,
+            "questionId": "js1_conditional",
+            "title": "条件分岐",
+            "question": "JavaScriptでは、「if」「else if」「else」文を使って条件分岐を作成します。また、「switch」文を使って複数の条件を一度にチェックすることも可能です。",
+            "answer": "/* if文の使用例 */\nvar age = 20;\nif (age >= 20) {\n  console.log(\"You are an adult.\"); // 「You are an adult.」と出力されます。\n}\n\n/* if else文の使用例 */\nif (age < 20) {\n  console.log(\"You are a teenager.\");\n} else {\n  console.log(\"You are an adult.\"); // 「You are an adult.」と出力されます。\n}\n\n/* switch文の使用例 */\nvar fruit = \"apple\";\nswitch (fruit) {\n  case \"banana\":\n    console.log(\"Banana is good.\");\n    break;\n  case \"apple\":\n    console.log(\"Apple is great.\"); // 「Apple is great.」と出力されます。\n    break;\n  default:\n    console.log(\"I don't know that fruit.\");\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "js1_loops",
+            "title": "繰り返し",
+            "question": "JavaScriptでは、「for」、「while」、「do while」ループを使用して、特定のコードを繰り返し実行できます。「for」ループは指定した回数だけ繰り返し処理を行い、「while」ループと「do while」ループは特定の条件が満たされるまで繰り返し処理を行います。",
+            "answer": "/* forループの使用例 */\nfor (let i = 0; i < 5; i++) {\n  console.log(i); // 0から4まで出力されます。\n}\n\n/* whileループの使用例 */\nlet j = 0;\nwhile (j < 5) {\n  console.log(j); // 0から4まで出力されます。\n  j++;\n}\n\n/* do whileループの使用例 */\nlet k = 0;\ndo {\n  console.log(k); // 0から4まで出力されます。\n  k++;\n} while (k < 5);"
+        },
+        {
+            "id": 6,
+            "questionId": "js1_kansu",
+            "title": "関数",
+            "question": "JavaScriptでは、関数は一連の文をまとめて名前をつけ、それを一つの単位として扱います。関数は、必要なときに何度でも呼び出すことができます。また、関数はパラメータを取り、結果を返すことができます。",
+            "answer": "/* 関数の宣言 */\nfunction greet(name) {\n  return \"Hello, \" + name + \"!\";\n}\n\n/* 関数の呼び出し */\nvar message = greet(\"Alice\");\nconsole.log(message); // \"Hello, Alice!\"と出力されます。\n\n/* 無名関数（匿名関数）の例。この関数は変数に代入されます。 */\nvar add = function(a, b) {\n  return a + b;\n};\n\n/* 無名関数の呼び出し */\nvar sum = add(1, 2);\nconsole.log(sum); // 3と出力されます."
+        },
+        {
+            "id": 7,
+            "questionId": "js1_argument",
+            "title": "引数",
+            "question": "JavaScriptの関数は、一つ以上の引数を取ることができます。引数は関数が処理を行うために必要なデータを提供します。関数は引数を取り、それに基づいて処理を行い、結果を返すことができます。",
+            "answer": "/* 引数を一つ取る関数の例 */\nfunction greet(name) {\n  return \"Hello, \" + name + \"!\";\n}\n\n/* 関数の呼び出し時に引数を渡す */\nvar message = greet(\"Alice\");\nconsole.log(message); // \"Hello, Alice!\"と出力されます。\n\n/* 引数を複数取る関数の例 */\nfunction add(a, b) {\n  return a + b;\n}\n\n/* 関数の呼び出し時に複数の引数を渡す */\nvar sum = add(1, 2);\nconsole.log(sum); // 3と出力されます."
+        },
+        {
+            "id": 8,
+            "questionId": "js1_return",
+            "title": "戻り値",
+            "question": "JavaScriptの関数は、一つの値を戻り値として返すことができます。これは、関数が処理を行った結果を表します。戻り値は関数の呼び出し元に返され、その値を利用することができます。",
+            "answer": "/* 戻り値を持つ関数の例 */\nfunction add(a, b) {\n  return a + b; // 戻り値はaとbの和です。\n}\n\n/* 関数の戻り値を変数に代入する */\nvar sum = add(1, 2);\nconsole.log(sum); // 3と出力されます。\n\n/* 戻り値を直接利用する例 */\nconsole.log(add(4, 5)); // 9と出力されます."
+        },
+        {
+            "id": 9,
+            "questionId": "js1_object",
+            "title": "オブジェクト",
+            "question": "JavaScriptのオブジェクトは、キーと値のペアを格納することができます。これは、異なる種類のデータを一つの変数にまとめるために使用されます。オブジェクトのキーは一意でなければならず、その値は任意のデータ型を持つことができます。",
+            "answer": "/* オブジェクトの作成例 */\nvar person = {\n  name: \"Alice\",\n  age: 20,\n  greeting: function() {\n    return \"Hello, my name is \" + this.name + \".\";\n  }\n};\n\n/* オブジェクトのプロパティへのアクセス */\nconsole.log(person.name); // \"Alice\"と出力されます。\nconsole.log(person.age); // 20と出力されます.\n\n/* オブジェクトのメソッドの呼び出し */\nconsole.log(person.greeting()); // \"Hello, my name is Alice.\"と出力されます."
+        },
+        {
+            "id": 10,
+            "questionId": "js1_method",
+            "title": "メソッド",
+            "question": "JavaScriptのメソッドは、オブジェクトのプロパティの一部で、関数として定義されます。これらのメソッドは、オブジェクトの動作を定義し、オブジェクトのデータを操作するために使用されます。",
+            "answer": "/* オブジェクトとメソッドの例 */\nvar person = {\n  name: \"Alice\",\n  age: 20,\n  greeting: function() {\n    return \"Hello, my name is \" + this.name + \".\";\n  }\n};\n\n/* メソッドの呼び出し */\nconsole.log(person.greeting()); // \"Hello, my name is Alice.\"と出力されます.\n\n/* メソッド内でオブジェクトの他のプロパティにアクセスする例 */\nvar dog = {\n  name: \"Rex\",\n  age: 5,\n  describe: function() {\n    return \"The dog's name is \" + this.name + \" and it is \" + this.age + \" years old.\";\n  }\n};\nconsole.log(dog.describe()); // \"The dog's name is Rex and it is 5 years old.\"と出力されます."
+        }
+
+    ]
+
+}

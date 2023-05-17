@@ -1,0 +1,159 @@
+{
+    "contentsId": "java2",
+    "title": "Javaの関数問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_functions_adv1",
+            "title": "ジェネリック関数",
+            "question": "ジェネリック関数を使用して、2つの異なる型のオブジェクトを受け取り、それらをペアにして返す関数を作成してください。\n\n入力:\n2つの異なる型のオブジェクト\n\n出力:\nペアとしての2つのオブジェクト\n\n例:\n\n入力:\nString: \"Hello\"\nInteger: 42\n\n出力:\n(\"Hello\", 42)",
+            "explanation": "ジェネリック関数を使用すると、異なる型のオブジェクトを処理する柔軟な関数を作成することができます。ここでは、2つの異なる型のオブジェクトをペアにして返す関数を作成しています。",
+            "answer": "import java.util.AbstractMap.SimpleEntry;\nimport java.util.Map.Entry;\n\npublic class PairCreator {\n\n  public static <T, U> Entry<T, U> createPair(T first, U second) {\n    return new SimpleEntry<>(first, second);\n  }\n\n  public static void main(String[] args) {\n    String first = \"Hello\";\n    Integer second = 42;\n\n    Entry<String, Integer> pair = createPair(first, second);\n\n    // 予想される出力: (Hello, 42)\n    System.out.println(\"(\" + pair.getKey() + \", \" + pair.getValue() + \")\");\n  }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java_functions_adv2",
+            "title": "関数オーバーロード",
+            "question": "次の要件に従って、関数のオーバーロードを実装してください。\n\n1. 整数の二次元配列を受け取り、すべての要素の合計を返す関数\n2. 整数の三次元配列を受け取り、すべての要素の合計を返す関数\n\n入力:\n1. 整数の二次元配列\n2. 整数の三次元配列\n\n出力:\n1. 二次元配列の要素の合計\n2. 三次元配列の要素の合計\n\n例:\n\n入力:\nint[][] arr2D = {{1, 2}, {3, 4}};\nint[][][] arr3D = {{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}};\n\n出力:\n10\n36",
+            "explanation": "関数のオーバーロードを使用すると、同じ名前の関数を異なる引数で実装できます。この問題では、整数の二次元配列と三次元配列を受け取り、すべての要素の合計を返す2つの関数を実装します。",
+            "answer": "public class ArraySumCalculator {\n\n  public static int sum(int[][] arr2D) {\n    int total = 0;\n    for (int[] row : arr2D) {\n      for (int elem : row) {\n        total += elem;\n      }\n    }\n    return total;\n  }\n\n  public static int sum(int[][][] arr3D) {\n    int total = 0;\n    for (int[][] matrix : arr3D) {\n      for (int[] row : matrix) {\n        for (int elem : row) {\n          total += elem;\n        }\n      }\n    }\n    return total;\n  }\n\n  public static void main(String[] args) {\n    int[][] arr2D = {{1, 2}, {3, 4}};\n    int[][][] arr3D = {{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}};\n\n    // 予想される出力: 10\n    System.out.println(sum(arr2D));\n    // 予想される出力: 36\n    System.out.println(sum(arr3D));\n  }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java_functions_adv3",
+            "title": "再帰関数",
+            "question": "再帰関数を使用して、与えられた整数nに対して、フィボナッチ数列のn番目の数を計算してください。\n\n入力:\n整数n（0 <= n <= 30）\n\n出力:\nフィボナッチ数列のn番目の数\n\n例:\n\n入力:\n6\n\n出力:\n8",
+            "explanation": "再帰関数を使用して、フィボナッチ数列のn番目の数を計算します。フィボナッチ数列は、最初の2つの数が0と1であり、次の数は前の2つの数の和であるという性質を持っています。再帰的にこの性質を用いて、n番目の数を計算します。",
+            "answer": "public class FibonacciCalculator {\n\n  public static int fibonacci(int n) {\n    if (n <= 1) {\n      return n;\n    } else {\n      return fibonacci(n - 1) + fibonacci(n - 2);\n    }\n  }\n\n  public static void main(String[] args) {\n    int n = 6;\n\n    // 予想される出力: 8\n    System.out.println(fibonacci(n));\n  }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java_functions_adv4",
+            "title": "高階関数の利用",
+            "question": "高階関数を使用して、引数として与えられた関数をn回適用するメソッドを作成してください。\n\n入力:\n関数 func、整数 n、整数 x\n\n出力:\n関数 func を n 回 x に適用した結果\n\n例:\n\n入力:\n関数 func: x * 2\n整数 n: 3\n整数 x: 1\n\n出力:\n8",
+            "explanation": "高階関数は、関数を引数として受け取るか、関数を返す関数のことです。この問題では、与えられた関数funcをn回xに適用するメソッドを作成することで、高階関数の概念を理解します。",
+            "answer": "import java.util.function.Function;\n\npublic class HigherOrderFunction {\n\n  public static int applyFunctionNTimes(Function<Integer, Integer> func, int n, int x) {\n    for (int i = 0; i < n; i++) {\n      x = func.apply(x);\n    }\n    return x;\n  }\n\n  public static void main(String[] args) {\n    Function<Integer, Integer> func = x -> x * 2;\n    int n = 3;\n    int x = 1;\n\n    // 予想される出力: 8\n    System.out.println(applyFunctionNTimes(func, n, x));\n  }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java_functions_adv5",
+            "title": "ジェネリック型を用いた関数の作成",
+            "question": "ジェネリック型を用いて、配列内の要素を変換する関数を実装してください。この関数は、与えられた配列内の要素を、引数として渡された関数を用いて変換し、新しい配列に格納して返します。\n\n入力:\n配列 arr、関数 func\n\n出力:\n関数 func で変換された要素を持つ新しい配列\n\n例:\n\n入力:\nInteger配列: [1, 2, 3, 4, 5]\n関数 func: x * 2\n\n出力:\n[2, 4, 6, 8, 10]",
+            "explanation": "ジェネリック型を使って配列内の要素を変換する関数を実装することで、ジェネリック型の利用方法を理解します。ジェネリック型は、型パラメータを使って柔軟に型を指定できる機能です。",
+            "answer": "import java.util.Arrays;\nimport java.util.function.Function;\n\npublic class GenericFunction {\n\n  public static <T, R> R[] transformArray(T[] arr, Function<T, R> func, R[] newArr) {\n    for (int i = 0; i < arr.length; i++) {\n      newArr[i] = func.apply(arr[i]);\n    }\n    return newArr;\n  }\n\n  public static void main(String[] args) {\n    Integer[] arr = {1, 2, 3, 4, 5};\n    Function<Integer, Integer> func = x -> x * 2;\n    Integer[] newArr = new Integer[arr.length];\n\n    // 予想される出力: [2, 4, 6, 8, 10]\n    System.out.println(Arrays.toString(transformArray(arr, func, newArr)));\n  }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java_functions_adv6",
+            "title": "再帰関数を使ったフィボナッチ数列",
+            "question": "再帰関数を使って、指定されたインデックスのフィボナッチ数を計算する関数を作成してください。\n\n入力:\nインデックス n (0 <= n <= 50)\n\n出力:\nフィボナッチ数列の n 番目の数\n\n例:\n\n入力: 5\n\n出力: 5",
+            "explanation": "再帰関数を使ってフィボナッチ数列を計算することで、再帰アルゴリズムの理解を深めます。再帰関数は、関数が自分自身を呼び出すことで問題を解決する手法です。",
+            "answer": "public class Fibonacci {\n\n  public static int fibonacci(int n) {\n    if (n <= 1) {\n      return n;\n    }\n    return fibonacci(n - 1) + fibonacci(n - 2);\n  }\n\n  public static void main(String[] args) {\n    int n = 5;\n\n    // 予想される出力: 5\n    System.out.println(fibonacci(n));\n  }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java_functions_adv7",
+            "title": "オーバーロードされたメソッドの計算",
+            "question": "同じ名前のメソッドをオーバーロードして、整数および実数の合計を計算するプログラムを作成してください。\n\n入力:\n整数: a, b\n実数: x, y\n\n出力:\n整数の合計\n実数の合計\n\n例:\n\n入力: a = 3, b = 4, x = 2.5, y = 3.5\n\n出力:\n7\n6.0",
+            "explanation": "オーバーロードは、同じ名前のメソッドを複数の引数型で定義することで、引数の型に応じて適切なメソッドが呼び出される仕組みです。この問題では、整数および実数の合計を計算するオーバーロードされたメソッドを作成し、その違いを理解することが目的です。",
+            "answer": "public class OverloadedMethods {\n\n  public static int sum(int a, int b) {\n    return a + b;\n  }\n\n  public static double sum(double a, double b) {\n    return a + b;\n  }\n\n  public static void main(String[] args) {\n    int a = 3;\n    int b = 4;\n    double x = 2.5;\n    double y = 3.5;\n\n    // 予想される出力: 7\n    System.out.println(sum(a, b));\n    // 予想される出力: 6.0\n    System.out.println(sum(x, y));\n  }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java_functions_adv8",
+            "title": "再帰を使用したフィボナッチ数列",
+            "question": "フィボナッチ数列のn番目の項を再帰を使用して計算するメソッドを作成してください。\n\n入力: n (0 <= n <= 40)\n\n出力: n番目のフィボナッチ数\n\n例:\n\n入力: n = 7\n\n出力: 13",
+            "explanation": "再帰は、メソッドが自分自身を呼び出すプロセスです。フィボナッチ数列は、再帰を使用して簡潔に表現できる典型的な例です。ただし、再帰を使用すると計算量が増えるため、効率の低い解法となります。",
+            "answer": "public class FibonacciRecursion {\n\n  public static int fibonacci(int n) {\n    if (n <= 1) {\n      return n;\n    }\n    return fibonacci(n - 1) + fibonacci(n - 2);\n  }\n\n  public static void main(String[] args) {\n    int n = 7;\n\n    // 予想される出力: 13\n    System.out.println(fibonacci(n));\n  }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java_functions_adv9",
+            "title": "可変長引数の合計",
+            "question": "可変長引数を使用して、与えられた任意の整数の合計を計算するメソッドを作成してください。\n\n入力: 任意個の整数\n\n出力: 整数の合計\n\n例:\n\n入力: 1, 2, 3, 4, 5\n\n出力: 15",
+            "explanation": "可変長引数は、任意の個数の引数を1つの配列として受け取る機能です。この機能を使用することで、引数の数が固定されていないメソッドを簡潔に記述できます。",
+            "answer": "public class VariableLengthArguments {\n\n  public static int sum(int... numbers) {\n    int sum = 0;\n    for (int number : numbers) {\n      sum += number;\n    }\n    return sum;\n  }\n\n  public static void main(String[] args) {\n    // 予想される出力: 15\n    System.out.println(sum(1, 2, 3, 4, 5));\n  }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java_functions_adv10",
+            "title": "高階関数の実装",
+            "question": "高階関数を実装して、与えられた関数オブジェクトを使って整数のリストの要素を変換するメソッドを作成してください。\n\n入力: Integerリスト, Functionオブジェクト\n\n出力: 変換されたIntegerリスト\n\n例:\n\n入力: [1, 2, 3, 4, 5], x -> x * 2\n\n出力: [2, 4, 6, 8, 10]",
+            "explanation": "高階関数は、関数を引数として受け取るか、関数を返す関数です。Javaでは、Functionインターフェースを使用して、関数オブジェクトを表現できます。この問題では、与えられたリストの各要素に関数を適用する高階関数を実装します。",
+            "answer": "import java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.List;\nimport java.util.function.Function;\n\npublic class HigherOrderFunction {\n\n  public static List<Integer> transform(List<Integer> list, Function<Integer, Integer> function) {\n    List<Integer> result = new ArrayList<>();\n    for (Integer number : list) {\n      result.add(function.apply(number));\n    }\n    return result;\n  }\n\n  public static void main(String[] args) {\n    List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);\n    Function<Integer, Integer> doubleFunction = x -> x * 2;\n\n    // 予想される出力: [2, 4, 6, 8, 10]\n    System.out.println(transform(numbers, doubleFunction));\n  }\n}"
+        },
+        {
+            "id": 11,
+            "questionId": "java_functions_adv11",
+            "title": "ストリームAPIを使用したリストのフィルタリング",
+            "question": "ストリームAPIを使用して、与えられたリストから偶数のみをフィルタリングし、新しいリストを作成してください。\n\n入力: Integerリスト\n\n出力: フィルタリングされたIntegerリスト\n\n例:\n\n入力: [1, 2, 3, 4, 5, 6, 7, 8, 9]\n\n出力: [2, 4, 6, 8]",
+            "explanation": "ストリームAPIは、Java 8で導入された機能であり、コレクションの操作を効率的に行うことができます。この問題では、ストリームAPIのfilterメソッドを使用して、与えられたリストから偶数のみを抽出します。",
+            "answer": "import java.util.Arrays;\nimport java.util.List;\nimport java.util.stream.Collectors;\n\npublic class StreamFiltering {\n\n  public static List<Integer> filterEvenNumbers(List<Integer> list) {\n    return list.stream()\n               .filter(x -> x % 2 == 0)\n               .collect(Collectors.toList());\n  }\n\n  public static void main(String[] args) {\n    List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);\n\n // 予想される出力: [2, 4, 6, 8]\n System.out.println(filterEvenNumbers(numbers));\n }\n}"
+        },
+        {
+            "id": 12,
+            "questionId": "java_functions_adv12",
+            "title": "オーバーロードされたメソッド",
+            "question": "オーバーロードされたメソッドを作成して、与えられた2つの整数または2つの文字列の和を計算してください。\n\n入力: 2つの整数または2つの文字列\n\n出力: 整数の和または文字列の連結\n\n例:\n\n入力: 3, 5\n\n出力: 8\n\n入力: \"Hello\", \" World\"\n\n出力: \"Hello World\"",
+            "explanation": "オーバーロードされたメソッドは、同じ名前を持つが、引数の数や型が異なるメソッドです。この問題では、整数の和と文字列の連結を計算するオーバーロードされたメソッドを作成します。",
+            "answer": "public class OverloadedMethods {\n\n  public static int add(int a, int b) {\n    return a + b;\n  }\n\n  public static String add(String a, String b) {\n    return a + b;\n  }\n\n  public static void main(String[] args) {\n    int a = 3;\n    int b = 5;\n\n    // 予想される出力: 8\n    System.out.println(add(a, b));\n\n    String str1 = \"Hello\";\n    String str2 = \" World\";\n\n    // 予想される出力: \"Hello World\"\n    System.out.println(add(str1, str2));\n  }\n}"
+        },
+        {
+            "id": 14,
+            "questionId": "java_functions_adv14",
+            "title": "可変長引数を使用した関数",
+            "question": "可変長引数を使用して、与えられた複数の整数値の平均値を計算する関数を作成してください。\n\n入力: 複数の整数\n\n出力: 整数の平均値\n\n例:\n\n入力: 2, 4, 6, 8\n\n出力: 5.0",
+            "explanation": "可変長引数は、関数が任意の数の引数を受け取ることができるようにする機能です。この問題では、可変長引数を使用して、与えられた複数の整数値の平均値を計算する関数を作成します。",
+            "answer": "public class VarargsAverage {\n\n  public static double average(int... numbers) {\n    int sum = 0;\n    for (int number : numbers) {\n      sum += number;\n    }\n    return (double) sum / numbers.length;\n  }\n\n  public static void main(String[] args) {\n    System.out.println(average(2, 4, 6, 8)); // Expected output: 5.0\n  }\n}"
+        },
+        {
+            "id": 15,
+            "questionId": "java_functions_adv15",
+            "title": "再帰を使用したフィボナッチ数列",
+            "question": "再帰を使用して、指定された整数nまでのフィボナッチ数列を計算する関数を作成してください。\n\n入力: 整数n (n >= 0)\n\n出力: n番目のフィボナッチ数\n\n例:\n\n入力: 5\n\n出力: 3",
+            "explanation": "フィボナッチ数列は、前の2つの数字の和によって次の数字が決まる数列です。この問題では、再帰を使用して、指定された整数nまでのフィボナッチ数列を計算する関数を作成します。",
+            "answer": "public class RecursiveFibonacci {\n\n  public static int fibonacci(int n) {\n    if (n <= 1) {\n      return n;\n    }\n    return fibonacci(n - 1) + fibonacci(n - 2);\n  }\n\n  public static void main(String[] args) {\n    System.out.println(fibonacci(5)); // Expected output: 3\n  }\n}"
+        },
+        {
+            "id": 16,
+            "questionId": "java_functions_adv16",
+            "title": "階乗を計算する関数",
+            "question": "指定された整数nの階乗を計算する関数を作成してください。\n\n入力: 整数n (n >= 0)\n\n出力: nの階乗\n\n例:\n\n入力: 5\n\n出力: 120",
+            "explanation": "階乗は、1からその数までのすべての整数の積です。この問題では、指定された整数nの階乗を計算する関数を作成します。",
+            "answer": "public class Factorial {\n\n  public static int factorial(int n) {\n    int result = 1;\n    for (int i = 1; i <= n; i++) {\n      result *= i;\n    }\n    return result;\n  }\n\n  public static void main(String[] args) {\n    System.out.println(factorial(5)); // Expected output: 120\n  }\n}"
+        },
+        {
+            "id": 17,
+            "questionId": "java_functions_adv17",
+            "title": "フィボナッチ数列のn番目の項",
+            "question": "フィボナッチ数列のn番目の項を返す関数を作成してください。\n\n入力: 整数n (n >= 0)\n\n出力: フィボナッチ数列のn番目の項\n\n例:\n\n入力: 6\n\n出力: 8",
+            "explanation": "フィボナッチ数列は、各項が前の2つの項の和である数列です。この問題では、フィボナッチ数列のn番目の項を返す関数を作成します。",
+            "answer": "public class Fibonacci {\n\n  public static int fibonacci(int n) {\n    if (n <= 1) {\n      return n;\n    }\n    return fibonacci(n - 1) + fibonacci(n - 2);\n  }\n\n  public static void main(String[] args) {\n    System.out.println(fibonacci(6)); // Expected output: 8\n  }\n}"
+        },
+        {
+            "id": 18,
+            "questionId": "java_functions_adv18",
+            "title": "GCD(最大公約数)を求める関数",
+            "question": "2つの整数の最大公約数(GCD)を求める関数を作成してください。\n\n入力: 整数a, b (a > 0, b > 0)\n\n出力: aとbの最大公約数(GCD)\n\n例:\n\n入力: a = 54, b = 24\n\n出力: 6",
+            "explanation": "最大公約数(GCD)は、2つの数の共通の約数のうち最大のものです。この問題では、2つの整数の最大公約数を求める関数を作成します。",
+            "answer": "public class GCD {\n\n  public static int gcd(int a, int b) {\n    if (b == 0) {\n      return a;\n    }\n    return gcd(b, a % b);\n  }\n\n  public static void main(String[] args) {\n    System.out.println(gcd(54, 24)); // Expected output: 6\n  }\n}"
+        },
+        {
+            "id": 19,
+            "questionId": "java_functions_adv19",
+            "title": "最小公倍数を求める関数",
+            "question": "2つの整数の最小公倍数(LCM)を求める関数を作成してください。\n\n入力: 整数a, b (a > 0, b > 0)\n\n出力: aとbの最小公倍数(LCM)\n\n例:\n\n入力: a = 8, b = 12\n\n出力: 24",
+            "explanation": "最小公倍数(LCM)は、2つの数の共通の倍数のうち最小のものです。この問題では、2つの整数の最小公倍数を求める関数を作成します。",
+            "answer": "public class LCM {\n\n  public static int gcd(int a, int b) {\n    if (b == 0) {\n      return a;\n    }\n    return gcd(b, a % b);\n  }\n\n  public static int lcm(int a, int b) {\n    return a * b / gcd(a, b);\n  }\n\n  public static void main(String[] args) {\n    System.out.println(lcm(8, 12)); // Expected output: 24\n  }\n}"
+        },
+        {
+            "id": 20,
+            "questionId": "java_functions_adv20",
+            "title": "n次のフィボナッチ数を求める関数",
+            "question": "n次のフィボナッチ数を求める関数を作成してください。\n\n入力: 整数n (n > 0)\n\n出力: n次のフィボナッチ数\n\n例:\n\n入力: n = 7\n\n出力: 13",
+            "explanation": "フィボナッチ数列は、最初の2つの数が1で、その後の数が前の2つの数の和となる数列です。この問題では、n次のフィボナッチ数を求める関数を作成します。",
+            "answer": "public class Fibonacci {\n\n  public static int fibonacci(int n) {\n    if (n <= 1) {\n      return n;\n    }\n    return fibonacci(n - 1) + fibonacci(n - 2);\n  }\n\n  public static void main(String[] args) {\n    System.out.println(fibonacci(7)); // Expected output: 13\n  }\n}"
+        }
+
+    ]
+}

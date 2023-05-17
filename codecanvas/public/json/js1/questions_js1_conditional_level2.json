@@ -1,0 +1,120 @@
+{
+    "contentsId": "javascript3",
+    "title": "JavaScriptの条件分岐問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js2_1",
+            "title": "オブジェクトのプロパティの存在確認",
+            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar person = {\n    name: 'Alice',\n    age: 25\n};\n\nif (person.hasOwnProperty('name') && person.hasOwnProperty('age')) {\n    console.log('Both properties exist.');\n} else if (person.hasOwnProperty('name')) {\n    console.log('Only name property exists.');\n} else if (person.hasOwnProperty('age')) {\n    console.log('Only age property exists.');\n} else {\n    console.log('Both properties do not exist.');\n}\n```",
+            "explanation": "オブジェクト`person`は`name`と`age`の2つのプロパティを持っています。`hasOwnProperty()`メソッドを使ってプロパティの存在を確認しています。条件式`person.hasOwnProperty('name') && person.hasOwnProperty('age')`は両方のプロパティが存在することを判定し、そのブロック内のコード`console.log('Both properties exist.');`が実行されます。\n実行結果として、コンソールには`Both properties exist.`が出力されます。",
+            "answer": "Both properties exist."
+        },
+        {
+            "id": 2,
+            "questionId": "js2_2",
+            "title": "switch文の使用",
+            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar color = 'blue';\n\nswitch (color) {\n    case 'red':\n        console.log('The color is red.');\n        break;\n    case 'green':\n        console.log('The color is green.');\n        break;\n    case 'blue':\n        console.log('The color is blue.');\n        break;\n    default:\n        console.log('The color is unknown.');\n}\n```",
+            "explanation": "変数`color`の値は`blue`です。`switch`文を使って`color`の値によって処理を分岐しています。`case 'blue':`のブロック内のコード`console.log('The color is blue.');`が実行されます。\n実行結果として、コンソールには`The color is blue.`が出力されます。",
+            "answer": "The color is blue."
+        },
+        {
+            "id": 3,
+            "questionId": "js2_3",
+            "title": "条件式の組み合わせ",
+            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar x = 10;\nvar y = 5;\n\nif ((x > 5 || x < 8) && y < 10) {\n    console.log('A');\n} else if (x === 10 && y === 5) {\n    console.log('B');\n} else if (x > 8 && y < 5) {\n    console.log('C');\n} else {\n    console.log('D');\n}\n```",
+            "explanation": "変数`x`の値は`10`で、変数`y`の値は`5`です。条件式`((x > 5 || x < 8) && y < 10)`は論理演算子の結合順序により、`(x > 5 || x < 8)`と`(y < 10)`がまず評価されます。前者の条件は`true`ですが、後者の条件は`true`ではありません。したがって、そのブロック内のコードは実行されません。次に条件式`x === 10 && y === 5`が評価されますが、この条件は`true`です。そのブロック内のコード`console.log('B');`が実行されます。\n実行結果として、コンソールには`B`が出力されます。",
+            "answer": "B"
+        },
+        {
+            "id": 4,
+            "questionId": "js2_4",
+            "title": "論理演算子の結合順序",
+            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar x = 6;\nvar y = 8;\n\nif (x < 10 || x > 5 && y < 10) {\n    console.log('A');\n} else if (x === 6 && y === 8) {\n    console.log('B');\n} else if (x > 10 && y < 5) {\n    console.log('C');\n} else {\n    console.log('D');\n}\n```",
+            "explanation": "変数`x`の値は`6`で、変数`y`の値は`8`です。条件式`x < 10 || x > 5 && y < 10`は論理演算子の優先順位により、`(x < 10)`と`(x > 5 && y < 10)`がまず評価されます。前者の条件は`true`ですが、後者の条件は`false`です。したがって、そのブロック内のコード`console.log('A');`が実行されます。\n実行結果として、コンソールには`A`が出力されます。",
+            "answer": "A"
+        },
+        {
+            "id": 5,
+            "questionId": "js2_5",
+            "title": "switch文の使用",
+            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar fruit = 'apple';\n\nswitch (fruit) {\n    case 'banana':\n        console.log('The fruit is banana.');\n        break;\n    case 'orange':\n        console.log('The fruit is orange.');\n        break;\n    case 'apple':\n        console.log('The fruit is apple.');\n        break;\n    default:\n        console.log('The fruit is unknown.');\n}\n```",
+            "explanation": "変数`fruit`の値は`apple`です。`switch`文を使って`fruit`の値によって処理を分岐しています。`case 'apple':`のブロック内のコード`console.log('The fruit is apple.');`が実行されます。\n実行結果として、コンソールには`The fruit is apple.`が出力されます。",
+            "answer": "The fruit is apple."
+        },
+        {
+            "id": 6,
+            "questionId": "js2_6",
+            "title": "条件式の組み合わせ",
+            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar x = 8;\nvar y = 5;\n\nif ((x > 5 || x < 8) && y < 10) {\n    console.log('A');\n} else if (x === 8 && y === 5) {\n    console.log('B');\n} else if (x > 10 && y < 5) {\n    console.log('C');\n} else {\n    console.log('D');\n}\n```",
+            "explanation": "変数`x`の値は`8`で、変数`y`の値は`5`です。条件式`((x > 5 || x < 8) && y < 10)`は論理演算子の結合順序により、`(x > 5 || x < 8)`と`(y < 10)`がまず評価されます。前者の条件は`true`ですが、後者の条件は`true`です。したがって、そのブロック内のコード`console.log('A');`が実行されます。\n実行結果として、コンソールには`A`が出力されます。",
+            "answer": "A"
+        },
+        {
+            "id": 7,
+            "questionId": "js2_7",
+            "title": "論理演算子の結合順序",
+            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar x = 10;\nvar y = 5;\n\nif (x > 5 && y < 10 || x < 8) {\n    console.log('A');\n} else if (x === 10 && y === 5) {\n    console.log('B');\n} else if (x > 8 && y < 5) {\n    console.log('C');\n} else {\n    console.log('D');\n}\n```",
+            "explanation": "変数`x`の値は`10`で、変数`y`の値は`5`です。条件式`x > 5 && y < 10 || x < 8`は論理演算子の結合順序により、`(x > 5 && y < 10)`と`(x < 8)`がまず評価されます。前者の条件は`true`ですが、後者の条件は`false`です。したがって、そのブロック内のコード`console.log('A');`が実行されます。\n実行結果として、コンソールには`A`が出力されます。",
+            "answer": "A"
+        },
+        {
+            "id": 8,
+            "questionId": "js2_8",
+            "title": "switch文の使用",
+            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar day = 'Sunday';\n\nswitch (day) {\n    case 'Monday':\n        console.log('Today is Monday.');\n        break;\n    case 'Tuesday':\n        console.log('Today is Tuesday.');\n        break;\n    case 'Wednesday':\n        console.log('Today is Wednesday.');\n        break;\n    case 'Thursday':\n        console.log('Today is Thursday.');\n        break;\n    case 'Friday':\n        console.log('Today is Friday.');\n        break;\n    case 'Saturday':\n        console.log('Today is Saturday.');\n        break;\n    case 'Sunday':\n        console.log('Today is Sunday.');\n        break;\n    default:\n        console.log('Invalid day.');\n}\n```",
+            "explanation": "変数`day`の値は`Sunday`です。`switch`文を使って`day`の値によって処理を分岐しています。`case 'Sunday':`のブロック内のコード`console.log('Today is Sunday.');`が実行されます。\n実行結果として、コンソールには`Today is Sunday.`が出力されます。",
+            "answer": "Today is Sunday."
+        },
+        {
+            "id": 9,
+            "questionId": "js2_9",
+            "title": "条件式の組み合わせ",
+            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar x = 8;\nvar y = 5;\n\nif ((x > 5 || x < 8) && y < 10) {\n    console.log('A');\n} else if (x === 8 && y === 5) {\n    console.log('B');\n} else if (x > 10 && y < 5) {\n    console.log('C');\n} else {\n    console.log('D');\n}\n```",
+            "explanation": "変数`x`の値は`8`で、変数`y`の値は`5`です。条件式`((x > 5 || x < 8) && y < 10)`は論理演算子の結合順序により、`(x > 5 || x < 8)`と`(y < 10)`がまず評価されます。前者の条件は`true`ですが、後者の条件は`true`です。したがって、そのブロック内のコード`console.log('A');`が実行されます。\n実行結果として、コンソールには`A`が出力されます。",
+            "answer": "A"
+        },
+        {
+            "id": 10,
+            "questionId": "js2_10",
+            "title": "論理演算子の結合順序",
+            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar x = 6;\nvar y = 8;\n\nif (x > 5 && y < 10 || x < 8) {\n    console.log('A');\n} else if (x === 6 && y === 8) {\n    console.log('B');\n} else if (x > 10 && y < 5) {\n    console.log('C');\n} else {\n    console.log('D');\n}\n```",
+            "explanation": "変数`x`の値は`6`で、変数`y`の値は`8`です。条件式`x > 5 && y < 10 || x < 8`は論理演算子の結合順序により、`(x > 5 && y < 10)`と`(x < 8)`がまず評価されます。前者の条件は`true`ですが、後者の条件は`false`です。したがって、そのブロック内のコード`console.log('A');`が実行されます。\n実行結果として、コンソールには`A`が出力されます。",
+            "answer": "A"
+        },
+        {
+            "id": 11,
+            "questionId": "js2_11",
+            "title": "switch文の使用",
+            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar season = 'summer';\n\nswitch (season) {\n    case 'spring':\n        console.log('It is spring.');\n        break;\n    case 'summer':\n        console.log('It is summer.');\n        break;\n    case 'autumn':\n        console.log('It is autumn.');\n        break;\n    case 'winter':\n        console.log('It is winter.');\n        break;\n    default:\n        console.log('Invalid season.');\n}\n```",
+            "explanation": "変数`season`の値は`summer`です。`switch`文を使って`season`の値によって処理を分岐しています。`case 'summer':`のブロック内のコード`console.log('It is summer.');`が実行されます。\n実行結果として、コンソールには`It is summer.`が出力されます。",
+            "answer": "It is summer."
+        },
+
+        {
+            "id": 12,
+            "questionId": "js2_12",
+            "title": "条件式の組み合わせ",
+            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar x = 8;\nvar y = 5;\n\nif ((x > 5 || x < 8) && y < 10) {\n    console.log('A');\n} else if (x === 8 && y === 5) {\n    console.log('B');\n} else if (x > 10 && y < 5) {\n    console.log('C');\n} else {\n    console.log('D');\n}\n```",
+            "explanation": "変数`x`の値は`8`で、変数`y`の値は`5`です。条件式`((x > 5 || x < 8) && y < 10)`は論理演算子の結合順序により、`(x > 5 || x < 8)`と`(y < 10)`がまず評価されます。前者の条件は`true`ですが、後者の条件は`true`です。したがって、そのブロック内のコード`console.log('A');`が実行されます。\n実行結果として、コンソールには`A`が出力されます。",
+            "answer": "A"
+        },
+        {
+            "id": 13,
+            "questionId": "js2_13",
+            "title": "論理演算子の結合順序",
+            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar x = 6;\nvar y = 8;\n\nif (x > 5 && y < 10 || x < 8) {\n    console.log('A');\n} else if (x === 6 && y === 8) {\n    console.log('B');\n} else if (x > 10 && y < 5) {\n    console.log('C');\n} else {\n    console.log('D');\n}\n```",
+            "explanation": "変数`x`の値は`6`で、変数`y`の値は`8`です。条件式`x > 5 && y < 10 || x < 8`は論理演算子の結合順序により、`(x > 5 && y < 10)`と`(x < 8)`がまず評価されます。前者の条件は`true`ですが、後者の条件は`false`です。したがって、そのブロック内のコード`console.log('A');`が実行されます。\n実行結果として、コンソールには`A`が出力されます。",
+            "answer": "A"
+        },
+        {
+            "id": 14,
+            "questionId": "js2_14",
+            "title": "switch文の使用",
+            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar dayOfWeek = 'Wednesday';\n\nswitch (dayOfWeek) {\n    case 'Monday':\n        console.log('It is Monday.');\n        break;\n    case 'Tuesday':\n        console.log('It is Tuesday.');\n        break;\n    case 'Wednesday':\n        console.log('It is Wednesday.');\n        break;\n    case 'Thursday':\n        console.log('It is Thursday.');\n        break;\n    case 'Friday':\n        console.log('It is Friday.');\n        break;\n    case 'Saturday':\n        console.log('It is Saturday.');\n        break;\n    case 'Sunday':\n        console.log('It is Sunday.');\n        break;\n    default:\n        console.log('Invalid day.');\n}\n```",
+            "explanation": "変数`dayOfWeek`の値は`Wednesday`です。`switch`文を使って`dayOfWeek`の値によって処理を分岐しています。`case 'Wednesday':`のブロック内のコード`console.log('It is Wednesday.');`が実行されます。\n実行結果として、コンソールには`It is Wednesday.`が出力されます。",
+            "answer": "It is Wednesday."
+        }
+
+    ]
+}

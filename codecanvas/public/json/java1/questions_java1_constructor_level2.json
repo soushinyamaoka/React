@@ -1,0 +1,47 @@
+ {
+     "contentsId": "java2",
+     "title": "Javaのコンストラクタ問題集ページ",
+     "subtitle": "中級",
+     "questions": [{
+             "id": 1,
+             "questionId": "java_constructor_1",
+             "title": "コンストラクタの基本",
+             "question": "以下のクラスで、nameとageを初期化するコンストラクタを作成してください。",
+             "explanation": "コンストラクタはクラス名と同じ名前のメソッドで、オブジェクトが作られるときに一度だけ呼び出されます。この問題では、Personクラスのオブジェクトが作成されたときに、nameとageを初期化します。",
+             "answer": "public class Person {\n  private String name;\n  private int age;\n\n  public Person(String name, int age) {\n    this.name = name;\n    this.age = age;\n  }\n}\n"
+         },
+         {
+             "id": 2,
+             "questionId": "java_constructor_2",
+             "title": "デフォルトコンストラクタ",
+             "question": "以下のクラスで、デフォルトコンストラクタを作成してください。",
+             "explanation": "デフォルトコンストラクタは引数を取らないコンストラクタのことを指します。明示的にコンストラクタを作成しない場合、Javaはデフォルトコンストラクタを自動的に作成しますが、一度でもコンストラクタを作成すると、デフォルトコンストラクタは自動的に作成されません。",
+             "answer": "public class Person {\n  private String name;\n  private int age;\n\n  public Person() {\n  }\n}\n"
+         },
+         {
+             "id": 3,
+             "questionId": "java_constructor_3",
+             "title": "コンストラクタのオーバーロード",
+             "question": "以下のクラスで、コンストラクタのオーバーロードを行ってください。",
+             "explanation": "Javaでは、同じ名前のメソッドを引数の数や型を変えて複数定義することができます。これをメソッドのオーバーロードと呼びます。コンストラクタもメソッドの一種なので、オーバーロードすることができます。",
+             "answer": "public class Person {\n  private String name;\n  private int age;\n\n  public Person() {\n  }\n\n  public Person(String name) {\n    this.name = name;\n  }\n\n  public Person(String name, int age) {\n    this.name = name;\n    this.age = age;\n  }\n}\n"
+         },
+         {
+             "id": 4,
+             "questionId": "java_constructor_4",
+             "title": "thisキーワード",
+             "question": "以下のクラスで、thisキーワードを使用してコンストラクタを作成してください。",
+             "explanation": "thisキーワードは、インスタンス自身を指す参照です。クラス内のメソッドやコンストラクタから、そのメソッドやコンストラクタが呼び出されているインスタンス自身にアクセスするために使用します。",
+             "answer": "public class Person {\n  private String name;\n  private int age;\n\n  public Person(String name, int age) {\n    this.name = name;\n    this.age = age;\n  }\n}\n"
+         },
+         {
+             "id": 5,
+             "questionId": "java_constructor_5",
+             "title": "コンストラクタと初期化ブロック",
+             "question": "以下のクラスで、コンストラクタと初期化ブロックを使用して値を設定してください。",
+             "explanation": "Javaでは、コンストラクタの前に実行される初期化ブロックを定義することができます。初期化ブロックは、すべてのコンストラクタで共通の初期化処理を書くことができます。",
+             "answer": "public class Person {\n  private String name;\n  private int age;\n\n  {\n    name = \"Unknown\";\n    age = 0;\n    System.out.println(\"Initialization block executed\"); // Initialization block executed が出力される\n  }\n\n  public Person() {\n    System.out.println(\"Constructor executed\"); // Constructor executed が出力される\n  }\n}\n"
+         }
+
+     ]
+ }

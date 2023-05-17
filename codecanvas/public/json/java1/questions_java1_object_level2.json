@@ -1,0 +1,166 @@
+{
+    "contentsId": "java2",
+    "title": "Javaのオブジェクト問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java2_1",
+            "title": "オブジェクトのインスタンス化",
+            "question": "次のプログラムを完成させて、Carクラスのインスタンスを生成し、そのオブジェクトの参照を変数carに代入してください。\n\npublic class Car {\n\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    // ここにコードを記述\n  }\n}",
+            "explanation": "Carクラスのインスタンスを生成するには、new演算子を使用してインスタンス化し、そのオブジェクトの参照を変数に代入します。",
+            "answer": "public class Car {\n\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    // ここにコードを記述\n    Car car = new Car();\n  }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java2_2",
+            "title": "コンストラクタ",
+            "question": "Carクラスに、引数なしのコンストラクタを追加してください。\n\npublic class Car {\n\n}",
+            "explanation": "コンストラクタは、オブジェクトが生成されるときに呼び出される特殊なメソッドで、クラス名と同じ名前を持ち、戻り値の型がありません。",
+            "answer": "public class Car {\n\n  public Car() {\n  }\n\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java2_3",
+            "title": "メソッドの定義",
+            "question": "Carクラスに、driveメソッドを追加してください。このメソッドは引数も戻り値もありません。\n\npublic class Car {\n\n}",
+            "explanation": "メソッドの定義には、アクセス修飾子、戻り値の型、メソッド名、引数リストが必要です。今回は引数と戻り値がないため、voidを戻り値の型として使用します。",
+            "answer": "public class Car {\n\n  public void drive() {\n  }\n\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java2_4",
+            "title": "メソッドの呼び出し",
+            "question": "Carクラスのdriveメソッドを呼び出してください。以下のプログラムを完成させてください。\n\npublic class Car {\n  public void drive() {\n    System.out.println(\"Car is driving.\");\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Car car = new Car();\n    // ここにコードを記述\n  }\n}",
+            "explanation": "オブジェクトのメソッドを呼び出すには、オブジェクトの参照を使ってメソッド名に括弧を付けて呼び出します。",
+            "answer": "public class Car {\n  public void drive() {\n    System.out.println(\"Car is driving.\");\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Car car = new Car();\n    // ここにコードを記述\n    car.drive();\n  }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java2_5",
+            "title": "コンストラクタの作成",
+            "question": "Carクラスにコンストラクタを追加し、引数として車の色を受け取るようにしてください。車の色はString型とします。\n\npublic class Car {\n  String color;\n\n  // ここにコンストラクタを追加\n\n  public void drive() {\n    System.out.println(color + \" car is driving.\");\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Car car = new Car(\"Red\");\n    car.drive();\n  }\n}",
+            "explanation": "コンストラクタはクラス名と同じ名前のメソッドで、オブジェクトが作成される際に実行されます。コンストラクタに引数を追加することで、オブジェクト生成時に特定の値を設定することができます。",
+            "answer": "public class Car {\n  String color;\n\n  // ここにコンストラクタを追加\n  public Car(String color) {\n    this.color = color;\n  }\n\n  public void drive() {\n    System.out.println(color + \" car is driving.\");\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Car car = new Car(\"Red\");\n    car.drive();\n  }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java2_6",
+            "title": "クラス継承",
+            "question": "Vehicleクラスを継承したBikeクラスを作成してください。Bikeクラスには、\"Bike is running.\"と表示するrideメソッドを実装してください。\n\npublic class Vehicle {\n  public void run() {\n    System.out.println(\"Vehicle is running.\");\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Bike bike = new Bike();\n    bike.ride();\n  }\n}",
+            "explanation": "Javaでは、あるクラスの機能を別のクラスに継承することができます。これにより、継承したクラスは親クラスの機能を引き継ぎ、その上で新しい機能を追加することができます。継承を行うには、子クラスで「extends 親クラス」を記述します。",
+            "answer": "public class Vehicle {\n  public void run() {\n    System.out.println(\"Vehicle is running.\");\n  }\n}\n\npublic class Bike extends Vehicle {\n  public void ride() {\n    System.out.println(\"Bike is running.\");\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Bike bike = new Bike();\n    bike.ride();\n  }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java2_7",
+            "title": "メソッドオーバーライド",
+            "question": "Vehicleクラスを継承したBikeクラスで、親クラスのrunメソッドをオーバーライドして、「Bike is running.」と表示するようにしてください。\n\npublic class Vehicle {\n  public void run() {\n    System.out.println(\"Vehicle is running.\");\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Bike bike = new Bike();\n    bike.run();\n  }\n}",
+            "explanation": "Javaでは、子クラスで親クラスのメソッドをオーバーライド（上書き）することができます。オーバーライドするには、子クラスで親クラスと同じメソッド名、引数、戻り値の型を定義し、新しい実装を記述します。",
+            "answer": "public class Vehicle {\n  public void run() {\n    System.out.println(\"Vehicle is running.\");\n  }\n}\n\npublic class Bike extends Vehicle {\n  @Override\n  public void run() {\n    System.out.println(\"Bike is running.\");\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Bike bike = new Bike();\n    bike.run();\n  }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java2_8",
+            "title": "インターフェースの実装",
+            "question": "以下のインターフェースDrawableを実装したクラスCircleを作成してください。Circleクラスには、半径を表すフィールドradiusとコンストラクタを追加し、drawメソッドで「Drawing a circle with radius: (radius)」と表示するようにしてください。\n\nインターフェース:\n\npublic interface Drawable {\n  void draw();\n}\n\n実行クラス:\n\npublic class Main {\n  public static void main(String[] args) {\n    Circle circle = new Circle(5);\n    circle.draw();\n  }\n}",
+            "explanation": "インターフェースを実装するには、クラス宣言の後に「implements」キーワードを使い、インターフェース名を指定します。インターフェースのすべてのメソッドは、実装クラスで定義する必要があります。",
+            "answer": "public interface Drawable {\n  void draw();\n}\n\npublic class Circle implements Drawable {\n  private int radius;\n\n  public Circle(int radius) {\n    this.radius = radius;\n  }\n\n  @Override\n  public void draw() {\n    System.out.println(\"Drawing a circle with radius: \" + radius);\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Circle circle = new Circle(5);\n    circle.draw();\n  }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java2_9",
+            "title": "ジェネリクスとクラス",
+            "question": "以下の条件を満たすジェネリクスを用いたBoxクラスを作成してください。\n\n1. ジェネリクス型パラメータTを持つ\n2. T型のフィールドcontentを持つ\n3. T型の引数を持つコンストラクタを持つ\n4. contentのgetterとsetterメソッドを持つ\n\n実行クラス:\n\npublic class Main {\n  public static void main(String[] args) {\n    Box<String> box = new Box<>(\"Hello, world!\");\n    System.out.println(box.getContent());\n  }\n}",
+            "explanation": "ジェネリクスを使用することで、型安全なコードを書くことができます。ジェネリクス型パラメータは、クラス名の後に<>内に指定します。これにより、クラス内でその型パラメータを使用できるようになります。",
+            "answer": "public class Box<T> {\n  private T content;\n\n  public Box(T content) {\n    this.content = content;\n  }\n\n  public T getContent() {\n    return content;\n  }\n\n  public void setContent(T content) {\n    this.content = content;\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Box<String> box = new Box<>(\"Hello, world!\");\n    System.out.println(box.getContent());\n  }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java2_10",
+            "title": "ジェネリクスとインターフェイス",
+            "question": "以下の条件を満たすジェネリクスを用いたインターフェイス「Converter」を作成し、Converterインターフェイスを実装するクラス「UpperCaseConverter」を作成してください。\n\nインターフェイス「Converter」:\n1. ジェネリクス型パラメータTとRを持つ\n2. R型を返すメソッドconvert(T input)を持つ\n\nクラス「UpperCaseConverter」:\n1. Converterインターフェイスを実装する\n2. 入力されたString型の文字列を大文字に変換して返すconvertメソッドを実装する\n\n実行クラス:\n\npublic class Main {\n  public static void main(String[] args) {\n    UpperCaseConverter converter = new UpperCaseConverter();\n    System.out.println(converter.convert(\"hello, world!\"));\n  }\n}",
+            "explanation": "ジェネリクス型パラメータは、インターフェイスにも使用できます。インターフェイス内でその型パラメータを使用することで、型安全なコードを書くことができます。ジェネリクス型パラメータを持つインターフェイスを実装する際は、実装クラスで型パラメータを具体的な型にして実装します。",
+            "answer": "public interface Converter<T, R> {\n  R convert(T input);\n}\n\npublic class UpperCaseConverter implements Converter<String, String> {\n  @Override\n  public String convert(String input) {\n    return input.toUpperCase();\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    UpperCaseConverter converter = new UpperCaseConverter();\n    System.out.println(converter.convert(\"hello, world!\"));\n  }\n}"
+        },
+        {
+            "id": 11,
+            "questionId": "java2_11",
+            "title": "抽象クラスと具象クラス",
+            "question": "以下の条件を満たす抽象クラス「Animal」と具象クラス「Dog」を作成してください。\n\n抽象クラス「Animal」:\n1. String型のフィールドnameを持つ\n2. コンストラクタでnameを初期化する\n3. 抽象メソッドvoid speak()を持つ\n\n具象クラス「Dog」:\n1. Animalクラスを継承する\n2. speakメソッドをオーバーライドし、犬の鳴き声（例: \"ワンワン\"）を出力する\n\n実行クラス:\n\npublic class Main {\n  public static void main(String[] args) {\n    Dog dog = new Dog(\"ポチ\");\n    System.out.println(dog.getName() + \"は\" + dog.speak() + \"と鳴きます。\");\n  }\n}",
+            "explanation": "抽象クラスは、他のクラスに継承させるためだけに存在するクラスで、具象クラスは実際にインスタンス化されるクラスです。抽象クラスは、抽象メソッドを持つことができ、具象クラスはその抽象メソッドをオーバーライドして実装する必要があります。",
+            "answer": "public abstract class Animal {\n  protected String name;\n\n  public Animal(String name) {\n    this.name = name;\n  }\n\n  public abstract void speak();\n\n  public String getName() {\n    return name;\n  }\n}\n\npublic class Dog extends Animal {\n  public Dog(String name) {\n    super(name);\n  }\n\n  @Override\n  public void speak() {\n    System.out.println(\"ワンワン\");\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Dog dog = new Dog(\"ポチ\");\n    System.out.print(dog.getName() + \"は\");\n    dog.speak();\n    System.out.println(\"と鳴きます。\");\n  }\n}"
+        },
+        {
+            "id": 12,
+            "questionId": "java2_12",
+            "title": "インターフェイスの実装",
+            "question": "以下のインターフェイス「Walkable」を実装する具象クラス「Robot」を作成してください。\n\nインターフェイス「Walkable」:\n1. void walk()メソッドを持つ\n\n具象クラス「Robot」:\n1. String型のフィールドnameを持つ\n2. コンストラクタでnameを初期化する\n3. walkメソッドを実装し、ロボットの歩行（例: \"ドシンドシン\"）を出力する\n\n実行クラス:\n\npublic class Main {\n  public static void main(String[] args) {\n    Robot robot = new Robot(\"R2D2\");\n    System.out.println(robot.getName() + \"は\" + robot.walk() + \"と歩きます。\");\n  }\n}",
+            "explanation": "インターフェイスは、他のクラスに実装させるためだけに存在する特殊なクラスです。インターフェイスは、メソッドのシグネチャを宣言することができますが、実装は持ちません。具象クラスはインターフェイスを実装して、インターフェイスで宣言されたメソッドを実装する必要があります。",
+            "answer": "public interface Walkable {\n  void walk();\n}\n\npublic class Robot implements Walkable {\n  private String name;\n\n  public Robot(String name) {\n    this.name = name;\n  }\n\n  @Override\n  public void walk() {\n    System.out.println(\"ドシンドシン\");\n  }\n\n  public String getName() {\n    return name;\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Robot robot = new Robot(\"R2D2\");\n    System.out.print(robot.getName() + \"は\");\n    robot.walk();\n    System.out.println(\"と歩きます。\");\n  }\n}"
+        },
+        {
+            "id": 13,
+            "questionId": "java2_13",
+            "title": "インターフェイスの継承",
+            "question": "以下のインターフェイス「Walkable」を継承し、「Runable」インターフェイスを作成してください。\n\nインターフェイス「Walkable」:\n1. void walk()メソッドを持つ\n\nインターフェイス「Runable」:\n1. Walkableインターフェイスを継承する\n2. void run()メソッドを持つ\n\n具象クラス「Robot」を作成し、以下の条件を満たすように実装してください。\n1. Runableインターフェイスを実装する\n2. String型のフィールドnameを持つ\n3. コンストラクタでnameを初期化する\n4. walkメソッドを実装し、ロボットの歩行（例: \"ドシンドシン\"）を出力する\n5. runメソッドを実装し、ロボットの走行（例: \"シュンシュン\"）を出力する\n\n実行クラス:\n\npublic class Main {\n  public static void main(String[] args) {\n    Robot robot = new Robot(\"R2D2\");\n    System.out.print(robot.getName() + \"は\");\n    robot.walk();\n    System.out.println(\"と歩きます。\");\n    System.out.print(robot.getName() + \"は\");\n    robot.run();\n    System.out.println(\"と走ります。\");\n  }\n}",
+            "explanation": "インターフェイスは他のインターフェイスを継承することができます。インターフェイスが他のインターフェイスを継承する場合、extendsキーワードを使用します。具象クラスは、継承されたインターフェイスを実装することで、すべてのインターフェイスで宣言されたメソッドを実装する必要があります。",
+            "answer": "public interface Walkable {\n  void walk();\n}\n\npublic interface Runable extends Walkable {\n  void run();\n}\n\npublic class Robot implements Runable {\n  private String name;\n\n  public Robot(String name) {\n    this.name = name;\n  }\n\n  @Override\n  public void walk() {\n    System.out.println(\"ドシンドシン\");\n  }\n\n  @Override\n  public void run() {\n    System.out.println(\"シュンシュン\");\n  }\n\n  public String getName() {\n    return name;\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Robot robot = new Robot(\"R2D2\");\n    System.out.print(robot.getName() + \"は\");\n    robot.walk();\n    System.out.println(\"と歩きます。\");\n    System.out.print(robot.getName() + \"は\");\n    robot.run();\n    System.out.println(\"と走ります。\");"
+        },
+        {
+            "id": 14,
+            "questionId": "java_object_m2_14",
+            "title": "インターフェースの実装",
+            "question": "次のインターフェース「Flyable」を実装したクラス「Drone」を作成してください。インターフェース「Flyable」は、メソッド「void fly()」を持っています。クラス「Drone」は、「fly」メソッドを実装し、\"Drone is flying.\"と出力するようにしてください。また、mainメソッドでDroneクラスのインスタンスを作成し、flyメソッドを呼び出してください。\n",
+            "explanation": "インターフェースは、あるクラスが実装すべきメソッドを定義するために使用されます。クラスは、インターフェースを実装してそのメソッドをオーバーライドすることで、インターフェースで定義された振る舞いを実現します。",
+            "answer": "interface Flyable {\n  void fly();\n}\n\nclass Drone implements Flyable {\n\n  @Override\n  public void fly() {\n    System.out.println(\"Drone is flying.\");\n  }\n\n  public static void main(String[] args) {\n    Drone drone = new Drone();\n    drone.fly();\n  }\n}\n"
+        },
+        {
+            "id": 15,
+            "questionId": "java_object_m2_15",
+            "title": "インターフェースの継承",
+            "question": "次の2つのインターフェース、Flyable（void fly()メソッドを持つ）とNavigatable（void navigate()メソッドを持つ）があります。これら2つのインターフェースを継承した新しいインターフェース「AutonomousDrone」を作成してください。その後、AutonomousDroneインターフェースを実装したクラス「Drone」を作成し、fly()メソッドが\"Drone is flying.\"、navigate()メソッドが\"Drone is navigating.\"と出力するように実装してください。最後に、mainメソッドでDroneクラスのインスタンスを作成し、fly()およびnavigate()メソッドを呼び出してください。\n",
+            "explanation": "インターフェースは、他のインターフェースを継承することができます。これにより、複数のインターフェースの機能を組み合わせた新しいインターフェースを作成することができます。",
+            "answer": "interface Flyable {\n  void fly();\n}\n\ninterface Navigatable {\n  void navigate();\n}\n\ninterface AutonomousDrone extends Flyable, Navigatable {\n}\n\nclass Drone implements AutonomousDrone {\n\n  @Override\n  public void fly() {\n    System.out.println(\"Drone is flying.\");\n  }\n\n  @Override\n  public void navigate() {\n    System.out.println(\"Drone is navigating.\");\n  }\n\n  public static void main(String[] args) {\n    Drone drone = new Drone();\n    drone.fly();\n    drone.navigate();\n  }\n}\n"
+        },
+        {
+            "id": 16,
+            "questionId": "java_object_m2_16",
+            "title": "抽象クラスとインターフェース",
+            "question": "次のシナリオに基づいて、抽象クラスとインターフェースを使ってコードを実装してください。\n\nあなたは、図形の面積を計算するプログラムを作成しています。抽象クラスShapeを作成し、抽象メソッドdouble area()を定義します。次に、Shapeクラスを継承し、インターフェースResizable（void resize(double factor)メソッドを持つ）を実装したクラス「Circle」と「Rectangle」を作成します。\n\nCircleクラスには半径radiusがあり、Rectangleクラスには幅widthと高さheightがあります。それぞれのareaメソッドとresizeメソッドを実装し、mainメソッドでそれぞれのクラスのインスタンスを作成して、面積を計算し、出力してください。\n",
+            "explanation": "抽象クラスは他のクラスで継承されることを前提としており、共通の機能やメソッドを定義するために使用されます。インターフェースは、クラスが実装すべきメソッドを定義し、複数のインターフェースを実装することで、クラスに複数の機能を持たせることができます。",
+            "answer": "abstract class Shape {\n  abstract double area();\n}\n\ninterface Resizable {\n  void resize(double factor);\n}\n\nclass Circle extends Shape implements Resizable {\n  double radius;\n\n  Circle(double radius) {\n    this.radius = radius;\n  }\n\n  @Override\n  double area() {\n    return Math.PI * radius * radius;\n  }\n\n  @Override\n  public void resize(double factor) {\n    radius *= factor;\n  }\n}\n\nclass Rectangle extends Shape implements Resizable {\n  double width, height;\n\n  Rectangle(double width, double height) {\n    this.width = width;\n    this.height = height;\n  }\n\n  @Override\n  double area() {\n    return width * height;\n  }\n\n  @Override\n  public void resize(double factor) {\n    width *= factor;\n    height *= factor;\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Circle circle = new Circle(5);\n    Rectangle rectangle = new Rectangle(4, 6);\n\n    System.out.println(\"Circle area: \" + circle.area());\n    System.out.println(\"Rectangle area: \" + rectangle.area());\n  }\n}\n"
+        },
+        {
+            "id": 17,
+            "questionId": "java_object_m2_17",
+            "title": "内部クラス",
+            "question": "内部クラスの例を作成してください。以下の手順に従ってコードを実装してください。\n\n1. OuterClassという名前の外部クラスを作成します。\n2. OuterClassに、InnerClassという名前の非静的内部クラスを作成します。\n3. InnerClassには、private int number;というフィールドがあります。\n4. InnerClassに、void printNumber()というメソッドを作成し、numberの値を出力します。\n5. OuterClassに、void accessInner()というメソッドを作成し、InnerClassのインスタンスを作成し、printNumber()メソッドを呼び出します。\n6. mainメソッドで、OuterClassのインスタンスを作成し、accessInner()メソッドを呼び出して、numberの値を出力してください。\n",
+            "explanation": "内部クラスは、あるクラスの中で定義されたクラスです。内部クラスは、外部クラスのメンバにアクセスできるため、外部クラスと密接に関連する機能を実装する場合に便利です。",
+            "answer": "class OuterClass {\n  class InnerClass {\n    private int number = 42;\n\n    void printNumber() {\n      System.out.println(\"Number: \" + number);\n    }\n  }\n\n  void accessInner() {\n    InnerClass inner = new InnerClass();\n    inner.printNumber();\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    OuterClass outer = new OuterClass();\n    outer.accessInner();\n  }\n}\n"
+        },
+        {
+            "id": 18,
+            "questionId": "java_object_m2_18",
+            "title": "匿名クラス",
+            "question": "匿名クラスを使用して、Runnableインターフェースを実装し、スレッドを作成して実行してください。\n\n1. mainメソッド内でRunnableインターフェースを実装する匿名クラスを作成します。\n2. Runnableインターフェースのrun()メソッドをオーバーライドし、\"Hello from Runnable\"と出力します。\n3. 匿名クラスのインスタンスをThreadオブジェクトに渡し、スレッドを作成します。\n4. スレッドを開始し、メッセージを出力してください。\n",
+            "explanation": "匿名クラスは、名前のないクラスです。通常、インターフェースを実装する場合や、クラスを継承する場合に使用されます。匿名クラスは、一度しか使用しないようなクラスを定義する場合に便利です。",
+            "answer": "public class Main {\n  public static void main(String[] args) {\n    Runnable runnable = new Runnable() {\n      @Override\n      public void run() {\n        System.out.println(\"Hello from Runnable\");\n      }\n    };\n\n    Thread thread = new Thread(runnable);\n    thread.start();\n  }\n}\n"
+        },
+        {
+            "id": 19,
+            "questionId": "java_object_m2_19",
+            "title": "JavaのStream API",
+            "question": "以下のリストを使って、JavaのStream APIを使用してフィルタリング、変換、および集約を行ってください。\n\nList<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);\n\n1. numbersから偶数だけをフィルタリングし、リストに格納してください。\n2. フィルタリングされたリストから各数値の2倍の値を持つリストを作成してください。\n3. 2倍された数値のリストの要素の合計を求めてください。\n4. 合計を出力してください。\n",
+            "explanation": "Java 8で導入されたStream APIを使うことで、コレクション操作を効率的かつ簡潔に記述できます。Stream APIでは、中間操作と終端操作という2種類の操作が提供されています。中間操作は、フィルタリングや変換などの処理を行い、結果を再びStreamとして返します。終端操作は、Streamの処理を終了し、集計や結果の格納を行います。",
+            "answer": "import java.util.Arrays;\nimport java.util.List;\n\npublic class Main {\n  public static void main(String[] args) {\n    List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);\n\n    int sum = numbers.stream()\n                     .filter(n -> n % 2 == 0)\n                     .mapToInt(n -> n * 2)\n                     .sum();\n\n    System.out.println(\"Sum: \" + sum);\n  }\n}\n"
+        },
+        {
+            "id": 20,
+            "questionId": "java_object_m2_20",
+            "title": "JavaのOptionalクラス",
+            "question": "以下のクラスを利用して、JavaのOptionalクラスの基本的な使用方法を説明する問題を解決してください。\n\npublic class Product {\n  private String name;\n  private Double price;\n\n  public Product(String name, Double price) {\n    this.name = name;\n    this.price = price;\n  }\n\n  public String getName() {\n    return name;\n  }\n\n  public Double getPrice() {\n    return price;\n  }\n}\n\n次の手順に従って、Optionalを使用して価格を取得してください。\n\n1. Optionalクラスを使用して、Productオブジェクトをラップします。\n2. OptionalクラスのorElse()メソッドを使用して、デフォルト価格(0.0)を指定して価格を取得します。\n3. 取得した価格を出力してください。\n",
+            "explanation": "Java 8では、null参照を扱う新しい方法としてOptionalクラスが導入されました。Optionalクラスは、null参照を回避し、ヌルポインター例外の発生を減らすことができます。orElse()メソッドは、Optionalクラスのメソッドであり、保持している値が存在する場合にはその値を返し、存在しない場合には引数に指定された値を返します。",
+            "answer": "import java.util.Optional;\n\npublic class Main {\n  public static void main(String[] args) {\n    Product product = new Product(\"example\", null);\n    Optional<Product> optionalProduct = Optional.ofNullable(product);\n\n    double price = optionalProduct.map(Product::getPrice)\n                                  .orElse(0.0);\n\n    System.out.println(\"Price: \" + price);\n  }\n}\n"
+        }
+    ]
+}

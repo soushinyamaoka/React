@@ -1,0 +1,30 @@
+{
+    "contentsId": "java_constants",
+    "title": "Javaの定数問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_constants_intermediate_1",
+            "title": "定数の定義",
+            "question": "Javaで定数を定義するためのキーワードは何ですか？",
+            "explanation": "Javaでは、定数を定義するためにfinalキーワードを使用します。finalが付与された変数は、一度初期化するとその値を変更することができません。",
+            "answer": "// 定数の定義\nfinal int MAX_VALUE = 100;\nSystem.out.println(MAX_VALUE); // 100と出力されます"
+        },
+        {
+            "id": 2,
+            "questionId": "java_constants_intermediate_2",
+            "title": "定数の利用",
+            "question": "以下のクラスに、全てのインスタンスで共有される定数を追加してください。\n\npublic class Circle {\n  private double radius;\n\n  public Circle(double radius) {\n    this.radius = radius;\n  }\n}",
+            "explanation": "Javaでは、全てのインスタンスで共有される定数を定義するためにstaticとfinalのキーワードを使用します。これらのキーワードが付与された変数は、クラスレベルの定数となります。",
+            "answer": "public class Circle {\n  private double radius;\n\n  // 全てのインスタンスで共有される定数\n  public static final double PI = 3.14159;\n\n  public Circle(double radius) {\n    this.radius = radius;\n  }\n\n  // 円の面積を計算するメソッド\n  public double area() {\n    return PI * radius * radius;\n  }\n}\n\n// 使用例\nCircle c = new Circle(5);\nSystem.out.println(c.area()); // 78.53975と出力されます"
+        },
+        {
+            "id": 3,
+            "questionId": "java_constants_intermediate_3",
+            "title": "定数の命名規則",
+            "question": "Javaの定数の命名規則は何ですか？",
+            "explanation": "Javaでは、定数を全て大文字で命名し、複数の単語が含まれる場合はアンダースコア(_)で区切ります。これはJavaの慣習ですが、必ずしもこの規則に従う必要はありません。",
+            "answer": "// 定数の命名例\nfinal int MAX_VALUE = 100;\nfinal double PI = 3.14159;\n"
+        }
+    ]
+}

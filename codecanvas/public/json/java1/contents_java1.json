@@ -39,7 +39,7 @@
         },
         {
             "id": 6,
-            "questionId": "java1_method",
+            "questionId": "java1_kansu",
             "title": "関数",
             "question": "関数は、特定の処理を行うまとまったコードのことです。\n関数を使うと、同じ処理を何度も書かずに済み、コードが短くなります。",
             "answer": "/* 関数の定義 */\npublic static void sayHello() {\n  System.out.println(\"こんにちは！\");\n}\n\n/* 関数の呼び出し */\nsayHello();"
@@ -74,14 +74,14 @@
         },
         {
             "id": 11,
-            "questionId": "java1_001",
+            "questionId": "java1_method",
             "title": "メソッド",
             "question": "メソッドは、クラス内に定義された関数のことです。\nメソッドを使って、オブジェクトに対して処理を行わせることができます。",
             "answer": "/* クラス内にメソッドを定義 */\npublic class Dog {\n  String name;\n\n  public void bark() {\n    System.out.println(name + \"は、ワンワンと鳴く。\");\n  }\n}\n\n/* メソッドの呼び出し */\nDog myDog = new Dog();\nmyDog.name = \"ポチ\";\nmyDog.bark();"
         },
         {
             "id": 12,
-            "questionId": "java1_001",
+            "questionId": "java1_constructor",
             "title": "コンストラクタ",
             "question": "コンストラクタは、オブジェクトを作成するときに自動的に呼ばれる特殊なメソッドです。\nコンストラクタを使って、オブジェクトの初期化を行うことができます。",
             "answer": "/* コンストラクタを持つクラスの定義 */\npublic class Dog {\n  String name;\n\n  public Dog(String name) {\n    this.name = name;\n  }\n\n  public void bark() {\n    System.out.println(name + \"は、ワンワンと鳴く。\");\n  }\n}\n\n/* オブジェクトの生成と初期化 */\nDog myDog = new Dog(\"ポチ\");\nmyDog.bark();"

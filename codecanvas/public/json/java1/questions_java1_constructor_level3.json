@@ -1,0 +1,46 @@
+ {
+     "contentsId": "java2",
+     "title": "Javaのコンストラクタ問題集ページ",
+     "subtitle": "上級",
+     "questions": [{
+             "id": 1,
+             "questionId": "java_constructor_advanced_1",
+             "title": "パラメータとしてコンストラクタを受け取る",
+             "question": "以下のクラスで、Personクラスのコンストラクタをパラメータとして受け取り、それを利用してPersonオブジェクトを作成するFactoryクラスを作成してください。",
+             "explanation": "Javaでは、コンストラクタもオブジェクトとして扱うことができます。これを利用して、特定のクラスのインスタンスを作成するFactoryクラスを作成することができます。",
+             "answer": "import java.util.function.Supplier;\n\npublic class Factory {\n  public static Person createPerson(Supplier<Person> constructor) {\n    return constructor.get();\n  }\n}\n\npublic class Person {\n  public Person() {\n    System.out.println(\"Person created\"); // Person created が出力される\n  }\n}\n\n// 使用例\nPerson p = Factory.createPerson(Person::new);\n"
+         },
+         {
+             "id": 2,
+             "questionId": "java_constructor_advanced_2",
+             "title": "複数のコンストラクタ",
+             "question": "以下のクラスで、複数のコンストラクタを持つPersonクラスを作成し、それぞれのコンストラクタが呼び出されたときに異なるメッセージが出力されるようにしてください。",
+             "explanation": "Javaでは、クラスは複数のコンストラクタを持つことができます。これらのコンストラクタは、引数の数や型が異なる場合に限り、同じクラス内で共存することができます。",
+             "answer": "public class Person {\n  public Person() {\n    System.out.println(\"Default constructor called\"); // Default constructor called が出力される\n  }\n\n  public Person(String name) {\n    System.out.println(\"Name constructor called\"); // Name constructor called が出力される\n  }\n}\n\n// 使用例\nPerson p1 = new Person();\nPerson p2 = new Person(\"John\");\n"
+         },
+         {
+             "id": 3,
+             "questionId": "java_constructor_advanced_3",
+             "title": "コンストラクタと例外",
+             "question": "以下のクラスで、コンストラクタ内で例外が発生する可能性があるPersonクラスを作成し、その例外を適切に処理してください。",
+             "explanation": "Javaでは、コンストラクタ内でも例外をスローすることができます。ただし、スローされる例外は、そのコンストラクタを呼び出すメソッドで適切に処理する必要があります。",
+             "answer": "public class Person {\n\n  public Person(String name) throws IllegalArgumentException {\n    if (name == null) {\n      throw new IllegalArgumentException(\"Name cannot be null\"); // Name cannot be null という例外メッセージが出力される\n    }\n    System.out.println(\"Person created with name: \" + name);\n  }\n}\n\n// 使用例\ntry {\n  Person p = new Person(null);\n} catch (IllegalArgumentException e) {\n  System.out.println(e.getMessage());\n}\n"
+         },
+         {
+             "id": 4,
+             "questionId": "java_constructor_advanced_4",
+             "title": "コンストラクタのオーバーロード",
+             "question": "以下のクラスで、コンストラクタをオーバーロードして、異なる数の引数で同じクラスのインスタンスを作成できるようにしてください。\npublic class Point {\n  private int x;\n  private int y;\n}",
+             "explanation": "Javaでは、同じ名前のメソッドを異なるパラメータで定義することができます。これをオーバーロードといいます。コンストラクタもメソッドの一種なので、オーバーロードすることができます。",
+             "answer": "public class Point {\n  private int x;\n  private int y;\n\n  public Point() {\n    this.x = 0;\n    this.y = 0;\n    System.out.println(\"Point created at (\" + x + \", \" + y + \")\"); // Point created at (0, 0)と出力されます\n  }\n\n  public Point(int x, int y) {\n    this.x = x;\n    this.y = y;\n    System.out.println(\"Point created at (\" + x + \", \" + y + \")\"); // 引数で指定した座標が出力されます\n  }\n}\n\n// 使用例\nPoint p1 = new Point();\nPoint p2 = new Point(5, 10);\n"
+         },
+         {
+             "id": 5,
+             "questionId": "java_constructor_advanced_5",
+             "title": "thisキーワードとコンストラクタ",
+             "question": "以下のクラスで、thisキーワードを使用してフィールドに値を設定するコンストラクタを作成してください。\npublic class Dog {\n  private String name;\n  private int age;\n}",
+             "explanation": "Javaでは、thisキーワードを使用してクラスのフィールドやメソッドにアクセスすることができます。特に、コンストラクタの引数名とクラスのフィールド名が同じ場合、thisを使用して区別します。",
+             "answer": "public class Dog {\n  private String name;\n  private int age;\n\n  public Dog(String name, int age) {\n    this.name = name;\n    this.age = age;\n    System.out.println(\"Dog created with name: \" + this.name + \", age: \" + this.age); // Dog created with name: [name], age: [age]と出力されます\n  }\n}\n\n// 使用例\nDog d = new Dog(\"Rex\", 5);\n"
+         }
+     ]
+ }

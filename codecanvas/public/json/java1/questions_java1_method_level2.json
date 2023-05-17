@@ -1,166 +1,166 @@
 {
     "contentsId": "java2",
-    "title": "Javaの関数問題集ページ",
+    "title": "Javaのメソッド問題集ページ",
     "subtitle": "中級",
     "questions": [{
             "id": 1,
-            "questionId": "java_functions_mid1",
-            "title": "引数の合計値を計算する関数",
-            "question": "整数の可変長引数を受け取り、その合計値を計算して返す関数を作成してください。\n\n関数名: sum\n引数: int... numbers\n戻り値: int\n\nmain関数で関数を呼び出し、結果を出力してください。",
-            "explanation": "可変長引数を受け取る関数を定義し、for-eachループを使って引数の合計値を計算します。main関数で関数を呼び出し、結果を出力します。",
-            "answer": "public class SumFunction {\n\n    public static void main(String[] args) {\n        // 関数を呼び出して合計値を出力する\n        System.out.println(\"合計値: \" + sum(1, 2, 3, 4, 5));\n    }\n\n    // sum関数の定義\n    public static int sum(int... numbers) {\n        int total = 0;\n        for (int num : numbers) {\n            total += num;\n        }\n        return total;\n    }\n}\n"
+            "questionId": "java2_1",
+            "title": "オーバーロード",
+            "question": "同じ名前のメソッドを定義し、異なる引数の型や数を持つことで機能を拡張する、オーバーロードを実装してください。以下の条件に従って作成してください。\n\n条件：\n1. メソッド名は、add。\n2. 整数型の引数を2つ持つaddメソッド。\n3. 整数型の引数を3つ持つaddメソッド。\n4. double型の引数を2つ持つaddメソッド。\n5. mainメソッド内でこれらのメソッドを呼び出し、結果を出力する。",
+            "explanation": "オーバーロードは、メソッドの名前は同じであるが、引数の型や数が異なることで、異なる機能を持つことができます。これにより、メソッドの名前を統一しながらも、柔軟に機能を拡張することができます。",
+            "answer": "public class OverloadExample {\n\n    public static void main(String[] args) {\n        int sum1 = add(10, 20);\n        int sum2 = add(10, 20, 30);\n        double sum3 = add(10.5, 20.5);\n\n        System.out.println(\"10 + 20 = \" + sum1);\n        System.out.println(\"10 + 20 + 30 = \" + sum2);\n        System.out.println(\"10.5 + 20.5 = \" + sum3);\n    }\n\n    public static int add(int a, int b) {\n        return a + b;\n    }\n\n    public static int add(int a, int b, int c) {\n        return a + b + c;\n    }\n\n    public static double add(double a, double b) {\n        return a + b;\n    }\n}"
         },
         {
             "id": 2,
-            "questionId": "java_functions_mid2",
-            "title": "二次方程式の解を求める関数",
-            "question": "二次方程式の係数を引数として受け取り、解を求める関数を作成してください。ただし、解が複素数になる場合は、その旨を出力するものとします。\n\n関数名: quadraticEquation\n引数: double a, double b, double c\n戻り値: なし\n\nmain関数で関数を呼び出し、結果を出力してください。",
-            "explanation": "判別式を使って二次方程式の解を求める関数を作成します。判別式の値によって、解が実数か複素数かを判断し、それぞれの場合に対応した結果を出力します。",
-            "answer": "public class QuadraticEquation {\n\n    public static void main(String[] args) {\n        // 関数を呼び出して二次方程式の解を求める\n        quadraticEquation(1, -3, 2);\n    }\n\n    public static void quadraticEquation(double a, double b, double c) {\n        double discriminant = b * b - 4 * a * c;\n\n        if (discriminant > 0) {\n            double x1 = (-b + Math.sqrt(discriminant)) / (2 * a);\n            double x2 = (-b - Math.sqrt(discriminant)) / (2 * a);\n            System.out.println(\"解は実数です: x1 = \" + x1 + \", x2 = \" + x2);\n        } else if (discriminant == 0) {\n            double x = -b / (2 * a);\n            System.out.println(\"解は重解です: x = \" + x);\n        } else {\n            System.out.println(\"解は複素数です。\");\n        }\n    }\n}\n"
+            "questionId": "java2_2",
+            "title": "再帰メソッド",
+            "question": "再帰メソッドを使用して、与えられた整数nの階乗を計算するメソッドfactorialを作成してください。mainメソッド内でfactorialメソッドを呼び出し、結果を出力してください。",
+            "explanation": "再帰メソッドは、自分自身を呼び出すメソッドのことです。nの階乗を計算する際、n * (n - 1) * (n - 2) * ... * 1となりますが、これを再帰的に表現することができます。再帰の終了条件は、nが1以下の場合です。",
+            "answer": "public class FactorialExample {\n\n    public static void main(String[] args) {\n        int n = 5;\n        int result = factorial(n);\n        System.out.println(n + \"! = \" + result);\n    }\n\n    public static int factorial(int n) {\n        if (n <= 1) {\n            return 1;\n        }\n        return n * factorial(n - 1);\n    }\n}"
         },
         {
             "id": 3,
-            "questionId": "java_functions_mid3",
-            "title": "最大公約数を求める関数",
-            "question": "2つの整数の最大公約数を求める関数を作成してください。\n\n関数名: gcd\n引数: int num1, int num2\n戻り値: int\n\nmain関数で関数を呼び出し、結果を出力してください。",
-            "explanation": "ユークリッドの互除法を用いて、2つの整数の最大公約数を求める関数を作成します。",
-            "answer": "public class GCD {\n\n    public static void main(String[] args) {\n        int result = gcd(56, 98);\n        System.out.println(\"最大公約数: \" + result);\n    }\n\n    public static int gcd(int num1, int num2) {\n        while (num2 != 0) {\n            int temp = num2;\n            num2 = num1 % num2;\n            num1 = temp;\n        }\n        return num1;\n    }\n}\n"
+            "questionId": "java2_3",
+            "title": "可変長引数",
+            "question": "可変長引数を使用して、与えられた整数の合計を計算するメソッドsumを作成してください。mainメソッド内でsumメソッドを呼び出し、結果を出力してください。",
+            "explanation": "可変長引数は、引数の数が可変であるメソッドを作成するための機能です。Javaでは、メソッドの仮引数に「型... 変数名」の形式で記述することで可変長引数を使用できます。可変長引数を使用するメソッド内では、引数は配列として扱われます。",
+            "answer": "public class SumExample {\n\n    public static void main(String[] args) {\n        int sumResult = sum(1, 2, 3, 4, 5);\n        System.out.println(\"Sum: \" + sumResult);\n    }\n\n    public static int sum(int... numbers) {\n        int sum = 0;\n        for (int number : numbers) {\n            sum += number;\n        }\n        return sum;\n    }\n}"
         },
         {
             "id": 4,
-            "questionId": "java_functions_mid4",
-            "title": "配列の要素の平均値を求める関数",
-            "question": "整数型の配列の要素の平均値を求める関数を作成してください。\n\n関数名: average\n引数: int[] numbers\n戻り値: double\n\nmain関数で関数を呼び出し、結果を出力してください。",
-            "explanation": "配列の要素の合計を求め、要素数で割って平均値を算出します。",
-            "answer": "public class Average {\n\n    public static void main(String[] args) {\n        int[] numbers = {1, 2, 3, 4, 5};\n        double result = average(numbers);\n        System.out.println(\"平均値: \" + result);\n    }\n\n    public static double average(int[] numbers) {\n        int sum = 0;\n        for (int number : numbers) {\n            sum += number;\n        }\n        return (double) sum / numbers.length;\n    }\n}\n"
+            "questionId": "java2_4",
+            "title": "メソッドオーバーロード",
+            "question": "同じ名前のメソッドを引数の型や数を変えて複数定義するメソッドオーバーロードを使って、2つの整数の最大値を求めるmaxメソッドと、3つの整数の最大値を求めるmaxメソッドを作成してください。mainメソッド内で両方のメソッドを呼び出し、結果を出力してください。",
+            "explanation": "メソッドオーバーロードとは、同じ名前のメソッドを引数の型や数を変えて複数定義することです。これにより、同じ処理を行うメソッドでも引数の数や型が異なる場合に、同じ名前で呼び出すことができます。",
+            "answer": "public class MaxExample {\n\n    public static void main(String[] args) {\n        int max2 = max(1, 2);\n        int max3 = max(1, 2, 3);\n        System.out.println(\"Max of 2 integers: \" + max2);\n        System.out.println(\"Max of 3 integers: \" + max3);\n    }\n\n    public static int max(int num1, int num2) {\n        return Math.max(num1, num2);\n    }\n\n    public static int max(int num1, int num2, int num3) {\n        return Math.max(max(num1, num2), num3);\n    }\n}"
         },
         {
             "id": 5,
-            "questionId": "java_functions_mid5",
-            "title": "文字列を逆順にする関数",
-            "question": "与えられた文字列を逆順にする関数を作成してください。\n\n関数名: reverseString\n引数: String input\n戻り値: String\n\nmain関数で関数を呼び出し、結果を出力してください。",
-            "explanation": "文字列を逆順にするには、StringBuilderを使用して文字列を逆にした後、toStringメソッドで新しい文字列を取得します。",
-            "answer": "public class ReverseString {\n\n    public static void main(String[] args) {\n        String input = \"Hello, World!\";\n        String result = reverseString(input);\n        System.out.println(\"逆順の文字列: \" + result);\n    }\n\n    public static String reverseString(String input) {\n        StringBuilder stringBuilder = new StringBuilder(input);\n        return stringBuilder.reverse().toString();\n    }\n}\n"
+            "questionId": "java2_5",
+            "title": "再帰メソッド",
+            "question": "再帰を利用したメソッドを使って、与えられた正の整数nまでの総和を求めるsumメソッドを作成してください。mainメソッド内でsumメソッドを呼び出し、結果を出力してください。",
+            "explanation": "再帰メソッドは、メソッドの中で自分自身を呼び出すことで、繰り返し処理を行う方法です。この問題では、引数が0になるまで自分自身を呼び出す再帰メソッドを使って総和を計算します。",
+            "answer": "public class RecursiveSum {\n\n    public static void main(String[] args) {\n        int result = sum(5);\n        System.out.println(\"Sum of numbers up to 5: \" + result);\n    }\n\n    public static int sum(int n) {\n        if (n == 0) {\n            return 0;\n        }\n        return n + sum(n - 1);\n    }\n}"
         },
         {
             "id": 6,
-            "questionId": "java_functions_mid6",
-            "title": "素数判定関数",
-            "question": "与えられた整数が素数であるかどうかを判定する関数を作成してください。\n\n関数名: isPrime\n引数: int number\n戻り値: boolean\n\nmain関数で関数を呼び出し、結果を出力してください。",
-            "explanation": "素数判定には、2から与えられた数の平方根までの整数で割り切れるかどうかを調べます。割り切れる場合、素数ではありません。",
-            "answer": "public class PrimeCheck {\n\n    public static void main(String[] args) {\n        int number = 7;\n        if (isPrime(number)) {\n            System.out.println(number + \" は素数です。\");\n        } else {\n            System.out.println(number + \" は素数ではありません。\");\n        }\n    }\n\n    public static boolean isPrime(int number) {\n        if (number <= 1) {\n            return false;\n        }\n        for (int i = 2; i <= Math.sqrt(number); i++) {\n            if (number % i == 0) {\n                return false;\n            }\n        }\n        return true;\n    }\n}\n"
+            "questionId": "java2_6",
+            "title": "可変長引数",
+            "question": "可変長引数を利用して、整数の配列を引数に取り、その配列内の全ての要素の合計値を返すメソッドsumを作成してください。mainメソッドでsumメソッドを呼び出し、結果を出力してください。",
+            "explanation": "可変長引数は、引数の数が可変であるメソッドを定義するための機能です。引数の型の後ろに...をつけることで可変長引数を定義できます。この問題では、可変長引数を使って整数の配列を受け取り、その要素の合計値を返すメソッドを作成します。",
+            "answer": "public class VarArgsSum {\n\n    public static void main(String[] args) {\n        int result = sum(1, 2, 3, 4, 5);\n        System.out.println(\"Sum of 1, 2, 3, 4, and 5: \" + result);\n    }\n\n    public static int sum(int... numbers) {\n        int sum = 0;\n        for (int number : numbers) {\n            sum += number;\n        }\n        return sum;\n    }\n}"
         },
         {
             "id": 7,
-            "questionId": "java_functions_mid7",
-            "title": "最大公約数関数",
-            "question": "与えられた2つの整数の最大公約数を求める関数を作成してください。\n\n関数名: gcd\n引数1: int a\n引数2: int b\n戻り値: int\n\nmain関数で関数を呼び出し、結果を出力してください。",
-            "explanation": "ユークリッドの互除法を使用して、2つの整数の最大公約数を求めます。このアルゴリズムは、割られる数と割る数の余りを計算し、割られる数と余りで繰り返します。割る数が0になったときの割られる数が最大公約数です。",
-            "answer": "public class GCD {\n\n    public static void main(String[] args) {\n        int a = 56;\n        int b = 48;\n        System.out.println(\"最大公約数: \" + gcd(a, b));\n    }\n\n    public static int gcd(int a, int b) {\n        while (b != 0) {\n            int remainder = a % b;\n            a = b;\n            b = remainder;\n        }\n        return a;\n    }\n}\n"
+            "questionId": "java2_7",
+            "title": "メソッドオーバーロード",
+            "question": "同じ名前のメソッドを複数定義し、引数の型や数に応じて呼び出されるメソッドが変わる「メソッドオーバーロード」を利用してください。次の2つのメソッドを作成し、mainメソッドでそれぞれ呼び出して結果を出力してください。1つ目のメソッドは、2つの整数を引数に取り、その積を返すメソッドmultiply。2つ目のメソッドは、2つの小数（double型）を引数に取り、その積を返すメソッドmultiply。",
+            "explanation": "メソッドオーバーロードは、同じ名前のメソッドを複数定義し、引数の型や数に応じて呼び出されるメソッドが変わる機能です。この問題では、整数と小数の2つの引数を受け取り、その積を返すメソッドをそれぞれ作成し、mainメソッドで呼び出して結果を出力します。",
+            "answer": "public class OverloadedMultiply {\n\n    public static void main(String[] args) {\n        int intResult = multiply(2, 3);\n        double doubleResult = multiply(2.5, 3.5);\n        System.out.println(\"2 * 3 = \" + intResult);\n        System.out.println(\"2.5 * 3.5 = \" + doubleResult);\n    }\n\n    public static int multiply(int a, int b) {\n        return a * b;\n    }\n\n    public static double multiply(double a, double b) {\n        return a * b;\n    }\n}"
         },
         {
             "id": 8,
-            "questionId": "java_functions_mid8",
-            "title": "バブルソート関数",
-            "question": "与えられた整数配列をバブルソートで昇順にソートする関数を作成してください。\n\n関数名: bubbleSort\n引数1: int[] arr\n戻り値: なし\n\nmain関数で関数を呼び出し、結果を出力してください。",
-            "explanation": "バブルソートは、隣接する要素を比較して、必要に応じて入れ替えることでソートを行うアルゴリズムです。配列の最後まで比較と入れ替えを繰り返し、最後にソートされた要素が配列の最後に追加されます。次のイテレーションでは、最後の要素は無視し、それ以外の要素に対して同じプロセスを繰り返します。",
-            "answer": "public class BubbleSort {\n\n    public static void main(String[] args) {\n        int[] arr = {5, 3, 8, 1, 6};\n        bubbleSort(arr);\n\n        System.out.print(\"ソート後の配列: \");\n        for (int num : arr) {\n            System.out.print(num + \" \");\n        }\n    }\n\n    public static void bubbleSort(int[] arr) {\n        int n = arr.length;\n        for (int i = 0; i < n - 1; i++) {\n            for (int j = 0; j < n - i - 1; j++) {\n                if (arr[j] > arr[j + 1]) {\n                    int temp = arr[j];\n                    arr[j] = arr[j + 1];\n                    arr[j + 1] = temp;\n                }\n            }\n        }\n    }\n}\n"
+            "questionId": "java2_8",
+            "title": "可変長引数",
+            "question": "可変長引数を使用して、与えられた整数の合計を返すメソッドsumを作成してください。そして、mainメソッドでsumメソッドを呼び出し、結果を出力してください。",
+            "explanation": "可変長引数は、メソッドの引数に任意の個数の引数を渡すことができる機能です。メソッド定義の際に、引数の型の後ろに3つのドット（...）を記述することで可変長引数として扱うことができます。この問題では、可変長引数を使用して、与えられた整数の合計を返すメソッドを作成し、mainメソッドで呼び出して結果を出力します。",
+            "answer": "public class SumWithVarargs {\n\n    public static void main(String[] args) {\n        int sum1 = sum(1, 2, 3, 4, 5);\n        int sum2 = sum(10, 20, 30);\n        System.out.println(\"Sum of 1, 2, 3, 4, 5: \" + sum1);\n        System.out.println(\"Sum of 10, 20, 30: \" + sum2);\n    }\n\n    public static int sum(int... numbers) {\n        int total = 0;\n        for (int number : numbers) {\n            total += number;\n        }\n        return total;\n    }\n}"
         },
         {
             "id": 9,
-            "questionId": "java_functions_mid9",
-            "title": "配列の最小値と最大値を返す関数",
-            "question": "与えられた整数配列の最小値と最大値を返す関数を2つ作成してください。\n\n関数名1: findMin\n引数1: int[] arr\n戻り値: int (最小値)\n\n関数名2: findMax\n引数1: int[] arr\n戻り値: int (最大値)\n\nmain関数で関数を呼び出し、結果を出力してください。",
-            "explanation": "配列の最小値と最大値を求めるには、配列の要素を走査して、最小値と最大値を更新する必要があります。初期値として、最小値にはInteger.MAX_VALUE、最大値にはInteger.MIN_VALUEを設定します。その後、配列の要素を1つずつ調べ、より小さい値が現れた場合は最小値を更新し、より大きい値が現れた場合は最大値を更新します。",
-            "answer": "public class MinMaxArray {\n\n    public static void main(String[] args) {\n        int[] arr = {5, 3, 8, 1, 6};\n        int min = findMin(arr);\n        int max = findMax(arr);\n\n        System.out.println(\"最小値: \" + min);\n        System.out.println(\"最大値: \" + max);\n    }\n\n    public static int findMin(int[] arr) {\n        int min = Integer.MAX_VALUE;\n        for (int num : arr) {\n            if (num < min) {\n                min = num;\n            }\n        }\n        return min;\n    }\n\n    public static int findMax(int[] arr) {\n        int max = Integer.MIN_VALUE;\n        for (int num : arr) {\n            if (num > max) {\n                max = num;\n            }\n        }\n        return max;\n    }\n}\n"
+            "questionId": "java2_9",
+            "title": "再帰",
+            "question": "再帰を用いて、与えられた整数nの階乗を計算するメソッドfactorialを作成してください。そして、mainメソッドでfactorialメソッドを呼び出し、結果を出力してください。",
+            "explanation": "再帰とは、関数やメソッドが自分自身を呼び出すことです。この問題では、再帰を用いて与えられた整数nの階乗を計算するメソッドを作成し、mainメソッドで呼び出して結果を出力します。",
+            "answer": "public class FactorialWithRecursion {\n\n    public static void main(String[] args) {\n        int n = 5;\n        int result = factorial(n);\n        System.out.println(\"Factorial of \" + n + \": \" + result);\n    }\n\n    public static int factorial(int n) {\n        if (n == 0) {\n            return 1;\n        }\n        return n * factorial(n - 1);\n    }\n}"
         },
         {
             "id": 10,
-            "questionId": "java_functions_mid10",
-            "title": "文字列の連結関数",
-            "question": "与えられた2つの文字列を連結し、結果を返す関数を作成してください。\n\n関数名: concatenateStrings\n引数1: String str1\n引数2: String str2\n戻り値: String (連結した文字列)\n\nmain関数で関数を呼び出し、結果を出力してください。",
-            "explanation": "文字列を連結するには、+演算子を使用して2つの文字列を繋げるだけです。concatenateStrings関数内で、引数の2つの文字列を連結し、その結果を返します。",
-            "answer": "public class ConcatenateStrings {\n\n    public static void main(String[] args) {\n        String str1 = \"Hello, \";\n        String str2 = \"World!\";\n        String result = concatenateStrings(str1, str2);\n\n        System.out.println(result);\n    }\n\n    public static String concatenateStrings(String str1, String str2) {\n        return str1 + str2;\n    }\n}\n"
+            "questionId": "java2_10",
+            "title": "ラムダ式",
+            "question": "Javaのラムダ式を使用して、与えられた整数配列内の偶数のみを表示するコードを作成してください。",
+            "explanation": "ラムダ式は、無名関数（名前のない関数）を記述するための簡潔な方法です。この問題では、Javaのラムダ式を使用して、与えられた整数配列内の偶数のみを表示するコードを作成します。",
+            "answer": "import java.util.Arrays;\n\npublic class LambdaEvenNumbers {\n\n    public static void main(String[] args) {\n        int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};\n\n        Arrays.stream(numbers)\n                .filter(n -> n % 2 == 0)\n                .forEach(System.out::println);\n    }\n}"
         },
         {
             "id": 11,
-            "questionId": "java_functions_mid11",
-            "title": "数値範囲内の合計",
-            "question": "指定された2つの整数の範囲内にあるすべての整数の合計を計算する関数を作成してください。範囲は両端の数値を含みます。\n\n関数名: sumInRange\n引数1: int start\n引数2: int end\n戻り値: int (合計)\n\nmain関数で関数を呼び出し、結果を出力してください。",
-            "explanation": "指定された範囲内のすべての整数の合計を求めるには、forループを使用して範囲内のすべての整数を繰り返し処理し、それらを合計に加算します。sumInRange関数内で、引数のstartからendまでの整数をループし、合計を計算して返します。",
-            "answer": "public class SumInRange {\n\n    public static void main(String[] args) {\n        int start = 1;\n        int end = 5;\n        int result = sumInRange(start, end);\n\n        System.out.println(\"The sum from \" + start + \" to \" + end + \" is: \" + result);\n    }\n\n    public static int sumInRange(int start, int end) {\n        int sum = 0;\n        for (int i = start; i <= end; i++) {\n            sum += i;\n        }\n        return sum;\n    }\n}\n"
+            "questionId": "java2_11",
+            "title": "コンストラクタオーバーロード",
+            "question": "次の2つのコンストラクタを持つクラス「Person」を作成してください：\n1. 引数なしのデフォルトコンストラクタ。\n2. 引数に「String name」と「int age」を持つコンストラクタ。\nまた、Personオブジェクトを2つ作成し、それぞれのコンストラクタを使用してオブジェクトを初期化してください。",
+            "explanation": "コンストラクタオーバーロードは、異なる引数を持つ複数のコンストラクタを同じクラス内で定義することです。この問題では、引数なしのデフォルトコンストラクタと、引数に「String name」と「int age」を持つコンストラクタを持つ「Person」クラスを作成します。",
+            "answer": "public class Person {\n\n    private String name;\n    private int age;\n\n    public Person() {\n        this.name = \"Unknown\";\n        this.age = 0;\n    }\n\n    public Person(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n\n    public static void main(String[] args) {\n        Person person1 = new Person();\n        Person person2 = new Person(\"Alice\", 25);\n\n        System.out.println(\"Person 1: \" + person1.name + \", \" + person1.age);\n        System.out.println(\"Person 2: \" + person2.name + \", \" + person2.age);\n    }\n}"
         },
         {
             "id": 12,
-            "questionId": "java_functions_mid12",
-            "title": "文字列の反転",
-            "question": "与えられた文字列を反転させる関数を作成してください。\n\n関数名: reverseString\n引数1: String input\n戻り値: String (反転された文字列)\n\nmain関数で関数を呼び出し、結果を出力してください。",
-            "explanation": "文字列を反転させるには、文字列の長さを取得し、その長さの半分を繰り返し処理し、最初と最後の文字を交換していきます。reverseString関数内で、StringBuilderを使用して文字列の長さの半分だけ繰り返し処理を行い、対応する文字を交換します。最後に、反転されたStringBuilderをStringに変換して返します。",
-            "answer": "public class ReverseString {\n\n    public static void main(String[] args) {\n        String input = \"Java functions\";\n        String reversed = reverseString(input);\n\n        System.out.println(\"The reversed string is: \" + reversed);\n    }\n\n    public static String reverseString(String input) {\n        StringBuilder sb = new StringBuilder(input);\n        int n = sb.length();\n        for (int i = 0; i < n / 2; i++) {\n            char temp = sb.charAt(i);\n            sb.setCharAt(i, sb.charAt(n - 1 - i));\n            sb.setCharAt(n - 1 - i, temp);\n        }\n        return sb.toString();\n    }\n}\n"
+            "questionId": "java2_12",
+            "title": "再帰メソッド",
+            "question": "再帰を使用して、与えられた整数「n」の階乗を計算するメソッド「factorial」を作成してください。\n例：factorial(5) は 120 を返します。\n注意: 再帰を使わずにループで実装しないでください。",
+            "explanation": "再帰は、メソッドが自分自身を呼び出すプロセスです。この問題では、与えられた整数「n」の階乗を計算する再帰メソッド「factorial」を作成します。",
+            "answer": "public class Factorial {\n\n    public static int factorial(int n) {\n        if (n == 0) {\n            return 1;\n        } else {\n            return n * factorial(n - 1);\n        }\n    }\n\n    public static void main(String[] args) {\n        int n = 5;\n        int result = factorial(n);\n        System.out.println(\"The factorial of \" + n + \" is: \" + result);\n    }\n}"
         },
         {
             "id": 13,
-            "questionId": "java_functions_mid13",
-            "title": "最大公約数",
-            "question": "与えられた2つの整数の最大公約数を求める関数を作成してください。\n\n関数名: gcd\n引数1: int a\n引数2: int b\n戻り値: int (最大公約数)\n\nmain関数で関数を呼び出し、結果を出力してください。",
-            "explanation": "最大公約数を求めるためには、ユークリッドの互除法を使用します。ユークリッドの互除法は、2つの数aとbの最大公約数は、aとbの剰余を求めた後、bとその剰余の最大公約数と同じであるという性質を利用します。gcd関数内で、bが0でない場合、再帰的にgcd関数を呼び出し、最大公約数を求めます。",
-            "answer": "public class GCD {\n\n    public static void main(String[] args) {\n        int a = 56;\n        int b = 98;\n        int result = gcd(a, b);\n\n        System.out.println(\"The GCD of \" + a + \" and \" + b + \" is: \" + result);\n    }\n\n    public static int gcd(int a, int b) {\n        if (b == 0) {\n            return a;\n        }\n        return gcd(b, a % b);\n    }\n}\n"
+            "questionId": "java2_13",
+            "title": "可変長引数",
+            "question": "可変長引数を使用して、引数として渡されたすべての整数の平均を計算するメソッド「average」を作成してください。\n例：average(1, 2, 3, 4) は 2.5 を返します。",
+            "explanation": "可変長引数は、0 個または複数の引数をメソッドに渡すことができる機能です。この問題では、可変長引数を使用して、渡されたすべての整数の平均を計算するメソッド「average」を作成します。",
+            "answer": "public class AverageCalculator {\n\n    public static double average(int... numbers) {\n        int sum = 0;\n        for (int number : numbers) {\n            sum += number;\n        }\n        return (double) sum / numbers.length;\n    }\n\n    public static void main(String[] args) {\n        double result = average(1, 2, 3, 4);\n        System.out.println(\"The average is: \" + result);\n    }\n}"
         },
         {
             "id": 14,
-            "questionId": "java_functions_mid14",
-            "title": "文字列の逆順",
-            "question": "与えられた文字列を逆順にする関数を作成してください。\n\n関数名: reverseString\n引数1: String str\n戻り値: String (逆順にした文字列)\n\nmain関数で関数を呼び出し、結果を出力してください。",
-            "explanation": "文字列を逆順にするには、StringBuilderクラスを使用し、appendメソッドで文字を追加し、最後にtoStringメソッドで文字列に変換します。reverseString関数では、for文を使って、文字列の末尾から先頭に向かって文字をStringBuilderに追加していきます。",
-            "answer": "public class ReverseString {\n\n    public static void main(String[] args) {\n        String input = \"Hello, World!\";\n        String result = reverseString(input);\n\n        System.out.println(\"Original string: \" + input);\n        System.out.println(\"Reversed string: \" + result);\n    }\n\n    public static String reverseString(String str) {\n        StringBuilder reversed = new StringBuilder();\n\n        for (int i = str.length() - 1; i >= 0; i--) {\n            reversed.append(str.charAt(i));\n        }\n\n        return reversed.toString();\n    }\n}\n"
+            "questionId": "java2_14",
+            "title": "メソッドオーバーロード",
+            "question": "次の条件に従って、整数の乗算と文字列の連結を行うメソッド「multiplyOrConcatenate」をメソッドオーバーロードを利用して実装してください。\n1. 2つの整数を引数に取り、それらの積を返すメソッド\n2. 2つの文字列を引数に取り、それらの連結を返すメソッド",
+            "explanation": "メソッドオーバーロードは、同じ名前のメソッドを複数定義し、引数の型や数が異なることで区別する機能です。この問題では、整数の乗算と文字列の連結を行うメソッド「multiplyOrConcatenate」をメソッドオーバーロードを利用して実装します。",
+            "answer": "public class OverloadExample {\n\n    public static int multiplyOrConcatenate(int a, int b) {\n        return a * b;\n    }\n\n    public static String multiplyOrConcatenate(String a, String b) {\n        return a.concat(b);\n    }\n\n    public static void main(String[] args) {\n        int multiplyResult = multiplyOrConcatenate(3, 4);\n        String concatenateResult = multiplyOrConcatenate(\"Hello\", \" World\");\n        System.out.println(\"Multiply result: \" + multiplyResult);\n        System.out.println(\"Concatenate result: \" + concatenateResult);\n    }\n}"
         },
         {
             "id": 15,
-            "questionId": "java_functions_mid15",
-            "title": "2次元配列の転置",
-            "question": "与えられた2次元配列の転置を求める関数を作成してください。\n\n関数名: transposeMatrix\n引数1: int[][] matrix (NxMの2次元整数配列。1 <= N, M <= 100)\n戻り値: int[][] (転置されたMxNの2次元整数配列)\n\nmain関数で関数を呼び出し、結果を出力してください。",
-            "explanation": "2次元配列の転置は、元の配列の行と列を入れ替えることです。transposeMatrix関数では、新しい配列を作成し、元の配列の行と列のインデックスを入れ替えて要素をコピーします。",
-            "answer": "public class TransposeMatrix {\n\n    public static void main(String[] args) {\n        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};\n        int[][] result = transposeMatrix(matrix);\n\n        System.out.println(\"Original matrix:\");\n        printMatrix(matrix);\n        System.out.println(\"Transposed matrix:\");\n        printMatrix(result);\n    }\n\n    public static int[][] transposeMatrix(int[][] matrix) {\n        int rows = matrix.length;\n        int cols = matrix[0].length;\n        int[][] transposed = new int[cols][rows];\n\n        for (int i = 0; i < rows; i++) {\n            for (int j = 0; j < cols; j++) {\n                transposed[j][i] = matrix[i][j];\n            }\n        }\n\n        return transposed;\n    }\n\n    public static void printMatrix(int[][] matrix) {\n        for (int[] row : matrix) {\n            for (int element : row) {\n                System.out.print(element + \" \");\n            }\n            System.out.println();\n        }\n    }\n}\n"
+            "questionId": "java2_15",
+            "title": "可変長引数",
+            "question": "可変長引数を使用して、渡された複数の整数を足し合わせるメソッド「sum」を実装してください。",
+            "explanation": "可変長引数は、引数の数が決まっていない場合に使用します。メソッドの仮引数の型の後に「...」を記述することで可変長引数を宣言できます。可変長引数は、配列として扱われます。",
+            "answer": "public class VarArgsExample {\n\n    public static int sum(int... numbers) {\n        int total = 0;\n        for (int number : numbers) {\n            total += number;\n        }\n        return total;\n    }\n\n    public static void main(String[] args) {\n        int sumResult = sum(1, 2, 3, 4, 5);\n        System.out.println(\"Sum result: \" + sumResult);\n    }\n}"
         },
         {
             "id": 16,
-            "questionId": "java_functions_mid16",
-            "title": "文字列の回文チェック",
-            "question": "与えられた文字列が回文かどうかをチェックする関数を作成してください。回文は前から読んでも後ろから読んでも同じになる文字列です。\n\n関数名: isPalindrome\n引数1: String str (1 <= str.length() <= 1000)\n戻り値: boolean (true: 回文, false: 非回文)\n\nmain関数で関数を呼び出し、結果を出力してください。",
-            "explanation": "isPalindrome関数では、文字列の最初と最後の文字を比較し、等しければ次の文字に進みます。これを中央まで繰り返し、すべての文字が等しければ回文と判定します。",
-            "answer": "public class PalindromeCheck {\n\n    public static void main(String[] args) {\n        String str = \"racecar\";\n        System.out.println(\"Input string: \" + str);\n        System.out.println(\"Is palindrome? \" + isPalindrome(str));\n    }\n\n    public static boolean isPalindrome(String str) {\n        int length = str.length();\n\n        for (int i = 0; i < length / 2; i++) {\n            if (str.charAt(i) != str.charAt(length - 1 - i)) {\n                return false;\n            }\n        }\n\n        return true;\n    }\n}\n"
+            "questionId": "java2_16",
+            "title": "再帰",
+            "question": "再帰を使用して、与えられた整数nについて、階乗を求めるメソッド「factorial」を実装してください。",
+            "explanation": "再帰とは、メソッドが自分自身を呼び出すことです。階乗は、自然数nについて、1からnまでの積を求める演算です。再帰を使用して階乗を求める方法は、基本ケース（nが0または1の場合）と再帰ケース（nが2以上の場合）に分けて考えます。",
+            "answer": "public class RecursionExample {\n\n    public static int factorial(int n) {\n        if (n == 0 || n == 1) {\n            return 1;\n        } else {\n            return n * factorial(n - 1);\n        }\n    }\n\n    public static void main(String[] args) {\n        int factorialResult = factorial(5);\n        System.out.println(\"Factorial result: \" + factorialResult);\n    }\n}"
         },
         {
             "id": 17,
-            "questionId": "java_functions_mid17",
-            "title": "最大公約数",
-            "question": "与えられた2つの整数の最大公約数を求める関数を作成してください。\n\n関数名: gcd\n引数1: int a (1 <= a <= 1000)\n引数2: int b (1 <= b <= 1000)\n戻り値: int (最大公約数)\n\nmain関数で関数を呼び出し、結果を出力してください。",
-            "explanation": "ユークリッドの互除法を使用して、最大公約数を求めます。ユークリッドの互除法では、2つの数の最大公約数は、その数とその数を割った余りの最大公約数に等しいという性質を利用します。",
-            "answer": "public class GCD {\n\n    public static void main(String[] args) {\n        int a = 56;\n        int b = 98;\n        System.out.println(\"a: \" + a + \", b: \" + b);\n        System.out.println(\"GCD: \" + gcd(a, b));\n    }\n\n    public static int gcd(int a, int b) {\n        if (b == 0) {\n            return a;\n        }\n        return gcd(b, a % b);\n    }\n}\n"
+            "questionId": "java2_17",
+            "title": "オーバーロード",
+            "question": "整数の配列を受け取り、その合計値を返すメソッド「sum」を実装してください。また、このメソッドをオーバーロードして、2つの整数を受け取り、その合計値を返すメソッド「sum」も実装してください。",
+            "explanation": "オーバーロードとは、同じ名前のメソッドを複数定義することです。ただし、それらのメソッドは引数の型や数が異なる必要があります。今回の例では、整数の配列と2つの整数を引数に取る2つの異なるメソッドを実装します。",
+            "answer": "public class OverloadExample {\n\n    public static int sum(int[] numbers) {\n        int total = 0;\n        for (int number : numbers) {\n            total += number;\n        }\n        return total;\n    }\n\n    public static int sum(int a, int b) {\n        return a + b;\n    }\n\n    public static void main(String[] args) {\n        int[] numbers = {1, 2, 3, 4, 5};\n        System.out.println(\"Sum of array: \" + sum(numbers));\n        System.out.println(\"Sum of 4 and 7: \" + sum(4, 7));\n    }\n}"
         },
         {
             "id": 18,
-            "questionId": "java_functions_mid18",
-            "title": "配列の平均値",
-            "question": "与えられた整数型配列の平均値を求める関数を作成してください。\n\n関数名: average\n引数1: int[] numbers (1 <= numbers.length <= 100, -1000 <= numbers[i] <= 1000)\n戻り値: double (平均値)\n\nmain関数で関数を呼び出し、結果を出力してください。",
-            "explanation": "配列内の全ての要素の合計を求め、要素数で割ることで平均値を算出できます。",
-            "answer": "public class ArrayAverage {\n\n    public static void main(String[] args) {\n        int[] numbers = {3, 8, 15, -6, 23, 7};\n        System.out.println(\"Average: \" + average(numbers));\n    }\n\n    public static double average(int[] numbers) {\n        int sum = 0;\n        for (int number : numbers) {\n            sum += number;\n        }\n        return (double) sum / numbers.length;\n    }\n}\n"
+            "questionId": "java2_18",
+            "title": "コンストラクタオーバーロード",
+            "question": "次の要件を満たすクラス「Person」を作成してください。\n1. プライベートフィールドとして、String型の「name」を持つ。\n2. プライベートフィールドとして、int型の「age」を持つ。\n3. 引数なしのコンストラクタで、nameに「Unknown」、ageに0を代入する。\n4. 引数としてnameを受け取るコンストラクタで、nameを代入し、ageに0を代入する。\n5. 引数としてnameとageを受け取るコンストラクタで、nameとageを代入する。",
+            "explanation": "コンストラクタオーバーロードとは、同じ名前のコンストラクタを複数定義することです。ただし、それらのコンストラクタは引数の型や数が異なる必要があります。",
+            "answer": "public class Person {\n\n    private String name;\n    private int age;\n\n    public Person() {\n        this.name = \"Unknown\";\n        this.age = 0;\n    }\n\n    public Person(String name) {\n        this.name = name;\n        this.age = 0;\n    }\n\n    public Person(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n\n}"
         },
         {
             "id": 19,
-            "questionId": "java_functions_mid19",
-            "title": "文字列の回文チェック",
-            "question": "与えられた文字列が回文であるかどうかを判定する関数を作成してください。回文とは、前から読んでも後ろから読んでも同じ文字列のことを指します。\n\n関数名: isPalindrome\n引数1: String str (1 <= str.length() <= 1000)\n戻り値: boolean (true: 回文, false: 非回文)\n\nmain関数で関数を呼び出し、結果を出力してください。",
-            "explanation": "文字列の長さの半分に対して、前と後ろから文字を比較していき、一致しない場合はfalseを返します。すべて一致した場合はtrueを返します。",
-            "answer": "public class PalindromeCheck {\n\n    public static void main(String[] args) {\n        String str = \"madam\";\n        System.out.println(\"Is palindrome: \" + isPalindrome(str));\n    }\n\n    public static boolean isPalindrome(String str) {\n        int len = str.length();\n        for (int i = 0; i < len / 2; i++) {\n            if (str.charAt(i) != str.charAt(len - i - 1)) {\n                return false;\n            }\n        }\n        return true;\n    }\n}\n"
+            "questionId": "java2_19",
+            "title": "可変長引数を使用したメソッド",
+            "question": "可変長引数を使用して、引数で受け取ったint型の数字の合計を返すメソッド「sum」を作成してください。",
+            "explanation": "可変長引数は、引数の数が不定である場合に使用できます。Javaでは、可変長引数は「型... 引数名」という形で定義します。可変長引数はメソッド内で配列として扱われます。",
+            "answer": "public class VariableArguments {\n\n    public static int sum(int... numbers) {\n        int total = 0;\n        for (int number : numbers) {\n            total += number;\n        }\n        return total;\n    }\n\n    public static void main(String[] args) {\n        System.out.println(sum(1, 2, 3, 4, 5)); // 予想される出力結果: 15\n    }\n\n}"
         },
         {
             "id": 20,
-            "questionId": "java_functions_mid20",
-            "title": "最小公倍数を求める関数",
-            "question": "与えられた2つの整数の最小公倍数（LCM）を求める関数を作成してください。\n\n関数名: findLCM\n引数1: int num1 (1 <= num1 <= 1000)\n引数2: int num2 (1 <= num2 <= 1000)\n戻り値: int (最小公倍数)\n\nmain関数で関数を呼び出し、結果を出力してください。",
-            "explanation": "最小公倍数は、2つの数の積を最大公約数（GCD）で割ったものです。最大公約数を求める関数を作成し、その結果を使用して最小公倍数を求めます。",
-            "answer": "public class LCM {\n\n    public static void main(String[] args) {\n        int num1 = 12;\n        int num2 = 15;\n        System.out.println(\"LCM: \" + findLCM(num1, num2));\n    }\n\n    public static int findLCM(int num1, int num2) {\n        return (num1 * num2) / findGCD(num1, num2);\n    }\n\n    public static int findGCD(int num1, int num2) {\n        if (num2 == 0) {\n            return num1;\n        }\n        return findGCD(num2, num1 % num2);\n    }\n}\n"
+            "questionId": "java2_20",
+            "title": "再帰を使用したメソッド",
+            "question": "再帰を使用して、引数で受け取ったint型の数字nに対して、1からnまでの全ての数字の積（階乗）を返すメソッド「factorial」を作成してください。",
+            "explanation": "再帰とは、メソッド内で自分自身のメソッドを呼び出すことです。再帰にはベースケース（終了条件）が必要で、それによって無限ループに陥ることを防ぎます。",
+            "answer": "public class Recursion {\n\n    public static int factorial(int n) {\n        if (n == 1) {\n            return 1;\n        }\n        return n * factorial(n - 1);\n    }\n\n    public static void main(String[] args) {\n        System.out.println(factorial(5)); // 予想される出力結果: 120\n    }\n\n}"
         }
     ]
 }

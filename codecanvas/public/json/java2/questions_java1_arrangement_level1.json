@@ -1,0 +1,86 @@
+{
+    "contentsId": "java3",
+    "title": "Javaの配列問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java3_1",
+            "title": "配列の宣言と初期化",
+            "question": "Javaで配列を宣言し、初期化する基本的な方法を説明してください。",
+            "explanation": "Javaでは、型[] 配列名 = new 型[要素数]; の形式で配列を宣言し、初期化します。",
+            "answer": "int[] array = new int[5];\n// 初期化後の配列はすべての要素が0で埋められます。\nfor(int i = 0; i < array.length; i++) {\n    System.out.println(array[i]);\n}\n// Expected output: 0 0 0 0 0"
+        },
+        {
+            "id": 2,
+            "questionId": "java3_2",
+            "title": "配列の要素へのアクセス",
+            "question": "Javaで配列の特定の要素にアクセスする方法を説明してください。",
+            "explanation": "Javaでは、配列名[インデックス] の形式で配列の要素にアクセスします。インデックスは0から始まります。",
+            "answer": "int[] array = {1, 2, 3, 4, 5};\nSystem.out.println(array[2]);\n// Expected output: 3"
+        },
+        {
+            "id": 3,
+            "questionId": "java3_3",
+            "title": "配列の長さの取得",
+            "question": "Javaで配列の長さ（要素数）を取得する方法を説明してください。",
+            "explanation": "Javaでは、配列名.length の形式で配列の長さ（要素数）を取得します。",
+            "answer": "int[] array = {1, 2, 3, 4, 5};\nSystem.out.println(array.length);\n// Expected output: 5"
+        },
+        {
+            "id": 4,
+            "questionId": "java3_4",
+            "title": "配列のループ処理",
+            "question": "Javaで配列の全要素をループ処理（foreach）する方法を説明してください。",
+            "explanation": "Javaでは、for(型 変数名 : 配列名) の形式で配列の全要素をループ処理します。",
+            "answer": "int[] array = {1, 2, 3, 4, 5};\nfor(int num : array) {\n    System.out.println(num);\n}\n// Expected output: 1 2 3 4 5"
+        },
+        {
+            "id": 5,
+            "questionId": "java3_5",
+            "title": "2次元配列の宣言と初期化",
+            "question": "Javaで2次元配列を宣言し、初期化する基本的な方法を説明してください。",
+            "explanation": "Javaでは、型[][] 配列名 = new 型[行数][列数]; の形式で2次元配列を宣言し、初期化します。",
+            "answer": "int[][] array = new int[3][2];\n// 初期化後の配列はすべての要素が0で埋められます。\nfor(int i = 0; i < array.length; i++) {\n    for(int j = 0; j < array[i].length; j++) {\n        System.out.println(array[i][j]);\n    }\n}\n// Expected output: 0 0 0 0 0 0"
+        },
+        {
+            "id": 6,
+            "questionId": "java3_6",
+            "title": "2次元配列の要素へのアクセス",
+            "question": "Javaで2次元配列の特定の要素にアクセスする方法を説明してください。",
+            "explanation": "Javaでは、配列名[行のインデックス][列のインデックス] の形式で2次元配列の要素にアクセスします。インデックスは0から始まります。",
+            "answer": "int[][] array = {{1, 2}, {3, 4}, {5, 6}};\nSystem.out.println(array[1][0]);\n// Expected output: 3"
+        },
+        {
+            "id": 7,
+            "questionId": "java3_7",
+            "title": "2次元配列の行数と列数の取得",
+            "question": "Javaで2次元配列の行数と列数を取得する方法を説明してください。",
+            "explanation": "Javaでは、配列名.length で行数を、配列名[0].length で列数を取得します。",
+            "answer": "int[][] array = {{1, 2}, {3, 4}, {5, 6}};\nSystem.out.println(\"Rows: \" + array.length);\nSystem.out.println(\"Columns: \" + array[0].length);\n// Expected output: Rows: 3 Columns: 2"
+        },
+        {
+            "id": 8,
+            "questionId": "java3_8",
+            "title": "2次元配列のループ処理",
+            "question": "Javaで2次元配列の全要素をループ処理する方法を説明してください。",
+            "explanation": "Javaでは、ネストしたforループを用いて2次元配列の全要素をループ処理します。",
+            "answer": "int[][] array = {{1, 2}, {3, 4}, {5, 6}};\nfor(int i = 0; i < array.length; i++) {\n    for(int j = 0; j < array[i].length; j++) {\n        System.out.println(array[i][j]);\n    }\n}\n// Expected output: 1 2 3 4 5 6"
+        },
+        {
+            "id": 9,
+            "questionId": "java3_9",
+            "title": "配列のコピー",
+            "question": "Javaで配列を別の配列にコピーする方法を説明してください。",
+            "explanation": "Javaでは、System.arraycopyメソッドを用いて配列を別の配列にコピーします。",
+            "answer": "int[] array1 = {1, 2, 3, 4, 5};\nint[] array2 = new int[5];\nSystem.arraycopy(array1, 0, array2, 0, array1.length);\nfor(int num : array2) {\n    System.out.println(num);\n}\n// Expected output: 1 2 3 4 5"
+        },
+        {
+            "id": 10,
+            "questionId": "java3_10",
+            "title": "配列の並び替え",
+            "question": "Javaで配列の要素を昇順に並び替える方法を説明してください。",
+            "explanation": "Javaでは、Arrays.sortメソッドを用いて配列の要素を昇順に並び替えます。",
+            "answer": "int[] array = {5, 3, 2, 4, 1};\nArrays.sort(array);\nfor(int num : array) {\n    System.out.println(num);\n}\n// Expected output: 1 2 3 4 5"
+        }
+    ]
+}

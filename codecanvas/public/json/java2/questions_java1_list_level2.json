@@ -1,0 +1,39 @@
+{
+    "contentsId": "java4",
+    "title": "Javaの基本ライブラリ、リスト問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java4_1",
+            "title": "リストの反転",
+            "question": "JavaのCollectionsクラスを使用してArrayListを反転させる方法を説明してください。",
+            "explanation": "JavaのCollectionsクラスには、リストを反転させるreverse()メソッドが存在します。このメソッドを使用してArrayListの要素を反転させることができます。",
+            "answer": "import java.util.ArrayList;\nimport java.util.Collections;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\nCollections.reverse(list);\n// Now, list contains [\"Cherry\", \"Banana\", \"Apple\"]"
+        },
+        {
+            "id": 2,
+            "questionId": "java4_2",
+            "title": "リスト内の要素検索",
+            "question": "JavaのArrayList内の特定の要素が存在するかどうかを確認する方法を説明し、それを示すコードを書いてください。",
+            "explanation": "ArrayListクラスのcontainsメソッドを使用して、リスト内に特定の要素が存在するかどうかを確認できます。このメソッドは、要素がリスト内に存在する場合はtrueを、存在しない場合はfalseを返します。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\nboolean containsApple = list.contains(\"Apple\");  // This will be true\nboolean containsGrape = list.contains(\"Grape\");  // This will be false"
+        },
+        {
+            "id": 3,
+            "questionId": "java4_3",
+            "title": "リスト内の要素の位置",
+            "question": "JavaのArrayList内の特定の要素が存在する位置（インデックス）を取得する方法を説明し、それを示すコードを書いてください。",
+            "explanation": "ArrayListクラスのindexOfメソッドを使用して、リスト内の特定の要素の位置（インデックス）を取得できます。このメソッドは、要素がリスト内に存在する場合はその要素のインデックスを、存在しない場合は-1を返します。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\nint indexApple = list.indexOf(\"Apple\");  // This will be 0\nint indexGrape = list.indexOf(\"Grape\");  // This will be -1"
+        },
+        {
+            "id": 4,
+            "questionId": "java4_4",
+            "title": "リストの特定の位置に要素を追加",
+            "question": "JavaのArrayListに特定の位置に要素を追加する方法を説明し、それを示すコードを書いてください。",
+            "explanation": "ArrayListクラスのaddメソッドを使用して、リストの特定の位置に要素を追加できます。このメソッドは、第一引数にインデックス（位置）、第二引数に追加する要素を取ります。インデックスは0から始まります。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\nlist.add(1, \"Orange\");  // This will add Orange at position 1"
+        }
+
+    ]
+}

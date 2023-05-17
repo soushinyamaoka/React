@@ -1,0 +1,64 @@
+{
+    "contentsId": "java1",
+    "title": "Javaの基本ライブラリ問題集ページ",
+    "subtitle": "Javaの基本ライブラリを学ぼう",
+    "questions": [{
+            "id": 1,
+            "questionId": "java1_stringManipulation",
+            "title": "Javaの基本ライブラリ、文字列操作",
+            "question": "Javaでは、Stringクラスのメソッドを使用して文字列操作を行います。これらのメソッドには、文字列の長さを取得したり、部分文字列を取得したり、文字列を置換したりするなどの機能があります。",
+            "answer": "/* 文字列操作の例 */\n\n// 文字列の作成\nString s = \"Hello, world!\";\n\n// 文字列の長さを取得\nint length = s.length();\nSystem.out.println(\"Length of the string is \" + length); // \"Length of the string is 13\"と出力されます.\n\n// 部分文字列を取得\nString substring = s.substring(7, 12);\nSystem.out.println(substring); // \"world\"と出力されます.\n\n// 文字列の置換\nString replaced = s.replace(\"world\", \"Java\");\nSystem.out.println(replaced); // \"Hello, Java!\"と出力されます."
+        },
+        {
+            "id": 2,
+            "questionId": "java1_arrangement",
+            "title": "Javaの基本ライブラリ、配列",
+            "question": "Javaでは、複数の同じ型のデータを一つの変数で管理するために配列を使用します。配列は一度作成すると、その長さを変更することはできません。配列の要素には、インデックスを使用してアクセスします。",
+            "answer": "/* 配列の操作の例 */\n\n// 配列の作成と初期化\nint[] array = new int[5];\n\n// 配列の長さを取得\nint length = array.length;\nSystem.out.println(\"Length of the array is \" + length); // \"Length of the array is 5\"と出力されます.\n\n// 配列に値を代入\nfor (int i = 0; i < array.length; i++) {\n    array[i] = i * 10;\n}\n\n// 配列の要素を出力\nfor (int i = 0; i < array.length; i++) {\n    System.out.println(\"Element at index \" + i + \" is \" + array[i]);\n    // 例えば、\"Element at index 2 is 20\"と出力されます.\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java1_list",
+            "title": "Javaの基本ライブラリ、リスト",
+            "question": "Javaでは、リストというデータ構造を使用して、複数の要素を順序付けて保持できます。リストは動的にサイズが変更可能であり、要素の追加や削除が容易にできます。Javaの基本ライブラリでは、ArrayListやLinkedListなどのクラスがリストの機能を提供しています。",
+            "answer": "/* リスト操作の基本的な例 */\\n\\n// ArrayListのインスタンス作成\\nArrayList<String> list = new ArrayList<String>();\\n\\n// 要素の追加\\nlist.add(\"Apple\");\\nlist.add(\"Banana\");\\nlist.add(\"Cherry\");\\n\\n// 要素の取得\\nString firstElement = list.get(0);\\nSystem.out.println(\"First element is \" + firstElement); // \"First element is Apple\"と出力されます.\\n\\n// 要素の削除\\nlist.remove(1);\\n\\n// リストの要素を出力\\nfor (String fruit : list) {\\n    System.out.println(fruit);\\n    // 例えば、\"Apple\"と\"Cherry\"が出力されます.\\n}\\n\\n// リストのサイズ取得\\nint size = list.size();\\nSystem.out.println(\"Size of the list is \" + size); // \"Size of the list is 2\"と出力されます."
+
+
+        },
+        {
+            "id": 4,
+            "questionId": "java1_map",
+            "title": "Javaの基本ライブラリ、マップ",
+            "question": "Javaでは、マップというデータ構造を使用して、キーと値のペアを保持します。各キーは一意であり、それに対応する値をマップから取得するために使用されます。Javaの基本ライブラリでは、HashMapやTreeMapなどのクラスがマップの機能を提供しています。",
+            "answer": "/* マップ操作の基本的な例 */\\n\\n// HashMapのインスタンス作成\\nHashMap<String, String> map = new HashMap<String, String>();\\n\\n// 要素の追加\\nmap.put(\"Apple\", \"Red\");\\nmap.put(\"Banana\", \"Yellow\");\\nmap.put(\"Grape\", \"Purple\");\\n\\n// 要素の取得\\nString appleColor = map.get(\"Apple\");\\nSystem.out.println(\"Apple is \" + appleColor); // \"Apple is Red\"と出力されます.\\n\\n// 要素の削除\\nmap.remove(\"Banana\");\\n\\n// マップの要素を出力\\nfor (Map.Entry<String, String> entry : map.entrySet()) {\\n    System.out.println(entry.getKey() + \" is \" + entry.getValue());\\n    // 例えば、\"Apple is Red\"と\"Grape is Purple\"が出力されます.\\n}\\n\\n// マップのサイズ取得\\nint size = map.size();\\nSystem.out.println(\"Size of the map is \" + size); // \"Size of the map is 2\"と出力されます."
+        },
+        {
+            "id": 5,
+            "questionId": "java1_inoutput",
+            "title": "Javaの基本ライブラリ、入出力処理",
+            "question": "Javaでは、データの読み取りと書き込みを行うための入出力(I/O)クラスが提供されています。これらのクラスはjava.ioパッケージに含まれています。ファイルからの読み取りや書き込み、ネットワーク接続を通じた読み取りや書き込みなど、さまざまな入出力処理を行うことができます。",
+            "answer": "/* ファイルの読み取りと書き込みの基本的な例 */\\n\\n// java.ioパッケージのクラスをインポート\\nimport java.io.FileReader;\\nimport java.io.FileWriter;\\nimport java.io.IOException;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        try {\\n            // ファイルからの読み取り\\n            FileReader reader = new FileReader(\\\"input.txt\\\");\\n            int data = reader.read();\\n            while(data != -1) {\\n                System.out.print((char) data);\\n                data = reader.read();\\n            }\\n            reader.close();\\n\\n            // ファイルへの書き込み\\n            FileWriter writer = new FileWriter(\\\"output.txt\\\");\\n            writer.write(\\\"Hello, World!\\\");\\n            writer.close();\\n        } catch (IOException e) {\\n            e.printStackTrace();\\n        }\\n    }\\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java1_date",
+            "title": "Javaの基本ライブラリ、日付",
+            "question": "Javaには日付と時間を操作するための強力なライブラリが用意されています。それはjava.timeパッケージに含まれています。このパッケージにはLocalDate、LocalTime、LocalDateTimeなど、日付と時間を操作するためのクラスが含まれています。以下の例では、LocalDateクラスを使用して現在の日付を取得し表示する方法を示します。",
+            "answer": "import java.time.LocalDate;\\n\\npublic class Main {\\n\\n    public static void main(String[] args) {\\n        // LocalDateクラスのnowメソッドを使用して現在の日付を取得します\\n        LocalDate currentDate = LocalDate.now();\\n\\n        // 取得した日付を表示します\\n        System.out.println(\\\"今日の日付は \\\" + currentDate + \\\" です\\\");\\n    }\\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java1_time",
+            "title": "Javaの基本ライブラリ、時間処理",
+            "question": "Javaの基本ライブラリには、不変の日時オブジェクトを操作するためのクラスが含まれています。このパッケージの主要なクラスの一つはLocalDateTimeで、現在の日時を取得したり、日時を増減したりすることができます。",
+            "answer": "import java.time.LocalDateTime;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 現在の日時を取得\\n        LocalDateTime now = LocalDateTime.now();\\n        System.out.println(\"現在の日時 : \" + now);\\n\\n        // 昨日の日時を取得\\n        LocalDateTime yesterday = now.minusDays(1);\\n        System.out.println(\"昨日の日時 : \" + yesterday);\\n    }\\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java1_exception",
+            "title": "Javaの基本ライブラリ、例外処理",
+            "question": "Javaの例外処理は、プログラムが実行中に何らかのエラーまたは例外条件（例：ファイルが見つからない、ネットワーク接続が切断されるなど）に遭遇した場合に、それを適切に処理するための仕組みです。Javaでは、エラーまたは例外条件が発生する可能性があるコードは「try」ブロック内に配置し、その後の「catch」ブロックで特定の例外をキャッチします。最後に、「finally」ブロックでは、例外の有無にかかわらず実行する必要のあるコードを配置します。",
+            "answer": "public class Main {\\n    public static void main(String[] args) {\\n        try {\\n            // ポテンシャルなエラーを引き起こす可能性があるコード\\n            int result = 10 / 0;\\n        } catch (ArithmeticException e) {\\n            // 0で割るという例外を処理する\\n            System.out.println(\\\"ArithmeticException caught!\\\");\\n        } finally {\\n            // 例外が発生しようとしまいと、常に実行されるコード\\n            System.out.println(\\\"This code block always executes\\\");\\n        }\\n    }\\n}"
+        }
+    ]
+}

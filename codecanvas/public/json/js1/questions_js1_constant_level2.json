@@ -1,0 +1,165 @@
+{
+    "contentsId": "javascript1",
+    "title": "JavaScriptの変数問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js2_1",
+            "title": "変数のスコープ",
+            "question": "以下のコードを実行した場合、どの値がコンソールに出力されるでしょうか？\n\n```javascript\nfunction test() {\n    if (true) {\n        var a = 10;\n    }\n    console.log(a);\n}\ntest();\n```",
+            "explanation": "変数`a`は`if`文のブロック内で宣言されていますが、`var`キーワードを使用した場合は関数スコープが適用されます。そのため、`if`文のブロック外でも変数`a`にアクセスすることができます。\n実行結果として、`10`がコンソールに出力されます。",
+            "answer": "10"
+        },
+        {
+            "id": 2,
+            "questionId": "js2_2",
+            "title": "変数の再宣言",
+            "question": "以下のコードを実行した場合、どの値がコンソールに出力されるでしょうか？\n\n```javascript\nvar a = 5;\nfunction test() {\n    var a = 10;\n    console.log(a);\n}\ntest();\nconsole.log(a);\n```",
+            "explanation": "変数`a`は関数内で再宣言されています。JavaScriptでは、同じ変数名を再宣言することができますが、再宣言した変数は同じスコープ内でのみ有効です。関数内で再宣言された変数`a`は、その関数内でのみ有効であり、外部の変数`a`には影響を与えません。\n実行結果として、最初の`console.log(a)`で`10`が出力され、2つ目の`console.log(a)`で`5`が出力されます。",
+            "answer": "10\n5"
+        }, {
+            "id": 3,
+            "questionId": "js2_3",
+            "title": "変数の宣言と代入",
+            "question": "以下のコードを実行した場合、どの値がコンソールに出力されるでしょうか？\n\n```javascript\nvar a = 5;\nfunction test() {\n    a = 10;\n    console.log(a);\n}\ntest();\nconsole.log(a);\n```",
+            "explanation": "関数内で変数`a`に新しい値`10`を代入しています。この場合、`var`キーワードを使用せずに変数`a`を宣言しているため、既存のグローバルスコープの変数`a`が更新されます。\n実行結果として、最初の`console.log(a)`で`10`が出力され、2つ目の`console.log(a)`でも`10`が出力されます。",
+            "answer": "10\n10"
+        },
+        {
+            "id": 4,
+            "questionId": "js2_4",
+            "title": "定数の宣言",
+            "question": "以下のコードを実行した場合、どの値がコンソールに出力されるでしょうか？\n\n```javascript\nconst PI = 3.14;\nconsole.log(PI);\nPI = 3.14159;\nconsole.log(PI);\n```",
+            "explanation": "定数`PI`には初期値`3.14`が代入されています。定数はその名前の通り、変更不可能な値です。そのため、定数`PI`に再代入を行おうとするとエラーが発生します。\n実行結果として、最初の`console.log(PI)`で`3.14`が出力されますが、2つ目の`PI = 3.14159;`でエラーが発生します。",
+            "answer": "3.14\n(エラー)"
+        },
+        {
+            "id": 5,
+            "questionId": "js2_5",
+            "title": "変数のスコープ",
+            "question": "以下のコードを実行した場合、どの値がコンソールに出力されるでしょうか？\n\n```javascript\nfunction test() {\n    var x = 1;\n    if (true) {\n        var x = 2;\n        console.log(x);\n    }\n    console.log(x);\n}\ntest();\n```",
+            "explanation": "関数内で同じ名前の変数`x`を宣言していますが、`var`キーワードを使用しているため、ブロックスコープが存在しません。そのため、内側のブロックでの代入が外側の変数`x`にも影響を与えます。\n実行結果として、最初の`console.log(x)`で`2`が出力され、2つ目の`console.log(x)`でも`2`が出力されます。",
+            "answer": "2\n2"
+        },
+        {
+            "id": 6,
+            "questionId": "js2_6",
+            "title": "変数の巻き上げ",
+            "question": "以下のコードを実行した場合、どの値がコンソールに出力されるでしょうか？\n\n```javascript\nconsole.log(x);\nvar x = 5;\nconsole.log(x);\n```",
+            "explanation": "変数の宣言部分がコードの上部にないにも関わらず、コード全体が実行されます。このような動作は変数の巻き上げと呼ばれ、変数の宣言がスコープの先頭に移動するため、宣言前でも参照できます。\n実行結果として、最初の`console.log(x)`では`undefined`が出力され、2つ目の`console.log(x)`では`5`が出力されます。",
+            "answer": "undefined\n5"
+        },
+        {
+            "id": 7,
+            "questionId": "js2_7",
+            "title": "変数のスコープチェーン",
+            "question": "以下のコードを実行した場合、どの値がコンソールに出力されるでしょうか？\n\n```javascript\nvar x = 1;\n\nfunction outer() {\n    var x = 2;\n\n    function inner() {\n        var x = 3;\n        console.log(x);\n    }\n\n    inner();\n    console.log(x);\n}\n\nouter();\nconsole.log(x);\n```",
+            "explanation": "このコードでは、3つのスコープがネストしています。内側の関数`inner`のスコープから順番に変数`x`を探し、最も近いスコープで見つかった値が出力されます。\n実行結果として、最初の`console.log(x)`では`3`が出力され、2つ目の`console.log(x)`では`2`が出力されます。最後の`console.log(x)`ではグローバルスコープの変数`x`の値である`1`が出力されます。",
+            "answer": "3\n2\n1"
+        },
+        {
+            "id": 8,
+            "questionId": "js2_8",
+            "title": "変数の名前衝突",
+            "question": "以下のコードを実行した場合、どの値がコンソールに出力されるでしょうか？\n\n```javascript\nvar x = 1;\n\nfunction test() {\n    var x = 2;\n\n    if (true) {\n        var x = 3;\n        console.log(x);\n    }\n\n    console.log(x);\n}\n\nconsole.log(x);\ntest();\nconsole.log(x);\n```",
+            "explanation": "このコードでは、関数内で同じ名前の変数`x`を宣言していますが、`var`キーワードを使用しているため、ブロックスコープが存在しません。そのため、内側のブロックでの代入が外側の変数`x`にも影響を与えます。\n実行結果として、最初の`console.log(x)`ではグローバルスコープの変数`x`の値である`1`が出力され、`test`関数内の最初の`console.log(x)`では関数スコープの変数`x`の値である`3`が出力されます。最後の`console.log(x)`では再びグローバルスコープの変数`x`の値である`1`が出力されます。",
+            "answer": "1\n3\n1"
+        },
+        {
+            "id": 9,
+            "questionId": "js2_9",
+            "title": "変数のスコープチェーン",
+            "question": "以下のコードを実行した場合、どの値がコンソールに出力されるでしょうか？\n\n```javascript\nvar x = 1;\n\nfunction outer() {\n    var x = 2;\n\n    function inner() {\n        console.log(x);\n    }\n\n    inner();\n}\n\nouter();\nconsole.log(x);\n```",
+            "explanation": "このコードでは、3つのスコープがネストしています。内側の関数`inner`のスコープから順番に変数`x`を探し、最も近いスコープで見つかった値が出力されます。\n実行結果として、`console.log(x)`では`2`が出力されます。最後の`console.log(x)`ではグローバルスコープの変数`x`の値である`1`が出力されます。",
+            "answer": "2\n1"
+        },
+        {
+            "id": 10,
+            "questionId": "js2_10",
+            "title": "変数の巻き上げ",
+            "question": "以下のコードを実行した場合、どの値がコンソールに出力されるでしょうか？\n\n```javascript\nconsole.log(x);\nlet x = 5;\nconsole.log(x);\n```",
+            "explanation": "`let`キーワードを使用して変数`x`を宣言しています。`let`キーワードはブロックスコープを持つため、変数の宣言部分より前にアクセスすると参照エラーが発生します。\n実行結果として、最初の`console.log(x)`ではエラーが発生し、2つ目の`console.log(x)`は実行されません。",
+            "answer": "(エラー)"
+        },
+        {
+            "id": 11,
+            "questionId": "js2_11",
+            "title": "変数の宣言と初期化",
+            "question": "以下のコードを実行した場合、どの値がコンソールに出力されるでしょうか？\n\n```javascript\nlet x;\nconsole.log(x);\n```",
+            "explanation": "`let`キーワードを使用して変数`x`を宣言していますが、初期値を指定していません。そのため、未初期化の変数`x`は`undefined`となります。\n実行結果として、`console.log(x)`では`undefined`が出力されます。",
+            "answer": "undefined"
+        },
+        {
+            "id": 12,
+            "questionId": "js2_12",
+            "title": "定数の初期化",
+            "question": "以下のコードを実行した場合、どの値がコンソールに出力されるでしょうか？\n\n```javascript\nconst x;\nconsole.log(x);\n```",
+            "explanation": "定数`x`を宣言していますが、初期値を指定していません。定数は宣言時に初期化が必要です。そのため、初期値を指定しない場合はエラーが発生します。\n実行結果として、`console.log(x)`ではエラーが発生します。",
+            "answer": "(エラー)"
+        },
+        {
+            "id": 13,
+            "questionId": "js2_13",
+            "title": "変数の再代入",
+            "question": "以下のコードを実行した場合、どの値がコンソールに出力されるでしょうか？\n\n```javascript\nlet x = 10;\nconsole.log(x);\nx = 20;\nconsole.log(x);\n```",
+            "explanation": "変数`x`を宣言して初期値`10`を代入し、その後に再代入しています。`let`キーワードを使用した場合、変数の再代入が可能です。\n実行結果として、最初の`console.log(x)`では`10`が出力され、2つ目の`console.log(x)`では再代入後の値である`20`が出力されます。",
+            "answer": "10\n20"
+        },
+        {
+            "id": 14,
+            "questionId": "js2_14",
+            "title": "定数の再代入",
+            "question": "以下のコードを実行した場合、どの値がコンソールに出力されるでしょうか？\n\n```javascript\nconst x = 10;\nconsole.log(x);\nx = 20;\nconsole.log(x);\n```",
+            "explanation": "定数`x`を宣言して初期値`10`を代入し、その後に再代入しようとしています。定数は初期化後に再代入できないため、エラーが発生します。\n実行結果として、最初の`console.log(x)`では初期値の`10`が出力されますが、2つ目の`x = 20;`でエラーが発生します。",
+            "answer": "10\n(エラー)"
+        },
+        {
+            "id": 15,
+            "questionId": "js2_15",
+            "title": "変数のスコープチェーン",
+            "question": "以下のコードを実行した場合、どの値がコンソールに出力されるでしょうか？\n\n```javascript\nlet x = 1;\n\nfunction outer() {\n    let x = 2;\n\n    function inner() {\n        let x = 3;\n        console.log(x);\n    }\n\n    inner();\n    console.log(x);\n}\n\nouter();\nconsole.log(x);\n```",
+            "explanation": "このコードでは、3つのスコープがネストしています。内側の関数`inner`のスコープから順番に変数`x`を探し、最も近いスコープで見つかった値が出力されます。\n実行結果として、最初の`console.log(x)`では`3`が出力され、2つ目の`console.log(x)`では`2`が出力されます。最後の`console.log(x)`ではグローバルスコープの変数`x`の値である`1`が出力されます。",
+            "answer": "3\n2\n1"
+        },
+        {
+            "id": 16,
+            "questionId": "js2_16",
+            "title": "変数の巻き上げ",
+            "question": "以下のコードを実行した場合、どの値がコンソールに出力されるでしょうか？\n\n```javascript\nconsole.log(x);\nlet x = 5;\nconsole.log(x);\n```",
+            "explanation": "`let`キーワードを使用して変数`x`を宣言していますが、変数の宣言部分がコードの上部にないため、参照エラーが発生します。\n実行結果として、最初の`console.log(x)`ではエラーが発生し、2つ目の`console.log(x)`は実行されません。",
+            "answer": "(エラー)"
+        },
+        {
+            "id": 17,
+            "questionId": "js2_17",
+            "title": "変数の宣言と初期化",
+            "question": "以下のコードを実行した場合、どの値がコンソールに出力されるでしょうか？\n\n```javascript\nlet x;\nconsole.log(x);\n```",
+            "explanation": "`let`キーワードを使用して変数`x`を宣言していますが、初期値を指定していません。そのため、未初期化の変数`x`は`undefined`となります。\n実行結果として、`console.log(x)`では`undefined`が出力されます。",
+            "answer": "undefined"
+        },
+        {
+            "id": 18,
+            "questionId": "js2_18",
+            "title": "定数の初期化",
+            "question": "以下のコードを実行した場合、どの値がコンソールに出力されるでしょうか？\n\n```javascript\nconst x;\nconsole.log(x);\n```",
+            "explanation": "定数`x`を宣言していますが、初期値を指定していません。定数は宣言時に初期化が必要です。そのため、初期値を指定しない場合はエラーが発生します。\n実行結果として、`console.log(x)`ではエラーが発生します。",
+            "answer": "(エラー)"
+        },
+        {
+            "id": 19,
+            "questionId": "js2_19",
+            "title": "変数の再代入",
+            "question": "以下のコードを実行した場合、どの値がコンソールに出力されるでしょうか？\n\n```javascript\nlet x = 10;\nconsole.log(x);\nx = 20;\nconsole.log(x);\n```",
+            "explanation": "変数`x`を宣言して初期値`10`を代入し、その後に再代入しています。`let`キーワードを使用した場合、変数の再代入が可能です。\n実行結果として、最初の`console.log(x)`では`10`が出力され、2つ目の`console.log(x)`では再代入後の値である`20`が出力されます。",
+            "answer": "10\n20"
+        },
+        {
+            "id": 20,
+            "questionId": "js2_20",
+            "title": "定数の再代入",
+            "question": "以下のコードを実行した場合、どの値がコンソールに出力されるでしょうか？\n\n```javascript\nconst x = 10;\nconsole.log(x);\nx = 20;\nconsole.log(x);\n```",
+            "explanation": "定数`x`を宣言して初期値`10`を代入し、その後に再代入しようとしています。定数は初期化後に再代入できないため、エラーが発生します。\n実行結果として、最初の`console.log(x)`では初期値の`10`が出力されますが、2つ目の`x = 20;`でエラーが発生します。",
+            "answer": "10\n(エラー)"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "contentsId": "java_constants",
+    "title": "Javaの定数問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_constants_advanced_1",
+            "title": "定数と不変性",
+            "question": "Javaで定数と不変性が重要な理由を説明してください。",
+            "explanation": "定数と不変性はプログラムの安全性と予測可能性を向上させます。定数は値が変更されないため、予期せぬバグの原因を減らすことができます。また、不変性はオブジェクトの状態が作成時から変更されないことを保証するため、マルチスレッド環境での安全性を向上させます。",
+            "answer": "// 例：Stringクラスは不変クラスです\nfinal String hello = \"Hello\";\nhello.concat(\", World!\"); // helloの値は変わりません\nSystem.out.println(hello); // Helloと出力されます"
+        },
+        {
+            "id": 2,
+            "questionId": "java_constants_advanced_2",
+            "title": "不変クラスの作成",
+            "question": "以下のクラスを不変クラスに変更してください。\n\npublic class Point {\n  private int x;\n  private int y;\n\n  public Point(int x, int y) {\n    this.x = x;\n    this.y = y;\n  }\n\n  public void setX(int x) {\n    this.x = x;\n  }\n\n  public void setY(int y) {\n    this.y = y;\n  }\n}",
+            "explanation": "不変クラスはすべてのデータがfinalであり、一度作成された後はその状態が変化しないクラスです。また、setterメソッドを提供しないため、クラスの状態を変更することはできません。",
+            "answer": "public class Point {\n  private final int x;\n  private final int y;\n\n  public Point(int x, int y) {\n    this.x = x;\n    this.y = y;\n  }\n\n  // setXとsetYメソッドを削除します\n  // 不変クラスでは、外部からフィールドの値を変更するためのsetterメソッドを提供しません\n}\n\n// 使用例\nPoint p = new Point(5, 10);\n// p.setX(10); これはエラーになります"
+        }
+    ]
+}
