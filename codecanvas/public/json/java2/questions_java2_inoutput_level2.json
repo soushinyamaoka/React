@@ -1,0 +1,88 @@
+{
+    "contentsId": "java3",
+    "title": "Javaの基本ライブラリ、入出力処理問題集ページ",
+    "subtitle": "中級",
+    "questions": [
+        {
+            "id": 1,
+            "questionId": "java_io_1",
+            "title": "ファイルの内容を一行ずつ表示",
+            "question": "指定したパスのテキストファイルを読み込み、その内容を一行ずつ表示するJavaプログラムを作成してください。",
+            "explanation": "java.nio.fileパッケージを使用して、ファイルを一行ずつ読み取ることができます。",
+            "answer": "import java.io.IOException;\nimport java.nio.file.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Path filePath = Paths.get(\"file.txt\"); // ファイルパスを設定します\n        try {\n            // ファイルを行単位で読み取り、各行を表示します\n            Files.lines(filePath).forEach(System.out::println);\n        } catch (IOException e) {\n            System.out.println(\"An error occurred.\");\n            e.printStackTrace();\n        }\n    }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java_io_2",
+            "title": "ファイルへの文字列の書き込み",
+            "question": "指定したパスのテキストファイルへ特定の文字列を書き込むJavaプログラムを作成してください。",
+            "explanation": "java.nio.fileパッケージを使用して、文字列をファイルに書き込むことができます。",
+            "answer": "import java.io.IOException;\nimport java.nio.file.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Path filePath = Paths.get(\"file.txt\"); // ファイルパスを設定します\n        String content = \"This is a sample text.\"; // 書き込む内容を設定します\n        try {\n            // ファイルに文字列を書き込みます\n            Files.write(filePath, content.getBytes());\n            System.out.println(\"Text written to file successfully.\");\n        } catch (IOException e) {\n            System.out.println(\"An error occurred.\");\n            e.printStackTrace();\n        }\n    }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java_io_3",
+            "title": "ファイルのコピー",
+            "question": "指定したパスのファイルを別のパスにコピーするJavaプログラムを作成してください。",
+            "explanation": "java.nio.fileパッケージを使用して、ファイルをコピーすることができます。",
+            "answer": "import java.io.IOException;\nimport java.nio.file.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Path sourcePath = Paths.get(\"source.txt\"); // コピー元のファイルパスを設定します\n        Path destinationPath = Paths.get(\"destination.txt\"); // コピー先のファイルパスを設定します\n        try {\n            // ファイルをコピーします\n            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);\n            System.out.println(\"File copied successfully.\");\n        } catch (IOException e) {\n            System.out.println(\"An error occurred.\");\n            e.printStackTrace();\n        }\n    }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java_io_4",
+            "title": "ディレクトリ内のファイル一覧",
+            "question": "指定したディレクトリ内のファイルおよびディレクトリの一覧を取得するJavaプログラムを作成してください。",
+            "explanation": "java.nio.fileパッケージを使用して、ディレクトリ内のファイルおよびディレクトリの一覧を取得することができます。",
+            "answer": "import java.io.IOException;\nimport java.nio.file.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Path dirPath = Paths.get(\"directory\"); // ディレクトリパスを設定します\n        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dirPath)) {\n            // ディレクトリ内のファイルおよびディレクトリの一覧を表示します\n            for (Path entry: stream) {\n                System.out.println(entry.toString());\n            }\n        } catch (IOException e) {\n            System.out.println(\"An error occurred.\");\n            e.printStackTrace();\n        }\n    }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java_io_5",
+            "title": "BufferedReaderを用いたファイルの読み込み",
+            "question": "java.io.BufferedReaderを使用して、指定したパスのテキストファイルを読み込み、その内容を一行ずつ表示するJavaプログラムを作成してください。",
+            "explanation": "java.io.BufferedReaderを使用して、大きなファイルも効率的に読み込むことができます。",
+            "answer": "import java.io.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        String filePath = \"file.txt\"; // ファイルパスを設定します\n        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {\n            // ファイルを行単位で読み取り、各行を表示します\n            String line;\n            while ((line = reader.readLine()) != null) {\n                System.out.println(line);\n            }\n        } catch (IOException e) {\n            System.out.println(\"An error occurred.\");\n            e.printStackTrace();\n        }\n    }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java_io_6",
+            "title": "BufferedWriterを用いたファイルの書き込み",
+            "question": "java.io.BufferedWriterを使用して、指定したパスのテキストファイルに文字列を書き込むJavaプログラムを作成してください。なお、書き込む文字列は\"Hello, Java!\"とします。",
+            "explanation": "java.io.BufferedWriterを使用して、大きなデータも効率的にファイルに書き込むことができます。",
+            "answer": "import java.io.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        String filePath = \"file.txt\"; // ファイルパスを設定します\n        String content = \"Hello, Java!\"; // 書き込む内容を設定します\n        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {\n            // ファイルに内容を書き込みます\n            writer.write(content);\n        } catch (IOException e) {\n            System.out.println(\"An error occurred.\");\n            e.printStackTrace();\n        }\n    }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java_io_7",
+            "title": "Javaでのデータのシリアライズ",
+            "question": "Javaのオブジェクトをファイルにシリアライズして保存し、その後でデシリアライズして読み込むプログラムを作成してください。シリアライズするオブジェクトは任意のJavaオブジェクトとします。",
+            "explanation": "Javaのjava.ioパッケージには、オブジェクトをシリアライズ（直列化）し、それをディスクに保存したり、ネットワークを通じて送信したりするための機能が提供されています。",
+            "answer": "import java.io.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        String filePath = \"object.ser\"; // シリアライズしたオブジェクトを保存するファイルパスを設定します\n        String original = \"Hello, Java!\"; // シリアライズするオブジェクトを設定します\n\n        // オブジェクトをシリアライズして保存します\n        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {\n            oos.writeObject(original);\n        } catch (IOException e) {\n            System.out.println(\"An error occurred during serialization.\");\n            e.printStackTrace();\n        }\n\n        // オブジェクトをデシリアライズして読み込みます\n        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {\n            String deserialized = (String) ois.readObject();\n            System.out.println(deserialized);\n        } catch (IOException | ClassNotFoundException e) {\n            System.out.println(\"An error occurred during deserialization.\");\n            e.printStackTrace();\n        }\n    }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java_io_8",
+            "title": "Javaでの文字列のエンコーディング変換",
+            "question": "Javaで文字列のエンコーディングを変換するプログラムを作成してください。具体的には、UTF-8形式の文字列をShift_JIS形式に変換してください。",
+            "explanation": "Javaでは、文字エンコーディングの変換を行うための機能が提供されています。これにより、異なるエンコーディング形式のデータとやり取りする際に文字化けを防ぐことができます。",
+            "answer": "import java.io.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        String original = \"こんにちは, Java!\"; // エンコーディングを変換する文字列を設定します\n        try {\n            byte[] bytes = original.getBytes(\"UTF-8\"); // UTF-8のバイト配列に変換します\n            String converted = new String(bytes, \"Shift_JIS\"); // Shift_JISの文字列に変換します\n            System.out.println(converted); // 結果を出力します\n        } catch (UnsupportedEncodingException e) {\n            System.out.println(\"Unsupported Encoding.\");\n            e.printStackTrace();\n        }\n    }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java_io_9",
+            "title": "Javaでの文字列のエンコーディング指定読み込み",
+            "question": "Javaで指定したエンコーディング形式のテキストファイルを読み込むプログラムを作成してください。具体的には、Shift_JIS形式のテキストファイルを読み込んでください。",
+            "explanation": "Javaでは、特定のエンコーディング形式で書かれたテキストファイルを読み込むための機能が提供されています。これにより、異なるエンコーディング形式のデータとやり取りする際に文字化けを防ぐことができます。",
+            "answer": "import java.io.*;\nimport java.nio.charset.Charset;\n\npublic class Main {\n    public static void main(String[] args) {\n        String filePath = \"file_sjis.txt\"; // 読み込むファイルパスを設定します\n        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), Charset.forName(\"Shift_JIS\")))) {\n            String line;\n            while ((line = reader.readLine()) != null) {\n                System.out.println(line); // 読み込んだ行を出力します\n            }\n        } catch (IOException e) {\n            System.out.println(\"An error occurred.\");\n            e.printStackTrace();\n        }\n    }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java_io_10",
+            "title": "Javaでのプロパティファイルの読み込み",
+            "question": "Javaでプロパティファイルを読み込むプログラムを作成してください。具体的には、次の内容を持つプロパティファイルを読み込み、各プロパティのキーと値を出力してください。\n\nfile.properties:\nkey1=value1\nkey2=value2\nkey3=value3",
+            "explanation": "Javaでは、プロパティファイルを読み込むための機能が提供されています。これにより、設定情報などを外部のファイルに記述し、それをプログラム内で使用することができます。",
+            "answer": "import java.io.FileInputStream;\nimport java.io.IOException;\nimport java.util.Properties;\n\npublic class Main {\n    public static void main(String[] args) {\n        Properties prop = new Properties();\n        try (FileInputStream fis = new FileInputStream(\"file.properties\")) {\n            prop.load(fis);\n            for (String key : prop.stringPropertyNames()) {\n                String value = prop.getProperty(key);\n                System.out.println(key + \" = \" + value); // キーと値を出力します\n            }\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n    }\n}"
+        }
+                                                               
+    ]
+}

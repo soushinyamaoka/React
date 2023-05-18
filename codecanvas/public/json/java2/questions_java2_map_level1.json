@@ -1,0 +1,87 @@
+{
+    "contentsId": "java3",
+    "title": "Javaの基本ライブラリ、マップ問題集ページ",
+    "subtitle": "初級",
+    "questions": [
+        {
+            "id": 1,
+            "questionId": "java6_1",
+            "title": "HashMapの基本的な使用方法",
+            "question": "HashMapを作成し、キーと値のペアを追加する基本的なJavaのコードを書いてください。キーは\"Key1\"とし、値は\"Value1\"としてください。",
+            "explanation": "Javaではjava.utilパッケージに含まれるHashMapクラスを使用してマップを作成できます。キーと値のペアはputメソッドを使用して追加します。",
+            "answer": "import java.util.HashMap;\n\nHashMap<String, String> map = new HashMap<>();\n\n// Put an element into the map\nmap.put(\"Key1\", \"Value1\");\n\n// Print the value for \"Key1\"\nSystem.out.println(map.get(\"Key1\"));\n// This will print: \n// Value1"
+        },
+        {
+            "id": 2,
+            "questionId": "java6_2",
+            "title": "マップから要素を削除する",
+            "question": "JavaのHashMapを使って、キーと値のペアを削除するコードを書いてください。既存のマップにキー\"Key1\"と値\"Value1\"が追加されていると仮定してください。",
+            "explanation": "HashMapクラスのremoveメソッドを使用して、キーと値のペアを削除できます。このメソッドは、指定されたキーとそれに関連付けられた値を削除します。",
+            "answer": "import java.util.HashMap;\n\nHashMap<String, String> map = new HashMap<>();\n\n// Put an element into the map\nmap.put(\"Key1\", \"Value1\");\n\n// Remove an element from the map\nmap.remove(\"Key1\");\n\n// Print the value for \"Key1\"\nSystem.out.println(map.get(\"Key1\"));\n// This will print: \n// null"
+        },
+        {
+            "id": 3,
+            "questionId": "java6_3",
+            "title": "マップの要素数を取得する",
+            "question": "JavaのHashMapを使って、マップ内のキーと値のペアの数を取得するコードを書いてください。既存のマップにキー\"Key1\"と値\"Value1\"、キー\"Key2\"と値\"Value2\"が追加されていると仮定してください。",
+            "explanation": "HashMapクラスのsizeメソッドを使用して、マップ内のキーと値のペアの数を取得できます。",
+            "answer": "import java.util.HashMap;\n\nHashMap<String, String> map = new HashMap<>();\n\n// Put elements into the map\nmap.put(\"Key1\", \"Value1\");\nmap.put(\"Key2\", \"Value2\");\n\n// Get the number of key-value pairs in the map\nint size = map.size();\n\n// Print the size of the map\nSystem.out.println(size);\n// This will print: \n// 2"
+        },
+        {
+            "id": 4,
+            "questionId": "java6_4",
+            "title": "マップから特定のキーに関連付けられた値を取得する",
+            "question": "JavaのHashMapを使って、特定のキーに関連付けられた値を取得するコードを書いてください。キー\"Key1\"に対する値が\"Value1\"と設定されているマップがあると仮定してください。",
+            "explanation": "HashMapのgetメソッドを使うと、指定したキーに関連付けられた値を取得できます。このメソッドは、キーがマップに存在しない場合はnullを返します。",
+            "answer": "import java.util.HashMap;\n\nHashMap<String, String> map = new HashMap<>();\n\n// Put an element into the map\nmap.put(\"Key1\", \"Value1\");\n\n// Get the value associated with a key\nString value = map.get(\"Key1\");\n\n// Print the value\nSystem.out.println(value);\n// This will print: \n// Value1"
+        },
+        {
+            "id": 5,
+            "questionId": "java6_5",
+            "title": "マップが特定のキーを含むかどうかをチェックする",
+            "question": "JavaのHashMapを使って、特定のキーがマップに存在するかどうかを確認するコードを書いてください。キー\"Key1\"がマップに存在するかどうかを確認することとします。",
+            "explanation": "HashMapのcontainsKeyメソッドを使うと、指定したキーがマップに存在するかどうかを確認できます。このメソッドは、キーがマップに存在する場合はtrueを、存在しない場合はfalseを返します。",
+            "answer": "import java.util.HashMap;\n\nHashMap<String, String> map = new HashMap<>();\n\n// Put an element into the map\nmap.put(\"Key1\", \"Value1\");\n\n// Check if the map contains a key\nboolean containsKey = map.containsKey(\"Key1\");\n\n// Print the result\nSystem.out.println(containsKey);\n// This will print: \n// true"
+        },
+        {
+            "id": 6,
+            "questionId": "java6_6",
+            "title": "マップから特定のキーを削除する",
+            "question": "JavaのHashMapを使って、特定のキーとそれに関連する値をマップから削除するコードを書いてください。キー\"Key1\"とそれに関連する値を削除することとします。",
+            "explanation": "HashMapのremoveメソッドを使うと、指定したキーとそれに関連する値をマップから削除できます。このメソッドは削除された値を返します。",
+            "answer": "import java.util.HashMap;\n\nHashMap<String, String> map = new HashMap<>();\n\n// Put an element into the map\nmap.put(\"Key1\", \"Value1\");\n\n// Remove an element from the map\nString removedValue = map.remove(\"Key1\");\n\n// Print the removed value\nSystem.out.println(removedValue);\n// This will print: \n// Value1"
+        },
+        {
+            "id": 7,
+            "questionId": "java6_7",
+            "title": "マップが特定のキーを含むかどうかを確認する",
+            "question": "JavaのHashMapを使って、マップが特定のキーを含むかどうかを確認するコードを書いてください。キー\"Key1\"がマップに含まれるかどうかを確認します。",
+            "explanation": "HashMapのcontainsKeyメソッドを使うと、マップが特定のキーを含むかどうかを確認できます。このメソッドは、マップが指定したキーを含む場合にはtrueを、そうでない場合にはfalseを返します。",
+            "answer": "import java.util.HashMap;\n\nHashMap<String, String> map = new HashMap<>();\n\n// Put an element into the map\nmap.put(\"Key1\", \"Value1\");\n\n// Check if the map contains a key\nboolean containsKey = map.containsKey(\"Key1\");\n\n// Print the result\nSystem.out.println(containsKey);\n// This will print: \n// true"
+        },
+        {
+            "id": 8,
+            "questionId": "java6_8",
+            "title": "マップからキーを使って値を取得する",
+            "question": "JavaのHashMapを使って、マップからキーを使って値を取得するコードを書いてください。キー\"Key1\"に関連付けられた値を取得します。",
+            "explanation": "HashMapのgetメソッドを使うと、指定したキーに関連付けられた値を取得できます。このメソッドは、キーがマップに存在しない場合、nullを返します。",
+            "answer": "import java.util.HashMap;\n\nHashMap<String, String> map = new HashMap<>();\n\n// Put an element into the map\nmap.put(\"Key1\", \"Value1\");\n\n// Get the value associated with a key\nString value = map.get(\"Key1\");\n\n// Print the result\nSystem.out.println(value);\n// This will print: \n// Value1"
+        },
+        {
+            "id": 9,
+            "questionId": "java6_9",
+            "title": "マップから特定のエントリを削除する",
+            "question": "JavaのHashMapを使って、マップから特定のエントリ（キーとその値）を削除するコードを書いてください。キー\"Key1\"に関連付けられたエントリを削除します。",
+            "explanation": "HashMapのremoveメソッドを使うと、指定したキーとその値をマップから削除できます。このメソッドは、キーがマップに存在する場合、そのキーに関連付けられた値を返します。キーがマップに存在しない場合、nullを返します。",
+            "answer": "import java.util.HashMap;\n\nHashMap<String, String> map = new HashMap<>();\n\n// Put an element into the map\nmap.put(\"Key1\", \"Value1\");\n\n// Remove the entry associated with a key\nString removedValue = map.remove(\"Key1\");\n\n// Print the removed value\nSystem.out.println(removedValue);\n// This will print: \n// Value1"
+        },
+        {
+            "id": 10,
+            "questionId": "java6_10",
+            "title": "マップが特定のキーを含むか確認する",
+            "question": "JavaのHashMapを使って、マップが特定のキーを含むかどうかを確認するコードを書いてください。「Key1」がマップに存在するかを確認します。",
+            "explanation": "HashMapのcontainsKeyメソッドを使うと、指定したキーがマップに存在するかどうかを確認できます。このメソッドは、キーがマップに存在する場合、trueを返します。キーがマップに存在しない場合、falseを返します。",
+            "answer": "import java.util.HashMap;\n\nHashMap<String, String> map = new HashMap<>();\n\n// Put an element into the map\nmap.put(\"Key1\", \"Value1\");\n\n// Check if the map contains a key\nboolean containsKey = map.containsKey(\"Key1\");\n\n// Print the result\nSystem.out.println(containsKey);\n// This will print: \n// true"
+        }                                                                                
+    ]
+}

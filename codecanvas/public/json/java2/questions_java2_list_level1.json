@@ -1,0 +1,78 @@
+{
+    "contentsId": "java3",
+    "title": "Javaの基本ライブラリ、リスト問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java3_1",
+            "title": "リストの作成",
+            "question": "JavaでString型のArrayListを作成し、それに要素を3つ追加するコードを書いてください。",
+            "explanation": "Javaでは、ArrayListクラスを使用してリストを作成できます。ArrayListは動的配列で、要素の追加や削除が容易である特徴があります。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\n// Now, list contains [\"Apple\", \"Banana\", \"Cherry\"]"
+        },
+        {
+            "id": 2,
+            "questionId": "java3_2",
+            "title": "リストから要素の取得",
+            "question": "Javaで作成したArrayListから特定のインデックスの要素を取得する方法を説明してください。",
+            "explanation": "ArrayListから特定のインデックスの要素を取得するには、getメソッドを使用します。getメソッドは引数にインデックスを取り、そのインデックスに対応する要素を返します。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\nString fruit = list.get(1);\nSystem.out.println(fruit);\n// Expected output: \"Banana\""
+        },
+        {
+            "id": 3,
+            "questionId": "java3_3",
+            "title": "リストのサイズ取得",
+            "question": "Javaで作成したArrayListの要素数（サイズ）を取得する方法を説明してください。",
+            "explanation": "ArrayListの要素数（サイズ）を取得するには、sizeメソッドを使用します。sizeメソッドはリストの要素数を返します。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\nint size = list.size();\nSystem.out.println(size);\n// Expected output: 3"
+        },
+        {
+            "id": 4,
+            "questionId": "java3_4",
+            "title": "リストから要素の削除",
+            "question": "Javaで作成したArrayListから特定のインデックスの要素を削除する方法を説明してください。",
+            "explanation": "ArrayListから特定のインデックスの要素を削除するには、removeメソッドを使用します。removeメソッドは引数にインデックスを取り、そのインデックスに対応する要素を削除します。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\nlist.remove(1);\n// Now, list contains [\"Apple\", \"Cherry\"]"
+        },
+        {
+            "id": 5,
+            "questionId": "java3_5",
+            "title": "リストの全要素の表示",
+            "question": "Javaで作成したArrayListの全要素を表示する方法を説明してください。",
+            "explanation": "ArrayListの全要素を表示するには、for-eachループを使用します。for-eachループはリストの各要素に対して一度ずつ実行されます。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\nfor (String fruit : list) {\n    System.out.println(fruit);\n}\n// Expected output:\n// \"Apple\"\n// \"Banana\"\n// \"Cherry\""
+        },
+        {
+            "id": 6,
+            "questionId": "java3_6",
+            "title": "リストのクリア",
+            "question": "Javaで作成したArrayListの全要素を削除（クリア）する方法を説明してください。",
+            "explanation": "ArrayListの全要素を削除するには、clearメソッドを使用します。clearメソッドはリストの全要素を削除し、リストを空にします。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\nlist.clear();\n// Now, list is empty"
+        },
+        {
+            "id": 7,
+            "questionId": "java3_7",
+            "title": "リストの要素の並び替え",
+            "question": "Javaで作成したArrayListの要素を並び替える方法を説明してください。",
+            "explanation": "ArrayListの要素を並び替えるには、Collections.sort()メソッドを使用します。このメソッドはリストの全要素を自然順序に従って昇順に並び替えます。",
+            "answer": "import java.util.ArrayList;\nimport java.util.Collections;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Cherry\");\nlist.add(\"Banana\");\nlist.add(\"Apple\");\n\nCollections.sort(list);\n// Now, list contains [\"Apple\", \"Banana\", \"Cherry\"]"
+        },
+        {
+            "id": 8,
+            "questionId": "java3_8",
+            "title": "リストのサイズ取得",
+            "question": "Javaで作成したArrayListの要素数（サイズ）を取得する方法を説明してください。",
+            "explanation": "ArrayListの要素数を取得するには、size()メソッドを使用します。このメソッドはリストの要素数を返します。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\nint size = list.size();\nSystem.out.println(size);\n// Expected output: 3"
+        },
+        {
+            "id": 9,
+            "questionId": "java3_9",
+            "title": "リストの特定の位置に要素の追加",
+            "question": "Javaで作成したArrayListの特定の位置に要素を追加する方法を説明してください。",
+            "explanation": "ArrayListの特定の位置に要素を追加するには、add()メソッドを使用します。このメソッドは引数としてインデックスと要素を取り、そのインデックスの位置に要素を追加します。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\n\nlist.add(1, \"Cherry\");\n// Now, list contains [\"Apple\", \"Cherry\", \"Banana\"]"
+        }
+    ]
+}

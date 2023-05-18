@@ -1,0 +1,88 @@
+{
+    "contentsId": "java4",
+    "title": "Javaの基本ライブラリ、リスト問題集ページ",
+    "subtitle": "上級",
+    "questions": [
+        {
+            "id": 1,
+            "questionId": "java5_1",
+            "title": "リストから重複要素を削除する",
+            "question": "JavaのArrayListから重複する要素を削除する方法を説明し、それを示すコードを書いてください。",
+            "explanation": "JavaのArrayListから重複する要素を削除するには、Setインターフェースとその具体的なクラスを利用します。Setは重複した要素を許可しない特性を持っているため、ArrayListを新しいHashSetに渡し、それを再びArrayListに戻すことで重複した要素を削除することができます。",
+            "answer": "import java.util.ArrayList;\nimport java.util.HashSet;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Apple\");\n\n// Removing duplicates from the list using a HashSet\nHashSet<String> set = new HashSet<>(list);\nlist.clear();\nlist.addAll(set);\n\n// Printing the list after removing duplicates\nfor(String fruit : list) {\n    System.out.println(fruit);\n}\n// This will print either: \n// Apple\n// Banana\n// Or: \n// Banana\n// Apple"
+        },
+        {
+            "id": 2,
+            "questionId": "java5_2",
+            "title": "リストの要素をソートする",
+            "question": "JavaのArrayListの要素を昇順と降順でソートする方法を説明し、それを示すコードを書いてください。",
+            "explanation": "JavaのArrayListの要素をソートするには、Collectionsクラスのsortメソッドを使用します。昇順にソートするにはそのままsortメソッドを使用し、降順にソートするにはsortメソッドにCollections.reverseOrder()を引数として渡します。",
+            "answer": "import java.util.ArrayList;\nimport java.util.Collections;\n\nArrayList<Integer> list = new ArrayList<>();\nlist.add(5);\nlist.add(2);\nlist.add(8);\nlist.add(1);\n\n// Sorting the list in ascending order\nCollections.sort(list);\n\n// Printing the list after sorting in ascending order\nfor(Integer num : list) {\n    System.out.println(num);\n}\n// This will print: \n// 1\n// 2\n// 5\n// 8\n\n// Sorting the list in descending order\nCollections.sort(list, Collections.reverseOrder());\n\n// Printing the list after sorting in descending order\nfor(Integer num : list) {\n    System.out.println(num);\n}\n// This will print: \n// 8\n// 5\n// 2\n// 1"
+        },
+        {
+            "id": 3,
+            "questionId": "java5_3",
+            "title": "リストの特定の要素を削除する",
+            "question": "JavaのArrayListから特定の要素を削除する方法を説明し、それを示すコードを書いてください。",
+            "explanation": "ArrayListから特定の要素を削除するには、removeメソッドを使用します。このメソッドには2つのバージョンがあります。ひとつはインデックスを指定して要素を削除するもの、もうひとつは指定したオブジェクトと一致する最初の要素を削除するものです。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\nlist.add(\"Date\");\nlist.add(\"Elderberry\");\n\n// Remove the element at index 3\nlist.remove(3);\n\n// Print the list after removing\nfor(String fruit : list) {\n    System.out.println(fruit);\n}\n// This will print: \n// Apple\n// Banana\n// Cherry\n// Elderberry\n\n// Remove the first occurrence of \"Cherry\"\nlist.remove(\"Cherry\");\n\n// Print the list after removing\nfor(String fruit : list) {\n    System.out.println(fruit);\n}\n// This will print: \n// Apple\n// Banana\n// Elderberry"
+        },
+        {
+            "id": 4,
+            "questionId": "java5_4",
+            "title": "リストの要素を並び替える",
+            "question": "JavaのArrayListの要素を並び替える方法を説明し、それを示すコードを書いてください。",
+            "explanation": "ArrayListの要素を並び替えるには、Collections.sort()メソッドを使用します。このメソッドは、リストの要素を自然の順序に並べ替えます。",
+            "answer": "import java.util.ArrayList;\nimport java.util.Collections;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Elderberry\");\nlist.add(\"Cherry\");\nlist.add(\"Banana\");\nlist.add(\"Date\");\nlist.add(\"Apple\");\n\n// Sort the list\nCollections.sort(list);\n\n// Print the list after sorting\nfor(String fruit : list) {\n    System.out.println(fruit);\n}\n// This will print: \n// Apple\n// Banana\n// Cherry\n// Date\n// Elderberry"
+        },
+        {
+            "id": 5,
+            "questionId": "java5_5",
+            "title": "リストから要素を削除する",
+            "question": "JavaのArrayListから指定した要素を削除する方法を説明し、それを示すコードを書いてください。",
+            "explanation": "ArrayListから要素を削除するには、remove()メソッドを使用します。このメソッドには、削除する要素のインデックス番号を指定するか、または削除する要素自体を指定します。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\n// Remove the second element\nlist.remove(1);\n\n// Print the list after removal\nfor(String fruit : list) {\n    System.out.println(fruit);\n}\n// This will print: \n// Apple\n// Cherry"
+        },
+        {
+            "id": 6,
+            "questionId": "java5_6",
+            "title": "リストをソートする",
+            "question": "JavaのArrayListをソートする方法を説明し、それを示すコードを書いてください。",
+            "explanation": "JavaのArrayListをソートするためには、Collectionsクラスのsort()メソッドを使用します。このメソッドは、引数としてリストを受け取り、そのリストを自然順序（昇順）にソートします。",
+            "answer": "import java.util.ArrayList;\nimport java.util.Collections;\n\nArrayList<Integer> numbers = new ArrayList<>();\nnumbers.add(15);\nnumbers.add(2);\nnumbers.add(30);\n\n// Sort the list\nCollections.sort(numbers);\n\n// Print the sorted list\nfor(Integer number : numbers) {\n    System.out.println(number);\n}\n// This will print: \n// 2\n// 15\n// 30"
+        },
+        {
+            "id": 7,
+            "questionId": "java5_7",
+            "title": "2つのリストの共通要素を見つける",
+            "question": "2つのArrayListがあり、その両方に存在する要素を見つけ出すJavaコードを書いてください。",
+            "explanation": "2つのリストから共通の要素を見つけるためには、retainAll()メソッドを使用します。このメソッドは、一方のリスト（この例ではlist1）に存在する要素のうち、引数に渡されたリスト（この例ではlist2）に存在しない要素を削除します。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list1 = new ArrayList<>();\nArrayList<String> list2 = new ArrayList<>();\n\n// Add some elements to the lists\nlist1.add(\"A\");\nlist1.add(\"B\");\nlist1.add(\"C\");\nlist2.add(\"B\");\nlist2.add(\"C\");\nlist2.add(\"D\");\n\n// Find common elements\nlist1.retainAll(list2);\n\n// Print the common elements\nfor(String elem : list1) {\n    System.out.println(elem);\n}\n// This will print: \n// B\n// C"
+        },                                                
+        {
+            "id": 8,
+            "questionId": "java5_8",
+            "title": "リスト内の重複を削除",
+            "question": "ArrayListに含まれる要素の重複を削除するJavaのコードを作成してください。",
+            "explanation": "JavaのSetインターフェースは、重複する要素を許さないコレクションを表します。したがって、リストをセットに変換し、再度リストに戻すことで重複を削除することができます。",
+            "answer": "import java.util.ArrayList;\nimport java.util.HashSet;\nimport java.util.List;\nimport java.util.Set;\n\nList<String> listWithDuplicates = new ArrayList<>();\nlistWithDuplicates.add(\"A\");\nlistWithDuplicates.add(\"B\");\nlistWithDuplicates.add(\"A\");\nlistWithDuplicates.add(\"C\");\nlistWithDuplicates.add(\"C\");\n\n// Convert list to set to remove duplicates\nSet<String> set = new HashSet<>(listWithDuplicates);\n\n// Convert set back to list\nList<String> listWithoutDuplicates = new ArrayList<>(set);\n\n// Print the list without duplicates\nfor(String elem : listWithoutDuplicates) {\n    System.out.println(elem);\n}\n// This will print: \n// A\n// B\n// C"
+        },
+        {
+            "id": 9,
+            "questionId": "java5_9",
+            "title": "リストの順序反転",
+            "question": "ArrayListの要素の順序を反転させるJavaのコードを作成してください。",
+            "explanation": "JavaではCollectionsクラスのreverseメソッドを使用してリストの要素の順序を反転させることができます。",
+            "answer": "import java.util.ArrayList;\nimport java.util.Collections;\nimport java.util.List;\n\nList<String> myList = new ArrayList<>();\nmyList.add(\"A\");\nmyList.add(\"B\");\nmyList.add(\"C\");\nmyList.add(\"D\");\nmyList.add(\"E\");\n\n// Reverse the order of the list\nCollections.reverse(myList);\n\n// Print the reversed list\nfor(String elem : myList) {\n    System.out.println(elem);\n}\n// This will print: \n// E\n// D\n// C\n// B\n// A"
+        },
+        {
+            "id": 10,
+            "questionId": "java5_10",
+            "title": "リストから特定の要素を全て削除する",
+            "question": "ArrayListから特定の要素を全て削除するJavaのコードを作成してください。例えば、以下のArrayListが与えられるとします。\n\nArrayList<String> myList = new ArrayList<>(Arrays.asList(\"A\", \"B\", \"A\", \"A\", \"C\", \"A\", \"D\"));\n\nこのリストから全ての\"A\"を削除するコードを記述してください。",
+            "explanation": "JavaではArrayListのremoveIfメソッドを使用して、特定の条件を満たす要素を全て削除することができます。このメソッドはJava 8から使用可能です。",
+            "answer": "import java.util.ArrayList;\nimport java.util.Arrays;\n\nArrayList<String> myList = new ArrayList<>(Arrays.asList(\"A\", \"B\", \"A\", \"A\", \"C\", \"A\", \"D\"));\n\n// Remove all occurrences of \"A\" from the list\nmyList.removeIf(s -> s.equals(\"A\"));\n\n// Print the modified list\nfor(String elem : myList) {\n    System.out.println(elem);\n}\n// This will print: \n// B\n// C\n// D"
+        }
+                        
+    ]
+}

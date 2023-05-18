@@ -1,0 +1,87 @@
+{
+    "contentsId": "java3",
+    "title": "Javaの基本ライブラリ、マップ問題集ページ",
+    "subtitle": "上級",
+    "questions": [
+        {
+            "id": 1,
+            "questionId": "java7_1",
+            "title": "TreeMapによるソート",
+            "question": "以下のHashMapに存在するエントリをキーの自然順序に従ってソートして出力するコードを書いてください。\n\nHashMap<String, Integer> map = new HashMap<>();\nmap.put(\"apple\", 50);\nmap.put(\"banana\", 70);\nmap.put(\"cherry\", 100);",
+            "explanation": "TreeMapはエントリをキーの自然順序に従ってソートします。したがって、HashMapの内容を新しいTreeMapに移すことで、順序付けられたマップを得ることができます。",
+            "answer": "import java.util.HashMap;\nimport java.util.TreeMap;\n\nHashMap<String, Integer> map = new HashMap<>();\nmap.put(\"apple\", 50);\nmap.put(\"banana\", 70);\nmap.put(\"cherry\", 100);\n\nTreeMap<String, Integer> sortedMap = new TreeMap<>(map);\nfor (String key : sortedMap.keySet()) {\n    System.out.println(key + \": \" + sortedMap.get(key));\n}\n// This will print: \n// apple: 50\n// banana: 70\n// cherry: 100"
+        },
+        {
+            "id": 2,
+            "questionId": "java7_2",
+            "title": "特定のキーの値の変更",
+            "question": "以下のHashMapに存在する「apple」の値を120に変更するコードを書いてください。\n\nHashMap<String, Integer> map = new HashMap<>();\nmap.put(\"apple\", 50);\nmap.put(\"banana\", 70);\nmap.put(\"cherry\", 100);",
+            "explanation": "HashMapのputメソッドを使用して、既存のキーの値を新しい値に変更することができます。このメソッドは、指定されたキーが既に存在する場合はそのキーの値を新しい値に置き換え、指定されたキーが存在しない場合は新しいキー/値のペアをマップに追加します。",
+            "answer": "import java.util.HashMap;\n\nHashMap<String, Integer> map = new HashMap<>();\nmap.put(\"apple\", 50);\nmap.put(\"banana\", 70);\nmap.put(\"cherry\", 100);\n\nmap.put(\"apple\", 120);\n\nSystem.out.println(\"apple: \" + map.get(\"apple\"));\n// This will print: \n// apple: 120"
+        },
+        {
+            "id": 3,
+            "questionId": "java7_3",
+            "title": "特定のキー・値ペアの存在チェック",
+            "question": "以下のHashMapから「peach」が存在するかを確認するコードを書いてください。\n\nHashMap<String, Integer> map = new HashMap<>();\nmap.put(\"apple\", 50);\nmap.put(\"banana\", 70);\nmap.put(\"cherry\", 100);",
+            "explanation": "HashMapのcontainsKeyメソッドを使用して、特定のキーがマップに存在するかどうかを確認することができます。このメソッドは、指定されたキーがマップに存在する場合はtrueを返し、存在しない場合はfalseを返します。",
+            "answer": "import java.util.HashMap;\n\nHashMap<String, Integer> map = new HashMap<>();\nmap.put(\"apple\", 50);\nmap.put(\"banana\", 70);\nmap.put(\"cherry\", 100);\n\nboolean isExist = map.containsKey(\"peach\");\n\nSystem.out.println(\"Does peach exist? \" + isExist);\n// This will print: \n// Does peach exist? false"
+        },
+        {
+            "id": 4,
+            "questionId": "java7_4",
+            "title": "特定の値の存在チェック",
+            "question": "以下のHashMapから値が70であるキーが存在するかを確認するコードを書いてください。\n\nHashMap<String, Integer> map = new HashMap<>();\nmap.put(\"apple\", 50);\nmap.put(\"banana\", 70);\nmap.put(\"cherry\", 100);",
+            "explanation": "HashMapのcontainsValueメソッドを使用して、特定の値がマップに存在するかどうかを確認することができます。このメソッドは、指定された値がマップに存在する場合はtrueを返し、存在しない場合はfalseを返します。",
+            "answer": "import java.util.HashMap;\n\nHashMap<String, Integer> map = new HashMap<>();\nmap.put(\"apple\", 50);\nmap.put(\"banana\", 70);\nmap.put(\"cherry\", 100);\n\nboolean isExist = map.containsValue(70);\n\nSystem.out.println(\"Does the value 70 exist? \" + isExist);\n// This will print: \n// Does the value 70 exist? true"
+        },
+        {
+            "id": 5,
+            "questionId": "java7_5",
+            "title": "マップの結合",
+            "question": "以下の2つのマップを結合し、結果を表示するコードを書いてください。\n\nMap<String, Integer> map1 = new HashMap<>();\nmap1.put(\"apple\", 50);\nmap1.put(\"banana\", 70);\n\nMap<String, Integer> map2 = new HashMap<>();\nmap2.put(\"cherry\", 100);\nmap2.put(\"banana\", 200);",
+            "explanation": "Java8以降では、putAllメソッドを使用してマップを他のマップに結合することができます。既にキーが存在する場合、putAllメソッドはそのキーの値を上書きします。",
+            "answer": "import java.util.HashMap;\nimport java.util.Map;\n\nMap<String, Integer> map1 = new HashMap<>();\nmap1.put(\"apple\", 50);\nmap1.put(\"banana\", 70);\n\nMap<String, Integer> map2 = new HashMap<>();\nmap2.put(\"cherry\", 100);\nmap2.put(\"banana\", 200);\n\nmap1.putAll(map2);\n\nSystem.out.println(map1);\n// This will print: \n// {apple=50, banana=200, cherry=100}"
+        },
+        {
+            "id": 6,
+            "questionId": "java7_6",
+            "title": "マップの反転",
+            "question": "以下のマップを反転し（キーと値を入れ替え）、結果を表示するコードを書いてください。\n\nMap<String, Integer> map = new HashMap<>();\nmap.put(\"apple\", 1);\nmap.put(\"banana\", 2);\nmap.put(\"cherry\", 3);",
+            "explanation": "マップの反転には、新しいマップを作成し、元のマップのすべてのエントリで新しいマップを更新することで行えます。その際、元のマップの値が新しいマップのキーとなり、元のマップのキーが新しいマップの値となります。",
+            "answer": "import java.util.HashMap;\nimport java.util.Map;\n\nMap<String, Integer> map = new HashMap<>();\nmap.put(\"apple\", 1);\nmap.put(\"banana\", 2);\nmap.put(\"cherry\", 3);\n\nMap<Integer, String> reversedMap = new HashMap<>();\nfor (Map.Entry<String, Integer> entry : map.entrySet()) {\n    reversedMap.put(entry.getValue(), entry.getKey());\n}\n\nSystem.out.println(reversedMap);\n// This will print: \n// {1=apple, 2=banana, 3=cherry}"
+        },
+        {
+            "id": 7,
+            "questionId": "java7_7",
+            "title": "マップの値に基づくソート",
+            "question": "以下のマップを、値に基づいてソートし、その結果を表示するコードを書いてください。\n\nMap<String, Integer> map = new HashMap<>();\nmap.put(\"apple\", 3);\nmap.put(\"banana\", 2);\nmap.put(\"cherry\", 1);",
+            "explanation": "マップの値に基づいてソートするには、エントリーセットをリストに変換し、そのリストをCollections.sortメソッドを使用してソートします。Comparatorを使用して、エントリの値に基づいて比較を行います。",
+            "answer": "import java.util.*;\n\nMap<String, Integer> map = new HashMap<>();\nmap.put(\"apple\", 3);\nmap.put(\"banana\", 2);\nmap.put(\"cherry\", 1);\n\nList<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());\nCollections.sort(list, new Comparator<Map.Entry<String, Integer>>() {\n    public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {\n        return (o1.getValue()).compareTo(o2.getValue());\n    }\n});\n\nfor (Map.Entry<String, Integer> entry : list) {\n    System.out.println(entry.getKey() + \": \" + entry.getValue());\n}\n// This will print: \n// cherry: 1\n// banana: 2\n// apple: 3"
+        },
+        {
+            "id": 8,
+            "questionId": "java7_8",
+            "title": "マップとラムダ式",
+            "question": "以下のマップをラムダ式を使用して値に基づいてソートし、その結果を表示するコードを書いてください。\n\nMap<String, Integer> map = new HashMap<>();\nmap.put(\"apple\", 3);\nmap.put(\"banana\", 2);\nmap.put(\"cherry\", 1);",
+            "explanation": "Java 8からはラムダ式を使ってソートを行うことができます。エントリーセットをストリームに変換し、そのストリームをsortedメソッドでソートします。比較はComparator.comparingメソッドを使って行います。",
+            "answer": "import java.util.*;\nimport java.util.stream.*;\n\nMap<String, Integer> map = new HashMap<>();\nmap.put(\"apple\", 3);\nmap.put(\"banana\", 2);\nmap.put(\"cherry\", 1);\n\nList<Map.Entry<String, Integer>> sortedList = map.entrySet().stream()\n    .sorted(Map.Entry.comparingByValue())\n    .collect(Collectors.toList());\n\nsortedList.forEach(entry -> System.out.println(entry.getKey() + \": \" + entry.getValue()));\n// This will print: \n// cherry: 1\n// banana: 2\n// apple: 3"
+        },
+        {
+            "id": 9,
+            "questionId": "java7_9",
+            "title": "マップの統合",
+            "question": "以下の2つのマップを統合するコードを書いてください。ただし、キーが重複する場合は、値を加算します。\n\nMap<String, Integer> map1 = new HashMap<>();\nmap1.put(\"apple\", 3);\nmap1.put(\"banana\", 2);\n\nMap<String, Integer> map2 = new HashMap<>();\nmap2.put(\"banana\", 3);\nmap2.put(\"cherry\", 1);",
+            "explanation": "Java 8からは、マップのmergeメソッドを使用してマップを統合することができます。mergeメソッドは、指定したキーがマップに存在しない場合、キーと値をマップに追加します。キーがすでに存在する場合は、既存の値と新しい値を組み合わせる方法を提供します。",
+            "answer": "import java.util.*;\n\nMap<String, Integer> map1 = new HashMap<>();\nmap1.put(\"apple\", 3);\nmap1.put(\"banana\", 2);\n\nMap<String, Integer> map2 = new HashMap<>();\nmap2.put(\"banana\", 3);\nmap2.put(\"cherry\", 1);\n\nmap2.forEach((key, value) -> map1.merge(key, value, Integer::sum));\n\nmap1.forEach((key, value) -> System.out.println(key + \": \" + value));\n// This will print: \n// apple: 3\n// banana: 5\n// cherry: 1"
+        },
+        {
+            "id": 10,
+            "questionId": "java7_10",
+            "title": "マップのフィルタリング",
+            "question": "以下のマップから、値が2以上のエントリのみを含む新しいマップを作成するコードを書いてください。\n\nMap<String, Integer> map = new HashMap<>();\nmap.put(\"apple\", 3);\nmap.put(\"banana\", 1);\nmap.put(\"cherry\", 2);\nmap.put(\"date\", 1);",
+            "explanation": "Java 8からは、マップのentrySetメソッドとStream APIを使用してマップのエントリをフィルタリングすることができます。フィルタリングされたエントリは、新しいマップに収集されます。",
+            "answer": "import java.util.*;\nimport java.util.stream.*;\n\nMap<String, Integer> map = new HashMap<>();\nmap.put(\"apple\", 3);\nmap.put(\"banana\", 1);\nmap.put(\"cherry\", 2);\nmap.put(\"date\", 1);\n\nMap<String, Integer> filteredMap = map.entrySet().stream()\n    .filter(entry -> entry.getValue() >= 2)\n    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));\n\nfilteredMap.forEach((key, value) -> System.out.println(key + \": \" + value));\n// This will print: \n// apple: 3\n// cherry: 2"
+        }
+    ]
+}

@@ -1,0 +1,86 @@
+{
+    "contentsId": "java2",
+    "title": "Javaの基本ライブラリ問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java2_1",
+            "title": "文字列の長さ",
+            "question": "Javaの文字列操作において、文字列の長さを取得するメソッドは何でしょうか？",
+            "explanation": "文字列の長さを取得するためには、length()メソッドを使用します。このメソッドは、文字列の長さ（文字数）をint型で返します。",
+            "answer": "// 文字列の定義\nString str = \"Hello, world!\";\n// 文字列の長さを取得し、出力\nSystem.out.println(str.length());\n// Expected output: 13"
+        },
+        {
+            "id": 2,
+            "questionId": "java2_2",
+            "title": "文字列の一部取得",
+            "question": "Javaの文字列操作で、文字列の一部を取得するメソッドは何でしょうか？",
+            "explanation": "文字列の一部を取得するには、substring()メソッドを使用します。このメソッドは、指定した始点から終点までの文字列を取得します。始点は含み、終点は含まないことに注意してください。",
+            "answer": "// 文字列の定義\nString str = \"Hello, world!\";\n// 文字列の一部を取得し、出力\nSystem.out.println(str.substring(0, 5));\n// Expected output: Hello"
+        },
+        {
+            "id": 3,
+            "questionId": "java2_3",
+            "title": "文字列の置換",
+            "question": "Javaの文字列操作で、文字列内の特定の文字を別の文字に置換するメソッドは何でしょうか？",
+            "explanation": "文字列内の特定の文字を別の文字に置換するには、replace()メソッドを使用します。このメソッドは、すべてのマッチする文字または文字列を新しい文字または文字列に置換します。",
+            "answer": "// 文字列の定義\nString str = \"Hello, world!\";\n// 文字列内の特定の文字を置換し、出力\nSystem.out.println(str.replace('o', '0'));\n// Expected output: Hell0, w0rld!"
+        },
+        {
+            "id": 4,
+            "questionId": "java1_4",
+            "title": "文字列の分割",
+            "question": "Javaの文字列操作で、文字列を特定の文字で分割するメソッドは何でしょうか？",
+            "explanation": "文字列を特定の文字で分割するには、split()メソッドを使用します。このメソッドは、指定した区切り文字を使って文字列を分割し、分割した文字列を配列として返します。",
+            "answer": "// 文字列の定義\nString str = \"Hello, world!\";\n// 文字列を特定の文字で分割\nString[] words = str.split(\", \");\n// 分割した文字列を出力\nfor (String word : words) {\n    System.out.println(word);\n}\n// Expected output:\n// Hello\n// world!"
+        },
+        {
+            "id": 5,
+            "questionId": "java1_5",
+            "title": "文字列の結合",
+            "question": "Javaの文字列操作で、複数の文字列を結合するメソッドは何でしょうか？",
+            "explanation": "複数の文字列を結合するには、concat()メソッドを使用します。このメソッドは、元の文字列の最後に指定した文字列を追加した新しい文字列を返します。",
+            "answer": "// 文字列の定義\nString str1 = \"Hello\";\nString str2 = \"world!\";\n// 文字列を結合し、出力\nSystem.out.println(str1.concat(\", \").concat(str2));\n// Expected output: Hello, world!"
+        },
+        {
+            "id": 6,
+            "questionId": "java1_6",
+            "title": "部分文字列の取得",
+            "question": "Javaの文字列操作で、文字列から部分文字列を取得するメソッドは何でしょうか？",
+            "explanation": "文字列から部分文字列を取得するには、substring()メソッドを使用します。このメソッドは、指定した開始インデックスから終了インデックスまでの部分文字列を返します。",
+            "answer": "// 文字列の定義\nString str = \"Hello, world!\";\n// 部分文字列を取得し、出力\nSystem.out.println(str.substring(0, 5));\n// Expected output: Hello"
+        },
+        {
+            "id": 7,
+            "questionId": "java1_7",
+            "title": "文字列の長さの取得",
+            "question": "Javaの文字列操作で、文字列の長さを取得するメソッドは何でしょうか？",
+            "explanation": "文字列の長さを取得するには、length()メソッドを使用します。このメソッドは、文字列の長さ（文字数）を返します。",
+            "answer": "// 文字列の定義\nString str = \"Hello, world!\";\n// 文字列の長さを取得し、出力\nSystem.out.println(str.length());\n// Expected output: 13"
+        },
+        {
+            "id": 8,
+            "questionId": "java1_8",
+            "title": "文字列の置換",
+            "question": "Javaの文字列操作で、文字列内の特定の文字列を別の文字列に置換するメソッドは何でしょうか？",
+            "explanation": "文字列内の特定の文字列を別の文字列に置換するには、replace()メソッドを使用します。このメソッドは、文字列内のすべての出現箇所を新しい文字列に置換します。",
+            "answer": "// 文字列の定義\nString str = \"Hello, world!\";\n// \"world\"を\"Java\"に置換し、出力\nSystem.out.println(str.replace(\"world\", \"Java\"));\n// Expected output: Hello, Java!"
+        },
+        {
+            "id": 9,
+            "questionId": "java1_9",
+            "title": "文字列の分割",
+            "question": "Javaの文字列操作で、文字列を特定の文字列で分割するメソッドは何でしょうか？",
+            "explanation": "文字列を特定の文字列で分割するには、split()メソッドを使用します。このメソッドは、指定した区切り文字に従って文字列を分割し、結果を配列として返します。",
+            "answer": "// 文字列の定義\nString str = \"Hello, world!\";\n// スペースで分割\nString[] words = str.split(\" \");\n// 分割結果を出力\nfor (String word : words) {\n    System.out.println(word);\n}\n// Expected output:\n// Hello,\n// world!"
+        },
+        {
+            "id": 10,
+            "questionId": "java1_10",
+            "title": "文字列の部分取得",
+            "question": "Javaの文字列操作で、文字列の一部を取得するメソッドは何でしょうか？",
+            "explanation": "文字列の一部を取得するには、substring()メソッドを使用します。このメソッドは、指定した開始インデックスから終了インデックスまでの部分文字列を返します。",
+            "answer": "// 文字列の定義\nString str = \"Hello, world!\";\n// 7番目のインデックスから11番目のインデックスまでの文字列を取得し、出力\nSystem.out.println(str.substring(7, 11));\n// Expected output: worl"
+        }
+    ]
+}

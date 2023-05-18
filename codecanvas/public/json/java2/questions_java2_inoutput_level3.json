@@ -1,0 +1,87 @@
+{
+    "contentsId": "java3",
+    "title": "Javaの基本ライブラリ、入出力処理問題集ページ",
+    "subtitle": "上級",
+    "questions": [
+        {
+            "id": 1,
+            "questionId": "java8_1",
+            "title": "ファイルからの入力",
+            "question": "Javaを使って、指定されたファイルから全てのテキストを読み込むコードを書いてください。ファイル名は\"input.txt\"とします。",
+            "explanation": "java.nio.fileパッケージのFilesクラスとPathsクラスを利用します。FilesクラスのreadAllLinesメソッドを使用して、ファイルの全行を読み込むことができます。",
+            "answer": "import java.nio.file.*;\nimport java.util.*;\n\ntry {\n    List<String> lines = Files.readAllLines(Paths.get(\"input.txt\"));\n    lines.forEach(System.out::println);\n    // 出力はファイルの内容に依存します\n} catch (IOException e) {\n    e.printStackTrace();\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java8_2",
+            "title": "ファイルへの出力",
+            "question": "Javaを使って、指定されたファイルにテキストを書き込むコードを書いてください。ファイル名は\"output.txt\"とし、書き込むテキストは\"Hello, World!\"とします。",
+            "explanation": "java.nio.fileパッケージのFilesクラスとPathsクラスを利用します。Filesクラスのwriteメソッドを使用して、テキストをファイルに書き込むことができます。",
+            "answer": "import java.nio.file.*;\nimport java.nio.charset.StandardCharsets;\n\nString text = \"Hello, World!\";\ntry {\n    Files.write(Paths.get(\"output.txt\"), text.getBytes(StandardCharsets.UTF_8));\n    // 実行後、output.txtファイルに\"Hello, World!\"と書き込まれます。\n} catch (IOException e) {\n    e.printStackTrace();\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java8_3",
+            "title": "ファイルからの読み込み",
+            "question": "Javaを使って、指定されたテキストファイルからテキストを読み込むコードを書いてください。ファイル名は\"input.txt\"とします。",
+            "explanation": "java.nio.fileパッケージのFilesクラスとPathsクラスを利用します。FilesクラスのreadAllLinesメソッドを使用して、テキストをファイルから読み込むことができます。",
+            "answer": "import java.nio.file.*;\nimport java.nio.charset.StandardCharsets;\nimport java.io.IOException;\nimport java.util.List;\n\ntry {\n    List<String> lines = Files.readAllLines(Paths.get(\"input.txt\"), StandardCharsets.UTF_8);\n    for (String line : lines) {\n        System.out.println(line);\n        // 実行後、input.txtファイルの内容がコンソールに出力されます。\n    }\n} catch (IOException e) {\n    e.printStackTrace();\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java8_4",
+            "title": "ファイルの書き込み",
+            "question": "Javaを使って、指定されたテキストファイルにテキストを書き込むコードを書いてください。ファイル名は\"output.txt\"とし、書き込む内容は\"Hello, World!\"とします。",
+            "explanation": "java.nio.fileパッケージのFilesクラスとPathsクラスを利用します。Filesクラスのwriteメソッドを使用して、テキストをファイルに書き込むことができます。",
+            "answer": "import java.nio.file.*;\nimport java.nio.charset.StandardCharsets;\nimport java.io.IOException;\nimport java.util.Arrays;\n\ntry {\n    Files.write(Paths.get(\"output.txt\"), Arrays.asList(\"Hello, World!\"), StandardCharsets.UTF_8);\n    // \"Hello, World!\"という文字列がoutput.txtファイルに書き込まれます。\n} catch (IOException e) {\n    e.printStackTrace();\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java8_5",
+            "title": "ファイルの読み込みと書き込み",
+            "question": "Javaで、一つのテキストファイルを読み込み、その内容を別のテキストファイルに書き込むプログラムを作成してください。読み込むファイル名は\"input.txt\"、書き込むファイル名は\"output.txt\"とします。",
+            "explanation": "java.nio.fileパッケージのFilesクラスとPathsクラスを利用します。FilesクラスのreadAllLinesメソッドを使用してファイルを読み込み、writeメソッドを使用してファイルに書き込むことができます。",
+            "answer": "import java.nio.file.*;\nimport java.nio.charset.StandardCharsets;\nimport java.io.IOException;\nimport java.util.List;\n\ntry {\n    // ファイルを読み込みます\n    List<String> lines = Files.readAllLines(Paths.get(\"input.txt\"), StandardCharsets.UTF_8);\n    // ファイルに書き込みます\n    Files.write(Paths.get(\"output.txt\"), lines, StandardCharsets.UTF_8);\n    // input.txtの内容がoutput.txtに書き込まれます。\n} catch (IOException e) {\n    e.printStackTrace();\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java8_6",
+            "title": "オブジェクトのシリアライズとデシリアライズ",
+            "question": "Javaで、オブジェクトをファイルにシリアライズし、それを再度デシリアライズするプログラムを作成してください。オブジェクトは任意の自作クラスとし、シリアライズはObjectOutputStream、デシリアライズはObjectInputStreamを使用します。",
+            "explanation": "オブジェクトのシリアライズとは、オブジェクトの状態をbyte列に変換してファイル等に保存することを指します。デシリアライズはその逆の操作で、byte列からオブジェクトの状態を復元します。",
+            "answer": "import java.io.*;\n\n// シリアライズ可能なクラスを定義します\nclass MyClass implements Serializable {\n    public String name;\n    public int age;\n    public MyClass(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n}\n\ntry {\n    // オブジェクトをシリアライズします\n    MyClass obj = new MyClass(\"John\", 25);\n    ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(\"object.dat\"));\n    oos.writeObject(obj);\n    oos.close();\n\n    // オブジェクトをデシリアライズします\n    ObjectInputStream ois = new ObjectInputStream(new FileInputStream(\"object.dat\"));\n    MyClass deserializedObj = (MyClass) ois.readObject();\n    ois.close();\n\n    // シリアライズしたオブジェクトのnameとageがデシリアライズ後のオブジェクトに反映されています。\n    System.out.println(\"Name: \" + deserializedObj.name + \", Age: \" + deserializedObj.age); // 出力: Name: John, Age: 25\n} catch (IOException | ClassNotFoundException e) {\n    e.printStackTrace();\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java8_7",
+            "title": "ファイルとディレクトリの属性取得",
+            "question": "Javaで、指定したパスのファイルまたはディレクトリについて、以下の属性を取得するプログラムを作成してください：\n1. パスがファイルを指しているかディレクトリを指しているか\n2. ファイル/ディレクトリのサイズ\n3. ファイル/ディレクトリの最終更新日時",
+            "explanation": "java.nio.fileパッケージのFilesクラスを使用すると、ファイルやディレクトリの属性を取得することができます。FilesのisRegularFileやisDirectoryメソッドでパスがファイルを指しているかディレクトリを指しているかを判定し、sizeメソッドでファイルのサイズを取得し、getLastModifiedTimeメソッドで最終更新日時を取得します。",
+            "answer": "import java.io.IOException;\nimport java.nio.file.*;\n\ntry {\n    Path path = Paths.get(\"sample.txt\");\n\n    // パスが指すのがファイルかディレクトリかを確認します\n    if (Files.isRegularFile(path)) {\n        System.out.println(\"This path points to a file.\");\n    } else if (Files.isDirectory(path)) {\n        System.out.println(\"This path points to a directory.\");\n    }\n\n    // ファイル/ディレクトリのサイズを取得します\n    long size = Files.size(path);\n    System.out.println(\"Size: \" + size + \" bytes\");\n\n    // 最終更新日時を取得します\n    FileTime lastModifiedTime = Files.getLastModifiedTime(path);\n    System.out.println(\"Last Modified Time: \" + lastModifiedTime);\n} catch (IOException e) {\n    e.printStackTrace();\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java8_8",
+            "title": "ファイルのコピー",
+            "question": "Javaで、指定したパスのファイルを指定したパスにコピーするプログラムを作成してください。ただし、既にコピー先に同名のファイルが存在する場合は、そのファイルを上書きするものとします。",
+            "explanation": "java.nio.fileパッケージのFilesクラスのcopyメソッドを使用すると、ファイルをコピーすることができます。また、StandardCopyOption.REPLACE_EXISTINGオプションを使用することで、コピー先に既にファイルが存在する場合にそのファイルを上書きすることができます。",
+            "answer": "import java.io.IOException;\nimport java.nio.file.*;\n\ntry {\n    Path sourcePath = Paths.get(\"source.txt\");\n    Path destinationPath = Paths.get(\"destination.txt\");\n\n    // ファイルをコピーします。\n    // コピー先に同名のファイルが存在する場合は、そのファイルを上書きします。\n    Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);\n    System.out.println(\"File copied successfully.\");\n} catch (IOException e) {\n    e.printStackTrace();\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java8_9",
+            "title": "ファイルの読み書き",
+            "question": "指定したパスのテキストファイルを読み込み、その内容を反転させて別のファイルに書き出すJavaプログラムを作成してください。",
+            "explanation": "java.nio.fileパッケージを利用すると、ファイルの読み書きを行うことができます。ファイルの内容を反転させるためには、StringBuilderのreverseメソッドを利用します。",
+            "answer": "import java.io.IOException;\nimport java.nio.file.*;\n\ntry {\n    Path sourcePath = Paths.get(\"source.txt\");\n    Path destinationPath = Paths.get(\"destination.txt\");\n\n    // ファイルの内容を読み込みます\n    String content = new String(Files.readAllBytes(sourcePath));\n\n    // 内容を反転させます\n    String reversedContent = new StringBuilder(content).reverse().toString();\n\n    // 反転させた内容を新しいファイルに書き出します\n    Files.write(destinationPath, reversedContent.getBytes());\n    System.out.println(\"File read and written successfully.\");\n} catch (IOException e) {\n    e.printStackTrace();\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java8_10",
+            "title": "ファイルのエンコーディング変換",
+            "question": "指定したパスのテキストファイルを読み込み、そのエンコーディングをUTF-8からShift-JISに変換して別のファイルに書き出すJavaプログラムを作成してください。",
+            "explanation": "java.nio.fileパッケージとjava.nio.charsetパッケージを利用すると、エンコーディングの変換を行うことができます。",
+            "answer": "import java.io.IOException;\nimport java.nio.charset.Charset;\nimport java.nio.file.*;\n\ntry {\n    Path sourcePath = Paths.get(\"source.txt\");\n    Path destinationPath = Paths.get(\"destination.txt\");\n\n    // ファイルの内容を読み込みます\n    String content = new String(Files.readAllBytes(sourcePath), Charset.forName(\"UTF-8\"));\n\n    // エンコーディングを変換して新しいファイルに書き出します\n    Files.write(destinationPath, content.getBytes(Charset.forName(\"Shift_JIS\")));\n    System.out.println(\"File read and written successfully.\");\n} catch (IOException e) {\n    e.printStackTrace();\n}"
+        }
+    ]
+}

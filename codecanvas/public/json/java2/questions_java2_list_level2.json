@@ -1,0 +1,87 @@
+{
+    "contentsId": "java4",
+    "title": "Javaの基本ライブラリ、リスト問題集ページ",
+    "subtitle": "中級",
+    "questions": [
+        {
+            "id": 1,
+            "questionId": "java4_1",
+            "title": "リストの反転",
+            "question": "JavaのCollectionsクラスを使用してArrayListを反転させる方法を説明してください。",
+            "explanation": "JavaのCollectionsクラスには、リストを反転させるreverse()メソッドが存在します。このメソッドを使用してArrayListの要素を反転させることができます。",
+            "answer": "import java.util.ArrayList;\nimport java.util.Collections;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\nCollections.reverse(list);\n// Now, list contains [\"Cherry\", \"Banana\", \"Apple\"]"
+        },
+        {
+            "id": 2,
+            "questionId": "java4_2",
+            "title": "リスト内の要素検索",
+            "question": "JavaのArrayList内の特定の要素が存在するかどうかを確認する方法を説明し、それを示すコードを書いてください。",
+            "explanation": "ArrayListクラスのcontainsメソッドを使用して、リスト内に特定の要素が存在するかどうかを確認できます。このメソッドは、要素がリスト内に存在する場合はtrueを、存在しない場合はfalseを返します。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\nboolean containsApple = list.contains(\"Apple\");  // This will be true\nboolean containsGrape = list.contains(\"Grape\");  // This will be false"
+        },
+        {
+            "id": 3,
+            "questionId": "java4_3",
+            "title": "リスト内の要素の位置",
+            "question": "JavaのArrayList内の特定の要素が存在する位置（インデックス）を取得する方法を説明し、それを示すコードを書いてください。",
+            "explanation": "ArrayListクラスのindexOfメソッドを使用して、リスト内の特定の要素の位置（インデックス）を取得できます。このメソッドは、要素がリスト内に存在する場合はその要素のインデックスを、存在しない場合は-1を返します。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\nint indexApple = list.indexOf(\"Apple\");  // This will be 0\nint indexGrape = list.indexOf(\"Grape\");  // This will be -1"
+        },
+        {
+            "id": 4,
+            "questionId": "java4_4",
+            "title": "リストの特定の位置に要素を追加",
+            "question": "JavaのArrayListに特定の位置に要素を追加する方法を説明し、それを示すコードを書いてください。",
+            "explanation": "ArrayListクラスのaddメソッドを使用して、リストの特定の位置に要素を追加できます。このメソッドは、第一引数にインデックス（位置）、第二引数に追加する要素を取ります。インデックスは0から始まります。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\nlist.add(1, \"Orange\");  // This will add Orange at position 1"
+        },
+        {
+            "id": 5,
+            "questionId": "java4_5",
+            "title": "リストから要素を削除する",
+            "question": "JavaのArrayListから要素を削除する方法を説明し、それを示すコードを書いてください。",
+            "explanation": "ArrayListクラスのremoveメソッドを使用して、リストから要素を削除できます。このメソッドは、引数にインデックス（位置）を取ります。インデックスは0から始まります。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\nlist.remove(1);  // This will remove Banana from the list"
+        },
+        {
+            "id": 6,
+            "questionId": "java4_6",
+            "title": "リストのすべての要素を反復処理する",
+            "question": "JavaのArrayListのすべての要素を反復処理する方法を説明し、それを示すコードを書いてください。",
+            "explanation": "JavaのArrayListのすべての要素を反復処理するには、for-eachループを使用します。これは\"enhanced for\"とも呼ばれ、コレクションの各要素を順番に取り出して処理します。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\n// Using for-each loop to iterate through the list\nfor (String item : list) {\n    System.out.println(item);\n}\n// This will print:\n// Apple\n// Banana\n// Cherry"
+        },
+        {
+            "id": 7,
+            "questionId": "java4_7",
+            "title": "リスト内の特定の要素のインデックスを検索する",
+            "question": "JavaのArrayListに格納されている特定の要素のインデックスを検索する方法を説明し、それを示すコードを書いてください。",
+            "explanation": "ArrayListの特定の要素のインデックスを見つけるには、'indexOf()'メソッドを使用します。これは要素を引数として受け取り、その要素が最初に出現する位置のインデックスを返します。要素がリストに存在しない場合、メソッドは-1を返します。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\n// Finding the index of 'Banana'\nint index = list.indexOf(\"Banana\");\nSystem.out.println(\"Index of Banana: \" + index);\n// This will print: Index of Banana: 1"
+        },
+        {
+            "id": 8,
+            "questionId": "java4_8",
+            "title": "リストの要素を逆順にする",
+            "question": "JavaのArrayListの要素を逆順にする方法を説明し、それを示すコードを書いてください。",
+            "explanation": "リストの要素を逆順にするには、JavaのCollectionsクラスの'reverse()'メソッドを使用できます。このメソッドはリストを引数として受け取り、そのリストの要素の順序を逆にします。",
+            "answer": "import java.util.ArrayList;\nimport java.util.Collections;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\n// Reversing the list\nCollections.reverse(list);\n\n// Printing the reversed list\nfor(String fruit : list) {\n    System.out.println(fruit);\n}\n// This will print: \n// Cherry\n// Banana\n// Apple"
+        },
+        {
+            "id": 9,
+            "questionId": "java4_9",
+            "title": "リストから特定の要素を削除する",
+            "question": "JavaのArrayListから特定の要素を削除する方法を説明し、それを示すコードを書いてください。",
+            "explanation": "リストから特定の要素を削除するには、JavaのArrayListクラスの'remove()'メソッドを使用できます。このメソッドは要素のインデックスまたは要素自体を引数として受け取り、その要素をリストから削除します。",
+            "answer": "import java.util.ArrayList;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\n// Removing the element \"Banana\"\nlist.remove(\"Banana\");\n\n// Printing the list after removing\nfor(String fruit : list) {\n    System.out.println(fruit);\n}\n// This will print: \n// Apple\n// Cherry"
+        },
+        {
+            "id": 10,
+            "questionId": "java4_10",
+            "title": "リストの要素を逆順にする",
+            "question": "JavaのArrayListの要素を逆順にする方法を説明し、それを示すコードを書いてください。",
+            "explanation": "リストの要素を逆順にするには、JavaのCollectionsクラスの'reverse()'メソッドを使用します。このメソッドはリストを引数として受け取り、その要素を逆順にします。",
+            "answer": "import java.util.ArrayList;\nimport java.util.Collections;\n\nArrayList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\n\n// Reversing the list\nCollections.reverse(list);\n\n// Printing the reversed list\nfor(String fruit : list) {\n    System.out.println(fruit);\n}\n// This will print: \n// Cherry\n// Banana\n// Apple"
+        }
+    ]
+}

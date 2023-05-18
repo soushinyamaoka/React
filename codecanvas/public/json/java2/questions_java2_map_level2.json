@@ -1,0 +1,87 @@
+{
+    "contentsId": "java3",
+    "title": "Javaの基本ライブラリ、マップ問題集ページ",
+    "subtitle": "中級",
+    "questions": [
+        {
+            "id": 1,
+            "questionId": "java6_1",
+            "title": "マップに要素を追加する",
+            "question": "JavaのHashMapを使って、Key: \"apple\", Value: \"red\" のペアをマップに追加するコードを書いてください。",
+            "explanation": "HashMapクラスのputメソッドを使って、キーと値のペアをマップに追加できます。",
+            "answer": "import java.util.HashMap;\n\n// Create a new HashMap\nHashMap<String, String> map = new HashMap<>();\n\n// Add a key-value pair to the map\nmap.put(\"apple\", \"red\");\n\n// Print the map\nSystem.out.println(map);\n// This will print: \n// {apple=red}"
+        },
+        {
+            "id": 2,
+            "questionId": "java6_2",
+            "title": "マップから要素を取得する",
+            "question": "JavaのHashMapを使って、キーが\"apple\"の値を取得するコードを書いてください。",
+            "explanation": "HashMapクラスのgetメソッドを使って、指定したキーに対応する値を取得できます。",
+            "answer": "import java.util.HashMap;\n\n// Create a new HashMap and add a key-value pair\nHashMap<String, String> map = new HashMap<>();\nmap.put(\"apple\", \"red\");\n\n// Get the value for the key \"apple\"\nString value = map.get(\"apple\");\n\n// Print the value\nSystem.out.println(value);\n// This will print: \n// red"
+        },
+        {
+            "id": 3,
+            "questionId": "java6_3",
+            "title": "マップが特定のキーを含むかチェックする",
+            "question": "JavaのHashMapを使って、マップがキー\"apple\"を含むかどうかをチェックするコードを書いてください。",
+            "explanation": "HashMapクラスのcontainsKeyメソッドを使って、マップが特定のキーを含むかどうかをチェックできます。",
+            "answer": "import java.util.HashMap;\n\n// Create a new HashMap and add a key-value pair\nHashMap<String, String> map = new HashMap<>();\nmap.put(\"apple\", \"red\");\n\n// Check if the map contains the key \"apple\"\nboolean containsKey = map.containsKey(\"apple\");\n\n// Print the result\nSystem.out.println(containsKey);\n// This will print: \n// true"
+        },
+        {
+            "id": 4,
+            "questionId": "java6_4",
+            "title": "マップのすべてのエントリを反復処理する",
+            "question": "JavaのHashMapを使って、マップのすべてのエントリ（キーと値のペア）を反復処理するコードを書いてください。",
+            "explanation": "HashMapのentrySetメソッドと拡張forループを使用して、マップのすべてのエントリを反復処理できます。",
+            "answer": "import java.util.HashMap;\nimport java.util.Map;\n\n// Create a new HashMap and add some key-value pairs\nHashMap<String, String> map = new HashMap<>();\nmap.put(\"apple\", \"red\");\nmap.put(\"banana\", \"yellow\");\n\n// Iterate over all entries in the map\nfor (Map.Entry<String, String> entry : map.entrySet()) {\n    String key = entry.getKey();\n    String value = entry.getValue();\n\n    // Print the key and value\n    System.out.println(\"Key: \" + key + \", Value: \" + value);\n}\n// This will print: \n// Key: apple, Value: red\n// Key: banana, Value: yellow"
+        },
+        {
+            "id": 5,
+            "questionId": "java6_5",
+            "title": "マップの要素数を取得する",
+            "question": "JavaのHashMapを使って、マップの要素数を取得するコードを書いてください。",
+            "explanation": "HashMapクラスのsizeメソッドを使用して、マップの要素数を取得できます。",
+            "answer": "import java.util.HashMap;\n\n// Create a new HashMap and add some key-value pairs\nHashMap<String, String> map = new HashMap<>();\nmap.put(\"apple\", \"red\");\nmap.put(\"banana\", \"yellow\");\n\n// Get the number of elements in the map\nint size = map.size();\n\n// Print the size\nSystem.out.println(size);\n// This will print: \n// 2"
+        },
+        {
+            "id": 6,
+            "questionId": "java6_6",
+            "title": "マップの特定のキーに関連付けられた値を更新する",
+            "question": "JavaのHashMapを使って、特定のキーに関連付けられた値を更新するコードを書いてください。例えば、キーが'apple'の値を'red'から'green'に更新してみてください。",
+            "explanation": "HashMapのputメソッドを再度使用することで、既存のキーの値を更新することができます。キーがすでにマップに存在する場合、putメソッドは新しい値で古い値を置き換えます。",
+            "answer": "import java.util.HashMap;\n\n// Create a new HashMap and add some key-value pairs\nHashMap<String, String> map = new HashMap<>();\nmap.put(\"apple\", \"red\");\nmap.put(\"banana\", \"yellow\");\n\n// Update the value associated with the key 'apple'\nmap.put(\"apple\", \"green\");\n\n// Print the new value of 'apple'\nSystem.out.println(map.get(\"apple\"));\n// This will print: \n// green"
+        },
+        {
+            "id": 7,
+            "questionId": "java6_7",
+            "title": "マップから特定のエントリを削除する",
+            "question": "JavaのHashMapを使って、特定のエントリ（キーと値のペア）を削除するコードを書いてください。例えば、キーが'apple'のエントリを削除してみてください。",
+            "explanation": "HashMapのremoveメソッドを使用して、指定したキーのエントリを削除することができます。",
+            "answer": "import java.util.HashMap;\n\n// Create a new HashMap and add some key-value pairs\nHashMap<String, String> map = new HashMap<>();\nmap.put(\"apple\", \"red\");\nmap.put(\"banana\", \"yellow\");\n\n// Remove the entry with key 'apple'\nmap.remove(\"apple\");\n\n// Print the map\nSystem.out.println(map);\n// This will print: \n// {banana=yellow}"
+        },
+        {
+            "id": 8,
+            "questionId": "java6_8",
+            "title": "マップ内の全てのエントリを反復処理する",
+            "question": "JavaのHashMapを使って、マップ内の全てのエントリ（キーと値のペア）を反復処理するコードを書いてください。",
+            "explanation": "マップのエントリセット（entrySet）を使ってマップの各エントリに対する反復処理を行うことができます。エントリセットはマップのキーと値のペアのセットを返します。",
+            "answer": "import java.util.HashMap;\n\n// Create a new HashMap and add some key-value pairs\nHashMap<String, String> map = new HashMap<>();\nmap.put(\"apple\", \"red\");\nmap.put(\"banana\", \"yellow\");\n\n// Iterate over the entry set\nfor (HashMap.Entry<String, String> entry : map.entrySet()) {\n    System.out.println(entry.getKey() + \": \" + entry.getValue());\n}\n// This will print: \n// apple: red\n// banana: yellow"
+        },
+        {
+            "id": 9,
+            "questionId": "java6_9",
+            "title": "マップが特定のキーを含むかどうかを確認する",
+            "question": "JavaのHashMapを使って、マップが特定のキーを含むかどうかを確認するコードを書いてください。例えば、キー'apple'が存在するか確認してみてください。",
+            "explanation": "HashMapのcontainsKeyメソッドを使用して、指定したキーがマップに存在するかどうかを確認することができます。",
+            "answer": "import java.util.HashMap;\n\n// Create a new HashMap and add some key-value pairs\nHashMap<String, String> map = new HashMap<>();\nmap.put(\"apple\", \"red\");\nmap.put(\"banana\", \"yellow\");\n\n// Check if the map contains the key 'apple'\nboolean hasApple = map.containsKey(\"apple\");\n\n// Print the result\nSystem.out.println(hasApple);\n// This will print: \n// true"
+        },
+        {
+            "id": 10,
+            "questionId": "java6_10",
+            "title": "マップから特定のエントリを削除する",
+            "question": "JavaのHashMapを使って、マップから特定のエントリを削除するコードを書いてください。例えば、キー'apple'のエントリを削除してみてください。",
+            "explanation": "HashMapのremoveメソッドを使用して、指定したキーのエントリをマップから削除することができます。",
+            "answer": "import java.util.HashMap;\n\n// Create a new HashMap and add some key-value pairs\nHashMap<String, String> map = new HashMap<>();\nmap.put(\"apple\", \"red\");\nmap.put(\"banana\", \"yellow\");\n\n// Remove the entry with key 'apple'\nmap.remove(\"apple\");\n\n// Print the map\nfor (HashMap.Entry<String, String> entry : map.entrySet()) {\n    System.out.println(entry.getKey() + \": \" + entry.getValue());\n}\n// This will print: \n// banana: yellow"
+        }
+    ]
+}
