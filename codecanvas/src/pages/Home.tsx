@@ -16,39 +16,40 @@ interface Course {
 const courses: Course[] = [
   {
     id: 1,
+    title: 'Java入門',
+    description: 'Javaの基本的な文法やオブジェクト指向の考え方を学びましょう。',
+    imageUrl: '/images/java.jpg',
+    link: '/Courses?id=java',
+  },
+  {
+    id: 2,
     title: 'HTML & CSS入門',
     description: '(準備中)Webページ作成の基礎となるHTMLとCSSを学びましょう。',
     imageUrl: '/images/html-css.jpg',
     link: '/courses/html-css',
   },
   {
-    id: 2,
+    id: 3,
     title: 'JavaScript基礎講座',
     description: '(準備中)Web開発に必須のJavaScriptを学びましょう。',
     imageUrl: '/images/javascript.jpg',
     link: '/Courses?id=javascript',
   },
   {
-    id: 3,
+    id: 4,
     title: 'React入門',
     description: '(準備中)フロントエンド開発において必須のReactを学びましょう。',
     imageUrl: '/images/react.jpg',
     link: '/courses/react',
   },
-  {
-    id: 4,
-    title: 'Java入門',
-    description: 'Javaの基本的な文法やオブジェクト指向の考え方を学びましょう。',
-    imageUrl: '/images/java.jpg',
-    link: '/Courses?id=java',
-  },
+  ,
 ];
 
 const Home: React.FC = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>コードキャンバス | オンライン学習サイト</title>
+        <title>コードキャンバス | 完全無料プログラミング学習サイト</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
