@@ -1,0 +1,86 @@
+{
+    "contentsId": "js2_dom",
+    "title": "Javascriptの要素の取得問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_dom1_1",
+            "title": "idによる要素の取得",
+            "question": "HTMLのid属性を使って要素を取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptのdocument.getElementByIdメソッドを使用して、HTML要素をIDで取得できます。",
+            "answer": "let element = document.getElementById('myId');\n// ここでは 'myId'というIDを持つ要素が取得できます。\nconsole.log(element); // 出力は 'myId'というIDを持つ要素"
+        },
+        {
+            "id": 2,
+            "questionId": "js_dom1_2",
+            "title": "クラス名による要素の取得",
+            "question": "HTMLのclass属性を使って要素を取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptのdocument.getElementsByClassNameメソッドを使用して、HTML要素をクラス名で取得できます。",
+            "answer": "let elements = document.getElementsByClassName('myClass');\n// ここでは 'myClass'というクラスを持つ要素が取得できます。\nconsole.log(elements); // 出力は 'myClass'というクラスを持つ要素のリスト"
+        },
+        {
+            "id": 3,
+            "questionId": "js_dom1_3",
+            "title": "タグ名による要素の取得",
+            "question": "HTMLのタグ名を使って要素を取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptのdocument.getElementsByTagNameメソッドを使用して、HTML要素をタグ名で取得できます。",
+            "answer": "let elements = document.getElementsByTagName('div');\n// ここでは 'div'タグの要素が全て取得できます。\nconsole.log(elements); // 出力は 'div'タグの要素のリスト"
+        },
+        {
+            "id": 4,
+            "questionId": "js_dom1_4",
+            "title": "名前による要素の取得",
+            "question": "HTMLのname属性を使って要素を取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptのdocument.getElementsByNameメソッドを使用して、HTML要素をname属性で取得できます。",
+            "answer": "let elements = document.getElementsByName('myName');\n// ここでは 'myName'というname属性を持つ要素が取得できます。\nconsole.log(elements); // 出力は 'myName'というname属性を持つ要素のリスト"
+        },
+        {
+            "id": 5,
+            "questionId": "js_dom1_5",
+            "title": "セレクタによる要素の取得",
+            "question": "CSSセレクタを使って要素を取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptのdocument.querySelectorメソッドを使用して、CSSセレクタで要素を取得できます。",
+            "answer": "let element = document.querySelector('.myClass');\n// ここでは 'myClass'というクラスを持つ最初の要素が取得できます。\nconsole.log(element); // 出力は 'myClass'というクラスを持つ最初の要素"
+        },
+        {
+            "id": 6,
+            "questionId": "js_dom1_6",
+            "title": "セレクタによる複数要素の取得",
+            "question": "CSSセレクタを使って複数の要素を取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptのdocument.querySelectorAllメソッドを使用して、CSSセレクタで複数の要素を取得できます。",
+            "answer": "let elements = document.querySelectorAll('.myClass');\n// ここでは 'myClass'というクラスを持つ全ての要素が取得できます。\nconsole.log(elements); // 出力は 'myClass'というクラスを持つ全ての要素のリスト"
+        },
+        {
+            "id": 7,
+            "questionId": "js_dom1_7",
+            "title": "親要素の取得",
+            "question": "特定の要素の親要素を取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptのparentNodeプロパティを使用して、特定の要素の親要素を取得できます。",
+            "answer": "let element = document.querySelector('.myClass');\nlet parent = element.parentNode;\n// ここでは 'myClass'というクラスを持つ最初の要素の親要素が取得できます。\nconsole.log(parent); // 出力は 'myClass'というクラスを持つ最初の要素の親要素"
+        },
+        {
+            "id": 8,
+            "questionId": "js_dom1_8",
+            "title": "子要素の取得",
+            "question": "特定の要素の子要素を取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptのchildrenプロパティを使用して、特定の要素の子要素を取得できます。",
+            "answer": "let element = document.querySelector('.myClass');\nlet children = element.children;\n// ここでは 'myClass'というクラスを持つ最初の要素の子要素が取得できます。\nconsole.log(children); // 出力は 'myClass'というクラスを持つ最初の要素の子要素のリスト"
+        },
+        {
+            "id": 9,
+            "questionId": "js_dom1_9",
+            "title": "特定の子要素の取得",
+            "question": "特定の要素の特定の子要素を取得するJavaScriptコードを記述してください。例えば、2番目の子要素を取得してください。",
+            "explanation": "JavaScriptのchildrenプロパティとインデックス番号を使用して、特定の要素の特定の子要素を取得できます。",
+            "answer": "let element = document.querySelector('.myClass');\nlet child = element.children[1];\n// ここでは 'myClass'というクラスを持つ最初の要素の2番目の子要素が取得できます。\nconsole.log(child); // 出力は 'myClass'というクラスを持つ最初の要素の2番目の子要素"
+        },
+        {
+            "id": 10,
+            "questionId": "js_dom1_10",
+            "title": "特定の属性の値を取得",
+            "question": "HTML要素の特定の属性（例えば、class属性）の値を取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptのgetAttributeメソッドを使用して、特定のHTML要素の特定の属性の値を取得できます。",
+            "answer": "let element = document.querySelector('.myClass');\nlet className = element.getAttribute('class');\n// ここでは 'myClass'というクラスを持つ最初の要素のclass属性の値が取得できます。\nconsole.log(className); // 出力は 'myClass'"
+        }
+    ]
+}

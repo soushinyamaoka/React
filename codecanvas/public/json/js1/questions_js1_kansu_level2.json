@@ -1,0 +1,166 @@
+{
+    "contentsId": "js_loop1",
+    "title": "Javascriptの関数問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_function2_1",
+            "title": "高階関数とコールバック",
+            "question": "高階関数とは何か説明し、配列の「forEach」メソッドを使用した例を一つ作成してください。",
+            "explanation": "高階関数とは、他の関数を引数として受け取ったり、結果として関数を返す関数のことを指します。「forEach」メソッドは、配列の各要素に対してコールバック関数を実行する高階関数です。",
+            "answer": "let numbers = [1, 2, 3, 4, 5];\n\nnumbers.forEach((number) => {\n  // numberには配列の各要素が順に入る\n  console.log(number * 2);\n});\n// 出力: 2, 4, 6, 8, 10, 配列の各要素が2倍になる"
+        },
+        {
+            "id": 2,
+            "questionId": "js_function2_2",
+            "title": "クロージャー",
+            "question": "クロージャーとは何か説明し、その例を一つ作成してみてください。",
+            "explanation": "クロージャーとは、関数とその関数が宣言されたレキシカル環境との組み合わせです。このレキシカル環境には、クロージャーが作成された時点のスコープチェーンが含まれ、それにより外部変数へのアクセスが可能になります。",
+            "answer": "function outer() {\n  let count = 0;\n  function inner() {\n    // outer関数の変数countにアクセス\n    count++;\n    console.log(count);\n  }\n  return inner;\n}\n\nlet counter = outer();\ncounter();\n// 出力: 1\ncounter();\n// 出力: 2"
+        },
+        {
+            "id": 3,
+            "questionId": "js_function2_3",
+            "title": "即時関数",
+            "question": "即時関数（IIFE: Immediately Invoked Function Expression）とは何か説明し、その例を一つ作成してみてください。",
+            "explanation": "即時関数とは、定義された直後に即座に実行される関数のことです。これにより、関数内で宣言された変数がグローバルスコープを汚染しないようにすることができます。",
+            "answer": "(function() {\n  let localVariable = 'I\\'m local!';\n  console.log(localVariable);\n})();\n// 出力: I'm local!"
+        },
+        {
+            "id": 4,
+            "questionId": "js_function2_4",
+            "title": "bindメソッド",
+            "question": "JavaScriptのbindメソッドとは何か説明し、その使用例を作成してください。",
+            "explanation": "bindメソッドは、関数にthisの値と引数を固定した新しい関数を生成します。bindはメソッドの実行を即座に行わず、特定のthisの値と初期引数を設定した新しい関数を作成します。",
+            "answer": "const obj = { x: 42 };\nfunction getX() {\n  console.log(this.x);\n}\n\nconst boundGetX = getX.bind(obj);\n\nboundGetX(); // 出力: 42"
+        },
+        {
+            "id": 5,
+            "questionId": "js_function2_5",
+            "title": "再帰関数",
+            "question": "再帰関数とは何か説明し、その使用例を作成してください。",
+            "explanation": "再帰関数とは、関数内部で自分自身を呼び出す関数のことを指します。一般的には、問題をより単純なサブ問題に分解して解決するために使用されます。",
+            "answer": "function factorial(n) {\n  if (n === 0) {\n    return 1;\n  } else {\n    return n * factorial(n - 1);\n  }\n}\n\nconsole.log(factorial(5));\n// 出力: 120"
+        },
+        {
+            "id": 6,
+            "questionId": "js_function2_6",
+            "title": "コールバック関数",
+            "question": "コールバック関数とは何か説明し、その使用例を作成してください。",
+            "explanation": "コールバック関数は、他の関数に引数として渡され、その関数内部で呼び出される関数のことを指します。JavaScriptでは関数は第一級オブジェクトであるため、値として他の関数に渡すことが可能です。",
+            "answer": "function greeting(name) {\n  console.log('Hello ' + name);\n}\n\nfunction processUserInput(callback) {\n  let name = prompt('Please enter your name.');\n  callback(name);\n}\n\nprocessUserInput(greeting);\n// Hello [ユーザー名]"
+        },
+        {
+            "id": 7,
+            "questionId": "js_function2_7",
+            "title": "ハイオーダー関数",
+            "question": "ハイオーダー関数とは何か説明し、その使用例を作成してください。",
+            "explanation": "ハイオーダー関数は、他の関数を引数として受け取り、または戻り値として関数を返す関数のことを指します。ハイオーダー関数は、JavaScriptにおける関数型プログラミングの主要な要素です。",
+            "answer": "const numbers = [1, 2, 3, 4, 5];\n\nconst doubled = numbers.map(function(item) {\n  return item * 2;\n});\n\nconsole.log(doubled);\n// 出力: [2, 4, 6, 8, 10]"
+        },
+        {
+            "id": 8,
+            "questionId": "js_function2_8",
+            "title": "クロージャ",
+            "question": "JavaScriptにおけるクロージャとは何か説明し、その使用例を作成してください。",
+            "explanation": "クロージャとは、関数とその関数が宣言されたレキシカル環境の組み合わせです。これにより、関数は宣言された環境外部からもその環境にアクセスできます。",
+            "answer": "function makeAdder(x) {\n  return function(y) {\n    return x + y;\n  };\n}\n\nconst add5 = makeAdder(5);\nconsole.log(add5(2)); // 出力: 7"
+        },
+        {
+            "id": 9,
+            "questionId": "js_function2_9",
+            "title": "IIFE（Immediately Invoked Function Expression）",
+            "question": "JavaScriptにおけるIIFEとは何か説明し、その使用例を作成してください。",
+            "explanation": "IIFEは、定義と同時に実行される関数です。これは、変数のスコープを制限したり、即時にコードを実行したい場合に有用です。",
+            "answer": "(function () {\n  let name = 'John';\n  console.log(name);\n})();\n// 出力: John\n\n// ここでは'name'変数はIIFEのスコープ内に限定されています。"
+        },
+        {
+            "id": 10,
+            "questionId": "js_function2_10",
+            "title": "アロー関数",
+            "question": "JavaScriptにおけるアロー関数とは何か説明し、その使用例を作成してください。",
+            "explanation": "アロー関数は、より短くコンパクトな関数定義を可能にする新しい関数構文です。特に一行で簡単な関数を定義するのに便利です。",
+            "answer": "const square = x => x * x;\nconsole.log(square(5)); // 出力: 25"
+        },
+        {
+            "id": 11,
+            "questionId": "js_function2_11",
+            "title": "高階関数",
+            "question": "JavaScriptにおける高階関数とは何か説明し、その使用例を作成してください。",
+            "explanation": "高階関数とは、他の関数を引数として受け取ったり、関数を返したりする関数のことを指します。Arrayのmapメソッドなどが例として挙げられます。",
+            "answer": "const numbers = [1, 2, 3, 4, 5];\nconst squared = numbers.map(num => num * num);\nconsole.log(squared); // 出力: [1, 4, 9, 16, 25]"
+        },
+        {
+            "id": 12,
+            "questionId": "js_function2_12",
+            "title": "クロージャ",
+            "question": "JavaScriptにおけるクロージャとは何か説明し、その使用例を作成してください。",
+            "explanation": "クロージャは、関数とその関数が作られたレキシカルスコープとの組み合わせです。これにより、関数はそれ自身のスコープ外から変数にアクセスすることができます。",
+            "answer": "function outer() {\n  let x = 10;\n  function inner() {\n    console.log(x);\n  }\n  return inner;\n}\n\nconst innerFunc = outer();\ninnerFunc(); // 出力: 10"
+        },
+        {
+            "id": 13,
+            "questionId": "js_function2_13",
+            "title": "再帰関数",
+            "question": "JavaScriptにおける再帰関数とは何か説明し、その使用例を作成してください。また、作成した例で5の階乗を求めてください。",
+            "explanation": "再帰関数とは、自分自身を呼び出す関数のことを指します。再帰関数を利用すると、一連の同じ操作を繰り返すことができます。",
+            "answer": "function factorial(n) {\n  if (n === 0) {\n    return 1;\n  } else {\n    return n * factorial(n - 1);\n  }\n}\nconsole.log(factorial(5)); // 出力: 120"
+        },
+        {
+            "id": 14,
+            "questionId": "js_function2_14",
+            "title": "即時関数",
+            "question": "JavaScriptにおける即時関数とは何か説明し、その使用例を作成してください。",
+            "explanation": "即時関数（Immediately Invoked Function Expression、IIFE）は、定義されると同時に実行されるJavaScriptの関数です。これにより、変数を関数のスコープ内に閉じ込めることができます。",
+            "answer": "(function() {\n  let message = 'Hello, world!';\n  console.log(message);\n})(); // 出力: 'Hello, world!'"
+        },
+        {
+            "id": 15,
+            "questionId": "js_function2_15",
+            "title": "高階関数",
+            "question": "JavaScriptの高階関数とは何か説明し、その使用例を作成してください。",
+            "explanation": "高階関数とは、他の関数を引数として受け取ったり、戻り値として関数を返す関数を指します。JavaScriptではArrayのメソッドなどでよく見られます。",
+            "answer": "let numbers = [1, 2, 3, 4, 5];\nlet doubled = numbers.map(function(item) {\n  return item * 2;\n});\nconsole.log(doubled); // 出力: [2, 4, 6, 8, 10]"
+        },
+        {
+            "id": 16,
+            "questionId": "js_function2_16",
+            "title": "コールバック関数",
+            "question": "JavaScriptのコールバック関数とは何か説明し、その使用例を作成してください。",
+            "explanation": "コールバック関数とは、他の関数に引数として渡され、その関数内で呼び出される関数を指します。非同期処理やイベント駆動プログラミングにおいてよく使用されます。",
+            "answer": "function greeting(name) {\n  alert('Hello ' + name);\n}\n\nfunction processUserInput(callback) {\n  let name = prompt('Please enter your name.');\n  callback(name);\n}\n\nprocessUserInput(greeting);"
+        },
+        {
+            "id": 17,
+            "questionId": "js_function2_17",
+            "title": "即時関数",
+            "question": "JavaScriptの即時関数とは何か説明し、その使用例を作成してください。",
+            "explanation": "即時関数とは、定義された直後に実行される関数を指します。即時関数は変数のスコープを限定してプログラムの挙動を制御することができます。",
+            "answer": "(function() {\n  var a = 3;\n  console.log(a); // 出力: 3\n})();\nconsole.log(typeof a); // 出力: \"undefined\""
+        },
+        {
+            "id": 18,
+            "questionId": "js_function2_18",
+            "title": "アロー関数",
+            "question": "JavaScriptのアロー関数とは何か説明し、その使用例を作成してください。",
+            "explanation": "アロー関数とは、より短くシンプルに関数を記述できるES6から導入された関数の書き方を指します。また、thisの扱いが通常の関数と異なります。",
+            "answer": "let numbers = [1, 2, 3, 4, 5];\nlet doubled = numbers.map((item) => item * 2);\nconsole.log(doubled); // 出力: [2, 4, 6, 8, 10]"
+        },
+        {
+            "id": 19,
+            "questionId": "js_function2_19",
+            "title": "高階関数",
+            "question": "JavaScriptの高階関数とは何か説明し、その使用例を作成してください。",
+            "explanation": "高階関数とは、関数を引数として受け取ったり、関数を結果として返す関数を指します。mapやfilterなどのArrayメソッドは高階関数の一例です。",
+            "answer": "let numbers = [1, 2, 3, 4, 5];\nlet odd = numbers.filter((item) => item % 2 !== 0);\nconsole.log(odd); // 出力: [1, 3, 5]"
+        },
+        {
+            "id": 20,
+            "questionId": "js_function2_20",
+            "title": "コールバック関数",
+            "question": "JavaScriptのコールバック関数とは何か説明し、その使用例を作成してください。",
+            "explanation": "コールバック関数とは、ある関数に引数として渡され、その関数の内部で呼び出される関数のことを指します。非同期処理の際によく使われます。",
+            "answer": "function greeting(name) {\n  alert('Hello ' + name);\n}\nfunction processUserInput(callback) {\n  let name = prompt('Please enter your name.');\n  callback(name);\n}\nprocessUserInput(greeting);"
+        }
+    ]
+}

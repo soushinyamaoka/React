@@ -1,0 +1,86 @@
+{
+    "contentsId": "java3",
+    "title": "Javaのポリモーフィズム問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_polymorphism1_1",
+            "title": "ポリモーフィズムの基本",
+            "question": "次のコードが示すように、AnimalクラスとそのサブクラスDog、Catがあります。\n\nAnimalクラス:\n\npublic class Animal {\n    public void makeSound() {\n        System.out.println(\"The animal makes a sound.\");\n    }\n}\n\nDogクラス:\n\npublic class Dog extends Animal {\n    @Override\n    public void makeSound() {\n        System.out.println(\"The dog barks.\");\n    }\n}\n\nCatクラス:\n\npublic class Cat extends Animal {\n    @Override\n    public void makeSound() {\n        System.out.println(\"The cat meows.\");\n    }\n}\n\nこれらのクラスを使って、ポリモーフィズムの基本概念を示すコードを作成してください。",
+            "explanation": "ポリモーフィズムとは、オブジェクト指向プログラミングの特性の一つで、異なるクラスのオブジェクトに対して同じインターフェースを使用できるという性質を指します。つまり、スーパークラスの型を持つ変数が、そのサブクラスのインスタンスを参照できるという性質がポリモーフィズムです。",
+            "answer": "// ポリモーフィズムを示すコード\nAnimal myDog = new Dog();\nAnimal myCat = new Cat();\n\nmyDog.makeSound();  // The dog barks.\nmyCat.makeSound();  // The cat meows.\n\n// ここでは、Animalクラスの型を持つ変数myDogとmyCatが、それぞれDogクラスとCatクラスのインスタンスを参照しています。\n// そのため、myDog.makeSound()やmyCat.makeSound()を呼び出すと、それぞれのクラスでオーバーライドしたmakeSound()メソッドが呼び出されます。\n// これがポリモーフィズムの基本的な例です。"
+        },
+        {
+            "id": 2,
+            "questionId": "java_polymorphism1_2",
+            "title": "ポリモーフィズムの活用",
+            "question": "以下のクラス定義が与えられています。\n\npublic class Vehicle {\n    public void move() {\n        System.out.println(\"The vehicle moves.\");\n    }\n}\n\npublic class Car extends Vehicle {\n    @Override\n    public void move() {\n        System.out.println(\"The car drives.\");\n    }\n}\n\npublic class Boat extends Vehicle {\n    @Override\n    public void move() {\n        System.out.println(\"The boat sails.\");\n    }\n}\n\nこれらのクラスを利用して、Vehicle型の配列を作成し、その中にCarとBoatのオブジェクトを入れ、配列の全要素に対してmoveメソッドを呼び出すコードを書いてください。",
+            "explanation": "ポリモーフィズムを利用することで、スーパークラスの型を持つ配列にサブクラスのオブジェクトを格納することができます。そのため、配列の要素全てに対して同じメソッドを呼び出す際にも、各オブジェクトの実際のクラスに応じた挙動が実現されます。",
+            "answer": "// Vehicle型の配列を作成し、その中にCarとBoatのオブジェクトを入れる\nVehicle[] vehicles = new Vehicle[2];\nvehicles[0] = new Car();\nvehicles[1] = new Boat();\n\n// 配列の全要素に対してmoveメソッドを呼び出す\nfor (Vehicle v : vehicles) {\n    v.move();\n}\n\n// これにより、以下の出力が得られます：\n// The car drives.\n// The boat sails.\n\n// 配列の各要素が実際には異なるサブクラスのオブジェクトであるにも関わらず、\n// 全ての要素に対して同じmoveメソッドを呼び出すことができました。\n// これがポリモーフィズムの強力な点です。"
+        },
+        {
+            "id": 3,
+            "questionId": "java_polymorphism1_3",
+            "title": "オーバーライドメソッドの理解",
+            "question": "以下のクラス定義が与えられています。\n\npublic class Animal {\n    public void makeSound() {\n        System.out.println(\"The animal makes a sound.\");\n    }\n}\n\npublic class Dog extends Animal {\n    @Override\n    public void makeSound() {\n        System.out.println(\"The dog barks.\");\n    }\n}\n\npublic class Cat extends Animal {\n    @Override\n    public void makeSound() {\n        System.out.println(\"The cat meows.\");\n    }\n}\n\nAnimal animal = new Dog();\nanimal.makeSound();\n\nこのコードが出力するメッセージは何でしょうか？",
+            "explanation": "ポリモーフィズムにより、スーパークラスの参照を用いてサブクラスのオブジェクトを扱うことができます。ここでは、Animal型の参照を用いてDogクラスのオブジェクトを扱っています。そのため、animal.makeSound()を呼び出すとDogクラスのmakeSound()メソッドが実行されます。",
+            "answer": "// Animal型の参照を用いてDogクラスのオブジェクトを扱っているため、\n// animal.makeSound()を呼び出すとDogクラスのmakeSound()メソッドが実行されます。\n// そのため、このコードは\"The dog barks.\"と出力します。"
+        },
+        {
+            "id": 4,
+            "questionId": "java_polymorphism1_4",
+            "title": "オーバーライドメソッドの理解 - その2",
+            "question": "以下のクラス定義が与えられています。\n\npublic class Animal {\n    public void makeSound() {\n        System.out.println(\"The animal makes a sound.\");\n    }\n}\n\npublic class Dog extends Animal {\n    @Override\n    public void makeSound() {\n        System.out.println(\"The dog barks.\");\n    }\n}\n\npublic class Cat extends Animal {\n    @Override\n    public void makeSound() {\n        System.out.println(\"The cat meows.\");\n    }\n}\n\nAnimal myPet = new Cat();\nmyPet.makeSound();\n\nこのコードが出力するメッセージは何でしょうか？",
+            "explanation": "ポリモーフィズムにより、スーパークラスの参照を用いてサブクラスのオブジェクトを扱うことができます。ここでは、Animal型の参照を用いてCatクラスのオブジェクトを扱っています。そのため、myPet.makeSound()を呼び出すとCatクラスのmakeSound()メソッドが実行されます。",
+            "answer": "// Animal型の参照を用いてCatクラスのオブジェクトを扱っているため、\n// myPet.makeSound()を呼び出すとCatクラスのmakeSound()メソッドが実行されます。\n// そのため、このコードは\"The cat meows.\"と出力します。"
+        },
+        {
+            "id": 5,
+            "questionId": "java_polymorphism1_5",
+            "title": "オーバーライドメソッドとスーパークラスのメソッド",
+            "question": "以下のクラス定義が与えられています。\n\npublic class Animal {\n    public void makeSound() {\n        System.out.println(\"The animal makes a sound.\");\n    }\n}\n\npublic class Dog extends Animal {\n    @Override\n    public void makeSound() {\n        System.out.println(\"The dog barks.\");\n    }\n    public void parentMakeSound() {\n        super.makeSound();\n    }\n}\n\nDog myPet = new Dog();\nmyPet.parentMakeSound();\n\nこのコードが出力するメッセージは何でしょうか？",
+            "explanation": "superキーワードを使用してスーパークラスのメソッドを呼び出すことができます。したがって、DogクラスのparentMakeSoundメソッドはスーパークラスのmakeSoundメソッドを呼び出します。",
+            "answer": "// superキーワードを使用してスーパークラスのメソッドを呼び出しています。\n// そのため、このコードは\"The animal makes a sound.\"と出力します。"
+        },
+        {
+            "id": 6,
+            "questionId": "java_polymorphism1_6",
+            "title": "オブジェクト型と実際のオブジェクト",
+            "question": "以下のクラス定義が与えられています。\n\npublic class Animal {\n    public void makeSound() {\n        System.out.println(\"The animal makes a sound.\");\n    }\n}\n\npublic class Dog extends Animal {\n    @Override\n    public void makeSound() {\n        System.out.println(\"The dog barks.\");\n    }\n}\n\nAnimal myPet = new Dog();\nmyPet.makeSound();\n\nこのコードが出力するメッセージは何でしょうか？",
+            "explanation": "オブジェクト型はAnimalですが、実際のオブジェクトはDogです。Javaでは、実際のオブジェクトのメソッドが呼び出されます。この特性はポリモーフィズムと呼ばれます。",
+            "answer": "// オブジェクト型はAnimalですが、実際のオブジェクトはDogです。\n// したがって、このコードは\"The dog barks.\"と出力します。"
+        },
+        {
+            "id": 7,
+            "questionId": "java_polymorphism1_7",
+            "title": "抽象クラスとポリモーフィズム",
+            "question": "以下の抽象クラスと具体クラスが与えられています。\n\nabstract class Shape {\n    abstract void draw();\n}\n\nclass Circle extends Shape {\n    void draw() {\n        System.out.println(\"Draw circle\");\n    }\n}\n\nclass Square extends Shape {\n    void draw() {\n        System.out.println(\"Draw square\");\n    }\n}\n\nShape[] shapes = {new Circle(), new Square()};\nfor (Shape s: shapes) {\n    s.draw();\n}\n\nこのコードが出力するメッセージは何でしょうか？",
+            "explanation": "Javaでは、実際のオブジェクトのメソッドが呼び出されます。これは、ポリモーフィズムという特性によります。したがって、このコードは\"Draw circle\"と\"Draw square\"を出力します。",
+            "answer": "// Javaでは、実際のオブジェクトのメソッドが呼び出されます。これは、ポリモーフィズムという特性によります。\n// したがって、このコードは\"Draw circle\"と\"Draw square\"を出力します。"
+        },
+        {
+            "id": 8,
+            "questionId": "java_polymorphism1_8",
+            "title": "オーバーライドとポリモーフィズム",
+            "question": "以下の親クラスと子クラスがあります。\n\nclass Parent {\n    void display() {\n        System.out.println(\"Display in parent\");\n    }\n}\n\nclass Child extends Parent {\n    void display() {\n        System.out.println(\"Display in child\");\n    }\n}\n\nParent p = new Child();\np.display();\n\nこのコードが出力するメッセージは何でしょうか？",
+            "explanation": "Javaのポリモーフィズムでは、実際のオブジェクトの型に基づいてメソッドが呼び出されます。この場合、\"Parent p = new Child();\"の部分で、pはParent型の参照ですが、実際のオブジェクトはChildです。したがって、p.display()は、Childクラスのdisplayメソッドを呼び出します。その結果、\"Display in child\"が出力されます。",
+            "answer": "// Javaのポリモーフィズムでは、実際のオブジェクトの型に基づいてメソッドが呼び出されます。この場合、\"Parent p = new Child();\"の部分で、pはParent型の参照ですが、実際のオブジェクトはChildです。\n// したがって、p.display()は、Childクラスのdisplayメソッドを呼び出します。\n// その結果、\"Display in child\"が出力されます。"
+        },
+        {
+            "id": 9,
+            "questionId": "java_polymorphism1_9",
+            "title": "ダウンキャストとポリモーフィズム",
+            "question": "以下の親クラスと子クラスがあります。\n\nclass Parent {\n    void display() {\n        System.out.println(\"Display in parent\");\n    }\n}\n\nclass Child extends Parent {\n    void display() {\n        System.out.println(\"Display in child\");\n    }\n    void special() {\n        System.out.println(\"Special for child\");\n    }\n}\n\nParent p = new Child();\n((Child)p).special();\n\nこのコードが出力するメッセージは何でしょうか？",
+            "explanation": "Javaのポリモーフィズムでは、親クラスの参照を使って子クラスのオブジェクトを指すことができますが、親クラスにはない子クラス特有のメソッドは直接呼び出すことができません。そのため、親クラスの参照を子クラスの型にダウンキャストすることで、子クラスの特有のメソッドにアクセスすることができます。この場合、((Child)p).special();の部分で、Parent型の参照pをChild型にダウンキャストして、Childクラスのspecialメソッドを呼び出します。その結果、\"Special for child\"が出力されます。",
+            "answer": "// Javaのポリモーフィズムでは、親クラスの参照を使って子クラスのオブジェクトを指すことができますが、親クラスにはない子クラス特有のメソッドは直接呼び出すことができません。\n// そのため、親クラスの参照を子クラスの型にダウンキャストすることで、子クラスの特有のメソッドにアクセスすることができます。\n// この場合、((Child)p).special();の部分で、Parent型の参照pをChild型にダウンキャストして、Childクラスのspecialメソッドを呼び出します。\n// その結果、\"Special for child\"が出力されます。"
+        },
+        {
+            "id": 10,
+            "questionId": "java_polymorphism1_10",
+            "title": "ポリモーフィズムとは",
+            "question": "ポリモーフィズムとは何ですか？具体的なコード例を用いて説明してください。",
+            "explanation": "ポリモーフィズムは、オブジェクト指向プログラミングの重要な概念で、「多態性」または「多形性」を意味します。これは、親クラスの型を使って子クラスのインスタンスを参照することができ、その参照を通じて呼び出されるメソッドが実際のオブジェクトの型によって動的に決定される性質を指します。以下に具体的なコード例を示します。\n\nclass Animal {\n    void displayInfo() {\n        System.out.println(\"This is an animal\");\n    }\n}\n\nclass Dog extends Animal {\n    void displayInfo() {\n        System.out.println(\"This is a dog\");\n    }\n}\n\nAnimal myPet = new Dog();\nmyPet.displayInfo();\n\nこのコードでは、Animal型の変数myPetがDogクラスのインスタンスを指しています。そして、myPet.displayInfo();が実行されると、\"This is a dog\"と表示されます。これは、myPetが参照しているオブジェクトがDogクラスのインスタンスであり、そのDogクラスが親クラスのdisplayInfoメソッドをオーバーライドしているためです。",
+            "answer": "// ポリモーフィズムは、オブジェクト指向プログラミングの重要な概念で、「多態性」または「多形性」を意味します。\n// これは、親クラスの型を使って子クラスのインスタンスを参照することができ、その参照を通じて呼び出されるメソッドが実際のオブジェクトの型によって動的に決定される性質を指します。\n\n// 以下に具体的なコード例を示します。\nclass Animal {\n    void displayInfo() {\n        System.out.println(\"This is an animal\");\n    }\n}\n\nclass Dog extends Animal {\n    void displayInfo() {\n        System.out.println(\"This is a dog\");\n    }\n}\n\n// Animal型の変数myPetがDogクラスのインスタンスを指しています。\nAnimal myPet = new Dog();\n\n// myPet.displayInfo();が実行されると、\"This is a dog\"と表示されます。\n// これは、myPetが参照しているオブジェクトがDogクラスのインスタンスであり、そのDogクラスが親クラスのdisplayInfoメソッドをオーバーライドしているためです。\nmyPet.displayInfo();\n// 出力結果: \"This is a dog\""
+        }
+    ]
+}

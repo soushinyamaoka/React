@@ -1,0 +1,166 @@
+{
+    "contentsId": "js_loop1",
+    "title": "Javascriptの繰り返し問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_loop1_1",
+            "title": "forループの基本",
+            "question": "1から5までの整数を順番にconsoleに出力するJavaScriptのコードを書いてください。",
+            "explanation": "forループを使用して、1から5までの整数を順番に出力します。ループの条件式には「i <= 5」を使用し、1から始まるiの値が5以下の場合にループが続行されます。",
+            "answer": "for (let i = 1; i <= 5; i++) {\n  console.log(i); // consoleには1から5までの数が順番に出力されます\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "js_loop1_2",
+            "title": "whileループの基本",
+            "question": "1から5までの整数を順番にconsoleに出力するJavaScriptのコードをwhileループを使用して書いてください。",
+            "explanation": "whileループを使用して、1から5までの整数を順番に出力します。ループの条件式には「i <= 5」を使用し、1から始まるiの値が5以下の場合にループが続行されます。",
+            "answer": "let i = 1;\nwhile (i <= 5) {\n  console.log(i); // consoleには1から5までの数が順番に出力されます\n  i++;\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "js_loop1_3",
+            "title": "do-whileループの基本",
+            "question": "1から5までの整数を順番にconsoleに出力するJavaScriptのコードをdo-whileループを使用して書いてください。",
+            "explanation": "do-whileループを使用して、1から5までの整数を順番に出力します。do-whileループは最低でも1回はループ内の処理を実行します。ループの条件式には「i <= 5」を使用し、1から始まるiの値が5以下の場合にループが続行されます。",
+            "answer": "let i = 1;\ndo {\n  console.log(i); // consoleには1から5までの数が順番に出力されます\n  i++;\n} while (i <= 5);"
+        },
+        {
+            "id": 4,
+            "questionId": "js_loop1_4",
+            "title": "配列とforループ",
+            "question": "配列 ['apple', 'banana', 'cherry'] の各要素を順番にconsoleに出力するJavaScriptのコードを書いてください。",
+            "explanation": "配列の要素にアクセスするために、forループと配列のインデックスを利用します。配列の長さは、配列名.lengthで取得できます。",
+            "answer": "let fruits = ['apple', 'banana', 'cherry'];\nfor (let i = 0; i < fruits.length; i++) {\n  console.log(fruits[i]); // consoleには'apple', 'banana', 'cherry'が順番に出力されます\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "js_loop1_5",
+            "title": "whileループの基本",
+            "question": "整数値の変数xが10以上になるまで、xに1を足していくJavaScriptのコードをwhileループを使用して書いてください。初期値としてx=0を設定してください。",
+            "explanation": "whileループを使用して、xの値が10以上になるまでxに1を足していきます。ループの条件式には「x < 10」を使用し、xの値が10未満の場合にループが続行されます。",
+            "answer": "let x = 0;\nwhile (x < 10) {\n  x++;\n  console.log(x); // consoleには1から10までの数が順番に出力されます\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "js_loop1_6",
+            "title": "forループとブレイク",
+            "question": "1から10までの数を順番に出力するforループを書いてください。ただし、数字が5になった時点でループを抜ける（breakする）ようにしてください。",
+            "explanation": "forループとif文を組み合わせて、特定の条件下でループを抜け出すコードを書くことができます。この問題では、出力した数が5になった時点でループから抜け出すようにします。",
+            "answer": "for (let i = 1; i <= 10; i++) {\n  if (i > 5) {\n    break;\n  }\n  console.log(i); // consoleには1から5までの数が順番に出力されます\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "js_loop1_7",
+            "title": "配列とforループ",
+            "question": "配列['apple', 'banana', 'cherry']の各要素をforループを使って順に出力するJavaScriptのコードを書いてください。",
+            "explanation": "配列の各要素にアクセスするにはforループと配列のインデックスを使います。ここでは、配列の長さ（length属性）を上限にしたforループを使って、配列の各要素にアクセスします。",
+            "answer": "let fruits = ['apple', 'banana', 'cherry'];\nfor (let i = 0; i < fruits.length; i++) {\n  console.log(fruits[i]); // consoleには'apple', 'banana', 'cherry'が順に出力されます\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "js_loop1_8",
+            "title": "配列とforEachメソッド",
+            "question": "配列['apple', 'banana', 'cherry']の各要素をforEachメソッドを使って順に出力するJavaScriptのコードを書いてください。",
+            "explanation": "配列にはforEachメソッドがあり、これを使うと配列の各要素に順に処理を適用することができます。ここでは、forEachメソッドを使って配列の各要素を出力します。",
+            "answer": "let fruits = ['apple', 'banana', 'cherry'];\nfruits.forEach(function(fruit) {\n  console.log(fruit); // consoleには'apple', 'banana', 'cherry'が順に出力されます\n});"
+        },
+        {
+            "id": 9,
+            "questionId": "js_loop1_9",
+            "title": "forループと条件分岐",
+            "question": "1から10までの整数を順に出力するforループを書き、その中で3の倍数のときだけ'Fizz'と出力するJavaScriptのコードを書いてください。",
+            "explanation": "forループとif文を組み合わせることで、特定の条件を満たしたときだけ特定の処理を行うことができます。ここでは、3の倍数のときだけ'Fizz'と出力する処理を書きます。",
+            "answer": "for (let i = 1; i <= 10; i++) {\n  if (i % 3 === 0) {\n    console.log('Fizz'); // iが3の倍数のとき、'Fizz'が出力されます\n  } else {\n    console.log(i); // それ以外のとき、iがそのまま出力されます\n  }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "js_loop1_10",
+            "title": "whileループ基礎",
+            "question": "whileループを使って、1から5までの整数を順に出力するJavaScriptのコードを書いてください。",
+            "explanation": "whileループは、指定した条件が真である限り、ブロック内の処理を繰り返します。ここでは、カウンター変数を使って1から5までの整数を順に出力するコードを書きます。",
+            "answer": "let i = 1;\nwhile (i <= 5) {\n  console.log(i); // iが1から5まで順に出力されます\n  i++;\n}"
+        },
+        {
+            "id": 11,
+            "questionId": "js_loop1_11",
+            "title": "forループと配列",
+            "question": "配列['apple', 'banana', 'cherry']をforループを使って順に出力するJavaScriptのコードを書いてください。",
+            "explanation": "配列の要素をforループを使って順に出力することができます。配列のlengthプロパティを使うことで、配列の要素数を取得し、それをforループの終了条件にします。",
+            "answer": "let fruits = ['apple', 'banana', 'cherry'];\nfor (let i = 0; i < fruits.length; i++) {\n  console.log(fruits[i]); // 配列の要素が順に出力されます\n}"
+        },
+        {
+            "id": 12,
+            "questionId": "js_loop1_12",
+            "title": "for...ofループ",
+            "question": "配列['apple', 'banana', 'cherry']をfor...ofループを使って順に出力するJavaScriptのコードを書いてください。",
+            "explanation": "for...ofループは、配列や文字列などのイテラブルなオブジェクトの各要素に対してループ処理を行います。ここでは、for...ofループを使って配列の各要素を順に出力します。",
+            "answer": "let fruits = ['apple', 'banana', 'cherry'];\nfor (let fruit of fruits) {\n  console.log(fruit); // 配列の要素が順に出力されます\n}"
+        },
+        {
+            "id": 13,
+            "questionId": "js_loop1_13",
+            "title": "whileループ",
+            "question": "whileループを使って1から5までの数字を順に出力するJavaScriptのコードを書いてください。",
+            "explanation": "whileループは指定した条件が真である限り、ループ処理を繰り返します。ここでは、whileループを使って1から5までの数字を順に出力します。",
+            "answer": "let i = 1;\nwhile (i <= 5) {\n  console.log(i); // 1から5までの数字が順に出力されます\n  i++;\n}"
+        },
+        {
+            "id": 14,
+            "questionId": "js_loop1_14",
+            "title": "do...whileループ",
+            "question": "do...whileループを使って1から5までの数字を順に出力するJavaScriptのコードを書いてください。",
+            "explanation": "do...whileループは、指定したブロックを一度実行した後、指定した条件が真である限りループ処理を繰り返します。ここでは、do...whileループを使って1から5までの数字を順に出力します。",
+            "answer": "let i = 1;\ndo {\n  console.log(i); // 1から5までの数字が順に出力されます\n  i++;\n} while (i <= 5);"
+        },
+        {
+            "id": 15,
+            "questionId": "js_loop1_15",
+            "title": "forループ",
+            "question": "forループを使って1から5までの数字を順に出力するJavaScriptのコードを書いてください。",
+            "explanation": "forループは指定した初期化、条件、反復を元にループ処理を繰り返します。ここでは、forループを使って1から5までの数字を順に出力します。",
+            "answer": "for (let i = 1; i <= 5; i++) {\n  console.log(i); // 1から5までの数字が順に出力されます\n}"
+        },
+        {
+            "id": 16,
+            "questionId": "js_loop1_16",
+            "title": "配列とforループ",
+            "question": "配列['apple', 'banana', 'cherry']の各要素をforループを使って順に出力するJavaScriptのコードを書いてください。",
+            "explanation": "配列の各要素に対して何らかの操作を行いたいときには、forループを利用します。配列の要素数は配列.lengthで取得できます。",
+            "answer": "let fruits = ['apple', 'banana', 'cherry'];\nfor (let i = 0; i < fruits.length; i++) {\n  console.log(fruits[i]); // 'apple', 'banana', 'cherry'が順に出力されます\n}"
+        },
+        {
+            "id": 17,
+            "questionId": "js_loop1_17",
+            "title": "whileループ",
+            "question": "whileループを使って1から5までの数字を順に出力するJavaScriptのコードを書いてください。",
+            "explanation": "whileループは、指定された条件が真である限り、ループ内の処理を繰り返します。ここでは、1から5までの数字を順に出力します。",
+            "answer": "let i = 1;\nwhile (i <= 5) {\n  console.log(i); // 1から5までの数字が順に出力されます\n  i++;\n}"
+        },
+        {
+            "id": 18,
+            "questionId": "js_loop1_18",
+            "title": "do-whileループ",
+            "question": "do-whileループを使って1から5までの数字を順に出力するJavaScriptのコードを書いてください。",
+            "explanation": "do-whileループは、条件が真である限りループ内の処理を繰り返しますが、一度は必ずループ内の処理が行われます。この問題では、1から5までの数字を順に出力します。",
+            "answer": "let i = 1;\ndo {\n  console.log(i); // 1から5までの数字が順に出力されます\n  i++;\n} while (i <= 5);"
+        },
+        {
+            "id": 19,
+            "questionId": "js_loop1_19",
+            "title": "forループ",
+            "question": "forループを使って、1から5までの整数の合計を計算するJavaScriptのコードを書いてください。",
+            "explanation": "forループは、指定した条件が真である限り指定した処理を繰り返します。この問題では、1から5までの整数の合計を計算します。",
+            "answer": "let sum = 0;\nfor (let i = 1; i <= 5; i++) {\n  sum += i; // iをsumに加えていきます\n}\nconsole.log(sum); // 15が出力されます"
+        },
+        {
+            "id": 20,
+            "questionId": "js_loop1_20",
+            "title": "配列とforループ",
+            "question": "forループを使用して配列の各要素をコンソールに出力するJavaScriptのコードを書いてください。配列は[\"apple\", \"banana\", \"cherry\"]とします。",
+            "explanation": "配列の各要素にアクセスするためには、forループが便利です。この問題では、指定された配列の各要素を出力します。",
+            "answer": "let fruits = [\"apple\", \"banana\", \"cherry\"];\nfor (let i = 0; i < fruits.length; i++) {\n  console.log(fruits[i]); // 配列の各要素が順に出力されます\n}"
+        }
+    ]
+}

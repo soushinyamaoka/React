@@ -1,0 +1,86 @@
+{
+    "contentsId": "java5",
+    "title": "Javaのカプセル化問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java5_1",
+            "title": "カプセル化の理解",
+            "question": "カプセル化とは何を意味するか説明してください。",
+            "explanation": "カプセル化は、クラスの内部データや内部処理を外部から直接操作や参照されないようにすることです。これにより、データの矛盾や不適切な操作を防ぐことができます。",
+            "answer": "カプセル化とは、クラスのフィールド（変数）やメソッド（関数）を一緒にまとめ、外部からの直接的なアクセスを制限するプログラミングの概念です。"
+        },
+        {
+            "id": 2,
+            "questionId": "java5_2",
+            "title": "アクセス修飾子",
+            "question": "Javaにおける主要なアクセス修飾子とその意味について説明してください。",
+            "explanation": "Javaには4つのアクセス修飾子があります：public、protected、default（修飾子なし）、private。それぞれの修飾子は異なるアクセスレベルを定義します。publicはどこからでもアクセス可能、protectedは同一パッケージ内およびサブクラスからアクセス可能、defaultは同一パッケージ内からのみアクセス可能、privateはそのクラス内からのみアクセス可能です。",
+            "answer": "public、protected、default (no modifier)、および private の4つのアクセス修飾子があります。"
+        },
+        {
+            "id": 3,
+            "questionId": "java5_3",
+            "title": "カプセル化のメリット",
+            "question": "カプセル化により何が可能になるか、そのメリットについて説明してください。",
+            "explanation": "カプセル化により、データの安全性と整合性が保たれ、不適切な操作からデータを保護することができます。また、カプセル化を用いることで、クラスの内部実装を変更しても、そのクラスを使用する他のコードに影響を与えることなく、コードのメンテナンスと拡張が容易になります。",
+            "answer": "カプセル化は、クラスの詳細を隠蔽し、データを安全に保つことを可能にします。また、コードのメンテナンスと拡張が容易になります。"
+        },
+        {
+            "id": 4,
+            "questionId": "java5_4",
+            "title": "getterとsetter",
+            "question": "getterメソッドとsetterメソッドの役割について説明し、それらがカプセル化にどのように貢献するか説明してください。",
+            "explanation": "getterメソッドとsetterメソッドは、プライベートフィールドの値を外部から安全に取得したり設定したりするためのものです。これにより、データの不適切な操作やアクセスを防ぎつつ、必要な操作を許可することができます。これがカプセル化の一部となります。",
+            "answer": "getterメソッドは、プライベート変数の値を取得するためのメソッドであり、setterメソッドは、プライベート変数の値を設定するためのメソッドです。これらはカプセル化において重要な役割を果たし、外部から直接フィールドにアクセスすることなく、フィールドの値を操作する方法を提供します。"
+        },
+        {
+            "id": 5,
+            "questionId": "java5_5",
+            "title": "カプセル化の実装",
+            "question": "次のクラスには、フィールド「age」が公開されており、安全でない設計となっています。\n\npublic class Person {\n    public int age;\n}\n\nこのクラスをカプセル化に準拠した設計に修正してください。",
+            "explanation": "フィールドをprivateにし、そのフィールドにアクセスするためのpublicなgetterとsetterメソッドを提供することで、カプセル化を実現します。",
+            "answer": "public class Person {\n    private int age;\n\n    public int getAge() {\n        return this.age;\n    }\n\n    public void setAge(int age) {\n        this.age = age;\n    }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java5_6",
+            "title": "カプセル化の適用",
+            "question": "カプセル化が適用された設計の利点は何ですか？また、それがなかった場合、どのような問題が発生する可能性がありますか？",
+            "explanation": "カプセル化により、クラスのフィールドは外部から直接操作されることがなくなり、データの安全性が確保されます。また、フィールドの変更による影響をクラス内に限定することができるため、コードのメンテナンス性が向上します。カプセル化がない場合、不適切なフィールドの変更によってクラスが予期せぬ挙動を示す可能性があります。",
+            "answer": "カプセル化により、クラス内部の変更がクラス外部に影響を与えないようになるため、クラスの安定性と予測可能性が向上します。カプセル化が適用されていない場合、クラス内部のデータに無制限なアクセスが許可されるため、不正な状態や予期しない結果を生じる可能性があります。"
+        },
+        {
+            "id": 7,
+            "questionId": "java5_7",
+            "title": "カプセル化とコンストラクタ",
+            "question": "カプセル化によりフィールドがprivateになったクラスで、フィールドの初期化をどのように行うべきですか？",
+            "explanation": "カプセル化によりフィールドがprivateとなったクラスでは、フィールドの初期化はコンストラクタやsetterメソッドを通じて行います。コンストラクタは、オブジェクトが生成される際に一度だけ呼び出され、フィールドの初期化によく使用されます。",
+            "answer": "カプセル化によりフィールドがprivateになったクラスでは、フィールドの初期化はコンストラクタまたは公開されたsetterメソッドを通じて行います。コンストラクタはオブジェクトが生成される際に自動的に呼び出され、その中でフィールドの初期値を設定することが多いです。"
+        },
+        {
+            "id": 8,
+            "questionId": "java5_8",
+            "title": "カプセル化と変数",
+            "question": "カプセル化の原則に基づいて、次のコードのどの部分を修正するべきか指摘してください。\n\npublic class Employee {\n    public String name;\n    public int salary;\n\n    public Employee(String name, int salary) {\n        this.name = name;\n        this.salary = salary;\n    }\n}",
+            "explanation": "カプセル化の原則に従うと、クラスのフィールドはprivateにするべきです。また、フィールドの値を取得または設定するためのpublicなgetterおよびsetterメソッドを提供するべきです。",
+            "answer": "public class Employee {\n    private String name;\n    private int salary;\n\n    public Employee(String name, int salary) {\n        this.name = name;\n        this.salary = salary;\n    }\n\n    public String getName() {\n        return this.name;\n    }\n\n    public void setName(String name) {\n        this.name = name;\n    }\n\n    public int getSalary() {\n        return this.salary;\n    }\n\n    public void setSalary(int salary) {\n        this.salary = salary;\n    }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java5_9",
+            "title": "カプセル化の目的",
+            "question": "カプセル化が重要な理由を述べてください。",
+            "explanation": "カプセル化は、クラスの内部データを外部から直接操作できないようにすることで、データの安全性と整合性を確保します。また、クラス内部の実装を隠蔽することで、クラスの使用者は内部の詳細を知らずにクラスを使用でき、コードの可読性とメンテナンス性が向上します。",
+            "answer": "カプセル化はクラスの内部データを保護し、データの安全性と整合性を保証します。また、クラスの内部詳細を隠蔽することで、クラスの利用者は内部の実装を理解せずともクラスを利用できます。これにより、コードの可読性とメンテナンス性が向上します。"
+        },
+        {
+            "id": 10,
+            "questionId": "java5_10",
+            "title": "カプセル化とアクセス修飾子",
+            "question": "カプセル化を適用したクラスでフィールドに対してどのアクセス修飾子を使用すべきですか？",
+            "explanation": "カプセル化を適用したクラスでは、通常、フィールドに対してprivateアクセス修飾子を使用します。これにより、そのフィールドはクラス外部から直接アクセスすることができなくなります。その代わり、そのフィールドの値を取得または設定するためのpublicなgetterおよびsetterメソッドを提供します。",
+            "answer": "カプセル化を適用したクラスでは、フィールドに対してprivateアクセス修飾子を使用します。これにより、フィールドへの直接アクセスをクラス外部から制限し、データの安全性と整合性を確保します。値の取得や設定は、公開されたgetterとsetterメソッドを通じて行います。"
+        }
+    ]
+}

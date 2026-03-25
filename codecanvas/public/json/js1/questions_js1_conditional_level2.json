@@ -1,120 +1,165 @@
 {
-    "contentsId": "javascript3",
+    "contentsId": "js_conditional2",
     "title": "JavaScriptの条件分岐問題集ページ",
     "subtitle": "中級",
     "questions": [{
             "id": 1,
-            "questionId": "js2_1",
-            "title": "オブジェクトのプロパティの存在確認",
-            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar person = {\n    name: 'Alice',\n    age: 25\n};\n\nif (person.hasOwnProperty('name') && person.hasOwnProperty('age')) {\n    console.log('Both properties exist.');\n} else if (person.hasOwnProperty('name')) {\n    console.log('Only name property exists.');\n} else if (person.hasOwnProperty('age')) {\n    console.log('Only age property exists.');\n} else {\n    console.log('Both properties do not exist.');\n}\n```",
-            "explanation": "オブジェクト`person`は`name`と`age`の2つのプロパティを持っています。`hasOwnProperty()`メソッドを使ってプロパティの存在を確認しています。条件式`person.hasOwnProperty('name') && person.hasOwnProperty('age')`は両方のプロパティが存在することを判定し、そのブロック内のコード`console.log('Both properties exist.');`が実行されます。\n実行結果として、コンソールには`Both properties exist.`が出力されます。",
-            "answer": "Both properties exist."
+            "questionId": "js_conditional2_1",
+            "title": "複数の条件分岐",
+            "question": "整数変数numが10未満の場合は「numは10未満です」、10以上20未満の場合は「numは10以上20未満です」、それ以外の場合は「numは20以上です」と表示するコードを作成してください。",
+            "explanation": "複数の条件分岐を作成するには、ifとelse if、そしてelseを使います。それぞれの条件に合うかをチェックし、合っている場合はそのブロックのコードが実行されます。",
+            "answer": "let num = 15;\nif (num < 10) {\n  console.log('numは10未満です');\n} else if (num < 20) {\n  console.log('numは10以上20未満です'); // numは10以上20未満ですが出力される\n} else {\n  console.log('numは20以上です');\n}"
         },
         {
             "id": 2,
-            "questionId": "js2_2",
-            "title": "switch文の使用",
-            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar color = 'blue';\n\nswitch (color) {\n    case 'red':\n        console.log('The color is red.');\n        break;\n    case 'green':\n        console.log('The color is green.');\n        break;\n    case 'blue':\n        console.log('The color is blue.');\n        break;\n    default:\n        console.log('The color is unknown.');\n}\n```",
-            "explanation": "変数`color`の値は`blue`です。`switch`文を使って`color`の値によって処理を分岐しています。`case 'blue':`のブロック内のコード`console.log('The color is blue.');`が実行されます。\n実行結果として、コンソールには`The color is blue.`が出力されます。",
-            "answer": "The color is blue."
+            "questionId": "js_conditional2_2",
+            "title": "論理演算子の利用",
+            "question": "真偽値変数aとbがともに真である場合にのみ「aとbはともに真です」と表示するコードを作成してください。",
+            "explanation": "JavaScriptでは、&&演算子を使って2つの真偽値がともに真であるかどうかをチェックできます。",
+            "answer": "let a = true;\nlet b = true;\nif (a && b) {\n  console.log('aとbはともに真です'); // aとbはともに真ですが出力される\n}"
         },
         {
             "id": 3,
-            "questionId": "js2_3",
-            "title": "条件式の組み合わせ",
-            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar x = 10;\nvar y = 5;\n\nif ((x > 5 || x < 8) && y < 10) {\n    console.log('A');\n} else if (x === 10 && y === 5) {\n    console.log('B');\n} else if (x > 8 && y < 5) {\n    console.log('C');\n} else {\n    console.log('D');\n}\n```",
-            "explanation": "変数`x`の値は`10`で、変数`y`の値は`5`です。条件式`((x > 5 || x < 8) && y < 10)`は論理演算子の結合順序により、`(x > 5 || x < 8)`と`(y < 10)`がまず評価されます。前者の条件は`true`ですが、後者の条件は`true`ではありません。したがって、そのブロック内のコードは実行されません。次に条件式`x === 10 && y === 5`が評価されますが、この条件は`true`です。そのブロック内のコード`console.log('B');`が実行されます。\n実行結果として、コンソールには`B`が出力されます。",
-            "answer": "B"
+            "questionId": "js_conditional2_3",
+            "title": "三項演算子の利用",
+            "question": "整数変数numが10以上であれば「numは10以上です」、それ以外の場合は「numは10未満です」と表示するコードを作成してください。ただし、この問題では三項演算子を使用してコードを短くしてください。",
+            "explanation": "JavaScriptでは、三項演算子を使って短い条件分岐を作成できます。三項演算子は「条件 ? 真のときの値 : 偽のときの値」の形で書きます。",
+            "answer": "let num = 15;\nconsole.log(num >= 10 ? 'numは10以上です' : 'numは10未満です'); // numは10以上ですが出力される"
         },
         {
             "id": 4,
-            "questionId": "js2_4",
-            "title": "論理演算子の結合順序",
-            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar x = 6;\nvar y = 8;\n\nif (x < 10 || x > 5 && y < 10) {\n    console.log('A');\n} else if (x === 6 && y === 8) {\n    console.log('B');\n} else if (x > 10 && y < 5) {\n    console.log('C');\n} else {\n    console.log('D');\n}\n```",
-            "explanation": "変数`x`の値は`6`で、変数`y`の値は`8`です。条件式`x < 10 || x > 5 && y < 10`は論理演算子の優先順位により、`(x < 10)`と`(x > 5 && y < 10)`がまず評価されます。前者の条件は`true`ですが、後者の条件は`false`です。したがって、そのブロック内のコード`console.log('A');`が実行されます。\n実行結果として、コンソールには`A`が出力されます。",
-            "answer": "A"
+            "questionId": "js_conditional2_4",
+            "title": "switch文の利用",
+            "question": "整数変数dayが1なら「Monday」、2なら「Tuesday」、3なら「Wednesday」、4なら「Thursday」、5なら「Friday」、それ以外なら「Weekend」と表示するコードを作成してください。",
+            "explanation": "JavaScriptでは、特定の値によって異なる動作をする場合、switch文を使うとコードが読みやすくなります。",
+            "answer": "let day = 3;\nswitch (day) {\n  case 1:\n    console.log('Monday');\n    break;\n  case 2:\n    console.log('Tuesday');\n    break;\n  case 3:\n    console.log('Wednesday'); // Wednesdayが出力される\n    break;\n  case 4:\n    console.log('Thursday');\n    break;\n  case 5:\n    console.log('Friday');\n    break;\n  default:\n    console.log('Weekend');\n}"
         },
         {
             "id": 5,
-            "questionId": "js2_5",
-            "title": "switch文の使用",
-            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar fruit = 'apple';\n\nswitch (fruit) {\n    case 'banana':\n        console.log('The fruit is banana.');\n        break;\n    case 'orange':\n        console.log('The fruit is orange.');\n        break;\n    case 'apple':\n        console.log('The fruit is apple.');\n        break;\n    default:\n        console.log('The fruit is unknown.');\n}\n```",
-            "explanation": "変数`fruit`の値は`apple`です。`switch`文を使って`fruit`の値によって処理を分岐しています。`case 'apple':`のブロック内のコード`console.log('The fruit is apple.');`が実行されます。\n実行結果として、コンソールには`The fruit is apple.`が出力されます。",
-            "answer": "The fruit is apple."
-        },
-        {
+            "questionId": "js_conditional2_5",
+            "title": "条件式の評価",
+            "question": "以下の条件式が真になる値（具体的な数値または真偽値）を考えてください。  \"num > 10 && num < 20\"",
+            "explanation": "&&演算子は左右の条件がともに真のときのみ真となります。つまり、この条件式はnumが10より大きくかつ20より小さいときに真となります。",
+            "answer": "この条件式が真になるためには、numは11から19までの任意の整数を取ることができます。"
+        }, {
             "id": 6,
-            "questionId": "js2_6",
-            "title": "条件式の組み合わせ",
-            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar x = 8;\nvar y = 5;\n\nif ((x > 5 || x < 8) && y < 10) {\n    console.log('A');\n} else if (x === 8 && y === 5) {\n    console.log('B');\n} else if (x > 10 && y < 5) {\n    console.log('C');\n} else {\n    console.log('D');\n}\n```",
-            "explanation": "変数`x`の値は`8`で、変数`y`の値は`5`です。条件式`((x > 5 || x < 8) && y < 10)`は論理演算子の結合順序により、`(x > 5 || x < 8)`と`(y < 10)`がまず評価されます。前者の条件は`true`ですが、後者の条件は`true`です。したがって、そのブロック内のコード`console.log('A');`が実行されます。\n実行結果として、コンソールには`A`が出力されます。",
-            "answer": "A"
+            "questionId": "js_conditional2_6",
+            "title": "Falsy値の理解",
+            "question": "JavaScriptでは、特定の値は条件式の中でfalseと評価されます。これらの値をFalsy値と言います。以下のリストからFalsy値を全て選びなさい： 0, '0', '', null, undefined, NaN, 'false'",
+            "explanation": "JavaScriptでは、0、''（空文字列）、null、undefined、NaNはFalsy値となります。それ以外の値は全てTruthy値と評価されます。",
+            "answer": "Falsy値は0、''（空文字列）、null、undefined、NaNです。"
         },
         {
             "id": 7,
-            "questionId": "js2_7",
-            "title": "論理演算子の結合順序",
-            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar x = 10;\nvar y = 5;\n\nif (x > 5 && y < 10 || x < 8) {\n    console.log('A');\n} else if (x === 10 && y === 5) {\n    console.log('B');\n} else if (x > 8 && y < 5) {\n    console.log('C');\n} else {\n    console.log('D');\n}\n```",
-            "explanation": "変数`x`の値は`10`で、変数`y`の値は`5`です。条件式`x > 5 && y < 10 || x < 8`は論理演算子の結合順序により、`(x > 5 && y < 10)`と`(x < 8)`がまず評価されます。前者の条件は`true`ですが、後者の条件は`false`です。したがって、そのブロック内のコード`console.log('A');`が実行されます。\n実行結果として、コンソールには`A`が出力されます。",
-            "answer": "A"
+            "questionId": "js_conditional2_7",
+            "title": "typeof演算子の利用",
+            "question": "与えられた変数の型が'number'であれば「This is a number.」, 'string'であれば「This is a string.」, それ以外であれば「This is something else.」と表示するコードを書いてください。",
+            "explanation": "JavaScriptではtypeof演算子を使うと、変数の型を調べることができます。",
+            "answer": "let variable = 'hello';\nif (typeof variable === 'number') {\n  console.log('This is a number.');\n} else if (typeof variable === 'string') {\n  console.log('This is a string.'); // This is a string.が出力される\n} else {\n  console.log('This is something else.');\n}"
         },
         {
             "id": 8,
-            "questionId": "js2_8",
-            "title": "switch文の使用",
-            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar day = 'Sunday';\n\nswitch (day) {\n    case 'Monday':\n        console.log('Today is Monday.');\n        break;\n    case 'Tuesday':\n        console.log('Today is Tuesday.');\n        break;\n    case 'Wednesday':\n        console.log('Today is Wednesday.');\n        break;\n    case 'Thursday':\n        console.log('Today is Thursday.');\n        break;\n    case 'Friday':\n        console.log('Today is Friday.');\n        break;\n    case 'Saturday':\n        console.log('Today is Saturday.');\n        break;\n    case 'Sunday':\n        console.log('Today is Sunday.');\n        break;\n    default:\n        console.log('Invalid day.');\n}\n```",
-            "explanation": "変数`day`の値は`Sunday`です。`switch`文を使って`day`の値によって処理を分岐しています。`case 'Sunday':`のブロック内のコード`console.log('Today is Sunday.');`が実行されます。\n実行結果として、コンソールには`Today is Sunday.`が出力されます。",
-            "answer": "Today is Sunday."
+            "questionId": "js_conditional2_8",
+            "title": "truthyとfalsyの違い",
+            "question": "変数aがtruthyであり、変数bがfalsyである場合、「a is truthy and b is falsy」を出力するコードを作成してください。",
+            "explanation": "JavaScriptでは、if文の中で直接変数を評価することで、その変数がtruthy（trueになるような値）かfalsy（falseになるような値）かをチェックすることができます。",
+            "answer": "let a = 'hello';\nlet b = 0;\nif (a && !b) {\n  console.log('a is truthy and b is falsy'); // a is truthy and b is falsyが出力される\n}"
         },
         {
             "id": 9,
-            "questionId": "js2_9",
-            "title": "条件式の組み合わせ",
-            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar x = 8;\nvar y = 5;\n\nif ((x > 5 || x < 8) && y < 10) {\n    console.log('A');\n} else if (x === 8 && y === 5) {\n    console.log('B');\n} else if (x > 10 && y < 5) {\n    console.log('C');\n} else {\n    console.log('D');\n}\n```",
-            "explanation": "変数`x`の値は`8`で、変数`y`の値は`5`です。条件式`((x > 5 || x < 8) && y < 10)`は論理演算子の結合順序により、`(x > 5 || x < 8)`と`(y < 10)`がまず評価されます。前者の条件は`true`ですが、後者の条件は`true`です。したがって、そのブロック内のコード`console.log('A');`が実行されます。\n実行結果として、コンソールには`A`が出力されます。",
-            "answer": "A"
+            "questionId": "js_conditional2_9",
+            "title": "三項演算子の利用",
+            "question": "変数aが10以上ならば\"OK\"、それ以下ならば\"NG\"をコンソールに出力する三項演算子を用いたコードを書いてください。",
+            "explanation": "三項演算子は条件 ? 式1 : 式2 の形で、条件が真の場合には式1、偽の場合には式2が評価されます。この問題ではaが10以上かどうかを判定し、その結果に応じて異なる文字列を出力します。",
+            "answer": "let a = 12;\nconsole.log(a >= 10 ? \"OK\" : \"NG\");  // consoleには\"OK\"が出力されます"
         },
         {
             "id": 10,
-            "questionId": "js2_10",
-            "title": "論理演算子の結合順序",
-            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar x = 6;\nvar y = 8;\n\nif (x > 5 && y < 10 || x < 8) {\n    console.log('A');\n} else if (x === 6 && y === 8) {\n    console.log('B');\n} else if (x > 10 && y < 5) {\n    console.log('C');\n} else {\n    console.log('D');\n}\n```",
-            "explanation": "変数`x`の値は`6`で、変数`y`の値は`8`です。条件式`x > 5 && y < 10 || x < 8`は論理演算子の結合順序により、`(x > 5 && y < 10)`と`(x < 8)`がまず評価されます。前者の条件は`true`ですが、後者の条件は`false`です。したがって、そのブロック内のコード`console.log('A');`が実行されます。\n実行結果として、コンソールには`A`が出力されます。",
-            "answer": "A"
+            "questionId": "js_conditional2_10",
+            "title": "三項演算子の利用",
+            "question": "JavaScriptにおける三項演算子の使用を理解していましょう。変数aが10より大きい場合は「a is greater than 10」、そうでない場合は「a is not greater than 10」と出力するコードを書いてください。",
+            "explanation": "三項演算子は、(条件 ? 値1 : 値2)のように使用します。条件が真であれば値1が、偽であれば値2が評価されます。",
+            "answer": "let a = 15;\nconsole.log(a > 10 ? 'a is greater than 10' : 'a is not greater than 10'); // a is greater than 10が出力される"
         },
         {
             "id": 11,
-            "questionId": "js2_11",
-            "title": "switch文の使用",
-            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar season = 'summer';\n\nswitch (season) {\n    case 'spring':\n        console.log('It is spring.');\n        break;\n    case 'summer':\n        console.log('It is summer.');\n        break;\n    case 'autumn':\n        console.log('It is autumn.');\n        break;\n    case 'winter':\n        console.log('It is winter.');\n        break;\n    default:\n        console.log('Invalid season.');\n}\n```",
-            "explanation": "変数`season`の値は`summer`です。`switch`文を使って`season`の値によって処理を分岐しています。`case 'summer':`のブロック内のコード`console.log('It is summer.');`が実行されます。\n実行結果として、コンソールには`It is summer.`が出力されます。",
-            "answer": "It is summer."
+            "questionId": "js_conditional2_11",
+            "title": "null合体演算子の利用",
+            "question": "null合体演算子(??)はJavaScriptの新しい演算子で、左辺がnullまたはundefinedの場合に右辺の値を返します。変数aがnullまたはundefinedの場合にデフォルト値10を設定するコードを書いてください。",
+            "explanation": "null合体演算子は左辺の値がnullまたはundefinedの場合に右辺の値を返します。",
+            "answer": "let a = null;\nlet b = a ?? 10;\nconsole.log(b); // 10が出力される"
         },
-
         {
             "id": 12,
-            "questionId": "js2_12",
-            "title": "条件式の組み合わせ",
-            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar x = 8;\nvar y = 5;\n\nif ((x > 5 || x < 8) && y < 10) {\n    console.log('A');\n} else if (x === 8 && y === 5) {\n    console.log('B');\n} else if (x > 10 && y < 5) {\n    console.log('C');\n} else {\n    console.log('D');\n}\n```",
-            "explanation": "変数`x`の値は`8`で、変数`y`の値は`5`です。条件式`((x > 5 || x < 8) && y < 10)`は論理演算子の結合順序により、`(x > 5 || x < 8)`と`(y < 10)`がまず評価されます。前者の条件は`true`ですが、後者の条件は`true`です。したがって、そのブロック内のコード`console.log('A');`が実行されます。\n実行結果として、コンソールには`A`が出力されます。",
-            "answer": "A"
+            "questionId": "js_conditional2_12",
+            "title": "複数の条件演算子の利用",
+            "question": "変数aが10以上でかつ20以下であれば「a is between 10 and 20」と表示するコードを書いてください。",
+            "explanation": "JavaScriptでは、複数の条件を連結するために&&（AND）演算子を使用します。",
+            "answer": "let a = 15;\nif (a >= 10 && a <= 20) {\n  console.log('a is between 10 and 20'); // a is between 10 and 20が出力される\n}"
         },
         {
             "id": 13,
-            "questionId": "js2_13",
-            "title": "論理演算子の結合順序",
-            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar x = 6;\nvar y = 8;\n\nif (x > 5 && y < 10 || x < 8) {\n    console.log('A');\n} else if (x === 6 && y === 8) {\n    console.log('B');\n} else if (x > 10 && y < 5) {\n    console.log('C');\n} else {\n    console.log('D');\n}\n```",
-            "explanation": "変数`x`の値は`6`で、変数`y`の値は`8`です。条件式`x > 5 && y < 10 || x < 8`は論理演算子の結合順序により、`(x > 5 && y < 10)`と`(x < 8)`がまず評価されます。前者の条件は`true`ですが、後者の条件は`false`です。したがって、そのブロック内のコード`console.log('A');`が実行されます。\n実行結果として、コンソールには`A`が出力されます。",
-            "answer": "A"
+            "questionId": "js_conditional2_13",
+            "title": "switch文の利用",
+            "question": "変数aが1ならば'one'、2ならば'two'、それ以外ならば'others'をconsoleに表示するswitch文を書いてください。",
+            "explanation": "switch文は、複数の条件分岐を一度に処理することができます。各caseに対するブロックの最後にはbreak文を書くことが一般的です。",
+            "answer": "let a = 2;\nswitch (a) {\n  case 1:\n    console.log('one');\n    break;\n  case 2:\n    console.log('two'); // twoが出力される\n    break;\n  default:\n    console.log('others');\n}"
         },
         {
             "id": 14,
-            "questionId": "js2_14",
-            "title": "switch文の使用",
-            "question": "以下のコードを実行した場合、どの結果がコンソールに出力されるでしょうか？\n\n```javascript\nvar dayOfWeek = 'Wednesday';\n\nswitch (dayOfWeek) {\n    case 'Monday':\n        console.log('It is Monday.');\n        break;\n    case 'Tuesday':\n        console.log('It is Tuesday.');\n        break;\n    case 'Wednesday':\n        console.log('It is Wednesday.');\n        break;\n    case 'Thursday':\n        console.log('It is Thursday.');\n        break;\n    case 'Friday':\n        console.log('It is Friday.');\n        break;\n    case 'Saturday':\n        console.log('It is Saturday.');\n        break;\n    case 'Sunday':\n        console.log('It is Sunday.');\n        break;\n    default:\n        console.log('Invalid day.');\n}\n```",
-            "explanation": "変数`dayOfWeek`の値は`Wednesday`です。`switch`文を使って`dayOfWeek`の値によって処理を分岐しています。`case 'Wednesday':`のブロック内のコード`console.log('It is Wednesday.');`が実行されます。\n実行結果として、コンソールには`It is Wednesday.`が出力されます。",
-            "answer": "It is Wednesday."
+            "questionId": "js_conditional2_14",
+            "title": "OR演算子の利用",
+            "question": "JavaScriptのOR演算子(||)を利用して、変数aがnullまたはundefinedの場合にデフォルト値「Hello」を設定するコードを書いてください。",
+            "explanation": "JavaScriptのOR演算子(||)は、左辺の値がfalsyである場合に右辺の値を返します。",
+            "answer": "let a = null;\nlet b = a || 'Hello';\nconsole.log(b); // Helloが出力される"
+        },
+        {
+            "id": 15,
+            "questionId": "js_conditional2_15",
+            "title": "複雑な条件式",
+            "question": "変数aが10以上20以下、または30以上40以下であれば「a is in the range」を表示するコードを書いてください。",
+            "explanation": "複雑な条件式では、()を使って演算子の優先順位を明確にすることが重要です。",
+            "answer": "let a = 35;\nif ((a >= 10 && a <= 20) || (a >= 30 && a <= 40)) {\n  console.log('a is in the range'); // a is in the rangeが出力される\n}"
+        },
+        {
+            "id": 16,
+            "questionId": "js_conditional2_16",
+            "title": "否定演算子の利用",
+            "question": "JavaScriptの否定演算子(!)を利用して、変数aがnullまたはundefinedでなければその値を、そうでなければデフォルト値「Hello」を表示するコードを書いてください。",
+            "explanation": "JavaScriptの否定演算子(!)は、真偽値を反転させます。",
+            "answer": "let a = 'World';\nconsole.log(a != null ? a : 'Hello'); // Worldが出力される"
+        },
+        {
+            "id": 17,
+            "questionId": "js_conditional2_17",
+            "title": "else ifの利用",
+            "question": "変数aが1ならば'one'、2ならば'two'、それ以外ならば'others'をconsoleに表示するif-else if-else文を書いてください。",
+            "explanation": "if-else if-else文を使用することで、複数の条件に対する分岐を表現できます。",
+            "answer": "let a = 2;\nif (a == 1) {\n  console.log('one');\n} else if (a == 2) {\n  console.log('two'); // twoが出力される\n} else {\n  console.log('others');\n}"
+        },
+        {
+            "id": 18,
+            "questionId": "js_conditional2_18",
+            "title": "比較演算子の注意",
+            "question": "JavaScriptでは'=='と'==='はどのように違うか説明し、その違いに注意して変数aが数値の1であれば'one'を、それ以外ならば'others'を表示するコードを書いてください。",
+            "explanation": "JavaScriptの'=='は型変換を行った上で等価性を比較しますが、'==='は型変換を行わずに厳密な等価性を比較します。",
+            "answer": "let a = '1';\nif (a === 1) {\n  console.log('one');\n} else {\n  console.log('others'); // othersが出力される\n}"
+        },
+        {
+            "id": 19,
+            "questionId": "js_conditional2_19",
+            "title": "複数の条件の組み合わせ",
+            "question": "変数aが10以下または100以上、かつ変数bがtrueであれば'Condition met'を表示するコードを書いてください。",
+            "explanation": "&&と||を組み合わせて使うときは、()を使って優先順位を明示的に示すことが重要です。",
+            "answer": "let a = 105;\nlet b = true;\nif ((a <= 10 || a >= 100) && b) {\n  console.log('Condition met'); // Condition metが出力される\n}"
+        },
+        {
+            "id": 20,
+            "questionId": "js_conditional2_20",
+            "title": "三項演算子の利用",
+            "question": "三項演算子を利用して、変数aがtrueなら'Yes'を、そうでなければ'No'を表示するコードを書いてください。",
+            "explanation": "三項演算子は条件 ? 式1 : 式2 の形で、条件が真の場合には式1、偽の場合には式2が評価されます。",
+            "answer": "let a = false;\nconsole.log(a ? 'Yes' : 'No'); // Noが出力される"
         }
-
     ]
 }

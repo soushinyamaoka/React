@@ -1,0 +1,86 @@
+{
+    "contentsId": "java3",
+    "title": "Javaの時間処理問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "javaTimeIntermediate_1",
+            "title": "現在時間の取得",
+            "question": "現在の時間を「HH:mm:ss」の形式で取得するプログラムをJavaで作成してください。",
+            "explanation": "JavaのLocalTimeクラスを使用し、現在の時間を取得できます。さらに、DateTimeFormatterを使って時間を特定の形式にフォーマットすることができます。",
+            "answer": "import java.time.LocalTime;\\nimport java.time.format.DateTimeFormatter;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 現在の時間を取得\\n        LocalTime now = LocalTime.now();\\n        \\n        // 時間をフォーマット\\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"HH:mm:ss\");\\n        String formattedTime = now.format(formatter);\\n        \\n        // フォーマットされた時間を出力\\n        System.out.println(formattedTime);\\n        // 出力: 現在の時間（HH:mm:ss形式）\\n    }\\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "javaTimeIntermediate_2",
+            "title": "時間の加算",
+            "question": "時間LocalTime.of(8, 30, 0)に45分を加えた時間を表示するJavaプログラムを作成してください。",
+            "explanation": "JavaのLocalTimeクラスのplusMinutesメソッドを使用して、時間に分を加えることができます。",
+            "answer": "import java.time.LocalTime;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 時間を定義\\n        LocalTime time = LocalTime.of(8, 30, 0);\\n        \\n        // 時間に45分を加える\\n        LocalTime addedTime = time.plusMinutes(45);\\n        \\n        // 加算後の時間を出力\\n        System.out.println(addedTime);\\n        // 出力: 09:15:00\\n    }\\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "javaTimeIntermediate_3",
+            "title": "時間の比較",
+            "question": "時間LocalTime.of(8, 30)が時間LocalTime.of(10, 15)よりも前であるか判定するJavaプログラムを作成してください。",
+            "explanation": "JavaのLocalTimeクラスのisBeforeメソッドを使用して、ある時間が別の時間よりも前であるかどうかを判定することができます。",
+            "answer": "import java.time.LocalTime;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 2つの時間を定義\\n        LocalTime time1 = LocalTime.of(8, 30);\\n        LocalTime time2 = LocalTime.of(10, 15);\\n        \\n        // time1がtime2よりも前であるかを判定\\n        boolean isBefore = time1.isBefore(time2);\\n        \\n        // 判定結果を出力\\n        System.out.println(isBefore);\\n        // 出力: true\\n    }\\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "javaTimeIntermediate_4",
+            "title": "現在日時の取得",
+            "question": "現在の日時を「yyyy-MM-dd HH:mm:ss」の形式で取得するプログラムをJavaで作成してください。",
+            "explanation": "JavaのLocalDateTimeクラスを使用し、現在の日時を取得できます。さらに、DateTimeFormatterを使って日時を特定の形式にフォーマットすることができます。",
+            "answer": "import java.time.LocalDateTime;\\nimport java.time.format.DateTimeFormatter;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 現在の日時を取得\\n        LocalDateTime now = LocalDateTime.now();\\n        \\n        // 日時をフォーマット\\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"yyyy-MM-dd HH:mm:ss\");\\n        String formattedDateTime = now.format(formatter);\\n        \\n        // フォーマットされた日時を出力\\n        System.out.println(formattedDateTime);\\n        // 出力: 現在の日時（yyyy-MM-dd HH:mm:ss形式）\\n    }\\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "javaTimeIntermediate_5",
+            "title": "日時の加算",
+            "question": "現在の日時から7日と30分後の日時を表示するJavaプログラムを作成してください。",
+            "explanation": "JavaのLocalDateTimeクラスのplusDaysメソッドとplusMinutesメソッドを使用して、日時に日数と分を加えることができます。",
+            "answer": "import java.time.LocalDateTime;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 現在の日時を取得\\n        LocalDateTime now = LocalDateTime.now();\\n        \\n        // 日時に7日と30分を加える\\n        LocalDateTime addedDateTime = now.plusDays(7).plusMinutes(30);\\n        \\n        // 加算後の日時を出力\\n        System.out.println(addedDateTime);\\n        // 出力: 現在の日時から7日と30分後の日時\\n    }\\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "javaTimeIntermediate_6",
+            "title": "期間の計算",
+            "question": "「2023-05-18」と「2024-05-18」の間の日数を計算するJavaプログラムを作成してください。",
+            "explanation": "JavaのLocalDateクラスとPeriodクラスを使用して、2つの日付間の期間を計算できます。",
+            "answer": "import java.time.LocalDate;\\nimport java.time.Period;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 2つの日付を定義\\n        LocalDate date1 = LocalDate.of(2023, 5, 18);\\n        LocalDate date2 = LocalDate.of(2024, 5, 18);\\n        \\n        // 2つの日付間の期間を計算\\n        Period period = Period.between(date1, date2);\\n        int days = period.getDays();\\n        \\n        // 期間を出力\\n        System.out.println(days);\\n        // 出力: 365\\n    }\\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "javaTimeIntermediate_7",
+            "title": "時間の差の計算",
+            "question": "「10:15」と「12:30」の間の時間を分単位で計算するJavaプログラムを作成してください。",
+            "explanation": "JavaのLocalTimeクラスとDurationクラスを使用して、2つの時間間の差を計算できます。",
+            "answer": "import java.time.LocalTime;\\nimport java.time.Duration;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 2つの時間を定義\\n        LocalTime time1 = LocalTime.of(10, 15);\\n        LocalTime time2 = LocalTime.of(12, 30);\\n        \\n        // 2つの時間間の差を計算\\n        Duration duration = Duration.between(time1, time2);\\n        long minutes = duration.toMinutes();\\n        \\n        // 時間の差を出力\\n        System.out.println(minutes);\\n        // 出力: 135\\n    }\\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "javaTimeIntermediate_8",
+            "title": "特定の日付までの期間",
+            "question": "現在日付から「2025-01-01」までの日数を計算するJavaプログラムを作成してください。",
+            "explanation": "JavaのLocalDateクラスとPeriodクラスを使用して、現在日付と特定の日付間の期間を計算します。",
+            "answer": "import java.time.LocalDate;\\nimport java.time.Period;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 現在日付を取得\\n        LocalDate today = LocalDate.now();\\n        \\n        // 特定の日付を定義\\n        LocalDate futureDate = LocalDate.of(2025, 1, 1);\\n        \\n        // 2つの日付間の期間を計算\\n        Period period = Period.between(today, futureDate);\\n        int days = period.getDays();\\n        \\n        // 日数を出力\\n        System.out.println(days);\\n        // 出力: 日数（実行した日によります）\\n    }\\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "javaTimeIntermediate_9",
+            "title": "日付の書式変更",
+            "question": "現在日付を「YYYY年MM月DD日」形式で表示するJavaプログラムを作成してください。",
+            "explanation": "JavaのLocalDateクラスとDateTimeFormatterクラスを使用して、日付の表示形式を変更できます。",
+            "answer": "import java.time.LocalDate;\\nimport java.time.format.DateTimeFormatter;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 現在日付を取得\\n        LocalDate today = LocalDate.now();\\n        \\n        // フォーマッターを定義\\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"yyyy年MM月dd日\");\\n        \\n        // 現在日付を指定した形式で表示\\n        String formattedDate = today.format(formatter);\\n        System.out.println(formattedDate);\\n        // 出力: YYYY年MM月DD日（実行した日によります）\\n    }\\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "javaTimeIntermediate_10",
+            "title": "現在の時刻取得",
+            "question": "現在の時刻を「HH時MM分」形式で表示するJavaプログラムを作成してください。",
+            "explanation": "JavaのLocalTimeクラスとDateTimeFormatterクラスを使用して、時刻の表示形式を変更します。",
+            "answer": "import java.time.LocalTime;\\nimport java.time.format.DateTimeFormatter;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 現在の時刻を取得\\n        LocalTime currentTime = LocalTime.now();\\n        \\n        // フォーマッターを定義\\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"HH時mm分\");\\n        \\n        // 現在の時刻を指定した形式で表示\\n        String formattedTime = currentTime.format(formatter);\\n        System.out.println(formattedTime);\\n        // 出力: HH時MM分（実行した時刻によります）\\n    }\\n}"
+        }
+    ]
+}

@@ -1,0 +1,166 @@
+{
+    "contentsId": "js_return",
+    "title": "Javascriptの戻り値問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_ret1_1",
+            "title": "単純な戻り値",
+            "question": "与えられた数字をそのまま返す関数を作成してください。",
+            "explanation": "関数から値を返すには、return文を使用します。",
+            "answer": "function returnInput(input) {\n  return input;\n}\n\nconsole.log(returnInput(5));  // console.logで '5' を表示"
+        },
+        {
+            "id": 2,
+            "questionId": "js_ret1_2",
+            "title": "戻り値の計算",
+            "question": "二つの数字を引数として受け取り、それらの和を戻り値とする関数を作成してください。",
+            "explanation": "関数の中で計算を行い、その結果をreturn文で返すことができます。",
+            "answer": "function add(a, b) {\n  return a + b;\n}\n\nconsole.log(add(5, 3));  // console.logで '8' を表示"
+        },
+        {
+            "id": 3,
+            "questionId": "js_ret1_3",
+            "title": "条件に基づく戻り値",
+            "question": "与えられた数字が奇数なら'True'、偶数なら'False'を返す関数を作成してください。",
+            "explanation": "if文を使用して条件によって戻り値を変えることができます。",
+            "answer": "function isOdd(num) {\n  if (num % 2 == 1) {\n    return true;\n  } else {\n    return false;\n  }\n}\n\nconsole.log(isOdd(5));  // console.logで 'true' を表示\nconsole.log(isOdd(4));  // console.logで 'false' を表示"
+        },
+        {
+            "id": 4,
+            "questionId": "js_ret1_4",
+            "title": "文字列の戻り値",
+            "question": "与えられた文字列をそのまま返す関数を作成してください。",
+            "explanation": "関数から文字列を返すには、return文を使用します。",
+            "answer": "function returnString(inputString) {\n  return inputString;\n}\n\nconsole.log(returnString('Hello, World!'));  // console.logで 'Hello, World!' を表示"
+        },
+        {
+            "id": 5,
+            "questionId": "js_ret1_5",
+            "title": "文字列の結合",
+            "question": "二つの文字列を引数として受け取り、それらを結合した文字列を戻り値とする関数を作成してください。",
+            "explanation": "関数の中で文字列の結合を行い、その結果をreturn文で返すことができます。",
+            "answer": "function concatenateStrings(string1, string2) {\n  return string1 + string2;\n}\n\nconsole.log(concatenateStrings('Hello, ', 'World!'));  // console.logで 'Hello, World!' を表示"
+        },
+        {
+            "id": 6,
+            "questionId": "js_ret1_6",
+            "title": "計算結果の戻り値",
+            "question": "二つの数値を引数として受け取り、それらの積を戻り値とする関数を作成してください。",
+            "explanation": "関数の中で数値の計算を行い、その結果をreturn文で返すことができます。",
+            "answer": "function multiplyNumbers(num1, num2) {\n  return num1 * num2;\n}\n\nconsole.log(multiplyNumbers(3, 4));  // console.logで 12 を表示"
+        },
+        {
+            "id": 7,
+            "questionId": "js_ret1_7",
+            "title": "複数の戻り値",
+            "question": "二つの数値を引数として受け取り、それらの和と差を配列として戻り値とする関数を作成してください。",
+            "explanation": "JavaScriptの関数は一つの値しか返せませんが、配列やオブジェクトを用いることで複数の値を一度に返すことができます。",
+            "answer": "function sumAndDifference(num1, num2) {\n  return [num1 + num2, num1 - num2];\n}\n\nconsole.log(sumAndDifference(7, 5));  // console.logで [12, 2] を表示"
+        },
+        {
+            "id": 8,
+            "questionId": "js_ret1_8",
+            "title": "文字列連結の戻り値",
+            "question": "二つの文字列を引数として受け取り、それらを連結した結果を戻り値とする関数を作成してください。",
+            "explanation": "文字列同士は「+」演算子で連結することができます。関数内で文字列の連結を行い、その結果をreturn文で返します。",
+            "answer": "function concatStrings(str1, str2) {\n  return str1 + str2;\n}\n\nconsole.log(concatStrings('Hello, ', 'world!'));  // console.logで 'Hello, world!' を表示"
+        },
+        {
+            "id": 9,
+            "questionId": "js_ret1_9",
+            "title": "戻り値の型",
+            "question": "引数に数値を受け取り、その数値が偶数ならtrue、奇数ならfalseを戻り値とする関数を作成してください。",
+            "explanation": "戻り値は任意のデータ型を返すことが可能です。ここでは真偽値を戻り値として返します。数値が偶数か奇数かは「%」演算子で判定できます。",
+            "answer": "function isEven(num) {\n  return num % 2 === 0;\n}\n\nconsole.log(isEven(3));  // console.logで false を表示\nconsole.log(isEven(4));  // console.logで true を表示"
+        },
+        {
+            "id": 10,
+            "questionId": "js_ret1_10",
+            "title": "配列の長さを返す関数",
+            "question": "引数に配列を受け取り、その配列の長さを戻り値とする関数を作成してください。",
+            "explanation": "JavaScriptでは配列の長さを取得するために、「.length」プロパティを使用します。関数内でこのプロパティを用いて配列の長さを返します。",
+            "answer": "function arrayLength(arr) {\n  return arr.length;\n}\n\nconsole.log(arrayLength([1, 2, 3, 4, 5]));  // console.logで 5 を表示"
+        },
+        {
+            "id": 11,
+            "questionId": "js_ret1_11",
+            "title": "文字列の大文字化",
+            "question": "引数に文字列を受け取り、その文字列を全て大文字にした結果を戻り値とする関数を作成してください。",
+            "explanation": "JavaScriptの文字列には、その文字列を全て大文字にするメソッド「toUpperCase()」があります。このメソッドを用いて文字列を大文字化し、戻り値として返します。",
+            "answer": "function toUpperCase(str) {\n  return str.toUpperCase();\n}\n\nconsole.log(toUpperCase('hello'));  // console.logで 'HELLO' を表示"
+        },
+        {
+            "id": 12,
+            "questionId": "js_ret1_12",
+            "title": "配列の要素を連結",
+            "question": "引数に配列を受け取り、その配列の全ての要素を連結した文字列を戻り値とする関数を作成してください。",
+            "explanation": "配列の全ての要素を連結するには、「join」メソッドを使用します。このメソッドを使って配列の全ての要素を連結し、戻り値として返します。",
+            "answer": "function joinElements(arr) {\n  return arr.join('');\n}\n\nconsole.log(joinElements(['H', 'e', 'l', 'l', 'o']));  // console.logで 'Hello' を表示"
+        },
+        {
+            "id": 13,
+            "questionId": "js_ret1_13",
+            "title": "配列の最大値",
+            "question": "引数に数値の配列を受け取り、その配列の中の最大値を戻り値とする関数を作成してください。",
+            "explanation": "配列の中の最大値を求めるには、「Math.max」メソッドとスプレッド構文を使用します。この2つを組み合わせて配列の最大値を求め、戻り値として返します。",
+            "answer": "function maxOfArray(arr) {\n  return Math.max(...arr);\n}\n\nconsole.log(maxOfArray([1, 2, 3, 4, 5]));  // console.logで 5 を表示"
+        },
+        {
+            "id": 14,
+            "questionId": "js_ret1_14",
+            "title": "配列の最小値",
+            "question": "引数に数値の配列を受け取り、その配列の中の最小値を戻り値とする関数を作成してください。",
+            "explanation": "配列の中の最小値を求めるには、「Math.min」メソッドとスプレッド構文を使用します。この2つを組み合わせて配列の最小値を求め、戻り値として返します。",
+            "answer": "function minOfArray(arr) {\n  return Math.min(...arr);\n}\n\nconsole.log(minOfArray([1, 2, 3, 4, 5]));  // console.logで 1 を表示"
+        },
+        {
+            "id": 15,
+            "questionId": "js_ret1_15",
+            "title": "文字列の長さ",
+            "question": "引数に文字列を受け取り、その文字列の長さを戻り値とする関数を作成してください。",
+            "explanation": "文字列の長さを求めるには、文字列の「length」プロパティを使用します。このプロパティを使用して文字列の長さを求め、戻り値として返します。",
+            "answer": "function stringLength(str) {\n  return str.length;\n}\n\nconsole.log(stringLength('Hello World!'));  // console.logで 12 を表示"
+        },
+        {
+            "id": 16,
+            "questionId": "js_ret1_16",
+            "title": "乗数の計算",
+            "question": "引数に基数と指数を受け取り、基数の指数乗の計算結果を戻り値とする関数を作成してください。",
+            "explanation": "JavaScriptでは、「Math.pow」メソッドを用いて乗数の計算を行うことができます。このメソッドを使用して、基数の指数乗の計算結果を戻り値として返します。",
+            "answer": "function power(base, exponent) {\n  return Math.pow(base, exponent);\n}\n\nconsole.log(power(2, 3));  // console.logで 8 を表示"
+        },
+        {
+            "id": 17,
+            "questionId": "js_ret1_17",
+            "title": "配列の合計",
+            "question": "引数に数値の配列を受け取り、その配列の合計値を戻り値とする関数を作成してください。",
+            "explanation": "配列の合計値を求めるには、配列の「reduce」メソッドを使用します。このメソッドを使用して配列の合計値を求め、戻り値として返します。",
+            "answer": "function sumOfArray(arr) {\n  return arr.reduce((total, current) => total + current, 0);\n}\n\nconsole.log(sumOfArray([1, 2, 3, 4, 5]));  // console.logで 15 を表示"
+        },
+        {
+            "id": 18,
+            "questionId": "js_ret1_18",
+            "title": "配列の平均値",
+            "question": "引数に数値の配列を受け取り、その配列の平均値を戻り値とする関数を作成してください。",
+            "explanation": "配列の平均値を求めるには、配列の合計値を要素の数で割ります。配列の要素の数は「length」プロパティで取得できます。",
+            "answer": "function averageOfArray(arr) {\n  var total = arr.reduce((total, current) => total + current, 0);\n  return total / arr.length;\n}\n\nconsole.log(averageOfArray([1, 2, 3, 4, 5]));  // console.logで 3 を表示"
+        },
+        {
+            "id": 19,
+            "questionId": "js_ret1_19",
+            "title": "文字列の反転",
+            "question": "引数に文字列を受け取り、その文字列を逆順にした結果を戻り値とする関数を作成してください。",
+            "explanation": "文字列を逆順にするには、文字列を配列に変換してから「reverse」メソッドを使用し、再度文字列に戻すという手順を踏みます。",
+            "answer": "function reverseString(str) {\n  return str.split('').reverse().join('');\n}\n\nconsole.log(reverseString('hello'));  // console.logで 'olleh' を表示"
+        },
+        {
+            "id": 20,
+            "questionId": "js_ret1_20",
+            "title": "引数の評価",
+            "question": "引数に数値を受け取り、その数値が偶数なら 'Even'、奇数なら 'Odd' を戻り値とする関数を作成してください。",
+            "explanation": "数値が偶数か奇数かを判断するには、2で割った余りを調べます。余りが0なら偶数、1なら奇数です。",
+            "answer": "function evaluateNumber(n) {\n  return n % 2 === 0 ? 'Even' : 'Odd';\n}\n\nconsole.log(evaluateNumber(5));  // console.logで 'Odd' を表示"
+        }
+    ]
+}

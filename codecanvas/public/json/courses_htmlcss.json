@@ -1,0 +1,13 @@
+[{
+        "id": 1,
+        "title": "HTMLの基本",
+        "description": "HTMLとは、HTML文書の構造、HTMLの基本タグ、HTMLの画像とメディア、HTMLのテーブル、HTMLフォーム、HTMLのセマンティックタグ",
+        "link": "/learn/htmlcss1"
+    },
+    {
+        "id": 2,
+        "title": "CSSの基本",
+        "description": "CSSとは、CSSの基本構文、CSSセレクタ、CSSの色と背景、CSSのボックスモデル、CSSのテキストスタイリング、CSSのレイアウト",
+        "link": "/learn/htmlcss2"
+    }
+]

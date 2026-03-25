@@ -1,0 +1,86 @@
+{
+    "contentsId": "java3",
+    "title": "Javaのクラスの継承問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_inheritance1_1",
+            "title": "基本的なクラスの継承",
+            "question": "Javaにおいて、Animalという名前の親クラスを作成し、その子クラスとしてDogという名前のクラスを作成してください。Animalクラスには、「sound()」という名前のメソッドを定義し、「Animals make sounds」を出力するようにしてください。Dogクラスでは、このメソッドをオーバーライド（再定義）して、「Dogs bark」を出力するようにしてください。",
+            "explanation": "Javaでは、親クラスのメソッドを子クラスで再定義することをオーバーライドといいます。オーバーライドを利用することで、同じメソッド名で異なる振る舞いをさせることが可能になります。",
+            "answer": "```java\n// 親クラスAnimalを作成\npublic class Animal {\n    // soundメソッドを定義\n    public void sound() {\n        System.out.println(\"Animals make sounds\");\n    }\n}\n\n// Animalクラスを継承したDogクラスを作成\npublic class Dog extends Animal {\n    // Animalクラスのsoundメソッドをオーバーライド\n    @Override\n    public void sound() {\n        System.out.println(\"Dogs bark\");\n    }\n}\n```\n// 出力結果:\n// Dogクラスのインスタンスを作成し、soundメソッドを呼び出すと、「Dogs bark」と表示されます。"
+        },
+        {
+            "id": 2,
+            "questionId": "java_inheritance1_2",
+            "title": "コンストラクタの継承",
+            "question": "Animalという名前の親クラスが存在します。このクラスは、nameというプロパティ（メンバ変数）を持っています。Dogという名前の子クラスを作成し、Animalクラスのnameプロパティを継承し、Dogクラスのコンストラクタでnameに「Dog」を代入してください。そして、DogクラスのgetNameメソッドを呼び出すと、「Dog」と表示されるようにしてください。",
+            "explanation": "子クラスは親クラスのプロパティを継承することができます。コンストラクタで親クラスのプロパティに値を設定するときには、「super」キーワードを使います。",
+            "answer": "```java\n// 親クラスAnimalを作成\npublic class Animal {\n    // nameプロパティ（メンバ変数）を定義\n    protected String name;\n}\n\n// Animalクラスを継承したDogクラスを作成\npublic class Dog extends Animal {\n    // コンストラクタでnameプロパティに「Dog」を設定\n    public Dog() {\n        this.name = \"Dog\";\n    }\n\n    // getNameメソッドを定義\n    public String getName() {\n        return this.name;\n    }\n}\n```\n// 出力結果:\n// Dogクラスのインスタンスを作成し、getNameメソッドを呼び出すと、「Dog」と表示されます。"
+        },
+        {
+            "id": 3,
+            "questionId": "java_inheritance1_3",
+            "title": "メソッドのオーバーライド",
+            "question": "Animalクラスが存在し、このクラスはbreatheという名前のメソッドを持っています。このメソッドは、「I breathe air.」と出力します。Dogという名前の子クラスを作成し、breatheメソッドをオーバーライドして、「I breathe air and I love bones.」と出力してください。",
+            "explanation": "子クラスは親クラスのメソッドをオーバーライド（上書き）することができます。オーバーライドするには、親クラスのメソッドと同じ名前、同じパラメーターでメソッドを定義します。",
+            "answer": "```java\n// 親クラスAnimalを作成\npublic class Animal {\n    // breatheメソッドを定義\n    public void breathe() {\n        System.out.println(\"I breathe air.\");\n    }\n}\n\n// Animalクラスを継承したDogクラスを作成\npublic class Dog extends Animal {\n    // breatheメソッドをオーバーライド\n    @Override\n    public void breathe() {\n        System.out.println(\"I breathe air and I love bones.\");\n    }\n}\n```\n// 出力結果:\n// Dogクラスのインスタンスを作成し、breatheメソッドを呼び出すと、「I breathe air and I love bones.」と表示されます。"
+        },
+        {
+            "id": 4,
+            "questionId": "java_inheritance1_4",
+            "title": "スーパークラスのコンストラクタ",
+            "question": "Animalクラスが存在し、このクラスはコンストラクタで名前(name)を設定できます。Dogという名前の子クラスを作成し、コンストラクタで名前とともに、犬種(breed)を設定できるようにしてください。",
+            "explanation": "スーパークラスのコンストラクタを利用するには、子クラスのコンストラクタ内で`super`キーワードを使用します。これにより、スーパークラスのコンストラクタを呼び出し、スーパークラスのフィールドを初期化することができます。",
+            "answer": "```java\n// 親クラスAnimalを作成\npublic class Animal {\n    protected String name;\n\n    // Animalのコンストラクタ\n    public Animal(String name) {\n        this.name = name;\n    }\n}\n\n// Animalクラスを継承したDogクラスを作成\npublic class Dog extends Animal {\n    private String breed;\n\n    // Dogのコンストラクタ\n    public Dog(String name, String breed) {\n        // 親クラスのコンストラクタを呼び出す\n        super(name);\n        // 犬種を設定\n        this.breed = breed;\n    }\n}\n```\n// Dogクラスのインスタンスを作成するときには、名前と犬種を引数にしてコンストラクタを呼び出します。"
+        },
+        {
+            "id": 5,
+            "questionId": "java_inheritance1_5",
+            "title": "メソッドのオーバーライド",
+            "question": "Animalクラスが存在し、このクラスはspeakというメソッドを持っています。Dogクラスを作成し、speakメソッドをオーバーライドして「ワンワン」と出力するようにしてください。",
+            "explanation": "子クラスでは親クラスのメソッドをオーバーライドすることができます。オーバーライドすると、親クラスのメソッドに加えて、またはその代わりに子クラス独自の動作を定義することができます。",
+            "answer": "```java\n// 親クラスAnimalを作成\npublic class Animal {\n    public void speak() {\n        System.out.println(\"動物の音\");\n    }\n}\n\n// Animalクラスを継承したDogクラスを作成\npublic class Dog extends Animal {\n    @Override\n    public void speak() {\n        System.out.println(\"ワンワン\");\n    }\n}\n```\n// Dogクラスのspeakメソッドを呼び出すと、「ワンワン」と出力されます。"
+        },
+        {
+            "id": 6,
+            "questionId": "java_inheritance1_6",
+            "title": "superキーワードの使用",
+            "question": "Employeeクラスが存在し、このクラスはsalaryというフィールドを持っています。Managerクラスを作成し、Employeeクラスを継承し、bonusというフィールドを追加してください。また、ManagerクラスのコンストラクタでEmployeeクラスのsalaryフィールドとManagerクラスのbonusフィールドの値を設定できるようにしてください。",
+            "explanation": "superキーワードは、子クラスから親クラスのフィールドやメソッドにアクセスするために使用されます。この問題では、ManagerクラスのコンストラクタでEmployeeクラスのsalaryフィールドの値を設定するためにsuperキーワードを使用します。",
+            "answer": "```java\n// 親クラスEmployeeを作成\npublic class Employee {\n    protected int salary;\n    public Employee(int salary) {\n        this.salary = salary;\n    }\n}\n\n// Employeeクラスを継承したManagerクラスを作成\npublic class Manager extends Employee {\n    private int bonus;\n    public Manager(int salary, int bonus) {\n        super(salary); // 親クラスのコンストラクタを呼び出してsalaryを設定\n        this.bonus = bonus; // Managerクラスのフィールドbonusを設定\n    }\n}\n```\n// Managerクラスのインスタンスを作成し、salaryとbonusを設定できます。"
+        },
+        {
+            "id": 7,
+            "questionId": "java_inheritance1_7",
+            "title": "オーバーライドの基本",
+            "question": "Animalクラスが存在し、このクラスはspeakというメソッドを持っています。Dogクラスを作成し、Animalクラスを継承し、speakメソッドをオーバーライドして、\"Woof\"と出力するようにしてください。",
+            "explanation": "オーバーライドは、子クラスが親クラスのメソッドを再定義することです。この問題では、DogクラスがAnimalクラスのspeakメソッドをオーバーライドし、その動作を変更しています。",
+            "answer": "```java\n// 親クラスAnimalを作成\npublic class Animal {\n    public void speak() {\n        System.out.println(\"Animal speak\");\n    }\n}\n\n// Animalクラスを継承したDogクラスを作成\npublic class Dog extends Animal {\n    @Override\n    public void speak() {\n        System.out.println(\"Woof\"); // speakメソッドをオーバーライド\n    }\n}\n```\n// Dogクラスのspeakメソッドを呼び出すと、\"Woof\"と出力されます。"
+        },
+        {
+            "id": 8,
+            "questionId": "java_inheritance1_8",
+            "title": "親クラスのコンストラクタ",
+            "question": "Employeeクラスが存在し、このクラスはnameという変数を持つコンストラクタを持っています。Managerクラスを作成し、Employeeクラスを継承し、親クラスのコンストラクタを呼び出すようにしてください。",
+            "explanation": "子クラスのコンストラクタから親クラスのコンストラクタを呼び出すためには、superキーワードを使用します。super()を使うことで親クラスのコンストラクタを呼び出すことができます。",
+            "answer": "```java\n// 親クラスEmployeeを作成\npublic class Employee {\n    String name;\n\n    // Employeeのコンストラクタ\n    public Employee(String name) {\n        this.name = name;\n    }\n}\n\n// Employeeクラスを継承したManagerクラスを作成\npublic class Manager extends Employee {\n    // Managerのコンストラクタで親クラスのコンストラクタを呼び出す\n    public Manager(String name) {\n        super(name); // Employeeのコンストラクタを呼び出す\n    }\n}\n```\n// Managerクラスのコンストラクタは、親クラスEmployeeのコンストラクタを呼び出します。"
+        },
+        {
+            "id": 9,
+            "questionId": "java_inheritance1_9",
+            "title": "メソッドオーバーライド",
+            "question": "Employeeクラスが存在し、このクラスはintroduceメソッドを持っています。Managerクラスを作成し、Employeeクラスを継承し、introduceメソッドをオーバーライドしてください。",
+            "explanation": "メソッドオーバーライドとは、親クラスのメソッドを子クラスで再定義することを指します。オーバーライドするには、子クラスの中で親クラスのメソッドと同じ名前、同じ引数のメソッドを作成します。",
+            "answer": "```java\n// 親クラスEmployeeを作成\npublic class Employee {\n    String name;\n\n    public Employee(String name) {\n        this.name = name;\n    }\n\n    // 自己紹介のメソッド\n    public void introduce() {\n        System.out.println(\"Hello, I am \" + name);\n    }\n}\n\n// Employeeクラスを継承したManagerクラスを作成\npublic class Manager extends Employee {\n\n    public Manager(String name) {\n        super(name);\n    }\n\n    // introduceメソッドをオーバーライド\n    @Override\n    public void introduce() {\n        System.out.println(\"Hello, I am Manager \" + name);\n    }\n}\n```\n// Managerクラスのintroduceメソッドは、親クラスEmployeeのメソッドをオーバーライドし、自己紹介文が変わります。"
+        },
+        {
+            "id": 10,
+            "questionId": "java_inheritance1_10",
+            "title": "継承とコンストラクタ",
+            "question": "Employeeクラスが存在し、このクラスはnameとageというフィールドを持っています。コンストラクタを用いてこれらのフィールドを初期化します。Managerクラスを作成し、Employeeクラスを継承し、さらにpositionというフィールドを追加してください。コンストラクタも適切に定義してください。",
+            "explanation": "Javaでは、親クラスのフィールドやメソッドは子クラスで継承することができます。子クラスが独自にフィールドを追加する場合、それを初期化するためのコンストラクタを定義する必要があります。",
+            "answer": "```java\n// 親クラスEmployeeを作成\npublic class Employee {\n    String name;\n    int age;\n\n    public Employee(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n}\n\n// Employeeクラスを継承したManagerクラスを作成\npublic class Manager extends Employee {\n    String position;\n\n    public Manager(String name, int age, String position) {\n        super(name, age);\n        this.position = position;\n    }\n}\n```\n// Managerクラスのコンストラクタでは、親クラスのコンストラクタを呼び出すためにsuperを使用し、その後で独自のフィールドを初期化します。"
+        }
+    ]
+}

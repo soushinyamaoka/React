@@ -1,0 +1,86 @@
+{
+    "contentsId": "java7",
+    "title": "Javaのカプセル化問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java7_1",
+            "title": "カプセル化と継承",
+            "question": "次の「Person」クラスは、名前と年齢をフィールドに持つシンプルなクラスです。これを基に「Student」クラスを作成し、新たに学生番号（studentNumber）をフィールドとして追加し、getterとsetterも追加してください。\n\npublic class Person {\n    private String name;\n    private int age;\n\n    public Person(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n\n    public String getName() {\n        return name;\n    }\n\n    public int getAge() {\n        return age;\n    }\n}",
+            "explanation": "Javaでは、あるクラスを基に新たなクラスを作成するために継承を使います。この問題では、「Person」クラスを基に新たな「Student」クラスを作成します。「Student」クラスは「Person」クラスのすべてのフィールドとメソッドを継承し、さらに新たなフィールド（studentNumber）とそのgetterおよびsetterを追加します。",
+            "answer": "public class Student extends Person {\n    private String studentNumber;\n\n    public Student(String name, int age, String studentNumber) {\n        super(name, age);\n        this.studentNumber = studentNumber;\n    }\n\n    public String getStudentNumber() {\n        return studentNumber;\n    }\n\n    public void setStudentNumber(String studentNumber) {\n        this.studentNumber = studentNumber;\n    }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java7_2",
+            "title": "カプセル化とコレクション",
+            "question": "「Product」クラスを作成し、フィールドに商品名（name）と価格（price）を持たせてください。また、「Store」クラスを作成し、フィールドに「Product」のリスト（products）を持たせてください。しかし、外部から直接リストにアクセスできないようにし、代わりに商品を追加するaddProductメソッドを提供してください。\n\n注意：「Product」クラスと「Store」クラスは別々のファイルに作成すると想定してください。",
+            "explanation": "クラスのフィールドにコレクションを持たせる際は、そのコレクションへの直接的なアクセスを制限し、代わりに特定のメソッドを提供することで、データの整合性を保つことができます。この問題では、「Store」クラスが「Product」のリストを持つように設計します。しかし、リストへの直接的なアクセスは制限し、商品を追加するためのメソッドを提供します。",
+            "answer": "Product.java\n\npublic class Product {\n    private String name;\n    private double price;\n\n    public Product(String name, double price) {\n        this.name = name;\n        this.price = price;\n    }\n\n    public String getName() {\n        return name;\n    }\n\n    public double getPrice() {\n        return price;\n    }\n}\n\nStore.java\n\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class Store {\n    private List<Product> products;\n\n    public Store() {\n        this.products = new ArrayList<>();\n    }\n\n    public void addProduct(Product product) {\n        this.products.add(product);\n    }\n\n    // productsへのゲッターは提供しない\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java7_3",
+            "title": "カプセル化とポリモーフィズム",
+            "question": "次の2つのクラス、PetクラスとDogクラスがあります。\n\npublic class Pet {\n    private String name;\n\n    public Pet(String name) {\n        this.name = name;\n    }\n\n    public String getName() {\n        return name;\n    }\n}\n\npublic class Dog extends Pet {\n    public Dog(String name) {\n        super(name);\n    }\n\n    public void bark() {\n        System.out.println(\"Woof!\");\n    }\n}\n\nDogクラスはPetクラスを継承しており、barkメソッドを追加しています。Pet型の変数にDogオブジェクトを代入し、barkメソッドを呼び出すためのコードを書いてください。",
+            "explanation": "Javaでは、親クラス型の変数に子クラスのオブジェクトを代入することができます。これをアップキャストと言います。しかし、アップキャストされたオブジェクトは、親クラスに存在するメソッドしか直接呼び出すことができません。子クラスで追加されたメソッドを呼び出すには、一度ダウンキャストする必要があります。この問題では、Pet型の変数にDogオブジェクトを代入し、barkメソッドを呼び出すためにダウンキャストを行います。",
+            "answer": "Pet pet = new Dog(\"Fido\");\nif (pet instanceof Dog) {\n    ((Dog) pet).bark();\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java7_4",
+            "title": "カプセル化と静的メソッド",
+            "question": "次の「Circle」クラスは、半径をフィールドに持つシンプルなクラスです。\n\npublic class Circle {\n    private double radius;\n\n    public Circle(double radius) {\n        this.radius = radius;\n    }\n\n    public double getRadius() {\n        return radius;\n    }\n}\n\nこのクラスに、半径から面積を計算して返す静的メソッドcalculateAreaを追加してください。ただし、面積の計算には円周率としてMath.PIを使用してください。",
+            "explanation": "静的メソッドは、インスタンス化されずにクラスから直接呼び出すことができるメソッドです。静的メソッド内では、クラスレベルのフィールドやメソッドのみをアクセスできます。この問題では、Circleクラスに静的メソッドcalculateAreaを追加し、引数の半径から面積を計算して返します。",
+            "answer": "public class Circle {\n    private double radius;\n\n    public Circle(double radius) {\n        this.radius = radius;\n    }\n\n    public double getRadius() {\n        return radius;\n    }\n\n    public static double calculateArea(double radius) {\n        return Math.PI * radius * radius;\n    }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java7_5",
+            "title": "カプセル化とコンストラクタ",
+            "question": "次の「Product」クラスは、商品名(name)と価格(price)をフィールドに持つシンプルなクラスです。ただし、このクラスにはデフォルトコンストラクタがありません。\n\npublic class Product {\n    private String name;\n    private double price;\n\n    public Product(String name, double price) {\n        this.name = name;\n        this.price = price;\n    }\n\n    public String getName() {\n        return name;\n    }\n\n    public double getPrice() {\n        return price;\n    }\n}\n\nこのクラスを利用して、「Book」クラスを作成し、さらに作者(author)をフィールドに持つようにしてください。また、Bookクラスのコンストラクタで商品名、価格、作者を引数として受け取り、適切に設定するようにコードを書いてください。",
+            "explanation": "Javaのカプセル化の原則により、Productクラスのフィールドはprivateで宣言されているため、これらのフィールドに直接アクセスすることはできません。そのため、Bookクラスのコンストラクタ内でsuperキーワードを使用してProductクラスのコンストラクタを呼び出し、商品名と価格を設定します。そして、Bookクラス自身のフィールドである作者もコンストラクタ内で設定します。",
+            "answer": "public class Book extends Product {\n    private String author;\n\n    public Book(String name, double price, String author) {\n        super(name, price);\n        this.author = author;\n    }\n\n    public String getAuthor() {\n        return author;\n    }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java7_6",
+            "title": "カプセル化とインターフェース",
+            "question": "以下のような「Soundable」インターフェースがあります。\n\npublic interface Soundable {\n    void sound();\n}\n\nこのインターフェースを実装した「Cat」クラスを作成してください。Catクラスはフィールドとして名前(name)を持ち、soundメソッドが呼び出された時に、「[名前] says Meow!」と出力するように実装してください。ただし、名前はコンストラクタで受け取るようにしてください。",
+            "explanation": "Javaでは、クラスはインターフェースを実装することができます。インターフェースを実装するためには、そのインターフェースで定義された全てのメソッドをクラス内で定義する必要があります。この問題では、CatクラスがSoundableインターフェースを実装し、そのsoundメソッドをオーバーライドします。soundメソッド内では、名前とともに「says Meow!」と出力します。",
+            "answer": "public class Cat implements Soundable {\n    private String name;\n\n    public Cat(String name) {\n        this.name = name;\n    }\n\n    @Override\n    public void sound() {\n        System.out.println(name + \" says Meow!\");\n    }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java7_7",
+            "title": "カプセル化とアクセス修飾子",
+            "question": "次のクラスは「Account」クラスとして、銀行の口座を模しています。ただし、このクラスはカプセル化が適切に実装されていません。\n\npublic class Account {\n    public String name;\n    public double balance;\n}\n\nこのクラスについて、以下の要件を満たすようにカプセル化を実装してください。\n\n1. nameとbalanceフィールドはprivateアクセス修飾子を用いて外部から直接アクセスできないようにします。\n2. nameフィールドに対するgetterとsetterメソッドを作成します。\n3. balanceフィールドに対するgetterメソッドを作成し、setterメソッドは作成しないでください。その代わりに、balanceを増減させるdeposit(double amount)とwithdraw(double amount)メソッドを作成します。",
+            "explanation": "Javaのカプセル化の原則により、フィールドは一般的にprivateアクセス修飾子で宣言され、外部から直接アクセスできないようにします。その代わりに、フィールドの値を取得・設定するための公開メソッド（getterとsetter）を提供します。ただし、この問題ではbalanceフィールドに対してはsetterメソッドを作成せず、代わりにdepositとwithdrawメソッドを提供します。",
+            "answer": "public class Account {\n    private String name;\n    private double balance;\n\n    public String getName() {\n        return name;\n    }\n\n    public void setName(String name) {\n        this.name = name;\n    }\n\n    public double getBalance() {\n        return balance;\n    }\n\n    public void deposit(double amount) {\n        balance += amount;\n    }\n\n    public void withdraw(double amount) {\n        if (balance >= amount) {\n            balance -= amount;\n        } else {\n            System.out.println(\"Insufficient balance!\");\n        }\n    }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java7_8",
+            "title": "カプセル化と複合クラス",
+            "question": "次の「Person」クラスは、名前(name)と年齢(age)をフィールドに持つシンプルなクラスです。このクラスを基に、「Student」クラスを作成してください。ただし、「Student」クラスは「Person」クラスのカプセル化を維持しながら、学生番号(studentId)を追加のフィールドとして持つものとします。さらに、「Student」クラスには、次の要件を満たすメソッドを追加してください。\n\n1. studentIdフィールドに対するgetterとsetterメソッドを作成します。\n2. showInfo()メソッドを作成します。このメソッドは、学生の名前、年齢、学生番号を表示します。\n\n「Person」クラス:\n\npublic class Person {\n    private String name;\n    private int age;\n\n    public Person(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n\n    public String getName() {\n        return name;\n    }\n\n    public int getAge() {\n        return age;\n    }\n}",
+            "explanation": "この問題では、既存のPersonクラスをベースに新たなStudentクラスを作成します。「Student」クラスは「Person」クラスのフィールドを維持しつつ、新たなフィールドであるstudentIdを追加します。そして、それぞれのフィールドに対するgetterとsetterメソッド、およびshowInfoメソッドを追加します。",
+            "answer": "public class Student extends Person {\n    private String studentId;\n\n    public Student(String name, int age, String studentId) {\n        super(name, age);\n        this.studentId = studentId;\n    }\n\n    public String getStudentId() {\n        return studentId;\n    }\n\n    public void setStudentId(String studentId) {\n        this.studentId = studentId;\n    }\n\n    public void showInfo() {\n        System.out.println(\"Name: \" + getName() + \", Age: \" + getAge() + \", Student ID: \" + studentId);\n    }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java7_9",
+            "title": "カプセル化と例外処理",
+            "question": "次の「BankAccount」クラスは、口座残高(balance)をフィールドとして持つシンプルなクラスです。このクラスに、次の要件を満たすwithdrawメソッドを追加してください。\n\n1. withdrawメソッドは引き出し金額を引数として受け取ります。\n2. 引き出し金額が口座残高を超える場合、カスタム例外「InsufficientBalanceException」をスローします。\n3. 「InsufficientBalanceException」は自作の例外で、Exceptionクラスを継承してください。\n\n「BankAccount」クラス:\n\npublic class BankAccount {\n    private double balance;\n\n    public BankAccount(double balance) {\n        this.balance = balance;\n    }\n\n    public double getBalance() {\n        return balance;\n    }\n}",
+            "explanation": "この問題では、Javaの例外処理の機構とカプセル化の原則を組み合わせて、口座からの引き出し処理を行います。特に、口座残高が引き出し金額を下回る場合には、カスタム例外「InsufficientBalanceException」をスローするようにします。この例外は、例外処理の一環として、呼び出し元に問題を報告するために使用されます。",
+            "answer": "public class BankAccount {\n    private double balance;\n\n    public BankAccount(double balance) {\n        this.balance = balance;\n    }\n\n    public double getBalance() {\n        return balance;\n    }\n\n    public void withdraw(double amount) throws InsufficientBalanceException {\n        if (balance < amount) {\n            throw new InsufficientBalanceException(\"Insufficient balance for withdrawal!\");\n        }\n        balance -= amount;\n    }\n}\n\npublic class InsufficientBalanceException extends Exception {\n    public InsufficientBalanceException(String message) {\n        super(message);\n    }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java7_10",
+            "title": "カプセル化とコレクション",
+            "question": "次の「Book」クラスは、タイトル(title)をフィールドに持つシンプルなクラスです。このクラスを基に、「Library」クラスを作成してください。ただし、「Library」クラスは、「Book」クラスのカプセル化を維持しながら、蔵書(books)を追加のフィールドとして持つものとします。さらに、「Library」クラスには、次の要件を満たすメソッドを追加してください。\n\n1. addBookメソッドを作成します。このメソッドは、新しいBookオブジェクトを受け取り、それを蔵書リストに追加します。\n2. showBooksメソッドを作成します。このメソッドは、蔵書の全てのタイトルを表示します。\n\n「Book」クラス:\n\npublic class Book {\n    private String title;\n\n    public Book(String title) {\n        this.title = title;\n    }\n\n    public String getTitle() {\n        return title;\n    }\n}",
+            "explanation": "この問題では、既存のBookクラスをベースに新たなLibraryクラスを作成します。「Library」クラスは「Book」クラスのフィールドを維持しつつ、新たなフィールドであるbooksを追加します。そして、それぞれのフィールドに対するaddBookとshowBooksメソッドを追加します。",
+            "answer": "import java.util.ArrayList;\nimport java.util.List;\n\npublic class Library {\n    private List<Book> books;\n\n    public Library() {\n        this.books = new ArrayList<>();\n    }\n\n    public void addBook(Book book) {\n        books.add(book);\n    }\n\n    public void showBooks() {\n        for (Book book : books) {\n            System.out.println(book.getTitle());\n        }\n    }\n}"
+        }
+    ]
+}

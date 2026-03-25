@@ -1,0 +1,86 @@
+{
+    "contentsId": "java3",
+    "title": "Javaの例外処理問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java3_1",
+            "title": "try-catch基本形",
+            "question": "次の要件に合わせて、例外処理を行うコードを書いてください。\n\n要件:\n配列を宣言し、その配列の範囲外のインデックスを指定してアクセスするコードを書く。\nArrayIndexOutOfBoundsExceptionが発生した場合、エラーメッセージ「Index out of bounds」を出力する。",
+            "explanation": "この問題では、例外を発生させて捕捉する基本的な形を理解することが目的です。配列の範囲外アクセスはArrayIndexOutOfBoundsExceptionを発生させます。この例外をcatchブロックで捕捉し、エラーメッセージを出力します。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        // 配列を宣言\n        int[] array = new int[5];\n\n        try {\n            // 配列の範囲外にアクセス\n            int outOfBounds = array[10];\n        } catch (ArrayIndexOutOfBoundsException e) {\n            // エラーメッセージを出力\n            System.out.println(\"Index out of bounds\");\n            // 出力: Index out of bounds\n        }\n    }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java3_2",
+            "title": "try-catch-finally基本形",
+            "question": "次の要件に合わせて、例外処理を行うコードを書いてください。\n\n要件:\n配列を宣言し、その配列の範囲外のインデックスを指定してアクセスするコードを書く。\nArrayIndexOutOfBoundsExceptionが発生した場合、エラーメッセージ「Index out of bounds」を出力する。\n最後に、「End of the code」を出力する。",
+            "explanation": "この問題では、例外が発生した後にも必ず実行されるfinallyブロックの使用方法を理解することが目的です。finallyブロックは例外が発生しても発生しなくても実行され、リソースの解放などに使われます。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        // 配列を宣言\n        int[] array = new int[5];\n\n        try {\n            // 配列の範囲外にアクセス\n            int outOfBounds = array[10];\n        } catch (ArrayIndexOutOfBoundsException e) {\n            // エラーメッセージを出力\n            System.out.println(\"Index out of bounds\");\n            // 出力: Index out of bounds\n        } finally {\n            // 最後にメッセージを出力\n            System.out.println(\"End of the code\");\n            // 出力: End of the code\n        }\n    }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java3_3",
+            "title": "例外のスロー",
+            "question": "次の要件に合わせて、例外をスローするコードを書いてください。\n\n要件:\n関数divideが0で除算しようとした場合に、ArithmeticExceptionをスローする。",
+            "explanation": "この問題では、メソッド内で特定の条件下で例外をスローする方法を理解することが目的です。Javaでは、条件を満たさないときに特定の例外をスローすることで、その事象を呼び出し元に伝えることができます。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        try {\n            // 例外をスローする可能性があるメソッドを呼び出す\n            divide(10, 0);\n        } catch (ArithmeticException e) {\n            // 例外をキャッチしてメッセージを出力する\n            System.out.println(\"Cannot divide by zero\");\n            // 出力: Cannot divide by zero\n        }\n    }\n\n    // 引数bが0の場合にArithmeticExceptionをスローするメソッド\n    public static int divide(int a, int b) throws ArithmeticException {\n        if (b == 0) {\n            throw new ArithmeticException();\n        }\n        return a / b;\n    }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java3_4",
+            "title": "カスタム例外",
+            "question": "独自の例外クラス「InvalidNumberException」を作成し、メソッド内でこの例外をスローするコードを書いてください。ただし、メソッドは次の要件に従うものとします。\n\n要件:\n関数validateNumberが引数として受け取った整数が0未満の場合に、InvalidNumberExceptionをスローする。",
+            "explanation": "この問題では、Javaで独自の例外クラスを作成し、その例外をメソッド内でスローする方法を理解することが目的です。Javaでは、独自の例外クラスを作成することで、より具体的なエラー情報を呼び出し元に伝えることが可能になります。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        try {\n            // 例外をスローする可能性があるメソッドを呼び出す\n            validateNumber(-10);\n        } catch (InvalidNumberException e) {\n            // 例外をキャッチしてメッセージを出力する\n            System.out.println(e.getMessage());\n            // 出力: Invalid number: -10\n        }\n    }\n\n    // 引数numが0未満の場合にInvalidNumberExceptionをスローするメソッド\n    public static void validateNumber(int num) throws InvalidNumberException {\n        if (num < 0) {\n            throw new InvalidNumberException(\"Invalid number: \" + num);\n        }\n    }\n}\n\n// 独自の例外クラス\nclass InvalidNumberException extends Exception {\n    public InvalidNumberException(String message) {\n        super(message);\n    }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java3_5",
+            "title": "finallyブロック",
+            "question": "例外が発生する可能性があるコードの後に必ず実行したいコードがある場合、どのように書けばよいでしょうか。例として、ファイルを開いて読み込み、その後必ずファイルを閉じるようなコードを書いてください。",
+            "explanation": "Javaでは、try-catch文の後にfinallyブロックを書くことで、例外が発生しても発生しなくても必ず実行されるコードを指定することができます。この特性は、リソースの解放など、例外発生にかかわらず確実に行われるべき後処理に利用されます。",
+            "answer": "import java.io.File;\nimport java.io.FileNotFoundException;\nimport java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner scanner = null;\n        try {\n            // ファイルを開く\n            File file = new File(\"path/to/file.txt\");\n            scanner = new Scanner(file);\n            \n            // ファイルを読み込む\n            while (scanner.hasNextLine()) {\n                String line = scanner.nextLine();\n                System.out.println(line);\n                // 出力: ファイルの各行の内容\n            }\n        } catch (FileNotFoundException e) {\n            // ファイルが見つからない場合のエラーハンドリング\n            System.out.println(\"File not found.\");\n        } finally {\n            // 例外が発生してもしなくても、必ずファイルを閉じる\n            if (scanner != null) {\n                scanner.close();\n            }\n        }\n    }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java3_6",
+            "title": "独自の例外の作成",
+            "question": "自分で定義した独自の例外クラスを作成し、その例外をスローするコードを書いてください。",
+            "explanation": "Javaでは、自分で独自の例外を作成することができます。これにより、プログラムの中で特定の条件下で例外を投げることができ、その例外は通常の例外と同じようにcatchブロックで補足することができます。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        try {\n            // 独自の例外をスロー\n            throw new MyException(\"This is a custom exception.\");\n        } catch (MyException e) {\n            // 独自の例外をキャッチ\n            System.out.println(e.getMessage());\n            // 出力: This is a custom exception.\n        }\n    }\n}\n\n// 独自の例外クラス\nclass MyException extends Exception {\n    public MyException(String message) {\n        super(message);\n    }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java3_7",
+            "title": "try-with-resourcesステートメント",
+            "question": "try-with-resourcesステートメントを使用して、ファイルを読み込むコードを書いてください。ファイル名は\"input.txt\"とします。",
+            "explanation": "try-with-resourcesは、リソースを自動的に閉じるためのtry文です。この文を使用すると、finallyブロックでリソースを閉じる必要がなくなります。この機能はJava 7から導入され、AutoCloseableインタフェースを実装する任意のオブジェクトに対して使用できます。",
+            "answer": "import java.io.BufferedReader;\nimport java.io.FileReader;\nimport java.io.IOException;\n\npublic class Main {\n    public static void main(String[] args) {\n        // try-with-resourcesステートメントを使用してファイルを読み込む\n        try (BufferedReader br = new BufferedReader(new FileReader(\"input.txt\"))) {\n            String line;\n            while ((line = br.readLine()) != null) {\n                System.out.println(line);\n                // 出力: ファイルの各行\n            }\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n    }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java3_8",
+            "title": "カスタム例外の作成",
+            "question": "カスタム例外クラス「InvalidInputException」を作成し、特定の条件が満たされない場合にこの例外をスローするメソッド「validateInput」を書いてください。具体的には、validateInputメソッドはint型のパラメータを受け取り、その値が0以下の場合にInvalidInputExceptionをスローします。",
+            "explanation": "Javaでは、自分で例外クラスを作成することができます。これは「カスタム例外」を作成すると呼ばれ、通常は既存の例外クラスを継承して作成します。この問題では、入力が無効な場合にスローされるカスタム例外を作成します。",
+            "answer": "public class InvalidInputException extends Exception {\n    public InvalidInputException(String message) {\n        super(message);\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        try {\n            validateInput(-1);\n        } catch (InvalidInputException e) {\n            e.printStackTrace();\n        }\n    }\n\n    public static void validateInput(int value) throws InvalidInputException {\n        if (value <= 0) {\n            throw new InvalidInputException(\"Input must be greater than 0.\");\n        }\n    }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java3_9",
+            "title": "例外の再スロー",
+            "question": "次のコードが与えられます:\n\npublic class Main {\n    public static void main(String[] args) {\n        try {\n            dangerousMethod();\n        } catch (Exception e) {\n            System.out.println(\"Caught an exception.\");\n        }\n    }\n\n    public static void dangerousMethod() throws Exception {\n        throw new Exception(\"An error occurred.\");\n    }\n}\n\nこのコードを修正し、catchブロック内で捕捉した例外を再スローしてください。",
+            "explanation": "例外を再スローするとは、例外を捕捉した後にその例外を再度スローすることを指します。これは、例外を一時的に捕捉して何かの処理を行った後で、その例外を再度スローして呼び出し元に伝播させるときなどに使用されます。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        try {\n            dangerousMethod();\n        } catch (Exception e) {\n            System.out.println(\"Caught an exception.\");\n            throw e;\n        }\n    }\n\n    public static void dangerousMethod() throws Exception {\n        throw new Exception(\"An error occurred.\");\n    }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java3_10",
+            "title": "自定義の例外クラスの作成",
+            "question": "Javaでは、既存の例外クラスを継承することで自分自身の例外クラスを作成することができます。自分のExceptionクラス（MyException）を作成し、それをスローするメソッドを含むコードを作成してください。",
+            "explanation": "Javaでは、自分で例外クラスを作成することができます。これは、特定のアプリケーション固有の問題を表現するために便利です。自定義の例外クラスは、通常は既存の例外クラスを継承します。最も一般的に使用されるスーパークラスはExceptionクラスです。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        try {\n            throwMyException();\n        } catch (MyException e) {\n            System.out.println(\"Caught MyException: \" + e.getMessage());\n        }\n    }\n\n    public static void throwMyException() throws MyException {\n        throw new MyException(\"This is my exception.\");\n    }\n}\n\nclass MyException extends Exception {\n    public MyException(String message) {\n        super(message);\n    }\n}"
+        }
+    ]
+}

@@ -1,167 +1,166 @@
 {
-    "contentsId": "javascript1",
-    "title": "javascriptのデータ型問題集ページ",
+    "contentsId": "js2",
+    "title": "Javascriptのデータ型問題集ページ",
     "subtitle": "中級",
     "questions": [{
             "id": 1,
-            "questionId": "javascript1_1",
-            "title": "データ型",
-            "question": "文字列「123」を数値に変換するにはどうすればよいでしょうか？",
-            "explanation": "JavaScriptでは、parseInt関数を使って文字列を整数に変換できます。",
-            "answer": "「123」を数値に変換するには、parseInt関数を使用する。\n\nvar str = \"123\";\nvar num = parseInt(str);\nconsole.log(num); // 結果は123となる。"
+            "questionId": "js2_1",
+            "title": "JavaScriptの浮動小数点型",
+            "question": "JavaScriptで浮動小数点型（浮動小数点数）を扱う際の注意点を説明し、例を示すコードを書いてください。",
+            "explanation": "JavaScriptでは、すべての数値は内部的に浮動小数点数として扱われます。しかし、小数点以下の計算には注意が必要で、正確な計算結果が得られない場合があります。",
+            "answer": "// 例: 浮動小数点数の計算\nvar a = 0.1;\nvar b = 0.2;\nconsole.log(a + b); // 予想される出力: 0.30000000000000004"
         },
         {
             "id": 2,
-            "questionId": "javascript1_2",
-            "title": "オブジェクト型",
-            "question": "オブジェクトのプロパティにアクセスする方法を説明してください。",
-            "explanation": "オブジェクトのプロパティにアクセスするには、ドット記法またはブラケット記法を使用します。",
-            "answer": "オブジェクトのプロパティにアクセスするには、ドット記法またはブラケット記法を使用する。\n\n// ドット記法\nvar obj = {name: \"John\", age: 25};\nconsole.log(obj.name); // 結果は\"John\"となる。\n\n// ブラケット記法\nvar obj2 = {\"name\": \"Mary\", \"age\": 30};\nconsole.log(obj2[\"age\"]); // 結果は30となる。"
+            "questionId": "js2_2",
+            "title": "JavaScriptのnullとundefined",
+            "question": "JavaScriptのnullとundefinedの違いを説明し、それぞれを示すコードを書いてください。",
+            "explanation": "JavaScriptでは、nullは値が存在しないことを示す特別な値で、undefinedは値がまだ設定されていない変数を示します。",
+            "answer": "// 例: nullとundefined\nvar a;\nconsole.log(a); // 予想される出力: undefined\n\na = null;\nconsole.log(a); // 予想される出力: null"
         },
         {
             "id": 3,
-            "questionId": "javascript2_1",
-            "title": "データ型の変換",
-            "question": "以下のコードを実行した際に表示される値を選びなさい。\n```\nlet num1 = '10';\nlet num2 = '5';\nconsole.log(num1 - num2);\n```",
-            "explanation": "このコードは文字列型の変数`num1`と`num2`を定義し、それぞれに文字列の`'10'`と`'5'`を代入しています。その後、`num1`から`num2`を引いた値をコンソールに出力しています。しかし、文字列型の変数から文字列型の変数を引くことはできません。そこで、JavaScriptでは自動的に文字列型から数値型に変換されて計算が行われます。したがって、このコードを実行した場合、コンソールには`5`という数値が出力されます。",
-            "answer": "3"
+            "questionId": "js2_3",
+            "title": "JavaScriptの真偽値",
+            "question": "JavaScriptで真偽値を扱う際の注意点を説明し、例を示すコードを書いてください。",
+            "explanation": "JavaScriptでは、真偽値はtrueまたはfalseとなります。しかし、条件式の中では、undefined、null、0、NaN、空文字列('')はすべてfalseと評価され、それ以外はすべてtrueと評価されます。",
+            "answer": "// 例: 真偽値\nvar a = '';\nconsole.log(Boolean(a)); // 予想される出力: false\n\na = 'hello';\nconsole.log(Boolean(a)); // 予想される出力: true"
         },
         {
             "id": 4,
-            "questionId": "javascript2_2",
-            "title": "真偽値の変換",
-            "question": "以下のコードを実行した際に表示される値を選びなさい。\n```\nlet str1 = 'Hello';\nlet str2 = '';\nlet bool1 = Boolean(str1);\nlet bool2 = Boolean(str2);\nconsole.log(bool1);\nconsole.log(bool2);\n```",
-            "explanation": "このコードでは、文字列型の変数`str1`と`str2`を定義し、それぞれに`'Hello'`と空文字列`''`を代入しています。その後、`Boolean()`関数を使ってそれぞれの変数を真偽値に変換しています。`Boolean()`関数は引数として与えられた値を真偽値に変換する関数で、文字列型の場合は空文字列以外の文字列は`true`、数値型の場合は`0`以外の数値は`true`、オブジェクトの場合は`null`以外は`true`、`undefined`の場合は`false`となります。したがって、このコードを実行した場合、コンソールには`true`と`false`という真偽値が出力されます。",
-            "answer": "2"
+            "questionId": "js2_4",
+            "title": "JavaScriptの型変換",
+            "question": "JavaScriptの型変換について説明し、例を示すコードを書いてください。",
+            "explanation": "JavaScriptでは、明示的な型変換と暗黙的な型変換が存在します。例えば、Number()関数やString()関数を使用すると明示的に型を変換することができます。",
+            "answer": "// 例: 型変換\nvar a = '123';\nconsole.log(typeof a); // 予想される出力: 'string'\n\na = Number(a);\nconsole.log(typeof a); // 予想される出力: 'number'"
         },
         {
             "id": 5,
-            "questionId": "js_5",
-            "title": "スコープ",
-            "question": "以下のプログラムを実行したとき、コンソールに出力される値は何ですか？\n\n```js\nvar x = 1;\nfunction test() {\n  var x = 2;\n  console.log(x);\n}\ntest();\nconsole.log(x);\n```",
-            "explanation": "この問題では、JavaScriptのスコープについて確認することができます。\n\n変数xは、`var x = 1`で定義されており、グローバルスコープで宣言されています。\n一方で、`function test()`内で変数xが宣言されているため、このxは関数スコープ内でのみアクセス可能です。\nつまり、`test()`関数の中で宣言された変数xは、関数外からはアクセスできません。\n\nよって、コンソールに出力される値は以下のようになります。\n```\n2\n1\n```",
-            "answer": "var x = 1;\nfunction test() {\n  var x = 2;\n  console.log(x);\n}\ntest();\nconsole.log(x);\n// => 2\n// => 1"
+            "questionId": "js2_5",
+            "title": "JavaScriptのオブジェクト",
+            "question": "JavaScriptのオブジェクトとは何か説明し、例を示すコードを書いてください。",
+            "explanation": "JavaScriptのオブジェクトは、キーと値のペアの集合です。キーは文字列またはシンボルで、値は任意のデータ型を持つことができます。",
+            "answer": "// 例: オブジェクト\nvar person = {\n  name: 'John',\n  age: 30,\n  city: 'Tokyo'\n};\nconsole.log(person); // 予想される出力: { name: 'John', age: 30, city: 'Tokyo' }"
         },
         {
             "id": 6,
-            "questionId": "js_6",
-            "title": "undefinedとnull",
-            "question": "次のうち、変数aに格納される値として正しいものを全て選んでください。\n\n```js\nvar a = null || undefined;\n```",
-            "explanation": "`||`演算子は左辺がfalsyである場合に右辺を返します。nullとundefinedは、両方ともfalsyな値です。したがって、`var a = null || undefined;`の実行結果は、`undefined`となります。\n\n一方、以下のコードは`null`を代入しています。\n```\nvar b = null;\n```",
-            "answer": "undefined"
+            "questionId": "js2_6",
+            "title": "JavaScriptの配列型",
+            "question": "JavaScriptの配列型について説明し、例を示すコードを書いてください。",
+            "explanation": "JavaScriptの配列は、複数の値を1つの変数に格納するための特殊なオブジェクトです。それぞれの値は独自のインデックス番号を持ち、0から始まります。",
+            "answer": "// 例: 配列\nvar fruits = ['apple', 'banana', 'cherry'];\nconsole.log(fruits[0]); // 予想される出力: 'apple'"
         },
         {
             "id": 7,
-            "questionId": "javascript1_7",
-            "title": "関数の戻り値の型",
-            "question": "以下のJavaScriptコードの実行結果として、表示される値のデータ型を答えてください。\n\n```javascript\nfunction getPrice() {\n  return 1280.99;\n}\n\nconsole.log(typeof getPrice());\n```\n",
-            "explanation": "typeof演算子は、値のデータ型を文字列で返す演算子です。getPrice関数の戻り値は、数値型であるため、コンソールには\"number\"と表示されます。",
-            "answer": "\"number\""
+            "questionId": "js2_7",
+            "title": "JavaScriptの関数型",
+            "question": "JavaScriptの関数型について説明し、例を示すコードを書いてください。",
+            "explanation": "JavaScriptの関数は、特定のタスクを実行する一連の手順をカプセル化したもので、引数を受け取り、結果を返すことができます。",
+            "answer": "// 例: 関数\nfunction greet(name) {\n  return 'Hello, ' + name;\n}\nconsole.log(greet('World')); // 予想される出力: 'Hello, World'"
         },
         {
             "id": 8,
-            "questionId": "javascript1_8",
-            "title": "条件演算子の戻り値の型",
-            "question": "以下のJavaScriptコードの実行結果として、表示される値のデータ型を答えてください。\n\n```javascript\nconst isAdult = true;\nconst result = isAdult ? '成人' : '未成年';\n\nconsole.log(typeof result);\n```\n",
-            "explanation": "条件演算子は、条件に応じて異なる値を返す演算子です。ここではisAdult変数がtrueであるため、result変数には\"成人\"という文字列が代入されます。文字列型のデータが代入されるため、コンソールには\"string\"と表示されます。",
-            "answer": "\"string\""
+            "questionId": "js2_8",
+            "title": "JavaScriptの算術演算子と文字列",
+            "question": "JavaScriptの算術演算子が文字列に使用される場合の挙動について説明し、例を示すコードを書いてください。",
+            "explanation": "JavaScriptでは、'+'演算子は文字列の結合にも使用されます。文字列と数値を結合すると、数値は文字列に変換されて結合されます。",
+            "answer": "// 例: 算術演算子と文字列\nvar str = 'Hello' + 'World';\nconsole.log(str); // 予想される出力: 'HelloWorld'\n\nstr = 'The answer is ' + 42;\nconsole.log(str); // 予想される出力: 'The answer is 42'"
         },
         {
             "id": 9,
-            "questionId": "javascript2_1",
-            "title": "オブジェクト型",
-            "question": "以下のオブジェクトを作成してください。\n・key1の値は\"value1\"\n・key2の値は\"value2\"\n・key3の値は3\n・key4の値はtrue\n",
-            "explanation": "オブジェクト型は、値にキーを設定することができるデータ型です。キーと値は\"キー名: 値\"という形で記述し、カンマで区切ります。また、オブジェクト型の場合、キー名はダブルクォーテーションで囲む必要があります。",
-            "answer": "{\n  \"key1\": \"value1\",\n  \"key2\": \"value2\",\n  \"key3\": 3,\n  \"key4\": true\n}\n"
+            "questionId": "js2_9",
+            "title": "JavaScriptの比較演算子",
+            "question": "JavaScriptの比較演算子について説明し、例を示すコードを書いてください。",
+            "explanation": "JavaScriptの比較演算子は、2つの値を比較して、その関係性に基づいて真偽値を返します。これらには '==' (等しい), '!=' (等しくない), '>' (より大きい), '<' (より小さい) などがあります。",
+            "answer": "// 例: 比較演算子\nconsole.log(5 > 3); // 予想される出力: true\nconsole.log('apple' == 'banana'); // 予想される出力: false"
         },
         {
             "id": 10,
-            "questionId": "javascript2_2",
-            "title": "オブジェクト型",
-            "question": "以下のオブジェクトに、key5というキーを追加してください。key5の値は\"value5\"です。\nobj = {\n  \"key1\": \"value1\",\n  \"key2\": \"value2\",\n  \"key3\": 3,\n  \"key4\": true\n}",
-            "explanation": "オブジェクト型のキーを追加するには、以下のように記述します。\nobj[\"追加したいキー名\"] = 追加したい値",
-            "answer": "{\n  \"key1\": \"value1\",\n  \"key2\": \"value2\",\n  \"key3\": 3,\n  \"key4\": true,\n  \"key5\": \"value5\"\n}\n"
+            "questionId": "js2_10",
+            "title": "JavaScriptの真偽値型",
+            "question": "JavaScriptの真偽値型について説明し、例を示すコードを書いてください。",
+            "explanation": "JavaScriptの真偽値型は、trueとfalseの2つの値を取ることができます。これらは、条件判断や論理演算によく使用されます。",
+            "answer": "// 例: 真偽値\nvar isTrue = true;\nvar isFalse = false;\nconsole.log(isTrue); // 予想される出力: true\nconsole.log(isFalse); // 予想される出力: false"
         },
         {
             "id": 11,
-            "questionId": "javascript2_1",
-            "title": "型変換",
-            "question": "以下のコードを実行した場合、コンソールに表示される結果は何でしょうか？\n\nlet str = '5';\nlet num = 2;\nconsole.log(str + num);\n",
-            "explanation": "この問題では、文字列と数値の加算について考えます。strには文字列'5'が代入され、numには数値2が代入されます。このとき、strとnumを'+'で結合すると、文字列'52'が得られます。\n文字列と数値の演算では、数値を文字列に変換してから結合が行われます。\n",
-            "answer": "結果は'52'となる\n"
+            "questionId": "js2_11",
+            "title": "JavaScriptのundefinedとnull型",
+            "question": "JavaScriptのundefinedとnull型について説明し、例を示すコードを書いてください。",
+            "explanation": "JavaScriptでは、undefinedは値が代入されていない変数や存在しないオブジェクトのプロパティを参照したときに返されます。一方、nullは値が意図的に存在しないことを示すために使用されます。",
+            "answer": "// 例: undefinedとnull\nvar noValue;\nconsole.log(noValue); // 予想される出力: undefined\n\nvar emptyValue = null;\nconsole.log(emptyValue); // 予想される出力: null"
         },
         {
             "id": 12,
-            "questionId": "javascript2_2",
-            "title": "型変換",
-            "question": "以下のコードを実行した場合、コンソールに表示される結果は何でしょうか？\n\nlet str = '5';\nlet num = 2;\nconsole.log(str - num);\n",
-            "explanation": "この問題では、文字列と数値の減算について考えます。strには文字列'5'が代入され、numには数値2が代入されます。このとき、strは数値に変換され、numとの減算が行われます。文字列'5'は数値5に変換されます。\n数値と数値の演算では、減算が行われます。\n",
-            "answer": "結果は3となる\n"
+            "questionId": "js2_12",
+            "title": "JavaScriptの型変換",
+            "question": "JavaScriptの型変換について説明し、例を示すコードを書いてください。",
+            "explanation": "JavaScriptでは、特定の文脈により、値は自動的に他の型に変換されることがあります。これを型強制と呼びます。また、Number(), String(), Boolean()などの関数を使用して明示的に型変換を行うことも可能です。",
+            "answer": "// 例: 型変換\nvar num = 42;\nvar str = String(num);\nconsole.log(typeof str); // 予想される出力: 'string'\n\nvar bool = Boolean('');\nconsole.log(bool); // 予想される出力: false"
         },
         {
             "id": 13,
-            "questionId": "javascript13",
-            "title": "データ型の変換",
-            "question": "次のコードの実行結果として、正しいものを選択肢から選んでください。\n\n```\nconst x = '1';\nconst y = parseInt(x);\nconst z = y + 2;\nconsole.log(z);\n```\n",
-            "explanation": "まず、`x`は文字列型の値`'1'`です。`parseInt(x)`によって、文字列の`'1'`が数値型の`1`に変換され、変数`y`に代入されます。その後、`y`に整数値`2`を加算した結果が変数`z`に代入され、`z`の値`3`がコンソールに出力されます。",
-            "answer": "3"
+            "questionId": "js2_13",
+            "title": "JavaScriptのNaN型",
+            "question": "JavaScriptのNaN型について説明し、例を示すコードを書いてください。",
+            "explanation": "JavaScriptでは、NaN（Not a Number）は数値ではない結果を返す演算の結果として得られます。NaNは特殊な値で、どの値とも等しくありません。",
+            "answer": "// 例: NaN\nvar result = 0 / 0;\nconsole.log(result); // 予想される出力: NaN\nconsole.log(NaN == NaN); // 予想される出力: false"
         },
         {
             "id": 14,
-            "questionId": "javascript14",
-            "title": "配列の結合",
-            "question": "次のコードを実行した場合、コンソールに出力される値として、正しいものを選択肢から選んでください。\n\n```\nconst arr1 = [1, 2];\nconst arr2 = [3, 4];\nconst arr3 = arr1.concat(arr2);\nconsole.log(arr3);\n```\n",
-            "explanation": "`arr1`と`arr2`は、配列の要素として、それぞれ数値型の値`1`と`2`、`3`と`4`を持っています。そして、`concat()`メソッドによって、`arr1`と`arr2`の要素を結合して、`arr3`に代入しています。従って、`arr3`には、`[1, 2, 3, 4]`という配列が代入され、コンソールには`[1, 2, 3, 4]`という値が出力されます。",
-            "answer": "[1, 2, 3, 4]"
+            "questionId": "js2_14",
+            "title": "JavaScriptのオブジェクト型",
+            "question": "JavaScriptのオブジェクト型について説明し、例を示すコードを書いてください。",
+            "explanation": "JavaScriptでは、オブジェクトはキーと値のペアの集合です。値は、プリミティブ型のデータや関数、他のオブジェクトを含むことができます。",
+            "answer": "// 例: オブジェクト\nvar person = {\n  name: 'Alice',\n  age: 20,\n  greet: function() {\n    console.log('Hello, ' + this.name);\n  }\n};\nperson.greet(); // 予想される出力: 'Hello, Alice'"
         },
         {
             "id": 15,
-            "questionId": "javascript15",
-            "title": "演算子の挙動",
-            "question": "以下のコードを実行した際の出力結果として、正しいものを選択してください。\n```const a = 5;\nconst b = 2;\nconsole.log(a / b);\n```",
-            "explanation": "JavaScriptでは、整数同士の割り算をした場合でも、結果が整数でない場合があります。上記の例では、aとbはともに整数のため、割り算の結果が小数になります。結果は2.5になるため、正解は「2.5」になります。",
-            "options": ["2", "2.5", "3", "3.5"],
-            "answer": "2.5"
-        }, {
+            "questionId": "js2_15",
+            "title": "JavaScriptの配列型",
+            "question": "JavaScriptの配列型について説明し、例を示すコードを書いてください。",
+            "explanation": "JavaScriptの配列は、同じ変数に複数の値を格納できるオブジェクト型の一種です。配列の各要素は、0から始まるインデックスでアクセスできます。",
+            "answer": "// 例: 配列\nvar fruits = ['apple', 'banana', 'cherry'];\nconsole.log(fruits[0]); // 予想される出力: 'apple'\nconsole.log(fruits.length); // 予想される出力: 3"
+        },
+        {
             "id": 16,
-            "questionId": "javascript16",
-            "title": "演算子の挙動",
-            "question": "以下のコードを実行した際の出力結果として、正しいものを選択してください。\n```const a = 5;\nconst b = 2;\nconsole.log(a % b);\n```",
-            "explanation": "JavaScriptの剰余演算子は、a % bの結果は、aをbで割った余りを返します。上記の例では、aは5でbは2なので、5を2で割った余りは1です。したがって、正解は「1」になります。",
-            "options": ["1", "2", "3", "4"],
-            "answer": "1"
+            "questionId": "js2_16",
+            "title": "JavaScriptのDate型",
+            "question": "JavaScriptのDate型について説明し、例を示すコードを書いてください。",
+            "explanation": "JavaScriptのDateオブジェクトは、日付と時間を扱います。新しいDateオブジェクトは、現在の日付と時間、または指定した日付と時間で作成できます。",
+            "answer": "// 例: Date\nvar now = new Date();\nconsole.log(now); // 予想される出力: 現在の日付と時間\n\nvar specificDate = new Date('2022-01-01');\nconsole.log(specificDate); // 予想される出力: 2022-01-01T00:00:00.000Z"
         },
         {
             "id": 17,
-            "questionId": "js1-q17",
-            "title": "配列の要素を取得する",
-            "question": "配列`array`の3番目の要素を取得してください。",
-            "explanation": "配列の要素を取得するには、インデックスを指定します。配列のインデックスは0から始まるため、3番目の要素は`array[2]`で取得できます。",
-            "answer": "const array = ['a', 'b', 'c', 'd'];\nconst thirdElement = array[2];\nconsole.log(thirdElement); // 'c'"
+            "questionId": "js2_17",
+            "title": "JavaScriptの正規表現型",
+            "question": "JavaScriptの正規表現型について説明し、例を示すコードを書いてください。",
+            "explanation": "JavaScriptのRegExpオブジェクトは、文字列のパターンマッチングと検索・置換に使用します。正規表現リテラルとRegExpコンストラクタの2つの方法で作成できます。",
+            "answer": "// 例: 正規表現\nvar re1 = /abc/;\nconsole.log(re1.test('abcdef')); // 予想される出力: true\n\nvar re2 = new RegExp('abc');\nconsole.log(re2.test('abcdef')); // 予想される出力: true"
         },
         {
             "id": 18,
-            "questionId": "js1-q18",
-            "title": "配列の要素を更新する",
-            "question": "配列`array`の3番目の要素を`'f'`に更新してください。",
-            "explanation": "配列の要素を更新するには、インデックスを指定して代入します。配列のインデックスは0から始まるため、3番目の要素は`array[2]`です。この要素を`'f'`に更新するには、`array[2] = 'f'`とします。",
-            "answer": "let array = ['a', 'b', 'c', 'd'];\narray[2] = 'f';\nconsole.log(array); // ['a', 'b', 'f', 'd']"
+            "questionId": "js2_18",
+            "title": "JavaScriptのSymbol型",
+            "question": "JavaScriptのSymbol型について説明し、例を示すコードを書いてください。",
+            "explanation": "SymbolはJavaScriptの最新のデータ型で、その値はすべてユニークであり、他のどんな値とも一致しない特性があります。オブジェクトのプロパティキーとして使用されることが多いです。",
+            "answer": "// 例: Symbol\nvar symbol1 = Symbol('symbol');\nvar symbol2 = Symbol('symbol');\nconsole.log(symbol1 === symbol2); // 予想される出力: false"
         },
         {
             "id": 19,
-            "questionId": "javascript2_1",
-            "title": "配列とオブジェクト",
-            "question": "以下の配列から、インデックスが1の要素を取り出してください。\n['apple', 'banana', 'orange']",
-            "explanation": "配列は複数の値を格納することができるデータ型で、それぞれの要素はインデックス番号によってアクセスすることができます。\nJavaScriptでは、配列のインデックスは0から始まるため、'apple'のインデックスは0、'banana'のインデックスは1、'orange'のインデックスは2となります。",
-            "answer": "const fruits = ['apple', 'banana', 'orange'];\nconst banana = fruits[1];\nconsole.log(banana); // 出力結果: banana"
+            "questionId": "js2_19",
+            "title": "JavaScriptの関数型",
+            "question": "JavaScriptの関数型について説明し、例を示すコードを書いてください。",
+            "explanation": "JavaScriptの関数は、Functionオブジェクトと呼ばれます。関数は一連のステートメントをカプセル化して名前をつけ、何度でも呼び出すことができます。",
+            "answer": "// 例: 関数\nfunction greet(name) {\n  return 'Hello, ' + name;\n}\nconsole.log(greet('Alice')); // 予想される出力: 'Hello, Alice'"
         },
         {
             "id": 20,
-            "questionId": "javascript2_2",
-            "title": "配列とオブジェクト",
-            "question": "以下のオブジェクトの「name」プロパティの値を取り出してください。\n{ name: 'John', age: 24, job: 'engineer' }",
-            "explanation": "オブジェクトは、複数のプロパティとその値を持つデータ型です。JavaScriptでは、オブジェクトのプロパティにアクセスするにはドット記法またはブラケット記法を使います。\nドット記法は、オブジェクト名の後ろにドット（.）を置き、その後にプロパティ名を記述します。ブラケット記法は、オブジェクト名の後ろに[ ]を置き、その中にプロパティ名を文字列で記述します。",
-            "answer": "const person = { name: 'John', age: 24, job: 'engineer' };\nconst name = person.name;\nconsole.log(name); // 出力結果: John"
+            "questionId": "js2_20",
+            "title": "JavaScriptのPromise型",
+            "question": "JavaScriptのPromise型について説明し、例を示すコードを書いてください。",
+            "explanation": "Promiseは非同期操作の最終的な完了（または失敗）及びその結果の値を表現します。それは非同期処理の結果を表現するオブジェクトです。",
+            "answer": "// 例: Promise\nvar promise = new Promise(function(resolve, reject) {\n  // 非同期処理\n  var result = true; // 処理の結果\n  if (result) resolve('Success!');\n  else reject(Error('Failure'));\n});\npromise.then(function(result) {\n  console.log(result); // 予想される出力: 'Success!'\n}, function(err) {\n  console.log(err);\n});"
         }
     ]
 }

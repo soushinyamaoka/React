@@ -1,0 +1,86 @@
+{
+    "contentsId": "java4",
+    "title": "Javaの例外処理問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java4_1",
+            "title": "例外クラスの階層",
+            "question": "Javaの標準例外クラスは階層構造を持っています。以下の例外クラスはすべて直接または間接的に何クラスを継承していますか？ \n1. NullPointerException \n2. ArrayIndexOutOfBoundsException \n3. NumberFormatException",
+            "explanation": "Javaの標準例外クラスは階層構造を持ち、全ての例外クラスはThrowableクラスから派生しています。上記の3つの例外クラスは、直接または間接的にjava.lang.Exceptionクラスを継承しています。具体的には、NullPointerExceptionとArrayIndexOutOfBoundsExceptionはjava.lang.RuntimeExceptionを継承し、RuntimeExceptionはjava.lang.Exceptionを継承します。NumberFormatExceptionも同様にjava.lang.RuntimeExceptionを継承しています。",
+            "answer": "これらのクラスは全て、直接または間接的にjava.lang.Exceptionクラスを継承しています。"
+        },
+        {
+            "id": 2,
+            "questionId": "java4_2",
+            "title": "カスタム例外",
+            "question": "Javaでは、自分自身の例外クラスを定義することができます。以下の要件を満たすカスタム例外クラス「MyException」を定義してください。 \n要件: \n1. Exceptionクラスを継承する \n2. 引数なしのコンストラクタを持つ \n3. 引数としてStringを一つ取るコンストラクタを持つ",
+            "explanation": "Javaでは、標準の例外クラスだけでなく、自分自身のカスタム例外クラスを定義することもできます。これはExceptionクラスまたはそのサブクラスを継承する新たなクラスを定義することで行えます。",
+            "answer": "以下のようにカスタム例外クラスを作成できます:\n\n```java\n// カスタム例外クラス\npublic class MyException extends Exception {\n  // 引数なしのコンストラクタ\n  public MyException() {\n    super();\n  }\n  // 引数としてStringを一つ取るコンストラクタ\n  public MyException(String message) {\n    super(message);\n  }\n}\n```"
+        },
+        {
+            "id": 3,
+            "questionId": "java4_3",
+            "title": "例外の捕捉と処理",
+            "question": "以下のコードがどのような出力を生成するか予想してください。\n\n```java\npublic class Main {\n  public static void main(String[] args) {\n    try {\n      System.out.println(\"Before exception\");\n      int result = 10 / 0;\n      System.out.println(\"After exception\");\n    } catch (ArithmeticException e) {\n      System.out.println(\"Exception caught\");\n    } finally {\n      System.out.println(\"Finally block\");\n    }\n    System.out.println(\"After try-catch-finally\");\n  }\n}\n```",
+            "explanation": "このコードは、Javaのtry-catch-finally構文を示しています。tryブロック内で発生した例外は、適切なcatchブロックで捕捉されます。finallyブロックは、tryブロックとcatchブロックの後に必ず実行されます。例外が発生した場合、例外が発生した行の後のコードはスキップされます。",
+            "answer": "以下のような出力を生成します:\n\n```java\nBefore exception\nException caught\nFinally block\nAfter try-catch-finally\n```\n\n出力からわかるように、「After exception」は出力されません。これは、その前の行でArithmeticExceptionが発生し、その後の行はスキップされるためです。"
+        },
+        {
+            "id": 4,
+            "questionId": "java4_4",
+            "title": "例外の型とメッセージ",
+            "question": "次のJavaコードがあるとします。\n\n```java\npublic class Main {\n  public static void main(String[] args) {\n    try {\n      String str = null;\n      System.out.println(str.length());\n    } catch (Exception e) {\n      System.out.println(\"Caught an exception of type: \" + e.getClass().getSimpleName());\n      System.out.println(\"The message of the exception is: \" + e.getMessage());\n    }\n  }\n}\n```\n\nこのコードが出力するメッセージを予想してください。",
+            "explanation": "このJavaプログラムは、null値の文字列の長さを取得しようとしますが、これはNullPointerExceptionを引き起こします。catchブロックでは、例外のタイプ（クラス名）とメッセージ（エラー詳細）を出力します。",
+            "answer": "このコードは以下のような出力を生成します:\n\n```java\nCaught an exception of type: NullPointerException\nThe message of the exception is: null\n```\n\nコード中で例外がスローされると、その例外はcatchブロックで捕捉され、その詳細が出力されます。"
+        },
+        {
+            "id": 5,
+            "questionId": "java4_5",
+            "title": "try-with-resources",
+            "question": "次のJavaコードがあるとします。\n\n```java\nimport java.io.BufferedReader;\nimport java.io.FileReader;\nimport java.io.IOException;\n\npublic class Main {\n  public static void main(String[] args) {\n    try (BufferedReader br = new BufferedReader(new FileReader(\"filename.txt\"))) {\n      String line = br.readLine();\n      System.out.println(line);\n    } catch (IOException e) {\n      System.out.println(\"An error occurred: \" + e.getMessage());\n    }\n  }\n}\n```\n\nこのコードの特定の構造 (try-with-resources) について説明してください。また、それがなぜ便利であるかを説明してください。",
+            "explanation": "このコードはtry-with-resourcesと呼ばれる構造を使用しています。この構造は、Java 7以降で利用可能で、リソースを使用した後で自動的に閉じることを保証します。これは、開いたリソース（この場合はBufferedReader）を手動で閉じる必要がなくなるため、リソースのリークを防ぐことができます。",
+            "answer": "このコードはtry-with-resources構造を使用しています。\n\n```java\ntry (BufferedReader br = new BufferedReader(new FileReader(\"filename.txt\"))) {\n  // Use the resource\n}\n```\n\nこの構造はJava 7以降で利用可能で、この構造を使用すると、tryブロックの終了時にリソースが自動的に閉じられるため、開いたリソースを手動で閉じることを忘れるリスクがなくなります。このため、リソースリークを防ぐことができます。"
+        },
+        {
+            "id": 6,
+            "questionId": "java4_6",
+            "title": "Custom Exception",
+            "question": "次のJavaコードがあるとします。\n\n```java\npublic class CustomException extends Exception {\n    public CustomException(String errorMessage) {\n        super(errorMessage);\n    }\n}\n```\n\nこのコードが何をしているのか説明してください。また、カスタム例外が必要な場合は何かを述べてください。",
+            "explanation": "このコードはカスタム例外を定義しています。カスタム例外は、Javaの既存の例外クラスが提供する機能に満足できない場合や、特定のエラーコンテキストをより明確に表現するために使用されます。この場合、CustomExceptionはExceptionクラスを拡張しており、エラーメッセージを受け取るコンストラクタを追加しています。",
+            "answer": "このコードはカスタム例外クラス、CustomExceptionを定義しています。カスタム例外は、Javaの既存の例外クラスが提供する機能に満足できない場合や、特定のエラーコンテキストをより明確に表現したいときに使用されます。この場合、CustomExceptionはExceptionクラスを拡張（extends）し、エラーメッセージを引数に取るコンストラクタを持っています。\n\nカスタム例外を使用することで、プログラムのエラーハンドリングをより柔軟かつ明確に行うことができます。例えば、特定の種類のエラーが発生したときに特定のアクションをトリガするといったシナリオが考えられます。"
+        },
+        {
+            "id": 7,
+            "questionId": "java4_7",
+            "title": "Exception Handling",
+            "question": "次のJavaコードがあるとします。\n\n```java\npublic class Main {\n    public static void main(String[] args) {\n        try {\n            System.out.println(args[10]);\n        } catch (ArrayIndexOutOfBoundsException e) {\n            System.out.println(\"Array Index is Out Of Bounds\");\n        }\n    }\n}\n```\n\nこのコードが何をしているのか説明してください。また、try-catchブロックが何をしているのか説明してください。",
+            "explanation": "このコードは、mainメソッドの引数（args）の10番目の要素を表示しようとしています。ただし、argsの長さが10未満の場合、ArrayIndexOutOfBoundsExceptionがスローされます。この例外は、try-catchブロックで処理されています。tryブロック内のコードは、例外が発生する可能性がある場合に使用します。もし例外が発生した場合、Javaランタイムは対応するcatchブロックを探し、その例外を処理します。この場合、ArrayIndexOutOfBoundsExceptionが発生した場合、catchブロックが実行され、コンソールにエラーメッセージが表示されます。",
+            "answer": "```java\npublic class Main {\n    public static void main(String[] args) {\n        // Tryブロック内には例外が発生する可能性のあるコードを書きます。\n        try {\n            // args配列の10番目の要素を表示しようとしています。\n            // argsの長さが10未満の場合、ArrayIndexOutOfBoundsExceptionがスローされます。\n            System.out.println(args[10]);\n        }\n        // Catchブロックでは、特定のタイプの例外を捕捉して処理します。\n        catch (ArrayIndexOutOfBoundsException e) {\n            // この例では、ArrayIndexOutOfBoundsExceptionが発生した場合、エラーメッセージを表示します。\n            System.out.println(\"Array Index is Out Of Bounds\");\n        }\n    }\n}\n```"
+        },
+        {
+            "id": 8,
+            "questionId": "java4_8",
+            "title": "Exception Handling",
+            "question": "次のJavaコードがあるとします。\n\n```java\npublic class Main {\n    public static void main(String[] args) {\n        String s = null;\n        try {\n            System.out.println(s.length());\n        } catch (NullPointerException e) {\n            System.out.println(\"Caught NullPointerException\");\n        }\n    }\n}\n```\n\nこのコードが何をしているのか説明してください。また、try-catchブロックが何をしているのか説明してください。",
+            "explanation": "このコードは、null値の文字列の長さを表示しようとしています。しかし、null値のオブジェクトに対してメソッドを呼び出そうとすると、NullPointerExceptionがスローされます。この例外は、try-catchブロックで処理されています。tryブロック内のコードは、例外が発生する可能性がある場合に使用します。もし例外が発生した場合、Javaランタイムは対応するcatchブロックを探し、その例外を処理します。この場合、NullPointerExceptionが発生した場合、catchブロックが実行され、コンソールにエラーメッセージが表示されます。",
+            "answer": "```java\npublic class Main {\n    public static void main(String[] args) {\n        // sはnullです。\n        String s = null;\n        // Tryブロック内には例外が発生する可能性のあるコードを書きます。\n        try {\n            // sの長さを表示しようとしています。しかし、sはnullなのでNullPointerExceptionがスローされます。\n            System.out.println(s.length());\n        }\n        // Catchブロックでは、特定のタイプの例外を捕捉して処理します。\n        catch (NullPointerException e) {\n            // この例では、NullPointerExceptionが発生した場合、エラーメッセージを表示します。\n            System.out.println(\"Caught NullPointerException\");\n        }\n    }\n}\n```"
+        },
+        {
+            "id": 9,
+            "questionId": "java4_9",
+            "title": "Exception Handling",
+            "question": "次のJavaコードがあります。\n\n```java\npublic class Main {\n    public static void main(String[] args) {\n        try {\n            int result = 10 / 0;\n        } catch (ArithmeticException e) {\n            System.out.println(\"Caught ArithmeticException\");\n        }\n    }\n}\n```\n\nこのコードの動作と、ArithmeticExceptionが何であるか説明してください。また、例外が捕捉される仕組みについて説明してください。",
+            "explanation": "このコードは、10を0で割るという演算を試みています。しかし、任意の数を0で割るという操作は数学的に未定義であるため、JavaではArithmeticExceptionという例外がスローされます。例外は、tryブロック内で発生します。Javaランタイムシステムは、スローされた例外に対応するcatchブロックを見つけると、そのブロック内のコードを実行します。この場合、ArithmeticExceptionがスローされ、対応するcatchブロック内のメッセージが表示されます。",
+            "answer": "```java\npublic class Main {\n    public static void main(String[] args) {\n        // tryブロック内には例外が発生する可能性のあるコードを書きます。\n        try {\n            // 10を0で割ろうとするとArithmeticExceptionがスローされます。\n            int result = 10 / 0;\n        }\n        // catchブロックでは、特定のタイプの例外を捕捉して処理します。\n        catch (ArithmeticException e) {\n            // ArithmeticExceptionが捕捉された場合、エラーメッセージを表示します。\n            System.out.println(\"Caught ArithmeticException\");\n        }\n    }\n}\n```"
+        },
+        {
+            "id": 10,
+            "questionId": "java4_10",
+            "title": "Exception Handling",
+            "question": "以下のJavaコードがあります。\n\n```java\npublic class Main {\n    public static void main(String[] args) {\n        try {\n            int[] arr = new int[5];\n            System.out.println(arr[5]);\n        } catch (ArrayIndexOutOfBoundsException e) {\n            System.out.println(\"Caught ArrayIndexOutOfBoundsException\");\n        }\n    }\n}\n```\n\nこのコードの動作と、ArrayIndexOutOfBoundsExceptionが何であるか説明してください。また、例外が捕捉される仕組みについて説明してください。",
+            "explanation": "このコードは、存在しない配列のインデックスにアクセスしようとしています。配列の長さは5で、有効なインデックスは0から4までです。しかし、このコードでは5というインデックスにアクセスしようとしているため、JavaはArrayIndexOutOfBoundsExceptionという例外をスローします。例外は、tryブロック内で発生します。Javaランタイムシステムは、スローされた例外に対応するcatchブロックを見つけると、そのブロック内のコードを実行します。この場合、ArrayIndexOutOfBoundsExceptionがスローされ、対応するcatchブロック内のメッセージが表示されます。",
+            "answer": "```java\npublic class Main {\n    public static void main(String[] args) {\n        // tryブロック内には例外が発生する可能性のあるコードを書きます。\n        try {\n            // 5つの要素を持つ配列を作ります。\n            int[] arr = new int[5];\n            // 存在しないインデックスにアクセスしようとすると、ArrayIndexOutOfBoundsExceptionがスローされます。\n            System.out.println(arr[5]);\n        }\n        // catchブロックでは、特定のタイプの例外を捕捉して処理します。\n        catch (ArrayIndexOutOfBoundsException e) {\n            // ArrayIndexOutOfBoundsExceptionが捕捉された場合、エラーメッセージを表示します。\n            System.out.println(\"Caught ArrayIndexOutOfBoundsException\");\n        }\n    }\n}\n```"
+        }
+    ]
+}

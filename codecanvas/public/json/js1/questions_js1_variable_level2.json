@@ -1,62 +1,166 @@
 {
-    "contentsId": "javascript2",
-    "title": "JavaScriptの変数中級問題集ページ",
+    "contentsId": "js2",
+    "title": "JavaScriptの変数問題集ページ",
     "subtitle": "中級",
     "questions": [{
             "id": 1,
-            "questionId": "javascript2_1",
-            "title": "変数宣言",
-            "question": "以下のコードを実行した場合、どのような結果が返ってくるか選択してください。\n\n```\nvar a = 10;\nif (a > 5) {\n  var b = 5;\n}\nconsole.log(b);\n```\n",
-            "explanation": "変数`b`はブロック内で宣言されているため、ブロック外からでもアクセス可能です。したがって、変数`b`の値は`5`となります。",
-            "answer": "5"
+            "questionId": "js2_1",
+            "title": "スコープチェーン",
+            "question": "JavaScriptにおけるスコープチェーンについて説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptにおけるスコープチェーンとは、変数や関数の参照を解決するためのメカニズムで、現在のスコープから始まり、グローバルスコープまで連鎖的につながっています。もし現在のスコープに変数がなければ、次のスコープを探し、最終的にはグローバルスコープまで探すことになります。",
+            "answer": "var globalVar = 'I am global!';\n\nfunction outerFunction() {\n  var outerVar = 'I am outer!';\n\n  function innerFunction() {\n    var innerVar = 'I am inner!';\n    console.log(innerVar); // 予想される出力: 'I am inner!'\n    console.log(outerVar); // 予想される出力: 'I am outer!'\n    console.log(globalVar); // 予想される出力: 'I am global!'\n  }\n\n  innerFunction();\n}\n\nouterFunction();"
         },
         {
             "id": 2,
-            "questionId": "javascript2_2",
-            "title": "スコープ",
-            "question": "以下のコードを実行した場合、どのような結果が返ってくるか選択してください。\n\n```\nvar a = 10;\nfunction test() {\n  console.log(a);\n  var a = 5;\n}\ntest();\n```\n",
-            "explanation": "関数内で変数`a`が宣言されているため、関数内の変数`a`が優先されます。そのため、変数`a`の値は`undefined`となります。",
-            "answer": "undefined"
+            "questionId": "js2_2",
+            "title": "クロージャ",
+            "question": "クロージャについて説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "クロージャは、関数とその関数が宣言されたレキシカルスコープの組み合わせを指します。これにより、関数は自身が宣言されたスコープ外からでも、そのスコープ内の変数にアクセスすることができます。",
+            "answer": "function outerFunction() {\n  var outerVar = 'I am outer!';\n\n  function innerFunction() {\n    console.log(outerVar); // 予想される出力: 'I am outer!'\n  }\n\n  return innerFunction;\n}\n\nvar myFunction = outerFunction();\nmyFunction();"
         },
         {
             "id": 3,
-            "questionId": "javascript2_3",
-            "title": "スコープ",
-            "question": "以下のコードを実行した場合、どのような結果が返ってくるか選択してください。\n\n```\nvar a = 10;\nfunction test() {\n  var a = 5;\n}\ntest();\nconsole.log(a);\n```\n",
-            "explanation": "関数内で宣言された変数`a`は、関数内でのみ有効であり、関数外での変数`a`には影響しません。したがって、変数`a`の値は`10`となります。",
-            "answer": "10"
+            "questionId": "js2_3",
+            "title": "変数のシャドウイング",
+            "question": "変数のシャドウイングについて説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "変数のシャドウイングは、内部スコープで同じ名前の変数が宣言され、外部スコープの同名の変数を覆い隠す（参照できなくする）現象を指します。",
+            "answer": "var myVar = 'I am outside!';\n\nfunction myFunction() {\n  var myVar = 'I am inside!';\n  console.log(myVar); // 予想される出力: 'I am inside!'\n}\n\nmyFunction();\nconsole.log(myVar); // 予想される出力: 'I am outside!'"
         },
         {
             "id": 4,
-            "questionId": "js2_1",
-            "title": "データ型の自動変換",
-            "question": "以下のコードを実行したときに、表示される値は？\n\nvar x = 10;\nvar y = '5';\nconsole.log(x + y);",
-            "explanation": "文字列と数値を結合すると、JavaScriptは自動的に文字列を数値に変換します。\n変換された値の結果、10と5が加算された後、文字列'105'が出力されます。",
-            "answer": "105"
+            "questionId": "js2_4",
+            "title": "即時実行関数",
+            "question": "即時実行関数(IIFE)について説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "即時実行関数(IIFE, Immediately Invoked Function Expression)は、定義されるとすぐに実行されるJavaScriptの関数パターンです。これにより、変数をグローバルスコープから隔離し、名前衝突を避けることができます。",
+            "answer": "(function () {\n  var myVar = 'Hello, world!';\n  console.log(myVar); // 予想される出力: 'Hello, world!'\n})();\n\n// console.log(myVar); // Error: myVar is not defined"
         },
         {
             "id": 5,
-            "questionId": "js2_2",
-            "title": "変数のスコープ",
-            "question": "以下のコードを実行したときに、表示される値は？\n\nvar x = 10;\nfunction myFunction() {\n  var x = 2;\n}\nmyFunction();\nconsole.log(x);",
-            "explanation": "myFunction() 関数内で定義された x 変数のスコープは、関数自体の中に限られています。\nしたがって、関数の外で定義された x 変数（値は10）を参照することになります。\nそのため、出力される値は10となります。",
-            "answer": "10"
+            "questionId": "js2_5",
+            "title": "ブロックスコープ",
+            "question": "ブロックスコープについて説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptのletとconstは、宣言されたブロック（{}で囲まれた部分）内でのみアクセス可能な変数を宣言します。これはブロックスコープと呼ばれます。",
+            "answer": "{\n  let myLet = 'Hello, world!';\n  const myConst = 'Hello, OpenAI!';\n  console.log(myLet); // 予想される出力: 'Hello, world!'\n  console.log(myConst); // 予想される出力: 'Hello, OpenAI!'\n}\n\n// console.log(myLet); // Error: myLet is not defined\n// console.log(myConst); // Error: myConst is not defined"
         },
         {
             "id": 6,
-            "questionId": "javascript6",
-            "title": "変数のスコープ",
-            "question": "以下のコードを実行した際に表示される値は何ですか？",
-            "explanation": "このコードでは、if文の中で宣言された変数「x」がif文の外でも参照可能です。これは、JavaScriptの変数のスコープが関数スコープではなく、ブロックスコープではないためです。",
-            "answer": "2\n"
+            "questionId": "js2_6",
+            "title": "letとconstの違い",
+            "question": "letとconstで宣言された変数の違いについて説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "letは再代入可能な変数を宣言するために使用され、constは再代入不可能な変数、つまり定数を宣言するために使用されます。",
+            "answer": "let myLet = 'Hello, world!';\nmyLet = 'Hello, OpenAI!';\nconsole.log(myLet); // 予想される出力: 'Hello, OpenAI!'\n\nconst myConst = 'Hello, world!';\n// myConst = 'Hello, OpenAI!'; // Error: Assignment to constant variable."
         },
         {
             "id": 7,
-            "questionId": "javascript7",
-            "title": "変数の名前の付け方",
-            "question": "JavaScriptの変数名に関する説明として、正しいものを1つ選択してください。",
-            "explanation": "JavaScriptの変数名には、文字、数字、アンダースコア（ _ ）、ドル記号（ $ ）を使用できます。ただし、数字から始めることはできません。",
-            "answer": "a. 変数名は、数字から始めても構わない\nb. 変数名には、文字、数字、アンダースコア（ _ ）、ドル記号（ $ ）以外は使用できない\nc. 変数名は、英語の単語をすべて大文字で繋げたものにするのが望ましい\nd. 変数名は、アルファベット以外の文字を含むことはできない\n"
+            "questionId": "js2_7",
+            "title": "テンプレート文字列",
+            "question": "テンプレート文字列を用いて、変数の値を文字列内に埋め込む方法を説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptでは、バッククォート(`)を使用したテンプレート文字列を用いて、変数の値を文字列内に直接埋め込むことができます。これをテンプレートリテラルとも呼びます。",
+            "answer": "let name = 'OpenAI';\nconsole.log(`Hello, ${name}!`); // 予想される出力: 'Hello, OpenAI!'"
+        },
+        {
+            "id": 8,
+            "questionId": "js2_8",
+            "title": "変数の巻き上げ",
+            "question": "変数の巻き上げ(hoisting)について説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptでは、変数と関数宣言はそのスコープのトップに'巻き上げ'られるという現象が発生します。ただし、letとconstで宣言された変数は巻き上げられないことを覚えておいてください。",
+            "answer": "console.log(myVar); // 予想される出力: undefined\n\nvar myVar = 'Hello, world!';\nconsole.log(myVar); // 予想される出力: 'Hello, world!'\n\n// console.log(myLet); // Error: myLet is not defined\nlet myLet = 'Hello, OpenAI!';"
+        },
+        {
+            "id": 9,
+            "questionId": "js2_9",
+            "title": "変数のスコープ",
+            "question": "JavaScriptにおける変数のスコープについて説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptでは、変数のスコープはその変数が宣言されたブロック、または関数です。また、varで宣言された変数は関数スコープを持ち、letとconstで宣言された変数はブロックスコープを持ちます。",
+            "answer": "function testFunction() {\n    var functionVar = 'Hello, function!';\n    console.log(functionVar); // 予想される出力: 'Hello, function!'\n}\n\n// console.log(functionVar); // Error: functionVar is not defined\n\ntestFunction();"
+        },
+        {
+            "id": 10,
+            "questionId": "js2_10",
+            "title": "変数の再宣言",
+            "question": "JavaScriptでvar、let、constを使用して変数を再宣言した場合に起こる現象について説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "varで宣言された変数は再宣言可能ですが、letとconstで宣言された変数は同一スコープ内で再宣言することはできません。",
+            "answer": "var myVar = 'Hello, world!';\nvar myVar = 'Hello, OpenAI!';\nconsole.log(myVar); // 予想される出力: 'Hello, OpenAI!'\n\n// let myLet = 'Hello, world!';\n// let myLet = 'Hello, OpenAI!'; // Error: Identifier 'myLet' has already been declared\n\n// const myConst = 'Hello, world!';\n// const myConst = 'Hello, OpenAI!'; // Error: Identifier 'myConst' has already been declared"
+        },
+        {
+            "id": 11,
+            "questionId": "js2_11",
+            "title": "変数と型の強制",
+            "question": "JavaScriptにおける型の強制について説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptは動的に型が定義される言語です。これにより、異なる型の値を持つ変数間で操作を行うことが可能です。しかし、これは予期しない結果を引き起こす可能性があるため、適切に扱う必要があります。",
+            "answer": "let a = 5;\nlet b = '2';\nconsole.log(a + b); // 予想される出力: '52'\n\nlet c = String(a);\nconsole.log(c + b); // 予想される出力: '52'\n\nlet d = Number(b);\nconsole.log(a + d); // 予想される出力: 7"
+        },
+        {
+            "id": 12,
+            "questionId": "js2_12",
+            "title": "nullとundefined",
+            "question": "nullとundefinedの違いについて説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptにおけるnullは値が存在しないことを示しますが、undefinedは変数が宣言されたが値が設定されていないことを示します。",
+            "answer": "let a;\nconsole.log(a); // 予想される出力: undefined\n\nlet b = null;\nconsole.log(b); // 予想される出力: null"
+        },
+        {
+            "id": 13,
+            "questionId": "js2_13",
+            "title": "グローバル変数とローカル変数",
+            "question": "JavaScriptにおけるグローバル変数とローカル変数について説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptにおけるグローバル変数は、どこからでもアクセス可能な変数です。一方、ローカル変数は特定の関数やブロック内でのみアクセス可能な変数です。",
+            "answer": "let globalVar = 'I am global!'; // これはグローバル変数です。\n\nfunction checkVars() {\n  let localVar = 'I am local!'; // これはローカル変数です。\n  console.log(globalVar); // 予想される出力: 'I am global!'\n  console.log(localVar); // 予想される出力: 'I am local!'\n}\n\ncheckVars();\n// console.log(localVar); // ここではエラーが発生します。localVarはcheckVars関数のスコープ内でのみ存在します。"
+        },
+        {
+            "id": 14,
+            "questionId": "js2_14",
+            "title": "変数の巻き上げ",
+            "question": "JavaScriptにおける変数の巻き上げ(hoisting)について説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptでは、変数と関数の宣言はそのスコープの最上部に巻き上げられます。ただし、値の割り当ては巻き上げられません。",
+            "answer": "// 変数の巻き上げ(hoisting)により、変数aは宣言前に参照されますが、エラーは発生しません。\n// ただし、この時点では変数aはundefinedです。\nconsole.log(a); // 予想される出力: undefined\n\nvar a = 5;\nconsole.log(a); // 予想される出力: 5"
+        },
+        {
+            "id": 15,
+            "questionId": "js2_15",
+            "title": "変数の代入と参照",
+            "question": "JavaScriptにおけるプリミティブ型とオブジェクト型の変数の代入と参照の違いについて説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptでは、プリミティブ型の変数は値により、オブジェクト型の変数は参照により代入されます。",
+            "answer": "let a = 5;\nlet b = a;\nb = 3;\nconsole.log(a); // 予想される出力: 5\n\nlet obj1 = { prop: 'Hello, world!' };\nlet obj2 = obj1;\nobj2.prop = 'Hello, OpenAI!';\nconsole.log(obj1.prop); // 予想される出力: 'Hello, OpenAI!'"
+        },
+        {
+            "id": 16,
+            "questionId": "js2_16",
+            "title": "const変数",
+            "question": "JavaScriptのconst変数について説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "constは一度割り当てられた値を変更できない変数を宣言します。しかし、オブジェクトや配列をconstで宣言した場合、そのプロパティや要素は変更可能です。",
+            "answer": "const a = 5;\n// a = 3; // これはエラーになります。\n\nconst b = { prop: 'Hello, world!' };\nb.prop = 'Hello, OpenAI!';\nconsole.log(b.prop); // 予想される出力: 'Hello, OpenAI!'"
+        },
+        {
+            "id": 17,
+            "questionId": "js2_17",
+            "title": "let変数とvar変数の違い",
+            "question": "JavaScriptのlet変数とvar変数の違いについて説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "letとvarはどちらも変数を宣言するためのキーワードですが、スコープや巻き上げ(hoisting)の挙動に違いがあります。",
+            "answer": "// let変数はブロックスコープを持ちます。\nif (true) {\n  let a = 5;\n  console.log(a); // 予想される出力: 5\n}\n// console.log(a); // ここではエラーが発生します。\n\n// var変数は関数スコープを持ちます。\nif (true) {\n  var b = 5;\n  console.log(b); // 予想される出力: 5\n}\nconsole.log(b); // 予想される出力: 5"
+        },
+        {
+            "id": 18,
+            "questionId": "js2_18",
+            "title": "変数のスコープ",
+            "question": "JavaScriptにおける変数のスコープについて説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptの変数はその宣言位置によりスコープが決定されます。スコープはその変数が参照可能な範囲を決定します。",
+            "answer": "let a = 5; // これはグローバルスコープの変数です。\n\nfunction checkVars() {\n  let b = 3; // これはcheckVars関数のスコープ内の変数です。\n  console.log(a); // グローバルスコープの変数は関数内から参照できます。予想される出力: 5\n  console.log(b); // 予想される出力: 3\n}\n\ncheckVars();\n// console.log(b); // ここではエラーが発生します。bはcheckVars関数のスコープ内でのみ存在します。"
+        },
+        {
+            "id": 19,
+            "questionId": "js2_19",
+            "title": "変数の巻き上げ",
+            "question": "JavaScriptにおける変数の巻き上げ(hoisting)について説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptでは、変数と関数の宣言はそのスコープの最上部に巻き上げられます。ただし、値の割り当ては巻き上げられません。",
+            "answer": "// 変数の巻き上げ(hoisting)により、変数aは宣言前に参照されますが、エラーは発生しません。\n// ただし、この時点では変数aはundefinedです。\nconsole.log(a); // 予想される出力: undefined\n\nvar a = 5;\nconsole.log(a); // 予想される出力: 5"
+        },
+        {
+            "id": 20,
+            "questionId": "js2_20",
+            "title": "変数の代入と参照",
+            "question": "JavaScriptにおけるプリミティブ型とオブジェクト型の変数の代入と参照の違いについて説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptでは、プリミティブ型の変数は値により、オブジェクト型の変数は参照により代入されます。",
+            "answer": "let a = 5;\nlet b = a;\nb = 3;\nconsole.log(a); // 予想される出力: 5\n\nlet obj1 = { prop: 'Hello, world!' };\nlet obj2 = obj1;\nobj2.prop = 'Hello, OpenAI!';\nconsole.log(obj1.prop); // 予想される出力: 'Hello, OpenAI!'"
         }
     ]
 }

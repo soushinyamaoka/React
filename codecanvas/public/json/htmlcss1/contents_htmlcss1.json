@@ -1,0 +1,55 @@
+{
+    "contentsId": "htmlcss",
+    "title": "html/cssの基本構文問題集ページ",
+    "subtitle": "html/cssの基本",
+    "questions": [{
+            "id": 1,
+            "questionId": "html1_basics",
+            "title": "HTMLの基本",
+            "question": "HTMLとはHyperText Markup Languageの略で、ウェブページを作成するための基本的なマークアップ言語です。HTMLは要素またはタグと呼ばれるマークアップを使用して、テキストの構造を定義し、ハイパーテキストとして機能します。これにより、ユーザーはウェブページ間をリンクをクリックして移動することができます。",
+            "answer": "<!-- HTMLドキュメントの基本的な構造 -->\n<!DOCTYPE html>\n<html>\n  <head>\n    <title>My First HTML Page</title>\n  </head>\n  <body>\n    <h1>Welcome to My Website</h1>\n    <p>This is a paragraph of text.</p>\n    <a href=\"https://www.example.com\">Click here</a> to visit example.com.\n  </body>\n</html>"
+        },
+        {
+            "id": 2,
+            "questionId": "html2_documentStructure",
+            "title": "HTML文書の構造",
+            "question": "HTML文書は、通常、以下の要素で構成されます：DOCTYPE宣言、htmlタグ、headタグ、およびbodyタグ。DOCTYPE宣言は、ブラウザにHTMLのバージョンを伝えます。htmlタグは、HTML文書のルート要素です。headタグは、メタデータ（タイトル、スタイルシートのリンク、スクリプトのリンクなど）が含まれます。bodyタグは、ユーザーがブラウザで直接見ることができる全てのコンテンツ（テキスト、画像、リンク、ボタンなど）を保持します。",
+            "answer": "<!-- HTMLドキュメントの基本的な構造 -->\n<!DOCTYPE html>\n<html>\n  <head>\n    <title>Page Title</title>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\">\n    <script src=\"script.js\"></script>\n  </head>\n  <body>\n    <h1>This is a Heading</h1>\n    <p>This is a paragraph.</p>\n    <img src=\"image.jpg\" alt=\"My Image\">\n  </body>\n</html>"
+        },
+        {
+            "id": 3,
+            "questionId": "html3_basicTags",
+            "title": "HTMLの基本タグ",
+            "question": "HTMLには多くのタグがありますが、その中でも特によく使われる基本的なタグについて学びましょう。以下にそのいくつかを示します。タイトルを指定するtitleタグ、段落を作成するpタグ、見出しを作成するh1～h6タグ、リンクを作成するaタグ、画像を表示するimgタグ、順序なしリストを作成するulタグとそのリスト項目を作成するliタグなどです。",
+            "answer": "<!-- 基本的なHTMLタグの例 -->\n<!DOCTYPE html>\n<html>\n  <head>\n    <title>Page Title</title>\n  </head>\n  <body>\n    <h1>My First Heading</h1>\n    <p>My first paragraph.</p>\n    <a href=\"https://www.example.com\">This is a link</a>\n    <img src=\"image.jpg\" alt=\"My Image\">\n    <ul>\n      <li>List item 1</li>\n      <li>List item 2</li>\n      <li>List item 3</li>\n    </ul>\n  </body>\n</html>"
+        },
+        {
+            "id": 4,
+            "questionId": "html4_imageAndMedia",
+            "title": "HTMLの画像とメディア",
+            "question": "HTMLでは、imgタグを使って画像を挿入したり、videoやaudioタグを使って動画や音声ファイルを再生することができます。imgタグでは、src属性に画像ファイルのURLを、alt属性に画像が表示されない場合の代替テキストを指定します。videoとaudioタグでは、src属性にメディアファイルのURLを指定します。また、controls属性を追加することで再生、一時停止、音量調節などのコントロールを表示することができます。",
+            "answer": "<!-- HTMLの画像とメディアの例 -->\n<!DOCTYPE html>\n<html>\n  <body>\n    <img src=\"image.jpg\" alt=\"My Image\">\n    <video src=\"movie.mp4\" controls>\n      Your browser does not support the video tag.\n    </video>\n    <audio src=\"audio.mp3\" controls>\n      Your browser does not support the audio element.\n    </audio>\n  </body>\n</html>"
+        },
+        {
+            "id": 5,
+            "questionId": "html5_table",
+            "title": "HTMLのテーブル",
+            "question": "HTMLでは、テーブルを表示するためにtableタグを使用します。tableタグの内部には、trタグ（table row）で行を、tdタグ（table data）または thタグ（table header）で列を作成します。trタグは各行を定義し、tdタグは各セルの内容を定義し、thタグはヘッダーセルを定義します。thタグで定義されたセルは太字で中央揃えになります。",
+            "answer": "<!-- HTMLのテーブルの例 -->\n<!DOCTYPE html>\n<html>\n  <body>\n    <table>\n      <tr>\n        <th>Firstname</th>\n        <th>Lastname</th>\n      </tr>\n      <tr>\n        <td>John</td>\n        <td>Doe</td>\n      </tr>\n      <tr>\n        <td>Jane</td>\n        <td>Doe</td>\n      </tr>\n    </table>\n  </body>\n</html>"
+        },
+        {
+            "id": 6,
+            "questionId": "html5_form",
+            "title": "HTMLフォーム",
+            "question": "HTMLのフォームは、ユーザーがデータをウェブサイトに送信できるようにするための重要なツールです。フォームは、formタグで作成され、その内部にはさまざまな種類の入力要素、例えばtextフィールド（inputタグ type='text'）、チェックボックス（inputタグ type='checkbox'）、ラジオボタン（inputタグ type='radio'）、サブミットボタンなどが含まれます。",
+            "answer": "<!-- HTMLフォームの例 -->\n<!DOCTYPE html>\n<html>\n  <body>\n    <form>\n      First name:<br>\n      <input type='text' name='firstname'><br>\n      Last name:<br>\n      <input type='text' name='lastname'><br><br>\n      <input type='submit' value='Submit'>\n    </form>\n  </body>\n</html>"
+        },
+        {
+            "id": 7,
+            "questionId": "html5_semanticTags",
+            "title": "HTMLのセマンティックタグ",
+            "question": "HTML5では、セマンティックタグ（意味的なタグ）が導入されました。これらは、その名前が示す通り、特定の意味を持つタグで、ブラウザー、開発者、そして検索エンジンに対してページの内容をより明確に伝えることが可能です。主なセマンティックタグには、header、nav、main、article、section、aside、footerなどがあります。",
+            "answer": "<!-- セマンティックタグの例 -->\n<!DOCTYPE html>\n<html>\n  <body>\n    <header>\n      <h1>Welcome to My Website</h1>\n    </header>\n    <nav>\n      <a href='#'>Home</a> |\n      <a href='#'>About</a> |\n      <a href='#'>Contact</a>\n    </nav>\n    <main>\n      <article>\n        <h2>My First Article</h2>\n        <p>This is the content of my first article.</p>\n      </article>\n    </main>\n    <footer>\n      Copyright &copy; 2023\n    </footer>\n  </body>\n</html>"
+        }
+    ]
+}

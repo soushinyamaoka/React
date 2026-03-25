@@ -1,0 +1,86 @@
+{
+    "contentsId": "js2_dom",
+    "title": "Javascriptの要素の取得問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_dom2_1",
+            "title": "要素の取得と操作",
+            "question": "HTMLの要素の取得方法の中に、「getElementById」、「getElementsByClassName」、「getElementsByTagName」、「querySelector」、「querySelectorAll」などがあります。これらの取得方法を利用し、HTMLページ内の特定の要素を取得し、その内容を変更するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、様々なメソッドを利用してHTMLの要素を取得し、その内容を変更することができます。要素の取得方法には、「getElementById」、「getElementsByClassName」、「getElementsByTagName」、「querySelector」、「querySelectorAll」などがあります。これらの取得方法を利用して特定の要素を取得し、その内容を変更することができます。",
+            "answer": "// id属性が'myId'の要素を取得\nlet element = document.getElementById('myId');\n// 取得した要素の内容を変更\nelement.textContent = '新しい内容';\n// このコードを実行すると、id属性が'myId'の要素の内容が'新しい内容'に変更されます。"
+        },
+        {
+            "id": 2,
+            "questionId": "js_dom2_2",
+            "title": "要素の取得と属性の操作",
+            "question": "HTMLの要素に設定されている属性を操作する方法を学びましょう。「getElementById」を使用して要素を取得し、その要素の任意の属性を変更するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「getAttribute」メソッドを使ってHTML要素の属性を取得したり、「setAttribute」メソッドを使って属性を設定したりすることができます。特定の要素の属性を操作するには、まずその要素を取得する必要があります。要素の取得には、「getElementById」メソッドが一般的に用いられます。",
+            "answer": "// id属性が'myId'の要素を取得\nlet element = document.getElementById('myId');\n// 取得した要素のclass属性を変更\nelement.setAttribute('class', 'newClass');\n// このコードを実行すると、id属性が'myId'の要素のclass属性が'newClass'に変更されます。"
+        },
+        {
+            "id": 3,
+            "questionId": "js_dom2_3",
+            "title": "複数の要素の取得",
+            "question": "HTMLの同じクラスを持つ複数の要素を一度に取得するためのJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「getElementsByClassName」メソッドを用いて、特定のクラスを持つすべての要素を取得することができます。このメソッドはHTMLCollectionを返し、それは取得した要素のリストを表します。",
+            "answer": "// class属性が'myClass'の全ての要素を取得\nlet elements = document.getElementsByClassName('myClass');\n// このコードを実行すると、class属性が'myClass'の全ての要素を取得することができます。"
+        },
+        {
+            "id": 4,
+            "questionId": "js_dom2_4",
+            "title": "id属性で要素の取得",
+            "question": "HTML内の特定のid属性を持つ要素を取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「getElementById」メソッドを用いて、特定のid属性を持つ要素を取得することができます。このメソッドはElementオブジェクトを返し、それは取得した要素を表します。",
+            "answer": "// id属性が'myId'の要素を取得\nlet element = document.getElementById('myId');\n// このコードを実行すると、id属性が'myId'の要素を取得することができます。"
+        },
+        {
+            "id": 5,
+            "questionId": "js_dom2_5",
+            "title": "複数の要素の取得",
+            "question": "HTML内の特定のclass属性を持つすべての要素を取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「getElementsByClassName」メソッドを用いて、特定のclass属性を持つすべての要素を取得することができます。このメソッドはHTMLCollectionオブジェクトを返します。",
+            "answer": "// class属性が'myClass'のすべての要素を取得\nlet elements = document.getElementsByClassName('myClass');\n// このコードを実行すると、class属性が'myClass'のすべての要素を取得することができます。"
+        },
+        {
+            "id": 6,
+            "questionId": "js_dom2_6",
+            "title": "querySelectorメソッドの使用",
+            "question": "HTML内の特定のCSSセレクタに一致する最初の要素を取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「querySelector」メソッドを用いて、特定のCSSセレクタに一致する最初の要素を取得することができます。このメソッドはElementオブジェクトを返します。",
+            "answer": "// CSSセレクタが'#myId'の最初の要素を取得\nlet element = document.querySelector('#myId');\n// このコードを実行すると、CSSセレクタが'#myId'の最初の要素を取得することができます。"
+        },
+        {
+            "id": 7,
+            "questionId": "js_dom2_7",
+            "title": "querySelectorAllメソッドの使用",
+            "question": "HTML内の特定のCSSセレクタに一致する全ての要素を取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「querySelectorAll」メソッドを用いて、特定のCSSセレクタに一致する全ての要素を取得することができます。このメソッドはNodeListオブジェクトを返します。",
+            "answer": "// CSSセレクタが'.myClass'の全ての要素を取得\nlet elements = document.querySelectorAll('.myClass');\n// このコードを実行すると、CSSセレクタが'.myClass'の全ての要素を取得することができます。"
+        },
+        {
+            "id": 8,
+            "questionId": "js_dom2_8",
+            "title": "特定の属性を持つ要素の取得",
+            "question": "HTML内の特定の属性を持つ要素を取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「querySelector」メソッドを用いて、特定の属性を持つ要素を取得することができます。",
+            "answer": "// 属性がdata-exampleの要素を取得\nlet element = document.querySelector('[data-example]');\n// このコードを実行すると、属性がdata-exampleの要素を取得することができます。"
+        },
+        {
+            "id": 9,
+            "questionId": "js_dom2_9",
+            "title": "特定の属性と値を持つ要素の取得",
+            "question": "HTML内の特定の属性とその値を持つ要素を取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「querySelector」メソッドを用いて、特定の属性とその値を持つ要素を取得することができます。",
+            "answer": "// 属性がdata-exampleで値が\"example\"の要素を取得\nlet element = document.querySelector('[data-example=\"example\"]');\n// このコードを実行すると、属性がdata-exampleで値が\"example\"の要素を取得することができます。"
+        },
+        {
+            "id": 10,
+            "questionId": "js_dom2_10",
+            "title": "特定のクラスを持つ要素の取得",
+            "question": "HTML内の特定のクラスを持つ要素を全て取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「querySelectorAll」メソッドを用いて、特定のクラスを持つ要素を全て取得することができます。",
+            "answer": "// class名が\"example\"の要素を全て取得\nlet elements = document.querySelectorAll('.example');\n// このコードを実行すると、class名が\"example\"の要素を全て取得することができます。"
+        }
+    ]
+}

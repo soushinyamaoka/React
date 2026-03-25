@@ -1,0 +1,153 @@
+{
+    "contentsId": "js_object",
+    "title": "Javascriptのオブジェクト問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_obj1_1",
+            "title": "オブジェクトの作成",
+            "question": "次のようなオブジェクトを作成してください：\n\n{\n  \"name\": \"John\",\n  \"age\": 25,\n  \"country\": \"USA\"\n}\n\nオブジェクトのキーと値はすべて文字列です。",
+            "explanation": "JavaScriptのオブジェクトは、キーと値のペアの集合体です。オブジェクトは{}で囲み、その中にキーと値をコロン(:)で繋げて記述します。",
+            "answer": "var person = {\n  \"name\": \"John\",\n  \"age\": \"25\",\n  \"country\": \"USA\"\n};\nconsole.log(person);  // { name: 'John', age: '25', country: 'USA' }"
+        },
+        {
+            "id": 2,
+            "questionId": "js_obj1_2",
+            "title": "オブジェクトのプロパティへのアクセス",
+            "question": "次のオブジェクトが与えられたとします：\n\nvar person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"country\": \"USA\"\n}\n\nこのオブジェクトから名前(name)を取り出してconsole.logで表示してください。",
+            "explanation": "オブジェクトのプロパティにアクセスするには、オブジェクト名.プロパティ名またはオブジェクト名['プロパティ名']の形式で記述します。",
+            "answer": "var person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"country\": \"USA\"\n};\nconsole.log(person.name);  // 'John'"
+        },
+        {
+            "id": 3,
+            "questionId": "js_obj1_3",
+            "title": "オブジェクトのプロパティの追加",
+            "question": "次のオブジェクトが与えられたとします：\n\nvar person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"country\": \"USA\"\n}\n\nこのオブジェクトに\"job\": \"Engineer\"という新しいプロパティを追加して、その結果をconsole.logで表示してください。",
+            "explanation": "JavaScriptのオブジェクトに新しいプロパティを追加するには、オブジェクト名.新しいプロパティ名 = 値の形式で記述します。",
+            "answer": "var person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"country\": \"USA\"\n};\nperson.job = \"Engineer\";\nconsole.log(person);  // { name: 'John', age: 25, country: 'USA', job: 'Engineer' }"
+        },
+        {
+            "id": 4,
+            "questionId": "js_obj1_4",
+            "title": "オブジェクトのプロパティの削除",
+            "question": "次のオブジェクトが与えられたとします：\n\nvar person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"country\": \"USA\",\n  \"job\": \"Engineer\"\n}\n\nこのオブジェクトから\"job\"プロパティを削除して、その結果をconsole.logで表示してください。",
+            "explanation": "JavaScriptのオブジェクトからプロパティを削除するには、delete オペレータを使用します。",
+            "answer": "var person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"country\": \"USA\",\n  \"job\": \"Engineer\"\n};\ndelete person.job;\nconsole.log(person);  // { name: 'John', age: 25, country: 'USA' }"
+        },
+        {
+            "id": 5,
+            "questionId": "js_obj1_5",
+            "title": "オブジェクトのプロパティの存在確認",
+            "question": "次のオブジェクトが与えられたとします：\n\nvar person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"country\": \"USA\"\n}\n\nこのオブジェクトに\"age\"というプロパティが存在するかどうかを調べ、その結果をconsole.logで表示してください。",
+            "explanation": "JavaScriptのオブジェクトに特定のプロパティが存在するかどうかを調べるには、in オペレータを使用します。",
+            "answer": "var person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"country\": \"USA\"\n};\nconsole.log('age' in person);  // true"
+        },
+        {
+            "id": 6,
+            "questionId": "js_obj1_6",
+            "title": "オブジェクトのキーと値の取得",
+            "question": "次のオブジェクトが与えられたとします：\n\nvar person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"country\": \"USA\"\n}\n\nこのオブジェクトのすべてのキーと値をconsole.logで表示してください。",
+            "explanation": "JavaScriptのオブジェクトのすべてのキーと値を取得するには、for...in ループを使用します。",
+            "answer": "var person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"country\": \"USA\"\n};\nfor (var key in person) {\n  console.log(key + ': ' + person[key]);\n}  // name: John, age: 25, country: USA"
+        },
+        {
+            "id": 7,
+            "questionId": "js_obj1_7",
+            "title": "オブジェクトのメソッド作成",
+            "question": "次のオブジェクトが与えられたとします：\n\nvar person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"country\": \"USA\"\n}\n\nこのオブジェクトに、自己紹介文を返すメソッド\"introduce\"を追加してください。自己紹介文は\"Hello, my name is John. I am 25 years old and I live in USA.\"とします。メソッドを追加したら、そのメソッドを呼び出し、結果をconsole.logで表示してください。",
+            "explanation": "JavaScriptのオブジェクトにメソッドを追加するには、新しい関数をプロパティとして追加します。メソッド内でオブジェクトのプロパティにアクセスするには、thisキーワードを使用します。",
+            "answer": "var person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"country\": \"USA\",\n  \"introduce\": function() {\n    return 'Hello, my name is ' + this.name + '. I am ' + this.age + ' years old and I live in ' + this.country + '.';\n  }\n};\nconsole.log(person.introduce());  // Hello, my name is John. I am 25 years old and I live in USA."
+        },
+        {
+            "id": 8,
+            "questionId": "js_obj1_8",
+            "title": "オブジェクトのネスト",
+            "question": "次のような構造を持つネストされたオブジェクトを作成してください。\n\nvar person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"address\": {\n    \"street\": \"123 Main St\",\n    \"city\": \"New York\",\n    \"country\": \"USA\"\n  }\n}\n\n作成したオブジェクトの\"address\"プロパティの\"city\"をconsole.logで表示してください。",
+            "explanation": "JavaScriptのオブジェクトでは、オブジェクト内に別のオブジェクトを含めることができます。これをネストされたオブジェクトと言います。ネストされたオブジェクトのプロパティにアクセスするには、ドット記法を使用します。",
+            "answer": "var person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"address\": {\n    \"street\": \"123 Main St\",\n    \"city\": \"New York\",\n    \"country\": \"USA\"\n  }\n};\nconsole.log(person.address.city);  // New York"
+        },
+        {
+            "id": 9,
+            "questionId": "js_obj1_9",
+            "title": "オブジェクト内の配列",
+            "question": "次のような構造を持つオブジェクトを作成してください。\n\nvar person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"hobbies\": [\"Reading\", \"Cooking\", \"Running\"]\n}\n\n作成したオブジェクトの\"hobbies\"プロパティの最初の要素をconsole.logで表示してください。",
+            "explanation": "JavaScriptのオブジェクトでは、プロパティの値に配列を設定することができます。これを使用すると、一つのプロパティに複数の値を関連付けることができます。",
+            "answer": "var person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"hobbies\": [\"Reading\", \"Cooking\", \"Running\"]\n};\nconsole.log(person.hobbies[0]);  // Reading"
+        },
+        {
+            "id": 10,
+            "questionId": "js_obj1_10",
+            "title": "オブジェクトの削除",
+            "question": "次のオブジェクトが与えられたとします：\n\nvar person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"country\": \"USA\"\n}\n\nこのオブジェクトから\"country\"プロパティを削除してください。その後、\"country\"プロパティが存在しないことをconsole.logで表示してください。",
+            "explanation": "JavaScriptでは、オブジェクトからプロパティを削除するためにdelete演算子を使用します。delete演算子は、指定したプロパティが削除された場合にtrueを返します。",
+            "answer": "var person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"country\": \"USA\"\n};\ndelete person.country;\nconsole.log(person.country);  // undefined"
+        },
+        {
+            "id": 11,
+            "questionId": "js_obj1_11",
+            "title": "オブジェクトの値の変更",
+            "question": "次のオブジェクトが与えられたとします：\n\nvar person = {\n  \"name\": \"John\",\n  \"age\": 25\n}\n\nこのオブジェクトの\"age\"プロパティを26に変更してください。その後、変更後の\"age\"プロパティの値をconsole.logで表示してください。",
+            "explanation": "JavaScriptでは、オブジェクトのプロパティの値を変更するには、新しい値を直接プロパティに代入します。",
+            "answer": "var person = {\n  \"name\": \"John\",\n  \"age\": 25\n};\nperson.age = 26;\nconsole.log(person.age);  // 26"
+        },
+        {
+            "id": 12,
+            "questionId": "js_obj1_12",
+            "title": "オブジェクトのメソッド",
+            "question": "次のオブジェクトが与えられたとします：\n\nvar person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"greet\": function() {\n    return \"Hello, my name is \" + this.name;\n  }\n}\n\nこのオブジェクトの\"greet\"メソッドを呼び出し、その結果をconsole.logで表示してください。",
+            "explanation": "JavaScriptのオブジェクトでは、プロパティの値に関数を設定することができます。これをメソッドと呼びます。メソッドはオブジェクトのアクションを表現します。",
+            "answer": "var person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"greet\": function() {\n    return \"Hello, my name is \" + this.name;\n  }\n};\nconsole.log(person.greet());  // Hello, my name is John"
+        },
+        {
+            "id": 13,
+            "questionId": "js_obj1_13",
+            "title": "オブジェクトのプロパティ削除",
+            "question": "次のオブジェクトが与えられたとします：\n\nvar person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"city\": \"New York\"\n}\n\nこのオブジェクトから\"city\"プロパティを削除してください。その後、削除が完了したことを確認するためにconsole.logでオブジェクト全体を表示してください。",
+            "explanation": "JavaScriptのオブジェクトからプロパティを削除するには、delete演算子を使用します。",
+            "answer": "var person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"city\": \"New York\"\n};\ndelete person.city;\nconsole.log(person);  // {\"name\": \"John\",\"age\": 25}"
+        },
+        {
+            "id": 14,
+            "questionId": "js_obj1_14",
+            "title": "オブジェクトプロパティの存在確認",
+            "question": "次のオブジェクトが与えられたとします：\n\nvar person = {\n  \"name\": \"John\",\n  \"age\": 25\n}\n\n\"country\"というプロパティがこのオブジェクトに存在するかどうかを確認し、その結果をconsole.logで表示してください。",
+            "explanation": "JavaScriptのオブジェクトに特定のプロパティが存在するかどうかを確認するには、in演算子を使用します。",
+            "answer": "var person = {\n  \"name\": \"John\",\n  \"age\": 25\n};\nconsole.log(\"country\" in person);  // false"
+        },
+        {
+            "id": 15,
+            "questionId": "js_obj1_15",
+            "title": "オブジェクトメソッドの定義と呼び出し",
+            "question": "次のようなオブジェクトがあります:\n\nvar person = {\n  \"name\": \"John\",\n  \"age\": 25\n}\n\nこのpersonオブジェクトに、自身の名前をconsole.logで表示するメソッド\"introduce\"を追加してください。そしてそのメソッドを呼び出してください。",
+            "explanation": "JavaScriptのオブジェクトはメソッドも持つことができます。メソッドはオブジェクト内の関数であり、オブジェクトのプロパティの一種です。",
+            "answer": "var person = {\n  \"name\": \"John\",\n  \"age\": 25,\n  \"introduce\": function() {\n    console.log(\"My name is \" + this.name);\n  }\n};\nperson.introduce();  // My name is John"
+        },
+        {
+            "id": 16,
+            "questionId": "js_obj1_16",
+            "title": "オブジェクトコンストラクタの利用",
+            "question": "「Person」という名前のコンストラクタ関数を作成してください。この関数は「name」、「age」をプロパティに持つオブジェクトを生成します。その後、このコンストラクタを使用して「Alice」という名前で20歳の「Person」オブジェクトを作成し、console.logで表示してください。",
+            "explanation": "JavaScriptでは、オブジェクトコンストラクタを使用して新しいオブジェクトを作成することができます。オブジェクトコンストラクタは一種のテンプレートとして機能し、同じ種類の新しいオブジェクトを何度も作成できます。",
+            "answer": "function Person(name, age) {\n  this.name = name;\n  this.age = age;\n}\n\nvar alice = new Person(\"Alice\", 20);\nconsole.log(alice);  // Person {\"name\": \"Alice\",\"age\": 20}"
+        },
+        {
+            "id": 17,
+            "questionId": "js_obj1_17",
+            "title": "オブジェクトコンストラクタとメソッド",
+            "question": "「Person」という名前のコンストラクタ関数を作成してください。この関数は「name」、「age」をプロパティに持つオブジェクトを生成します。さらに、このオブジェクトには「introduce」というメソッドを持たせ、このメソッドはそのオブジェクトの名前をconsole.logで表示します。その後、このコンストラクタを使用して「Alice」という名前で20歳の「Person」オブジェクトを作成し、「introduce」メソッドを呼び出してください。",
+            "explanation": "オブジェクトコンストラクタ内でメソッドを定義することで、新たに作成されるオブジェクトすべてにそのメソッドを持たせることができます。",
+            "answer": "function Person(name, age) {\n  this.name = name;\n  this.age = age;\n  this.introduce = function() {\n    console.log(\"My name is \" + this.name);\n  }\n}\n\nvar alice = new Person(\"Alice\", 20);\nalice.introduce();  // My name is Alice"
+        },
+        {
+            "id": 18,
+            "questionId": "js_obj1_18",
+            "title": "プロトタイプを使用したメソッドの追加",
+            "question": "先ほど作成した「Person」コンストラクタに、新たに「greet」というメソッドを追加してください。「greet」メソッドは「Hello! I am 〇〇.」という形式（〇〇にはそのオブジェクトの名前が入る）でconsole.logを出力します。メソッドの追加には「prototype」を使用してください。そして、「Alice」という名前で20歳の「Person」オブジェクトを作成し、「greet」メソッドを呼び出してください。",
+            "explanation": "プロトタイプを使用することで、既存のコンストラクタに新たなメソッドやプロパティを追加することができます。",
+            "answer": "function Person(name, age) {\n  this.name = name;\n  this.age = age;\n  this.introduce = function() {\n    console.log(\"My name is \" + this.name);\n  }\n}\n\nPerson.prototype.greet = function() {\n  console.log(\"Hello! I am \" + this.name + \".\");\n}\n\nvar alice = new Person(\"Alice\", 20);\nalice.greet();  // Hello! I am Alice."
+        }
+
+
+
+    ]
+}

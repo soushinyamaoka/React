@@ -1,0 +1,86 @@
+{
+    "contentsId": "java8",
+    "title": "Javaのオーバーライド問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java8_1",
+            "title": "基本的なオーバーライド",
+            "question": "次の「Animal」クラスを拡張する「Dog」クラスを作成してください。そして、「Animal」クラスの「speak」メソッドをオーバーライドし、「Dog」クラスでは「Woof!」と出力するようにしてください。\n\nAnimalクラス:\n\npublic class Animal {\n    public void speak() {\n        System.out.println(\"Animal speaks\");\n    }\n}",
+            "explanation": "メソッドのオーバーライドとは、スーパークラスに定義されているメソッドをサブクラスで再定義することを指します。この機能を利用すると、同じメソッド名で異なる振る舞いを実装することができます。",
+            "answer": "public class Dog extends Animal {\n    @Override\n    public void speak() {\n        System.out.println(\"Woof!\");\n    }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java8_2",
+            "title": "オーバーライドと多態性",
+            "question": "次の「Animal」クラスを拡張する「Cat」クラスを作成し、「speak」メソッドをオーバーライドして、「Meow!」と出力するようにしてください。そして、「Animal」型の参照を用いて、「Cat」クラスの「speak」メソッドを呼び出すコードを作成してください。\n\nAnimalクラス:\n\npublic class Animal {\n    public void speak() {\n        System.out.println(\"Animal speaks\");\n    }\n}",
+            "explanation": "Javaでは、スーパークラス型の参照でサブクラスのオブジェクトを参照することができます。これは「多態性」と呼ばれ、オーバーライドされたメソッドが呼び出されるときに特に有効です。",
+            "answer": "public class Cat extends Animal {\n    @Override\n    public void speak() {\n        System.out.println(\"Meow!\");\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Animal myCat = new Cat();\n        myCat.speak();  // Outputs \"Meow!\"\n    }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java8_3",
+            "title": "オーバーライドとスーパークラスのメソッド",
+            "question": "次の「Bird」クラスは、「Animal」クラスを拡張します。「Bird」クラスの「speak」メソッドは、「Animal」クラスの「speak」メソッドをオーバーライドします。その際、「Animal speaks」を出力した後、「Chirp!」を出力してください。\n\nAnimalクラス:\n\npublic class Animal {\n    public void speak() {\n        System.out.println(\"Animal speaks\");\n    }\n}",
+            "explanation": "オーバーライドしたメソッド内からスーパークラスの同名メソッドを呼び出すには、「super」キーワードを使用します。これにより、新しい振る舞いを追加しつつ、元の振る舞いを維持することができます。",
+            "answer": "public class Bird extends Animal {\n    @Override\n    public void speak() {\n        super.speak();\n        System.out.println(\"Chirp!\");\n    }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java8_4",
+            "title": "オーバーライドと@override",
+            "question": "「Animal」クラスを拡張する「Lion」クラスを作成してください。そして、「Animal」クラスの「speak」メソッドをオーバーライドし、「Roar!」と出力するようにしてください。「@Override」アノテーションを使用して、コンパイラにこのメソッドがオーバーライドであることを明示してください。\n\nAnimalクラス:\n\npublic class Animal {\n    public void speak() {\n        System.out.println(\"Animal speaks\");\n    }\n}",
+            "explanation": "「@Override」アノテーションは、メソッドがスーパークラスのメソッドをオーバーライドしていることを明示的に示します。これにより、コンパイラはメソッドのオーバーライドを強制し、スペルミスやシグネチャの誤りを防ぐことができます。",
+            "answer": "public class Lion extends Animal {\n    @Override\n    public void speak() {\n        System.out.println(\"Roar!\");\n    }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java8_5",
+            "title": "オーバーライドと可視性",
+            "question": "次の「Vehicle」クラスを拡張する「Car」クラスを作成します。そして、「Vehicle」クラスの「move」メソッドをオーバーライドして、「Car is moving」を出力するようにしてください。ただし、「Vehicle」クラスの「move」メソッドは「protected」で指定されているため、オーバーライドするメソッドも同じ可視性（またはそれ以上）を持つ必要があります。\n\nVehicleクラス:\n\npublic class Vehicle {\n    protected void move() {\n        System.out.println(\"Vehicle is moving\");\n    }\n}",
+            "explanation": "オーバーライドするメソッドは、スーパークラスのメソッドと同じ名前、引数リスト、返り値を持つ必要があります。また、その可視性はスーパークラスのメソッドと同じまたはそれ以上である必要があります。「protected」はパッケージ内とサブクラスからアクセス可能を意味します。",
+            "answer": "public class Car extends Vehicle {\n    @Override\n    protected void move() {\n        System.out.println(\"Car is moving\");\n    }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java8_6",
+            "title": "オーバーライドとコンストラクタ",
+            "question": "「Animal」クラスを拡張する「Dog」クラスを作成します。その際、「Animal」クラスに存在するコンストラクタを呼び出すような「Dog」クラスのコンストラクタを作成してください。しかし、コンストラクタはオーバーライドできません。どのように実装しますか？\n\nAnimalクラス:\n\npublic class Animal {\n    public Animal() {\n        System.out.println(\"An animal is created\");\n    }\n}",
+            "explanation": "Javaではコンストラクタはオーバーライドできませんが、スーパークラスのコンストラクタを呼び出すことは可能です。これは「super()」を使用して行います。「super()」はサブクラスのコンストラクタの最初の行に置く必要があります。",
+            "answer": "public class Dog extends Animal {\n    public Dog() {\n        super();\n        System.out.println(\"A dog is created\");\n    }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java8_7",
+            "title": "オーバーライドと変数",
+            "question": "以下の「Person」クラスを拡張する「Student」クラスを作成し、「name」変数をオーバーライドしてください。\n\nしかし、Javaでは変数のオーバーライドは可能ですか？それとも不可能ですか？その理由と共に説明してください。\n\nPersonクラス:\n\npublic class Person {\n    public String name = \"Person\";\n}",
+            "explanation": "Javaでは、変数はオーバーライドできません。これは、変数は動的な振る舞いを持たないためです。メソッドは実行時に動的に決定されますが、変数はコンパイル時に静的にリンクされます。したがって、サブクラスで同じ名前の変数を宣言すると、スーパークラスの変数を隠すだけで、オーバーライドはされません。",
+            "answer": "public class Student extends Person {\n    public String name = \"Student\";\n}\n\n// オーバーライドはできませんが、スーパークラスの変数を隠すことができます。"
+        },
+        {
+            "id": 8,
+            "questionId": "java8_8",
+            "title": "オーバーライドと戻り値",
+            "question": "以下の「Shape」クラスを拡張する「Circle」クラスを作成し、「getColor」メソッドをオーバーライドしてください。ただし、「getColor」メソッドの戻り値は「Shape」クラスでは「String」であるのに対し、「Circle」クラスでは「Color」オブジェクト（「java.awt.Color」）とします。\n\nこれはJavaでは可能ですか？それとも不可能ですか？その理由と共に説明してください。\n\nShapeクラス:\n\npublic class Shape {\n    public String getColor() {\n        return \"white\";\n    }\n}",
+            "explanation": "Javaでは、メソッドをオーバーライドする場合、そのメソッドの戻り値の型はスーパークラスのメソッドと「同じ」であるか、またはその「サブタイプ」である必要があります。したがって、「String」から「Color」に変更することは不可能です。",
+            "answer": "// Colorオブジェクトを返すようにはできません。その代わりに、Stringを返すようにオーバーライドする必要があります。\n\npublic class Circle extends Shape {\n    @Override\n    public String getColor() {\n        return \"red\";\n    }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java8_9",
+            "title": "オーバーライドとアクセス修飾子",
+            "question": "以下の「Animal」クラスを拡張する「Dog」クラスを作成し、「sound」メソッドをオーバーライドしてください。ただし、「sound」メソッドのアクセス修飾子は「Animal」クラスでは「protected」であるのに対し、「Dog」クラスでは「private」にします。\n\nこれはJavaでは可能ですか？それとも不可能ですか？その理由と共に説明してください。\n\nAnimalクラス:\n\npublic class Animal {\n    protected String sound() {\n        return \"sound\";\n    }\n}",
+            "explanation": "Javaでは、メソッドをオーバーライドする場合、そのメソッドのアクセス修飾子はスーパークラスのメソッドと同じまたはより広範囲のアクセス修飾子を持つ必要があります。したがって、「protected」から「private」に変更することはできません。",
+            "answer": "// privateアクセス修飾子でオーバーライドすることはできません。より広範囲のアクセス修飾子（protectedまたはpublic）を使用する必要があります。\n\npublic class Dog extends Animal {\n    @Override\n    protected String sound() {\n        return \"woof\";\n    }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java8_10",
+            "title": "オーバーライドと例外",
+            "question": "以下の「Vehicle」クラスを拡張する「Car」クラスを作成し、「speedUp」メソッドをオーバーライドしてください。ただし、「speedUp」メソッドは「Vehicle」クラスでは例外をスローしないのに対し、「Car」クラスでは「IOException」をスローします。\n\nこれはJavaでは可能ですか？それとも不可能ですか？その理由と共に説明してください。\n\nVehicleクラス:\n\npublic class Vehicle {\n    public void speedUp() {\n        // 加速処理\n    }\n}",
+            "explanation": "Javaでは、メソッドをオーバーライドする場合、そのメソッドはスーパークラスのメソッドがスローする例外と「同じ」か、その「サブクラス」の例外をスローすることしかできません。したがって、「IOException」を新たにスローすることはできません。",
+            "answer": "// IOExceptionを新たにスローすることはできません。\n\npublic class Car extends Vehicle {\n    @Override\n    public void speedUp() {\n        // 加速処理\n    }\n}"
+        }
+    ]
+}

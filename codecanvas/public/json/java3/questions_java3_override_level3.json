@@ -1,0 +1,86 @@
+{
+    "contentsId": "java3",
+    "title": "Javaのオーバーライド問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java3_1",
+            "title": "オーバーライドとコンストラクタ",
+            "question": "親クラスのコンストラクタを子クラスでオーバーライドすることは可能ですか？可能な場合、そのサンプルコードを提供してください。",
+            "explanation": "Javaでは、コンストラクタは継承されず、そのためオーバーライドすることはできません。しかし、子クラスのコンストラクタから親クラスのコンストラクタを呼び出すことは可能です。これは、superキーワードを使用して行います。",
+            "answer": "// コンストラクタはオーバーライドできませんが、親クラスのコンストラクタを呼び出すことは可能です。\n\npublic class Animal {\n    public Animal() {\n        System.out.println(\"An animal is created.\");\n    }\n}\n\npublic class Dog extends Animal {\n    public Dog() {\n        super();\n        System.out.println(\"A dog is created.\");\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Dog myDog = new Dog();\n        // 予想される出力:\n        // An animal is created.\n        // A dog is created.\n    }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java3_2",
+            "title": "オーバーライドとアクセス修飾子",
+            "question": "親クラスで定義されたメソッドを子クラスでオーバーライドする際、アクセス修飾子を変更することは可能ですか？可能な場合、そのサンプルコードを提供してください。",
+            "explanation": "Javaでは、オーバーライドする際のアクセス修飾子のルールがあります。具体的には、子クラスでオーバーライドするメソッドのアクセスレベルは、親クラスのメソッドと同じかそれ以上の広さでなければなりません。",
+            "answer": "// 親クラスのpublicメソッドは、子クラスではpublicとしてオーバーライドする必要があります。\n\npublic class Animal {\n    public void makeSound() {\n        System.out.println(\"The animal makes a sound.\");\n    }\n}\n\npublic class Dog extends Animal {\n    @Override\n    public void makeSound() {\n        System.out.println(\"The dog barks.\");\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Animal myDog = new Dog();\n        myDog.makeSound();\n        // 予想される出力:\n        // The dog barks.\n    }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java3_3",
+            "title": "オーバーライドと例外",
+            "question": "親クラスのメソッドをオーバーライドするときに、子クラスのメソッドで新たな例外をスローすることは可能ですか？可能な場合、そのサンプルコードを提供してください。",
+            "explanation": "子クラスでオーバーライドするメソッドは、親クラスのメソッドがスローする例外と同じか、そのサブクラスの例外をスローすることができます。しかし、親クラスのメソッドにない新たな例外をスローすることはできません。",
+            "answer": "// 親クラス\npublic class Parent {\n    public void method() throws IOException {\n        System.out.println(\"Parent method\");\n    }\n}\n\n// 子クラス\npublic class Child extends Parent {\n    @Override\n    public void method() throws IOException {\n        System.out.println(\"Child method\");\n        throw new IOException();\n    }\n}\n\n// Main\npublic class Main {\n    public static void main(String[] args) {\n        Parent obj = new Child();\n        try {\n            obj.method();\n        } catch(IOException e) {\n            System.out.println(\"Caught IOException\");\n            // 予想される出力:\n            // Child method\n            // Caught IOException\n        }\n    }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java3_4",
+            "title": "オーバーライドとアクセス修飾子",
+            "question": "親クラスのプライベートメソッドを子クラスでオーバーライドすることは可能ですか？可能な場合、そのサンプルコードを提供してください。",
+            "explanation": "Javaでは、親クラスのプライベートメソッドを子クラスでオーバーライドすることはできません。プライベートメソッドはクラス内部からしかアクセスできないため、子クラスからは見えません。",
+            "answer": "// 親クラス\npublic class Parent {\n    private void method() {\n        System.out.println(\"Parent's private method\");\n    }\n}\n\n// 子クラス\npublic class Child extends Parent {\n    // これはオーバーライドではなく、新たなメソッドを定義したことになります。\n    public void method() {\n        System.out.println(\"Child's method\");\n    }\n}\n\n// Main\npublic class Main {\n    public static void main(String[] args) {\n        Child obj = new Child();\n        obj.method();\n        // 予想される出力:\n        // Child's method\n    }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java3_5",
+            "title": "抽象メソッドのオーバーライド",
+            "question": "抽象クラスから具象クラスを作り、抽象メソッドをオーバーライドしてください。抽象クラス名は「AbstractAnimal」、抽象メソッド名は「speak」、具象クラス名は「Dog」を使用してください。",
+            "explanation": "抽象クラスはインスタンスを作成できないクラスで、具象クラスはその抽象クラスを継承し、抽象メソッドを実装することでインスタンスを作成できるようになります。ここでは、「Dog」クラスで「speak」メソッドをオーバーライドしています。",
+            "answer": "// 抽象クラス\npublic abstract class AbstractAnimal {\n    // 抽象メソッド\n    public abstract void speak();\n}\n\n// 具象クラス\npublic class Dog extends AbstractAnimal {\n    // 抽象メソッドをオーバーライド\n    @Override\n    public void speak() {\n        System.out.println(\"Woof!\"); // 予想される出力: Woof!\n    }\n}\n\n// Main\npublic class Main {\n    public static void main(String[] args) {\n        Dog dog = new Dog();\n        dog.speak();\n    }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java3_6",
+            "title": "オーバーライドと多態性",
+            "question": "「Animal」クラスをスーパークラスとして、「Dog」、「Cat」クラスをサブクラスとして作成します。各クラスに「sound」メソッドを定義し、「Dog」クラスでは「Woof!」、「Cat」クラスでは「Meow!」と出力するようにオーバーライドしてください。さらに、多態性を利用してスーパークラスの変数で各サブクラスのインスタンスを操作し、「sound」メソッドを呼び出してください。",
+            "explanation": "オーバーライドは、スーパークラスに定義されたメソッドをサブクラスで再定義することです。多態性とは、スーパークラス型の変数でサブクラスのインスタンスを操作することができ、同じメソッド名でもサブクラスごとに異なる振る舞いをすることを可能にします。",
+            "answer": "// スーパークラス\npublic class Animal {\n    public void sound() {\n        System.out.println(\"Animal sound\"); // 予想される出力: Animal sound\n    }\n}\n\n// サブクラス1\npublic class Dog extends Animal {\n    @Override\n    public void sound() {\n        System.out.println(\"Woof!\"); // 予想される出力: Woof!\n    }\n}\n\n// サブクラス2\npublic class Cat extends Animal {\n    @Override\n    public void sound() {\n        System.out.println(\"Meow!\"); // 予想される出力: Meow!\n    }\n}\n\n// Main\npublic class Main {\n    public static void main(String[] args) {\n        Animal myDog = new Dog();\n        Animal myCat = new Cat();\n        myDog.sound();\n        myCat.sound();\n    }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java3_7",
+            "title": "親クラスと子クラスのオーバーライド",
+            "question": "親クラス「Parent」に「show」メソッドを定義し、「I am a parent」を出力するように定義してください。その後、子クラス「Child」を定義し、「Parent」クラスの「show」メソッドをオーバーライドして「I am a child」を出力するように定義してください。その後、Childクラスのインスタンスを作成し、「show」メソッドを呼び出すソースコードを書いてください。",
+            "explanation": "オーバーライドは、スーパークラス（親クラス）に定義されたメソッドをサブクラス（子クラス）で再定義（オーバーライド）することを指します。これにより、サブクラスのインスタンスが親クラスのメソッドを呼び出したときに、サブクラスに定義されたメソッドが優先して実行されます。",
+            "answer": "// 親クラス\npublic class Parent {\n    public void show() {\n        System.out.println(\"I am a parent\"); // 予想される出力: I am a parent\n    }\n}\n\n// 子クラス\npublic class Child extends Parent {\n    @Override\n    public void show() {\n        System.out.println(\"I am a child\"); // 予想される出力: I am a child\n    }\n}\n\n// Main\npublic class Main {\n    public static void main(String[] args) {\n        Child myChild = new Child();\n        myChild.show();\n    }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java3_8",
+            "title": "オーバーライドとポリモーフィズム",
+            "question": "親クラス「Animal」に「speak」メソッドを定義し、「I am an animal」を出力するように定義してください。その後、子クラス「Dog」を定義し、「Animal」クラスの「speak」メソッドをオーバーライドして「I am a dog」を出力するように定義してください。次に、子クラス「Cat」を定義し、「Animal」クラスの「speak」メソッドをオーバーライドして「I am a cat」を出力するように定義してください。最後に、DogクラスとCatクラスのインスタンスをそれぞれ作成し、「speak」メソッドを呼び出すソースコードを書いてください。",
+            "explanation": "この問題はオーバーライドとポリモーフィズムの概念を強調しています。オーバーライドは、スーパークラスに定義されたメソッドをサブクラスで再定義することを指します。ポリモーフィズムは、同一のインターフェイスで異なる動作をする能力を指します。この問題では、Animalクラスを継承したDogクラスとCatクラスがそれぞれ異なるspeakメソッドを持っているという形でポリモーフィズムが表現されています。",
+            "answer": "// 親クラス\npublic class Animal {\n    public void speak() {\n        System.out.println(\"I am an animal\"); // 予想される出力: I am an animal\n    }\n}\n\n// Dogクラス\npublic class Dog extends Animal {\n    @Override\n    public void speak() {\n        System.out.println(\"I am a dog\"); // 予想される出力: I am a dog\n    }\n}\n\n// Catクラス\npublic class Cat extends Animal {\n    @Override\n    public void speak() {\n        System.out.println(\"I am a cat\"); // 予想される出力: I am a cat\n    }\n}\n\n// Main\npublic class Main {\n    public static void main(String[] args) {\n        Dog myDog = new Dog();\n        Cat myCat = new Cat();\n        myDog.speak();\n        myCat.speak();\n    }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java3_9",
+            "title": "オーバーライドとスーパーメソッドの呼び出し",
+            "question": "親クラス「Vehicle」に「move」メソッドを定義し、「Vehicle is moving」を出力するように定義してください。その後、子クラス「Car」を定義し、「Vehicle」クラスの「move」メソッドをオーバーライドして「Car is moving」を出力し、さらに親クラスのmoveメソッドも呼び出すように定義してください。Carクラスのインスタンスを作成し、moveメソッドを呼び出すソースコードを書いてください。",
+            "explanation": "この問題は、子クラスのメソッド内から親クラスのメソッドを呼び出す方法を確認するものです。Javaでは、「super」キーワードを使用して親クラスのメソッドを呼び出すことができます。これにより、子クラスで親クラスのメソッドをオーバーライドした場合でも、親クラスのメソッドを呼び出すことが可能になります。",
+            "answer": "// 親クラス\npublic class Vehicle {\n    public void move() {\n        System.out.println(\"Vehicle is moving\"); // 予想される出力: Vehicle is moving\n    }\n}\n\n// Carクラス\npublic class Car extends Vehicle {\n    @Override\n    public void move() {\n        super.move();\n        System.out.println(\"Car is moving\"); // 予想される出力: Car is moving\n    }\n}\n\n// Main\npublic class Main {\n    public static void main(String[] args) {\n        Car myCar = new Car();\n        myCar.move();\n    }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java3_10",
+            "title": "オーバーライドと多態性",
+            "question": "親クラス「Animal」に「makeSound」メソッドを定義し、「Animal is making a sound」を出力するように定義してください。次に、子クラス「Dog」と「Cat」を定義し、「Animal」クラスの「makeSound」メソッドをそれぞれオーバーライドして、「Dog is barking」と「Cat is meowing」をそれぞれ出力しましょう。さらに、Animal型の配列を作成し、その配列にはDogとCatのインスタンスを格納し、配列の全要素に対して「makeSound」メソッドを呼び出すソースコードを書いてください。",
+            "explanation": "この問題は、Javaの多態性について理解するためのものです。親クラスの型で子クラスのインスタンスを格納でき、実行時に正しいメソッド（オーバーライドされたメソッド）が呼び出されることを確認します。これは、Javaの「動的メソッドディスパッチ」または「ランタイムポリモーフィズム」と呼ばれる特性を示しています。",
+            "answer": "// Animalクラス\npublic class Animal {\n    public void makeSound() {\n        System.out.println(\"Animal is making a sound\"); // 予想される出力: Animal is making a sound\n    }\n}\n\n// Dogクラス\npublic class Dog extends Animal {\n    @Override\n    public void makeSound() {\n        System.out.println(\"Dog is barking\"); // 予想される出力: Dog is barking\n    }\n}\n\n// Catクラス\npublic class Cat extends Animal {\n    @Override\n    public void makeSound() {\n        System.out.println(\"Cat is meowing\"); // 予想される出力: Cat is meowing\n    }\n}\n\n// Main\npublic class Main {\n    public static void main(String[] args) {\n        Animal[] animals = new Animal[] {new Dog(), new Cat()};\n        for (Animal animal : animals) {\n            animal.makeSound();\n        }\n    }\n}"
+        }
+    ]
+}

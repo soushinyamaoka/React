@@ -1,0 +1,166 @@
+{
+    "contentsId": "js_method1",
+    "title": "Javascriptの引数問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_mthd3_1",
+            "title": "Promiseとasync/await",
+            "question": "setTimeout関数を使って2秒後に「Hello, World!」を出力する非同期関数をPromiseとasync/awaitの両方を使って実装してください。",
+            "explanation": "Promiseオブジェクトは非同期操作が完了したかどうかを表現します。一方、async/awaitは非同期処理のシンタックスをより直感的に書くことを可能にします。この問題では、非同期処理の理解を深めるために両方を使ってみます。",
+            "answer": "// Promise version\nfunction delayPrintWithPromise() {\n  return new Promise(function(resolve) {\n    setTimeout(function() {\n      console.log('Hello, World!');\n      resolve();\n    }, 2000);\n  });\n}\n\n// async/await version\nasync function delayPrintWithAsyncAwait() {\n  await delayPrintWithPromise();\n}\n\n// Test the functions\ndelayPrintWithPromise().then(function() {\n  console.log('Promise version done.');\n});\n\ndelayPrintWithAsyncAwait().then(function() {\n  console.log('Async/Await version done.');\n});"
+        },
+        {
+            "id": 2,
+            "questionId": "js_mthd3_2",
+            "title": "MapメソッドとSetメソッド",
+            "question": "以下の配列 ['apple', 'orange', 'banana', 'apple', 'orange'] から重複する要素を削除して新たな配列を作成し、その配列の各要素とそれぞれのインデックスをペアとした新たなマップを作成してください。",
+            "explanation": "Setオブジェクトは重複する要素を許さない値のコレクションで、Mapオブジェクトはキーと値のペアのコレクションです。この問題では、配列から重複要素を削除し、それを基に新たなマップを作成します。",
+            "answer": "var arr = ['apple', 'orange', 'banana', 'apple', 'orange'];\nvar uniqueArr = [...new Set(arr)];\nvar map = new Map();\nfor (var i = 0; i < uniqueArr.length; i++) {\n  map.set(uniqueArr[i], i);\n}\nconsole.log(map);"
+        },
+        {
+            "id": 3,
+            "questionId": "js_mthd3_3",
+            "title": "filterメソッドとreduceメソッドの組み合わせ",
+            "question": "以下の配列 [2, 7, 8, 3, 1, 4] から偶数だけを取り出し、その合計値を求めてください。",
+            "explanation": "配列メソッドのfilterは配列から条件に一致する要素だけを取り出すメソッドで、reduceは配列の全要素に対して累積的な操作を行うメソッドです。この問題では、filterメソッドで偶数だけを取り出し、それらをreduceメソッドで合計します。",
+            "answer": "var arr = [2, 7, 8, 3, 1, 4];\nvar evenNumbers = arr.filter(num => num % 2 === 0);\nvar sum = evenNumbers.reduce((a, b) => a + b, 0);\nconsole.log(sum); // Expected output: 14"
+        },
+        {
+            "id": 4,
+            "questionId": "js_mthd3_4",
+            "title": "fetchメソッドの利用",
+            "question": "公開されているAPIエンドポイント（例: 'https://jsonplaceholder.typicode.com/posts'）からデータを取得し、その結果をconsole.logで出力してください。",
+            "explanation": "JavaScriptのfetchメソッドは、リモートリソースからデータを取得するためのAPIです。Promiseベースのインターフェースを持っています。",
+            "answer": "fetch('https://jsonplaceholder.typicode.com/posts')\n  .then(response => response.json())\n  .then(data => console.log(data))\n  .catch(error => console.error('Error:', error));"
+        },
+        {
+            "id": 5,
+            "questionId": "js_mthd3_5",
+            "title": "async/await と try/catch の組み合わせ",
+            "question": "fetch APIを使って、'https://jsonplaceholder.typicode.com/posts'からデータを取得する非同期関数をasync/awaitとtry/catchを使用して書いてください。",
+            "explanation": "async/awaitはJavaScriptの非同期処理の新しいパターンで、Promiseのthenを使ったチェーンを使わない直感的なコードを書くことができます。また、エラーハンドリングにはtry/catchを使用します。",
+            "answer": "async function fetchData() {\n  try {\n    const response = await fetch('https://jsonplaceholder.typicode.com/posts');\n    const data = await response.json();\n    console.log(data);\n  } catch (error) {\n    console.error('Error:', error);\n  }\n}\nfetchData();"
+        },
+        {
+            "id": 6,
+            "questionId": "js_mthd3_6",
+            "title": "クラスメソッドの作成",
+            "question": "次の条件を満たす「Person」クラスを定義してください。\n1. コンストラクタは「name」（文字列）と「age」（数値）の2つの引数を受け取ります。\n2. メソッド「sayHello」を持ち、このメソッドは「Hello, my name is [name] and I am [age] years old.」というメッセージをconsole.logで出力します。",
+            "explanation": "JavaScriptのクラスはオブジェクト指向プログラミングを実現するための機能で、クラスメソッドを定義して使用することができます。",
+            "answer": "class Person {\n  constructor(name, age) {\n    this.name = name;\n    this.age = age;\n  }\n\n  sayHello() {\n    console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);\n  }\n}\n\nlet john = new Person('John', 30);\njohn.sayHello(); // Expected output: 'Hello, my name is John and I am 30 years old.'"
+        },
+        {
+            "id": 7,
+            "questionId": "js_mthd3_7",
+            "title": "Array.reduceの使用",
+            "question": "次の配列 [1, 2, 3, 4, 5] から合計値を算出するために、Array.reduceメソッドを使用してください。",
+            "explanation": "Array.reduceメソッドは配列の全要素に対して減少関数を適用して、単一の出力値を生成します。このメソッドは配列内の値を累積または結合するのに非常に役立ちます。",
+            "answer": "const arr = [1, 2, 3, 4, 5];\n\nconst result = arr.reduce((accumulator, currentValue) => {\n  return accumulator + currentValue;\n}, 0);\n\nconsole.log(result); // Expected output: 15"
+        },
+        {
+            "id": 8,
+            "questionId": "js_mthd3_8",
+            "title": "クロージャの使用",
+            "question": "クロージャを用いて値を一時的に保持し、その保持した値に対して数を加算するadd関数を作成してください。このadd関数は、一つの数値引数を受け取り、その数値を初期値とした新しい関数を返します。返された関数は、また数値を引数として受け取り、それを初期値に加えるものとします。",
+            "explanation": "クロージャは関数とその関数が作成されたレキシカルスコープの組み合わせで、この特性を使ってプライベートな値を保持したり、関数に状態を持たせることができます。",
+            "answer": "function add(initialValue) {\n  return function(number) {\n    return initialValue + number;\n  };\n}\n\nconst addFive = add(5);\nconsole.log(addFive(3)); // Expected output: 8"
+        },
+        {
+            "id": 9,
+            "questionId": "js_mthd3_9",
+            "title": "JavaScriptの非同期処理",
+            "question": "非同期関数の理解を深めるために、Promiseオブジェクトを返す関数`simulateAsync`を作成してください。この関数は、一つの数値引数を受け取り、指定したミリ秒数後に引数と同じ値を解決するPromiseオブジェクトを返すものとします。",
+            "explanation": "非同期処理はJavaScriptの重要な概念です。非同期処理を使うと、重い処理をバックグラウンドで行ったり、APIからデータを取得するなどの処理を行う際に、メインのプログラム処理をブロックすることなく進めることができます。",
+            "answer": "function simulateAsync(ms) {\n  return new Promise(resolve => {\n    setTimeout(() => {\n      resolve(ms);\n    }, ms);\n  });\n}\n\nsimulateAsync(3000).then(value => {\n  console.log(value); // Expected output: 3000 (after 3 seconds)\n});"
+        },
+        {
+            "id": 10,
+            "questionId": "js_mthd3_10",
+            "title": "async/awaitの使用",
+            "question": "先ほど作成した非同期関数`simulateAsync`を呼び出す非同期関数を作成してください。この新たな関数は、`simulateAsync`を呼び出し、その結果をconsole.logで出力します。この新たな関数内ではasync/await構文を使用してください。",
+            "explanation": "async/awaitは非同期処理を行う新しい構文です。async/awaitを使用すると、非同期処理を同期処理のように直列に書くことができ、コードの可読性を高めることができます。",
+            "answer": "async function printSimulatedValue() {\n  // Await for the promise to resolve\n  const value = await simulateAsync(3000);\n\n  // Log the value\n  console.log(value); // Expected output: 3000 (after 3 seconds)\n}\n\n// Call the async function\nprintSimulatedValue();"
+        },
+        {
+            "id": 11,
+            "questionId": "js_mthd3_11",
+            "title": "クロージャの使用",
+            "question": "次の要件を満たす関数を作成してください。\n\n1. 名前は`makeCounter`で、引数はなし\n2. 内部に変数`count`を持ち、初期値は0\n3. `makeCounter`は内部関数を返し、その内部関数が呼ばれるたびに`count`を1増やす\n4. 内部関数が呼ばれるたびに`count`の値をコンソールに出力する",
+            "explanation": "この問題はJavaScriptのクロージャという概念を理解しているかを試します。クロージャは、関数とその関数が宣言されたレキシカル環境の組み合わせです。これにより、関数は外部のスコープに存在する変数にアクセスでき、それらの変数の値を保持し続けることができます。",
+            "answer": "function makeCounter() {\n  let count = 0;\n\n  return function() {\n    count++;\n    console.log(count); // Output: Incrementing number starting from 1\n  };\n}\n\nlet counter = makeCounter();\n\n// Call the counter\ncounter();\ncounter();\ncounter();"
+        },
+        {
+            "id": 12,
+            "questionId": "js_mthd3_12",
+            "title": "Object.assignメソッドの使用",
+            "question": "Object.assignメソッドを使用して、2つのオブジェクトをマージする関数`mergeObjects`を作成してください。この関数は、2つのオブジェクトを引数とし、それらのオブジェクトをマージした新たなオブジェクトを返すものとします。",
+            "explanation": "Object.assignメソッドは、ソースオブジェクトのすべての列挙可能なプロパティをターゲットオブジェクトにコピーするために使用されます。これにより、オブジェクトを結合したり、オブジェクトを複製したりすることが可能になります。",
+            "answer": "function mergeObjects(obj1, obj2) {\n  return Object.assign({}, obj1, obj2);\n}\n\nlet obj1 = { a: 1, b: 2 };\nlet obj2 = { b: 3, c: 4 };\n\nlet result = mergeObjects(obj1, obj2);\nconsole.log(result); // Expected output: { a: 1, b: 3, c: 4 }"
+        },
+        {
+            "id": 13,
+            "questionId": "js_mthd3_13",
+            "title": "プロミスのチェーン",
+            "question": "次の要件を満たす非同期関数を作成してください。\n\n1. 名前は`asyncProcess`で、引数はなし\n2. `asyncProcess`は1000ミリ秒後に解決されるPromiseを返す\n3. `asyncProcess`が返すPromiseは、解決時に\"Completed!\"というメッセージを返す\n4. `asyncProcess`の結果を使用してPromiseチェーンを作り、結果をconsole.logで出力する",
+            "explanation": "JavaScriptのPromiseは、非同期操作の終了とその結果を表現します。Promiseチェーンは、非同期操作のシーケンスを表すために使用されます。",
+            "answer": "function asyncProcess() {\n  return new Promise(resolve => {\n    setTimeout(() => {\n      resolve(\"Completed!\"); // Resolves after 1 second\n    }, 1000);\n  });\n}\n\n// Create a promise chain\nasyncProcess()\n  .then(result => {\n    console.log(result); // Expected output: Completed!\n  });"
+        },
+        {
+            "id": 14,
+            "questionId": "js_mthd3_14",
+            "title": "async/awaitの使用",
+            "question": "async/awaitを使用して非同期関数`asyncProcess`を呼び出し、その結果をconsole.logで出力してください。`asyncProcess`関数は問題13と同じです。",
+            "explanation": "async/awaitはJavaScriptの非同期処理パターンの一つであり、Promiseのような非同期処理を同期的に書けるようにする構文です。これにより、非同期処理の途中で処理を一時停止し、Promiseの解決を待ってから処理を再開することが可能になります。",
+            "answer": "async function callAsyncProcess() {\n  let result = await asyncProcess(); // Waiting for the promise to resolve\n  console.log(result); // Expected output: Completed!\n}\n\ncallAsyncProcess();"
+        },
+        {
+            "id": 15,
+            "questionId": "js_mthd3_15",
+            "title": "Array.prototype.reduceの使用",
+            "question": "以下の配列内の数字の合計を計算するためにArray.prototype.reduceメソッドを使用してください。\n\nlet numbers = [1, 2, 3, 4, 5];",
+            "explanation": "Array.prototype.reduceメソッドは配列に対して累積計算を行うための便利な方法を提供します。これは、配列の要素を左から右へ処理して単一の出力値を生成します。",
+            "answer": "let numbers = [1, 2, 3, 4, 5];\n\nlet sum = numbers.reduce((accumulator, currentValue) => {\n  return accumulator + currentValue; // Add the current value to the accumulator\n}, 0);\n\nconsole.log(sum); // Expected output: 15"
+        },
+        {
+            "id": 16,
+            "questionId": "js_mthd3_16",
+            "title": "Array.prototype.filterとArray.prototype.mapの使用",
+            "question": "以下の配列内の偶数のみを抽出し、それらの数字をそれぞれ2倍にして新たな配列を作成してください。その際、Array.prototype.filterとArray.prototype.mapを使用してください。\n\nlet numbers = [1, 2, 3, 4, 5];",
+            "explanation": "Array.prototype.filterは配列から特定の条件に一致する要素だけを抽出して新たな配列を作ります。Array.prototype.mapは配列の全ての要素に対して指定した関数を呼び出し、その結果から新しい配列を生成します。",
+            "answer": "let numbers = [1, 2, 3, 4, 5];\n\nlet doubledEvens = numbers\n  .filter(num => num % 2 === 0) // Filter out the even numbers\n  .map(num => num * 2); // Double each number\n\nconsole.log(doubledEvens); // Expected output: [4, 8]"
+        },
+        {
+            "id": 17,
+            "questionId": "js_mthd3_17",
+            "title": "Array.prototype.sortの使用",
+            "question": "以下の配列内の数字を降順（大きい順）に並び替えてください。その際、Array.prototype.sortメソッドを使用してください。\n\nlet numbers = [5, 2, 1, 4, 3];",
+            "explanation": "Array.prototype.sortメソッドは配列の要素を適切な位置にソートします。比較関数を提供することで、任意のソート順を定義することが可能です。",
+            "answer": "let numbers = [5, 2, 1, 4, 3];\n\nnumbers.sort((a, b) => b - a); // Sort numbers in descending order\n\nconsole.log(numbers); // Expected output: [5, 4, 3, 2, 1]"
+        },
+        {
+            "id": 18,
+            "questionId": "js_mthd3_18",
+            "title": "Function.prototype.bindの使用",
+            "question": "以下のコードで、sayHello関数が自身のthisとしてuserオブジェクトを参照するようにFunction.prototype.bindを使用して設定してください。\n\nlet user = {\n  name: 'John'\n};\n\nfunction sayHello() {\n  console.log('Hello, ' + this.name);\n}",
+            "explanation": "Function.prototype.bindメソッドは、関数に特定のthis値と引数を指定して新しい関数を作成します。bindメソッドは、関数のコンテキストを制御するのに非常に便利です。",
+            "answer": "let user = {\n  name: 'John'\n};\n\nfunction sayHello() {\n  console.log('Hello, ' + this.name);\n}\n\nlet boundSayHello = sayHello.bind(user); // Bind the function to the user object\n\nboundSayHello(); // Expected output: 'Hello, John'"
+        },
+        {
+            "id": 19,
+            "questionId": "js_mthd3_19",
+            "title": "Promiseチェーンの作成",
+            "question": "Promiseチェーンを作成してください。1つ目のPromiseは1秒後に「Step 1」をresolveします。2つ目のPromiseは1秒後に「Step 2」をresolveします。これらのPromiseが順番に解決された後に、結果をconsole.logで出力してください。",
+            "explanation": "Promiseチェーンを使うと、非同期操作を順序良く制御できます。thenメソッドを使って次のPromiseに値を渡すことができます。",
+            "answer": "let promise1 = new Promise((resolve, reject) => {\n  setTimeout(() => resolve('Step 1'), 1000);\n});\n\nlet promise2 = new Promise((resolve, reject) => {\n  setTimeout(() => resolve('Step 2'), 1000);\n});\n\npromise1\n.then(result => {\n  console.log(result); // Expected output: 'Step 1'\n  return promise2;\n})\n.then(result => {\n  console.log(result); // Expected output: 'Step 2'\n});"
+        },
+        {
+            "id": 20,
+            "questionId": "js_mthd3_20",
+            "title": "async/awaitの使用",
+            "question": "async/awaitを用いて、同上のPromiseチェーン（問題19）を書き換えてください。",
+            "explanation": "async/awaitはJavaScriptの非同期処理の新しいパターンであり、Promiseチェーンをより読みやすく、理解しやすい形に書き換えることができます。",
+            "answer": "let promise1 = new Promise((resolve, reject) => {\n  setTimeout(() => resolve('Step 1'), 1000);\n});\n\nlet promise2 = new Promise((resolve, reject) => {\n  setTimeout(() => resolve('Step 2'), 1000);\n});\n\nasync function asyncFunc() {\n  let result1 = await promise1;\n  console.log(result1); // Expected output: 'Step 1'\n  let result2 = await promise2;\n  console.log(result2); // Expected output: 'Step 2'\n}\n\nasyncFunc();"
+        }
+    ]
+}

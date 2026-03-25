@@ -1,170 +1,167 @@
 {
-    "contentsId": "javascript1",
-    "title": "javascriptのデータ型問題集ページ",
+    "contentsId": "js1",
+    "title": "JavaScriptのデータ型問題集ページ",
     "subtitle": "上級",
     "questions": [{
             "id": 1,
-            "questionId": "javascript1_19",
-            "title": "厳密等価演算子と等価演算子",
-            "question": "以下のコードを実行した場合、表示される内容を選んでください。\n\nconsole.log(1 == '1');\nconsole.log(1 === '1');",
-            "explanation": "厳密等価演算子(===)は、比較する際に型も比較します。一方、等価演算子(==)は、比較する際に型を考慮せず、暗黙的な型変換を行ってから比較します。\n\n1 == '1' は true となります。暗黙的な型変換により、文字列の '1' が数値の 1 に変換され、2つの値が等しいためです。\n\n1 === '1' は false となります。厳密等価演算子は、型が異なる場合は等しくないと判定します。",
-            "answer": "true\nfalse"
+            "questionId": "js1_1",
+            "title": "型変換",
+            "question": "JavaScriptにおける明示的な型変換について説明し、次の4つの型について変換方法と結果を記述してください：\n1. String to Number\n2. Number to String\n3. Boolean to Number\n4. Number to Boolean",
+            "explanation": "JavaScriptでは、開発者が型を明示的に変換することができます。これは、特定の型が必要な操作を行う前に、変数の型を変換するために使用されます。",
+            "answer": "// String to Number\nlet str = \"123\";\nlet num = Number(str);\nconsole.log(num); // 予想される出力: 123\n\n// Number to String\nlet num2 = 123;\nlet str2 = num2.toString();\nconsole.log(str2); // 予想される出力: \"123\"\n\n// Boolean to Number\nlet bool = true;\nlet num3 = Number(bool);\nconsole.log(num3); // 予想される出力: 1\n\n// Number to Boolean\nlet num4 = 0;\nlet bool2 = Boolean(num4);\nconsole.log(bool2); // 予想される出力: false"
         },
         {
             "id": 2,
-            "questionId": "javascript1_20",
-            "title": "オブジェクトの比較",
-            "question": "以下のコードを実行した場合、表示される内容を選んでください。\n\nconsole.log({} === {});\nconsole.log({} == {});",
-            "explanation": "オブジェクト同士の比較は、その参照先が同じかどうかで判断されます。つまり、同じオブジェクトを指している場合には true になり、そうでない場合には false になります。\n\n{} === {} は false となります。{} はオブジェクトを生成するたびに新しいオブジェクトを生成するため、異なる参照先を持ちます。\n\n{} == {} も false となります。等価演算子(==)も、比較する際に参照先が同じかどうかで判断されます。",
-            "answer": "false\nfalse"
-        }, {
+            "questionId": "js1_2",
+            "title": "オブジェクトとプリミティブ",
+            "question": "JavaScriptにおけるオブジェクトとプリミティブ型の違いを説明し、それぞれの特性を示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptにはプリミティブ型とオブジェクト型の二つの主要なデータ型があります。プリミティブ型にはNumber, String, Boolean, undefined, null, Symbol, BigIntが含まれます。これらは不変であり、直接操作することはできません。一方、オブジェクトは可変で、プロパティやメソッドを持つことができます。",
+            "answer": "// プリミティブ型\nlet num = 123;\nconsole.log(typeof num); // 予想される出力: \"number\"\n\n// オブジェクト型\nlet obj = {name: 'John', age: 30};\nconsole.log(typeof obj); // 予想される出力: \"object\"\nconsole.log(obj.name); // 予想される出力: \"John\""
+        },
+        {
             "id": 3,
-            "questionId": "javascript3_1",
-            "title": "スコープの概念",
-            "question": "以下のコードを実行した場合、コンソールに表示される出力結果は？\n\n```\nvar x = 10;\n(function () {\n    console.log(x);\n    var x = 20;\n})();\n```",
-            "explanation": "JavaScriptにおいては、宣言がされる前の変数はundefinedとなります。\nしたがって、上記のコードにおいて、console.logの実行時に変数xはすでに宣言されていますが、値が代入されていないためundefinedとなります。\nまた、var宣言は関数スコープであり、内部での宣言が優先されるため、最終的な出力結果はundefinedとなります。",
-            "answer": "undefined"
+            "questionId": "js1_3",
+            "title": "型変換",
+            "question": "JavaScriptで自動的に行われる型変換(coercion)の例を示し、その振る舞いを説明するコードを書いてください。",
+            "explanation": "JavaScriptでは、演算子が適用される際に、異なるデータ型の値に対して自動的に型変換が行われることがあります。これを型強制と呼びます。",
+            "answer": "// 数値と文字列の加算\nlet result = '3' + 2;\nconsole.log(result); // 予想される出力: \"32\" // 文字列の\"3\"と数値の2が文字列の\"32\"に型変換される"
         },
         {
             "id": 4,
-            "questionId": "javascript3_2",
-            "title": "thisキーワード",
-            "question": "以下のコードを実行した場合、コンソールに表示される出力結果は？\n\n```\nvar name = 'John';\nvar person = {\n    name: 'Bob',\n    getName: function () {\n        return this.name;\n    }\n};\nvar result = person.getName.call({ name: 'Tom' });\nconsole.log(result);\n```",
-            "explanation": "上記のコードにおいて、getName関数内でのthisは、メソッドが呼び出されたオブジェクトを参照します。\nしかし、callメソッドによって、このメソッドが実行される際のthisを、引数として渡されたオブジェクトに変更することができます。\nしたがって、上記のコードにおいて、getNameメソッドが呼び出された際のthisが{name: 'Tom'}に変更されるため、最終的に出力される結果は'Tom'となります。",
-            "answer": "Tom"
-        }, {
+            "questionId": "js1_4",
+            "title": "TruthyとFalsy",
+            "question": "JavaScriptにおける \"truthy\" と \"falsy\" の概念を説明し、それぞれの例を示すコードを記述してください。",
+            "explanation": "JavaScriptには\"truthy\"と\"falsy\"という概念があります。これは、ブールコンテキスト（if文の条件など）内で、値が真偽値に強制変換されるときに使用されます。\"falsy\"な値はfalseになり、それ以外の値は\"truthy\"であり、trueと評価されます。",
+            "answer": "// Truthyの例\nlet truthyValue = 'Hello';\nif (truthyValue) {\n  console.log('This value is truthy.'); // 予想される出力: \"This value is truthy.\"\n}\n\n// Falsyの例\nlet falsyValue = 0;\nif (!falsyValue) {\n  console.log('This value is falsy.'); // 予想される出力: \"This value is falsy.\"\n}"
+        },
+        {
             "id": 5,
-            "questionId": "javascript5",
-            "title": "オブジェクトのデータ型変換",
-            "question": "以下のオブジェクトの型を変換してください。\n\nconst num = { num1: 100, num2: 200 };\n\n",
-            "explanation": "オブジェクトの型変換には、Object.keysやObject.valuesなどが使えます。これらの関数を使用することで、オブジェクトのキーまたは値を配列として取得し、その後配列の各要素を適宜変換することができます。",
-            "answer": "const arr = Object.keys(num).map((key) => parseInt(num[key]));\n// [100, 200]が出力される"
+            "questionId": "js1_5",
+            "title": "データ型の確認",
+            "question": "ある変数が特定のデータ型であることを確認するJavaScriptのコードを書いてください。",
+            "explanation": "JavaScriptでは`typeof`演算子を使用して、変数のデータ型を調べることができます。これは、変数が期待するデータ型であることを確認するのに便利です。",
+            "answer": "let value = 'Hello world';\nconsole.log(typeof value === 'string'); // 予想される出力: true"
         },
         {
             "id": 6,
-            "questionId": "javascript6",
-            "title": "変数の型判定",
-            "question": "以下の変数の型を判定してください。\n\nlet value = 1234;\n\n",
-            "explanation": "typeof演算子を使用することで、変数の型を取得することができます。ただし、typeof演算子によって返される型は文字列で返されます。",
-            "answer": "typeof value === 'number';\n// trueが出力される"
-        }, {
+            "questionId": "js1_6",
+            "title": "配列とオブジェクト",
+            "question": "配列とオブジェクトの違いを説明し、それぞれを生成するためのJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、配列とオブジェクトは異なるデータ構造を表現します。配列は順序付けられた要素のリストを表現し、オブジェクトはキーと値のペアを表現します。",
+            "answer": "// 配列の生成\nlet array = [1, 2, 3];\nconsole.log(array); // 予想される出力: [1, 2, 3]\n\n// オブジェクトの生成\nlet object = {key1: 'value1', key2: 'value2'};\nconsole.log(object); // 予想される出力: {key1: 'value1', key2: 'value2'}"
+        },
+        {
             "id": 7,
-            "questionId": "javascript7",
-            "title": "オブジェクトのプロパティのデータ型",
-            "question": "次のコードを実行した結果は何ですか？\n\n```let obj = {a: '10', b: 20, c: true}\nfor(let prop in obj){\n  console.log(typeof prop)\n}\n```",
-            "explanation": "for...in文でオブジェクトのプロパティを列挙すると、各プロパティのキー（名前）が文字列として返されます。したがって、出力されるtypeof propは全てstringになります。",
-            "answer": "string\nstring\nstring"
+            "questionId": "js1_7",
+            "title": "プリミティブとオブジェクト",
+            "question": "プリミティブ型とオブジェクト型の違いを説明し、それぞれを生成するためのJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptにはプリミティブ型とオブジェクト型の2つのデータ型があります。プリミティブ型は数値、文字列、ブール値、null、undefined、symbol、bigintの7つです。それに対し、オブジェクト型はキーと値のペアを格納することができ、またメソッドを持つことも可能です。",
+            "answer": "// プリミティブ型の生成\nlet primitive = 'Hello';\nconsole.log(typeof primitive); // 予想される出力: \"string\"\n\n// オブジェクト型の生成\nlet object = {greeting: 'Hello'};\nconsole.log(typeof object); // 予想される出力: \"object\""
         },
         {
             "id": 8,
-            "questionId": "javascript8",
-            "title": "オブジェクトのプロパティに対する操作",
-            "question": "以下のコードを実行した結果は何ですか？\n\n```let obj = {a: '10', b: 20, c: true}\nobj.d = 30;\nconsole.log(obj)\n```",
-            "explanation": "オブジェクトに新しいプロパティを追加する場合、プロパティ名を指定して値を代入するだけでよいです。その後、オブジェクトをコンソールに出力すると、追加されたプロパティが表示されます。",
-            "answer": "{\"a\":\"10\",\"b\":20,\"c\":true,\"d\":30}"
-        }, {
+            "questionId": "js1_8",
+            "title": "参照型と値型",
+            "question": "参照型と値型の違いを説明し、それぞれの動作を示すJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptのデータ型は参照型と値型に分けることができます。プリミティブ型（値型）は直接値を保持しますが、オブジェクト型（参照型）はメモリ上の位置（参照）を保持します。",
+            "answer": "// 値型（プリミティブ型）の例\nlet value1 = 10;\nlet value2 = value1;\nvalue1 = 20;\nconsole.log(value2); // 予想される出力: 10\n\n// 参照型（オブジェクト型）の例\nlet obj1 = {prop: 10};\nlet obj2 = obj1;\nobj1.prop = 20;\nconsole.log(obj2.prop); // 予想される出力: 20"
+        },
+        {
             "id": 9,
-            "questionId": "javascript9",
-            "title": "非同期処理",
-            "question": "以下のコードを実行した際の出力結果を選択肢から選び、解説を述べてください。\n\n```\nconsole.log('a');\nsetTimeout(() => console.log('b'), 0);\nconsole.log('c');\n```\n",
-            "options": [
-                "a b c",
-                "a c b",
-                "c a b",
-                "c b a"
-            ],
-            "explanation": "JavaScriptでは、setTimeout()関数は非同期処理を行います。\nsetTimeout()関数で指定した処理は、コールスタックから削除され、指定した時間後にタスクキューに追加されます。\nタスクキューは、イベントループによって処理され、コールスタックが空の場合に非同期処理が実行されます。\n\nつまり、実行結果は、``a c b``となります。``a``が出力され、setTimeout()関数で指定された``console.log('b')``は、実行待ちになります。その後、``c``が出力され、コールスタックが空の状態であるため、タスクキューから``console.log('b')``が取り出され、実行されます。\n",
-            "answer": "1"
+            "questionId": "js1_9",
+            "title": "関数のデータ型",
+            "question": "JavaScriptでは関数もデータ型の一つです。関数がデータ型として扱える理由と、関数を変数に代入するJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、関数もオブジェクトの一種として扱われ、変数に格納したり、他の関数に引数として渡したりすることができます。これは、JavaScriptがファーストクラス関数をサポートしているためです。",
+            "answer": "// 関数を変数に代入する\nlet myFunction = function() {\n    console.log('Hello, world!');\n};\nmyFunction(); // 予想される出力: \"Hello, world!\""
         },
         {
             "id": 10,
-            "questionId": "javascript10",
-            "title": "クロージャー",
-            "question": "以下のコードを実行した際の出力結果を選択肢から選び、解説を述べてください。\n\n```\nfunction foo() {\n  var a = 1;\n  function bar() {\n    console.log(a);\n  }\n  return bar;\n}\nvar baz = foo();\nbaz();\n```\n",
-            "options": [
-                "1",
-                "undefined",
-                "null",
-                "error"
-            ],
-            "explanation": "このコードはクロージャーの例です。\n``foo()``関数は、``bar()``関数を戻り値として返しています。\n戻り値として返された``bar()``関数は、``foo()``関数内で定義された変数``a``にアクセスできます。\n\n``baz()``関数を実行した際、``foo()``関数内で``a``に代入された``1``が出力されます。\n",
-            "answer": "1"
-        }, {
+            "questionId": "js1_10",
+            "title": "undefinedとnull",
+            "question": "undefinedとnullの違いを説明し、それぞれを使用するJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、undefinedとnullは両方とも「値が存在しない」を表す値ですが、それぞれ異なる意味合いがあります。undefinedは、定義されていない変数や、値が割り当てられていない変数、または返り値がない関数の結果を表します。一方、nullはプログラマーが明示的に「値が存在しない」を示すために使用します。",
+            "answer": "// undefinedの例\nlet myUndefined;\nconsole.log(myUndefined); // 予想される出力: undefined\n\n// nullの例\nlet myNull = null;\nconsole.log(myNull); // 予想される出力: null"
+        },
+        {
             "id": 11,
-            "questionId": "javascript1_11",
-            "title": "配列のデータ型判別",
-            "question": "次の配列の各要素のデータ型を判別して、配列resultに格納してください。ただし、判別できない場合は「不明」としてください。\nconst arr = [1, 2.5, 'apple', true, {name: 'John'}, ['red', 'blue'], null];",
-            "explanation": "JavaScriptの配列は、一つの配列に複数のデータ型が混在することが可能です。しかし、実際の開発では、配列の要素がどのようなデータ型であるかを正確に判別する必要があることがあります。そのためには、各要素のデータ型を判別する方法を知る必要があります。",
-            "answer": "const arr = [1, 2.5, 'apple', true, {name: 'John'}, ['red', 'blue'], null];\nconst result = arr.map(item => typeof item);\nconsole.log(result); // ['number', 'number', 'string', 'boolean', 'object', 'object', 'object']"
+            "questionId": "js1_11",
+            "title": "型変換",
+            "question": "JavaScriptの動的型付けについて説明し、型変換を示すJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptは動的型付け言語で、データ型は実行時に自動的に変換されることがあります。例えば、文字列と数値を一緒に計算すると、数値は自動的に文字列に変換されます。これは明示的な型変換も可能で、文字列を数値に変換したり、逆に数値を文字列に変換したりすることができます。",
+            "answer": "// 型変換の例\nlet value1 = '5';\nlet value2 = 3;\nlet result = value1 + value2;\nconsole.log(result); // 予想される出力: \"53\"\n\n// 明示的な型変換\nlet convertedValue = Number(value1);\nlet result2 = convertedValue + value2;\nconsole.log(result2); // 予想される出力: 8"
         },
         {
             "id": 12,
-            "questionId": "javascript1_12",
-            "title": "配列の中身をランダムに並び替える",
-            "question": "以下の配列の中身をランダムに並び替えて、配列resultに格納してください。\nconst arr = ['apple', 'banana', 'cherry', 'orange', 'grape', 'lemon'];",
-            "explanation": "JavaScriptの配列には、sortメソッドが用意されており、配列の要素を昇順または降順に並び替えることができます。しかし、要素をランダムに並び替える方法はありません。そのため、ランダムに並び替える方法を知る必要があります。",
-            "answer": "const arr = ['apple', 'banana', 'cherry', 'orange', 'grape', 'lemon'];\nconst result = arr.sort(() => Math.random() - 0.5);\nconsole.log(result);"
-        }, {
-            "id": 13,
-            "questionId": "javascript3_1",
-            "title": "型の不一致",
-            "question": "以下のコードを実行するとどうなるか。\n\n```js\nconst x = 10;\nconst y = '5';\nconsole.log(x + y);\n```",
-            "explanation": "このコードでは、数値型と文字列型を加算しています。JavaScriptでは、数値型と文字列型を加算すると、文字列型が自動的に数値型に変換され、2つの数値型が加算された結果が返されます。そのため、このコードの実行結果は「105」となります。",
-            "answer": "105"
+            "questionId": "js1_12",
+            "title": "FalsyとTruthy",
+            "question": "JavaScriptのfalsyな値とtruthyな値について説明し、それぞれを使った例を示すJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、if文などの条件判断で真偽値が必要な場面で、各値が真か偽かに変換される場合があります。これを強制的なブール型への変換といいます。falsyな値とは、ブール型へ強制的に変換されたときにfalseとなる値のことで、truthyな値とは、ブール型へ強制的に変換されたときにtrueとなる値のことを指します。",
+            "answer": "// Falsyな値の例\nlet falsyValue = 0;\nif (falsyValue) {\n    console.log('This won't be logged.');\n} else {\n    console.log('Falsy value: ' + falsyValue); // 予想される出力: \"Falsy value: 0\"\n}\n\n// Truthyな値の例\nlet truthyValue = 'Hello';\nif (truthyValue) {\n    console.log('Truthy value: ' + truthyValue); // 予想される出力: \"Truthy value: Hello\"\n}"
         },
         {
+            "id": 13,
+            "questionId": "js1_13",
+            "title": "NaN",
+            "question": "JavaScriptのNaNについて説明し、NaNを返す例を示すJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、数値ではないが数値型であるべき結果を表すためにNaN（Not a Number）が使用されます。NaNは数学的に定義できない操作（例えば、0での除算や文字列を数値に変換できない場合など）の結果として得られます。",
+            "answer": "// NaNの例\nlet result = 'Hello' / 2;\nconsole.log(result); // 予想される出力: NaN"
+        },
+
+        {
             "id": 14,
-            "questionId": "javascript3_2",
-            "title": "型の不一致",
-            "question": "以下のコードを実行するとどうなるか。\n\n```js\nconst x = 5;\nconst y = '10';\nconsole.log(y - x);\n```",
-            "explanation": "このコードでは、文字列型と数値型の減算を行っています。文字列型が数値型に変換される場合は、その文字列が数値に変換できる場合に限られます。このコードでは、文字列「'10'」は数値に変換できるため、「10 - 5」の計算が行われ、実行結果は「5」となります。",
-            "answer": "5"
+            "questionId": "js1_14",
+            "title": "undefinedとnull",
+            "question": "JavaScriptのundefinedとnullについて説明し、それぞれを示すJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、未定義の変数や存在しないオブジェクトのプロパティにアクセスしたときにundefinedが返されます。また、nullは明示的に値が存在しないことを示すために使用されます。nullとundefinedは、どちらも何もないことを示す値ですが、使用方法や目的に違いがあります。",
+            "answer": "// undefinedの例\nlet undefinedValue;\nconsole.log(undefinedValue); // 予想される出力: undefined\n\n// nullの例\nlet nullValue = null;\nconsole.log(nullValue); // 予想される出力: null"
         },
         {
             "id": 15,
-            "questionId": "javascript1_15",
-            "title": "型変換",
-            "question": "次のコードを実行したとき、コンソールに表示される値を答えてください。\n\n```\nlet x = '42';\nlet y = 7;\nconsole.log(x - y);\n```",
-            "explanation": "JavaScriptでは、型変換が行われた後に演算が実行されます。この問題では、文字列'42'が数値42に変換され、その後7が引かれます。そのため、答えは35となります。",
-            "answer": "35"
-        }, {
+            "questionId": "js1_15",
+            "title": "Symbol型",
+            "question": "JavaScriptのSymbol型について説明し、Symbolを使った例を示すJavaScriptコードを書いてください。",
+            "explanation": "SymbolはJavaScriptのプリミティブ型の一つで、ユニークな識別子を生成するために使用されます。一度生成されたSymbolは他の任意の値と完全に一致しないので、オブジェクトのプロパティキーとして使用すると、他のプロパティと衝突することなく安全にプロパティを追加することができます。",
+            "answer": "// Symbolの例\nlet symbol1 = Symbol('symbol1');\nlet symbol2 = Symbol('symbol1');\n\nconsole.log(symbol1 === symbol2); // 予想される出力: false\n\n// オブジェクトのプロパティキーとしてのSymbol\nlet obj = {};\nobj[symbol1] = 'Hello';\nconsole.log(obj[symbol1]); // 予想される出力: \"Hello\""
+        },
+        {
             "id": 16,
-            "questionId": "javascript1_16",
-            "title": "オブジェクトのプロパティ",
-            "question": "以下のオブジェクトのプロパティ値を変更した後、コンソールに出力されるオブジェクトの内容を答えてください。\n\n```\nlet obj = { a: 1, b: 2 };\nobj.a = 3;\nconsole.log(obj);\n```",
-            "explanation": "この問題では、オブジェクトのプロパティ値を変更しています。obj.a = 3; により、オブジェクト obj のプロパティ a の値が 3 に変更されます。そのため、コンソールには { a: 3, b: 2 } と出力されます。",
-            "answer": "{ a: 3, b: 2 }"
-        }, {
+            "questionId": "js1_16",
+            "title": "型判定",
+            "question": "JavaScriptのtypeof演算子とinstanceof演算子について説明し、それぞれを使った例を示すJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptのtypeof演算子は、指定した変数のデータ型を文字列として返します。一方、instanceof演算子は、指定したオブジェクトが特定のクラスのインスタンスであるかを判定します。",
+            "answer": "// typeof演算子の例\nlet number = 123;\nconsole.log(typeof number); // 予想される出力: \"number\"\n\n// instanceof演算子の例\nlet array = [1, 2, 3];\nconsole.log(array instanceof Array); // 予想される出力: true"
+        },
+        {
             "id": 17,
-            "questionId": "javascript1_17",
-            "title": "型変換",
-            "question": "文字列\"100\"を数値に変換し、10を加えた結果を表示するプログラムを作成してください。",
-            "explanation": "文字列を数値に変換するにはparseInt()関数を使用します。parseInt()関数は、引数に与えられた文字列を整数に変換します。そのため、文字列\"100\"をparseInt()関数で変換すると、数値100が得られます。\nただし、数値に変換できない文字列を引数に与えた場合、NaN（Not a Number）が返されます。\nこの問題では、数値100に10を加えた結果を表示することが要求されています。変数を用いて計算し、結果をconsole.log()関数で表示してください。",
-            "answer": "// 文字列\"100\"を数値に変換し、10を加えた結果を表示するプログラム\n\nlet str = \"100\";\nlet num = parseInt(str);\nnum += 10;\nconsole.log(num); // 110が表示される\n"
+            "questionId": "js1_17",
+            "title": "変換",
+            "question": "JavaScriptでデータ型を変換する方法について説明し、例を示すJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、データ型の変換（キャスト）を行うことが可能です。例えば、数値を文字列に変換したり、文字列を数値に変換したりすることが可能です。また、真偽値に変換することも可能です。",
+            "answer": "// データ型の変換例\nlet num = 123;\nlet str = num.toString();\nconsole.log(str); // 予想される出力: \"123\"\n\nlet booleanValue = Boolean(str);\nconsole.log(booleanValue); // 予想される出力: true"
         },
         {
             "id": 18,
-            "questionId": "javascript1_18",
-            "title": "型変換",
-            "question": "以下のプログラムを実行した場合、出力結果は何になりますか？\nlet a = \"10\";\nlet b = \"20\";\nlet c = a + b;\nconsole.log(c);",
-            "explanation": "この問題では、文字列として宣言された変数aと変数bを、+演算子で連結した結果を変数cに代入することが要求されています。\n結果として、変数cには文字列\"1020\"が代入されます。\nこれは、+演算子が文字列の場合、文字列を連結する演算子として働くためです。",
-            "answer": "// 文字列として宣言された変数aと変数bを、+演算子で連結した結果を変数cに代入する\nlet a = \"10\";\nlet b = \"20\";\nlet c = a + b;\nconsole.log(c); // \"1020\"が表示される\n"
+            "questionId": "js1_18",
+            "title": "配列の型",
+            "question": "JavaScriptで配列がどのように扱われるか説明し、配列の作成と要素へのアクセスを示すJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、配列は特殊なオブジェクトとして扱われます。配列の要素には0から始まるインデックスでアクセスします。配列は[]を使用して作成し、要素にはarr[index]という形式でアクセスします。",
+            "answer": "// 配列の作成と要素へのアクセス\nlet array = [1, 2, 3, 4, 5];\nconsole.log(array[2]); // 予想される出力: 3"
         },
         {
             "id": 19,
-            "questionId": "javascript1_19",
-            "title": "正規表現",
-            "question": "文字列「1234」をパターンに合わせて加工し、文字列「1,234」に変換してください。",
-            "explanation": "正規表現は、パターンにマッチする文字列を効率的に検索、置換できる方法です。パターンは、文字列中に存在する文字列や文字クラス、繰り返し、グループ化などの仕組みを使って指定します。\nここでは、「1234」という文字列を「1,234」という形式に変換するために、正規表現を使った処理を実装してください。",
-            "answer": "// 元の文字列\nconst str = '1234';\n\n// パターンにマッチする部分を取り出し、変換する\nconst result = str.replace(/(\\d)(?=(\\d{3})+$)/g, '$1,');\n\n// 結果を出力\nconsole.log(result); // 1,234\n\n// 解説\n// 正規表現 /\\d(?=(\\d{3})+$)/ は、\n// 「3桁の数字に続いて桁数が3の倍数となる数字」というパターンを表します。\n// このパターンにマッチする箇所（ここでは1つしかない）を $1 で置換しています。\n// 置換する前に、マッチする部分を () でグループ化しています。"
+            "questionId": "js1_19",
+            "title": "配列とオブジェクトの違い",
+            "question": "JavaScriptの配列とオブジェクトの違いを説明し、それぞれを示すJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptの配列とオブジェクトはともにデータの集合を扱うためのデータ型ですが、その用途と特性は異なります。配列は順序を持つ一連の値を格納するのに使用され、オブジェクトはキーと値のペアを格納するのに使用されます。",
+            "answer": "// 配列の例\nlet array = [1, 2, 3, 4, 5];\nconsole.log(array[2]); // 予想される出力: 3\n\n// オブジェクトの例\nlet object = {key1: 'value1', key2: 'value2'};\nconsole.log(object.key1); // 予想される出力: \"value1\""
         },
         {
             "id": 20,
-            "questionId": "javascript1_19",
-            "title": "オブジェクトの値渡し/参照渡し",
-            "question": "javascriptでは、オブジェクトの引数を関数に渡す場合、その値渡し/参照渡しはどうなりますか？\n\n以下の関数を実行したとき、出力結果として正しいものを選択してください。\n\nfunction test(obj) {\n    obj = {a: 2};\n}\n\nconst x = {a: 1};\n\nconsole.log(x);\ntest(x);\nconsole.log(x);\n",
-            "explanation": "javascriptでは、オブジェクトは参照渡しとなります。そのため、関数にオブジェクトを引数として渡した場合、オブジェクトのコピーが作成されるわけではなく、元のオブジェクトへの参照が渡されます。したがって、関数内でオブジェクトを変更すると、呼び出し元のオブジェクトも変更されます。\n\n例えば、以下のようなコードがある場合、\n\nfunction test(obj) {\n    obj.a = 2;\n}\n\nconst x = {a: 1};\n\ntest(x);\nconsole.log(x);\n\n呼び出し元で宣言したオブジェクトのプロパティaを関数内で変更していますが、呼び出し元のconsole.log(x)の出力結果は{a: 2}となります。\n\nしたがって、19番目の問題の正しい回答は「{a: 1}\n{a: 1}」となります。",
-            "answer": "function test(obj) {\n    obj = {a: 2};\n}\n\nconst x = {a: 1};\n\nconsole.log(x);\ntest(x);\nconsole.log(x);\n\n// 実行結果\n// {a: 1}\n// {a: 1}\n"
+            "questionId": "js1_20",
+            "title": "配列のメソッド",
+            "question": "JavaScriptの配列について、pushメソッドとpopメソッドを使用した例を示すJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptの配列には多くの便利なメソッドがあります。pushメソッドは、配列の末尾に新しい要素を追加します。popメソッドは、配列の末尾の要素を取り出します。",
+            "answer": "// pushとpopメソッドの例\nlet array = [1, 2, 3, 4, 5];\n\narray.push(6);\nconsole.log(array); // 予想される出力: [1, 2, 3, 4, 5, 6]\n\narray.pop();\nconsole.log(array); // 予想される出力: [1, 2, 3, 4, 5]"
         }
     ]
 }

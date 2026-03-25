@@ -1,0 +1,166 @@
+{
+    "contentsId": "js_loop3",
+    "title": "JavaScriptの繰り返し問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_loop3_1",
+            "title": "2次元配列とループ",
+            "question": "以下の2次元配列があります。\n\n[[1, 2, 3], [4, 5, 6], [7, 8, 9]]\n\nこの配列の各要素を1つずつコンソールに出力するループを書いてください。",
+            "explanation": "2次元配列をループで処理するには、ネストされたループ（ループ内にループがある構造）を使用します。外側のループが配列の各サブ配列を通過し、内側のループが各サブ配列の要素を処理します。",
+            "answer": "let array = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];\nfor(let i = 0; i < array.length; i++) {\n  for(let j = 0; j < array[i].length; j++) {\n    console.log(array[i][j]);\n  }\n}\n// 1, 2, 3, 4, 5, 6, 7, 8, 9が順に出力されます。"
+        },
+        {
+            "id": 2,
+            "questionId": "js_loop3_2",
+            "title": "再帰関数とループ",
+            "question": "1からnまでのすべての整数の和を求める再帰関数を書いてください。ただし、ループを使用せずに実装してください。",
+            "explanation": "再帰関数を使用すると、ループを使わずに反復的な動作を実装することができます。この問題では、再帰関数を使用して1からnまでの和を計算します。関数は自分自身を再度呼び出すことでループのような動作を実現します。",
+            "answer": "function sum(n) {\n  // ベースケース: nが1の場合は1を返す\n  if(n === 1) return 1;\n  // 再帰ステップ: n + sum(n - 1)を返す\n  return n + sum(n - 1);\n}\nconsole.log(sum(5));\n// 15が出力されます。"
+        },
+        {
+            "id": 3,
+            "questionId": "js_loop3_3",
+            "title": "配列とループ",
+            "question": "JavaScriptの配列を使って、1からnまでのすべての奇数の合計を計算する関数を作成してください。関数の名前は 'sumOddNumbers' とし、引数は一つ、正の整数 n を受け取ります。",
+            "explanation": "ループを使って配列内の各要素にアクセスし、奇数だけを選んで加算します。forループを使って配列を巡回し、各要素が奇数かどうかを確認します。",
+            "answer": "function sumOddNumbers(n) {\n  // 奇数の和を保存するための変数\n  let sum = 0;\n  // 1からnまでループ\n  for(let i = 1; i <= n; i++) {\n    // 奇数だけを加算\n    if(i % 2 !== 0) sum += i;\n  }\n  return sum;\n}\nconsole.log(sumOddNumbers(10));\n// 出力: 25 (1 + 3 + 5 + 7 + 9)"
+        },
+        {
+            "id": 4,
+            "questionId": "js_loop3_4",
+            "title": "2次元配列とループ",
+            "question": "JavaScriptの2次元配列を使って、すべての配列要素の合計を計算する関数を作成してください。関数の名前は 'sumMatrix' とし、引数は一つ、2次元配列 matrix を受け取ります。",
+            "explanation": "2次元配列を巡回するには、ネストされたループ（ループ内にループ）を使用します。外側のループは配列の各行を、内側のループは各行の各要素を処理します。",
+            "answer": "function sumMatrix(matrix) {\n  // 合計を保存するための変数\n  let sum = 0;\n  // 配列の各行をループ\n  for(let i = 0; i < matrix.length; i++) {\n    // 各行の各要素をループ\n    for(let j = 0; j < matrix[i].length; j++) {\n      // 要素を合計に加算\n      sum += matrix[i][j];\n    }\n  }\n  return sum;\n}\nconsole.log(sumMatrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]]));\n// 出力: 45"
+        },
+        {
+            "id": 5,
+            "questionId": "js_loop3_5",
+            "title": "配列とmap関数",
+            "question": "JavaScriptの配列メソッドである 'map' を使用して、配列内の全ての数値を2倍にした新しい配列を返す関数を作成してください。関数の名前は 'doubleNumbers' とし、引数は一つ、数値の配列 arr を受け取ります。",
+            "explanation": "'map' メソッドは、配列の全ての要素に対して関数を適用し、その結果からなる新しい配列を生成します。この機能を利用して、配列内の全ての数値を2倍にします。",
+            "answer": "function doubleNumbers(arr) {\n  // mapメソッドで配列の全ての要素を2倍にする\n  return arr.map(function(num) {\n    // 各要素を2倍にして返す\n    return num * 2;\n  });\n}\nconsole.log(doubleNumbers([1, 2, 3, 4, 5]));\n// 出力: [2, 4, 6, 8, 10]"
+        },
+        {
+            "id": 6,
+            "questionId": "js_loop3_6",
+            "title": "二次元配列とループ",
+            "question": "二次元配列 (配列の配列) に対して、各サブ配列内の全ての要素を足し合わせた結果の配列を返す関数 'sumNestedArrays' を作成してください。関数は一つの二次元配列を引数として受け取ります。",
+            "explanation": "二次元配列の各サブ配列に対して、それぞれの要素を足し合わせます。これには、配列の 'reduce' メソッドを用いて、各サブ配列の要素を足し合わせることができます。",
+            "answer": "function sumNestedArrays(arr) {\n  // mapメソッドで二次元配列の各サブ配列に対して処理を行う\n  return arr.map(function(subArr) {\n    // reduceメソッドでサブ配列の全ての要素を足し合わせる\n    return subArr.reduce(function(sum, num) {\n      // 各要素を合計値に加える\n      return sum + num;\n    }, 0);\n  });\n}\nconsole.log(sumNestedArrays([[1, 2, 3], [4, 5, 6], [7, 8, 9]]));\n// 出力: [6, 15, 24]"
+        },
+        {
+            "id": 7,
+            "questionId": "js_loop3_7",
+            "title": "連想配列とループ",
+            "question": "JavaScriptのオブジェクトを使用して連想配列を作成し、その連想配列のすべてのキーと値を表示する 'printKeyValue' 関数を作成してください。この関数は連想配列 (JavaScriptのオブジェクト) を一つ引数として受け取ります。",
+            "explanation": "JavaScriptのオブジェクトは連想配列として使用できます。オブジェクトの各プロパティに対してループを行い、そのキーと値を表示します。これには、オブジェクトの 'for...in' ループを用います。",
+            "answer": "function printKeyValue(obj) {\n  // for...inループでオブジェクトの全てのプロパティに対して処理を行う\n  for (var key in obj) {\n    // キーとその値を表示する\n    console.log('Key: ' + key + ', Value: ' + obj[key]);\n  }\n}\nprintKeyValue({name: 'Alice', age: 25, country: 'Japan'});\n// 出力: \n// Key: name, Value: Alice\n// Key: age, Value: 25\n// Key: country, Value: Japan"
+        },
+        {
+            "id": 8,
+            "questionId": "js_loop3_8",
+            "title": "2次元配列とループ",
+            "question": "JavaScriptにおいて、2次元配列のすべての要素に対して操作を行うための二重ループを作成してください。作成した関数 'print2DArray' は、2次元配列を引数として受け取り、各要素をコンソールに出力するものとします。",
+            "explanation": "JavaScriptにおける2次元配列は、配列の各要素も配列である配列です。このような配列を完全に探索するためには、一つ目のループで配列の各要素（これも配列）を取得し、二つ目のループでその要素の各要素を取得する、二重のループが必要です。",
+            "answer": "function print2DArray(arr) {\n  // 外側のループ：各\"行\"を処理する\n  for (var i = 0; i < arr.length; i++) {\n    // 内側のループ：各\"列\"を処理する\n    for (var j = 0; j < arr[i].length; j++) {\n      // それぞれの要素を表示する\n      console.log('Element [' + i + '][' + j + ']: ' + arr[i][j]);\n    }\n  }\n}\nprint2DArray([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);\n// 出力: \n// Element [0][0]: 1\n// Element [0][1]: 2\n// Element [0][2]: 3\n// Element [1][0]: 4\n// Element [1][1]: 5\n// Element [1][2]: 6\n// Element [2][0]: 7\n// Element [2][1]: 8\n// Element [2][2]: 9"
+        },
+        {
+            "id": 9,
+            "questionId": "js_loop3_9",
+            "title": "同じ文字列の繰り返し",
+            "question": "JavaScriptで指定した回数だけ同じ文字列を繰り返し出力する関数'repeatString'を作成してください。関数は2つの引数、繰り返す文字列と回数、を受け取り、結果をconsole.logで出力します。",
+            "explanation": "文字列の繰り返しは、繰り返し構造を利用することで実現できます。この問題では、特定の文字列を指定した回数だけ繰り返し、その結果を一つの文字列として出力する方法を学びます。",
+            "answer": "function repeatString(str, num) {\n  // 繰り返す文字列を格納する変数を初期化します。\n  let repeatedStr = '';\n  // 指定した回数だけループします。\n  for (let i = 0; i < num; i++) {\n    // 繰り返す文字列を追加します。\n    repeatedStr += str;\n  }\n  // 繰り返し文字列を出力します。\n  console.log(repeatedStr);\n}\n\n// 関数をテストします。\nrepeatString('Hello', 3);\n// 出力：HelloHelloHello"
+        },
+        {
+            "id": 10,
+            "questionId": "js_loop3_10",
+            "title": "二次元配列の繰り返し処理",
+            "question": "JavaScriptで二次元配列の全ての要素を繰り返し出力する関数'printNestedArray'を作成してください。関数は一つの二次元配列を引数として受け取り、各要素をconsole.logで出力します。",
+            "explanation": "二次元配列を扱う場合、ネストされたループ構造が必要になることがあります。この問題では、二次元配列の全ての要素にアクセスし、その値を出力する方法を学びます。",
+            "answer": "function printNestedArray(arr) {\n  // 最初のループは外側の配列を通過します。\n  for (let i = 0; i < arr.length; i++) {\n    // 2番目のループは内側の配列を通過します。\n    for (let j = 0; j < arr[i].length; j++) {\n      // 各要素を出力します。\n      console.log(arr[i][j]);\n    }\n  }\n}\n\n// 関数をテストします。\nprintNestedArray([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);\n// 出力：1\n// 出力：2\n// 出力：3\n// 出力：4\n// 出力：5\n// 出力：6\n// 出力：7\n// 出力：8\n// 出力：9"
+        },
+        {
+            "id": 11,
+            "questionId": "js_loop3_11",
+            "title": "オブジェクトの繰り返し処理",
+            "question": "JavaScriptでオブジェクトの全てのプロパティを繰り返し出力する関数'printObjectProperties'を作成してください。関数は一つのオブジェクトを引数として受け取り、各プロパティ名とその値をconsole.logで出力します。",
+            "explanation": "オブジェクトに対する繰り返し処理はfor...inループを使用します。この問題では、オブジェクトの全てのプロパティにアクセスし、その名前と値を出力する方法を学びます。",
+            "answer": "function printObjectProperties(obj) {\n  // for...inループを使用してオブジェクトの各プロパティを通過します。\n  for (let prop in obj) {\n    // プロパティ名とその値を出力します。\n    console.log('Property Name: ' + prop + ', Value: ' + obj[prop]);\n  }\n}\n\n// 関数をテストします。\nprintObjectProperties({name: 'John', age: 30, city: 'New York'});\n// 出力：Property Name: name, Value: John\n// 出力：Property Name: age, Value: 30\n// 出力：Property Name: city, Value: New York"
+        },
+        {
+            "id": 12,
+            "questionId": "js_loop3_12",
+            "title": "配列内のオブジェクトのフィルタリング",
+            "question": "次の条件を満たす関数 'filterStudentsByGrade' を作成してください。この関数は、学生の配列と基準の成績を引数に取り、成績が基準を上回る学生の配列を返します。学生は{name: '名前', grade: 点数}という形式のオブジェクトで表現されます。",
+            "explanation": "この問題では、配列の繰り返し処理とオブジェクトのプロパティへのアクセス、そして配列のフィルタリングを組み合わせて、特定の条件を満たすオブジェクトだけを取り出す方法を学びます。",
+            "answer": "function filterStudentsByGrade(students, grade) {\n  // Array.filter()を使用して成績が基準を上回る学生だけを取り出します。\n  let filteredStudents = students.filter(student => student.grade > grade);\n  return filteredStudents;\n}\n\n// 関数をテストします。\nlet students = [{name: 'John', grade: 80}, {name: 'Jane', grade: 90}, {name: 'Jim', grade: 70}];\nconsole.log(filterStudentsByGrade(students, 85));\n// 出力：[{ name: 'Jane', grade: 90 }]"
+        },
+        {
+            "id": 13,
+            "questionId": "js_loop3_13",
+            "title": "reduceを用いた配列内の数値の合計",
+            "question": "JavaScriptのArray.reduceを用いて配列内のすべての数値の合計を返す関数 'calculateSum' を作成してください。",
+            "explanation": "Array.reduceは配列内の全ての要素に対して処理を行い、その結果を単一の値として返します。ここでは、それを利用して配列内の数値の合計を求める関数を作成します。",
+            "answer": "function calculateSum(numbers) {\n  // Array.reduce()を使用して配列内の数値の合計を求めます。\n  let sum = numbers.reduce((total, num) => total + num, 0);\n  return sum;\n}\n\n// 関数をテストします。\nlet nums = [1, 2, 3, 4, 5];\nconsole.log(calculateSum(nums));\n// 出力：15"
+        },
+        {
+            "id": 14,
+            "questionId": "js_loop3_14",
+            "title": "二次元配列内の数値の合計",
+            "question": "JavaScriptを用いて、二次元配列内のすべての数値の合計を返す関数 'calculateSum2D' を作成してください。",
+            "explanation": "配列内の配列（二次元配列）の全ての要素に対する処理は、一般的に二重ループを用いて実現します。ここではそれを利用して、二次元配列内の全ての数値の合計を求める関数を作成します。",
+            "answer": "function calculateSum2D(numbers2D) {\n  // 合計値を格納するための変数を初期化します。\n  let sum = 0;\n  // 外側のループ：配列の各要素（=内側の配列）に対して実行されます。\n  for (let i = 0; i < numbers2D.length; i++) {\n    // 内側のループ：内側の配列の各要素に対して実行されます。\n    for (let j = 0; j < numbers2D[i].length; j++) {\n      sum += numbers2D[i][j];\n    }\n  }\n  return sum;\n}\n\n// 関数をテストします。\nlet nums2D = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];\nconsole.log(calculateSum2D(nums2D));\n// 出力：45"
+        },
+        {
+            "id": 15,
+            "questionId": "js_loop3_15",
+            "title": "配列内の特定の値をカウント",
+            "question": "JavaScriptを用いて、配列内に存在する特定の値の出現回数をカウントする関数 'countOccurrences' を作成してください。",
+            "explanation": "配列内の特定の値の出現回数をカウントするには、配列を順に処理し、対象の値と一致する場合にカウンターを増加させます。",
+            "answer": "function countOccurrences(array, target) {\n  // カウンターを0で初期化します。\n  let count = 0;\n  // 配列の全ての要素に対して、以下の処理を行います。\n  for (let i = 0; i < array.length; i++) {\n    // 現在の要素が目的の値と一致する場合、カウンターを増やします。\n    if (array[i] === target) {\n      count++;\n    }\n  }\n  // 最終的なカウント数を返します。\n  return count;\n}\n\n// 関数をテストします。\nlet nums = [1, 2, 2, 3, 4, 2, 5, 2, 6];\nconsole.log(countOccurrences(nums, 2));\n// 出力：4"
+        },
+        {
+            "id": 16,
+            "questionId": "js_loop3_16",
+            "title": "2次元配列の反時計回りに90度回転",
+            "question": "JavaScriptを用いて、2次元配列を反時計回りに90度回転させる関数 'rotateMatrixCounterClockwise' を作成してください。",
+            "explanation": "2次元配列を反時計回りに90度回転させるには、新しい配列を作成し、元の配列の各要素を適切な位置に配置します。これには、配列の列と行を反転させるという考え方が役立ちます。",
+            "answer": "function rotateMatrixCounterClockwise(matrix) {\n  // 新しい配列を作成します。\n  let newMatrix = [];\n  for (let i = matrix[0].length - 1; i >= 0; i--) {\n    newMatrix.push([]);\n    for (let j = 0; j < matrix.length; j++) {\n      // 古い配列の要素を新しい配列の適切な位置に配置します。\n      newMatrix[matrix[0].length - i - 1][j] = matrix[j][i];\n    }\n  }\n  // 新しい配列を返します。\n  return newMatrix;\n}\n\n// 関数をテストします。\nlet matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];\nconsole.log(rotateMatrixCounterClockwise(matrix));\n// 出力：[[3, 6, 9], [2, 5, 8], [1, 4, 7]]"
+        },
+        {
+            "id": 17,
+            "questionId": "js_loop3_17",
+            "title": "フィボナッチ数列の再帰実装",
+            "question": "JavaScriptを用いて、フィボナッチ数列を生成する再帰関数 'recursiveFibonacci' を作成してください。ただし、関数の引数 n は生成するフィボナッチ数列の項数を表し、n <= 30 を満たすとします。",
+            "explanation": "フィボナッチ数列は、次の項が前の2項の和である数列です。最初の2項は通常0と1と定義されます。再帰関数を使ってフィボナッチ数列を実装するときは、基底ケースと再帰ケースの2つを定義することが重要です。",
+            "answer": "function recursiveFibonacci(n) {\n  // 基底ケース\n  if (n <= 1) return n;\n  // 再帰ケース\n  else return recursiveFibonacci(n - 1) + recursiveFibonacci(n - 2);\n}\n\n// 関数をテストします。\nfor (let i = 0; i < 10; i++) {\n  console.log(recursiveFibonacci(i));\n}\n// 出力：0, 1, 1, 2, 3, 5, 8, 13, 21, 34"
+        },
+        {
+            "id": 18,
+            "questionId": "js_loop3_18",
+            "title": "2次元配列のスキャン",
+            "question": "JavaScriptを用いて、2次元配列 (配列の配列) を行ごとに左から右へ、そして次の行へとスキャンするプログラムを作成してください。また、各要素をconsole.logで出力してください。",
+            "explanation": "2次元配列をスキャンするには、通常、ネストされたforループを使用します。外側のループは行を処理し、内側のループは各行の要素を処理します。",
+            "answer": "let array2D = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];\n\n// 2次元配列を行ごとにスキャン\nfor (let i = 0; i < array2D.length; i++) {\n  for (let j = 0; j < array2D[i].length; j++) {\n    console.log(array2D[i][j]);\n  }\n}\n// 出力：1, 2, 3, 4, 5, 6, 7, 8, 9"
+        },
+        {
+            "id": 19,
+            "questionId": "js_loop3_19",
+            "title": "配列要素の平均値計算",
+            "question": "JavaScriptを用いて、与えられた配列の全ての要素の平均値を求めるプログラムを作成してください。",
+            "explanation": "配列の全ての要素の平均値を求めるには、まず全ての要素の合計値を求め、それを要素数で割ります。これを達成するために、配列の各要素をforループで走査し、合計を求め、要素数で割ります。",
+            "answer": "let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];\n\n// 合計値を格納する変数\nlet sum = 0;\n\n// 配列の全ての要素を合計\nfor (let i = 0; i < array.length; i++) {\n  sum += array[i];\n}\n\n// 平均値を計算して出力\nconsole.log(sum / array.length);\n// 出力：5.5"
+        },
+        {
+            "id": 20,
+            "questionId": "js_loop3_20",
+            "title": "2次元配列の各行の合計",
+            "question": "JavaScriptを用いて、与えられた2次元配列の各行の合計を計算し、その結果を配列として返すプログラムを作成してください。",
+            "explanation": "2次元配列の各行の合計を計算するには、まず最初のループで各行にアクセスし、その後のループで各行の各要素にアクセスします。その後、各要素を合計し、その結果を新しい配列に追加します。",
+            "answer": "let array = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];\n\n// 各行の合計値を格納する配列\nlet rowSums = [];\n\n// 各行の合計を計算\nfor (let i = 0; i < array.length; i++) {\n  let rowSum = 0;\n  for (let j = 0; j < array[i].length; j++) {\n    rowSum += array[i][j];\n  }\n  rowSums.push(rowSum);\n}\n\n// 各行の合計を出力\nconsole.log(rowSums);\n// 出力：[6, 15, 24]"
+        }
+    ]
+}

@@ -1,0 +1,86 @@
+{
+    "contentsId": "java6",
+    "title": "Javaのカプセル化問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java6_1",
+            "title": "GetterとSetterの利用",
+            "question": "以下のコードについて、nameとageのgetterとsetterメソッドを追加してください。\n\npublic class Person {\n    private String name;\n    private int age;\n}",
+            "explanation": "カプセル化の一部として、クラスのフィールドに対するgetterおよびsetterメソッドを提供することが一般的です。これらのメソッドによって、フィールドの値の取得および設定が可能になります。",
+            "answer": "public class Person {\n    private String name;\n    private int age;\n\n    // Nameのgetter\n    public String getName() {\n        return name;\n    }\n\n    // Nameのsetter\n    public void setName(String name) {\n        this.name = name;\n    }\n\n    // Ageのgetter\n    public int getAge() {\n        return age;\n    }\n\n    // Ageのsetter\n    public void setAge(int age) {\n        this.age = age;\n    }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java6_2",
+            "title": "カプセル化の適用",
+            "question": "以下のCarクラスにおいて、speedフィールドをカプセル化し、speedを0以上に制約するsetterメソッドを追加してください。\n\npublic class Car {\n    public int speed;\n}",
+            "explanation": "カプセル化を適用すると、フィールドへのアクセスを制限し、データの安全性と整合性を確保することができます。また、setterメソッドでは、引数の値が適切な範囲内にあることを確認し、不適切な値を設定することを防ぐことができます。",
+            "answer": "public class Car {\n    private int speed;\n\n    // Speedのgetter\n    public int getSpeed() {\n        return speed;\n    }\n\n    // Speedのsetter\n    public void setSpeed(int speed) {\n        if (speed >= 0) {\n            this.speed = speed;\n        }\n    }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java6_3",
+            "title": "コンストラクタとカプセル化",
+            "question": "以下のコードについて、コンストラクタを追加してnameとageを初期化し、その後カプセル化を適用してください。\n\npublic class Person {\n    private String name;\n    private int age;\n}",
+            "explanation": "カプセル化はクラスの内部データを保護するための一つの手段で、コンストラクタはオブジェクトの初期化を担当します。それらを組み合わせることで、オブジェクトの作成とその後の利用が適切に行われるようになります。",
+            "answer": "public class Person {\n    private String name;\n    private int age;\n\n    // コンストラクタ\n    public Person(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n\n    // Nameのgetter\n    public String getName() {\n        return name;\n    }\n\n    // Nameのsetter\n    public void setName(String name) {\n        this.name = name;\n    }\n\n    // Ageのgetter\n    public int getAge() {\n        return age;\n    }\n\n    // Ageのsetter\n    public void setAge(int age) {\n        this.age = age;\n    }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java6_4",
+            "title": "カプセル化とメソッド",
+            "question": "以下の「Student」クラスにおいて、「grade」フィールドをカプセル化し、「updateGrade」メソッドを作成してください。このメソッドは新しい成績を受け取り、それが現在の成績より高ければ更新します。\n\npublic class Student {\n    public int grade;\n}",
+            "explanation": "カプセル化により、クラスの内部状態の保護と、その状態へのアクセス方法をコントロールすることができます。この問題では、updateGradeメソッドを通じてのみgradeフィールドを更新するようにカプセル化を適用します。",
+            "answer": "public class Student {\n    private int grade;\n\n    // Gradeのgetter\n    public int getGrade() {\n        return grade;\n    }\n\n    // Gradeを更新するメソッド\n    public void updateGrade(int newGrade) {\n        if (newGrade > grade) {\n            grade = newGrade;\n        }\n    }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java6_5",
+            "title": "カプセル化と条件付きセッター",
+            "question": "次の「BankAccount」クラスでは、balanceは負の値を持つことができません。そこで、setBalanceメソッドを改修し、balanceに設定しようとする値が0未満であれば設定を無視するようにしてください。\n\npublic class BankAccount {\n    private double balance;\n\n    public void setBalance(double balance) {\n        this.balance = balance;\n    }\n}",
+            "explanation": "カプセル化の一部として、クラスの内部状態に対する不適切な変更を防ぐために、セッターメソッドで入力値の検証を行うことがあります。この問題では、負の値を設定しようとした場合にそれを無視するように、setBalanceメソッドを改修します。",
+            "answer": "public class BankAccount {\n    private double balance;\n\n    public void setBalance(double balance) {\n        // balanceが0未満であれば設定を無視\n        if (balance >= 0) {\n            this.balance = balance;\n        }\n    }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java6_6",
+            "title": "カプセル化と検証",
+            "question": "以下の「Product」クラスでは、priceフィールドは0以上の値を持つべきです。そこで、setPriceメソッドを改修し、priceに設定しようとする値が0未満であれば例外をスローするようにしてください。\n\npublic class Product {\n    private double price;\n\n    public void setPrice(double price) {\n        this.price = price;\n    }\n}",
+            "explanation": "クラスの状態に対する不適切な変更を防ぐために、カプセル化ではセッターメソッドで入力値の検証を行うことが一般的です。この問題では、0未満の値を設定しようとした場合に例外をスローするように、setPriceメソッドを改修します。",
+            "answer": "public class Product {\n    private double price;\n\n    public void setPrice(double price) throws IllegalArgumentException {\n        // priceが0未満であれば例外をスロー\n        if (price < 0) {\n            throw new IllegalArgumentException(\"Price cannot be negative\");\n        }\n        this.price = price;\n    }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java6_7",
+            "title": "カプセル化とコンストラクタ",
+            "question": "次の「Student」クラスでは、ageは0以上の値を持つべきです。そこで、コンストラクタを改修し、ageに設定しようとする値が0未満であれば例外をスローするようにしてください。\n\npublic class Student {\n    private int age;\n\n    public Student(int age) {\n        this.age = age;\n    }\n}",
+            "explanation": "カプセル化の一部として、クラスの内部状態に対する不適切な変更を防ぐために、コンストラクタで入力値の検証を行うことがあります。この問題では、0未満の値を設定しようとした場合に例外をスローするように、コンストラクタを改修します。",
+            "answer": "public class Student {\n    private int age;\n\n    public Student(int age) {\n        // ageが0未満であれば例外をスロー\n        if (age < 0) {\n            throw new IllegalArgumentException(\"Age cannot be negative\");\n        }\n        this.age = age;\n    }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java6_8",
+            "title": "カプセル化とアクセス制御",
+            "question": "次の「Person」クラスでは、nameフィールドはprivateとして宣言されています。しかし、外部からnameを参照できるようにするためにはどのようにすれば良いでしょうか？なお、nameの値は変更されるべきではありません。\n\npublic class Person {\n    private String name;\n\n    public Person(String name) {\n        this.name = name;\n    }\n}",
+            "explanation": "フィールドをprivateとすることで外部から直接アクセスできないようにし、カプセル化を実現します。しかし、その値を参照する必要がある場合は、対応するgetterメソッドを提供することが一般的です。この問題では、nameフィールドの値を取得するためのgetterメソッドを追加します。",
+            "answer": "public class Person {\n    private String name;\n\n    public Person(String name) {\n        this.name = name;\n    }\n\n    // nameフィールドのgetterメソッド\n    public String getName() {\n        return name;\n    }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java6_9",
+            "title": "カプセル化とアクセス制御",
+            "question": "次の「Employee」クラスでは、salaryフィールドはprivateとして宣言されています。しかし、外部からsalaryを変更できるようにするためにはどのようにすれば良いでしょうか？なお、salaryの値は0以上であるべきです。\n\npublic class Employee {\n    private int salary;\n\n    public Employee(int salary) {\n        this.salary = salary;\n    }\n}",
+            "explanation": "フィールドをprivateとすることで外部から直接アクセスできないようにし、カプセル化を実現します。しかし、その値を変更する必要がある場合は、対応するsetterメソッドを提供することが一般的です。この問題では、salaryフィールドの値を設定するためのsetterメソッドを追加します。",
+            "answer": "public class Employee {\n    private int salary;\n\n    public Employee(int salary) {\n        this.salary = salary;\n    }\n\n    // salaryフィールドのsetterメソッド\n    public void setSalary(int salary) {\n        // salaryが0未満であれば例外をスロー\n        if (salary < 0) {\n            throw new IllegalArgumentException(\"Salary cannot be negative\");\n        }\n        this.salary = salary;\n    }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java6_10",
+            "title": "カプセル化と不変性",
+            "question": "次の「ImmutablePoint」クラスは、その名の通り不変なPointクラスを実現したいと考えています。しかし、現在の実装では不変性が保証されていません。どのように改修すれば、このクラスの不変性を保証できるでしょうか？\n\npublic class ImmutablePoint {\n    private int x;\n    private int y;\n\n    public ImmutablePoint(int x, int y) {\n        this.x = x;\n        this.y = y;\n    }\n\n    public int getX() {\n        return x;\n    }\n\n    public int getY() {\n        return y;\n    }\n}",
+            "explanation": "カプセル化は、クラスの内部状態を適切に管理し、不変性を保証するためにも重要な役割を果たします。この問題では、クラスのフィールドがprivateであるにもかかわらず、setterメソッドが提供されていないため、一度インスタンス化された後にフィールドの値が変更されることはありません。よって、現在の実装ではクラスの不変性が保証されています。",
+            "answer": "public class ImmutablePoint {\n    private final int x;\n    private final int y;\n\n    public ImmutablePoint(int x, int y) {\n        this.x = x;\n        this.y = y;\n    }\n\n    public int getX() {\n        return x;\n    }\n\n    public int getY() {\n        return y;\n    }\n}"
+        }
+    ]
+}

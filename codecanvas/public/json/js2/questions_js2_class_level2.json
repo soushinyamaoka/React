@@ -1,0 +1,86 @@
+{
+    "contentsId": "js_dom_class2",
+    "title": "JavascriptのDOM操作：クラスの操作問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_dom_class2_1",
+            "title": "クラスの追加（複数要素）",
+            "question": "HTMLの複数の要素にクラスを追加するJavaScriptコードを書いてください。特に、'class1'というクラスを持つ全ての要素に'class2'というクラスを追加するコードを書いてください。",
+            "explanation": "クラスを追加するには、classListのaddメソッドを使います。また、特定のクラスを持つ全ての要素を取得するには、document.getElementsByClassNameメソッドを使います。",
+            "answer": "// 'class1'というクラスを持つ全ての要素に'class2'というクラスを追加します。\nlet elements = document.getElementsByClassName('class1');\nfor(let i = 0; i < elements.length; i++) {\n    elements[i].classList.add('class2');\n}\n// このコードを実行すると、'class1'というクラスを持つ全ての要素に'class2'が追加されます。"
+        },
+        {
+            "id": 2,
+            "questionId": "js_dom_class2_2",
+            "title": "クラスの削除（複数要素）",
+            "question": "HTMLの複数の要素からクラスを削除するJavaScriptコードを書いてください。特に、'class1'というクラスを持つ全ての要素から'class1'というクラスを削除するコードを書いてください。",
+            "explanation": "クラスを削除するには、classListのremoveメソッドを使います。",
+            "answer": "// 'class1'というクラスを持つ全ての要素から'class1'というクラスを削除します。\nlet elements = document.getElementsByClassName('class1');\nwhile(elements[0]) {\n    elements[0].classList.remove('class1');\n}\n// このコードを実行すると、'class1'というクラスを持つ全ての要素から'class1'が削除されます。"
+        },
+        {
+            "id": 3,
+            "questionId": "js_dom_class2_3",
+            "title": "クラスの切り替え（複数要素）",
+            "question": "HTMLの複数の要素でクラスの有無を切り替えるJavaScriptコードを書いてください。特に、'class1'というクラスを持つ全ての要素で'class1'というクラスの有無を切り替えるコードを書いてください。",
+            "explanation": "クラスの有無を切り替えるには、classListのtoggleメソッドを使います。",
+            "answer": "// 'class1'というクラスを持つ全ての要素で'class1'というクラスの有無を切り替えます。\nlet elements = document.getElementsByClassName('class1');\nfor(let i = 0; i < elements.length; i++) {\n    elements[i].classList.toggle('class1');\n}\n// このコードを実行すると、'class1'というクラスを持つ全ての要素で'class1'の有無が切り替わります。"
+        },
+        {
+            "id": 4,
+            "questionId": "js_dom_class2_4",
+            "title": "特定のクラスを持つ要素の数（複数クラス）",
+            "question": "特定のクラスを持つHTML要素の数を取得するJavaScriptコードを書いてください。特に、'class1'というクラスと'class2'というクラスを両方持つ要素の数を取得するコードを書いてください。",
+            "explanation": "特定のクラスを持つHTML要素の数を取得するには、document.querySelectorAllメソッドを使います。",
+            "answer": "// 'class1'と'class2'というクラスを両方持つ要素の数を取得します。\nlet elements = document.querySelectorAll('.class1.class2');\nconsole.log(elements.length);\n// このコードを実行すると、コンソールに'class1'と'class2'を両方持つ要素の数が表示されます。"
+        },
+        {
+            "id": 5,
+            "questionId": "js_dom_class2_5",
+            "title": "クラスの有無判定（複数要素）",
+            "question": "HTMLの複数の要素が特定のクラスを持っているか判定するJavaScriptコードを書いてください。特に、'class1'というクラスを持つ全ての要素が'class2'というクラスを持っているかを判定するコードを書いてください。",
+            "explanation": "要素が特定のクラスを持っているか判定するには、classListのcontainsメソッドを使います。",
+            "answer": "// 'class1'というクラスを持つ全ての要素が'class2'というクラスを持っているかを判定します。\nlet elements = document.getElementsByClassName('class1');\nfor(let i = 0; i < elements.length; i++) {\n    console.log(elements[i].classList.contains('class2'));\n}\n// このコードを実行すると、コンソールに各要素が'class2'を持っているかの判定結果（trueまたはfalse）が表示されます。"
+        },
+        {
+            "id": 6,
+            "questionId": "js_dom_class2_6",
+            "title": "クラスの追加と削除（条件付き）",
+            "question": "'class1'というクラスを持つ全ての要素について、'class2'というクラスを持つ要素は'class2'を削除し、持たない要素は'class2'を追加するJavaScriptコードを書いてください。",
+            "explanation": "クラスの追加はclassListのaddメソッド、削除はremoveメソッドを使用します。また、既にそのクラスを持っているかどうかはcontainsメソッドで判断できます。",
+            "answer": "// 'class1'というクラスを持つ全ての要素について、'class2'というクラスを持つ要素は'class2'を削除し、持たない要素は'class2'を追加します。\nlet elements = document.getElementsByClassName('class1');\nfor(let i = 0; i < elements.length; i++) {\n    if(elements[i].classList.contains('class2')) {\n        elements[i].classList.remove('class2');\n    } else {\n        elements[i].classList.add('class2');\n    }\n}\n// このコードを実行すると、'class1'というクラスを持つ全ての要素で'class2'の有無が適切に切り替わります。"
+        },
+        {
+            "id": 7,
+            "questionId": "js_dom_class2_7",
+            "title": "クラス名の取得",
+            "question": "'element'というIDを持つ要素のクラス名をすべて取得するJavaScriptコードを書いてください。",
+            "explanation": "要素のクラス名を取得するにはclassNameプロパティを使います。このプロパティはクラス名を空白で区切った文字列を返します。",
+            "answer": "// 'element'というIDを持つ要素のクラス名をすべて取得します。\nlet element = document.getElementById('element');\nconsole.log(element.className);\n// このコードを実行すると、コンソールに'element'というIDを持つ要素のクラス名が表示されます。"
+        },
+        {
+            "id": 8,
+            "questionId": "js_dom_class2_8",
+            "title": "クラス名の変更",
+            "question": "'element'というIDを持つ要素のクラス名をすべて'newClass'に変更するJavaScriptコードを書いてください。",
+            "explanation": "要素のクラス名を変更するにはclassNameプロパティに新しい値を設定します。このプロパティに設定した値がそのまま要素のclass属性の値になります。",
+            "answer": "// 'element'というIDを持つ要素のクラス名をすべて'newClass'に変更します。\nlet element = document.getElementById('element');\nelement.className = 'newClass';\n// このコードを実行すると、'element'というIDを持つ要素のクラス名がすべて'newClass'に変更されます。"
+        },
+        {
+            "id": 9,
+            "questionId": "js_dom_class2_9",
+            "title": "クラスの存在確認",
+            "question": "特定の要素が'class1'というクラスを持つかどうかを確認するJavaScriptコードを書いてください。要素は'id1'というidを持つものとします。",
+            "explanation": "特定のクラスを持つかどうかはclassListのcontainsメソッドで確認できます。",
+            "answer": "// 'id1'というidを持つ要素が'class1'というクラスを持つかどうかを確認します。\nlet element = document.getElementById('id1');\nconsole.log(element.classList.contains('class1'));\n// このコードを実行すると、コンソールに'id1'というidを持つ要素が'class1'というクラスを持つかどうかの結果が表示されます。"
+        },
+        {
+            "id": 10,
+            "questionId": "js_dom_class2_10",
+            "title": "複数のクラスの追加",
+            "question": "'id1'というidを持つ要素に'class1', 'class2', 'class3'の3つのクラスを追加するJavaScriptコードを書いてください。",
+            "explanation": "複数のクラスを追加するにはclassListのaddメソッドを使います。addメソッドには複数の引数を指定することができます。",
+            "answer": "// 'id1'というidを持つ要素に'class1', 'class2', 'class3'の3つのクラスを追加します。\nlet element = document.getElementById('id1');\nelement.classList.add('class1', 'class2', 'class3');\n// このコードを実行すると、'id1'というidを持つ要素に'class1', 'class2', 'class3'の3つのクラスが追加されます。"
+        }
+    ]
+}

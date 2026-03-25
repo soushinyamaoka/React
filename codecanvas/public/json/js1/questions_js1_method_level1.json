@@ -1,0 +1,166 @@
+{
+    "contentsId": "js_method1",
+    "title": "Javascriptの引数問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_mthd1_1",
+            "title": "toUpperCaseメソッド",
+            "question": "文字列 'hello world' を全て大文字にするコードを書いてください。",
+            "explanation": "JavaScriptでは、文字列に対するtoUpperCaseメソッドを使って、その文字列を全て大文字に変換することができます。",
+            "answer": "var str = 'hello world';\nconsole.log(str.toUpperCase());\n// Expected output: 'HELLO WORLD'"
+        },
+        {
+            "id": 2,
+            "questionId": "js_mthd1_2",
+            "title": "toLowerCaseメソッド",
+            "question": "文字列 'HELLO WORLD' を全て小文字にするコードを書いてください。",
+            "explanation": "JavaScriptでは、文字列に対するtoLowerCaseメソッドを使って、その文字列を全て小文字に変換することができます。",
+            "answer": "var str = 'HELLO WORLD';\nconsole.log(str.toLowerCase());\n// Expected output: 'hello world'"
+        },
+        {
+            "id": 3,
+            "questionId": "js_mthd1_3",
+            "title": "lengthプロパティ",
+            "question": "文字列 'hello world' の文字数を出力するコードを書いてください。",
+            "explanation": "JavaScriptでは、文字列の長さ（文字数）を取得するためにlengthプロパティを使用します。",
+            "answer": "var str = 'hello world';\nconsole.log(str.length);\n// Expected output: 11"
+        },
+        {
+            "id": 4,
+            "questionId": "js_mthd1_4",
+            "title": "concatメソッド",
+            "question": "文字列 'Hello' と 'World' を結合して、'HelloWorld'という一つの文字列を出力するコードを書いてください。",
+            "explanation": "JavaScriptでは、concatメソッドを使用して、二つ以上の文字列を一つに連結することができます。",
+            "answer": "var str1 = 'Hello';\nvar str2 = 'World';\nconsole.log(str1.concat(str2));\n// Expected output: 'HelloWorld'"
+        },
+        {
+            "id": 5,
+            "questionId": "js_mthd1_5",
+            "title": "splitメソッド",
+            "question": "文字列 'Hello World' をスペースで分割し、その結果を出力するコードを書いてください。",
+            "explanation": "JavaScriptでは、splitメソッドを使用して、文字列を特定の文字で分割し、その結果を配列として取得することができます。",
+            "answer": "var str = 'Hello World';\nconsole.log(str.split(' '));\n// Expected output: ['Hello', 'World']"
+        },
+        {
+            "id": 6,
+            "questionId": "js_mthd1_6",
+            "title": "joinメソッド",
+            "question": "配列 ['Hello', 'World'] を空白スペースで結合し、'Hello World'という一つの文字列を出力するコードを書いてください。",
+            "explanation": "JavaScriptでは、joinメソッドを使用して、配列の全ての要素を一つの文字列に連結することができます。",
+            "answer": "var arr = ['Hello', 'World'];\nconsole.log(arr.join(' '));\n// Expected output: 'Hello World'"
+        },
+        {
+            "id": 7,
+            "questionId": "js_mthd1_7",
+            "title": "toUpperCaseメソッド",
+            "question": "文字列 'hello' を全て大文字に変換するコードを書いてください。",
+            "explanation": "JavaScriptでは、toUpperCaseメソッドを使用して、文字列内の全ての文字を大文字に変換することができます。",
+            "answer": "var str = 'hello';\nconsole.log(str.toUpperCase());\n// Expected output: 'HELLO'"
+        },
+        {
+            "id": 8,
+            "questionId": "js_mthd1_8",
+            "title": "toLowerCaseメソッド",
+            "question": "文字列 'HELLO' を全て小文字に変換するコードを書いてください。",
+            "explanation": "JavaScriptでは、toLowerCaseメソッドを使用して、文字列内の全ての文字を小文字に変換することができます。",
+            "answer": "var str = 'HELLO';\nconsole.log(str.toLowerCase());\n// Expected output: 'hello'"
+        },
+        {
+            "id": 9,
+            "questionId": "js_mthd1_9",
+            "title": "includesメソッド",
+            "question": "配列 ['apple', 'banana', 'cherry'] が 'banana' を含むかどうかを判定するコードを書いてください。",
+            "explanation": "JavaScriptでは、includesメソッドを使用して、配列が特定の要素を含んでいるかどうかを判定することができます。",
+            "answer": "var arr = ['apple', 'banana', 'cherry'];\nconsole.log(arr.includes('banana'));\n// Expected output: true"
+        },
+        {
+            "id": 10,
+            "questionId": "js_mthd1_10",
+            "title": "sliceメソッド",
+            "question": "配列 ['apple', 'banana', 'cherry', 'date', 'elderberry'] の2番目から4番目までの要素を取り出すコードを書いてください。",
+            "explanation": "JavaScriptでは、sliceメソッドを使用して、配列から一部の要素を取り出すことができます。注意点として、sliceメソッドは元の配列を変更しない点があります。",
+            "answer": "var arr = ['apple', 'banana', 'cherry', 'date', 'elderberry'];\nconsole.log(arr.slice(1, 4));\n// Expected output: ['banana', 'cherry', 'date']"
+        },
+        {
+            "id": 11,
+            "questionId": "js_mthd1_11",
+            "title": "concatメソッド",
+            "question": "配列 ['apple', 'banana'] と ['cherry', 'date'] を結合した新しい配列を作るコードを書いてください。",
+            "explanation": "JavaScriptでは、concatメソッドを使用して、2つ以上の配列を結合し、新しい配列を作ることができます。",
+            "answer": "var arr1 = ['apple', 'banana'];\nvar arr2 = ['cherry', 'date'];\nconsole.log(arr1.concat(arr2));\n// Expected output: ['apple', 'banana', 'cherry', 'date']"
+        },
+        {
+            "id": 12,
+            "questionId": "js_mthd1_12",
+            "title": "indexOfメソッド",
+            "question": "配列 ['apple', 'banana', 'cherry', 'date', 'banana'] で最初に 'banana' が出現する位置を探すコードを書いてください。",
+            "explanation": "JavaScriptでは、indexOfメソッドを使用して、配列内の特定の要素が最初に現れる位置を調べることができます。",
+            "answer": "var arr = ['apple', 'banana', 'cherry', 'date', 'banana'];\nconsole.log(arr.indexOf('banana'));\n// Expected output: 1"
+        },
+        {
+            "id": 13,
+            "questionId": "js_mthd1_13",
+            "title": "lastIndexOfメソッド",
+            "question": "配列 ['apple', 'banana', 'cherry', 'date', 'banana'] で最後に 'banana' が出現する位置を探すコードを書いてください。",
+            "explanation": "JavaScriptでは、lastIndexOfメソッドを使用して、配列内の特定の要素が最後に現れる位置を調べることができます。",
+            "answer": "var arr = ['apple', 'banana', 'cherry', 'date', 'banana'];\nconsole.log(arr.lastIndexOf('banana'));\n// Expected output: 4"
+        },
+        {
+            "id": 14,
+            "questionId": "js_mthd1_14",
+            "title": "reverseメソッド",
+            "question": "配列 ['apple', 'banana', 'cherry', 'date'] の順序を逆にするコードを書いてください。",
+            "explanation": "JavaScriptでは、reverseメソッドを使用して、配列の順序を逆にすることができます。",
+            "answer": "var arr = ['apple', 'banana', 'cherry', 'date'];\nconsole.log(arr.reverse());\n// Expected output: ['date', 'cherry', 'banana', 'apple']"
+        },
+        {
+            "id": 15,
+            "questionId": "js_mthd1_15",
+            "title": "sortメソッド",
+            "question": "配列 ['banana', 'cherry', 'apple', 'date'] をアルファベット順に並べ替えるコードを書いてください。",
+            "explanation": "JavaScriptでは、sortメソッドを使用して、配列をソート(並べ替え)することができます。デフォルトでは文字列としてソートされます。",
+            "answer": "var arr = ['banana', 'cherry', 'apple', 'date'];\nconsole.log(arr.sort());\n// Expected output: ['apple', 'banana', 'cherry', 'date']"
+        },
+        {
+            "id": 16,
+            "questionId": "js_mthd1_16",
+            "title": "spliceメソッド",
+            "question": "配列 ['apple', 'banana', 'cherry', 'date'] から 'banana' と 'cherry' を削除し、その位置に 'orange' を挿入するコードを書いてください。",
+            "explanation": "JavaScriptでは、spliceメソッドを使用して、配列から要素を削除または追加することができます。",
+            "answer": "var arr = ['apple', 'banana', 'cherry', 'date'];\narr.splice(1, 2, 'orange');\nconsole.log(arr);\n// Expected output: ['apple', 'orange', 'date']"
+        },
+        {
+            "id": 17,
+            "questionId": "js_mthd1_17",
+            "title": "sliceメソッド",
+            "question": "配列 ['apple', 'banana', 'cherry', 'date'] の 'banana' から 'date' までを抽出した新しい配列を作るコードを書いてください。",
+            "explanation": "JavaScriptでは、sliceメソッドを使用して、配列の一部を取り出して新しい配列を作ることができます。",
+            "answer": "var arr = ['apple', 'banana', 'cherry', 'date'];\nconsole.log(arr.slice(1, 4));\n// Expected output: ['banana', 'cherry', 'date']"
+        },
+        {
+            "id": 18,
+            "questionId": "js_mthd1_18",
+            "title": "joinメソッド",
+            "question": "配列 ['apple', 'banana', 'cherry', 'date'] の要素を '-' でつないで一つの文字列にするコードを書いてください。",
+            "explanation": "JavaScriptでは、joinメソッドを使用して、配列の要素を一つの文字列に連結することができます。",
+            "answer": "var arr = ['apple', 'banana', 'cherry', 'date'];\nconsole.log(arr.join('-'));\n// Expected output: 'apple-banana-cherry-date'"
+        },
+        {
+            "id": 19,
+            "questionId": "js_mthd1_19",
+            "title": "forEachメソッド",
+            "question": "配列 ['apple', 'banana', 'cherry', 'date'] の各要素をコンソールに出力するコードを書いてください。",
+            "explanation": "JavaScriptでは、forEachメソッドを使用して、配列の各要素に対して関数を実行することができます。",
+            "answer": "var arr = ['apple', 'banana', 'cherry', 'date'];\narr.forEach(function(item) {\nconsole.log(item);\n});\n// Expected output: 'apple'\n// 'banana'\n// 'cherry'\n// 'date'"
+        },
+        {
+            "id": 20,
+            "questionId": "js_mthd1_20",
+            "title": "indexOfメソッド",
+            "question": "配列 ['apple', 'banana', 'cherry', 'date'] に 'cherry' が含まれているかどうかを確認するコードを書いてください。含まれていればそのインデックスを、含まれていなければ-1を出力してください。",
+            "explanation": "JavaScriptでは、indexOfメソッドを使用して、配列中の指定された要素が最初に現れるインデックスを返すことができます。要素が存在しない場合は-1を返します。",
+            "answer": "var arr = ['apple', 'banana', 'cherry', 'date'];\nconsole.log(arr.indexOf('cherry'));\n// Expected output: 2"
+        }
+    ]
+}

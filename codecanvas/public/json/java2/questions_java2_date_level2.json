@@ -1,0 +1,86 @@
+{
+    "contentsId": "javaDateIntermediate",
+    "title": "Javaの日付処理問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "javaDateIntermediate_1",
+            "title": "LocalDateの操作",
+            "question": "JavaのLocalDateクラスを使って、今日の日付から3日後の日付を計算するプログラムを書いてください。",
+            "explanation": "JavaのLocalDateクラスのplusDaysメソッドを使って日付の加算を行うことができます。",
+            "answer": "import java.time.LocalDate;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 今日の日付を取得\\n        LocalDate today = LocalDate.now();\\n\\n        // 3日後の日付を計算\\n        LocalDate threeDaysLater = today.plusDays(3);\\n\\n        // 結果を出力\\n        System.out.println(threeDaysLater); // 出力例：2023-05-21 (実行日による)\\n    }\\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "javaDateIntermediate_2",
+            "title": "Periodの使用",
+            "question": "JavaのPeriodクラスを使って、今日と100日後の日付の差を表す期間を作成してください。",
+            "explanation": "JavaのPeriodクラスは日付の差を表すためのクラスです。LocalDateの間の差をPeriodで表現することができます。",
+            "answer": "import java.time.LocalDate;\\nimport java.time.Period;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 今日の日付を取得\\n        LocalDate today = LocalDate.now();\\n\\n        // 100日後の日付を計算\\n        LocalDate hundredDaysLater = today.plusDays(100);\\n\\n        // 今日と100日後の差を計算\\n        Period period = Period.between(today, hundredDaysLater);\\n\\n        // 結果を出力\\n        System.out.println(period); // 出力例：P100D\\n    }\\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "javaDateIntermediate_3",
+            "title": "LocalDateTimeの操作",
+            "question": "現在の日時を表すLocalDateTimeのインスタンスを生成し、そこから2時間30分後の日時を計算してください。",
+            "explanation": "JavaのLocalDateTimeクラスを使って日時を表現し、その上でplusHoursメソッドとplusMinutesメソッドを使って時間を操作することができます。",
+            "answer": "import java.time.LocalDateTime;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 現在の日時を取得\\n        LocalDateTime now = LocalDateTime.now();\\n\\n        // 2時間30分後の日時を計算\\n        LocalDateTime later = now.plusHours(2).plusMinutes(30);\\n\\n        // 結果を出力\\n        System.out.println(later); // 出力例：2023-04-16T15:30:40.123\\n    }\\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "javaDateIntermediate_4",
+            "title": "日付間隔の計算",
+            "question": "与えられた2つのLocalDateの間の日数を計算してください。1つ目のLocalDateは\"2023-04-15\"、2つ目のLocalDateは\"2023-06-01\"とします。",
+            "explanation": "JavaのLocalDateクラスのbetweenメソッドを使うことで、2つの日付の間の日数を計算することができます。",
+            "answer": "import java.time.LocalDate;\\nimport java.time.temporal.ChronoUnit;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 2つの日付を定義\\n        LocalDate date1 = LocalDate.parse(\"2023-04-15\");\\n        LocalDate date2 = LocalDate.parse(\"2023-06-01\");\\n\\n        // 2つの日付の間の日数を計算\\n        long daysBetween = ChronoUnit.DAYS.between(date1, date2);\\n\\n        // 結果を出力\\n        System.out.println(daysBetween); // 出力：47\\n    }\\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "javaDateIntermediate_5",
+            "title": "現在日時の取得",
+            "question": "現在の日時（年、月、日、時、分、秒）を取得して表示してください。",
+            "explanation": "JavaのLocalDateTimeクラスのnowメソッドを使用することで現在の日時を取得することができます。",
+            "answer": "import java.time.LocalDateTime;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 現在日時を取得\\n        LocalDateTime now = LocalDateTime.now();\\n\\n        // 結果を出力\\n        System.out.println(now); // 出力形式：2023-05-18T20:15:45.123\\n    }\\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "javaDateIntermediate_6",
+            "title": "LocalDateTimeとInstantの変換",
+            "question": "現在のLocalDateTimeをInstantに変換し、その値を表示してください。ただし、日本のタイムゾーンを考慮してください。",
+            "explanation": "LocalDateTimeをInstantに変換するには、ZoneIdを利用して変換する必要があります。日本のタイムゾーンは'Asia/Tokyo'とします。",
+            "answer": "import java.time.*;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 現在日時を取得\\n        LocalDateTime now = LocalDateTime.now();\\n\\n        // LocalDateTimeからInstantに変換\\n        Instant instant = now.atZone(ZoneId.of(\"Asia/Tokyo\")).toInstant();\\n\\n        // 結果を出力\\n        System.out.println(instant); // 出力形式：2023-05-18T11:15:45.123Z\\n    }\\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "javaDateIntermediate_7",
+            "title": "LocalDateの日付加算",
+            "question": "現在の日付から30日後の日付を求めて表示してください。",
+            "explanation": "LocalDateクラスには、日付の加算や減算を行うplusDaysやminusDaysメソッドが用意されています。これを使うことで、簡単に日付の計算を行うことができます。",
+            "answer": "import java.time.*;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 現在日付を取得\\n        LocalDate today = LocalDate.now();\\n\\n        // 30日後を計算\\n        LocalDate after30days = today.plusDays(30);\\n\\n        // 結果を出力\\n        System.out.println(after30days); // 出力形式（例）：2023-06-17\\n    }\\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "javaDateIntermediate_8",
+            "title": "LocalTimeの時間加算",
+            "question": "現在の時間から3時間30分後の時間を求めて表示してください。",
+            "explanation": "LocalTimeクラスには、時間の加算や減算を行うplusHoursやminusHours、plusMinutesやminusMinutesメソッドが用意されています。これを使うことで、簡単に時間の計算を行うことができます。",
+            "answer": "import java.time.*;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 現在時間を取得\\n        LocalTime now = LocalTime.now();\\n\\n        // 3時間30分後を計算\\n        LocalTime after = now.plusHours(3).plusMinutes(30);\\n\\n        // 結果を出力\\n        System.out.println(after); // 出力形式（例）：16:40:15.123\\n    }\\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "javaDateIntermediate_9",
+            "title": "日付の比較",
+            "question": "今日の日付が指定した日付（2024年12月25日）より前か後かを比較して結果を表示してください。",
+            "explanation": "LocalDateクラスのisBeforeやisAfterメソッドを使って、二つの日付を比較することができます。比較したい日付を比較メソッドの引数に指定し、その結果を元に比較結果を表示します。",
+            "answer": "import java.time.*;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 今日の日付を取得\\n        LocalDate today = LocalDate.now();\\n\\n        // 比較対象の日付を指定\\n        LocalDate compareDate = LocalDate.of(2024, 12, 25);\\n\\n        // 日付を比較\\n        if (today.isBefore(compareDate)) {\\n            System.out.println(\"今日の日付は\" + compareDate + \"より前です\"); // 出力例：今日の日付は2024-12-25より前です\\n        } else {\\n            System.out.println(\"今日の日付は\" + compareDate + \"より後です\"); // 出力例：今日の日付は2024-12-25より後です\\n        }\\n    }\\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "javaDateIntermediate_10",
+            "title": "月末日を取得する",
+            "question": "指定した年月（2024年2月）の月末日を取得し、表示してください。",
+            "explanation": "YearMonthクラスを用いることで、特定の年と月を表現できます。さらに、そのインスタンスからatEndOfMonthメソッドを呼び出すことで月末日を取得することができます。",
+            "answer": "import java.time.*;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 指定した年月のYearMonthインスタンスを作成\\n        YearMonth yearMonth = YearMonth.of(2024, 2);\\n\\n        // 月末日を取得\\n        LocalDate endOfMonth = yearMonth.atEndOfMonth();\\n\\n        // 月末日を表示\\n        System.out.println(\"月末日: \" + endOfMonth); // 出力例：月末日: 2024-02-29\\n    }\\n}"
+        }
+    ]
+}

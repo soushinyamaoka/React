@@ -1,10 +1,10 @@
 {
-    "contentsId": "java3",
+    "contentsId": "java2",
     "title": "Javaの配列問題集ページ",
     "subtitle": "初級",
     "questions": [{
             "id": 1,
-            "questionId": "java3_1",
+            "questionId": "java2_1",
             "title": "配列の宣言と初期化",
             "question": "Javaで配列を宣言し、初期化する基本的な方法を説明してください。",
             "explanation": "Javaでは、型[] 配列名 = new 型[要素数]; の形式で配列を宣言し、初期化します。",
@@ -12,7 +12,7 @@
         },
         {
             "id": 2,
-            "questionId": "java3_2",
+            "questionId": "java2_2",
             "title": "配列の要素へのアクセス",
             "question": "Javaで配列の特定の要素にアクセスする方法を説明してください。",
             "explanation": "Javaでは、配列名[インデックス] の形式で配列の要素にアクセスします。インデックスは0から始まります。",
@@ -20,7 +20,7 @@
         },
         {
             "id": 3,
-            "questionId": "java3_3",
+            "questionId": "java2_3",
             "title": "配列の長さの取得",
             "question": "Javaで配列の長さ（要素数）を取得する方法を説明してください。",
             "explanation": "Javaでは、配列名.length の形式で配列の長さ（要素数）を取得します。",
@@ -28,7 +28,7 @@
         },
         {
             "id": 4,
-            "questionId": "java3_4",
+            "questionId": "java2_4",
             "title": "配列のループ処理",
             "question": "Javaで配列の全要素をループ処理（foreach）する方法を説明してください。",
             "explanation": "Javaでは、for(型 変数名 : 配列名) の形式で配列の全要素をループ処理します。",
@@ -36,7 +36,7 @@
         },
         {
             "id": 5,
-            "questionId": "java3_5",
+            "questionId": "java2_5",
             "title": "2次元配列の宣言と初期化",
             "question": "Javaで2次元配列を宣言し、初期化する基本的な方法を説明してください。",
             "explanation": "Javaでは、型[][] 配列名 = new 型[行数][列数]; の形式で2次元配列を宣言し、初期化します。",
@@ -44,7 +44,7 @@
         },
         {
             "id": 6,
-            "questionId": "java3_6",
+            "questionId": "java2_6",
             "title": "2次元配列の要素へのアクセス",
             "question": "Javaで2次元配列の特定の要素にアクセスする方法を説明してください。",
             "explanation": "Javaでは、配列名[行のインデックス][列のインデックス] の形式で2次元配列の要素にアクセスします。インデックスは0から始まります。",
@@ -52,7 +52,7 @@
         },
         {
             "id": 7,
-            "questionId": "java3_7",
+            "questionId": "java2_7",
             "title": "2次元配列の行数と列数の取得",
             "question": "Javaで2次元配列の行数と列数を取得する方法を説明してください。",
             "explanation": "Javaでは、配列名.length で行数を、配列名[0].length で列数を取得します。",
@@ -60,7 +60,7 @@
         },
         {
             "id": 8,
-            "questionId": "java3_8",
+            "questionId": "java2_8",
             "title": "2次元配列のループ処理",
             "question": "Javaで2次元配列の全要素をループ処理する方法を説明してください。",
             "explanation": "Javaでは、ネストしたforループを用いて2次元配列の全要素をループ処理します。",
@@ -68,7 +68,7 @@
         },
         {
             "id": 9,
-            "questionId": "java3_9",
+            "questionId": "java2_9",
             "title": "配列のコピー",
             "question": "Javaで配列を別の配列にコピーする方法を説明してください。",
             "explanation": "Javaでは、System.arraycopyメソッドを用いて配列を別の配列にコピーします。",
@@ -76,7 +76,7 @@
         },
         {
             "id": 10,
-            "questionId": "java3_10",
+            "questionId": "java2_10",
             "title": "配列の並び替え",
             "question": "Javaで配列の要素を昇順に並び替える方法を説明してください。",
             "explanation": "Javaでは、Arrays.sortメソッドを用いて配列の要素を昇順に並び替えます。",

@@ -1,0 +1,174 @@
+{
+    "contentsId": "js_loop1",
+    "title": "Javascriptの引数問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_arg2_1",
+            "title": "再帰関数と引数",
+            "question": "JavaScriptで再帰関数を用いて階乗を計算するプログラムを書いてください。関数は引数として非負の整数を受け取り、その数の階乗をconsole.logで出力するものとします。",
+            "explanation": "再帰関数は自分自身を呼び出す関数で、一連の同じ操作を反復的に行うためによく使用されます。階乗は、1から指定した数までの全ての整数の積であり、再帰関数を使用して計算することができます。",
+            "answer": "function factorial(n) {\n  if (n === 0) {\n    return 1;\n  } else {\n    return n * factorial(n - 1);\n  }\n}\n\nconsole.log(factorial(5));  // console.logで '120' を表示"
+        },
+        {
+            "id": 2,
+            "questionId": "js_arg2_2",
+            "title": "配列と引数",
+            "question": "JavaScriptで、配列を引数として受け取り、その要素の合計をconsole.logで出力する関数を書いてください。",
+            "explanation": "JavaScriptでは、配列を関数に渡すことができます。配列の各要素を順番に処理するには、forループまたはforEachメソッドを使用します。",
+            "answer": "function sumArray(array) {\n  let sum = 0;\n  array.forEach(function(item) {\n    sum += item;\n  });\n  console.log(sum);\n}\n\nsumArray([1, 2, 3, 4, 5]);  // console.logで '15' を表示"
+        },
+        {
+            "id": 3,
+            "questionId": "js_arg2_3",
+            "title": "コールバック関数と引数",
+            "question": "JavaScriptで、引数として関数を受け取り、その関数を利用して配列の各要素を変換する新しい関数を作成してください。また、その関数を用いて、配列の全ての要素を2倍にするプログラムを書いてください。",
+            "explanation": "JavaScriptでは関数もオブジェクトの一種であり、他の関数の引数として渡すことが可能です。これをコールバック関数と呼びます。配列のmapメソッドを使用して、配列の全ての要素に対して操作を行うことができます。",
+            "answer": "function transformArray(array, callback) {\n  return array.map(callback);\n}\n\nfunction double(n) {\n  return n * 2;\n}\n\nconsole.log(transformArray([1, 2, 3, 4, 5], double));  // console.logで '[2, 4, 6, 8, 10]' を表示"
+        },
+        {
+            "id": 4,
+            "questionId": "js_arg2_4",
+            "title": "オブジェクトと引数",
+            "question": "JavaScriptで、引数としてオブジェクトを受け取り、そのオブジェクトの特定のプロパティをconsole.logで出力する関数を書いてください。オブジェクトは{name: 'Alice', age: 25}とし、nameプロパティを出力してください。",
+            "explanation": "JavaScriptの関数は引数としてオブジェクトを受け取ることができます。また、オブジェクトのプロパティにアクセスするには、オブジェクト.プロパティ名またはオブジェクト['プロパティ名']と記述します。",
+            "answer": "function printName(obj) {\n  console.log(obj.name);\n}\n\nprintName({name: 'Alice', age: 25});  // console.logで 'Alice' を表示"
+        },
+        {
+            "id": 5,
+            "questionId": "js_arg2_5",
+            "title": "引数とデフォルト値",
+            "question": "JavaScriptで、引数が与えられなかった場合にデフォルト値を持つ関数を作成してください。引数は数値とし、デフォルト値は10とします。関数は引数の値を2倍にして返すものとします。この関数が引数なしで呼び出された場合の結果をconsole.logで出力してください。",
+            "explanation": "JavaScriptの関数では、引数にデフォルト値を設定することが可能です。引数が与えられなかった場合、デフォルト値が使用されます。",
+            "answer": "function double(n = 10) {\n  return n * 2;\n}\n\nconsole.log(double());  // console.logで '20' を表示"
+        },
+        {
+            "id": 6,
+            "questionId": "js_arg2_6",
+            "title": "可変長引数",
+            "question": "JavaScriptで、任意の数の引数を受け取る関数を作成してください。関数は引数の合計値を計算し、console.logで出力します。3, 5, 7の3つの引数を与えて関数を呼び出し、結果を確認してください。",
+            "explanation": "JavaScriptの関数では、...（スプレッド構文）を使って任意の数の引数を配列として受け取ることができます。これを可変長引数と呼びます。",
+            "answer": "function sum(...nums) {\n  let total = 0;\n  for(let n of nums) {\n    total += n;\n  }\n  console.log(total);\n}\n\nsum(3, 5, 7);  // console.logで '15' を表示"
+        },
+        {
+            "id": 7,
+            "questionId": "js_arg2_7",
+            "title": "引数の順番",
+            "question": "関数に引数を3つ渡すと、引数を逆の順番で配列として返す関数を作成してください。この関数に引数1, 2, 3を渡し、結果をconsole.logで出力してください。",
+            "explanation": "関数内で引数を配列に格納し、配列のreverseメソッドを使用して順番を逆にすることができます。",
+            "answer": "function reverseArgs(a, b, c) {\n  return [c, b, a];\n}\n\nconsole.log(reverseArgs(1, 2, 3));  // console.logで '[3, 2, 1]' を表示"
+        },
+        {
+            "id": 8,
+            "questionId": "js_arg2_8",
+            "title": "オブジェクトを引数として受け取る",
+            "question": "関数が1つの引数を受け取り、その引数をそのままconsole.logで出力する関数を作成してください。引数として次のオブジェクトを渡してください：{ name: 'John', age: 25 }。",
+            "explanation": "JavaScriptの関数は、オブジェクトを引数として受け取ることができます。引数として渡されたオブジェクトは関数内で利用可能です。",
+            "answer": "function printObj(obj) {\n  console.log(obj);\n}\n\nprintObj({ name: 'John', age: 25 });  // console.logで '{ name: 'John', age: 25 }' を表示"
+        },
+        {
+            "id": 9,
+            "questionId": "js_arg2_9",
+            "title": "引数のデフォルト値",
+            "question": "引数が与えられなかったときにデフォルトの値を使用する関数を作成してください。関数名はdefaultArgsで、引数xとyのデフォルト値をそれぞれ10, 20に設定し、xとyの積をconsole.logで出力するものとします。引数を渡さずに関数を呼び出してみてください。",
+            "explanation": "ES6から関数の引数にデフォルト値を設定することができます。引数がundefinedの場合、デフォルト値が使用されます。",
+            "answer": "function defaultArgs(x = 10, y = 20) {\n  console.log(x * y);\n}\n\ndefaultArgs();  // console.logで '200' を表示"
+        },
+        {
+            "id": 10,
+            "questionId": "js_arg2_10",
+            "title": "オプショナルな引数",
+            "question": "関数addに3つの引数を持たせますが、3つ目の引数はオプショナル（必須でない）とします。引数が2つだけ与えられたときは2つの和を、引数が3つ与えられたときは3つの積をconsole.logで出力する関数を作成してください。引数を2つだけ、そして3つ渡してそれぞれ関数を呼び出してみてください。",
+            "explanation": "JavaScriptの関数では、引数が与えられなかった場合、その値はundefinedとなります。これを利用して、引数が与えられたかどうかを判定し、それによって異なる動作をさせることができます。",
+            "answer": "function add(x, y, z) {\n  if (z === undefined) {\n    console.log(x + y);\n  } else {\n    console.log(x * y * z);\n  }\n}\n\nadd(1, 2);  // console.logで '3' を表示\nadd(1, 2, 3);  // console.logで '6' を表示"
+        },
+        {
+            "id": 11,
+            "questionId": "js_arg2_11",
+            "title": "変数のスコープ",
+            "question": "関数内と関数外で同じ名前の変数を使用するとどのような挙動になるか確認してみましょう。関数外で変数xを宣言し、その値を10に設定します。次に関数innerで引数xを持つ関数を作成し、その中でxの値をconsole.logで出力します。関数innerを呼び出した後、関数外のxの値をconsole.logで出力してみてください。",
+            "explanation": "JavaScriptでは、関数の引数や関数内で宣言された変数はその関数内だけで有効（ローカルスコープ）となり、関数外の同名の変数には影響を与えません。",
+            "answer": "let x = 10;\n\nfunction inner(x) {\n  console.log(x);\n}\n\ninner(20);  // console.logで '20' を表示\nconsole.log(x);  // console.logで '10' を表示"
+        },
+        {
+            "id": 12,
+            "questionId": "js_arg2_12",
+            "title": "配列を引数として受け取る",
+            "question": "引数に配列を受け取り、その配列の全ての要素をconsole.logで出力する関数printArrayを作成してください。引数に[1, 2, 3, 4, 5]を渡して関数を呼び出してみてください。",
+            "explanation": "JavaScriptでは、配列を関数の引数にすることができます。また、配列の要素はインデックスを使用してアクセスすることができます。",
+            "answer": "function printArray(arr) {\n  for (let i = 0; i < arr.length; i++) {\n    console.log(arr[i]);\n  }\n}\n\nprintArray([1, 2, 3, 4, 5]);  // console.logで '1', '2', '3', '4', '5' を順に表示"
+        },
+        {
+            "id": 13,
+            "questionId": "js_arg2_13",
+            "title": "オブジェクトを引数として受け取る",
+            "question": "引数にオブジェクトを受け取り、そのオブジェクトのプロパティ'name'と'age'をconsole.logで出力する関数printObjectを作成してください。引数に{name: 'John', age: 30}を渡して関数を呼び出してみてください。",
+            "explanation": "JavaScriptでは、オブジェクトを関数の引数にすることができます。オブジェクトのプロパティには、ドット記法を使用してアクセスすることができます。",
+            "answer": "function printObject(obj) {\n  console.log(obj.name);\n  console.log(obj.age);\n}\n\nprintObject({name: 'John', age: 30});  // console.logで 'John', '30' を順に表示"
+        },
+        {
+            "id": 14,
+            "questionId": "js_arg2_14",
+            "title": "デフォルト引数",
+            "question": "引数に値が渡されなかったときにデフォルト値を設定することができます。関数sayHelloにデフォルト引数を設定し、引数が渡されなかった場合でも挨拶が表示されるようにしてみてください。デフォルト値は'Guest'とします。",
+            "explanation": "JavaScriptでは、関数の引数にデフォルト値を設定することができます。これは引数に値が渡されなかった場合に使用されます。",
+            "answer": "function sayHello(name = 'Guest') {\n  console.log('Hello, ' + name);\n}\n\nsayHello();  // console.logで 'Hello, Guest' を表示\nsayHello('John');  // console.logで 'Hello, John' を表示"
+        },
+        {
+            "id": 15,
+            "questionId": "js_arg2_15",
+            "title": "可変長引数",
+            "question": "JavaScriptでは可変長引数を使用することができます。引数に渡された全ての数値を加算する関数sumを作成してください。関数は任意の数の引数を受け取ることができます。",
+            "explanation": "JavaScriptでは、...（スプレッド演算子）を使用して可変長引数を受け取ることができます。引数は配列として関数内で利用できます。",
+            "answer": "function sum(...numbers) {\n  let total = 0;\n  for(let i = 0; i < numbers.length; i++) {\n    total += numbers[i];\n  }\n  console.log(total);\n}\n\nsum(1, 2, 3, 4);  // console.logで '10' を表示"
+        },
+        {
+            "id": 15,
+            "questionId": "js_arg2_15",
+            "title": "可変長引数",
+            "question": "JavaScriptでは可変長引数を使用することができます。引数に渡された全ての数値を加算する関数sumを作成してください。関数は任意の数の引数を受け取ることができます。",
+            "explanation": "JavaScriptでは、...（スプレッド演算子）を使用して可変長引数を受け取ることができます。引数は配列として関数内で利用できます。",
+            "answer": "function sum(...numbers) {\n  let total = 0;\n  for(let i = 0; i < numbers.length; i++) {\n    total += numbers[i];\n  }\n  console.log(total);\n}\n\nsum(1, 2, 3, 4);  // console.logで '10' を表示"
+        },
+        {
+            "id": 16,
+            "questionId": "js_arg2_16",
+            "title": "引数とスコープ",
+            "question": "JavaScriptでは引数は関数内でのみ利用できることを理解していますか？以下のコードを実行した時、エラーが発生します。なぜエラーが発生するのか説明してください。\n\nfunction greet(name) {\n  let greeting = 'Hello, ' + name;\n}\n\ngreet('John');\nconsole.log(greeting);",
+            "explanation": "このコードでは、変数'greeting'は関数'greet'の中で定義されていて、この関数のスコープ（範囲）内でしか利用できません。そのため、関数外から'greeting'にアクセスしようとするとエラーが発生します。",
+            "answer": "// 実行結果はエラーになります。\n// なぜなら、greeting変数は関数greet内で定義されており、そのスコープ(範囲)は関数内だけだからです。"
+        },
+        {
+            "id": 17,
+            "questionId": "js_arg2_17",
+            "title": "引数と配列",
+            "question": "以下のコードについて、なぜエラーが発生するのか説明し、修正してください。\n\nfunction multiplyNumbers(numbers) {\n  let product = 1;\n  for(let i = 0; i < numbers.length; i++) {\n    product *= numbers[i];\n  }\n  console.log(product);\n}\n\nmultiplyNumbers(1, 2, 3, 4);",
+            "explanation": "このコードでは、multiplyNumbers関数は配列を引数として受け取るように設計されていますが、関数を呼び出す際に個々の数値を引数として渡してしまっています。このため、エラーが発生します。引数を配列として渡すことでエラーを解決できます。",
+            "answer": "function multiplyNumbers(numbers) {\n  let product = 1;\n  for(let i = 0; i < numbers.length; i++) {\n    product *= numbers[i];\n  }\n  console.log(product);\n}\n\nmultiplyNumbers([1, 2, 3, 4]);  // console.logで '24' を表示"
+        },
+        {
+            "id": 18,
+            "questionId": "js_arg2_18",
+            "title": "引数とオブジェクト",
+            "question": "関数にオブジェクトを引数として渡すことができます。以下のコードを補完し、personオブジェクトを引数として受け取り、その名前と年齢を表示するdisplayPerson関数を作成してください。\n\nlet person = {\n  name: 'John',\n  age: 25\n};\n\nfunction displayPerson( ) {\n\n}",
+            "explanation": "オブジェクトのプロパティはドット記法を使用してアクセスできます。この概念を利用して、関数内でオブジェクトのプロパティを表示できます。",
+            "answer": "function displayPerson(person) {\n  console.log('Name: ' + person.name);\n  console.log('Age: ' + person.age);\n}\n\ndisplayPerson(person);  // console.logで 'Name: John' と 'Age: 25' を表示"
+        },
+        {
+            "id": 19,
+            "questionId": "js_arg2_19",
+            "title": "デフォルト引数",
+            "question": "以下のコードについて、関数が引数を受け取らない場合にデフォルト値を持つように修正してください。\n\nfunction greet(name) {\n  console.log('Hello, ' + name);\n}\n\ngreet();",
+            "explanation": "JavaScriptでは、関数の引数にデフォルト値を設定することができます。これは、関数が引数を受け取らない場合にそのデフォルト値が使用されることを意味します。",
+            "answer": "function greet(name = 'Guest') {\n  console.log('Hello, ' + name);\n}\n\ngreet();  // console.logで 'Hello, Guest' を表示"
+        },
+        {
+            "id": 20,
+            "questionId": "js_arg2_20",
+            "title": "再帰関数と引数",
+            "question": "再帰関数とは、関数が自身を呼び出すことです。次の再帰関数を完成させ、1から引数nまでの整数を合計する関数を作成してください。\n\nfunction sumTo(n) {\n\n}",
+            "explanation": "再帰関数を作成するためには、基底ケースと再帰ケースの2つの要素が必要です。基底ケースでは、関数が自身を再び呼び出すことなく結果を直接返します。再帰ケースでは、関数が自身を呼び出し、その結果を使用して最終的な結果を生成します。",
+            "answer": "function sumTo(n) {\n  if (n == 1) {\n    return 1;\n  } else {\n    return n + sumTo(n - 1);\n  }\n}\n\nconsole.log(sumTo(5));  // console.logで '15' を表示"
+        }
+    ]
+}

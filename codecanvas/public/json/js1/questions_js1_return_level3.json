@@ -1,0 +1,166 @@
+{
+    "contentsId": "js_return",
+    "title": "Javascriptの戻り値問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_ret3_1",
+            "title": "フィボナッチ数列",
+            "question": "引数として正整数nを受け取り、n番目のフィボナッチ数を返す再帰関数を作成してください。ただし、nは1以上の整数とします。",
+            "explanation": "フィボナッチ数列は再帰的な定義を持っています。つまり、n番目のフィボナッチ数は(n-1)番目のフィボナッチ数と(n-2)番目のフィボナッチ数の和となります。",
+            "answer": "function fibonacci(n) {\n  if (n <= 2) return 1;\n  return fibonacci(n - 1) + fibonacci(n - 2);\n}\n\nconsole.log(fibonacci(10));  // console.logで '55' を表示"
+        },
+        {
+            "id": 2,
+            "questionId": "js_ret3_2",
+            "title": "ハノイの塔",
+            "question": "ハノイの塔の問題を解くための手順を表示する関数を作成してください。この関数は3つの引数を取ります：ディスクの数n, スタートの柱'start', ゴールの柱'goal'。",
+            "explanation": "ハノイの塔の問題は再帰的に解くことができます。大きな問題を小さな問題に分解し、それぞれを解くことで全体を解くというアプローチをとります。",
+            "answer": "function hanoi(n, start, goal) {\n  if (n === 1) {\n    console.log(start + ' -> ' + goal);\n    return;\n  }\n  const other = 6 - start - goal;\n  hanoi(n - 1, start, other);\n  console.log(start + ' -> ' + goal);\n  hanoi(n - 1, other, goal);\n}\n\nhanoi(3, 1, 3);  // ディスクの移動手順が表示されます。"
+        },
+        {
+            "id": 3,
+            "questionId": "js_ret3_3",
+            "title": "フィボナッチ数列（メモ化）",
+            "question": "引数として正整数nを受け取り、n番目のフィボナッチ数を返す関数を作成してください。ただし、計算効率を上げるために、メモ化を用いてください。nは1以上の整数とします。",
+            "explanation": "メモ化は、過去に計算した値を保存しておくテクニックで、同じ計算を繰り返す場合に計算時間を短縮する効果があります。",
+            "answer": "let memo = [];\n\nfunction fibonacci(n) {\n  if (n <= 2) return 1;\n  if (memo[n]) return memo[n];  // すでに計算したことがある場合は、メモ化した値を返す\n  memo[n] = fibonacci(n - 1) + fibonacci(n - 2);\n  return memo[n];\n}\n\nconsole.log(fibonacci(10));  // console.logで '55' を表示"
+        },
+        {
+            "id": 4,
+            "questionId": "js_ret3_4",
+            "title": "クロージャー",
+            "question": "クロージャーを使用して、連続した整数を返すジェネレータ関数を作成してください。この関数は最初に呼び出されたときに1を返し、その後は前回の結果に1を足した値を返すようにします。",
+            "explanation": "クロージャーは、関数とその関数が定義されたレキシカル環境との組み合わせです。クロージャーを使用すると、関数が定義されたスコープ外からもそのスコープ内の変数にアクセスできます。",
+            "answer": "function generator() {\n  let current = 1;\n  return function() {\n    let result = current;\n    current++;\n    return result;\n  };\n}\n\nlet gen = generator();\n\nconsole.log(gen());  // 1\nconsole.log(gen());  // 2\nconsole.log(gen());  // 3"
+        },
+        {
+            "id": 5,
+            "questionId": "js_ret3_5",
+            "title": "非同期処理と戻り値",
+            "question": "setTimeoutを用いて、非同期に実行される関数を作成してください。この関数は1秒後に、引数として受け取った値を2倍した結果をconsole.logに表示するとともに、戻り値としてPromiseを返すようにします。",
+            "explanation": "JavaScriptの非同期処理では、Promiseを使用して戻り値を扱うことが多いです。Promiseは、非同期処理が成功した場合にはresolveを、失敗した場合にはrejectを呼び出します。",
+            "answer": "function doubleAfterOneSecond(x) {\n  return new Promise((resolve, reject) => {\n    setTimeout(() => {\n      const result = x * 2;\n      console.log(result);  // console.logで結果を表示\n      resolve(result);\n    }, 1000);\n  });\n}\n\ndoubleAfterOneSecond(5).then(result => console.log('Promise returned: ', result));  // console.logで 'Promise returned:  10' を表示"
+        },
+        {
+            "id": 6,
+            "questionId": "js_ret3_6",
+            "title": "再帰関数の戻り値",
+            "question": "引数として正整数nを受け取り、1からnまでの全ての整数の積（nの階乗）を返す再帰関数を作成してください。",
+            "explanation": "再帰関数は、関数の定義の中で自分自身を呼び出すことによって処理を行う関数です。ここでは、戻り値として計算結果を返すことにより、再帰的に計算を行います。",
+            "answer": "function factorial(n) {\n  if (n <= 1) return 1;  // nが1以下の場合は1を返す\n  return n * factorial(n - 1);  // nと、n-1の階乗を掛けた結果を返す\n}\n\nconsole.log(factorial(5));  // console.logで '120' を表示"
+        },
+        {
+            "id": 7,
+            "questionId": "js_ret3_7",
+            "title": "ハイオーダー関数と戻り値",
+            "question": "ハイオーダー関数を利用して、引数として受け取った数値を2倍にする関数を返す関数を作成してください。そして、その関数を使って引数の数値を2倍にしてください。",
+            "explanation": "ハイオーダー関数は、関数を引数として受け取る関数や、関数を戻り値として返す関数を指します。この問題では、ハイオーダー関数を用いて、特定の処理を行う関数を生成します。",
+            "answer": "function createDoubleFunction() {\n  // 引数の値を2倍にする関数を戻り値として返す\n  return function(x) {\n    return x * 2;\n  };\n}\n\nconst double = createDoubleFunction();\nconsole.log(double(5));  // console.logで '10' を表示"
+        },
+        {
+            "id": 8,
+            "questionId": "js_ret3_8",
+            "title": "イベントリスナーの戻り値",
+            "question": "addEventListenerメソッドを使って、クリックイベントのリスナーを設定する関数を作成してください。この関数は、イベントリスナーとして設定した関数がクリックイベントの発生回数を戻り値として返すようにします。（HTML要素は問題の範囲外です。）",
+            "explanation": "イベントリスナーは、特定のイベントが発生したときに呼び出される関数を指します。addEventListenerメソッドを使用すると、特定のイベントに対するリスナーを設定することができます。",
+            "answer": "let clickCount = 0;\n\nfunction addClickListener() {\n  document.addEventListener('click', () => {\n    clickCount++;\n    return clickCount;\n  });\n}\n\naddClickListener();  // クリックする度にclickCountが増加し、その値が戻り値となる"
+        },
+        {
+            "id": 9,
+            "questionId": "js_ret3_9",
+            "title": "クロージャと戻り値",
+            "question": "クロージャを利用して、関数を何回呼び出したかを記憶する関数を作成してください。その関数が呼び出された回数を戻り値として返すようにしてください。",
+            "explanation": "クロージャは、関数とその関数が宣言されたレキシカルスコープとの組み合わせを指します。この問題では、関数の呼び出し回数を覚えておくためにクロージャを利用します。",
+            "answer": "function createCountFunction() {\n  let count = 0;\n  return function() {\n    count++;\n    return count;\n  };\n}\n\nconst countFunc = createCountFunction();\nconsole.log(countFunc());  // 1\nconsole.log(countFunc());  // 2"
+        },
+        {
+            "id": 10,
+            "questionId": "js_ret3_10",
+            "title": "非同期処理の戻り値",
+            "question": "Promiseを使って非同期処理を実装する関数を作成してください。その関数は、成功したら引数で受け取った値を2倍にした値をresolveし、失敗したらエラーメッセージをrejectするようにしてください。（実際の非同期処理は問題の範囲外です。）",
+            "explanation": "非同期処理は、特定の処理が終了するのを待たずに次の処理を実行することを指します。Promiseは、非同期処理の結果を表現するオブジェクトで、resolve（成功）やreject（失敗）の結果を扱います。",
+            "answer": "function asyncDouble(value) {\n  return new Promise((resolve, reject) => {\n    if(typeof value === 'number') {\n      resolve(value * 2);\n    } else {\n      reject('Error: Value must be a number');\n    }\n  });\n}\n\nasyncDouble(5)\n  .then(console.log)  // console.logで '10' を表示\n  .catch(console.error);"
+        },
+        {
+            "id": 11,
+            "questionId": "js_ret3_11",
+            "title": "非同期処理の戻り値とエラーハンドリング",
+            "question": "非同期処理の関数を作成し、戻り値としてPromiseオブジェクトを返すようにしてください。関数は、引数で与えられた値が数字でなければエラーを発生させるようにし、エラー処理として「Error: Value must be a number」を出力するようにしてください。",
+            "explanation": "JavaScriptのPromiseは非同期処理の一部を抽象化したもので、結果がまだわからない処理を表現します。非同期処理が成功すればresolveメソッドが、失敗すればrejectメソッドが呼び出されます。",
+            "answer": "function asyncProcess(value) {\n  return new Promise((resolve, reject) => {\n    if(typeof value === 'number') {\n      resolve(value * 2);\n    } else {\n      reject(new Error('Value must be a number'));\n    }\n  });\n}\n\nasyncProcess('5')\n  .then(console.log)\n  .catch(error => console.log(error.message)); // Error: Value must be a number"
+        },
+        {
+            "id": 12,
+            "questionId": "js_ret3_12",
+            "title": "Promiseのチェイン",
+            "question": "非同期処理を3つ連鎖させるPromiseチェインを作成してください。各非同期処理は、前の処理の結果（数値）を受け取り、それを2倍にする処理としてください。最初の非同期処理には数値'5'を与えてください。",
+            "explanation": "Promiseのチェインを利用すると、複数の非同期処理を順序立てて実行することができます。各Promiseは前のPromiseがresolveした結果を受け取り、新たな結果を生成します。",
+            "answer": "function doubleValue(value) {\n  return new Promise(resolve => resolve(value * 2));\n}\n\ndoubleValue(5)\n  .then(doubleValue)\n  .then(doubleValue)\n  .then(console.log);  // 20"
+        },
+        {
+            "id": 13,
+            "questionId": "js_ret3_13",
+            "title": "async/awaitを使用した非同期処理の戻り値",
+            "question": "async/await構文を使用して非同期処理を実装し、それが正しく機能することを確認してください。非同期処理は、引数で与えられた秒数だけ処理を遅延させ、その後引数に2を掛けた値を戻り値として返すものとします。ただし、遅延処理にはsetTimeout関数を、Promiseを作成するためにはnew Promise構文を使用してください。",
+            "explanation": "async/awaitは非同期処理をより直感的に書くための構文で、Promiseのthenメソッドを使用する代わりに非同期処理の結果を直接変数に代入できます。ただし、非同期処理の実行中は関数の実行が一時停止し、結果が戻るまで待機します。",
+            "answer": "async function doubleAfterSeconds(sec) {\n  return new Promise(resolve => setTimeout(() => resolve(sec * 2), sec * 1000));\n}\n\n(async () => {\n  const result = await doubleAfterSeconds(2);\n  console.log(result);  // 4\n})();"
+        },
+        {
+            "id": 14,
+            "questionId": "js_ret3_14",
+            "title": "async/awaitを使用したエラーハンドリング",
+            "question": "async/await構文を使用して非同期処理を実装し、エラーハンドリングを含めてそれが正しく機能することを確認してください。非同期処理は、引数で与えられた秒数だけ処理を遅延させ、その後引数が数字でなければエラーをスローし、「Error: Value must be a number」というメッセージを出力するようにします。遅延処理にはsetTimeout関数を、Promiseを作成するためにはnew Promise構文を使用してください。",
+            "explanation": "async/awaitは非同期処理をより直感的に書くための構文ですが、エラーハンドリングも考慮する必要があります。エラーハンドリングにはtry/catch構文を使用します。",
+            "answer": "async function checkNumberAfterSeconds(sec) {\n  return new Promise((resolve, reject) => setTimeout(() => {\n    if(typeof sec === 'number') {\n      resolve(sec * 2);\n    } else {\n      reject(new Error('Value must be a number'));\n    }\n  }, sec * 1000));\n}\n\n(async () => {\n  try {\n    const result = await checkNumberAfterSeconds('2');\n    console.log(result);\n  } catch (error) {\n    console.log(error.message);  // Error: Value must be a number\n  }\n})();"
+        },
+        {
+            "id": 15,
+            "questionId": "js_ret3_15",
+            "title": "async/awaitとPromise.allを使用した非同期処理の戻り値",
+            "question": "async/awaitとPromise.allを組み合わせて、複数の非同期処理の結果をまとめて取得し、それが正しく機能することを確認してください。非同期処理は、引数で与えられた秒数だけ処理を遅延させ、その後引数に2を掛けた値を戻り値として返すものとします。ただし、遅延処理にはsetTimeout関数を、Promiseを作成するためにはnew Promise構文を使用してください。",
+            "explanation": "Promise.allは複数のPromiseインスタンスをまとめて扱うためのメソッドで、すべてのPromiseがfulfilledになった時に結果を配列として返します。非同期処理の結果をまとめて取得するのに便利です。",
+            "answer": "async function doubleAfterSeconds(sec) {\n  return new Promise(resolve => setTimeout(() => resolve(sec * 2), sec * 1000));\n}\n\n(async () => {\n  const result = await Promise.all([doubleAfterSeconds(1), doubleAfterSeconds(2), doubleAfterSeconds(3)]);\n  console.log(result);  // [2, 4, 6]\n})();"
+        },
+        {
+            "id": 16,
+            "questionId": "js_ret3_16",
+            "title": "async/awaitとPromise.raceを使用した非同期処理の戻り値",
+            "question": "async/awaitとPromise.raceを組み合わせて、複数の非同期処理のうち最初に完了したものの結果を取得し、それが正しく機能することを確認してください。非同期処理は、引数で与えられた秒数だけ処理を遅延させ、その後引数に2を掛けた値を戻り値として返すものとします。ただし、遅延処理にはsetTimeout関数を、Promiseを作成するためにはnew Promise構文を使用してください。",
+            "explanation": "Promise.raceは複数のPromiseインスタンスのうち最初に状態が変わったものの結果を返します。非同期処理の競争条件を扱うのに便利です。",
+            "answer": "async function doubleAfterSeconds(sec) {\n  return new Promise(resolve => setTimeout(() => resolve(sec * 2), sec * 1000));\n}\n\n(async () => {\n  const result = await Promise.race([doubleAfterSeconds(1), doubleAfterSeconds(2), doubleAfterSeconds(3)]);\n  console.log(result);  // 2\n})();"
+        },
+        {
+            "id": 17,
+            "questionId": "js_ret3_17",
+            "title": "Generator関数の戻り値",
+            "question": "Generator関数とyieldを使用して、各ステップで戻り値を制御し、特定の順序で値を出力する関数を作成してください。例えば、最初に'1'、次に'2'、最後に'3'を順に出力するようなGenerator関数を作成してみてください。",
+            "explanation": "Generator関数は特殊な種類の関数で、その実行を途中で停止し、後から再開することができます。これにより、関数の途中結果を順に返すことができます。",
+            "answer": "function* generatorFunction() {\n  yield '1';\n  yield '2';\n  yield '3';\n}\n\nconst generator = generatorFunction();\n\nconsole.log(generator.next().value);  // '1'\nconsole.log(generator.next().value);  // '2'\nconsole.log(generator.next().value);  // '3'"
+        },
+        {
+            "id": 18,
+            "questionId": "js_ret3_18",
+            "title": "非同期関数内での複数の戻り値",
+            "question": "非同期処理を行い、その結果を複数の戻り値として返す関数を作成してください。その後、その関数を呼び出して結果を取得してください。非同期処理は、引数に2と3を掛けた値をそれぞれ戻り値として返すものとします。",
+            "explanation": "JavaScriptの関数は、複数の戻り値を持つことはできませんが、オブジェクトや配列を使うことで複数の値をまとめて返すことができます。",
+            "answer": "async function multiplyNumbers(num) {\n  return new Promise(resolve => {\n    setTimeout(() => {\n      resolve([num * 2, num * 3]);\n    }, 1000);\n  });\n}\n\n(async () => {\n  const [result1, result2] = await multiplyNumbers(5);\n  console.log(result1, result2);  // 10, 15\n})();"
+        },
+        {
+            "id": 19,
+            "questionId": "js_ret3_19",
+            "title": "Generator関数とyieldの組み合わせ",
+            "question": "次のJavaScriptのジェネレーター関数を作成してください。このジェネレーターは、呼び出す度に2の累乗の値を返します(1, 2, 4, 8, 16, ...)。このジェネレーターを用いて、最初の5つの2の累乗を表示するコードを書いてください。",
+            "explanation": "ジェネレーター関数ではyieldキーワードを用いて値を一時的に返すことができます。再度関数が呼び出されると、最後に実行したyieldの次から実行を再開します。",
+            "answer": "function* powerOfTwo() {\n  let result = 1;\n  while (true) {\n    yield result;\n    result *= 2;\n  }\n}\n\nlet generator = powerOfTwo();\nfor (let i = 0; i < 5; i++) {\n  console.log(generator.next().value);  // 1, 2, 4, 8, 16\n}"
+        },
+        {
+            "id": 20,
+            "questionId": "js_ret3_20",
+            "title": "非同期処理と配列のmapメソッド",
+            "question": "非同期処理と配列のmapメソッドを組み合わせ、配列の各要素を非同期に処理して新たな配列を作成する関数を作成してください。非同期処理は、引数に2を掛けた値を戻り値として返すものとします。",
+            "explanation": "配列のmapメソッドとPromise.allを組み合わせることで、配列のすべての要素を非同期に処理して新たな配列を作成することができます。",
+            "answer": "async function multiplyNumbers(nums) {\n  const promises = nums.map(num => {\n    return new Promise(resolve => {\n      setTimeout(() => {\n        resolve(num * 2);\n      }, 1000);\n    });\n  });\n  return Promise.all(promises);\n}\n\n(async () => {\n  const result = await multiplyNumbers([1, 2, 3, 4, 5]);\n  console.log(result);  // [2, 4, 6, 8, 10]\n})();"
+        }
+    ]
+}

@@ -1,0 +1,86 @@
+{
+    "contentsId": "js_chn_attribute",
+    "title": "JavaScriptのDOM操作：属性の変更問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_dom_attr3_1",
+            "title": "複数の要素の属性変更",
+            "question": "同じクラスを持つ全てのHTML要素の属性を一括で変更するJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、getElementsByClassNameメソッドとループを使って、同じクラスを持つ全てのHTML要素の属性を一括で変更することができます。",
+            "answer": "// classが'myClass'の全ての要素の'title'属性を'newTitle'に設定します。\nlet elements = document.getElementsByClassName('myClass');\nfor(let i = 0; i < elements.length; i++) {\n  elements[i].setAttribute('title', 'newTitle');\n}\n// このコードを実行すると、classが'myClass'の全ての要素の'title'属性が'newTitle'に変更されます。"
+        },
+        {
+            "id": 2,
+            "questionId": "js_dom_attr3_2",
+            "title": "子要素の属性変更",
+            "question": "指定したHTML要素の全ての子要素の属性を一括で変更するJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、childrenプロパティとループを使って、指定したHTML要素の全ての子要素の属性を一括で変更することができます。",
+            "answer": "// idが'myElement'の要素の全ての子要素の'title'属性を'newTitle'に設定します。\nlet parentElement = document.getElementById('myElement');\nlet childElements = parentElement.children;\nfor(let i = 0; i < childElements.length; i++) {\n  childElements[i].setAttribute('title', 'newTitle');\n}\n// このコードを実行すると、idが'myElement'の要素の全ての子要素の'title'属性が'newTitle'に変更されます。"
+        },
+        {
+            "id": 3,
+            "questionId": "js_dom_attr3_3",
+            "title": "動的な属性値の設定",
+            "question": "HTML要素の属性値を変数を使用して動的に設定するJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、変数を使ってHTML要素の属性値を動的に設定することができます。",
+            "answer": "// idが'myElement'の要素の'title'属性を変数の値に設定します。\nlet newTitle = 'This is a new title';\nlet element = document.getElementById('myElement');\nelement.setAttribute('title', newTitle);\n// このコードを実行すると、idが'myElement'の要素の'title'属性が変数newTitleの値に設定されます。"
+        },
+        {
+            "id": 4,
+            "questionId": "js_dom_attr3_4",
+            "title": "属性値の条件付き変更",
+            "question": "HTML要素の属性値を、その現在の値に基づいて条件付きで変更するJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、if文を使ってHTML要素の属性値をその現在の値に基づいて条件付きで変更することができます。",
+            "answer": "// idが'myElement'の要素の'title'属性が'oldTitle'であれば、その値を'newTitle'に変更します。\nlet element = document.getElementById('myElement');\nif(element.getAttribute('title') === 'oldTitle') {\n  element.setAttribute('title', 'newTitle');\n}\n// このコードを実行すると、idが'myElement'の要素の'title'属性が'oldTitle'であった場合、その値が'newTitle'に変更されます。"
+        },
+        {
+            "id": 5,
+            "questionId": "js_dom_attr3_5",
+            "title": "属性の追加と削除",
+            "question": "HTML要素に新たな属性を追加し、その後でその属性を削除するJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、setAttributeメソッドで新たな属性を追加し、removeAttributeメソッドでその属性を削除することができます。",
+            "answer": "// idが'myElement'の要素に新たな属性'newAttr'を追加し、その後でその属性を削除します。\nlet element = document.getElementById('myElement');\nelement.setAttribute('newAttr', 'newValue');\nconsole.log(element.getAttribute('newAttr'));\n// 'newValue' が出力されます。\nelement.removeAttribute('newAttr');\nconsole.log(element.getAttribute('newAttr'));\n// null が出力されます。\n// このコードを実行すると、idが'myElement'の要素に新たな属性'newAttr'が追加され、その後でその属性が削除され、その結果がコンソールに表示されます。"
+        },
+        {
+            "id": 6,
+            "questionId": "js_dom_attr3_6",
+            "title": "属性の存在チェック",
+            "question": "HTML要素が特定の属性を持っているかどうかをチェックするJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、hasAttributeメソッドを使ってHTML要素が特定の属性を持っているかどうかをチェックすることができます。",
+            "answer": "// idが'myElement'の要素が'title'属性を持っているかどうかをチェックします。\nlet element = document.getElementById('myElement');\nif(element.hasAttribute('title')) {\n  console.log('The element has a title attribute.');\n} else {\n  console.log('The element does not have a title attribute.');\n}\n// このコードを実行すると、idが'myElement'の要素が'title'属性を持っているかどうかがコンソールに表示されます。"
+        },
+        {
+            "id": 7,
+            "questionId": "js_dom_attr3_7",
+            "title": "属性の一覧取得",
+            "question": "HTML要素の全ての属性名とその値を一覧で取得するJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、attributesプロパティとループを使ってHTML要素の全ての属性名とその値を一覧で取得することができます。",
+            "answer": "// idが'myElement'の要素の全ての属性名とその値を取得します。\nlet element = document.getElementById('myElement');\nlet attrs = element.attributes;\nfor(let i = 0; i < attrs.length; i++) {\n  console.log('Name: ' + attrs[i].name + ', Value: ' + attrs[i].value);\n}\n// このコードを実行すると、idが'myElement'の要素の全ての属性名とその値がコンソールに表示されます。"
+        },
+        {
+            "id": 8,
+            "questionId": "js_dom_attr3_8",
+            "title": "style属性の操作",
+            "question": "HTML要素のstyle属性を操作するJavaScriptコードを書いてください。特に、背景色を赤に設定し、その後でその設定を削除するコードを書いてください。",
+            "explanation": "JavaScriptでは、styleプロパティを使ってHTML要素のstyle属性を操作することができます。特定のスタイルを削除するには、そのプロパティに空文字列を設定します。",
+            "answer": "// idが'myElement'の要素の背景色を赤に設定し、その後でその設定を削除します。\nlet element = document.getElementById('myElement');\nelement.style.backgroundColor = 'red';\nconsole.log(element.style.backgroundColor);\n// 'red'が出力されます。\nelement.style.backgroundColor = '';\nconsole.log(element.style.backgroundColor);\n// 空文字列が出力されます。\n// このコードを実行すると、idが'myElement'の要素の背景色が赤に設定され、その後でその設定が削除され、その結果がコンソールに表示されます。"
+        },
+        {
+            "id": 9,
+            "questionId": "js_dom_attr3_9",
+            "title": "データ属性の操作",
+            "question": "HTML要素のデータ属性（data-*属性）を操作するJavaScriptコードを書いてください。特に、新たなデータ属性を追加し、その値を取得し、その後でその属性を削除するコードを書いてください。",
+            "explanation": "JavaScriptでは、datasetプロパティを使ってHTML要素のデータ属性を操作することができます。新たなデータ属性を追加するには、datasetプロパティに新たなプロパティを追加し、その属性を削除するにはdelete演算子を使います。",
+            "answer": "// idが'myElement'の要素に新たなデータ属性を追加し、その値を取得し、その後でその属性を削除します。\nlet element = document.getElementById('myElement');\nelement.dataset.newData = 'New value';\nconsole.log(element.dataset.newData);\n// 'New value'が出力されます。\ndelete element.dataset.newData;\nconsole.log(element.dataset.newData);\n// undefinedが出力されます。\n// このコードを実行すると、idが'myElement'の要素に新たなデータ属性が追加され、その値が取得され、その後でその属性が削除され、その結果がコンソールに表示されます。"
+        },
+        {
+            "id": 10,
+            "questionId": "js_dom_attr3_10",
+            "title": "全ての子要素の属性操作",
+            "question": "HTML要素の全ての子要素の特定の属性を一括で変更するJavaScriptコードを書いてください。特に、全ての子要素の'title'属性を'newTitle'に一括で変更するコードを書いてください。",
+            "explanation": "JavaScriptでは、childNodesプロパティとループを使ってHTML要素の全ての子要素を一括で操作することができます。",
+            "answer": "// idが'parentElement'の要素の全ての子要素の'title'属性を'newTitle'に一括で変更します。\nlet parentElement = document.getElementById('parentElement');\nfor(let i = 0; i < parentElement.childNodes.length; i++) {\n  parentElement.childNodes[i].title = 'newTitle';\n}\n// このコードを実行すると、idが'parentElement'の要素の全ての子要素の'title'属性が'newTitle'に一括で変更されます。"
+        }
+    ]
+}

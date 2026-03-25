@@ -1,0 +1,86 @@
+{
+    "contentsId": "js_dom_class3",
+    "title": "JavascriptのDOMの操作：クラスの操作",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_dom_class3_1",
+            "title": "クラスの一括操作",
+            "question": "特定の親要素の子要素全てに'class1'というクラスを追加するJavaScriptコードを書いてください。親要素は'id1'というidを持つものとします。",
+            "explanation": "親要素の全ての子要素に対してクラスを操作するには、親要素のchildrenプロパティを使います。これは子要素のHTMLCollectionを返します。HTMLCollectionはArrayではないので、forEachメソッドが使えません。そのため、Array.fromメソッドを使ってHTMLCollectionをArrayに変換します。",
+            "answer": "// 'id1'というidを持つ親要素の全ての子要素に'class1'というクラスを追加します。\nlet parent = document.getElementById('id1');\nArray.from(parent.children).forEach((child) => {\n  child.classList.add('class1');\n});\n// このコードを実行すると、'id1'というidを持つ親要素の全ての子要素に'class1'というクラスが追加されます。"
+        },
+        {
+            "id": 2,
+            "questionId": "js_dom_class3_2",
+            "title": "特定のクラスを持つ要素の抽出",
+            "question": "全ての'class1'というクラスを持つ要素を抽出するJavaScriptコードを書いてください。",
+            "explanation": "特定のクラスを持つ要素を全て抽出するには、document.getElementsByClassNameメソッドを使用します。このメソッドは指定したクラスを持つ要素のHTMLCollectionを返します。",
+            "answer": "// 全ての'class1'というクラスを持つ要素を抽出します。\nlet elements = document.getElementsByClassName('class1');\nconsole.log(elements);\n// このコードを実行すると、コンソールに全ての'class1'というクラスを持つ要素のリストが表示されます。"
+        },
+        {
+            "id": 3,
+            "questionId": "js_dom_class3_3",
+            "title": "クラスの一括削除",
+            "question": "特定の親要素の子要素全てから'class1'というクラスを削除するJavaScriptコードを書いてください。親要素は'id1'というidを持つものとします。",
+            "explanation": "親要素の全ての子要素に対してクラスを操作するには、親要素のchildrenプロパティを使います。これは子要素のHTMLCollectionを返します。HTMLCollectionはArrayではないので、forEachメソッドが使えません。そのため、Array.fromメソッドを使ってHTMLCollectionをArrayに変換します。",
+            "answer": "// 'id1'というidを持つ親要素の全ての子要素から'class1'というクラスを削除します。\nlet parent = document.getElementById('id1');\nArray.from(parent.children).forEach((child) => {\n  child.classList.remove('class1');\n});\n// このコードを実行すると、'id1'というidを持つ親要素の全ての子要素から'class1'というクラスが削除されます。"
+        },
+        {
+            "id": 4,
+            "questionId": "js_dom_class3_4",
+            "title": "クラスの切り替え",
+            "question": "特定の要素の'class1'というクラスを'class2'に切り替えるJavaScriptコードを書いてください。要素は'id1'というidを持つものとします。",
+            "explanation": "要素のクラスを切り替えるには、classListプロパティのreplaceメソッドを使用します。これは、指定した旧クラスを新クラスに置き換えます。",
+            "answer": "// 'id1'というidを持つ要素の'class1'というクラスを'class2'に切り替えます。\nlet element = document.getElementById('id1');\nelement.classList.replace('class1', 'class2');\n// このコードを実行すると、'id1'というidを持つ要素の'class1'というクラスが'class2'に切り替えられます。"
+        },
+        {
+            "id": 5,
+            "questionId": "js_dom_class3_5",
+            "title": "特定のクラスを持つすべての要素のクラスを切り替える",
+            "question": "ページ内の'class1'というクラスを持つすべての要素のクラスを'class2'に切り替えるJavaScriptコードを書いてください。",
+            "explanation": "特定のクラスを持つすべての要素を選択するには、document.getElementsByClassNameメソッドを使用します。これはHTMLCollectionを返します。HTMLCollectionはArrayではないので、forEachメソッドが使えません。そのため、Array.fromメソッドを使ってHTMLCollectionをArrayに変換します。",
+            "answer": "// ページ内の'class1'というクラスを持つすべての要素のクラスを'class2'に切り替えます。\nlet elements = document.getElementsByClassName('class1');\nArray.from(elements).forEach((element) => {\n  element.classList.replace('class1', 'class2');\n});\n// このコードを実行すると、ページ内の'class1'というクラスを持つすべての要素のクラスが'class2'に切り替えられます。"
+        },
+        {
+            "id": 6,
+            "questionId": "js_dom_class3_6",
+            "title": "特定のクラスを持つ要素数の取得",
+            "question": "ページ内の'class1'というクラスを持つ要素の数を取得するJavaScriptコードを書いてください。",
+            "explanation": "特定のクラスを持つ要素の数を取得するには、document.getElementsByClassNameメソッドを使用して要素を取得し、そのlengthプロパティを使用します。",
+            "answer": "// ページ内の'class1'というクラスを持つ要素の数を取得します。\nlet elements = document.getElementsByClassName('class1');\nconsole.log(elements.length);\n// このコードを実行すると、ページ内の'class1'というクラスを持つ要素の数がコンソールに出力されます。"
+        },
+        {
+            "id": 7,
+            "questionId": "js_dom_class3_7",
+            "title": "親要素から特定のクラスを持つ子要素のクラスを操作する",
+            "question": "親要素'id_parent'から'class1'というクラスを持つ子要素全てのクラスを'class2'に切り替えるJavaScriptコードを書いてください。",
+            "explanation": "親要素から特定のクラスを持つ子要素を選択するには、先に親要素をgetElementByIdメソッドで取得します。その後、親要素からgetElementsByClassNameメソッドを用いて子要素を取得します。",
+            "answer": "// 親要素'id_parent'から'class1'というクラスを持つ子要素全てのクラスを'class2'に切り替えます。\nlet parent = document.getElementById('id_parent');\nlet children = parent.getElementsByClassName('class1');\nArray.from(children).forEach((child) => {\n  child.classList.replace('class1', 'class2');\n});\n// このコードを実行すると、親要素'id_parent'から'class1'というクラスを持つ子要素全てのクラスが'class2'に切り替えられます。"
+        },
+        {
+            "id": 8,
+            "questionId": "js_dom_class3_8",
+            "title": "特定のクラスを持つ要素が存在するかどうかを判定する",
+            "question": "ページ内に'class1'というクラスを持つ要素が存在するかどうかを判定するJavaScriptコードを書いてください。",
+            "explanation": "特定のクラスを持つ要素が存在するかどうかを判定するには、document.getElementsByClassNameメソッドで要素を取得し、そのlengthプロパティが0より大きいかどうかを確認します。",
+            "answer": "// ページ内に'class1'というクラスを持つ要素が存在するかどうかを判定します。\nlet elements = document.getElementsByClassName('class1');\nif (elements.length > 0) {\n  console.log('存在します');\n} else {\n  console.log('存在しません');\n}\n// このコードを実行すると、ページ内に'class1'というクラスを持つ要素が存在するかどうかがコンソールに出力されます。"
+        },
+        {
+            "id": 9,
+            "questionId": "js_dom_class3_9",
+            "title": "複数のクラスを持つ要素のクラスを操作する",
+            "question": "'id1'というidを持つ要素が'class1', 'class2', 'class3'という複数のクラスを持っています。この要素から'class2'を削除し、'class4'を追加するJavaScriptコードを書いてください。",
+            "explanation": "要素が持つクラスを操作するには、classListプロパティを用いることが一般的です。これにより、要素が持つクラスを追加、削除、置換など様々な操作を行うことができます。",
+            "answer": "// 'id1'というidを持つ要素から'class2'を削除し、'class4'を追加します。\nlet element = document.getElementById('id1');\nelement.classList.remove('class2');\nelement.classList.add('class4');\n// このコードを実行すると、'id1'というidを持つ要素から'class2'が削除され、'class4'が追加されます。"
+        },
+        {
+            "id": 10,
+            "questionId": "js_dom_class3_10",
+            "title": "特定のクラスを持つ全ての要素のクラスを操作する",
+            "question": "ページ内の'class1'というクラスを持つ全ての要素のクラスを'class2'に切り替えるJavaScriptコードを書いてください。",
+            "explanation": "特定のクラスを持つ全ての要素を取得するには、document.getElementsByClassNameメソッドを使用します。その後、取得した要素に対してforEachメソッドを使い、各要素のクラスを切り替えます。",
+            "answer": "// ページ内の'class1'というクラスを持つ全ての要素のクラスを'class2'に切り替えます。\nlet elements = document.getElementsByClassName('class1');\nArray.from(elements).forEach((element) => {\n  element.classList.replace('class1', 'class2');\n});\n// このコードを実行すると、ページ内の'class1'というクラスを持つ全ての要素のクラスが'class2'に切り替えられます。"
+        }
+    ]
+}

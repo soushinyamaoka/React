@@ -1,0 +1,86 @@
+{
+    "contentsId": "js_dom_class1",
+    "title": "JavascriptのDOM操作：クラスの操作問題集",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_dom_class1_1",
+            "title": "クラスの追加",
+            "question": "HTML要素にクラスを追加するJavaScriptコードを書いてください。特に、idが'myElement'の要素に'class1'というクラスを追加するコードを書いてください。",
+            "explanation": "JavaScriptでは、classNameプロパティまたはclassListプロパティを使ってHTML要素のクラスを操作することができます。新たなクラスを追加するには、classListのaddメソッドを使います。",
+            "answer": "// idが'myElement'の要素に'class1'というクラスを追加します。\nlet element = document.getElementById('myElement');\nelement.classList.add('class1');\n// このコードを実行すると、idが'myElement'の要素に'class1'というクラスが追加されます。"
+        },
+        {
+            "id": 2,
+            "questionId": "js_dom_class1_2",
+            "title": "クラスの削除",
+            "question": "HTML要素からクラスを削除するJavaScriptコードを書いてください。特に、idが'myElement'の要素から'class1'というクラスを削除するコードを書いてください。",
+            "explanation": "クラスを削除するには、classListのremoveメソッドを使います。",
+            "answer": "// idが'myElement'の要素から'class1'というクラスを削除します。\nlet element = document.getElementById('myElement');\nelement.classList.remove('class1');\n// このコードを実行すると、idが'myElement'の要素から'class1'というクラスが削除されます。"
+        },
+        {
+            "id": 3,
+            "questionId": "js_dom_class1_3",
+            "title": "クラスの有無確認",
+            "question": "HTML要素が特定のクラスを持っているかどうか確認するJavaScriptコードを書いてください。特に、idが'myElement'の要素が'class1'というクラスを持っているかどうかを確認するコードを書いてください。",
+            "explanation": "特定のクラスを持っているかどうかを確認するには、classListのcontainsメソッドを使います。",
+            "answer": "// idが'myElement'の要素が'class1'というクラスを持っているかどうかを確認します。\nlet element = document.getElementById('myElement');\nconsole.log(element.classList.contains('class1'));\n// このコードを実行すると、コンソールにtrueかfalseが表示されます。"
+        },
+        {
+            "id": 4,
+            "questionId": "js_dom_class1_4",
+            "title": "クラスのトグル",
+            "question": "HTML要素の特定のクラスをトグル（存在すれば削除し、存在しなければ追加）するJavaScriptコードを書いてください。特に、idが'myElement'の要素の'class1'というクラスをトグルするコードを書いてください。",
+            "explanation": "クラスをトグルするには、classListのtoggleメソッドを使います。",
+            "answer": "// idが'myElement'の要素の'class1'というクラスをトグルします。\nlet element = document.getElementById('myElement');\nelement.classList.toggle('class1');\n// このコードを実行すると、idが'myElement'の要素の'class1'クラスが存在すれば削除され、存在しなければ追加されます。"
+        },
+        {
+            "id": 5,
+            "questionId": "js_dom_class1_5",
+            "title": "全クラスの取得",
+            "question": "HTML要素が持つ全てのクラスを取得するJavaScriptコードを書いてください。特に、idが'myElement'の要素が持つ全てのクラスを取得するコードを書いてください。",
+            "explanation": "HTML要素が持つ全てのクラスを取得するには、classNameプロパティかclassListプロパティを使用します。",
+            "answer": "// idが'myElement'の要素が持つ全てのクラスを取得します。\nlet element = document.getElementById('myElement');\nconsole.log(element.className);\n// このコードを実行すると、コンソールにidが'myElement'の要素が持つ全てのクラスが表示されます。"
+        },
+        {
+            "id": 6,
+            "questionId": "js_dom_class1_6",
+            "title": "クラスの置換",
+            "question": "HTML要素のクラスを別のクラスに置換するJavaScriptコードを書いてください。特に、idが'myElement'の要素が'class1'というクラスを'class2'に置換するコードを書いてください。",
+            "explanation": "クラスを置換するには、classListのreplaceメソッドを使います。",
+            "answer": "// idが'myElement'の要素が'class1'というクラスを'class2'に置換します。\nlet element = document.getElementById('myElement');\nelement.classList.replace('class1', 'class2');\n// このコードを実行すると、idが'myElement'の要素の'class1'クラスが'class2'に置換されます。"
+        },
+        {
+            "id": 7,
+            "questionId": "js_dom_class1_7",
+            "title": "クラスリストの取得",
+            "question": "HTML要素のclassListを取得するJavaScriptコードを書いてください。特に、idが'myElement'の要素のclassListを取得するコードを書いてください。",
+            "explanation": "HTML要素のclassListを取得するには、element.classListを使用します。",
+            "answer": "// idが'myElement'の要素のclassListを取得します。\nlet element = document.getElementById('myElement');\nconsole.log(element.classList);\n// このコードを実行すると、コンソールにidが'myElement'の要素のclassListが表示されます。"
+        },
+        {
+            "id": 8,
+            "questionId": "js_dom_class1_8",
+            "title": "クラス名の取得",
+            "question": "HTML要素のクラス名を取得するJavaScriptコードを書いてください。特に、idが'myElement'の要素のクラス名を取得するコードを書いてください。",
+            "explanation": "HTML要素のクラス名を取得するには、element.classNameを使用します。",
+            "answer": "// idが'myElement'の要素のクラス名を取得します。\nlet element = document.getElementById('myElement');\nconsole.log(element.className);\n// このコードを実行すると、コンソールにidが'myElement'の要素のクラス名が表示されます。"
+        },
+        {
+            "id": 9,
+            "questionId": "js_dom_class1_9",
+            "title": "クラスの数を取得",
+            "question": "HTML要素が持つクラスの数を取得するJavaScriptコードを書いてください。特に、idが'myElement'の要素が持つクラスの数を取得するコードを書いてください。",
+            "explanation": "HTML要素が持つクラスの数を取得するには、element.classList.lengthを使用します。",
+            "answer": "// idが'myElement'の要素が持つクラスの数を取得します。\nlet element = document.getElementById('myElement');\nconsole.log(element.classList.length);\n// このコードを実行すると、コンソールにidが'myElement'の要素が持つクラスの数が表示されます。"
+        },
+        {
+            "id": 10,
+            "questionId": "js_dom_class1_10",
+            "title": "特定のクラスを持つ要素の取得",
+            "question": "特定のクラスを持つHTML要素を取得するJavaScriptコードを書いてください。特に、'class1'というクラスを持つ要素を全て取得するコードを書いてください。",
+            "explanation": "特定のクラスを持つHTML要素を取得するには、document.getElementsByClassNameを使用します。",
+            "answer": "// 'class1'というクラスを持つ要素を全て取得します。\nlet elements = document.getElementsByClassName('class1');\nconsole.log(elements);\n// このコードを実行すると、コンソールに'class1'というクラスを持つ要素が全て表示されます。"
+        }
+    ]
+}

@@ -1,0 +1,86 @@
+{
+    "contentsId": "js_dom_event3",
+    "title": "JavaScriptのDOM操作：イベントの設定問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_dom_event3_1",
+            "title": "複数のイベントリスナーの設定",
+            "question": "idが'myButton'のボタン要素に対して、クリック時とダブルクリック時で異なるメッセージをコンソールに表示するイベントリスナーを設定するJavaScriptコードを書いてください。",
+            "explanation": "同じ要素に対して複数のイベントリスナーを設定することができます。クリックイベントは'click'、ダブルクリックイベントは'dblclick'と指定します。",
+            "answer": "// 'myButton'というidを持つ要素に対するclickとdblclickイベントの設定\nlet myButton = document.getElementById('myButton');\n\n// クリックイベント\nmyButton.addEventListener('click', function() {\n  console.log('Button was clicked');\n});\n\n// ダブルクリックイベント\nmyButton.addEventListener('dblclick', function() {\n  console.log('Button was double-clicked');\n});\n// これを実行すると、ボタンをクリックすると'Button was clicked'、ダブルクリックすると'Button was double-clicked'と表示されます。"
+        },
+        {
+            "id": 2,
+            "questionId": "js_dom_event3_2",
+            "title": "イベントの伝播の停止",
+            "question": "idが'myButton'のボタン要素がクリックされたときに、そのイベントの伝播を止めるイベントリスナーを設定するJavaScriptコードを書いてください。",
+            "explanation": "イベントオブジェクトの'stopPropagation'メソッドを呼び出すことで、イベントの伝播を停止することができます。",
+            "answer": "// 'myButton'というidを持つ要素に対するclickイベントの設定\nlet myButton = document.getElementById('myButton');\nmyButton.addEventListener('click', function(event) {\n  console.log('Button was clicked');\n  event.stopPropagation();\n});\n// これを実行すると、ボタンがクリックされると'Button was clicked'と表示され、そのイベントの伝播は停止します。"
+        },
+        {
+            "id": 3,
+            "questionId": "js_dom_event3_3",
+            "title": "イベントの一度きりの設定",
+            "question": "idが'myButton'のボタン要素が一度だけ反応するクリックイベントのリスナーを設定するJavaScriptコードを書いてください。",
+            "explanation": "addEventListenerメソッドの3つ目の引数にオブジェクトを指定し、その中のonceプロパティをtrueに設定することで、一度だけ反応するイベントを設定することができます。",
+            "answer": "// 'myButton'というidを持つ要素に対する一度だけ反応するclickイベントの設定\nlet myButton = document.getElementById('myButton');\nmyButton.addEventListener('click', function() {\n  console.log('Button was clicked once');\n}, { once: true });\n// これを実行すると、ボタンをクリックすると一度だけ'Button was clicked once'と表示されます。"
+        },
+        {
+            "id": 4,
+            "questionId": "js_dom_event3_4",
+            "title": "イベントのデフォルトの動作のキャンセル",
+            "question": "idが'myForm'のフォーム要素が送信されたときに、そのデフォルトの送信動作をキャンセルするイベントリスナーを設定するJavaScriptコードを書いてください。",
+            "explanation": "イベントオブジェクトの'preventDefault'メソッドを呼び出すことで、イベントのデフォルトの動作をキャンセルすることができます。フォームの送信イベントは'submit'と指定します。",
+            "answer": "// 'myForm'というidを持つ要素に対するsubmitイベントの設定\nlet myForm = document.getElementById('myForm');\nmyForm.addEventListener('submit', function(event) {\n  console.log('Form submission was prevented');\n  event.preventDefault();\n});\n// これを実行すると、フォームが送信されると'Form submission was prevented'と表示され、その送信動作はキャンセルされます。"
+        },
+        {
+            "id": 5,
+            "questionId": "js_dom_event3_5",
+            "title": "イベントリスナーの削除",
+            "question": "idが'myButton'のボタン要素に設定されたクリックイベントのリスナーを削除するJavaScriptコードを書いてください。ただし、そのリスナーは以下のコードで設定されているとします。\n\nfunction handleClick() {\n  console.log('Button was clicked');\n}\n\nlet myButton = document.getElementById('myButton');\nmyButton.addEventListener('click', handleClick);",
+            "explanation": "removeEventListenerメソッドを使用して、イベントリスナーを削除することができます。このメソッドは、削除するイベントのタイプと、削除するリスナー関数を引数として受け取ります。",
+            "answer": "// 'myButton'というidを持つ要素に設定されたclickイベントのリスナーの削除\nfunction handleClick() {\n  console.log('Button was clicked');\n}\n\nlet myButton = document.getElementById('myButton');\nmyButton.removeEventListener('click', handleClick);\n// これを実行すると、ボタンのclickイベントに対するhandleClickリスナーが削除されます。"
+        },
+        {
+            "id": 6,
+            "questionId": "js_dom_event3_6",
+            "title": "マウスオーバーイベントの設定",
+            "question": "idが'myImage'の画像要素がマウスオーバーされたときに、その要素のalt属性の値をコンソールに表示するイベントリスナーを設定するJavaScriptコードを書いてください。",
+            "explanation": "マウスオーバーイベントは'mouseover'と指定します。イベントオブジェクトのtargetプロパティを使用して、イベントが発生した要素にアクセスすることができます。",
+            "answer": "// 'myImage'というidを持つ要素に対するmouseoverイベントの設定\nlet myImage = document.getElementById('myImage');\nmyImage.addEventListener('mouseover', function(event) {\n  console.log('Mouse over image: ' + event.target.alt);\n});\n// これを実行すると、画像要素にマウスを乗せるとその要素のalt属性の値が表示されます。"
+        },
+        {
+            "id": 7,
+            "questionId": "js_dom_event3_7",
+            "title": "キーダウンイベントの設定",
+            "question": "ユーザがキーボードの任意のキーを押したときに、そのキーコードをコンソールに表示するイベントリスナーを設定するJavaScriptコードを書いてください。",
+            "explanation": "キーダウンイベントは'keydown'と指定します。イベントオブジェクトのkeyCodeプロパティを使用して、押されたキーのキーコードを取得することができます。",
+            "answer": "// ページ全体に対するkeydownイベントの設定\ndocument.addEventListener('keydown', function(event) {\n  console.log('Key pressed: ' + event.keyCode);\n});\n// これを実行すると、キーを押すとそのキーのキーコードが表示されます。"
+        },
+        {
+            "id": 8,
+            "questionId": "js_dom_event3_8",
+            "title": "タッチイベントの設定",
+            "question": "ユーザがスクリーンをタッチしたときに、そのタッチ点の座標をコンソールに表示するイベントリスナーを設定するJavaScriptコードを書いてください。",
+            "explanation": "タッチイベントは'touchstart'と指定します。イベントオブジェクトのtouchesプロパティの配列から、最初のタッチ点の座標を取得することができます。",
+            "answer": "// ページ全体に対するtouchstartイベントの設定\ndocument.addEventListener('touchstart', function(event) {\n  console.log('Touch point: ' + event.touches[0].clientX + ', ' + event.touches[0].clientY);\n});\n// これを実行すると、スクリーンをタッチするとそのタッチ点の座標が表示されます。"
+        },
+        {
+            "id": 9,
+            "questionId": "js_dom_event3_9",
+            "title": "カスタムイベントの作成と発火",
+            "question": "カスタムイベント'myEvent'を作成し、そのイベントを発火させるJavaScriptコードを書いてください。そのイベントが発火したときに、'Custom event fired'とコンソールに表示するイベントリスナーも設定してください。",
+            "explanation": "カスタムイベントは、Eventコンストラクタを使用して作成します。作成したイベントは、EventTargetインターフェースのdispatchEventメソッドを使用して発火させることができます。",
+            "answer": "// カスタムイベント'myEvent'の作成と発火\nlet myEvent = new Event('myEvent');\n\n// myEventのリスナー設定\ndocument.addEventListener('myEvent', function() {\n  console.log('Custom event fired');\n});\n\n// myEventの発火\ndocument.dispatchEvent(myEvent);\n// これを実行すると、'Custom event fired'と表示されます。"
+        },
+        {
+            "id": 10,
+            "questionId": "js_dom_event3_10",
+            "title": "イベントオブジェクトの利用",
+            "question": "idが'myButton'のボタン要素がクリックされたときに、イベントオブジェクトを使用してボタンのidをコンソールに表示するイベントリスナーを設定するJavaScriptコードを書いてください。",
+            "explanation": "イベントオブジェクトのtargetプロパティを使用して、イベントが発生した要素にアクセスし、そのidを取得することができます。",
+            "answer": "// 'myButton'というidを持つ要素に対するclickイベントの設定\nlet myButton = document.getElementById('myButton');\nmyButton.addEventListener('click', function(event) {\n  console.log('Button id: ' + event.target.id);\n});\n// これを実行すると、ボタンをクリックするとそのボタンのidが表示されます。"
+        }
+    ]
+}

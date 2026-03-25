@@ -1,0 +1,86 @@
+{
+    "contentsId": "js_chn_attribute",
+    "title": "JavaScriptのDOM操作：属性の変更問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_dom_attr2_1",
+            "title": "要素のスタイル変更",
+            "question": "特定のHTML要素のスタイルを変更するJavaScriptコードを書いてください。",
+            "explanation": "要素のstyleプロパティを使用して、直接スタイルを変更することができます。",
+            "answer": "// idが'myElement'の要素の背景色を赤に設定します。\nlet element = document.getElementById('myElement');\nelement.style.backgroundColor = 'red';\n// このコードを実行すると、idが'myElement'の要素の背景色が赤に変更されます。"
+        },
+        {
+            "id": 2,
+            "questionId": "js_dom_attr2_2",
+            "title": "要素の複数のスタイル変更",
+            "question": "特定のHTML要素の複数のスタイルを一度に変更するJavaScriptコードを書いてください。",
+            "explanation": "要素のstyleプロパティを使用して、一度に複数のスタイルを変更することができます。",
+            "answer": "// idが'myElement'の要素の背景色を赤にし、文字色を白に設定します。\nlet element = document.getElementById('myElement');\nelement.style.backgroundColor = 'red';\nelement.style.color = 'white';\n// このコードを実行すると、idが'myElement'の要素の背景色が赤に、文字色が白に変更されます。"
+        },
+        {
+            "id": 3,
+            "questionId": "js_dom_attr2_3",
+            "title": "要素のスタイル情報の取得",
+            "question": "特定のHTML要素の現在のスタイル情報を取得するJavaScriptコードを書いてください。",
+            "explanation": "要素のstyleプロパティを使用して、現在のスタイル情報を取得することができます。",
+            "answer": "// idが'myElement'の要素の背景色を取得します。\nlet element = document.getElementById('myElement');\nlet backgroundColor = element.style.backgroundColor;\nconsole.log(backgroundColor);\n// このコードを実行すると、idが'myElement'の要素の現在の背景色がコンソールに表示されます。"
+        },
+        {
+            "id": 4,
+            "questionId": "js_dom_attr2_4",
+            "title": "属性値の動的変更",
+            "question": "HTML要素の属性値を動的に変更するJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、setAttributeメソッドを使ってHTML要素の属性値を動的に変更することができます。",
+            "answer": "// idが'myElement'の要素の'class'属性値を'newClass'に設定します。\nlet element = document.getElementById('myElement');\nelement.setAttribute('class', 'newClass');\n// このコードを実行すると、idが'myElement'の要素の'class'属性値が'newClass'に設定されます。"
+        },
+        {
+            "id": 5,
+            "questionId": "js_dom_attr2_5",
+            "title": "属性値の動的取得",
+            "question": "HTML要素の属性値を動的に取得するJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、getAttributeメソッドを使ってHTML要素の属性値を動的に取得することができます。",
+            "answer": "// idが'myElement'の要素の'class'属性値を取得します。\nlet element = document.getElementById('myElement');\nlet className = element.getAttribute('class');\nconsole.log(className);\n// このコードを実行すると、idが'myElement'の要素の'class'属性値がコンソールに表示されます。"
+        },
+        {
+            "id": 6,
+            "questionId": "js_dom_attr2_6",
+            "title": "属性値の削除",
+            "question": "HTML要素の特定の属性値を削除するJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、removeAttributeメソッドを使ってHTML要素の特定の属性値を削除することができます。",
+            "answer": "// idが'myElement'の要素の'class'属性を削除します。\nlet element = document.getElementById('myElement');\nelement.removeAttribute('class');\n// このコードを実行すると、idが'myElement'の要素から'class'属性が削除されます。"
+        },
+        {
+            "id": 7,
+            "questionId": "js_dom_attr2_7",
+            "title": "data属性の操作",
+            "question": "HTML要素のdata属性を操作するJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、datasetプロパティを使ってHTML要素のdata属性を操作することができます。",
+            "answer": "// idが'myElement'の要素の'data-custom'属性を設定し、取得します。\nlet element = document.getElementById('myElement');\nelement.dataset.custom = 'value';\nlet customValue = element.dataset.custom;\nconsole.log(customValue);\n// このコードを実行すると、idが'myElement'の要素に'data-custom'属性が設定され、その値がコンソールに表示されます。"
+        },
+        {
+            "id": 8,
+            "questionId": "js_dom_attr2_8",
+            "title": "要素のCSSクラス操作",
+            "question": "HTML要素のCSSクラスを操作するJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、classListプロパティを使ってHTML要素のCSSクラスを操作することができます。",
+            "answer": "// idが'myElement'の要素に新しいCSSクラスを追加し、その後削除します。\nlet element = document.getElementById('myElement');\nelement.classList.add('newClass');\nconsole.log(element.classList);\nelement.classList.remove('newClass');\nconsole.log(element.classList);\n// このコードを実行すると、idが'myElement'の要素にCSSクラスが追加され、その後削除される過程がコンソールに表示されます。"
+        },
+        {
+            "id": 9,
+            "questionId": "js_dom_attr2_9",
+            "title": "要素のCSSクラス存在確認",
+            "question": "HTML要素が特定のCSSクラスを持っているかどうかを確認するJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、classListプロパティのcontainsメソッドを使ってHTML要素が特定のCSSクラスを持っているかどうかを確認することができます。",
+            "answer": "// idが'myElement'の要素が'checkClass'というCSSクラスを持っているか確認します。\nlet element = document.getElementById('myElement');\nlet hasClass = element.classList.contains('checkClass');\nconsole.log(hasClass);\n// このコードを実行すると、idが'myElement'の要素が'checkClass'というCSSクラスを持っているかどうかがコンソールに表示されます。"
+        },
+        {
+            "id": 10,
+            "questionId": "js_dom_attr2_10",
+            "title": "要素のCSSクラスの切替",
+            "question": "HTML要素のCSSクラスを切り替えるJavaScriptコードを書いてください。",
+            "explanation": "JavaScriptでは、classListプロパティのtoggleメソッドを使ってHTML要素のCSSクラスを切り替えることができます。",
+            "answer": "// idが'myElement'の要素の'toggleClass'というCSSクラスを切り替えます。\nlet element = document.getElementById('myElement');\nelement.classList.toggle('toggleClass');\nconsole.log(element.classList);\nelement.classList.toggle('toggleClass');\nconsole.log(element.classList);\n// このコードを実行すると、idが'myElement'の要素の'toggleClass'というCSSクラスが切り替えられる過程がコンソールに表示されます。"
+        }
+    ]
+}

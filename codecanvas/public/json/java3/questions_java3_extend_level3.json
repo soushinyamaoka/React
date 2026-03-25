@@ -1,0 +1,86 @@
+{
+    "contentsId": "java3",
+    "title": "Javaのクラスの継承問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_inheritance3_1",
+            "title": "インターフェースと抽象クラスの違い",
+            "question": "Javaのインターフェースと抽象クラスの違いを説明してください。また、それぞれを使用する状況を具体的に示してください。",
+            "explanation": "インターフェースと抽象クラスは両方とも具体的な実装を持たないメソッドを定義することができます。しかし、インターフェースは全てのメソッドが抽象メソッドであるのに対し、抽象クラスは抽象メソッドと非抽象メソッドの両方を持つことができます。\n\nまた、クラスは複数のインターフェースを実装できますが、一つのクラスが複数のクラスを継承することはできません。したがって、あるクラスが複数の型を実装する必要がある場合や、複数のクラス間でメソッドのシグネチャを共有する必要がある場合は、インターフェースを使用します。\n\n一方、共通の状態（フィールド）や振る舞い（メソッドの実装）を複数のクラスで共有する必要がある場合、またはテンプレートメソッドパターンのような特定のデザインパターンを使用する場合は、抽象クラスを使用します。",
+            "answer": ""
+        },
+        {
+            "id": 2,
+            "questionId": "java_inheritance3_2",
+            "title": "ポリモーフィズムとダウンキャスティング",
+            "question": "下記のJavaのコードがエラーをスローしないようにするためには、どのような修正が必要ですか？そして、なぜその修正が必要なのか説明してください。\n\n```\nAnimal myAnimal = new Dog();\nCat myCat = (Cat) myAnimal;\n```\n\n以下のクラス定義を考慮してください。\n\n```\nclass Animal {}\nclass Dog extends Animal {}\nclass Cat extends Animal {}\n```",
+            "explanation": "この問題は、Javaのポリモーフィズムとダウンキャスティングに関する知識を試すものです。\n\n上記のコードは、`ClassCastException`をスローします。なぜなら、`myAnimal`は`Dog`のインスタンスであり、`Dog`は`Cat`にダウンキャストできないからです。Javaでは、あるクラスを別のクラスにダウンキャストすることは、そのクラスが元のクラスかそのサブクラスのインスタンスである場合にのみ可能です。\n\nこの問題を解決するためには、`myAnimal`を`Cat`のインスタンスにするか、`myCat`を`Dog`のインスタンスにキャストする必要があります。",
+            "answer": "// 修正後のコード\nAnimal myAnimal = new Cat();\nCat myCat = (Cat) myAnimal;\n\n// もしくは\n\nDog myDog = (Dog) myAnimal;"
+        },
+        {
+            "id": 3,
+            "questionId": "java_inheritance3_3",
+            "title": "抽象クラスと具象クラス",
+            "question": "以下の抽象クラスAnimalに対して、DogクラスとCatクラスを作成し、それぞれのクラスでmakeSoundメソッドをオーバーライドしてください。DogクラスのmakeSoundメソッドは\"Bark!\"と表示し、CatクラスのmakeSoundメソッドは\"Meow!\"と表示するようにしてください。\n\n```\nabstract class Animal {\n  abstract void makeSound();\n}\n```",
+            "explanation": "この問題は、Javaの抽象クラスとその具象クラスの作成に関する知識を試すものです。\n\nJavaでは、抽象クラスは具象クラスによって拡張される必要があります。抽象クラスは一つ以上の抽象メソッド（ボディがないメソッド）を持つことができます。これらの抽象メソッドは、具象クラスによってオーバーライドされる必要があります。",
+            "answer": "// Dogクラスの作成\npublic class Dog extends Animal {\n  @Override\n  void makeSound() {\n    System.out.println(\"Bark!\"); // \"Bark!\"と出力する\n  }\n}\n\n// Catクラスの作成\npublic class Cat extends Animal {\n  @Override\n  void makeSound() {\n    System.out.println(\"Meow!\"); // \"Meow!\"と出力する\n  }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java_inheritance3_4",
+            "title": "スーパークラスのメソッドとフィールドの利用",
+            "question": "以下のクラスCarをスーパークラスとして、クラスSportsCarを作成してください。SportsCarはCarクラスからspeedとincreaseSpeedメソッドを継承し、その上で新たにturboメソッドを追加してください。turboメソッドは、speedを2倍にするメソッドとします。\n\n```\nclass Car {\n  int speed;\n  void increaseSpeed() {\n    speed++;\n  }\n}\n```",
+            "explanation": "この問題は、スーパークラスのフィールドとメソッドをサブクラスで利用するJavaのクラス継承の概念を試すものです。\n\nJavaでは、サブクラスはスーパークラスのpublicまたはprotectedフィールドとメソッドを継承します。また、新たなフィールドやメソッドを追加することも可能です。",
+            "answer": "// SportsCarクラスの作成\npublic class SportsCar extends Car {\n  // turboメソッドの追加\n  void turbo() {\n    speed = speed * 2; // speedを2倍にする\n  }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java_inheritance3_5",
+            "title": "抽象クラスの利用",
+            "question": "以下の抽象クラスAnimalと、その具象クラスDogとCatを作成してください。Animalクラスには抽象メソッドmakeSoundがあり、DogクラスとCatクラスはそれぞれこのメソッドをオーバーライドして、「ワン！」と「ニャー！」を出力するようにしてください。\n\n```\nabstract class Animal {\n  abstract void makeSound();\n}\n```",
+            "explanation": "この問題は、抽象クラスと抽象メソッドの概念を試すものです。抽象クラスは具象クラスに共通のフィールドやメソッドを提供しながら、一部のメソッドを抽象メソッドとして定義することで具象クラスに具体的な実装を強制することができます。",
+            "answer": "// Dogクラスの作成\npublic class Dog extends Animal {\n  // makeSoundメソッドをオーバーライド\n  void makeSound() {\n    System.out.println(\"ワン！\"); // \"ワン！\"を出力\n  }\n}\n\n// Catクラスの作成\npublic class Cat extends Animal {\n  // makeSoundメソッドをオーバーライド\n  void makeSound() {\n    System.out.println(\"ニャー！\"); // \"ニャー！\"を出力\n  }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java_inheritance3_6",
+            "title": "インターフェースの利用",
+            "question": "以下のインターフェースDriveableと、その具象クラスCarを作成してください。DriveableインターフェースにはメソッドstartEngineとstopEngineがあり、Carクラスはこれらのメソッドをオーバーライドして、「エンジンが始動しました」、「エンジンが停止しました」を出力するようにしてください。\n\n```\ninterface Driveable {\n  void startEngine();\n  void stopEngine();\n}\n```",
+            "explanation": "この問題は、インターフェースとその具象クラスの概念を試すものです。インターフェースは抽象メソッドのみを定義することができ、そのインターフェースを実装するクラスは必ずそれらのメソッドを定義しなければなりません。",
+            "answer": "// Carクラスの作成\npublic class Car implements Driveable {\n  // startEngineメソッドをオーバーライド\n  public void startEngine() {\n    System.out.println(\"エンジンが始動しました\"); // \"エンジンが始動しました\"を出力\n  }\n\n  // stopEngineメソッドをオーバーライド\n  public void stopEngine() {\n    System.out.println(\"エンジンが停止しました\"); // \"エンジンが停止しました\"を出力\n  }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java_inheritance3_7",
+            "title": "多重継承の制約",
+            "question": "Javaでは多重継承が許可されていません。その理由と、それを解決するためにJavaが提供している機能について説明してください。",
+            "explanation": "多重継承は一つのクラスが複数のスーパークラスから継承することを指します。しかし、Javaではこれが許可されていません。なぜなら、複数のスーパークラスが同名のメソッドを持っている場合、サブクラスがどちらのメソッドを継承すべきか明確に決定できない「ダイヤモンド問題」が生じるからです。\n\nJavaではこの問題を解決するために、「インターフェース」を導入しています。インターフェースはクラスが実装すべきメソッドを定義しますが、その実装は各クラスに任されているため、多重継承の問題を回避します。",
+            "answer": "「Javaでは、多重継承が許可されていません。これは、複数のスーパークラスが同名のメソッドを持つ場合、どちらのメソッドを継承すべきかが不明確になり、混乱を招く可能性があるからです。この問題は一般的に「ダイヤモンド問題」と呼ばれています。しかし、Javaはインターフェースという機能を提供しており、クラスは複数のインターフェースを実装することができます。これにより、多重継承の問題を回避することができます。」"
+        },
+        {
+            "id": 8,
+            "questionId": "java_inheritance3_8",
+            "title": "抽象クラスとインターフェースの違い",
+            "question": "抽象クラスとインターフェースの主な違いを説明し、それぞれの用途について考察してください。",
+            "explanation": "抽象クラスとインターフェースは、どちらも具体的な実装を持たないメソッド（抽象メソッド）を定義できる点では同じです。しかし、主な違いは以下の3点です。\n\n1. 継承と実装: クラスは一つの抽象クラスだけを継承できますが、複数のインターフェースを実装することができます。\n2. フィールド: 抽象クラスはフィールド（変数）を持つことができますが、インターフェースは定数しか持つことができません。\n3. 実装: 抽象クラスは抽象メソッドだけでなく、具体的な実装を持つメソッドも含むことができますが、インターフェースはJava 8以降、デフォルトメソッドや静的メソッドを持つことができますが、基本的には抽象メソッドのみです。\n\n用途としては、抽象クラスは「is-a」関係（継承）を表現するのに適しています。一方、インターフェースは「can-do」関係（能力）を表現するのに適しています。",
+            "answer": "抽象クラスとインターフェースの主な違いは以下の通りです。\n\n1. クラスは一つの抽象クラスのみを継承できますが、複数のインターフェースを実装することができます。\n2. 抽象クラスはフィールド（変数）を持つことができますが、インターフェースは定数しか持つことができません。\n3. 抽象クラスは具体的な実装を持つメソッドも含むことができますが、インターフェースは基本的に抽象メソッドのみを持ちますが、Java 8以降ではデフォルトメソッドや静的メソッドを持つことができます。\n\nこれらの違いから、抽象クラスは「is-a」関係（継承）を表現するのに適しており、一方、インターフェースは「can-do」関係（能力）を表現するのに適しています。"
+        },
+        {
+            "id": 9,
+            "questionId": "java_inheritance3_9",
+            "title": "インターフェースの実装",
+            "question": "以下のコードが示すように、インターフェース\"Flyable\"と\"Swimmable\"があります。これらのインターフェースを実装した\"Duck\"クラスを作成し、それぞれのメソッドを適切に実装してください。\n\ninterface Flyable {\n    void fly();\n}\n\ninterface Swimmable {\n    void swim();\n}\n",
+            "explanation": "インターフェースは抽象メソッドの集合であり、それらのメソッドは具体的な実装がないため、それを実装するクラスによって具体的な動作を定義します。この問題では、\"Flyable\"と\"Swimmable\"という2つのインターフェースを実装する\"Duck\"クラスを作成し、\"fly\"メソッドと\"swim\"メソッドを具体的に実装することが求められています。",
+            "answer": "// ダッククラスを定義します。\n// このクラスはFlyableとSwimmableの両方のインターフェースを実装します。\npublic class Duck implements Flyable, Swimmable {\n    // Flyableインターフェースの抽象メソッドfly()を具体的に実装します。\n    @Override\n    public void fly() {\n        // ダックが飛んでいるというメッセージを表示します。\n        System.out.println(\"The duck is flying.\");\n        // 予想出力: The duck is flying.\n    }\n\n    // Swimmableインターフェースの抽象メソッドswim()を具体的に実装します。\n    @Override\n    public void swim() {\n        // ダックが泳いでいるというメッセージを表示します。\n        System.out.println(\"The duck is swimming.\");\n        // 予想出力: The duck is swimming.\n    }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java_inheritance3_10",
+            "title": "抽象クラスとインターフェースの組み合わせ",
+            "question": "以下のコードが示すように、抽象クラス\"Animal\"とインターフェース\"Movable\"があります。この抽象クラスとインターフェースを継承・実装した\"Dog\"クラスを作成し、それぞれのメソッドを適切に実装してください。\n\nabstract class Animal {\n    abstract void eat();\n}\n\ninterface Movable {\n    void move();\n}\n",
+            "explanation": "抽象クラスとインターフェースは、具体的な実装を持たないメソッドを定義するための手段です。これらはクラスの設計において重要な役割を果たします。この問題では、\"Animal\"という抽象クラスと\"Movable\"というインターフェースを組み合わせて使用し、\"Dog\"クラスを作成します。そして、\"eat\"メソッドと\"move\"メソッドを具体的に実装することが求められています。",
+            "answer": "// Dogクラスを定義します。このクラスはAnimalクラスを継承し、Movableインターフェースを実装します。\npublic class Dog extends Animal implements Movable {\n    // Animalクラスの抽象メソッドeat()を具体的に実装します。\n    @Override\n    public void eat() {\n        // ドッグが食事をしているというメッセージを表示します。\n        System.out.println(\"The dog is eating.\");\n        // 予想出力: The dog is eating.\n    }\n\n    // Movableインターフェースの抽象メソッドmove()を具体的に実装します。\n    @Override\n    public void move() {\n        // ドッグが移動しているというメッセージを表示します。\n        System.out.println(\"The dog is moving.\");\n        // 予想出力: The dog is moving.\n    }\n}"
+        }
+    ]
+}

@@ -1,0 +1,166 @@
+{
+    "contentsId": "js_conditional3",
+    "title": "Javascriptの条件分岐問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_conditional3_1",
+            "title": "多層的な条件分岐",
+            "question": "変数a、b、cがそれぞれ整数であるとき、以下の条件に当てはまるコードを書いてください。\n1. aがbとcの和より大きい場合、\"a is the largest\"と出力\n2. aがbとcの和に等しい場合、\"a is equal to the sum of b and c\"と出力\n3. aがbとcの和より小さい場合、\"a is the smallest\"と出力",
+            "explanation": "if...else if...else文を使って、複数の条件を順番に判定します。まず最初のif文でaがbとcの和より大きいかを判定、次にelse ifでaがbとcの和に等しいかを判定、最後にそれ以外の場合、つまりaがbとcの和より小さい場合を処理します。",
+            "answer": "let a = 10, b = 5, c = 3;\nif (a > b + c) {\n  console.log(\"a is the largest\"); // consoleには出力されません\n} else if (a === b + c) {\n  console.log(\"a is equal to the sum of b and c\"); // consoleには\"a is equal to the sum of b and c\"が出力されます\n} else {\n  console.log(\"a is the smallest\"); // consoleには出力されません\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "js_conditional3_2",
+            "title": "条件分岐と論理演算子の複合使用",
+            "question": "変数a, bがそれぞれ整数であるとき、以下の条件に当てはまるコードを書いてください。\n1. aとbが同時に偶数である場合、\"a and b are even numbers\"と出力\n2. aが偶数でbが奇数の場合、\"a is even and b is odd\"と出力\n3. aが奇数でbが偶数の場合、\"a is odd and b is even\"と出力\n4. aとbが同時に奇数である場合、\"a and b are odd numbers\"と出力",
+            "explanation": "if...else if...else文と論理演算子を組み合わせて、変数aとbの偶数・奇数のパターンに対応したメッセージを出力します。各条件はそれぞれのif文またはelse if文内で論理演算子'&&'を使用して実装します。",
+            "answer": "let a = 4, b = 7;\nif (a % 2 === 0 && b % 2 === 0) {\n  console.log(\"a and b are even numbers\"); // consoleには出力されません\n} else if (a % 2 === 0 && b % 2 !== 0) {\n  console.log(\"a is even and b is odd\"); // consoleには\"a is even and b is odd\"が出力されます\n} else if (a % 2 !== 0 && b % 2 === 0) {\n  console.log(\"a is odd and b is even\"); // consoleには出力されません\n} else {\n  console.log(\"a and b are odd numbers\"); // consoleには出力されません\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "js_conditional3_3",
+            "title": "複雑な条件式の利用",
+            "question": "あるウェブサイトのログイン機能を作成します。以下の条件に従ってログイン機能のコードを書いてください。\n1. ユーザー名（username）とパスワード（password）が与えられます\n2. ユーザー名が「admin」で、パスワードが「1234」の場合、'You are logged in as admin.'を出力\n3. ユーザー名が「admin」ではない場合、'Invalid username.'を出力\n4. ユーザー名が「admin」で、パスワードが「1234」ではない場合、'Invalid password.'を出力",
+            "explanation": "この問題では、if...else if...else文を使って、ユーザー名とパスワードの正誤を確認するコードを作成します。最初に「admin」というユーザー名と「1234」というパスワードが正しいか確認します。それ以外の場合は、ユーザー名とパスワードのどちらが間違っているかを判断します。",
+            "answer": "let username = 'admin', password = '1234';\nif (username === 'admin' && password === '1234') {\n  console.log('You are logged in as admin.'); // consoleには\"You are logged in as admin.\"が出力されます\n} else if (username !== 'admin') {\n  console.log('Invalid username.'); // consoleには出力されません\n} else {\n  console.log('Invalid password.'); // consoleには出力されません\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "js_conditional3_4",
+            "title": "複雑な条件の分岐",
+            "question": "ある年齢（age）に基づくサービスの制限を実装します。次のような条件に従ったプログラムを作成してください。\n1. 年齢が16歳未満の場合、「You are too young to drive this car. Powering off」を出力\n2. 年齢が16歳である場合、「Congratulations on your first year of driving. Enjoy the ride!」を出力\n3. 年齢が17歳以上である場合、「Powering On. Enjoy the ride!」を出力",
+            "explanation": "この問題では、年齢に基づいた条件分岐を書くことが求められています。if...else if...else文を用いて、与えられた年齢の条件に対応する出力を行います。",
+            "answer": "let age = 18;\nif (age < 16) {\n  console.log('You are too young to drive this car. Powering off');\n} else if (age === 16) {\n  console.log('Congratulations on your first year of driving. Enjoy the ride!');\n} else {\n  console.log('Powering On. Enjoy the ride!'); // consoleには\"Powering On. Enjoy the ride!\"が出力されます\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "js_conditional3_5",
+            "title": "複数の論理演算子の使用",
+            "question": "1から100までの数値が与えられます。その数値が3の倍数であり、かつ5の倍数でもある場合、'FizzBuzz'と出力するプログラムを作成してください。ただし、それ以外の場合は数値をそのまま出力してください。",
+            "explanation": "この問題は複数の論理演算子を使用して、条件を判断する能力を試すものです。与えられた数値が3の倍数でもあり、かつ5の倍数でもあるときに限り、「FizzBuzz」と出力します。それ以外の場合は、数値をそのまま出力します。",
+            "answer": "let num = 15;\nif (num % 3 === 0 && num % 5 === 0) {\n  console.log('FizzBuzz'); // consoleには\"FizzBuzz\"が出力されます\n} else {\n  console.log(num);\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "js_conditional3_6",
+            "title": "switch文の使用",
+            "question": "数値が与えられます。その数値が1なら'One'、2なら'Two'、3なら'Three'と出力するプログラムをswitch文を使用して作成してください。それ以外の数値が与えられた場合は'Invalid'と出力してください。",
+            "explanation": "この問題はswitch文を用いて条件分岐を行う能力を試すものです。switch文は与えられた値に応じて、それぞれのcase内のコードを実行します。それぞれのcaseはブロック ({}) で囲まれた一連のステートメントです。",
+            "answer": "let num = 2;\nswitch(num) {\n  case 1:\n    console.log('One'); // consoleには何も出力されません\n    break;\n  case 2:\n    console.log('Two'); // consoleには\"Two\"が出力されます\n    break;\n  case 3:\n    console.log('Three');\n    break;\n  default:\n    console.log('Invalid');\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "js_conditional3_7",
+            "title": "複雑な条件分岐",
+            "question": "数値が与えられます。その数値が偶数で2より大きい場合は 'BigEven'、奇数で2より大きい場合は 'BigOdd'、2以下の偶数の場合は 'SmallEven'、2以下の奇数の場合は 'SmallOdd'と出力するプログラムを作成してください。",
+            "explanation": "この問題は、if-else文を用いた複雑な条件分岐を扱います。数値が偶数か奇数か、そしてその数値が2より大きいか2以下かを判定する必要があります。",
+            "answer": "let num = 3;\nif (num > 2) {\n  if (num % 2 == 0) {\n    console.log('BigEven'); // consoleには何も出力されません\n  } else {\n    console.log('BigOdd'); // consoleには\"BigOdd\"が出力されます\n  }\n} else {\n  if (num % 2 == 0) {\n    console.log('SmallEven');\n  } else {\n    console.log('SmallOdd');\n  }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "js_conditional3_8",
+            "title": "switch-case文",
+            "question": "1から5までの数値が与えられます。それぞれの数値に対応する英語の単語('One', 'Two', 'Three', 'Four', 'Five')を出力するプログラムをswitch-case文を用いて作成してください。",
+            "explanation": "switch-case文は特定の値に一致する場合に処理を実行する制御フロー文です。ここでは数値に対応する英語の単語を出力するために使用します。",
+            "answer": "let num = 3;\nswitch (num) {\n  case 1:\n    console.log('One'); // consoleには何も出力されません\n    break;\n  case 2:\n    console.log('Two'); // consoleには何も出力されません\n    break;\n  case 3:\n    console.log('Three'); // consoleには\"Three\"が出力されます\n    break;\n  case 4:\n    console.log('Four'); // consoleには何も出力されません\n    break;\n  case 5:\n    console.log('Five'); // consoleには何も出力されません\n    break;\n  default:\n    console.log('Invalid number');\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "js_conditional3_9",
+            "title": "複雑なif文",
+            "question": "0から100までの数値が与えられます。数値が50未満の場合は'Smaller than 50', 数値が50から75までの場合は'Between 50 and 75', それ以上の場合は'Greater than 75'と出力するプログラムを作成してください。",
+            "explanation": "この問題では、複数のif文を組み合わせる必要があります。50未満、50から75、そしてそれ以上の3つの範囲を処理するための条件を正しく配置することが重要です。",
+            "answer": "let num = 60;\nif (num < 50) {\n  console.log('Smaller than 50'); // consoleには何も出力されません\n} else if (num <= 75) {\n  console.log('Between 50 and 75'); // consoleには\"Between 50 and 75\"が出力されます\n} else {\n  console.log('Greater than 75'); // consoleには何も出力されません\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "js_conditional3_10",
+            "title": "複雑なif文",
+            "question": "文字列が与えられます。文字列が'Hello'で始まる場合は'World'を、'Goodbye'で始まる場合は'See you later'を、それ以外の場合は'Unknown greeting'を出力するプログラムを作成してください。",
+            "explanation": "この問題では文字列の先頭にある特定の文字を判断する方法を使用します。JavaScriptのstartsWith()関数を使用することで、文字列が特定の文字で始まるかどうかを判断することができます。",
+            "answer": "let str = 'Hello everyone';\nif (str.startsWith('Hello')) {\n  console.log('World'); // consoleには'World'が出力されます\n} else if (str.startsWith('Goodbye')) {\n  console.log('See you later'); // consoleには何も出力されません\n} else {\n  console.log('Unknown greeting'); // consoleには何も出力されません\n}"
+        },
+        {
+            "id": 11,
+            "questionId": "js_conditional3_11",
+            "title": "switch文とbreak",
+            "question": "以下の条件を満たすswitch文を作成してください。整数が与えられ、その数値が0ならば'zero'、1ならば'one'、2ならば'two'、それ以外ならば'other'を出力します。",
+            "explanation": "この問題では、JavaScriptのswitch文を使用します。switch文は、異なる条件に基づいてプログラムの流れを制御するために使用されます。また、各caseの最後にはbreakを使用して、次のcaseが実行されるのを防ぎます。",
+            "answer": "let num = 1;\nswitch (num) {\n  case 0:\n    console.log('zero'); // consoleには何も出力されません\n    break;\n  case 1:\n    console.log('one'); // consoleには'one'が出力されます\n    break;\n  case 2:\n    console.log('two'); // consoleには何も出力されません\n    break;\n  default:\n    console.log('other'); // consoleには何も出力されません\n}"
+        },
+        {
+            "id": 12,
+            "questionId": "js_conditional3_12",
+            "title": "複雑な条件分岐",
+            "question": "以下の条件を満たすif文を作成してください。整数が与えられ、その数値が100以上200未満であれば'100-199'、200以上300未満であれば'200-299'、それ以外ならば'out of range'を出力します。",
+            "explanation": "この問題では、JavaScriptのif文と複数の条件式を組み合わせます。条件式には、大小比較演算子を使用します。",
+            "answer": "let num = 250;\nif (num >= 100 && num < 200) {\n  console.log('100-199'); // consoleには何も出力されません\n} else if (num >= 200 && num < 300) {\n  console.log('200-299'); // consoleには'200-299'が出力されます\n} else {\n  console.log('out of range'); // consoleには何も出力されません\n}"
+        },
+        {
+            "id": 13,
+            "questionId": "js_conditional3_13",
+            "title": "条件分岐と関数",
+            "question": "次の条件を満たすJavaScriptの関数を作成してください。関数名は「gradeChecker」、引数として整数を1つ取ります。引数が90以上なら'A'、80以上90未満なら'B'、70以上80未満なら'C'、それ以外なら'D'を返すようにします。",
+            "explanation": "この問題では、条件分岐と関数を一緒に使用します。ifとelse ifを使って、異なる条件を評価し、対応する値を返します。",
+            "answer": "function gradeChecker(score) {\n  if (score >= 90) {\n    return 'A';\n  } else if (score >= 80) {\n    return 'B';\n  } else if (score >= 70) {\n    return 'C';\n  } else {\n    return 'D';\n  }\n}\nconsole.log(gradeChecker(85)); // consoleには'B'が出力されます"
+        },
+        {
+            "id": 14,
+            "questionId": "js_conditional3_14",
+            "title": "複数の条件分岐",
+            "question": "次の条件を満たすJavaScriptのコードを作成してください。数値を2つ引数とする関数「compareNumbers」を作成します。第一引数が第二引数より大きければ「First is greater」、小さければ「First is smaller」、同じであれば「Both are equal」をコンソールに出力します。",
+            "explanation": "この問題では、if, else if, else文を使って、複数の条件を比較します。第一引数と第二引数の大小を比較し、結果に応じて異なる文字列を出力します。",
+            "answer": "function compareNumbers(firstNum, secondNum) {\n  if (firstNum > secondNum) {\n    console.log('First is greater');\n  } else if (firstNum < secondNum) {\n    console.log('First is smaller');\n  } else {\n    console.log('Both are equal');\n  }\n}\ncompareNumbers(3, 5); // consoleには'First is smaller'が出力されます"
+        },
+        {
+            "id": 15,
+            "questionId": "js_conditional3_15",
+            "title": "複雑な条件分岐",
+            "question": "次の条件を満たすJavaScriptのコードを作成してください。与えられた数値が10より大きく20未満であれば「In range」を、そうでなければ「Out of range」をコンソールに出力する関数「isInRange」を作成します。",
+            "explanation": "この問題では複数の条件を組み合わせるために、論理演算子を使用します。数値が10より大きく、同時に20未満であるかどうかを確認します。",
+            "answer": "function isInRange(num) {\n  if (num > 10 && num < 20) {\n    console.log('In range');\n  } else {\n    console.log('Out of range');\n  }\n}\nisInRange(15); // consoleには'In range'が出力されます"
+        },
+        {
+            "id": 16,
+            "questionId": "js_conditional3_16",
+            "title": "条件分岐と関数",
+            "question": "以下の条件を満たすJavaScriptのコードを作成してください。数値を引数にとり、その数値が偶数であれば「Even」、奇数であれば「Odd」をコンソールに出力する関数「isEvenOrOdd」を作成します。",
+            "explanation": "この問題では、引数として与えられた数値が偶数か奇数かを確認する必要があります。偶数とは、2で割り切れる数のことを指します。この情報を元に条件分岐を作成します。",
+            "answer": "function isEvenOrOdd(num) {\n  if (num % 2 === 0) {\n    console.log('Even');\n  } else {\n    console.log('Odd');\n  }\n}\nisEvenOrOdd(7); // consoleには'Odd'が出力されます"
+        },
+        {
+            "id": 17,
+            "questionId": "js_conditional3_17",
+            "title": "ネストされた条件分岐",
+            "question": "以下の条件を満たすJavaScriptのコードを作成してください。数値を2つ引数にとり、1つ目の数値が偶数の場合は2つ目の数値を2で割った結果を、1つ目の数値が奇数の場合は2つ目の数値を2倍した結果をコンソールに出力する関数「calculate」を作成します。",
+            "explanation": "この問題では、2つの数値を引数として関数内で条件分岐を行います。1つ目の数値が偶数か奇数かによって、2つ目の数値に対する操作が変わるため、条件分岐がネストされる形になります。",
+            "answer": "function calculate(num1, num2) {\n  if (num1 % 2 === 0) {\n    console.log(num2 / 2);\n  } else {\n    console.log(num2 * 2);\n  }\n}\ncalculate(4, 5); // consoleには2.5が出力されます"
+        },
+        {
+            "id": 18,
+            "questionId": "js_conditional3_18",
+            "title": "複数の条件分岐とリターン",
+            "question": "以下の条件を満たすJavaScriptのコードを作成してください。引数として文字列を1つ受け取り、その文字列が「morning」であれば「Good morning」、「afternoon」であれば「Good afternoon」、「evening」であれば「Good evening」、それ以外の文字列であれば「Hello」を返す関数「greeting」を作成します。",
+            "explanation": "この問題では、関数内で引数の値によって返す値を変えるための条件分岐を行います。JavaScriptの関数内でreturn文を使用すると、その時点で関数の実行が終了し、指定した値が返ります。",
+            "answer": "function greeting(timeOfDay) {\n  if (timeOfDay === 'morning') {\n    return 'Good morning';\n  } else if (timeOfDay === 'afternoon') {\n    return 'Good afternoon';\n  } else if (timeOfDay === 'evening') {\n    return 'Good evening';\n  } else {\n    return 'Hello';\n  }\n}\nconsole.log(greeting('morning')); // consoleには'Good morning'が出力されます"
+        },
+        {
+            "id": 19,
+            "questionId": "js_conditional3_19",
+            "title": "関数内部の条件分岐",
+            "question": "以下の条件を満たすJavaScriptのコードを作成してください。引数として数値を1つ受け取り、その数値が偶数であれば「even」、奇数であれば「odd」を返す関数「isEvenOrOdd」を作成します。",
+            "explanation": "この問題では、数値が偶数か奇数かを判断するための条件分岐を行います。数値を2で割った余りが0であれば偶数、1であれば奇数となります。",
+            "answer": "function isEvenOrOdd(number) {\n  if (number % 2 === 0) {\n    return 'even';\n  } else {\n    return 'odd';\n  }\n}\nconsole.log(isEvenOrOdd(3)); // consoleには'odd'が出力されます"
+        },
+        {
+            "id": 20,
+            "questionId": "js_conditional3_20",
+            "title": "多重の条件分岐",
+            "question": "以下の条件を満たすJavaScriptのコードを作成してください。引数として数値を1つ受け取り、その数値が0より大きければ「positive」、0ならば「zero」、0より小さければ「negative」を返す関数「checkNumber」を作成します。",
+            "explanation": "この問題では、数値が0より大きい、等しい、小さいという3つの条件を確認するために、多重の条件分岐を行います。if-else文を使って、それぞれの条件に合った結果を返します。",
+            "answer": "function checkNumber(number) {\n  if (number > 0) {\n    return 'positive';\n  } else if (number === 0) {\n    return 'zero';\n  } else {\n    return 'negative';\n  }\n}\nconsole.log(checkNumber(-3)); // consoleには'negative'が出力されます"
+        }
+    ]
+}

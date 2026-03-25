@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import styles from './Courses.module.css';
 import Link from 'next/link';
-import LoadingPage from '../components/LoadingPage';
+import LoadingPage from '../../components/LoadingPage';
+
 
 interface Course {
   id: number;
@@ -16,15 +17,21 @@ interface Course {
 
 const Courses: React.FC = () => {
   const router = useRouter();
-  let courseId = router.query.id;
+  let courseId = router.query.courses;
   const [courses, setCourses] = useState<Course[]>([]);
   useEffect(() => {
     if (!courseId) return;
     const fetchCourses = async () => {
-      const response = await fetch('/json/courses_' + courseId + '.json');
-      const data = await response.json();
-      setCourses(data);
+      try {
+        const response = await fetch('/json/courses_' + courseId + '.json');
+        const data = await response.json();
+        setCourses(data);
+      } catch (error) {
+        // Handle the error here, e.g. show an error message or fallback component
+        console.error('Error fetching courses:', error);
+      }
     };
+    
     fetchCourses();
   }, [courseId]);
 
@@ -41,7 +48,7 @@ const Courses: React.FC = () => {
       <Header />
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Java入門カリキュラム</h1>
+        <h1 className={styles.title}>{courseId}入門カリキュラム</h1>
 
         <div className={styles.grid}>
           {courses.map((course: Course) => (

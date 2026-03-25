@@ -1,0 +1,166 @@
+{
+    "contentsId": "js_loop1",
+    "title": "Javascriptの関数問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_function1_1",
+            "title": "簡単な関数の作成",
+            "question": "引数として整数を一つ取り、その整数を2倍にして返す関数を作成してください。関数名は「doubleNumber」にしてください。",
+            "explanation": "JavaScriptの関数は「function」キーワードを使って定義します。この問題では、引数として渡された整数を2倍にする簡単な関数を作成します。",
+            "answer": "function doubleNumber(num) {\n  // 引数として渡された数値を2倍にします。\n  return num * 2;\n}\n\nconsole.log(doubleNumber(5));\n// 出力: 10"
+        },
+        {
+            "id": 2,
+            "questionId": "js_function1_2",
+            "title": "関数内での計算",
+            "question": "引数として整数を二つ取り、その和を返す関数を作成してください。関数名は「sumNumbers」にしてください。",
+            "explanation": "JavaScriptの関数は複数の引数を受け取ることができます。この問題では、2つの引数を受け取り、それらの和を返す関数を作成します。",
+            "answer": "function sumNumbers(num1, num2) {\n  // 引数として渡された二つの数値の和を計算します。\n  return num1 + num2;\n}\n\nconsole.log(sumNumbers(3, 4));\n// 出力: 7"
+        },
+        {
+            "id": 3,
+            "questionId": "js_function1_3",
+            "title": "関数の呼び出し",
+            "question": "既に作成されている関数「greet」があります。この関数は引数として名前を受け取り、'Hello, [名前]!'というメッセージを返します。この関数を呼び出し、自分の名前を引数に渡して結果をconsole.logで出力してください。",
+            "explanation": "JavaScriptの関数は、関数名後に括弧をつけて呼び出すことができます。括弧内には引数を渡すことができます。",
+            "answer": "function greet(name) {\n  // 引数として渡された名前を使用してメッセージを作成します。\n  return 'Hello, ' + name + '!';\n}\n\nconsole.log(greet('YourName'));\n// 出力: Hello, YourName!"
+        },
+        {
+            "id": 4,
+            "questionId": "js_function1_4",
+            "title": "関数とスコープ",
+            "question": "関数内で定義された変数は、その関数内でのみアクセス可能であることを確認してください。具体的には、関数内で変数を定義し、関数の外からその変数にアクセスしようとしてエラーを確認してください。",
+            "explanation": "JavaScriptの関数内で定義された変数は、その関数のスコープ内でのみアクセス可能です。これを関数スコープと言います。",
+            "answer": "function checkScope() {\n  // 関数内で変数を定義します。\n  var innerVar = 'I am inside!';\n  console.log(innerVar);\n}\n\ncheckScope();\n// 出力: I am inside!\nconsole.log(innerVar);\n// エラー: innerVar is not defined"
+        },
+        {
+            "id": 5,
+            "questionId": "js_function1_5",
+            "title": "パラメーターと引数",
+            "question": "関数を定義する際の括弧内の変数（パラメーター）と、関数を呼び出す際に渡す値（引数）の違いを確認してください。関数を定義する際にパラメーターとして 'x' を設定し、その関数を呼び出す際に引数として 5 を渡すコードを書いてください。",
+            "explanation": "関数を定義する際の括弧内の変数をパラメーターといい、関数を呼び出す際に渡す値を引数と言います。パラメーターは関数の定義部分で名前がつけられ、引数は実際の値で、関数が呼び出される際にパラメーターに渡されます。",
+            "answer": "function multiplyByTwo(x) {\n  // xはパラメーターで、関数が呼び出されるときに値が割り当てられます。\n  return x * 2;\n}\n\nconsole.log(multiplyByTwo(5));\n// 出力: 10"
+        },
+        {
+            "id": 6,
+            "questionId": "js_function1_6",
+            "title": "デフォルトパラメーター",
+            "question": "JavaScriptでは、関数のパラメーターにデフォルト値を設定することが可能です。このデフォルト値は、関数呼び出し時に引数が渡されなかった場合に使用されます。例えば、引数として何も渡されない場合に 'World' をデフォルト値として設定し、'Hello, [名前]!' というメッセージを返す greet ファンクションを作成してください。",
+            "explanation": "関数のパラメーターにはデフォルト値を設定することが可能で、関数呼び出し時に引数が渡されなかった場合にこのデフォルト値が使用されます。",
+            "answer": "function greet(name = 'World') {\n  // name に引数が渡されなかった場合、デフォルト値として 'World' が使用されます。\n  return 'Hello, ' + name + '!';\n}\n\nconsole.log(greet());\n// 出力: Hello, World!"
+        },
+        {
+            "id": 7,
+            "questionId": "js_function1_7",
+            "title": "複数のパラメーター",
+            "question": "JavaScriptの関数では、複数のパラメーターを取ることが可能です。2つのパラメーターを引数として取り、それらを掛け合わせた結果を返す関数を作成してください。",
+            "explanation": "JavaScriptの関数では、複数のパラメーターを指定することができます。それぞれのパラメーターは、関数が呼び出される際に引数として値が渡されます。",
+            "answer": "function multiply(a, b) {\n  // aとbはパラメーターで、関数が呼び出されるときに値が割り当てられます。\n  return a * b;\n}\n\nconsole.log(multiply(4, 5));\n// 出力: 20"
+        },
+        {
+            "id": 8,
+            "questionId": "js_function1_8",
+            "title": "関数のスコープ",
+            "question": "JavaScriptでは、変数はその定義された場所に基づいてスコープを持ちます。つまり、変数はそれが定義されている範囲内でのみアクセス可能です。これを理解するために、関数内で定義された変数が関数外からアクセスできるか試してみてください。",
+            "explanation": "JavaScriptでは、変数はそれが定義された場所（スコープ）内でのみアクセス可能です。関数内で定義された変数はその関数の内部からのみアクセス可能であり、関数外からはアクセスできません。",
+            "answer": "function test() {\n  var x = 10;\n  console.log(x);\n}\n\ntest();\n// 出力: 10\nconsole.log(x);\n// ReferenceError: x is not defined"
+        },
+        {
+            "id": 9,
+            "questionId": "js_function1_9",
+            "title": "ローカル変数とグローバル変数",
+            "question": "JavaScriptには、ローカル変数とグローバル変数という2つのタイプの変数があります。これらの違いを理解するために、関数内と関数外で同じ名前の変数を定義し、その挙動を観察してみてください。",
+            "explanation": "JavaScriptでは、関数内で定義された変数はローカル変数となり、その関数のスコープ内でのみ利用可能です。一方、関数外で定義された変数はグローバル変数となり、プログラムのどこからでもアクセス可能です。しかし、同名のローカル変数とグローバル変数が存在する場合、関数内ではローカル変数が優先されます。",
+            "answer": "var x = 'global'; // グローバル変数\n\nfunction test() {\n  var x = 'local'; // ローカル変数\n  console.log(x);\n}\n\ntest();\n// 出力: local\nconsole.log(x);\n// 出力: global"
+        },
+        {
+            "id": 10,
+            "questionId": "js_function1_10",
+            "title": "再帰関数",
+            "question": "再帰とは、関数が自身を呼び出すことを指します。これを理解するために、1から指定した数値までの総和を計算する再帰関数を作成してみてください。",
+            "explanation": "再帰関数は、自身の中から自身を呼び出す関数のことです。再帰は、反復を必要とする多くの問題を解決するのに役立ちます。ただし、再帰が無限に続かないように、終了条件を正しく設定することが重要です。",
+            "answer": "function sumTo(n) {\n  // nが1の場合は、再帰を終了し、1を返します。\n  if (n === 1) {\n    return 1;\n  }\n  // それ以外の場合は、nと、n-1までの総和を返します。\n  return n + sumTo(n - 1);\n}\n\nconsole.log(sumTo(5));\n// 出力: 15 (1+2+3+4+5)"
+        },
+        {
+            "id": 11,
+            "questionId": "js_function1_11",
+            "title": "デフォルトパラメーター",
+            "question": "JavaScriptの関数では、デフォルトパラメーターを指定できます。これを活用するために、2つの数値の加算を行う関数を作成し、どちらか一方のパラメーターが与えられなかった場合には0をデフォルトとして利用してみてください。",
+            "explanation": "JavaScriptでは、関数のパラメーターにデフォルト値を設定することが可能です。これにより、そのパラメーターが未指定(またはundefined)の場合に、デフォルト値が使用されます。",
+            "answer": "function add(a = 0, b = 0) {\n  // aとbの合計を返す\n  return a + b;\n}\n\nconsole.log(add(5));\n// 出力: 5 (5 + 0)\nconsole.log(add());\n// 出力: 0 (0 + 0)"
+        },
+        {
+            "id": 12,
+            "questionId": "js_function1_12",
+            "title": "再代入されるデフォルトパラメーター",
+            "question": "デフォルトパラメーターが関数内で再代入される場合の挙動を確認してみてください。数値のデフォルトパラメーターを2つ持つ関数を作成し、その数値を関数内で再代入するとどうなるか見てみましょう。",
+            "explanation": "デフォルトパラメーターは再代入可能で、再代入後の値が関数内で使用されます。しかし、その再代入は関数の外部に影響を与えることはありません。",
+            "answer": "function test(a = 1, b = 2) {\n  // aとbを再代入\n  a = 3;\n  b = 4;\n  console.log(a + b);\n}\n\ntest();\n// 出力: 7 (3 + 4)"
+        },
+        {
+            "id": 13,
+            "questionId": "js_function1_13",
+            "title": "アロー関数",
+            "question": "JavaScriptにはアロー関数というコンパクトな関数表現があります。数値2つを引数に取り、その差を返すアロー関数を定義してみてください。",
+            "explanation": "アロー関数は、functionキーワードを使用しないコンパクトな関数表現です。パラメーターのリストの後に => を配置し、その後に関数の本体を記述します。",
+            "answer": "let subtract = (a, b) => {\n  // aとbの差を返す\n  return a - b;\n};\n\nconsole.log(subtract(10, 5));\n// 出力: 5 (10 - 5)"
+        },
+        {
+            "id": 14,
+            "questionId": "js_function1_14",
+            "title": "アロー関数とthis",
+            "question": "アロー関数では、thisの扱いが通常のfunctionと異なります。以下のコードを完成させて、アロー関数内とfunction内でのthisの違いを確認してみてください。\n\nlet obj = {\n  value: 10,\n  arrowFunction: function() {\n    let arrow = () => {\n      // ここでのthis.valueを出力\n    };\n    arrow();\n  },\n  regularFunction: function() {\n    function innerFunction() {\n      // ここでのthis.valueを出力\n    }\n    innerFunction();\n  }\n};\nobj.arrowFunction();\nobj.regularFunction();",
+            "explanation": "アロー関数では、thisは定義時のスコープを保持します。これは、アロー関数が「レキシカルスコープ」を持つとも言われます。これに対して、通常のfunctionでは、thisは呼び出しのコンテキストに依存します。",
+            "answer": "let obj = {\n  value: 10,\n  arrowFunction: function() {\n    let arrow = () => {\n      // ここでのthis.valueを出力\n      console.log(this.value);\n    };\n    arrow();\n  },\n  regularFunction: function() {\n    function innerFunction() {\n      // ここでのthis.valueを出力\n      console.log(this.value);\n    }\n    innerFunction();\n  }\n};\nobj.arrowFunction();\n// 出力: 10\nobj.regularFunction();\n// 出力: undefined"
+        },
+        {
+            "id": 15,
+            "questionId": "js_function1_15",
+            "title": "即時関数",
+            "question": "即時関数(IIFE: Immediately Invoked Function Expression)とは何か説明し、サンプルコードを記述してください。",
+            "explanation": "即時関数(IIFE: Immediately Invoked Function Expression)とは、定義された直後に実行されるJavaScriptの関数パターンです。このパターンは変数のスコープを限定するためによく使われます。",
+            "answer": "(function() {\n  // 即時関数の内部\n  let x = 10;\n  console.log(x);\n})();\n// 出力: 10\n\nconsole.log(typeof x);\n// 出力: 'undefined', 変数xは即時関数のスコープ内でしか存在しないため"
+        },
+        {
+            "id": 16,
+            "questionId": "js_function1_16",
+            "title": "クロージャ",
+            "question": "クロージャとは何か説明し、その例を一つ作成してみてください。",
+            "explanation": "クロージャとは、関数とその関数が宣言されたレキシカル環境の組み合わせです。これにより、関数はその外部スコープから変数を「記憶」することができます。",
+            "answer": "function createCounter() {\n  let count = 0;\n  return function() {\n    // 外部スコープのcount変数を参照し、その値を増加させる\n    return ++count;\n  };\n}\n\nlet counter = createCounter();\n\nconsole.log(counter());\n// 出力: 1\nconsole.log(counter());\n// 出力: 2, counter関数はcount変数を「記憶」している"
+        },
+        {
+            "id": 17,
+            "questionId": "js_function1_17",
+            "title": "高階関数",
+            "question": "高階関数とは何か説明し、その例を一つ作成してみてください。",
+            "explanation": "高階関数とは、他の関数を引数として受け取ったり、関数を返したりする関数のことを指します。JavaScriptのArrayメソッドである.map()や.filter()などは高階関数の例です。",
+            "answer": "function greet() {\n  return 'Hello, World!';\n}\n\nfunction shout(func) {\n  // 引数として受け取った関数を実行し、その結果を大文字にして返す\n  let message = func();\n  return message.toUpperCase();\n}\n\nconsole.log(shout(greet));\n// 出力: 'HELLO, WORLD!', greet関数の結果を大文字に変換"
+        },
+        {
+            "id": 18,
+            "questionId": "js_function1_18",
+            "title": "関数のデフォルトパラメータ",
+            "question": "JavaScriptの関数でデフォルトパラメータを設定する方法を説明し、その例を一つ作成してください。",
+            "explanation": "JavaScriptでは関数のパラメータに対してデフォルト値を設定することができます。デフォルト値は、関数が引数を受け取らなかった場合に使用されます。",
+            "answer": "function greet(name = 'World') {\n  // nameパラメータが与えられない場合、デフォルト値'World'が使用される\n  return `Hello, ${name}!`;\n}\n\nconsole.log(greet());\n// 出力: 'Hello, World!'\nconsole.log(greet('Alice'));\n// 出力: 'Hello, Alice!', 引数が与えられた場合、デフォルト値は無視される"
+        },
+        {
+            "id": 19,
+            "questionId": "js_function1_19",
+            "title": "アロー関数",
+            "question": "JavaScriptのアロー関数について説明し、その例を一つ作成してください。",
+            "explanation": "アロー関数はES6から導入された新しい関数の記述方法です。アロー関数は関数表現をより短く書くことができ、またthisのスコープがレキシカルスコープになるという特性があります。",
+            "answer": "let greet = () => {\n  // アロー関数の記述\n  return 'Hello, World!';\n};\n\nconsole.log(greet());\n// 出力: 'Hello, World!'"
+        },
+        {
+            "id": 20,
+            "questionId": "js_function1_20",
+            "title": "即時関数",
+            "question": "即時関数とは何か説明し、その例を一つ作成してみてください。",
+            "explanation": "即時関数は定義されるとすぐに実行される関数です。スクリプト全体を即時関数で囲むことで、変数のスコープを限定し、グローバルスコープの汚染を防ぐことができます。",
+            "answer": "(function () {\n  // 即時関数の記述\n  let name = 'Alice';\n  console.log(`Hello, ${name}!`);\n})();\n// 出力: 'Hello, Alice!', 定義と同時に関数が実行される"
+        }
+    ]
+}

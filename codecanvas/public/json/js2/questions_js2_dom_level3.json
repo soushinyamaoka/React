@@ -1,0 +1,86 @@
+{
+    "contentsId": "js_dom3",
+    "title": "JavaScriptのDOM操作：要素の取得問題集",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_dom3_1",
+            "title": "複数条件の要素取得",
+            "question": "HTML内の特定のクラスを持つ要素の中で、特定の属性を持つ要素を全て取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「querySelectorAll」メソッドを用いて、特定のクラスと特定の属性を持つ要素を全て取得することができます。",
+            "answer": "// class名が\"example\"で、data-test属性を持つ要素を全て取得\nlet elements = document.querySelectorAll('.example[data-test]');\n// このコードを実行すると、class名が\"example\"で、data-test属性を持つ要素を全て取得することができます。"
+        },
+        {
+            "id": 2,
+            "questionId": "js_dom3_2",
+            "title": "動的に要素を取得",
+            "question": "HTML内の要素が動的に変化する場合、変化後の要素を取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「MutationObserver」を用いて、DOMの変化を監視し、変化後の要素を取得することができます。",
+            "answer": "// 監視対象の要素を取得\nlet target = document.getElementById('target');\n\n// MutationObserverのインスタンスを作成\nlet observer = new MutationObserver(function(mutations) {\n  mutations.forEach(function(mutation) {\n    console.log(mutation.target);\n  });\n});\n\n// 監視の設定\nlet config = { attributes: true, childList: true, characterData: true };\n\n// 監視を開始\nobserver.observe(target, config);\n\n// このコードを実行すると、idが\"target\"の要素の変化を監視し、変化後の要素を取得することができます。"
+        },
+        {
+            "id": 3,
+            "questionId": "js_dom3_3",
+            "title": "要素の属性取得",
+            "question": "HTML内の特定の要素の特定の属性を取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「getAttribute」メソッドを用いて、特定の要素の特定の属性を取得することができます。",
+            "answer": "// idが\"example\"の要素のhref属性を取得\nlet href = document.getElementById('example').getAttribute('href');\n// このコードを実行すると、idが\"example\"の要素のhref属性を取得することができます。"
+        },
+        {
+            "id": 4,
+            "questionId": "js_dom3_4",
+            "title": "要素のスタイル取得",
+            "question": "HTML内の特定の要素のスタイルを取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「getComputedStyle」メソッドを用いて、特定の要素のスタイルを取得することができます。",
+            "answer": "// idが\"example\"の要素のスタイルを取得\nlet style = window.getComputedStyle(document.getElementById('example'));\n// このコードを実行すると、idが\"example\"の要素のスタイルを取得することができます。"
+        },
+        {
+            "id": 5,
+            "questionId": "js_dom3_5",
+            "title": "要素のスタイル取得(2)",
+            "question": "HTML内の特定の要素の特定のスタイルを取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「getComputedStyle」メソッドとプロパティ指定を組み合わせて、特定の要素の特定のスタイルを取得することができます。",
+            "answer": "// idが\"example\"の要素のcolorスタイルを取得\nlet color = window.getComputedStyle(document.getElementById('example')).color;\n// このコードを実行すると、idが\"example\"の要素のcolorスタイルを取得することができます。"
+        },
+        {
+            "id": 6,
+            "questionId": "js_dom3_6",
+            "title": "要素の親ノード取得",
+            "question": "HTML内の特定の要素の親ノードを取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「parentNode」プロパティを用いて、特定の要素の親ノードを取得することができます。",
+            "answer": "// idが\"example\"の要素の親ノードを取得\nlet parent = document.getElementById('example').parentNode;\n// このコードを実行すると、idが\"example\"の要素の親ノードを取得することができます。"
+        },
+        {
+            "id": 7,
+            "questionId": "js_dom3_7",
+            "title": "要素の子ノード取得",
+            "question": "HTML内の特定の要素の子ノードを取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「childNodes」プロパティを用いて、特定の要素の子ノードを取得することができます。",
+            "answer": "// idが\"example\"の要素の子ノードを取得\nlet children = document.getElementById('example').childNodes;\n// このコードを実行すると、idが\"example\"の要素の子ノードを取得することができます。"
+        },
+        {
+            "id": 8,
+            "questionId": "js_dom3_8",
+            "title": "特定の子ノード取得",
+            "question": "HTML内の特定の要素の特定の子ノードを取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「children」プロパティとインデックスを組み合わせて、特定の要素の特定の子ノードを取得することができます。",
+            "answer": "// idが\"example\"の要素の1番目の子ノードを取得\nlet child = document.getElementById('example').children[0];\n// このコードを実行すると、idが\"example\"の要素の1番目の子ノードを取得することができます。"
+        },
+        {
+            "id": 9,
+            "questionId": "js_dom3_9",
+            "title": "要素のテキスト取得",
+            "question": "HTML内の特定の要素のテキストを取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「innerText」プロパティを用いて、特定の要素のテキストを取得することができます。",
+            "answer": "// idが\"example\"の要素のテキストを取得\nlet text = document.getElementById('example').innerText;\n// このコードを実行すると、idが\"example\"の要素のテキストを取得することができます。"
+        },
+        {
+            "id": 10,
+            "questionId": "js_dom3_10",
+            "title": "要素のHTML取得",
+            "question": "HTML内の特定の要素のHTMLを取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「innerHTML」プロパティを用いて、特定の要素のHTMLを取得することができます。",
+            "answer": "// idが\"example\"の要素のHTMLを取得\nlet html = document.getElementById('example').innerHTML;\n// このコードを実行すると、idが\"example\"の要素のHTMLを取得することができます。"
+        }
+    ]
+}

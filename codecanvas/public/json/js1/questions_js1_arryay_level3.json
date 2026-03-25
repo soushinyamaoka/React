@@ -1,0 +1,166 @@
+{
+    "contentsId": "js_loop1",
+    "title": "Javascriptの配列問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_arr2_1",
+            "title": "配列から特定の要素を削除する",
+            "question": "次の配列があります：\nlet arr = ['apple', 'banana', 'cherry', 'date', 'elderberry'];。\nこの配列から'cherry'を削除するJavaScriptコードを記述してください。",
+            "explanation": "配列から特定の要素を削除するには、Array.prototype.indexOfメソッドとArray.prototype.spliceメソッドを組み合わせて使用します。indexOfメソッドは、指定された要素が配列内で最初に見つかったインデックスを返し、その要素が存在しない場合は-1を返します。spliceメソッドは、配列から要素を削除または置換し、必要に応じて新しい要素を追加して、削除した要素の配列を返します。",
+            "answer": "let arr = ['apple', 'banana', 'cherry', 'date', 'elderberry'];\nlet index = arr.indexOf('cherry');\nif (index !== -1) {\n    arr.splice(index, 1);\n}\nconsole.log(arr); // Expected output: ['apple', 'banana', 'date', 'elderberry']"
+        },
+        {
+            "id": 2,
+            "questionId": "js_arr2_2",
+            "title": "配列内の要素の順番を反転する",
+            "question": "次の配列があります：\nlet arr = [1, 2, 3, 4, 5];。\nこの配列の要素の順番を反転するJavaScriptコードを記述してください。",
+            "explanation": "配列の要素の順序を反転するには、Array.prototype.reverseメソッドを使用します。reverseメソッドは、配列の要素の順序を反転させ、その配列を返します。",
+            "answer": "let arr = [1, 2, 3, 4, 5];\narr.reverse();\nconsole.log(arr); // Expected output: [5, 4, 3, 2, 1]"
+        },
+        {
+            "id": 3,
+            "questionId": "js_arr2_3",
+            "title": "配列の要素を連結する",
+            "question": "次の配列があります：\nlet arr = ['This', 'is', 'an', 'array'];。\nこの配列のすべての要素を一つの文字列に連結し、間に空白を挿入してください。",
+            "explanation": "配列の要素を連結するには、Array.prototype.joinメソッドを使用します。joinメソッドは、配列のすべての要素を文字列に連結します。要素間には、引数に指定したセパレータ（この場合はスペース）が挿入されます。",
+            "answer": "let arr = ['This', 'is', 'an', 'array'];\nlet str = arr.join(' ');\nconsole.log(str); // Expected output: 'This is an array'"
+        },
+        {
+            "id": 4,
+            "questionId": "js_arr2_4",
+            "title": "配列の要素を昇順に並べ替える",
+            "question": "次の配列があります：\nlet arr = [5, 3, 2, 4, 1];。\nこの配列の要素を昇順に並べ替えるJavaScriptコードを記述してください。",
+            "explanation": "配列の要素を昇順に並べ替えるには、Array.prototype.sortメソッドを使用します。sortメソッドは、配列の要素を適切な位置に並べ替えます。",
+            "answer": "let arr = [5, 3, 2, 4, 1];\narr.sort((a, b) => a - b);\nconsole.log(arr); // Expected output: [1, 2, 3, 4, 5]"
+        },
+        {
+            "id": 5,
+            "questionId": "js_arr2_5",
+            "title": "配列のすべての要素を一括処理する",
+            "question": "次の配列があります：\nlet arr = [1, 2, 3, 4, 5];。\nこの配列のすべての要素を2倍するJavaScriptコードを記述してください。",
+            "explanation": "配列のすべての要素に対して同じ処理を行うには、Array.prototype.mapメソッドを使用します。mapメソッドは、配列のすべての要素に対して提供した関数を呼び出し、その結果からなる新しい配列を生成します。",
+            "answer": "let arr = [1, 2, 3, 4, 5];\nlet doubledArr = arr.map(x => x * 2);\nconsole.log(doubledArr); // Expected output: [2, 4, 6, 8, 10]"
+        },
+        {
+            "id": 6,
+            "questionId": "js_arr2_6",
+            "title": "配列の特定の条件を満たす要素を探す",
+            "question": "次の配列があります：\nlet arr = [5, 12, 8, 130, 44];。\nこの配列から10より大きい最初の要素を見つけるJavaScriptコードを記述してください。",
+            "explanation": "配列の中から特定の条件を満たす最初の要素を見つけるには、Array.prototype.findメソッドを使用します。findメソッドは、配列の中からテスト関数がtrueを返す最初の要素を返します。",
+            "answer": "let arr = [5, 12, 8, 130, 44];\nlet found = arr.find(element => element > 10);\nconsole.log(found); // Expected output: 12"
+        },
+        {
+            "id": 7,
+            "questionId": "js_arr2_7",
+            "title": "配列のすべての要素が条件を満たすか確認する",
+            "question": "次の配列があります：\nlet arr = [1, 30, 39, 29, 10, 13];。\nこの配列のすべての要素が30以下であるか確認するJavaScriptコードを記述してください。",
+            "explanation": "配列のすべての要素が特定の条件を満たすかどうかを確認するには、Array.prototype.everyメソッドを使用します。everyメソッドは、配列のすべての要素が提供した関数によって実装されたテストをパスする場合にtrueを返します。",
+            "answer": "let arr = [1, 30, 39, 29, 10, 13];\nlet isEveryElementLessThan30 = arr.every(val => val <= 30);\nconsole.log(isEveryElementLessThan30); // Expected output: false"
+        },
+        {
+            "id": 8,
+            "questionId": "js_arr2_8",
+            "title": "配列の一部を新しい配列として取得する",
+            "question": "次の配列があります：\nlet arr = ['a', 'b', 'c', 'd', 'e'];。\nこの配列の2番目から4番目までの要素を新しい配列として取得するJavaScriptコードを記述してください。",
+            "explanation": "配列の一部を新しい配列として取得するには、Array.prototype.sliceメソッドを使用します。sliceメソッドは、配列の一部を浅くコピーして新しい配列オブジェクトを返します。",
+            "answer": "let arr = ['a', 'b', 'c', 'd', 'e'];\nlet newArr = arr.slice(1, 4);\nconsole.log(newArr); // Expected output: ['b', 'c', 'd']"
+        },
+        {
+            "id": 9,
+            "questionId": "js_arr2_9",
+            "title": "配列内の特定の要素のインデックスを見つける",
+            "question": "次の配列があります：\nlet arr = ['a', 'b', 'c', 'd', 'e'];。\nこの配列で要素 'd' のインデックスを見つけるJavaScriptコードを記述してください。",
+            "explanation": "配列内の特定の要素の最初のインデックスを見つけるには、Array.prototype.indexOfメソッドを使用します。このメソッドは、配列内で指定された要素を見つけるために使用できます。",
+            "answer": "let arr = ['a', 'b', 'c', 'd', 'e'];\nlet index = arr.indexOf('d');\nconsole.log(index); // Expected output: 3"
+        },
+        {
+            "id": 10,
+            "questionId": "js_arr2_10",
+            "title": "配列の要素を連結して文字列に変換する",
+            "question": "次の配列があります：\nlet arr = ['Hello', 'World', '!'];。\nこの配列の要素を連結し、スペースを挟んで一つの文字列に変換するJavaScriptコードを記述してください。",
+            "explanation": "配列のすべての要素を連結して一つの文字列にするには、Array.prototype.joinメソッドを使用します。joinメソッドは、配列のすべての要素を連結し、新しい文字列を生成します。",
+            "answer": "let arr = ['Hello', 'World', '!'];\nlet str = arr.join(' ');\nconsole.log(str); // Expected output: 'Hello World !'"
+        },
+        {
+            "id": 11,
+            "questionId": "js_arr2_11",
+            "title": "配列のソート",
+            "question": "次の配列があります：\nlet arr = [5, 2, 8, 1, 7];。\nこの配列を昇順にソートするJavaScriptコードを記述してください。",
+            "explanation": "配列の要素をソートするには、Array.prototype.sortメソッドを使用します。ただし、このメソッドはレキシコグラフィック（辞書順）でソートしますので、数値の配列をソートする場合は比較関数を渡す必要があります。",
+            "answer": "let arr = [5, 2, 8, 1, 7];\narr.sort((a, b) => a - b);\nconsole.log(arr); // Expected output: [1, 2, 5, 7, 8]"
+        },
+        {
+            "id": 12,
+            "questionId": "js_arr2_12",
+            "title": "配列の要素の総和を計算",
+            "question": "次の配列があります：\nlet arr = [1, 2, 3, 4, 5];。\nこの配列の要素の総和を計算するJavaScriptコードを記述してください。",
+            "explanation": "配列のすべての要素の総和を計算するには、Array.prototype.reduceメソッドを使用します。reduceメソッドは、配列の各要素に対して（左から右に）関数を適用し、単一の出力値を生成します。",
+            "answer": "let arr = [1, 2, 3, 4, 5];\nlet sum = arr.reduce((accumulator, current) => accumulator + current, 0);\nconsole.log(sum); // Expected output: 15"
+        },
+        {
+            "id": 13,
+            "questionId": "js_arr2_13",
+            "title": "配列の要素を条件によってフィルタリング",
+            "question": "次の配列があります：\nlet arr = [1, 2, 3, 4, 5];。\nこの配列から偶数のみを含む新しい配列を作成するJavaScriptコードを記述してください。",
+            "explanation": "配列から特定の条件を満たす要素のみを含む新しい配列を作成するには、Array.prototype.filterメソッドを使用します。このメソッドは、配列の各要素に対して提供されたテスト関数を呼び出し、その結果がtrueである要素からなる新しい配列を作成します。",
+            "answer": "let arr = [1, 2, 3, 4, 5];\nlet evenNumbers = arr.filter(num => num % 2 == 0);\nconsole.log(evenNumbers); // Expected output: [2, 4]"
+        },
+        {
+            "id": 14,
+            "questionId": "js_arr2_14",
+            "title": "配列内の特定の要素が存在するかどうかを確認",
+            "question": "次の配列があります：\nlet arr = ['apple', 'banana', 'cherry'];。\nこの配列内に'banana'が存在するかどうかを確認するJavaScriptコードを記述してください。",
+            "explanation": "配列内の特定の要素が存在するかどうかを確認するには、Array.prototype.includesメソッドを使用します。このメソッドは、配列に特定の要素が含まれている場合にtrueを返し、そうでない場合にfalseを返します。",
+            "answer": "let arr = ['apple', 'banana', 'cherry'];\nlet isBananaIncluded = arr.includes('banana');\nconsole.log(isBananaIncluded); // Expected output: true"
+        },
+        {
+            "id": 15,
+            "questionId": "js_arr2_15",
+            "title": "配列の要素の順序を逆にする",
+            "question": "次の配列があります：\nlet arr = ['apple', 'banana', 'cherry'];。\nこの配列の要素の順序を逆にするJavaScriptコードを記述してください。",
+            "explanation": "配列の要素の順序を逆にするには、Array.prototype.reverseメソッドを使用します。このメソッドは、配列の要素の順序を反転させ、その配列を返します。",
+            "answer": "let arr = ['apple', 'banana', 'cherry'];\narr.reverse();\nconsole.log(arr); // Expected output: ['cherry', 'banana', 'apple']"
+        },
+        {
+            "id": 16,
+            "questionId": "js_arr2_16",
+            "title": "配列の要素をアルファベット順にソート",
+            "question": "次の配列があります：\nlet arr = ['banana', 'cherry', 'apple'];。\nこの配列の要素をアルファベット順にソートするJavaScriptコードを記述してください。",
+            "explanation": "配列の要素をソートするには、Array.prototype.sortメソッドを使用します。このメソッドは、配列の要素を原地でソートし、その配列を返します。",
+            "answer": "let arr = ['banana', 'cherry', 'apple'];\narr.sort();\nconsole.log(arr); // Expected output: ['apple', 'banana', 'cherry']"
+        },
+        {
+            "id": 17,
+            "questionId": "js_arr2_17",
+            "title": "配列に要素を追加する",
+            "question": "次の配列があります：\nlet arr = ['apple', 'banana'];。\nこの配列の最後に 'cherry' を追加するJavaScriptコードを記述してください。",
+            "explanation": "配列の末尾に要素を追加するには、Array.prototype.pushメソッドを使用します。このメソッドは、新しい要素を配列の末尾に追加し、その後新しい配列の長さを返します。",
+            "answer": "let arr = ['apple', 'banana'];\narr.push('cherry');\nconsole.log(arr); // Expected output: ['apple', 'banana', 'cherry']"
+        },
+        {
+            "id": 18,
+            "questionId": "js_arr2_18",
+            "title": "配列から要素を削除する",
+            "question": "次の配列があります：\nlet arr = ['apple', 'banana', 'cherry'];。\nこの配列の最後の要素を削除するJavaScriptコードを記述してください。",
+            "explanation": "配列の末尾の要素を削除するには、Array.prototype.popメソッドを使用します。このメソッドは、配列の末尾から要素を削除し、その要素を返します。",
+            "answer": "let arr = ['apple', 'banana', 'cherry'];\narr.pop();\nconsole.log(arr); // Expected output: ['apple', 'banana']"
+        },
+        {
+            "id": 19,
+            "questionId": "js_arr2_19",
+            "title": "配列から特定の要素を探す",
+            "question": "次の配列があります：\nlet arr = ['apple', 'banana', 'cherry', 'banana'];。\nこの配列から最初の 'banana' を探し、そのインデックスを出力するJavaScriptコードを記述してください。",
+            "explanation": "配列から特定の要素を探すには、Array.prototype.indexOfメソッドを使用します。このメソッドは、指定した要素を配列内から探し、そのインデックスを返します。要素が見つからない場合は-1を返します。",
+            "answer": "let arr = ['apple', 'banana', 'cherry', 'banana'];\nlet index = arr.indexOf('banana');\nconsole.log(index); // Expected output: 1"
+        },
+        {
+            "id": 20,
+            "questionId": "js_arr2_20",
+            "title": "配列の要素をソートする",
+            "question": "次の配列があります：\nlet arr = ['banana', 'apple', 'cherry'];。\nこの配列の要素をアルファベット順にソートするJavaScriptコードを記述してください。",
+            "explanation": "配列の要素をソートするには、Array.prototype.sortメソッドを使用します。このメソッドは、配列の要素を辞書順（Unicodeのポイント順）でソートします。",
+            "answer": "let arr = ['banana', 'apple', 'cherry'];\narr.sort();\nconsole.log(arr); // Expected output: ['apple', 'banana', 'cherry']"
+        }
+    ]
+}

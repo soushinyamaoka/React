@@ -1,0 +1,166 @@
+{
+    "contentsId": "js_loop2",
+    "title": "Javascriptの繰り返し問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_loop2_1",
+            "title": "配列とforEach",
+            "question": "配列['apple', 'banana', 'cherry']の各要素をconsole.logを使用して出力するコードを、forEachメソッドを使って書いてください。",
+            "explanation": "forEachメソッドは、配列の各要素に対して与えられた関数を一度ずつ実行します。",
+            "answer": "let fruits = ['apple', 'banana', 'cherry'];\nfruits.forEach(function(fruit) {\n  console.log(fruit); // 配列の各要素が順に出力されます\n});"
+        },
+        {
+            "id": 2,
+            "questionId": "js_loop2_2",
+            "title": "配列とmap",
+            "question": "配列[1, 2, 3, 4, 5]の各要素を2倍にするコードを、mapメソッドを使って書いてください。",
+            "explanation": "mapメソッドは、配列のすべての要素に対して与えられた関数を呼び出し、その結果からなる新しい配列を生成します。",
+            "answer": "let numbers = [1, 2, 3, 4, 5];\nlet doubled = numbers.map(function(num) {\n  return num * 2; // 各要素を2倍にします\n});\nconsole.log(doubled); // [2, 4, 6, 8, 10]が出力されます"
+        },
+        {
+            "id": 3,
+            "questionId": "js_loop2_3",
+            "title": "配列とfilter",
+            "question": "配列[1, 2, 3, 4, 5]から偶数だけを取り出すコードを、filterメソッドを使って書いてください。",
+            "explanation": "filterメソッドは、与えられた関数のテストをパスしたすべての要素からなる新しい配列を生成します。",
+            "answer": "let numbers = [1, 2, 3, 4, 5];\nlet evens = numbers.filter(function(num) {\n  return num % 2 === 0; // 偶数だけを取り出します\n});\nconsole.log(evens); // [2, 4]が出力されます"
+        },
+        {
+            "id": 4,
+            "questionId": "js_loop2_4",
+            "title": "配列とreduce",
+            "question": "配列[1, 2, 3, 4, 5]の要素の総和を求めるコードを、reduceメソッドを使って書いてください。",
+            "explanation": "reduceメソッドは、配列の各要素について関数を適用し、単一の出力値を生成します。",
+            "answer": "let numbers = [1, 2, 3, 4, 5];\nlet sum = numbers.reduce(function(accumulator, current) {\n  return accumulator + current; // 要素の総和を計算します\n}, 0);\nconsole.log(sum); // 15が出力されます"
+        },
+        {
+            "id": 5,
+            "questionId": "js_loop2_5",
+            "title": "二次元配列のループ",
+            "question": "二次元配列[[1, 2, 3], [4, 5, 6], [7, 8, 9]]の全要素をconsole.logを使用して出力するコードを書いてください。",
+            "explanation": "二次元配列では、外側の配列の各要素（内側の配列）をループしてから、その内側の配列をさらにループします。",
+            "answer": "let arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];\nfor (let i = 0; i < arr.length; i++) {\n  for (let j = 0; j < arr[i].length; j++) {\n    console.log(arr[i][j]); // 各要素が順に出力されます\n  }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "js_loop2_6",
+            "title": "map関数の使用",
+            "question": "配列 [1, 2, 3, 4, 5] の全ての要素を二乗した新しい配列を作成するコードを、mapメソッドを使用して書いてください。",
+            "explanation": "mapメソッドは、配列の全ての要素に関数を適用し、その結果から新しい配列を作成します。",
+            "answer": "let numbers = [1, 2, 3, 4, 5];\nlet squared = numbers.map(function(x) {\n  return x * x; // xの二乗を計算します\n});\nconsole.log(squared); // [1, 4, 9, 16, 25]が出力されます"
+        },
+        {
+            "id": 7,
+            "questionId": "js_loop2_7",
+            "title": "filter関数の使用",
+            "question": "配列 [1, 2, 3, 4, 5] から偶数だけを抽出した新しい配列を作成するコードを、filterメソッドを使用して書いてください。",
+            "explanation": "filterメソッドは、配列の各要素についてテスト関数を実行し、その結果がtrueと評価される要素から新しい配列を作成します。",
+            "answer": "let numbers = [1, 2, 3, 4, 5];\nlet even = numbers.filter(function(x) {\n  return x % 2 === 0; // xが偶数であるかテストします\n});\nconsole.log(even); // [2, 4]が出力されます"
+        },
+        {
+            "id": 8,
+            "questionId": "js_loop2_8",
+            "title": "reduce関数の使用",
+            "question": "配列 [1, 2, 3, 4, 5] の全ての要素の合計値を求めるコードを、reduceメソッドを使用して書いてください。",
+            "explanation": "reduceメソッドは、配列の全ての要素に対して累積的に関数を適用し、単一の出力値を生成します。",
+            "answer": "let numbers = [1, 2, 3, 4, 5];\nlet sum = numbers.reduce(function(a, b) {\n  return a + b; // 累積値と次の要素を加算します\n}, 0);\nconsole.log(sum); // 15が出力されます"
+        },
+        {
+            "id": 9,
+            "questionId": "js_loop2_9",
+            "title": "for...inループの使用",
+            "question": "次のオブジェクトのプロパティ名と値をコンソールに出力するコードを、for...inループを使用して書いてください。\n{ a: 1, b: 2, c: 3 }",
+            "explanation": "for...inループは、オブジェクトの列挙可能なプロパティに対して反復操作を行います。",
+            "answer": "let obj = { a: 1, b: 2, c: 3 };\nfor(let prop in obj) {\n  console.log(\"Prop name: \" + prop);\n  console.log(\"Prop value: \" + obj[prop]);\n}\n// Prop name: a\n// Prop value: 1\n// Prop name: b\n// Prop value: 2\n// Prop name: c\n// Prop value: 3\nが出力されます"
+        },
+        {
+            "id": 10,
+            "questionId": "js_loop2_10",
+            "title": "do...whileループの使用",
+            "question": "do...whileループを使って、1から10までの数字をコンソールに出力するコードを書いてください。",
+            "explanation": "do...whileループは、指定された条件がfalseになるまでブロック内の命令を実行します。do...while文は少なくとも一回はブロック内の命令を実行します。",
+            "answer": "let i = 1;\ndo {\n  console.log(i);\n  i++;\n} while (i <= 10);\n// 1から10までの数字が順番に出力されます"
+        },
+        {
+            "id": 11,
+            "questionId": "js_loop2_11",
+            "title": "for...ofループと配列メソッドの組み合わせ",
+            "question": "次の配列 ['Apple', 'Banana', 'Cherry'] の各要素を大文字に変換して出力するコードを、for...ofループとtoUpperCaseメソッドを使用して書いてください。",
+            "explanation": "for...ofループは、列挙可能なオブジェクト（配列を含む）に対して反復操作を行います。",
+            "answer": "let fruits = ['Apple', 'Banana', 'Cherry'];\nfor(let fruit of fruits) {\n  console.log(fruit.toUpperCase());\n}\n// APPLE\n// BANANA\n// CHERRY\nが出力されます"
+        },
+        {
+            "id": 12,
+            "questionId": "js_loop2_12",
+            "title": "二次元配列のループ処理",
+            "question": "次の二次元配列をループして、すべての要素をコンソールに出力してください。\\n[[1, 2, 3], [4, 5, 6], [7, 8, 9]]",
+            "explanation": "二次元配列は、配列の中に配列がある構造です。これをすべての要素を出力するためには、ネストされたループを使用します。",
+            "answer": "let arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];\nfor(let i = 0; i < arr.length; i++) {\n  for(let j = 0; j < arr[i].length; j++) {\n    console.log(arr[i][j]);\n  }\n}\n// 1から9までの数字が順番に出力されます"
+        },
+        {
+            "id": 13,
+            "questionId": "js_loop2_13",
+            "title": "break文の使用",
+            "question": "1から10までの数字を出力するループを作成し、数字が5になった時点でループを終了するコードを書いてください。",
+            "explanation": "break文は、最も内側のループまたはswitch文から抜け出します。つまり、break文は現在のループを終了し、次の文に制御を移します。",
+            "answer": "for(let i = 1; i <= 10; i++) {\n  if(i > 5) {\n    break;\n  }\n  console.log(i);\n}\n// 1から5までの数字が順番に出力されます"
+        },
+        {
+            "id": 14,
+            "questionId": "js_loop2_14",
+            "title": "continue文の使用",
+            "question": "1から10までの数字を出力するループを作成し、数字が偶数の時は出力をスキップするコードを書いてください。",
+            "explanation": "continue文は、現在の繰り返しを終了し、ループの次の反復を始めます。つまり、continue文は現在のループをスキップし、ループ条件の評価に戻ります。",
+            "answer": "for(let i = 1; i <= 10; i++) {\n  if(i % 2 == 0) {\n    continue;\n  }\n  console.log(i);\n}\n// 1,3,5,7,9 が順番に出力されます"
+        },
+        {
+            "id": 15,
+            "questionId": "js_loop2_15",
+            "title": "配列の要素を一つずつ処理",
+            "question": "配列 ['apple', 'banana', 'cherry'] の各要素に「I like 」を追加してコンソールに出力するループを書いてください。",
+            "explanation": "配列の各要素を処理する基本的な方法は、forループを使用することです。ここでは、配列の長さをループの条件として使用し、インデックスを利用して各要素を取得します。",
+            "answer": "let fruits = ['apple', 'banana', 'cherry'];\nfor(let i = 0; i < fruits.length; i++) {\n  console.log('I like ' + fruits[i]);\n}\n// \"I like apple\", \"I like banana\", \"I like cherry\" が順に出力されます"
+        },
+        {
+            "id": 16,
+            "questionId": "js_loop2_16",
+            "title": "配列内の特定の要素を検索",
+            "question": "配列 ['apple', 'banana', 'cherry', 'date', 'elderberry'] の中から 'date' を検索し、そのインデックスをコンソールに出力するループを書いてください。",
+            "explanation": "配列の要素を検索するためには、forループを使用して配列を反復処理し、各要素をチェックします。要素が見つかった場合、そのインデックスを出力します。",
+            "answer": "let fruits = ['apple', 'banana', 'cherry', 'date', 'elderberry'];\nfor(let i = 0; i < fruits.length; i++) {\n  if(fruits[i] == 'date') {\n    console.log(i);\n    break;\n  }\n}\n// 3 が出力されます"
+        },
+        {
+            "id": 17,
+            "questionId": "js_loop2_17",
+            "title": "二次元配列の反復処理",
+            "question": "二次元配列 [[1, 2, 3], [4, 5, 6], [7, 8, 9]] の各要素をコンソールに出力するループを書いてください。",
+            "explanation": "二次元配列を反復処理するためには、ネストしたforループを使用します。外側のループが行を反復し、内側のループがその行の各要素を反復します。",
+            "answer": "let array = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];\nfor(let i = 0; i < array.length; i++) {\n  for(let j = 0; j < array[i].length; j++) {\n    console.log(array[i][j]);\n  }\n}\n// 1,2,3,4,5,6,7,8,9 が順に出力されます"
+        },
+        {
+            "id": 18,
+            "questionId": "js_loop2_18",
+            "title": "配列の累計値",
+            "question": "配列 [1, 2, 3, 4, 5] の各要素の合計値を計算してコンソールに出力するループを書いてください。",
+            "explanation": "配列のすべての要素の合計を求めるには、forループを使用して配列を反復処理し、各要素を合計に追加します。",
+            "answer": "let numbers = [1, 2, 3, 4, 5];\nlet sum = 0;\nfor(let i = 0; i < numbers.length; i++) {\n  sum += numbers[i];\n}\nconsole.log(sum);\n// 15 が出力されます"
+        },
+        {
+            "id": 19,
+            "questionId": "js_loop2_19",
+            "title": "文字列の各文字の出力",
+            "question": "文字列 'JavaScript' の各文字をコンソールに出力するループを書いてください。",
+            "explanation": "文字列の各文字を反復処理するには、forループを使用します。文字列を配列と同じように扱い、インデックスを使用して各文字にアクセスします。",
+            "answer": "let str = 'JavaScript';\nfor(let i = 0; i < str.length; i++) {\n  console.log(str[i]);\n}\n// 'J','a','v','a','S','c','r','i','p','t' が順に出力されます"
+        },
+        {
+            "id": 20,
+            "questionId": "js_loop2_20",
+            "title": "偶数の出力",
+            "question": "1から100までの数値のうち、偶数だけをコンソールに出力するループを書いてください。",
+            "explanation": "偶数を見つけるためには、2で割り切れるかどうかを確認します。ループ内で、各数値を2で割った余りが0であるかどうかを確認し、その場合にのみその数値を出力します。",
+            "answer": "for(let i = 1; i <= 100; i++) {\n  if(i % 2 == 0) {\n    console.log(i);\n  }\n}\n// 2, 4, 6, ..., 100 が順に出力されます"
+        }
+    ]
+}

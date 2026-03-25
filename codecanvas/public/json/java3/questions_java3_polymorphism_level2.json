@@ -1,0 +1,86 @@
+{
+    "contentsId": "java3",
+    "title": "Javaのポリモーフィズム問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_polymorphism2_1",
+            "title": "インターフェースと抽象クラスの違い",
+            "question": "Javaにおけるインターフェースと抽象クラスの違いを説明してください。また、どのような状況でそれぞれを使うべきでしょうか？",
+            "explanation": "抽象クラスとインターフェースは共にインスタンス化できないクラスを定義するための仕組みですが、それぞれ異なる目的と特性を持っています。一般的に、抽象クラスは部分的に実装が共有されるクラスの間で使われ、インターフェースは全く異なるクラス間で同じ機能を共有するために使われます。また、Javaは単一継承しか許可していないため、抽象クラスは一つしか継承できませんが、インターフェースは複数実装できます。",
+            "answer": "// Javaにおけるインターフェースと抽象クラスの違いは以下の通りです。\n\n// 1. 抽象クラスは部分的に実装が共有されるクラスの間で使われます。これは一つのクラスが一つの抽象クラスしか継承できないというJavaの制約から来ています。\n\n// 2. 一方、インターフェースは全く異なるクラス間で同じ機能を共有するために使われます。これは一つのクラスが複数のインターフェースを実装できるというJavaの特性から来ています。\n\n// したがって、部分的に実装を共有するクラスの間であれば抽象クラスを使い、異なるクラス間で同じ機能を共有する場合にはインターフェースを使うとよいでしょう。"
+        },
+        {
+            "id": 2,
+            "questionId": "java_polymorphism2_2",
+            "title": "ポリモーフィズムの利用",
+            "question": "以下のAnimalクラスとそれを継承したCatクラスとDogクラスがあります。ポリモーフィズムを利用して、Animalクラスの配列にCatクラスとDogクラスのオブジェクトを格納し、それぞれのspeakメソッドを呼び出すコードを書いてください。\n\npublic abstract class Animal {\n    public abstract void speak();\n}\n\npublic class Cat extends Animal {\n    public void speak() {\n        System.out.println(\"Meow!\");\n    }\n}\n\npublic class Dog extends Animal {\n    public void speak() {\n        System.out.println(\"Woof!\");\n    }\n}",
+            "explanation": "ポリモーフィズムを利用すると、親クラスの型で子クラスのオブジェクトを扱うことができます。これにより、同じ親クラスを継承した子クラスでも、各子クラスで定義したメソッドを呼び出すことができます。",
+            "answer": "// Animal型の配列を作成します。\nAnimal[] animals = new Animal[2];\n\n// CatオブジェクトとDogオブジェクトを配列に格納します。\nanimals[0] = new Cat();\nanimals[1] = new Dog();\n\n// 各動物のspeakメソッドを呼び出します。\nfor (Animal animal : animals) {\n    animal.speak();\n}\n\n// 出力結果:\n// Meow!\n// Woof!"
+        },
+        {
+            "id": 3,
+            "questionId": "java_polymorphism2_3",
+            "title": "ダウンキャスティング",
+            "question": "次のAnimalクラスとそれを継承したCatクラスがあります。このクラスを使って、「Animalクラスの参照でCatオブジェクトを参照した後、その参照をCatクラスの型にダウンキャストして独自のメソッドhunt()を呼び出す」という操作を行うコードを書いてください。\n\npublic abstract class Animal {\n    public abstract void speak();\n}\n\npublic class Cat extends Animal {\n    public void speak() {\n        System.out.println(\"Meow!\");\n    }\n    public void hunt() {\n        System.out.println(\"The cat is hunting.\");\n    }\n}",
+            "explanation": "Javaでは、親クラスの参照で子クラスのオブジェクトを参照することができますが、その逆に子クラスの参照で親クラスのオブジェクトを参照することはできません。このため、親クラスの参照で子クラスのオブジェクトを参照している場合でも、子クラス特有のメソッドを呼び出すためにはダウンキャストが必要です。",
+            "answer": "// Animal型の参照でCatオブジェクトを作成します。\nAnimal animal = new Cat();\n\n// Catクラスのメソッドを呼び出すためにダウンキャストします。\n((Cat) animal).hunt();\n\n// 出力結果:\n// The cat is hunting."
+        },
+        {
+            "id": 4,
+            "questionId": "java_polymorphism2_4",
+            "title": "メソッドオーバーライドとポリモーフィズム",
+            "question": "次のAnimalクラスとそれを継承したDogクラス、Catクラスがあります。これらのクラスを使用して、「Animal型の配列を作成し、その各要素にDogとCatのオブジェクトを代入した後、拡張for文を使用して各要素のspeak()メソッドを呼び出す」という操作を行うコードを書いてください。\n\npublic abstract class Animal {\n    public abstract void speak();\n}\n\npublic class Dog extends Animal {\n    public void speak() {\n        System.out.println(\"Woof!\");\n    }\n}\n\npublic class Cat extends Animal {\n    public void speak() {\n        System.out.println(\"Meow!\");\n    }\n}",
+            "explanation": "Javaのポリモーフィズムを利用すると、親クラスの型で子クラスのオブジェクトを一括で扱うことができます。これにより、同じメソッドを持つ異なる子クラスのオブジェクトでも同一の操作を行うことができ、コードの汎用性を高めることができます。",
+            "answer": "// Animal型の配列を作成します。\nAnimal[] animals = new Animal[2];\n\n// 配列の各要素にDogとCatのオブジェクトを代入します。\nanimals[0] = new Dog();\nanimals[1] = new Cat();\n\n// 拡張for文を使用して各要素のspeak()メソッドを呼び出します。\nfor (Animal animal : animals) {\n    animal.speak();\n}\n\n// 出力結果:\n// Woof!\n// Meow!"
+        },
+        {
+            "id": 5,
+            "questionId": "java_polymorphism2_5",
+            "title": "ポリモーフィズムとダウンキャスト",
+            "question": "次のクラス定義があります。AnimalクラスのインスタンスをDogクラスへダウンキャストする操作を行い、Dogクラスのeat()メソッドを呼び出してください。\n\npublic abstract class Animal {\n    public abstract void speak();\n}\n\npublic class Dog extends Animal {\n    public void speak() {\n        System.out.println(\"Woof!\");\n    }\n    public void eat() {\n        System.out.println(\"The dog eats.\");\n    }\n}",
+            "explanation": "Javaでは、一度アップキャストした子クラスのオブジェクトを、必要に応じて元の子クラスの型に戻すことができます。これをダウンキャストといいます。しかし、この操作は実行時エラーの原因となるため、安全に行うためにはinstanceof演算子を使用してチェックを行うことが推奨されます。",
+            "answer": "// Animal型の変数にDogオブジェクトを代入します。\nAnimal animal = new Dog();\n\n// ダウンキャストを行います。\nif (animal instanceof Dog) {\n    Dog dog = (Dog) animal;\n\n    // eatメソッドを呼び出します。\n    dog.eat();\n    // 出力結果: The dog eats.\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java_polymorphism2_6",
+            "title": "ポリモーフィズムとオーバーライド",
+            "question": "次のクラス定義があります。Dogクラスでspeakメソッドをオーバーライドして、'Bark!'と出力するようにコードを修正してください。\n\npublic abstract class Animal {\n    public abstract void speak();\n}\n\npublic class Dog extends Animal {\n    public void speak() {\n        System.out.println(\"Woof!\");\n    }\n}",
+            "explanation": "Javaでは、スーパークラスで定義されたメソッドをサブクラスで再定義することをオーバーライドと言います。オーバーライドにより、同一のメソッド呼び出しでもサブクラスによって異なる動作をする、ポリモーフィズムを実現することができます。",
+            "answer": "// Dogクラスのspeakメソッドをオーバーライドします。\npublic class Dog extends Animal {\n    public void speak() {\n        // 「Bark!」と出力します。\n        System.out.println(\"Bark!\");\n        // 出力結果: Bark!\n    }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java_polymorphism2_7",
+            "title": "ダウンキャスティング",
+            "question": "次のクラス定義があります。\n\npublic class Vehicle {\n    public void run() {\n        System.out.println(\"The vehicle is running.\");\n    }\n}\n\npublic class Car extends Vehicle {\n    public void run() {\n        System.out.println(\"The car is running.\");\n    }\n    public void honk() {\n        System.out.println(\"Honk! Honk!\");\n    }\n}\n\nVehicle myCar = new Car();\n\nmyCarのhonkメソッドを呼び出すにはどうすればよいでしょうか？",
+            "explanation": "スーパークラス型の変数に格納されているサブクラスのインスタンスに対して、サブクラス特有のメソッドを呼び出すには、ダウンキャスティングが必要です。ダウンキャスティングとは、スーパークラス型からサブクラス型へのキャストのことです。",
+            "answer": "// myCarをCar型にダウンキャスティングし、honkメソッドを呼び出します。\n((Car)myCar).honk();\n// 出力結果: Honk! Honk!"
+        },
+        {
+            "id": 8,
+            "questionId": "java_polymorphism2_8",
+            "title": "メソッドオーバーライドとダウンキャスティング",
+            "question": "次のクラス定義があります。\n\npublic class Shape {\n    public void draw() {\n        System.out.println(\"Drawing a shape.\");\n    }\n}\n\npublic class Circle extends Shape {\n    public void draw() {\n        System.out.println(\"Drawing a circle.\");\n    }\n    public void radius() {\n        System.out.println(\"The radius of the circle.\");\n    }\n}\n\nShape myShape = new Circle();\n\nmyShapeのdrawメソッドとradiusメソッドを呼び出すコードを書いてください。",
+            "explanation": "drawメソッドはスーパークラスとサブクラスの両方で定義されており、オーバーライドされています。したがって、myShape.draw()はサブクラスのdrawメソッドを呼び出します。一方、radiusメソッドはCircleクラスでのみ定義されています。したがって、myShapeをCircle型にダウンキャスティングしてからradiusメソッドを呼び出す必要があります。",
+            "answer": "// myShape.draw()はサブクラスのdrawメソッドを呼び出します。\nmyShape.draw();\n// 出力結果: Drawing a circle.\n\n// myShapeをCircle型にダウンキャスティングし、radiusメソッドを呼び出します。\n((Circle)myShape).radius();\n// 出力結果: The radius of the circle."
+        },
+        {
+            "id": 9,
+            "questionId": "java_polymorphism2_9",
+            "title": "抽象クラスとポリモーフィズム",
+            "question": "次のクラス定義があります。\n\nabstract class Animal {\n    abstract void sound();\n}\n\nclass Dog extends Animal {\n    void sound() {\n        System.out.println(\"Bark!\");\n    }\n}\n\nclass Cat extends Animal {\n    void sound() {\n        System.out.println(\"Meow!\");\n    }\n}\n\n以下のコードスニペットを完成させて、Animal型の配列animalsを作成し、その各要素でsoundメソッドを呼び出してください。\n\nAnimal[] animals = ...",
+            "explanation": "抽象クラスは具象クラス（DogとCat）に対する共通のインターフェースを提供します。このケースでは、Animal型の配列にDogとCatオブジェクトを格納し、それぞれのsoundメソッドを呼び出すことで、Javaのポリモーフィズムを利用することができます。",
+            "answer": "Animal[] animals = new Animal[] {new Dog(), new Cat()};\n\n// 各要素でsoundメソッドを呼び出します\nfor (Animal animal : animals) {\n    animal.sound();\n    // 出力結果: Dogオブジェクトの場合 \"Bark!\"\n    //            Catオブジェクトの場合 \"Meow!\"\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java_polymorphism2_10",
+            "title": "インターフェースとポリモーフィズム",
+            "question": "次のインターフェースとクラス定義があります。\n\ninterface Speakable {\n    void speak();\n}\n\nclass Human implements Speakable {\n    public void speak() {\n        System.out.println(\"Hello\");\n    }\n}\n\nclass Robot implements Speakable {\n    public void speak() {\n        System.out.println(\"Beep Boop\");\n    }\n}\n\n以下のコードスニペットを完成させて、Speakable型のArrayList<Speakable>リストを作成し、その各要素でspeakメソッドを呼び出してください。\n\nArrayList<Speakable> speakers = ...",
+            "explanation": "インターフェースは、クラスに対する契約またはプロトコルを定義します。このケースでは、Speakableインターフェースはspeakメソッドを定義しており、HumanクラスとRobotクラスはこれを実装しています。インターフェースの型のArrayListにこれらのオブジェクトを格納し、それぞれのspeakメソッドを呼び出すことで、Javaのポリモーフィズムを利用することができます。",
+            "answer": "ArrayList<Speakable> speakers = new ArrayList<Speakable>();\n\n// HumanとRobotをリストに追加します\nspeakers.add(new Human());\nspeakers.add(new Robot());\n\n// リスト内の各要素でspeakメソッドを呼び出します\nfor (Speakable speaker : speakers) {\n    speaker.speak();\n    // 出力結果: Humanオブジェクトの場合 \"Hello\"\n    //            Robotオブジェクトの場合 \"Beep Boop\"\n}"
+        }
+    ]
+}

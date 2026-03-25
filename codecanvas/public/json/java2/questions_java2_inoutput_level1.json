@@ -1,0 +1,86 @@
+{
+    "contentsId": "java3",
+    "title": "Javaの基本ライブラリ、入出力処理問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java5_1",
+            "title": "文字列の標準出力",
+            "question": "Javaで文字列\"Hello, World!\"を標準出力に出力するプログラムを作成してください。",
+            "explanation": "Javaで標準出力に出力するには、System.out.printlnメソッドを使用します。このメソッドは引数として与えられた値を出力します。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        // \"Hello, World!\"を標準出力に出力\n        System.out.println(\"Hello, World!\");\n        // 上記のコードは\"Hello, World!\"という文字列をコンソールに出力します。\n    }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java5_2",
+            "title": "整数の標準出力",
+            "question": "Javaで整数値123を標準出力に出力するプログラムを作成してください。",
+            "explanation": "Javaで標準出力に出力するには、System.out.printlnメソッドを使用します。このメソッドは引数として与えられた値を出力します。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        // 整数値123を標準出力に出力\n        System.out.println(123);\n        // 上記のコードは整数値123をコンソールに出力します。\n    }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java5_3",
+            "title": "文字列の標準出力",
+            "question": "Javaで文字列「Hello, world!」を標準出力に出力するプログラムを作成してください。",
+            "explanation": "Javaで文字列を標準出力に出力するには、System.out.printlnメソッドを使用します。このメソッドは引数として与えられた値を出力します。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        // 文字列「Hello, world!」を標準出力に出力\n        System.out.println(\"Hello, world!\");\n        // 上記のコードは文字列「Hello, world!」をコンソールに出力します。\n    }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java5_4",
+            "title": "基本的なファイル読み込み",
+            "question": "Javaで指定したテキストファイルの内容を読み込み、その内容を標準出力に出力するプログラムを作成してください。ただし、エラーハンドリングは考慮せず、FileNotFoundException が発生する可能性がある点を解説と解答に反映してください。",
+            "explanation": "Javaでファイルを読み込む基本的な方法は、java.ioパッケージのFileReaderクラスとBufferedReaderクラスを使用する方法です。まず、FileReaderのインスタンスを作成し、それをBufferedReaderのコンストラクタに渡すことで、BufferedReaderインスタンスからreadLineメソッドを使って1行ずつ読み込むことができます。注意点として、ファイルが存在しない場合はFileNotFoundExceptionがスローされます。",
+            "answer": "import java.io.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        // FileReaderクラスのインスタンスを作成します。\n        FileReader fr = null;\n        try {\n            fr = new FileReader(\"data.txt\");\n            // BufferedReaderクラスのインスタンスを作成します。\n            BufferedReader br = new BufferedReader(fr);\n\n            // ファイルから1行ずつ読み込み、標準出力に出力します。\n            String line;\n            while ((line = br.readLine()) != null) {\n                // System.out.printlnを使用して、読み込んだ行を出力します。\n                // このコードでは、data.txtの内容が標準出力に出力されます。\n                System.out.println(line);\n            }\n        } catch (FileNotFoundException e) {\n            // FileNotFoundExceptionが発生した場合、エラーメッセージを出力します。\n            // このコードでは、data.txtが存在しない場合にこの例外が発生します。\n            e.printStackTrace();\n        } catch (IOException e) {\n            // IOExceptionが発生した場合、エラーメッセージを出力します。\n            e.printStackTrace();\n        } finally {\n            try {\n                if (fr != null) {\n                    fr.close();\n                }\n            } catch (IOException e) {\n                e.printStackTrace();\n            }\n        }\n    }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java3_5",
+            "title": "キーボードからの入力",
+            "question": "Javaでキーボードからの入力を受け取る方法について学習します。Scannerクラスを使用して、ユーザーがキーボードから入力した文字列を取得し、その文字列を標準出力に出力するプログラムを作成してください。また、入力待ちの状態を示すために、「Please input a string:」と表示してから入力を待つようにしてください。",
+            "explanation": "Javaでは、キーボードからの入力を受け取るためにScannerクラスを使用します。ScannerクラスのnextLineメソッドを使用すると、ユーザーが入力した文字列を取得することができます。また、System.out.printlnを使用して文字列を標準出力に出力することができます。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Scannerクラスのインスタンスを作成します。\n        // System.inは、標準入力（キーボードからの入力）を表します。\n        Scanner scanner = new Scanner(System.in);\n\n        // ユーザーに文字列の入力を促します。\n        System.out.println(\"Please input a string:\");\n\n        // ScannerのnextLineメソッドを使用して、ユーザーが入力した文字列を取得します。\n        String input = scanner.nextLine();\n\n        // ユーザーが入力した文字列を出力します。\n        // このコードでは、ユーザーが入力した文字列がそのまま標準出力に出力されます。\n        System.out.println(input);\n\n        // Scannerを閉じます。\n        scanner.close();\n    }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java3_6",
+            "title": "整数値の入力",
+            "question": "Scannerクラスを使用して、ユーザーがキーボードから入力した整数値を取得し、その整数値を標準出力に出力するプログラムを作成してください。また、入力待ちの状態を示すために、「Please input an integer:」と表示してから入力を待つようにしてください。",
+            "explanation": "Javaでは、キーボードからの整数値の入力を受け取るためにScannerクラスのnextIntメソッドを使用します。nextIntメソッドは入力された値が整数でない場合、InputMismatchExceptionをスローしますので注意が必要です。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Scannerクラスのインスタンスを作成します。\n        // System.inは、標準入力（キーボードからの入力）を表します。\n        Scanner scanner = new Scanner(System.in);\n\n        // ユーザーに整数の入力を促します。\n        System.out.println(\"Please input an integer:\");\n\n        // ScannerのnextIntメソッドを使用して、ユーザーが入力した整数を取得します。\n        int input = scanner.nextInt();\n\n        // ユーザーが入力した整数を出力します。\n        // このコードでは、ユーザーが入力した整数がそのまま標準出力に出力されます。\n        System.out.println(input);\n\n        // Scannerを閉じます。\n        scanner.close();\n    }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java3_7",
+            "title": "文字列の入力",
+            "question": "Scannerクラスを使用して、ユーザーがキーボードから入力した文字列を取得し、その文字列を標準出力に出力するプログラムを作成してください。また、入力待ちの状態を示すために、「Please input a string:」と表示してから入力を待つようにしてください。",
+            "explanation": "Javaでは、キーボードからの文字列の入力を受け取るためにScannerクラスのnextLineメソッドを使用します。nextLineメソッドはユーザーが入力した行の終わりまでの文字列を返します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Scannerクラスのインスタンスを作成します。\n        // System.inは、標準入力（キーボードからの入力）を表します。\n        Scanner scanner = new Scanner(System.in);\n\n        // ユーザーに文字列の入力を促します。\n        System.out.println(\"Please input a string:\");\n\n        // ScannerのnextLineメソッドを使用して、ユーザーが入力した文字列を取得します。\n        String input = scanner.nextLine();\n\n        // ユーザーが入力した文字列を出力します。\n        // このコードでは、ユーザーが入力した文字列がそのまま標準出力に出力されます。\n        System.out.println(input);\n\n        // Scannerを閉じます。\n        scanner.close();\n    }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java3_8",
+            "title": "整数の入力",
+            "question": "Scannerクラスを使用して、ユーザーがキーボードから入力した整数を取得し、その整数を標準出力に出力するプログラムを作成してください。また、入力待ちの状態を示すために、「Please input an integer:」と表示してから入力を待つようにしてください。",
+            "explanation": "Javaでは、キーボードからの整数の入力を受け取るためにScannerクラスのnextIntメソッドを使用します。nextIntメソッドはユーザーが入力した整数を返します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Scannerクラスのインスタンスを作成します。\n        // System.inは、標準入力（キーボードからの入力）を表します。\n        Scanner scanner = new Scanner(System.in);\n\n        // ユーザーに整数の入力を促します。\n        System.out.println(\"Please input an integer:\");\n\n        // ScannerのnextIntメソッドを使用して、ユーザーが入力した整数を取得します。\n        int input = scanner.nextInt();\n\n        // ユーザーが入力した整数を出力します。\n        // このコードでは、ユーザーが入力した整数がそのまま標準出力に出力されます。\n        System.out.println(input);\n\n        // Scannerを閉じます。\n        scanner.close();\n    }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java3_9",
+            "title": "文字列の入力",
+            "question": "Scannerクラスを使用して、ユーザーがキーボードから入力した文字列を取得し、その文字列を標準出力に出力するプログラムを作成してください。また、入力待ちの状態を示すために、「Please input a string:」と表示してから入力を待つようにしてください。",
+            "explanation": "Javaでは、キーボードからの文字列の入力を受け取るためにScannerクラスのnextLineメソッドを使用します。nextLineメソッドはユーザーが入力した行全体を文字列として返します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Scannerクラスのインスタンスを作成します。\n        // System.inは、標準入力（キーボードからの入力）を表します。\n        Scanner scanner = new Scanner(System.in);\n\n        // ユーザーに文字列の入力を促します。\n        System.out.println(\"Please input a string:\");\n\n        // ScannerのnextLineメソッドを使用して、ユーザーが入力した文字列を取得します。\n        String input = scanner.nextLine();\n\n        // ユーザーが入力した文字列を出力します。\n        // このコードでは、ユーザーが入力した文字列がそのまま標準出力に出力されます。\n        System.out.println(input);\n\n        // Scannerを閉じます。\n        scanner.close();\n    }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java3_10",
+            "title": "数値の入力",
+            "question": "Scannerクラスを使用して、ユーザーがキーボードから入力した整数を取得し、その整数を標準出力に出力するプログラムを作成してください。また、入力待ちの状態を示すために、「Please input an integer:」と表示してから入力を待つようにしてください。",
+            "explanation": "Javaでは、キーボードからの整数の入力を受け取るためにScannerクラスのnextIntメソッドを使用します。nextIntメソッドはユーザーが入力した整数をint型の値として返します。",
+            "answer": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Scannerクラスのインスタンスを作成します。\n        // System.inは、標準入力（キーボードからの入力）を表します。\n        Scanner scanner = new Scanner(System.in);\n\n        // ユーザーに整数の入力を促します。\n        System.out.println(\"Please input an integer:\");\n\n        // ScannerのnextIntメソッドを使用して、ユーザーが入力した整数を取得します。\n        int input = scanner.nextInt();\n\n        // ユーザーが入力した整数を出力します。\n        // このコードでは、ユーザーが入力した整数がそのまま標準出力に出力されます。\n        System.out.println(input);\n\n        // Scannerを閉じます。\n        scanner.close();\n    }\n}"
+        }
+    ]
+}

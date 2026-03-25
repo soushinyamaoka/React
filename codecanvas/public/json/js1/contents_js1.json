@@ -1,5 +1,5 @@
 {
-    "contentsId": "js",
+    "contentsId": "js1",
     "title": "JavaScriptの基本構文問題集ページ",
     "subtitle": "JavaScriptの基本構文",
     "questions": [{
@@ -71,8 +71,93 @@
             "title": "メソッド",
             "question": "JavaScriptのメソッドは、オブジェクトのプロパティの一部で、関数として定義されます。これらのメソッドは、オブジェクトの動作を定義し、オブジェクトのデータを操作するために使用されます。",
             "answer": "/* オブジェクトとメソッドの例 */\nvar person = {\n  name: \"Alice\",\n  age: 20,\n  greeting: function() {\n    return \"Hello, my name is \" + this.name + \".\";\n  }\n};\n\n/* メソッドの呼び出し */\nconsole.log(person.greeting()); // \"Hello, my name is Alice.\"と出力されます.\n\n/* メソッド内でオブジェクトの他のプロパティにアクセスする例 */\nvar dog = {\n  name: \"Rex\",\n  age: 5,\n  describe: function() {\n    return \"The dog's name is \" + this.name + \" and it is \" + this.age + \" years old.\";\n  }\n};\nconsole.log(dog.describe()); // \"The dog's name is Rex and it is 5 years old.\"と出力されます."
+        },
+        {
+            "id": 10,
+            "questionId": "js1_array",
+            "title": "配列",
+            "question": "JavaScriptの配列は、複数の値を一つの変数に格納することができるオブジェクトです。これらは、複数の値を一元的に管理したり操作したりするために使用されます。配列内の各要素は、0から始まるインデックスでアクセスすることができます。",
+            "answer": "/* 配列の宣言と初期化の例 /\nvar fruits = ['apple', 'banana', 'cherry'];\n\n/ 配列から要素を取得する例 /\nconsole.log(fruits[0]); // 'apple'と出力されます.\n\n/ 配列の長さを取得する例 /\nconsole.log(fruits.length); // 3と出力されます.\n\n/ 配列に要素を追加する例 /\nfruits.push('orange');\nconsole.log(fruits); // ['apple', 'banana', 'cherry', 'orange']と出力されます.\n\n/ 配列から要素を削除する例 */\nvar last = fruits.pop();\nconsole.log(last); // 'orange'と出力されます."
+        },
+        {
+            "id": 11,
+            "questionId": "js_arr1_11",
+            "title": "配列の要素を取得する",
+            "question": "次の配列があります：let array = [\"Apple\", \"Banana\", \"Cherry\"];。この配列の2番目の要素を取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptの配列の要素を取得するためには、インデックス番号を指定します。インデックス番号は0から始まるので、2番目の要素を取得するにはインデックス1を使用します。",
+            "answer": "let array = [\"Apple\", \"Banana\", \"Cherry\"];\nlet fruit = array[1];\nconsole.log(fruit); // Expected output: \"Banana\""
+        },
+        {
+            "id": 12,
+            "questionId": "js_arr1_12",
+            "title": "配列に要素を追加する",
+            "question": "次の配列があります：let array = [\"Apple\", \"Banana\"];。この配列に\"Cherry\"を追加するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptの配列に要素を追加するためには、配列のpushメソッドを使用します。",
+            "answer": "let array = [\"Apple\", \"Banana\"];\narray.push(\"Cherry\");\nconsole.log(array); // Expected output: [\"Apple\", \"Banana\", \"Cherry\"]"
+        },
+        {
+            "id": 13,
+            "questionId": "js_arr1_13",
+            "title": "配列の特定の位置に要素を追加する",
+            "question": "次の配列があります：let array = [\"Apple\", \"Cherry\"];。この配列の2番目の位置に\"Banana\"を追加するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptの配列の特定の位置に要素を追加するためには、配列のspliceメソッドを使用します。",
+            "answer": "let array = [\"Apple\", \"Cherry\"];\narray.splice(1, 0, \"Banana\");\nconsole.log(array); // Expected output: [\"Apple\", \"Banana\", \"Cherry\"]"
+        },
+        {
+            "id": 14,
+            "questionId": "js_arr1_14",
+            "title": "配列の特定の要素を削除する",
+            "question": "次の配列があります：let array = [\"Apple\", \"Banana\", \"Cherry\"];。この配列から\"Banana\"を削除するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptの配列の特定の要素を削除するためには、配列のspliceメソッドを使用します。しかし、まず要素のインデックスを探すためにindexOfメソッドを使用します。",
+            "answer": "let array = [\"Apple\", \"Banana\", \"Cherry\"];\nlet index = array.indexOf(\"Banana\");\nif (index > -1) { array.splice(index, 1); }\nconsole.log(array); // Expected output: [\"Apple\", \"Cherry\"]"
+        },
+        {
+            "id": 15,
+            "questionId": "js_arr1_15",
+            "title": "配列の長さを取得する",
+            "question": "次の配列があります：let array = [\"Apple\", \"Banana\", \"Cherry\"];。この配列の長さ（要素数）を取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptの配列の長さを取得するためには、配列のlengthプロパティを使用します。",
+            "answer": "let array = [\"Apple\", \"Banana\", \"Cherry\"];\nlet length = array.length;\nconsole.log(length); // Expected output: 3"
+        },
+        {
+            "id": 16,
+            "questionId": "js_arr1_16",
+            "title": "配列をソートする",
+            "question": "次の配列があります：let array = [\"Banana\", \"Apple\", \"Cherry\"];。この配列をアルファベット順にソートするJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptの配列をソートするためには、配列のsortメソッドを使用します。",
+            "answer": "let array = [\"Banana\", \"Apple\", \"Cherry\"];\narray.sort();\nconsole.log(array); // Expected output: [\"Apple\", \"Banana\", \"Cherry\"]"
+        },
+        {
+            "id": 17,
+            "questionId": "js_arr1_17",
+            "title": "配列の要素を反転する",
+            "question": "次の配列があります：let array = [\"Apple\", \"Banana\", \"Cherry\"];。この配列の要素を反転するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptの配列の要素を反転するためには、配列のreverseメソッドを使用します。",
+            "answer": "let array = [\"Apple\", \"Banana\", \"Cherry\"];\narray.reverse();\nconsole.log(array); // Expected output: [\"Cherry\", \"Banana\", \"Apple\"]"
+        },
+        {
+            "id": 18,
+            "questionId": "js_arr1_18",
+            "title": "配列から要素を取り除く",
+            "question": "次の配列があります：let array = [\"Apple\", \"Banana\", \"Cherry\"];。「Banana」を配列から取り除くJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptの配列から特定の要素を取り除くには、indexOfメソッドとspliceメソッドを使用します。",
+            "answer": "let array = [\"Apple\", \"Banana\", \"Cherry\"];\nlet index = array.indexOf(\"Banana\");\nif (index !== -1) {\n  array.splice(index, 1);\n}\nconsole.log(array); // Expected output: [\"Apple\", \"Cherry\"]"
+        },
+        {
+            "id": 19,
+            "questionId": "js_arr1_19",
+            "title": "配列の全ての要素を結合する",
+            "question": "次の配列があります：let array = [\"Apple\", \"Banana\", \"Cherry\"];。配列の全ての要素を結合して一つの文字列にするJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptの配列の全ての要素を結合して一つの文字列にするには、joinメソッドを使用します。",
+            "answer": "let array = [\"Apple\", \"Banana\", \"Cherry\"];\nlet str = array.join(', ');\nconsole.log(str); // Expected output: \"Apple, Banana, Cherry\""
+        },
+        {
+            "id": 20,
+            "questionId": "js_arr1_20",
+            "title": "配列の要素を回転させる",
+            "question": "次の配列があります：let array = [\"Apple\", \"Banana\", \"Cherry\"];。この配列の要素を一つ右に回転させるJavaScriptコードを記述してください。回転後の配列は [\"Cherry\", \"Apple\", \"Banana\"]となります。",
+            "explanation": "JavaScriptの配列の要素を回転させるには、popメソッドとunshiftメソッドを使用します。",
+            "answer": "let array = [\"Apple\", \"Banana\", \"Cherry\"];\nlet lastElement = array.pop();\narray.unshift(lastElement);\nconsole.log(array); // Expected output: [\"Cherry\", \"Apple\", \"Banana\"]"
         }
-
     ]
-
 }

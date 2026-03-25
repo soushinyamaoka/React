@@ -29,7 +29,7 @@ const AnswerCard: React.FC<AnswerCardProps> = ({
 }) => {
   const router = useRouter();
   const goToQuiz = (contentsId: string, level: string, menu: string) => {
-    router.push({ pathname: '/JavaLearnPage', query: { id: contentsId, level: level, menu: menu } });
+    router.push({ pathname: '/learn/' + contentsId, query: {level: level, menu: menu } });
   };
 
   return (

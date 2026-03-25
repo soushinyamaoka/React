@@ -1,0 +1,86 @@
+{
+    "contentsId": "java3",
+    "title": "Javaの時間処理問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "javaTimeBeginner_1",
+            "title": "現在の時間取得",
+            "question": "Javaで現在の時間を取得するコードを書いてください。",
+            "explanation": "JavaではLocalTimeクラスのnowメソッドを使用して現在の時間を取得することができます。",
+            "answer": "import java.time.LocalTime;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 現在の時間を取得\\n        LocalTime now = LocalTime.now();\\n\\n        // 現在の時間を出力\\n        System.out.println(\"現在の時間: \" + now); // 出力例：現在の時間: 13:45:20\\n    }\\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "javaTimeBeginner_2",
+            "title": "時間の加算",
+            "question": "現在の時間から2時間30分後の時間を求めるJavaプログラムを書いてください。",
+            "explanation": "LocalTimeクラスのplusHoursメソッドとplusMinutesメソッドを使用して時間を加算することができます。",
+            "answer": "import java.time.LocalTime;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 現在の時間を取得\\n        LocalTime now = LocalTime.now();\\n\\n        // 現在の時間から2時間30分後の時間を計算\\n        LocalTime futureTime = now.plusHours(2).plusMinutes(30);\\n\\n        // 2時間30分後の時間を出力\\n        System.out.println(\"2時間30分後の時間: \" + futureTime); // 出力例：2時間30分後の時間: 16:15:20\\n    }\\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "javaTimeBeginner_3",
+            "title": "時間の比較",
+            "question": "時間「13:30」と現在の時間を比較し、現在の時間が「13:30」より後であれば「It's after 13:30 now.」、それ以前であれば「It's before 13:30 now.」と表示するJavaプログラムを書いてください。",
+            "explanation": "LocalTimeクラスのisAfterとisBeforeメソッドを使用して時間を比較することができます。",
+            "answer": "import java.time.LocalTime;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 現在の時間を取得\\n        LocalTime now = LocalTime.now();\\n        // 比較の基準となる時間を設定\\n        LocalTime compareTime = LocalTime.of(13, 30);\\n\\n        // 現在の時間が13:30より後かどうかを比較\\n        if (now.isAfter(compareTime)) {\\n            System.out.println(\"It's after 13:30 now.\"); // 出力例：It's after 13:30 now.\\n        } else {\\n            System.out.println(\"It's before 13:30 now.\"); // 出力例：It's before 13:30 now.\\n        }\\n    }\\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "javaTimeBeginner_4",
+            "title": "経過時間の計算",
+            "question": "現在の時間と午前8時との間の時間（時間と分）を表示するJavaプログラムを書いてください。",
+            "explanation": "LocalTimeクラスのbetweenメソッドを使用して2つの時間の間の時間（Duration）を計算することができます。",
+            "answer": "import java.time.LocalTime;\\nimport java.time.Duration;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 現在の時間を取得\\n        LocalTime now = LocalTime.now();\\n        // 比較の基準となる時間を設定\\n        LocalTime startTime = LocalTime.of(8, 0);\\n\\n        // 2つの時間の間の時間を計算\\n        Duration duration = Duration.between(startTime, now);\\n\\n        // 時間と分を表示\\n        long hours = duration.toHours();\\n        long minutes = duration.toMinutes() - hours * 60;\\n        System.out.println(\"Hours: \" + hours + \", Minutes: \" + minutes); // 出力例：Hours: 4, Minutes: 30\\n    }\\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "javaTimeBeginner_5",
+            "title": "時間の比較",
+            "question": "現在の時間が午後5時以前かそれ以後かを判断するJavaプログラムを書いてください。",
+            "explanation": "LocalTimeクラスのisBeforeとisAfterメソッドを使用して、時間の比較を行うことができます。",
+            "answer": "import java.time.LocalTime;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 現在の時間を取得\\n        LocalTime now = LocalTime.now();\\n        // 比較の基準となる時間を設定\\n        LocalTime targetTime = LocalTime.of(17, 0);\\n\\n        // 現在の時間が午後5時以前かそれ以後かを判断\\n        if (now.isBefore(targetTime)) {\\n            System.out.println(\"It's before 5 PM.\"); // 例の出力: It's before 5 PM.\\n        } else {\\n            System.out.println(\"It's after 5 PM.\"); // 例の出力: It's after 5 PM.\\n        }\\n    }\\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "javaTimeBeginner_6",
+            "title": "時間のフォーマット",
+            "question": "現在の時間を24時間制の形式で表示するJavaプログラムを作成してください。出力形式は 'HH:mm:ss'としてください。",
+            "explanation": "DateTimeFormatterを使ってLocalTimeを特定の形式で出力することができます。",
+            "answer": "import java.time.LocalTime;\\nimport java.time.format.DateTimeFormatter;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 現在の時間を取得\\n        LocalTime now = LocalTime.now();\\n        // フォーマッターを定義\\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"HH:mm:ss\");\\n        \\n        // 現在の時間をフォーマットして出力\\n        System.out.println(now.format(formatter)); // 例の出力: 14:30:20\\n    }\\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "javaTimeBeginner_7",
+            "title": "特定の時間までの残り時間",
+            "question": "現在の時間から次の12:00までの残り時間(時間、分、秒)を表示するJavaプログラムを作成してください。",
+            "explanation": "LocalTimeクラスのbetweenメソッドを使って、二つの時間の差を計算することができます。この問題では、現在の時間と次の12:00との差を計算します。",
+            "answer": "import java.time.LocalTime;\\nimport java.time.temporal.ChronoUnit;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 現在の時間を取得\\n        LocalTime now = LocalTime.now();\\n        // 次の12:00の時間を設定\\n        LocalTime noon = LocalTime.of(12, 0);\\n        \\n        if (now.isAfter(noon)) {\\n            // 現在の時間が12:00を過ぎていれば、次の日の12:00を設定\\n            noon = noon.plusDays(1);\\n        }\\n        \\n        // 残り時間を計算\\n        long hours = ChronoUnit.HOURS.between(now, noon);\\n        long minutes = ChronoUnit.MINUTES.between(now.plusHours(hours), noon);\\n        long seconds = ChronoUnit.SECONDS.between(now.plusHours(hours).plusMinutes(minutes), noon);\\n        \\n        // 残り時間を出力\\n        System.out.println(hours + \" hours \" + minutes + \" minutes \" + seconds + \" seconds\"); // 例の出力: 2 hours 30 minutes 20 seconds\\n    }\\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "javaTimeBeginner_8",
+            "title": "時間の差",
+            "question": "2つの時間、\"12:00:00\"と\"15:30:20\"の間の時間差を表示するJavaプログラムを作成してください。",
+            "explanation": "LocalTimeクラスのbetweenメソッドを使って、2つの時間の差を計算することができます。この問題では、\"12:00:00\"と\"15:30:20\"との差を計算します。",
+            "answer": "import java.time.LocalTime;\\nimport java.time.temporal.ChronoUnit;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 時間を設定\\n        LocalTime time1 = LocalTime.of(12, 0, 0);\\n        LocalTime time2 = LocalTime.of(15, 30, 20);\\n        \\n        // 時間の差を計算\\n        long hours = ChronoUnit.HOURS.between(time1, time2);\\n        long minutes = ChronoUnit.MINUTES.between(time1.plusHours(hours), time2);\\n        long seconds = ChronoUnit.SECONDS.between(time1.plusHours(hours).plusMinutes(minutes), time2);\\n        \\n        // 時間の差を出力\\n        System.out.println(hours + \" hours \" + minutes + \" minutes \" + seconds + \" seconds\"); // 出力: 3 hours 30 minutes 20 seconds\\n    }\\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "javaTimeBeginner_9",
+            "title": "時間の増減",
+            "question": "現在の時間に1時間30分を加えた時間を表示するJavaプログラムを作成してください。",
+            "explanation": "LocalTimeクラスのplusHoursメソッドとplusMinutesメソッドを使って時間を加えることができます。この問題では、現在の時間に1時間30分を加えた時間を計算します。",
+            "answer": "import java.time.LocalTime;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 現在の時間を取得\\n        LocalTime now = LocalTime.now();\\n        \\n        // 時間を加える\\n        LocalTime addedTime = now.plusHours(1).plusMinutes(30);\\n        \\n        // 時間を出力\\n        System.out.println(\"Current time: \" + now);\\n        System.out.println(\"Added time: \" + addedTime);\\n    }\\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "javaTimeBeginner_10",
+            "title": "2つの時間の差",
+            "question": "2つのLocalTimeオブジェクト、LocalTime.of(8, 0)とLocalTime.of(10, 30)の時間の差を分で表示するJavaプログラムを作成してください。",
+            "explanation": "JavaのLocalTimeクラスにはbetweenメソッドがあり、2つの時間の間の時間の量を計算することができます。この問題では、特定の2つの時間の間の差を計算します。",
+            "answer": "import java.time.LocalTime;\\nimport java.time.temporal.ChronoUnit;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        // 2つの時間を定義\\n        LocalTime time1 = LocalTime.of(8, 0);\\n        LocalTime time2 = LocalTime.of(10, 30);\\n        \\n        // 時間の差を計算\\n        long minutesBetween = ChronoUnit.MINUTES.between(time1, time2);\\n        \\n        // 時間の差を出力\\n        System.out.println(\"Minutes between: \" + minutesBetween);\\n        // 出力: Minutes between: 150\\n    }\\n}"
+        }
+    ]
+}

@@ -1,0 +1,86 @@
+{
+    "contentsId": "java4",
+    "title": "Javaのインターフェース問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java4_1",
+            "title": "複数のインターフェース",
+            "question": "Javaでは、1つのクラスが複数のインターフェースを実装することができます。クラスMyClassがインターフェースInterface1とInterface2を実装するためのサンプルコードを記述してください。",
+            "explanation": "Javaでは、1つのクラスが複数のインターフェースを実装することができます。それぞれのインターフェースが持つ抽象メソッドは、クラス内で全て実装する必要があります。",
+            "answer": "public interface Interface1 {\n    void method1();\n}\n\npublic interface Interface2 {\n    void method2();\n}\n\npublic class MyClass implements Interface1, Interface2 {\n    // Interface1の抽象メソッドを実装\n    public void method1() {\n        System.out.println(\"Method 1\");\n    }\n    // Interface2の抽象メソッドを実装\n    public void method2() {\n        System.out.println(\"Method 2\");\n    }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java4_2",
+            "title": "デフォルトメソッドのオーバーライド",
+            "question": "インターフェースのデフォルトメソッドは、クラスによってオーバーライドすることが可能です。インターフェースInterface1のデフォルトメソッドmethod1()をオーバーライドするためのMyClassのコードを記述してください。",
+            "explanation": "デフォルトメソッドは、インターフェースにメソッドのデフォルト実装を提供するための機能です。これにより、新たなメソッドを追加しても、そのインターフェースを実装しているすべてのクラスに影響を与えることなく、新たなメソッドを追加することが可能になりました。",
+            "answer": "public interface Interface1 {\n    default void method1() {\n        System.out.println(\"Interface1's method1\");\n    }\n}\n\npublic class MyClass implements Interface1 {\n    // Interface1のデフォルトメソッドをオーバーライド\n    public void method1() {\n        System.out.println(\"MyClass's method1\");\n    }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java4_3",
+            "title": "インターフェースの継承",
+            "question": "インターフェースは他のインターフェースを継承することができます。インターフェースInterface1がインターフェースInterface2を継承するコードを記述してください。",
+            "explanation": "インターフェースの継承は、クラスの継承と同じように動作します。Interface1がInterface2を継承する場合、Interface1はInterface2の全てのメソッドを継承します。",
+            "answer": "public interface Interface2 {\n    void method2();\n}\n\npublic interface Interface1 extends Interface2 {\n    void method1();\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java4_4",
+            "title": "デフォルトメソッドと抽象メソッド",
+            "question": "インターフェースはデフォルトメソッドと抽象メソッドを両方持つことができます。デフォルトメソッドmethod1と抽象メソッドmethod2を持つインターフェースInterface1を定義してください。",
+            "explanation": "Javaのインターフェースは抽象メソッドとデフォルトメソッドの両方を定義することができます。抽象メソッドは実装を持たないメソッドで、デフォルトメソッドはデフォルトの実装を持つメソッドです。",
+            "answer": "public interface Interface1 {\n    void method2(); // 抽象メソッド\n\n    default void method1() { // デフォルトメソッド\n        System.out.println(\"Default Method1\");\n    }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java4_5",
+            "title": "デフォルトメソッドの競合",
+            "question": "クラスが複数のインターフェースを実装し、それらのインターフェースが同名のデフォルトメソッドを持つ場合、どのデフォルトメソッドが適用されるか、または競合をどのように解決するか説明してください。",
+            "explanation": "クラスが複数のインターフェースを実装し、それらのインターフェースが同名のデフォルトメソッドを持つ場合、クラスはその競合を解決するためにそのメソッドをオーバーライドしなければなりません。クラス内でメソッドを明示的にオーバーライドしない限り、コンパイラはどのデフォルトメソッドを使用するべきかを判断できません。",
+            "answer": "public interface Interface1 {\n    default void method() {\n        System.out.println(\"Interface1's method\");\n    }\n}\n\npublic interface Interface2 {\n    default void method() {\n        System.out.println(\"Interface2's method\");\n    }\n}\n\npublic class MyClass implements Interface1, Interface2 {\n    // 同名のデフォルトメソッドの競合を解決するためにメソッドをオーバーライド\n    public void method() {\n        Interface1.super.method();\n    }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java4_6",
+            "title": "静的メソッド",
+            "question": "Javaのインターフェースに静的メソッドが導入されたのはなぜですか？また、インターフェース内で静的メソッドを定義するコードを書いてください。",
+            "explanation": "Java 8では、インターフェースに静的メソッドを含めることが許可されました。これは、インターフェースにユーティリティメソッドを追加するために導入されました。これらのメソッドは、インターフェース名を使用して直接呼び出すことができます。",
+            "answer": "public interface MyInterface {\n    static void staticMethod() {\n        System.out.println(\"Static method in interface\");\n    }\n}\n\npublic class MyClass {\n    public static void main(String[] args) {\n        MyInterface.staticMethod(); // インターフェース名を使用して静的メソッドを呼び出す\n    }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java4_7",
+            "title": "プライベートメソッド",
+            "question": "Java 9以降、インターフェースにプライベートメソッドを定義することが可能になりました。この機能が導入された理由と、それを使用する際の利点を説明してください。",
+            "explanation": "Java 9では、インターフェースにプライベートメソッドを追加することが許可されました。これは、複数のデフォルトメソッド間でコードを共有するために導入されました。デフォルトメソッドが同じコードを使用している場合、そのコードをプライベートメソッドに抽出し、そのメソッドをデフォルトメソッドから呼び出すことができます。これにより、コードの重複が減少します。",
+            "answer": "public interface MyInterface {\n    default void defaultMethod1() {\n        privateMethod();\n    }\n\n    default void defaultMethod2() {\n        privateMethod();\n    }\n\n    private void privateMethod() {\n        System.out.println(\"Private method in interface\");\n    }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java4_8",
+            "title": "デフォルトメソッドと抽象メソッド",
+            "question": "インターフェース内のデフォルトメソッドと抽象メソッドの違いを説明してください。また、それぞれを含むインターフェースを定義するサンプルコードを作成してください。",
+            "explanation": "デフォルトメソッドは、インターフェース内で具体的な実装を提供するメソッドであり、その実装はインターフェースを実装するクラスによってオーバーライドすることができます。一方、抽象メソッドは具体的な実装を提供せず、インターフェースを実装するすべてのクラスがそのメソッドを実装する必要があります。",
+            "answer": "public interface MyInterface {\n    // 抽象メソッド\n    void abstractMethod();\n\n    // デフォルトメソッド\n    default void defaultMethod() {\n        System.out.println(\"Default method in interface\");\n    }\n}\n\npublic class MyClass implements MyInterface {\n    public void abstractMethod() {\n        System.out.println(\"Abstract method implemented in MyClass\");\n    }\n\n    public static void main(String[] args) {\n        MyClass myClass = new MyClass();\n        myClass.abstractMethod(); // Abstract method implemented in MyClass\n        myClass.defaultMethod(); // Default method in interface\n    }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java4_9",
+            "title": "インターフェースと抽象クラス",
+            "question": "インターフェースと抽象クラスの違いを説明し、それぞれが適しているシチュエーションを述べてください。",
+            "explanation": "インターフェースは、すべてのメソッドが公開されている契約を定義し、それを実装するクラスはその契約を満たさなければなりません。一方、抽象クラスは、部分的な実装を含むことができます。インターフェースは、関連性が低いクラス間で動作を共有するために使用され、抽象クラスは、強く関連するクラス間で動作や状態を共有するために使用されます。",
+            "answer": "public interface MyInterface {\n    void myMethod();\n}\n\npublic abstract class MyAbstractClass {\n    abstract void myMethod();\n    void anotherMethod() {\n        System.out.println(\"Method in abstract class\");\n    }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java4_10",
+            "title": "複数のインターフェースの実装",
+            "question": "Javaのクラスは複数のインターフェースを実装することが可能ですが、同名のデフォルトメソッドを持つ複数のインターフェースを実装する場合、どのように取り扱われるか説明してください。また、その状況を示すサンプルコードを作成してください。",
+            "explanation": "クラスが同名のデフォルトメソッドを持つ複数のインターフェースを実装する場合、コンパイラはどのメソッドを使用すべきかを決定できないため、エラーが発生します。この問題を解決するためには、そのクラスでそのメソッドをオーバーライドして明示的に指定する必要があります。",
+            "answer": "public interface Interface1 {\n    default void myMethod() {\n        System.out.println(\"Method in Interface1\");\n    }\n}\n\npublic interface Interface2 {\n    default void myMethod() {\n        System.out.println(\"Method in Interface2\");\n    }\n}\n\npublic class MyClass implements Interface1, Interface2 {\n    public void myMethod() {\n        Interface1.super.myMethod();\n    }\n\n    public static void main(String[] args) {\n        MyClass myClass = new MyClass();\n        myClass.myMethod(); // Method in Interface1\n    }\n}"
+        }
+    ]
+}

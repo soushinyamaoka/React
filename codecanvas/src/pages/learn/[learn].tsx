@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from "next/head";
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import styles from "./JavaScriptLearnPage.module.css";
-import AnswerCard from '../components/AnswerCard';
-import LoadingPage from '../components/LoadingPage';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import styles from "./JavaLearnPage.module.css";
+import AnswerCard from '../../components/AnswerCard';
+import LoadingPage from '../../components/LoadingPage';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
@@ -25,11 +25,11 @@ interface Questions {
   answer: string;
 }
 
-const JavaScriptLearnPage: React.FC = () => {
+const Learn: React.FC = () => {
   const [showAnswers, setShowAnswers] = useState<number[]>([]);
 
   const router = useRouter();
-  let courseId = router.query.id;
+  let courseId = router.query.learn;
   let courseLevel = router.query.level;
   let courseMenu = router.query.menu;
   const [contents, setContents] = useState<Contents | null>(null);
@@ -66,7 +66,7 @@ const JavaScriptLearnPage: React.FC = () => {
         <h1>{contents.title}へようこそ</h1>
 
         <p>
-          このページでは、Javaプログラミング言語の基本的なコンセプトを学ぶことができます。
+          このページでは、{contents.subtitle}について学ぶことができます。
         </p>
 
         {contents.questions.map((content: Questions) => (
@@ -95,4 +95,4 @@ const JavaScriptLearnPage: React.FC = () => {
   );
 };
 
-export default JavaScriptLearnPage;
+export default Learn;

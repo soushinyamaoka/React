@@ -1,0 +1,48 @@
+{
+    "contentsId": "java3",
+    "title": "Javaのオブジェクト指向問題集ページ",
+    "subtitle": "オブジェクト指向プログラミングの基礎を学ぼう",
+    "questions": [{
+            "id": 1,
+            "questionId": "java3_extend",
+            "title": "クラスの継承",
+            "question": "クラスの継承とは、あるクラスが他のクラスの機能（メソッドやフィールド）を引き継ぐことを言います。これにより、新たなクラスを作成する際に、すでに作成したクラスの機能を再利用することができます。\n\n例えば、動物のクラス（Animal）があり、その中に「鳴く」という機能があるとします。そして、犬のクラス（Dog）を作りたいと思った時、動物のクラスを継承することで、犬のクラスにも「鳴く」という機能を持たせることができます。",
+            "answer": "// ここでは動物のクラス（Animal）を作ります。\npublic class Animal {\n  // 「鳴く」メソッドを作ります。\n  public void bark() {\n    System.out.println(\"動物が鳴きます...\");\n  }\n}\n\n// 次に、犬のクラス（Dog）を作ります。\n// ここで「extends Animal」は、Animalクラスを継承するという意味です。\npublic class Dog extends Animal {\n  // 犬クラスにも「鳴く」メソッドが利用できます。\n}\n\n// メインメソッドで動物と犬が鳴く機能を試します。\npublic class Main {\n  public static void main(String[] args) {\n    Animal animal = new Animal();\n    animal.bark(); // 動物が鳴きます...\n\n    Dog dog = new Dog();\n    dog.bark(); // 動物が鳴きます... と出力され、犬も鳴くことが確認できます。\n  }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java3_polymorphism",
+            "title": "ポリモーフィズム",
+            "question": "ポリモーフィズムとは、一つの形（クラス）で複数の形（サブクラス）を表現できることを言います。たとえば、スーパーマンは普段はクラーク・ケントという新聞記者の姿をしていますが、必要に応じてスーパーヒーローの姿に変わります。Javaでこれを表現すると、クラーク・ケントとスーパーマンは同じ人物（一つのオブジェクト）でも、彼らの「働き」は状況によって変わります。\n\nこれはJavaの大きな特徴であり、コードをシンプルにしたり、再利用性を高めることに役立ちます。",
+            "answer": "// 動物クラス（Animal）を定義します。\npublic abstract class Animal {\n  public abstract void sound();\n}\n\n// 犬クラス（Dog）を定義します。Animalクラスを継承します。\npublic class Dog extends Animal {\n  @Override\n  public void sound() {\n    System.out.println(\"ワンワン\");\n  }\n}\n\n// 猫クラス（Cat）を定義します。Animalクラスを継承します。\npublic class Cat extends Animal {\n  @Override\n  public void sound() {\n    System.out.println(\"ニャー\");\n  }\n}\n\n// メインクラスでポリモーフィズムを実現します。\npublic class Main {\n  public static void main(String[] args) {\n    Animal myDog = new Dog();\n    Animal myCat = new Cat();\n    myDog.sound(); // ワンワン\n    myCat.sound(); // ニャー\n  }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java3_abstract",
+            "title": "抽象クラス",
+            "question": "抽象クラスとは、具体的な内容を持たず、形だけを定義したクラスのことを指します。ちょっと難しいかもしれませんね。イメージとしては、例えば「動物」という大きなカテゴリを作ることができて、「動物」は具体的には何もしないけど、「鳴き声を出す」という行動はできるよ、と決めておくことができます。\n\nそして、具体的な動物、たとえば「犬」や「猫」は「動物」を継承して、「鳴き声を出す」という行動を「ワンワン」とか「ニャー」に具体化します。これが抽象クラスの役割です。",
+            "answer": "// 動物クラス（Animal）を定義します。これが抽象クラスです。\npublic abstract class Animal {\n  public abstract void sound(); // 鳴き声を出すという抽象メソッドを定義します。\n}\n\n// 犬クラス（Dog）を定義します。Animalクラスを継承します。\npublic class Dog extends Animal {\n  @Override\n  public void sound() {\n    System.out.println(\"ワンワン\"); // 犬の鳴き声を具体化します。\n  }\n}\n\n// 猫クラス（Cat）を定義します。Animalクラスを継承します。\npublic class Cat extends Animal {\n  @Override\n  public void sound() {\n    System.out.println(\"ニャー\"); // 猫の鳴き声を具体化します。\n  }\n}\n\n// メインクラスで動物の鳴き声を出力します。\npublic class Main {\n  public static void main(String[] args) {\n    Animal myDog = new Dog();\n    Animal myCat = new Cat();\n    myDog.sound(); // ワンワン\n    myCat.sound(); // ニャー\n  }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java3_interface",
+            "title": "インターフェース",
+            "question": "インターフェースとは、ある種の「約束事」のようなものです。たとえば、ロボットに「歩く」「走る」「ジャンプする」の機能を持たせるとき、それぞれの機能がどんな名前で、どう使うのかをインターフェースで決めておきます。\n\nそして、具体的なロボットを作るときには、そのロボットがこの「約束事」を守って機能を実装します。これにより、全く違う種類のロボットでも、共通の機能を同じように使うことができます。",
+            "answer": "// ロボットの機能を定義するインターフェース\npublic interface RobotInterface {\n  void walk();\n  void run();\n  void jump();\n}\n\n// ロボットクラス\npublic class MyRobot implements RobotInterface {\n  @Override\n  public void walk() {\n    System.out.println(\"ロボットが歩きます。\");\n  }\n\n  @Override\n  public void run() {\n    System.out.println(\"ロボットが走ります。\");\n  }\n\n  @Override\n  public void jump() {\n    System.out.println(\"ロボットがジャンプします。\");\n  }\n}\n\n// メインクラス\npublic class Main {\n  public static void main(String[] args) {\n    RobotInterface myRobot = new MyRobot();\n    myRobot.walk();\n    myRobot.run();\n    myRobot.jump();\n  }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java3_encapsulation",
+            "title": "カプセル化",
+            "question": "カプセル化とは、まるで秘密の箱のように、データやメソッドをクラス内に閉じ込めることです。この箱は、外から見ると「何をしているのか」はわかるけれど、「どうやっているのか」は見えません。\n\nこれは、外から直接触れられると壊れてしまうかもしれない大事な部分を保護するためです。だから、この箱を開けたり閉じたりする特別な方法（メソッド）を用意して、安全に使えるようにします。",
+            "answer": "// 秘密の箱（カプセル化されたクラス）\npublic class SecretBox {\n  private int secretNumber;\n\n  // 秘密の数を設定するメソッド\n  public void setSecretNumber(int number) {\n    if (number >= 0) {\n      this.secretNumber = number;\n    } else {\n      System.out.println(\"秘密の数は0以上でなければなりません。\");\n    }\n  }\n\n  // 秘密の数を取得するメソッド\n  public int getSecretNumber() {\n    return this.secretNumber;\n  }\n}\n\n// メインクラス\npublic class Main {\n  public static void main(String[] args) {\n    SecretBox myBox = new SecretBox();\n    myBox.setSecretNumber(5);\n    System.out.println(\"秘密の数は\" + myBox.getSecretNumber() + \"です。\");\n  }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java3_override",
+            "title": "オーバーライド",
+            "question": "オーバーライドとは、親クラスのメソッドを子クラスで新しく定義し直すことを言います。\n\n親クラスのメソッドが子クラスにとって使いにくい場合や、もっと便利にしたい場合に、このオーバーライドを使って親クラスのメソッドを改良することができます。ちょうど、自分だけの自転車を自分好みにカスタマイズするようなものです。",
+            "answer": "// 親クラス\npublic class Parent {\n  public void sayHello() {\n    System.out.println(\"Hello, I'm parent.\");\n  }\n}\n\n// 子クラス\npublic class Child extends Parent {\n  @Override\n  public void sayHello() {\n    System.out.println(\"Hello, I'm child.\");\n  }\n}\n\n// メインクラス\npublic class Main {\n  public static void main(String[] args) {\n    Child myChild = new Child();\n    myChild.sayHello(); // 子クラスでオーバーライドしたメソッドを呼び出す\n  }\n}"
+        }
+    ]
+}

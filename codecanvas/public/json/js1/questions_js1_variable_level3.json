@@ -1,172 +1,166 @@
 {
-    "contentsId": "js1",
-    "title": "Javascript変数問題集ページ",
+    "contentsId": "js3",
+    "title": "JavaScriptの変数問題集ページ",
     "subtitle": "上級",
     "questions": [{
             "id": 1,
-            "questionId": "js1_1",
-            "title": "変数のスコープ",
-            "question": "以下のコードを実行した場合、コンソールにどのような結果が表示されますか？",
-            "explanation": "この問題では、変数のスコープについての理解を問われます。if文内で宣言された変数aは、if文の中でのみ有効なローカル変数です。そのため、if文の外で変数aを参照しようとすると、参照エラーが発生します。",
-            "answer": "Uncaught ReferenceError: a is not defined"
+            "questionId": "js3_1",
+            "title": "変数のスコープチェーン",
+            "question": "JavaScriptにおける変数のスコープチェーンについて説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptでは、現在のスコープから所望の変数を見つけられない場合、エンジンは一つ上のスコープに移動してその変数を探します。これをスコープチェーンと呼びます。",
+            "answer": "let a = 5; // グローバルスコープ\n\nfunction first() {\n  let b = 2; // first関数のスコープ\n\n  function second() {\n    let c = 3; // second関数のスコープ\n    console.log(a + b + c); // 各スコープから変数を参照します。予想される出力: 10\n  }\n\n  second();\n}\n\nfirst();"
         },
         {
             "id": 2,
-            "questionId": "js1_2",
-            "title": "変数のホイスティング",
-            "question": "以下のコードを実行した場合、コンソールにどのような結果が表示されますか？",
-            "explanation": "この問題では、変数のホイスティングについての理解を問われます。変数の宣言は、コードのどこにあっても、実行前に処理されます。そのため、変数bは宣言前に参照されていますが、参照エラーが発生しません。",
-            "answer": "undefined"
+            "questionId": "js3_2",
+            "title": "クロージャ",
+            "question": "JavaScriptにおけるクロージャについて説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "クロージャは関数とその関数が作成されたレキシカルスコープの組み合わせです。これにより、関数はそのレキシカルスコープ外から呼び出されても、そのスコープ内の変数にアクセスできます。",
+            "answer": "function outer() {\n  let a = 5;\n\n  function inner() {\n    console.log(a); // 外部スコープの変数aにアクセスします。予想される出力: 5\n  }\n\n  return inner;\n}\n\nlet myInner = outer();\nmyInner();"
         },
         {
             "id": 3,
-            "questionId": "js3",
-            "title": "変数のスコープ",
-            "question": "以下のコードを実行すると何が表示されますか？\n\n```\nfunction outer() {\n  let x = 10;\n  function inner() {\n    console.log(x);\n  }\n  return inner;\n}\n\nlet foo = outer();\nfoo();\n```\n",
-            "explanation": "inner関数の実行時には、outer関数の実行が終了しても変数xの値を参照できます。これは、関数outerが実行されたスコープチェーン内に変数xがあるためです。inner関数内で変数xを参照することができるので、10が表示されます。",
-            "answer": "10"
+            "questionId": "js3_3",
+            "title": "変数の再宣言",
+            "question": "JavaScriptのvar, let, constで宣言した変数を再宣言しようとする場合の挙動について説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "varは同一スコープ内での再宣言が可能ですが、letとconstでは同一スコープ内での再宣言は不可能です。",
+            "answer": "var a = 5;\nvar a = 10; // 再宣言が可能です\nconsole.log(a); // 予想される出力: 10\n\nlet b = 5;\n// let b = 10; // 再宣言は不可能で、この行はエラーを引き起こします\n\nconst c = 5;\n// const c = 10; // 再宣言は不可能で、この行はエラーを引き起こします"
         },
         {
             "id": 4,
-            "questionId": "js4",
-            "title": "変数の巻き上げ",
-            "question": "以下のコードを実行すると何が表示されますか？\n\n```\nlet x = 10;\n\nfunction foo() {\n  console.log(x);\n  let x = 5;\n}\n\nfoo();\n```\n",
-            "explanation": "変数の巻き上げとは、変数宣言部分がスコープの先頭に移動される現象のことです。したがって、foo関数内でxを参照する際には、letで宣言されたxが存在することになります。しかし、その時点でのlet xの初期値はundefinedです。したがって、xが参照された時点でまだ値が代入されていないため、結果はReferenceErrorになります。",
-            "answer": "ReferenceError"
+            "questionId": "js3_4",
+            "title": "グローバルオブジェクトへの変数の追加",
+            "question": "JavaScriptでvarで宣言した変数とletやconstで宣言した変数がグローバルオブジェクトにどのように影響するか説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "varで宣言した変数はグローバルオブジェクトのプロパティとして追加されますが、letやconstで宣言した変数は追加されません。",
+            "answer": "var a = 5;\nlet b = 10;\nconsole.log(window.a); // varで宣言した変数はグローバルオブジェクトのプロパティとなります。予想される出力: 5\nconsole.log(window.b); // letで宣言した変数はグローバルオブジェクトのプロパティとなりません。予想される出力: undefined"
         },
         {
             "id": 5,
-            "questionId": "javascript2_1",
-            "title": "変数のスコープ",
-            "question": "次のコードを実行した場合、どの値がコンソールに出力されるか選んでください。\n\n```\nvar x = 10;\nfunction f() {\n  console.log(x);\n  var x = 20;\n}\nf();\n```\n",
-            "explanation": "変数xは関数fのスコープ内で定義されていますが、宣言が変数の参照よりも後になっています。そのため、関数内での変数の参照では変数xが定義されていないためundefinedが出力されます。",
-            "answer": "b"
+            "questionId": "js3_5",
+            "title": "ブロックスコープと関数スコープ",
+            "question": "JavaScriptにおけるブロックスコープと関数スコープの違いについて説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptでは、varは関数スコープを持ち、letとconstはブロックスコープを持ちます。これは、ブロック({}で囲まれた領域)内でletやconstで宣言した変数はそのブロック内でのみ利用可能で、ブロック外からは参照できないことを意味します。",
+            "answer": "function varTest() {\n  var x = 1;\n  if (true) {\n    var x = 2; // 同じスコープでの再宣言は可能\n    console.log(x); // 予想される出力: 2\n  }\n  console.log(x); // 予想される出力: 2\n}\n\nfunction letTest() {\n  let y = 1;\n  if (true) {\n    let y = 2;\n    console.log(y); // 予想される出力: 2\n  }\n  console.log(y); // 予想される出力: 1\n}\n\nvarTest();\nletTest();"
         },
         {
             "id": 6,
-            "questionId": "javascript2_2",
-            "title": "変数の宣言",
-            "question": "次のコードを実行した場合、どの値がコンソールに出力されるか選んでください。\n\n```\nfunction f() {\n  x = 10;\n}\nf();\nconsole.log(x);\n```\n",
-            "explanation": "関数内で変数xを定義していないため、xはグローバル変数として宣言されます。そのため、関数f()内でxが代入された後、そのままグローバルスコープのxの値が変更されます。",
-            "answer": "c"
+            "questionId": "js3_6",
+            "title": "テンプレートリテラル",
+            "question": "JavaScriptのテンプレートリテラルを使用して、「Hello, name!」という形式の文字列を出力する関数を作成してください。nameは引数で受け取るものとします。",
+            "explanation": "JavaScriptのテンプレートリテラルは、バッククォート(``)で囲んだ文字列内で${}を使用することで、その内部のJavaScriptの式を評価し、その結果を文字列に埋め込むことができます。",
+            "answer": "function greeting(name) {\n  // テンプレートリテラルを使用\n  var message = `Hello, ${name}!`;\n  console.log(message);\n}\n\ngreeting('John'); // 予想される出力: Hello, John!"
         },
         {
             "id": 7,
-            "questionId": "js2_7",
-            "title": "変数のスコープ",
-            "question": "以下のコードの実行結果として、表示される値を答えてください。\n\n```\nlet x = 10;\n\nif (true) {\n  let x = 5;\n}\n\nconsole.log(x);\n```",
-            "explanation": "if文内で宣言されたxはブロックスコープを持ち、if文内でしか参照することができません。そのため、console.log文内のxは、if文外で宣言されたグローバルスコープのxである10が表示されます。",
-            "answer": "10"
+            "questionId": "js3_7",
+            "title": "変数の巻き上げ",
+            "question": "JavaScriptにおける「変数の巻き上げ」について説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptでは、変数宣言がそのスコープの先頭に「巻き上げ」られるという挙動があります。これは、スコープ内のどこで変数を宣言しても、その宣言がスコープの先頭に移動するということを意味します。",
+            "answer": "// 変数の巻き上げにより、yはundefinedとなる\nconsole.log(y); // 予想される出力: undefined\nvar y = 5;\n\n// letやconstで宣言した変数は巻き上げられないため、この行はエラーとなる\n// console.log(z); // 予想される出力: ReferenceError: z is not defined\nlet z = 5;"
         },
         {
             "id": 8,
-            "questionId": "js2_8",
-            "title": "定数の再代入",
-            "question": "以下のコードの実行結果として、表示される値を答えてください。\n\n```\nconst x = 10;\n\nif (true) {\n  x = 5;\n}\n\nconsole.log(x);\n```",
-            "explanation": "定数は再代入できないため、x = 5; の部分でエラーが発生します。",
-            "answer": "エラー"
+            "questionId": "js3_8",
+            "title": "変数のスコープチェーン",
+            "question": "JavaScriptにおける変数の「スコープチェーン」について説明し、その動作を示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptでは、変数はそれぞれが定義されたスコープ内でのみ利用可能です。また、あるスコープから変数が見つからない場合、その親のスコープを順にたどって変数を探し、グローバルスコープまで探します。これをスコープチェーンといいます。",
+            "answer": "var x = 'global';\n\nfunction outer() {\n  var x = 'outer';\n\n  function inner() {\n    var x = 'inner';\n    console.log(x); // 予想される出力: inner\n  }\n\n  inner();\n  console.log(x); // 予想される出力: outer\n}\n\nouter();\nconsole.log(x); // 予想される出力: global"
         },
         {
             "id": 9,
-            "questionId": "javascript9_1",
-            "title": "スコープ",
-            "question": "以下のコードの出力結果を答えなさい。\n\n```javascript\nfunction test() {\n  for (var i = 0; i < 3; i++) {\n    setTimeout(() => console.log(i), 0);\n  }\n}\ntest();\n```\n",
-            "explanation": "setTimeout は非同期処理を行う関数であり、指定された時間が経過した後にコールバック関数を実行します。ただし、コールバック関数が実行されるタイミングは、指定された時間が経過した後であっても、すぐに実行されるわけではありません。\n\n上記のコードでは、for 文の中で 3 つのタイマーが生成され、それぞれが 0 秒後にコールバック関数を実行するようにスケジュールされます。しかし、実際にコールバック関数が実行されるのは、for 文の処理が完了した後です。そのため、3 つのコールバック関数が同時に実行され、i の値が 3 になっているため、すべて 3 が出力されます。\n",
-            "answer": "3\n3\n3"
+            "questionId": "js3_9",
+            "title": "変数の再宣言",
+            "question": "var, let, constを使用した変数宣言の違いを説明し、それぞれ再宣言がどのように振る舞うかを示すサンプルコードを記述してください。",
+            "explanation": "varは関数スコープであり、再宣言が可能です。letとconstはブロックスコープであり、再宣言は不可能です。ただし、letは再代入が可能ですが、constは再代入も不可能です。",
+            "answer": "var x = 5;\nvar x = 10; // 再宣言可能\nconsole.log(x); // 予想される出力: 10\n\nlet y = 5;\n// let y = 10; // 再宣言は不可能なため、この行はエラーとなる\ny = 10; // ただし再代入は可能\nconsole.log(y); // 予想される出力: 10\n\nconst z = 5;\n// const z = 10; // 再宣言は不可能なため、この行はエラーとなる\n// z = 10; // また、再代入も不可能なため、この行もエラーとなる\nconsole.log(z); // 予想される出力: 5"
         },
         {
             "id": 10,
-            "questionId": "javascript1_10",
-            "title": "スコープ",
-            "question": "以下のコードを実行した場合、コンソールにどのような結果が出力されますか？\n\n```\nlet x = 1;\n{\n    let x = 2;\n    console.log(x);\n}\nconsole.log(x);\n```",
-            "explanation": "変数 `x` は、ブロックスコープ内で `1` で初期化されます。ブロックスコープの内部で、同じ名前の変数 `x` が `2` で初期化され、その値が `console.log` 関数で出力されます。ブロックスコープの外で、変数 `x` は `1` で初期化されており、その値が `console.log` 関数で出力されます。",
-            "answer": "出力結果:\n```\n2\n1\n```\n\n変数 `x` は、ブロックスコープ内で `1` で初期化されます。ブロックスコープの内部で、同じ名前の変数 `x` が `2` で初期化され、その値が `console.log` 関数で出力されます。ブロックスコープの外で、変数 `x` は `1` で初期化されており、その値が `console.log` 関数で出力されます。"
+            "questionId": "js3_10",
+            "title": "グローバルオブジェクトと変数",
+            "question": "JavaScriptにおけるグローバルオブジェクトと変数の関係性を説明し、それを示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptでは、グローバルスコープで宣言された変数（varで宣言）はグローバルオブジェクトのプロパティとしてアクセスすることが可能です。ただし、letやconstで宣言された変数、または変数宣言なしに代入された変数はグローバルオブジェクトのプロパティとなりません。",
+            "answer": "var x = 10;\nconsole.log(window.x); // 予想される出力: 10 (ブラウザ環境の場合)\n\nlet y = 20;\nconsole.log(window.y); // 予想される出力: undefined\n\nz = 30;\nconsole.log(window.z); // 予想される出力: undefined"
         },
         {
             "id": 11,
-            "questionId": "js2_11",
-            "title": "変数のスコープについて",
-            "question": "以下のコードを実行した場合の出力結果は何でしょうか？",
-            "explanation": "変数`x`は、`if`文のブロック内で定義されています。そのため、`if`文のブロックを抜けると、そのスコープから外れます。それ以降の行で変数`x`を呼び出すと、定義されていないというエラーが発生します。",
-            "answer": "エラーが発生する\n",
-            "sampleCode": "if (true) {\n  let x = 10;\n}\nconsole.log(x);\n"
+            "questionId": "js3_11",
+            "title": "変数の巻き上げ（Hoisting）",
+            "question": "JavaScriptの変数の巻き上げ（Hoisting）について説明し、それを示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptでは、変数と関数の宣言がそれらが現れる前に自動的に最上部に移動する現象を巻き上げ（Hoisting）と呼びます。ただし、letとconstは初期化される前に参照するとエラーになります（一時的死域）。",
+            "answer": "console.log(x); // undefinedが出力される\nvar x = 5;\n\nconsole.log(y); // ReferenceError: y is not defined\nlet y = 5;"
         },
         {
             "id": 12,
-            "questionId": "js2_12",
-            "title": "変数の巻き上げについて",
-            "question": "以下のコードを実行した場合の出力結果は何でしょうか？",
-            "explanation": "変数`x`は、関数内で宣言されていますが、初期化はされていません。そのため、`console.log(x)`が呼び出される前に変数`x`の初期化が行われ、値が`undefined`となります。",
-            "answer": "undefined\n",
-            "sampleCode": "function test() {\n  console.log(x);\n  var x = 1;\n}\ntest();\n"
+            "questionId": "js3_12",
+            "title": "一時的死域（TDZ）",
+            "question": "一時的死域（Temporal Dead Zone）とは何か説明し、それを示すサンプルコードを記述してください。",
+            "explanation": "一時的死域（TDZ）はletまたはconstで宣言された変数がスコープに入り、初期化される前の領域を指します。この領域では変数へのアクセスが不可能であり、アクセスを試みるとエラーが発生します。",
+            "answer": "console.log(x); // ReferenceError: x is not defined\nlet x = 5;"
         },
         {
             "id": 13,
-            "questionId": "js2_13",
-            "title": "変数のスコープ",
-            "question": "以下のコードを実行した場合、コンソールに出力される値は何ですか？",
-            "explanation": "if文のブロック内で宣言された変数「num」は、そのブロック内でのみ有効なローカル変数となります。そのため、if文ブロック外での変数「num」の値には影響を与えず、コンソールには1が出力されます。",
-            "answer": "1",
-            "code": "let num = 1;\nif (true) {\n    let num = 2;\n}\nconsole.log(num);\n"
+            "questionId": "js3_13",
+            "title": "ブロックスコープと変数",
+            "question": "JavaScriptでブロックスコープに対する変数の振る舞いを説明し、それを示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptでは、letやconstで宣言された変数はその宣言が行われたブロック内（ブロックスコープ）でのみ利用可能です。ブロック外から変数にアクセスしようとするとエラーが発生します。",
+            "answer": "{\n  let x = 'block scope';\n  console.log(x); // block scopeが出力される\n}\nconsole.log(x); // ReferenceError: x is not defined"
         },
         {
             "id": 14,
-            "questionId": "js2_14",
-            "title": "変数の書き換え",
-            "question": "以下のコードを実行した場合、コンソールに出力される値は何ですか？",
-            "explanation": "宣言済みの定数「num」を再度定義することはできません。そのため、定数「num」に再代入することで値を変更しています。そのため、定数「num」の値は2となり、コンソールには2が出力されます。",
-            "answer": "2",
-            "code": "const num = 1;\nnum = 2;\nconsole.log(num);\n"
+            "questionId": "js3_14",
+            "title": "関数スコープと変数",
+            "question": "JavaScriptで関数スコープに対する変数の振る舞いを説明し、それを示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptでは、varで宣言された変数はその宣言が行われた関数内（関数スコープ）でのみ利用可能です。関数外から変数にアクセスしようとするとエラーが発生します。",
+            "answer": "function example() {\n  var x = 'function scope';\n  console.log(x); // function scopeが出力される\n}\nexample();\nconsole.log(x); // ReferenceError: x is not defined"
         },
         {
             "id": 15,
-            "questionId": "javascript1_15",
-            "title": "変数の巻き上げ",
-            "question": "以下のコードを実行した場合、コンソールに出力される値は何ですか？",
-            "explanation": "この問題では変数の巻き上げについての理解を問います。変数の宣言前に代入を行うと、変数の巻き上げが行われるため、変数宣言よりも前に代入した値が出力されます。",
-            "answer": "10\n"
+            "questionId": "js3_15",
+            "title": "グローバル変数とローカル変数",
+            "question": "グローバル変数とローカル変数について説明し、それぞれの利用シーンを述べ、サンプルコードを記述してください。",
+            "explanation": "グローバル変数はスクリプト全体からアクセス可能な変数で、プログラム全体で共有するデータに使用されます。一方、ローカル変数は特定の関数やブロック内でのみ有効な変数で、一時的なデータ保持や同名のグローバル変数の影響を避けるために使用されます。",
+            "answer": "var globalVar = 'I am global!'; // グローバル変数\n\nfunction example() {\n  var localVar = 'I am local!'; // ローカル変数\n  console.log(globalVar); // I am global!が出力される\n  console.log(localVar); // I am local!が出力される\n}\n\nexample();\nconsole.log(globalVar); // I am global!が出力される\nconsole.log(localVar); // ReferenceError: localVar is not defined"
         },
         {
             "id": 16,
-            "questionId": "javascript1_16",
-            "title": "変数のスコープ",
-            "question": "以下のコードを実行した場合、コンソールに出力される値は何ですか？",
-            "explanation": "この問題では変数のスコープについての理解を問います。if文内で宣言された変数はif文の中でしか参照できないため、if文の外で宣言された変数xを出力するとエラーが発生します。",
-            "answer": "undefined\n"
+            "questionId": "js3_16",
+            "title": "ホイスティング",
+            "question": "JavaScriptのホイスティングとは何か説明し、それを示すサンプルコードを記述してください。",
+            "explanation": "JavaScriptでは、変数宣言と関数宣言がそのスコープの先頭に移動する現象をホイスティングと言います。ただし、let、constで宣言される変数や、変数に代入される関数式はホイスティングされません。",
+            "answer": "console.log(x); // undefinedが出力される\nvar x = 5;\n\nconsole.log(y); // ReferenceError: y is not defined\nlet y = 5;"
         },
         {
             "id": 17,
-            "questionId": "javascript1_17",
-            "title": "変数のスコープ",
-            "question": "以下のコードを実行した場合の出力結果は何でしょうか？",
-            "explanation": "letで宣言された変数はブロックスコープを持ち、if文内で宣言された変数countはif文のブロックスコープ内でしか有効ではありません。そのため、if文外でcountを出力しようとするとReferenceErrorが発生します。",
-            "answer": "ReferenceError: count is not defined",
-            "code": "if (true) {\n  let count = 0;\n}\nconsole.log(count);"
+            "questionId": "js3_17",
+            "title": "テンプレートリテラル",
+            "question": "テンプレートリテラルを使用して変数を文字列内に埋め込む方法を説明し、サンプルコードを記述してください。",
+            "explanation": "テンプレートリテラルを使うと、変数を文字列内に直接埋め込むことができます。テンプレートリテラルはバックティック (`) で囲むことで記述し、${} の中に変数を書きます。",
+            "answer": "let name = 'JavaScript';\nlet msg = `Hello, ${name}!`;\nconsole.log(msg); // Hello, JavaScript!が出力される"
         },
         {
             "id": 18,
-            "questionId": "javascript1_18",
-            "title": "変数の巻き上げ",
-            "question": "以下のコードを実行した場合の出力結果は何でしょうか？",
-            "explanation": "varで宣言された変数はホイスティングされるため、宣言より前に使用することができます。そのため、関数内で変数aを宣言している箇所より前のconsole.log(a)がundefinedになります。",
-            "answer": "undefined",
-            "code": "function test() {\n  console.log(a);\n  var a = 1;\n}\ntest();"
+            "questionId": "js3_18",
+            "title": "変数のスコープ",
+            "question": "letとconst、varで宣言された変数のスコープの違いを説明し、サンプルコードを記述してください。",
+            "explanation": "letとconstはブロックスコープで、定義されたブロック内でのみ有効です。一方、varは関数スコープで、定義された関数内、またはグローバルスコープで有効です。",
+            "answer": "{\n  let blockScope = 'I am block scoped';\n  var functionScope = 'I am function scoped';\n  console.log(blockScope); // I am block scopedが出力される\n  console.log(functionScope); // I am function scopedが出力される\n}\nconsole.log(blockScope); // ReferenceError: blockScope is not defined\nconsole.log(functionScope); // I am function scopedが出力される"
         },
         {
             "id": 19,
-            "questionId": "javascript1_19",
-            "title": "変数の再代入",
-            "question": "以下のコードを実行した場合、変数aの値は何になるでしょうか？\n\n```\nlet a = 10;\nif(true) {\n  let a = 5;\n}\na = 2;\n```",
-            "explanation": "このコードは、ブロックスコープであるletを使って、2つの異なる変数aを宣言しています。\n条件分岐内で宣言されたaは、ブロックの外のaとは異なるスコープを持っています。\nそのため、条件分岐内で宣言されたaは、ブロックの外のaに影響を与えず、条件分岐を抜けた後に再代入が行われます。\n最終的に変数aの値は2になります。",
-            "answer": "2"
+            "questionId": "js3_19",
+            "title": "浮動小数点の精度",
+            "question": "JavaScriptの浮動小数点数の精度問題を説明し、それを回避するためのサンプルコードを記述してください。",
+            "explanation": "JavaScriptの数値は浮動小数点形式で表現されますが、これは全ての数値を完全に正確に表現することができないため、精度問題を引き起こします。例えば、0.1 + 0.2は、正確には0.3になりますが、JavaScriptでは0.30000000000000004と表示されます。この問題を回避する一つの方法は、整数に変換してから計算を行うことです。",
+            "answer": "let a = 0.1;\nlet b = 0.2;\nlet result = (a * 10 + b * 10) / 10;\nconsole.log(result); // 0.3が出力される"
         },
         {
             "id": 20,
-            "questionId": "javascript1_20",
-            "title": "constと再代入",
-            "question": "以下のコードを実行した場合、エラーが発生するかどうか答えてください。\n\n```\nconst a = 10;\na = 5;\n```",
-            "explanation": "このコードは、constを使って変数aを宣言し、その後で再代入を試みています。\nconstは再代入を許可しないため、このコードはエラーになります。\n再代入したい場合は、letやvarを使って宣言する必要があります。",
-            "answer": "エラーが発生する"
+            "questionId": "js3_20",
+            "title": "即時関数",
+            "question": "JavaScriptにおける即時関数（IIFE）について説明し、そのサンプルコードを記述してください。",
+            "explanation": "即時関数（Immediately Invoked Function Expression）とは、定義と同時に実行される関数のことを指します。これは主に変数のスコープを制限するために使用されます。通常、関数は定義した後で呼び出す必要がありますが、即時関数は定義すると同時に実行されます。",
+            "answer": "(function() {\n  let name = 'JavaScript';\n  console.log(name); // JavaScriptが出力される\n})();\nconsole.log(name); // ReferenceError: name is not defined"
         }
     ]
 }

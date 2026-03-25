@@ -1,0 +1,166 @@
+{
+    "contentsId": "js_loop1",
+    "title": "Javascriptの関数問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_function3_1",
+            "title": "即時実行関数",
+            "question": "JavaScriptで即時実行関数を定義し、その使用例を作成してください。",
+            "explanation": "即時実行関数(IIFE, Immediately Invoked Function Expression)とは、定義と同時に実行される関数のことです。スコープを閉じ込める効果があります。",
+            "answer": "(function () {\n  var name = 'John';\n  console.log(name);\n})();\n// 'John'を出力し、nameはこの関数スコープに閉じ込められます。"
+        },
+        {
+            "id": 2,
+            "questionId": "js_function3_2",
+            "title": "クロージャ",
+            "question": "JavaScriptでクロージャを定義し、その使用例を作成してください。",
+            "explanation": "クロージャとは、関数とその関数が宣言されたレキシカル環境の組み合わせを指します。これにより、関数は外部スコープからの変数へのアクセスを保持できます。",
+            "answer": "function outerFunction(outerVariable) {\n  return function innerFunction(innerVariable) {\n    console.log('outerVariable:', outerVariable);\n    console.log('innerVariable:', innerVariable);\n  }\n}\nconst newFunction = outerFunction('outside');\nnewFunction('inside');  // outerVariable: outside\n                         // innerVariable: inside"
+        },
+        {
+            "id": 3,
+            "questionId": "js_function3_3",
+            "title": "再帰関数",
+            "question": "JavaScriptで再帰関数を作成し、その使用例を作成してください。",
+            "explanation": "再帰関数とは、関数内で自分自身を呼び出す関数のことです。再帰関数を使うと、ループを使用せずに反復処理を行うことができます。",
+            "answer": "function factorial(n) {\n  if (n === 0) {\n    return 1;\n  } else {\n    return n * factorial(n - 1);\n  }\n}\nconsole.log(factorial(5));  // 120"
+        },
+        {
+            "id": 4,
+            "questionId": "js_function3_4",
+            "title": "高階関数とコールバック関数",
+            "question": "JavaScriptで高階関数とコールバック関数を用いた例を作成してください。",
+            "explanation": "高階関数とは、他の関数を引数として受け取ったり、戻り値として関数を返したりする関数のことです。コールバック関数は、高階関数が引数として受け取る関数の一種です。",
+            "answer": "function highOrderFunction(callback) {\n  const data = 'Hello, World!';\n  callback(data);\n}\n\nhighOrderFunction(function(data) {\n  console.log(data);\n});  // 'Hello, World!'"
+        },
+        {
+            "id": 5,
+            "questionId": "js_function3_5",
+            "title": "匿名関数",
+            "question": "JavaScriptで匿名関数を用いた例を作成してください。",
+            "explanation": "匿名関数は、名前がない関数です。一度だけしか使用しない関数に対しては、関数名をつけることなく、匿名関数として定義することができます。",
+            "answer": "let myFunc = function(x) {\n  return x * x;\n};\nconsole.log(myFunc(5));  // 25"
+        },
+        {
+            "id": 6,
+            "questionId": "js_function3_6",
+            "title": "即時関数",
+            "question": "JavaScriptで即時関数を用いた例を作成してください。",
+            "explanation": "即時関数は、定義されると同時に実行される関数です。即時関数は、その場で一度だけ実行したい処理を定義するのによく用いられます。",
+            "answer": "(function() {\n  var x = 10;\n  var y = 20;\n  console.log(x * y);  // 200\n})();"
+        },
+        {
+            "id": 7,
+            "questionId": "js_function3_7",
+            "title": "再帰関数",
+            "question": "JavaScriptで再帰関数を用いた例を作成してください。",
+            "explanation": "再帰関数は、自分自身を呼び出す関数のことを指します。再帰的なアルゴリズムを実装する際によく用いられます。",
+            "answer": "function factorial(n) {\n  if (n === 0) {\n    return 1;\n  } else {\n    return n * factorial(n - 1);\n  }\n}\nconsole.log(factorial(5));  // 120"
+        },
+        {
+            "id": 8,
+            "questionId": "js_function3_8",
+            "title": "クロージャ",
+            "question": "JavaScriptでクロージャを用いた例を作成してください。",
+            "explanation": "クロージャは、関数とその関数が作成されたレキシカルスコープとの組み合わせです。この概念を理解することはJavaScriptの高度な利用には必須です。",
+            "answer": "function outer() {\n  var counter = 0;\n  return function() {\n    return ++counter;\n  };\n}\nvar myFunc = outer();\nconsole.log(myFunc());  // 1\nconsole.log(myFunc());  // 2"
+        },
+        {
+            "id": 9,
+            "questionId": "js_function3_9",
+            "title": "高階関数とコールバック関数",
+            "question": "JavaScriptで高階関数とコールバック関数を用いた例を作成してください。",
+            "explanation": "高階関数とは、他の関数を引数として受け取るか、または関数を結果として返す関数を指します。コールバック関数は、他の関数に引数として渡され、ある操作が完了した後で呼び出される関数を指します。",
+            "answer": "function greeting(name) {\n  console.log('Hello, ' + name);\n}\nfunction processUserInput(callback) {\n  var name = prompt('Please enter your name.');\n  callback(name);\n}\nprocessUserInput(greeting);  // 'Hello, [user_input]'"
+        },
+        {
+            "id": 10,
+            "questionId": "js_function3_10",
+            "title": "即時関数（IIFE）",
+            "question": "JavaScriptで即時関数（IIFE）を用いた例を作成してください。",
+            "explanation": "即時関数（Immediately Invoked Function Expression）は、定義された直後に実行されます。これにより、変数のスコープを限定することができます。",
+            "answer": "(function() {\n  var message = 'Hello, World!';\n  console.log(message);  // 'Hello, World!'\n})();"
+        },
+        {
+            "id": 11,
+            "questionId": "js_function3_11",
+            "title": "クロージャ",
+            "question": "JavaScriptでクロージャを用いた例を作成してください。",
+            "explanation": "クロージャとは、関数とその関数が宣言されたレキシカルスコープとの組み合わせを指します。これにより、関数はそれ自体が定義されたスコープ外から変数にアクセスできます。",
+            "answer": "function outerFunction(outerVariable) {\n  return function innerFunction(innerVariable) {\n    console.log('outer: ' + outerVariable + ', inner: ' + innerVariable);\n  }\n}\nconst newFunction = outerFunction('outside');\nnewFunction('inside');  // 'outer: outside, inner: inside'"
+        },
+        {
+            "id": 12,
+            "questionId": "js_function3_12",
+            "title": "関数のカリー化",
+            "question": "JavaScriptで関数のカリー化を用いた例を作成してください。",
+            "explanation": "カリー化とは、複数の引数を取る関数を、1つの引数を取る複数の関数に分解することを指します。",
+            "answer": "function multiply(a, b) {\n  return a * b;\n}\nfunction curriedMultiply(a) {\n  return function(b) {\n    return multiply(a, b);\n  }\n}\nconst multiplyByTwo = curriedMultiply(2);\nmultiplyByTwo(3);  // 6"
+        },
+        {
+            "id": 13,
+            "questionId": "js_function3_13",
+            "title": "非同期関数",
+            "question": "JavaScriptの非同期関数を用いて、非同期の処理を実装してください。非同期の処理は、例えばsetTimeout()などを使用してください。",
+            "explanation": "JavaScriptでは非同期処理を実装するために非同期関数が利用されます。非同期関数は、結果がすぐには得られない処理を表現するために使用されます。そのような処理の一例としては、一定時間後に何かを実行するsetTimeout()があります。",
+            "answer": "function asyncGreeting() {\n  setTimeout(() => {\n    console.log('Hello, World!');\n  }, 1000);\n}\nasyncGreeting();  // 1秒後に 'Hello, World!' を出力"
+        },
+        {
+            "id": 14,
+            "questionId": "js_function3_14",
+            "title": "Promiseを用いた非同期関数",
+            "question": "JavaScriptの非同期関数とPromiseを用いて、非同期の処理を実装してください。非同期の処理は、例えばsetTimeout()などを使用してください。",
+            "explanation": "JavaScriptでは非同期処理を実装するために非同期関数とPromiseが利用されます。Promiseは非同期処理の成功時にはresolve、失敗時にはrejectを呼び出します。",
+            "answer": "function asyncGreeting() {\n  return new Promise((resolve, reject) => {\n    setTimeout(() => {\n      resolve('Hello, World!');\n    }, 1000);\n  });\n}\nasyncGreeting().then(message => console.log(message));  // 1秒後に 'Hello, World!' を出力"
+        },
+        {
+            "id": 15,
+            "questionId": "js_function3_15",
+            "title": "Async/Awaitを用いた非同期処理",
+            "question": "非同期関数とPromise、そしてasync/awaitを使って非同期処理を実装してください。非同期処理として、setTimeout()関数を用いるなどしてください。",
+            "explanation": "async/awaitはJavaScriptの非同期処理をより直感的に記述するための構文です。Promiseを返す非同期関数をawaitで呼び出すことで、非同期処理の結果を同期的に扱うことができます。",
+            "answer": "function delayGreeting() {\n  return new Promise((resolve, reject) => {\n    setTimeout(() => {\n      resolve('Hello, World!');\n    }, 1000);\n  });\n}\nasync function asyncGreeting() {\n  let message = await delayGreeting();\n  console.log(message);  // 1秒後に 'Hello, World!' を出力\n}\nasyncGreeting();"
+        },
+        {
+            "id": 16,
+            "questionId": "js_function3_16",
+            "title": "関数内でのエラーハンドリング",
+            "question": "関数内で発生する可能性のあるエラーを捕捉して処理するコードを書いてください。エラーは、あえてthrowを使って発生させてみましょう。",
+            "explanation": "JavaScriptではtry/catchブロックを使用して、関数内で発生する可能性のあるエラーを捕捉し、エラーに対応するコードを記述することができます。",
+            "answer": "function riskyBusiness() {\n  try {\n    // 何かリスキーな操作\n    throw new Error('Something went wrong!');\n  } catch (error) {\n    console.log(error.message);  // 'Something went wrong!' を出力\n  }\n}\nriskyBusiness();"
+        },
+        {
+            "id": 17,
+            "questionId": "js_function3_17",
+            "title": "高階関数の使用",
+            "question": "高階関数として動作する関数を作成してください。この関数は引数として別の関数を受け取り、その関数を実行した結果を出力するものとします。",
+            "explanation": "高階関数は他の関数を引数として受け取るか、または結果として関数を返す関数のことを指します。これはJavaScriptが関数を第一級オブジェクトとして扱う特性を利用したパターンで、非常に強力な抽象化メカニズムを提供します。",
+            "answer": "function higherOrderFunction(callback) {\n  // 引数として受け取った関数を実行\n  let result = callback();\n  console.log(result);\n}\nfunction greeting() {\n  return 'Hello, World!';\n}\nhigherOrderFunction(greeting);  // 'Hello, World!' を出力"
+        },
+        {
+            "id": 18,
+            "questionId": "js_function3_18",
+            "title": "即時関数（IIFE）の使用",
+            "question": "即時関数（Immediately Invoked Function Expression：IIFE）を記述してください。この即時関数は、実行されると自身のスコープ内で変数を宣言し、その変数の値をコンソールに出力するものとします。",
+            "explanation": "即時関数（IIFE）は定義と同時に実行される関数で、自身のスコープを作ります。これは変数の名前衝突を防ぐためによく使われます。",
+            "answer": "(function() {\n  let privateVariable = 'Hello, World!';\n  console.log(privateVariable);  // 'Hello, World!' を出力\n})();"
+        },
+        {
+            "id": 19,
+            "questionId": "js_function3_19",
+            "title": "コールバック関数の作成",
+            "question": "引数として関数を受け取り、その関数を非同期に実行する関数を作成してください。この関数は、setTimeoutを使用して、受け取った関数を1秒後に実行するものとします。",
+            "explanation": "コールバック関数は、他のコード（特に非同期処理）によって特定の時点で呼び出されるために渡すことができる関数を指します。JavaScriptでは、関数は第一級オブジェクトであり、他のオブジェクトと同じように関数を変数や引数として扱うことができます。",
+            "answer": "function delayedExecution(callback) {\n  // setTimeoutを使用して、引数の関数を1秒後に実行\n  setTimeout(callback, 1000);\n}\nfunction sayHello() {\n  console.log('Hello, World!');\n}\ndelayedExecution(sayHello);  // 1秒後に 'Hello, World!' を出力"
+        },
+        {
+            "id": 20,
+            "questionId": "js_function3_20",
+            "title": "クロージャの理解",
+            "question": "外部関数のスコープにある変数を参照する内部関数を返す関数を作成してください。この外部関数は、自身のスコープに'Hello, World!'を値とする変数を保持し、内部関数はこの変数の値をコンソールに出力するものとします。",
+            "explanation": "クロージャは、関数とその関数が宣言されたレキシカル環境との組み合わせです。この環境は、クロージャが作成された時点での外部変数を包含します。これにより、JavaScriptの関数は自身が宣言されたスコープ外で呼び出されても、そのスコープ内の変数にアクセスすることができます。",
+            "answer": "function outerFunction() {\n  let message = 'Hello, World!';\n  return function innerFunction() {\n    console.log(message);  // 'Hello, World!' を出力\n  };\n}\nlet closure = outerFunction();\nclosure();  // 'Hello, World!' を出力"
+        }
+    ]
+}

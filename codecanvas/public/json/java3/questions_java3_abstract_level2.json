@@ -1,0 +1,86 @@
+{
+    "contentsId": "java4",
+    "title": "Javaの抽象クラス問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_abstract_class2_1",
+            "title": "抽象クラスとインターフェイス",
+            "question": "Javaでは、抽象クラスとインターフェイスがあります。抽象クラスとインターフェイスの違いを説明してください。",
+            "explanation": "抽象クラスとインターフェイスは、共に完全には実装されていないクラス（抽象クラス）やメソッド（インターフェイス）を提供しますが、以下のような違いがあります。\n\n1.抽象クラスは一部のメソッドが具体的な実装を持つことができますが、インターフェイスのメソッドはすべて抽象メソッド（具体的な実装を持たない）である必要があります。\n2.抽象クラスを継承するにはextendsキーワードを使用し、一つのクラスは一つの抽象クラスだけを継承できます。一方、インターフェイスを継承するにはimplementsキーワードを使用し、一つのクラスは複数のインターフェイスを継承できます。\n3.抽象クラスにはフィールド（変数）を定義することができますが、インターフェイスにはフィールドを定義することはできません（定数のみ可能）。",
+            "answer": "/* 抽象クラスとインターフェイスの違いは以下のとおりです。\n\n1. 抽象クラスは一部のメソッドが具体的な実装を持つことができますが、インターフェイスのメソッドはすべて抽象メソッド（具体的な実装を持たない）である必要があります。\n\n2. 抽象クラスを継承するにはextendsキーワードを使用し、一つのクラスは一つの抽象クラスだけを継承できます。一方、インターフェイスを継承するにはimplementsキーワードを使用し、一つのクラスは複数のインターフェイスを継承できます。\n\n3. 抽象クラスにはフィールド（変数）を定義することができますが、インターフェイスにはフィールドを定義することはできません（定数のみ可能）。\n*/"
+        },
+        {
+            "id": 2,
+            "questionId": "java_abstract_class2_2",
+            "title": "抽象クラスの利用",
+            "question": "抽象クラスAnimalに、抽象メソッドsound()を追加し、DogクラスとCatクラスにそれぞれこのメソッドの具体的な実装を提供し、そのsound()メソッドを呼び出すコードを作成してください。",
+            "explanation": "抽象クラスは具体的な実装を持たないメソッド（抽象メソッド）を定義することができます。この抽象メソッドは、抽象クラスを継承したサブクラスによって具体的な実装が提供される必要があります。",
+            "answer": "/* 抽象クラスAnimalの定義 */\nabstract class Animal {\n    /* 抽象メソッドsoundの定義 */\n    abstract void sound();\n}\n\n/* Animalクラスを継承したDogクラスの定義 */\nclass Dog extends Animal {\n    /* soundメソッドの具体的な実装 */\n    void sound() {\n        System.out.println(\"Woof Woof!\");\n    }\n}\n\n/* Animalクラスを継承したCatクラスの定義 */\nclass Cat extends Animal {\n    /* soundメソッドの具体的な実装 */\n    void sound() {\n        System.out.println(\"Meow Meow!\");\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        /* Dogクラスのインスタンスを生成 */\n        Dog d = new Dog();\n        /* Dogクラスのsoundメソッドを呼び出し */\n        d.sound();\n        /* 出力結果：Woof Woof! */\n\n        /* Catクラスのインスタンスを生成 */\n        Cat c = new Cat();\n        /* Catクラスのsoundメソッドを呼び出し */\n        c.sound();\n        /* 出力結果：Meow Meow! */\n    }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java_abstract_class2_3",
+            "title": "抽象クラスのメソッドオーバーライド",
+            "question": "抽象クラスVehicleを作成し、抽象メソッドrun()を定義してください。そして、Vehicleクラスを継承したCarクラスとBikeクラスを作成し、それぞれでrun()メソッドをオーバーライドして具体的な実装を提供してください。",
+            "explanation": "抽象クラスは具体的な実装を持たないメソッド（抽象メソッド）を定義することができます。この抽象メソッドは、抽象クラスを継承したサブクラスによって具体的な実装が提供される必要があります。",
+            "answer": "/* 抽象クラスVehicleの定義 */\nabstract class Vehicle {\n    /* 抽象メソッドrunの定義 */\n    abstract void run();\n}\n\n/* Vehicleクラスを継承したCarクラスの定義 */\nclass Car extends Vehicle {\n    /* runメソッドの具体的な実装 */\n    void run() {\n        System.out.println(\"Car is running.\");\n    }\n}\n\n/* Vehicleクラスを継承したBikeクラスの定義 */\nclass Bike extends Vehicle {\n    /* runメソッドの具体的な実装 */\n    void run() {\n        System.out.println(\"Bike is running.\");\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        /* Carクラスのインスタンスを生成 */\n        Car c = new Car();\n        /* Carクラスのrunメソッドを呼び出し */\n        c.run();\n        /* 出力結果：Car is running. */\n\n        /* Bikeクラスのインスタンスを生成 */\n        Bike b = new Bike();\n        /* Bikeクラスのrunメソッドを呼び出し */\n        b.run();\n        /* 出力結果：Bike is running. */\n    }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java_abstract_class2_4",
+            "title": "抽象クラスとコンストラクタ",
+            "question": "抽象クラスがコンストラクタを持つことは可能ですか？可能であれば、その理由を述べてください。また、具体的なコード例を示してください。",
+            "explanation": "はい、可能です。抽象クラスはコンストラクタを持つことができます。これは、抽象クラスが他の通常のクラスと同じく、インスタンスの初期化に関連するロジックを含むことができるからです。しかし、抽象クラス自体は直接インスタンス化することはできません。それでも、そのサブクラスがスーパークラスのコンストラクタを呼び出す際に使用することができます。",
+            "answer": "/* 抽象クラスAnimalの定義 */\nabstract class Animal {\n    /* Animalクラスのコンストラクタ */\n    public Animal() {\n        System.out.println(\"An animal has been created.\");\n    }\n\n    /* 抽象メソッドsoundの定義 */\n    abstract void sound();\n}\n\n/* Animalクラスを継承したDogクラスの定義 */\nclass Dog extends Animal {\n    /* Dogクラスのコンストラクタ */\n    public Dog() {\n        /* スーパークラスのコンストラクタを呼び出す */\n        super();\n        System.out.println(\"A dog has been created.\");\n    }\n\n    /* soundメソッドの具体的な実装 */\n    void sound() {\n        System.out.println(\"Woof Woof!\");\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        /* Dogクラスのインスタンスを生成 */\n        Dog d = new Dog();\n        /* Dogクラスのsoundメソッドを呼び出し */\n        d.sound();\n        /* 出力結果：\n        An animal has been created.\n        A dog has been created.\n        Woof Woof! */\n    }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java_abstract_class2_5",
+            "title": "抽象メソッドのオーバーライド",
+            "question": "サブクラスがスーパークラスの抽象メソッドをオーバーライドしない場合、どのような結果になるか説明してください。また、具体的なコード例を示してください。",
+            "explanation": "サブクラスがスーパークラスの抽象メソッドをオーバーライドしない場合、そのサブクラスもまた抽象クラスとなります。その理由は、抽象メソッドが含まれているクラスは、そのメソッドが具体的な実装を持つまで抽象クラスでなければならないからです。",
+            "answer": "/* 抽象クラスAnimalの定義 */\nabstract class Animal {\n    /* 抽象メソッドsoundの定義 */\n    abstract void sound();\n}\n\n/* Animalクラスを継承したDogクラスの定義 */\nabstract class Dog extends Animal {\n    /* ここでは、soundメソッドをオーバーライドしていません。\n       そのため、Dogクラスは抽象クラスとなります。 */\n}\n\n/* Dogクラスを継承したHuskyクラスの定義 */\nclass Husky extends Dog {\n    /* ここでsoundメソッドをオーバーライドします。*/\n    void sound() {\n        System.out.println(\"Husky says Woof Woof!\");\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        /* Huskyクラスのインスタンスを生成 */\n        Husky h = new Husky();\n        /* Huskyクラスのsoundメソッドを呼び出し */\n        h.sound();\n        /* 出力結果：\n        Husky says Woof Woof! */\n    }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java_abstract_class2_6",
+            "title": "抽象クラスのインスタンス化",
+            "question": "抽象クラスを直接インスタンス化しようとすると何が起こるか説明し、それを防ぐための解決策を示してください。",
+            "explanation": "抽象クラスは直接インスタンス化できません。これは抽象クラスが未完全（すべてのメソッドが具体的な実装を持つわけではない）であるためです。そのため、インスタンス化するためには、その抽象クラスを継承した具象クラス（すべてのメソッドが具体的な実装を持つクラス）を作成し、その具象クラスのインスタンスを生成する必要があります。",
+            "answer": "/* 抽象クラスAnimalの定義 */\nabstract class Animal {\n    /* 抽象メソッドsoundの定義 */\n    abstract void sound();\n}\n\n/* Animalクラスを継承したDogクラスの定義 */\nclass Dog extends Animal {\n    /* soundメソッドをオーバーライドします。*/\n    void sound() {\n        System.out.println(\"Dog says Woof Woof!\");\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        /* Animalクラスのインスタンスを生成することはできません。\n        Animal a = new Animal(); // コンパイルエラー\n\n        しかし、Dogクラスのインスタンスは生成できます。*/\n        Dog d = new Dog();\n        /* Dogクラスのsoundメソッドを呼び出し */\n        d.sound();\n        /* 出力結果：\n        Dog says Woof Woof! */\n    }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java_abstract_class2_7",
+            "title": "抽象クラスと具象クラス",
+            "question": "以下の抽象クラスBirdを拡張して、具象クラスPigeonを作成し、soundメソッドをオーバーライドして、\"Pigeon coos!\"と出力するコードを作成してください。\n\nabstract class Bird {\n    abstract void sound();\n}",
+            "explanation": "抽象クラスを継承する具象クラスでは、抽象クラスで定義されたすべての抽象メソッドをオーバーライドする必要があります。この場合、PigeonクラスはBirdクラスを継承し、soundメソッドをオーバーライドします。",
+            "answer": "/* 抽象クラスBirdの定義 */\nabstract class Bird {\n    /* 抽象メソッドsoundの定義 */\n    abstract void sound();\n}\n\n/* Birdクラスを継承したPigeonクラスの定義 */\nclass Pigeon extends Bird {\n    /* soundメソッドをオーバーライドします。*/\n    void sound() {\n        System.out.println(\"Pigeon coos!\");\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        /* Pigeonクラスのインスタンスを生成します。*/\n        Pigeon p = new Pigeon();\n        /* Pigeonクラスのsoundメソッドを呼び出し */\n        p.sound();\n        /* 出力結果：\n        Pigeon coos! */\n    }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java_abstract_class2_8",
+            "title": "抽象クラスと多態性",
+            "question": "以下の抽象クラスBirdとそのサブクラスSparrow, Pigeonがあります。\n\nabstract class Bird {\n    abstract void sound();\n}\n\nclass Sparrow extends Bird {\n    void sound() {\n        System.out.println(\"Chirp chirp!\");\n    }\n}\n\nclass Pigeon extends Bird {\n    void sound() {\n        System.out.println(\"Coo coo!\");\n    }\n}\n\nこれらのクラスを使用して、Bird型の配列birdsにSparrowとPigeonのインスタンスを代入し、配列のすべての要素でsoundメソッドを呼び出すプログラムを作成してください。",
+            "explanation": "多態性を活用すると、スーパークラスの型でサブクラスのインスタンスを管理することができます。この場合、Birdクラス型の配列にSparrowクラスとPigeonクラスのインスタンスを格納します。そして、それぞれのインスタンスでsoundメソッドを呼び出します。",
+            "answer": "/* 抽象クラスBirdとそのサブクラスSparrow, Pigeonの定義 */\nabstract class Bird {\n    abstract void sound();\n}\n\nclass Sparrow extends Bird {\n    void sound() {\n        System.out.println(\"Chirp chirp!\");\n    }\n}\n\nclass Pigeon extends Bird {\n    void sound() {\n        System.out.println(\"Coo coo!\");\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        /* Birdクラス型の配列にSparrowクラスとPigeonクラスのインスタンスを格納 */\n        Bird[] birds = new Bird[2];\n        birds[0] = new Sparrow();\n        birds[1] = new Pigeon();\n        /* 配列のすべての要素でsoundメソッドを呼び出す */\n        for (Bird bird : birds) {\n            bird.sound();\n            /* 出力結果：\n            Chirp chirp!\n            Coo coo! */\n        }\n    }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java_abstract_class2_9",
+            "title": "抽象メソッドと具象メソッドの組み合わせ",
+            "question": "以下の抽象クラスAnimalとそのサブクラスDogがあります。\n\nabstract class Animal {\n    abstract void sound();\n    void eat() {\n        System.out.println(\"Eating...\");\n    }\n}\n\nclass Dog extends Animal {\n    void sound() {\n        System.out.println(\"Woof woof!\");\n    }\n}\n\nDogクラスのインスタンスを生成し、soundメソッドとeatメソッドを呼び出すプログラムを作成してください。",
+            "explanation": "抽象クラスは具象メソッド（具体的な実装を持つメソッド）と抽象メソッド（サブクラスでオーバーライドするためのメソッド）を併用することができます。この場合、DogクラスはAnimalクラスの抽象メソッドsoundをオーバーライドしていますが、具象メソッドeatはそのまま利用します。",
+            "answer": "/* 抽象クラスAnimalとそのサブクラスDogの定義 */\nabstract class Animal {\n    abstract void sound();\n    void eat() {\n        System.out.println(\"Eating...\");\n    }\n}\n\nclass Dog extends Animal {\n    void sound() {\n        System.out.println(\"Woof woof!\");\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        /* Dogクラスのインスタンスを生成 */\n        Dog dog = new Dog();\n        /* soundメソッドとeatメソッドを呼び出す */\n        dog.sound();\n        dog.eat();\n        /* 出力結果：\n        Woof woof!\n        Eating... */\n    }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java_abstract_class2_10",
+            "title": "抽象クラスとインターフェースの違い",
+            "question": "抽象クラスとインターフェースの違いについて説明してください。",
+            "explanation": "抽象クラスとインターフェースは、Javaにおける抽象化メカニズムの2つの主要な形態ですが、主な違いは以下の通りです。\n\n1. 抽象クラスは一部または全てのメソッドが具体的な実装を持たないクラスですが、インターフェースは全てのメソッドが抽象です。\n\n2. サブクラスは一つの抽象クラスしか継承できませんが、一つのクラスは複数のインターフェースを実装できます。\n\n3. 抽象クラスはフィールド（状態）を持つことができますが、インターフェースは定数しか持つことができません。",
+            "answer": "抽象クラスとインターフェースは、Javaにおける抽象化メカニズムの2つの主要な形態ですが、主な違いは以下の通りです：\n\n1. 抽象クラスは一部または全てのメソッドが具体的な実装を持たないクラスですが、インターフェースは全てのメソッドが抽象です。\n\n2. サブクラスは一つの抽象クラスしか継承できませんが、一つのクラスは複数のインターフェースを実装できます。\n\n3. 抽象クラスはフィールド（状態）を持つことができますが、インターフェースは定数しか持つことができません。"
+        }
+    ]
+}

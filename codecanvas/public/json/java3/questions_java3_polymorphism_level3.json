@@ -1,0 +1,86 @@
+{
+    "contentsId": "java3",
+    "title": "Javaのポリモーフィズム問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_polymorphism3_1",
+            "title": "抽象クラスとポリモーフィズム",
+            "question": "Animalという抽象クラスが定義されています。このクラスはabstractメソッドであるsound()を持ち、DogクラスとCatクラスはこの抽象クラスを拡張しています。それぞれのクラスでsound()メソッドをオーバーライドし、Dogクラスは\\\"Woof\\\"を、Catクラスは\\\"Meow\\\"を表示します。\n\n次のコードを完成させて、Animal型のリストにDogとCatのインスタンスを追加し、それぞれのsoundメソッドを呼び出してください。\n\nList<Animal> animals = new ArrayList<>();\n...",
+            "explanation": "抽象クラスは、他のクラスが拡張するためのクラスであり、その一部が未定義（抽象）のメソッドを持つことが特徴です。この問題では、抽象クラスAnimalとそのサブクラスであるDogクラスとCatクラスがあります。抽象メソッドsound()は、DogクラスとCatクラスによってオーバーライドされます。Animal型のリストにDogクラスとCatクラスのインスタンスを追加し、それぞれのsound()メソッドを呼び出すことで、Javaのポリモーフィズムを実現します。",
+            "answer": "List<Animal> animals = new ArrayList<>();\n\n// DogとCatのインスタンスをリストに追加\nanimals.add(new Dog());\nanimals.add(new Cat());\n\n// リスト内の各Animalでsoundメソッドを呼び出す\nfor (Animal animal : animals) {\n    animal.sound();\n    // Dogの場合の出力: \"Woof\"\n    // Catの場合の出力: \"Meow\"\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java_polymorphism3_2",
+            "title": "インターフェースとポリモーフィズム",
+            "question": "ある図形の面積を計算するためのインターフェース「Shape」があり、これには面積を計算する「calculateArea()」というメソッドが定義されています。さらに、「Rectangle」クラスと「Circle」クラスがこのインターフェースを実装しています。\n\n次のコードを完成させて、Shape型のリストにRectangleとCircleのインスタンスを追加し、それぞれのcalculateAreaメソッドを呼び出してください。\n\nList<Shape> shapes = new ArrayList<>();\n...",
+            "explanation": "インターフェースは、クラスが実装すべきメソッドを定義した「契約」のようなものです。RectangleクラスとCircleクラスは、Shapeインターフェースを実装し、calculateAreaメソッドをオーバーライドします。Shape型のリストにRectangleとCircleのインスタンスを追加し、それぞれのcalculateAreaメソッドを呼び出すことで、Javaのポリモーフィズムを実現します。",
+            "answer": "List<Shape> shapes = new ArrayList<>();\n\n// RectangleとCircleのインスタンスをリストに追加\nshapes.add(new Rectangle(5, 4));\nshapes.add(new Circle(3));\n\n// リスト内の各ShapeでcalculateAreaメソッドを呼び出す\nfor (Shape shape : shapes) {\n    System.out.println(shape.calculateArea());\n    // Rectangleの場合の出力: 20 (長さ5、幅4の矩形の面積)\n    // Circleの場合の出力: 28.27 (半径3の円の面積、小数点以下は近似値)\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java_polymorphism3_3",
+            "title": "ダウンキャスティングとポリモーフィズム",
+            "question": "Animalクラスはspeakメソッドを持ちます。Catクラスはこのクラスを拡張し、さらにpurrメソッドを持っています。Animal型の変数animalに、Catのインスタンスが格納されています。\n\n次のコードを完成させて、animalをダウンキャスティングし、Catクラスのpurrメソッドを呼び出してください。\n\nAnimal animal = new Cat();\n...",
+            "explanation": "ダウンキャスティングは、スーパークラスの型をサブクラスの型にキャスト（変換）する操作です。ここでは、Animal型の変数animalをCat型にダウンキャスティングします。これにより、Animalクラスには存在しない、Catクラス独自のメソッドpurrを呼び出すことが可能になります。",
+            "answer": "Animal animal = new Cat();\n\n// animalをCat型にダウンキャスティング\nCat cat = (Cat) animal;\n\n// Catクラスのpurrメソッドを呼び出す\ncat.purr();\n// 出力: \"Purr...\""
+        },
+        {
+            "id": 4,
+            "questionId": "java_polymorphism4_4",
+            "title": "インターフェースとポリモーフィズム",
+            "question": "Javaでインターフェースを使ったポリモーフィズムを説明し、その例を示してください。",
+            "explanation": "インターフェースはクラスが持つべきメソッドの仕様を定義するためのものです。クラスがインターフェースを実装すると、そのクラスはインターフェースで定義されたメソッドを必ず実装しなければなりません。\n\nこれにより、異なるクラスが同じインターフェースを実装することで、同じメソッドに対して異なる振る舞いをすることができます。これがポリモーフィズム（多態性）です。",
+            "answer": "// インターフェースの定義\ninterface Drawable {\n    void draw();\n}\n\n// CircleクラスはDrawableインターフェースを実装\nclass Circle implements Drawable {\n    public void draw() {\n        System.out.println(\"Draw circle\");\n        // 出力: \"Draw circle\"\n    }\n}\n\n// RectangleクラスもDrawableインターフェースを実装\nclass Rectangle implements Drawable {\n    public void draw() {\n        System.out.println(\"Draw rectangle\");\n        // 出力: \"Draw rectangle\"\n    }\n}\n\n// Drawable型の配列にCircleとRectangleのインスタンスを格納\nDrawable[] drawables = {new Circle(), new Rectangle()};\n\n// 各インスタンスのdrawメソッドを呼び出す\nfor (Drawable drawable : drawables) {\n    drawable.draw();\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java_polymorphism5_5",
+            "title": "メソッドオーバーライドとポリモーフィズム",
+            "question": "メソッドのオーバーライドとポリモーフィズムの関係について説明し、その例を示してください。",
+            "explanation": "メソッドのオーバーライドとは、サブクラスがスーパークラスのメソッドを自身のクラスに合うように再定義することを言います。これにより、スーパークラスの型でオブジェクトを扱ったとしても、実行時にサブクラスのメソッドが呼び出されるという特性を持ちます。\n\nこれがポリモーフィズム（多態性）の一部です。同一のインターフェース（メソッド呼び出し）で、異なる振る舞い（実装）を実現できるという特性が、オブジェクト指向言語におけるポリモーフィズムです。",
+            "answer": "// スーパークラス\nclass Animal {\n    void sound() {\n        System.out.println(\"This is an animal.\");\n        // 出力: \"This is an animal.\"\n    }\n}\n\n// サブクラス1\nclass Dog extends Animal {\n    // soundメソッドをオーバーライド\n    void sound() {\n        System.out.println(\"Woof Woof\");\n        // 出力: \"Woof Woof\"\n    }\n}\n\n// サブクラス2\nclass Cat extends Animal {\n    // soundメソッドをオーバーライド\n    void sound() {\n        System.out.println(\"Meow Meow\");\n        // 出力: \"Meow Meow\"\n    }\n}\n\n// スーパークラスの型で配列を宣言\nAnimal[] animals = {new Dog(), new Cat()};\n\n// 各オブジェクトのsoundメソッドを呼び出す\nfor (Animal animal : animals) {\n    animal.sound();\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java_polymorphism6_6",
+            "title": "抽象クラスとポリモーフィズム",
+            "question": "抽象クラスとポリモーフィズムの関係について説明し、その例を示してください。",
+            "explanation": "抽象クラスとは、一つ以上の抽象メソッド（具体的な実装のないメソッド）を持つクラスのことを指します。これはサブクラスがメソッドの実装を強制するために用いられます。これがポリモーフィズム（多態性）の一部であり、同一のインターフェース（メソッド呼び出し）で、異なる振る舞い（実装）を実現します。",
+            "answer": "// 抽象クラス\nclass AbstractAnimal {\n    abstract void sound(); // 抽象メソッド\n}\n\n// サブクラス1\nclass Dog extends AbstractAnimal {\n    // soundメソッドをオーバーライド\n    void sound() {\n        System.out.println(\"Woof Woof\");\n        // 出力: \"Woof Woof\"\n    }\n}\n\n// サブクラス2\nclass Cat extends AbstractAnimal {\n    // soundメソッドをオーバーライド\n    void sound() {\n        System.out.println(\"Meow Meow\");\n        // 出力: \"Meow Meow\"\n    }\n}\n\n// スーパークラスの型で配列を宣言\nAbstractAnimal[] animals = {new Dog(), new Cat()};\n\n// 各オブジェクトのsoundメソッドを呼び出す\nfor (AbstractAnimal animal : animals) {\n    animal.sound();\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java_polymorphism7_7",
+            "title": "インターフェースとポリモーフィズム",
+            "question": "インターフェースとポリモーフィズムの関係について説明し、その例を示してください。",
+            "explanation": "インターフェースは抽象メソッドの集合で、具体的な実装は持ちません。これにより、異なるクラスが同じインターフェースを持つことで、それらのクラスが持つメソッドのシグネチャ（名前、引数の型、戻り値の型）を強制します。これがポリモーフィズム（多態性）の一部であり、同一のインターフェース（メソッド呼び出し）で、異なる振る舞い（実装）を実現します。",
+            "answer": "// インターフェース\nclass AnimalInterface {\n    void sound(); // 抽象メソッド\n}\n\n// クラス1\nclass Dog implements AnimalInterface {\n    // soundメソッドをオーバーライド\n    void sound() {\n        System.out.println(\"Woof Woof\");\n        // 出力: \"Woof Woof\"\n    }\n}\n\n// クラス2\nclass Cat implements AnimalInterface {\n    // soundメソッドをオーバーライド\n    void sound() {\n        System.out.println(\"Meow Meow\");\n        // 出力: \"Meow Meow\"\n    }\n}\n\n// インターフェースの型で配列を宣言\nAnimalInterface[] animals = {new Dog(), new Cat()};\n\n// 各オブジェクトのsoundメソッドを呼び出す\nfor (AnimalInterface animal : animals) {\n    animal.sound();\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java_polymorphism8_8",
+            "title": "ダウンキャスティングとポリモーフィズム",
+            "question": "ダウンキャスティングとポリモーフィズムの関係について説明し、その例を示してください。",
+            "explanation": "ダウンキャスティングは、スーパークラスの参照をサブクラスの参照にキャストする操作です。ポリモーフィズムの一環として、スーパークラスの参照でオブジェクトを扱った場合でも、ダウンキャスティングを用いてサブクラスのメソッドやフィールドにアクセスすることができます。",
+            "answer": "// スーパークラス\nclass Animal {\n    void sound() {\n        System.out.println(\"Generic animal sound\");\n        // 出力: \"Generic animal sound\"\n    }\n}\n\n// サブクラス\nclass Dog extends Animal {\n    void sound() {\n        System.out.println(\"Woof Woof\");\n        // 出力: \"Woof Woof\"\n    }\n    void specificMethod() {\n        System.out.println(\"Dog specific method\");\n        // 出力: \"Dog specific method\"\n    }\n}\n\n// スーパークラスの型でオブジェクトを宣言と初期化\nAnimal animal = new Dog();\n\n// サブクラスのメソッドにアクセスするためのダウンキャスティング\n((Dog) animal).specificMethod();"
+        },
+        {
+            "id": 9,
+            "questionId": "java_polymorphism9_9",
+            "title": "抽象クラスとインターフェース",
+            "question": "Javaでの抽象クラスとインターフェースを使ったポリモーフィズムの違いについて説明し、それぞれの例を示してください。",
+            "explanation": "抽象クラスとインターフェースは、共に型の階層を定義するために使用されます。しかし、抽象クラスは実装を一部提供することができ、サブクラスはその実装を利用またはオーバーライドできます。一方、インターフェースは実装を提供せず、実装クラスはインターフェースの全てのメソッドを実装しなければなりません。",
+            "answer": "// 抽象クラス\nabstract class AbstractAnimal {\n    abstract void sound();\n\n    void breathe() {\n        System.out.println(\"Breathing\");\n        // 出力: \"Breathing\"\n    }\n}\n\nclass Cat extends AbstractAnimal {\n    void sound() {\n        System.out.println(\"Meow\");\n        // 出力: \"Meow\"\n    }\n}\n\n// インターフェース\ninterface IAnimal {\n    void sound();\n}\n\nclass Dog implements IAnimal {\n    public void sound() {\n        System.out.println(\"Woof\");\n        // 出力: \"Woof\"\n    }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java_polymorphism10_10",
+            "title": "デザインパターンとポリモーフィズム",
+            "question": "Javaでのデザインパターンでポリモーフィズムが利用される具体的な例を一つ挙げて、それがどのようにポリモーフィズムを利用しているか説明してください。",
+            "explanation": "ストラテジーパターンはポリモーフィズムを利用したデザインパターンの一つです。ストラテジーパターンは、アルゴリズムの家族を定義し、それぞれをカプセル化することで、アルゴリズムを互いに独立にすることができます。これにより、クライアントはアルゴリズムを交換でき、ランタイムでアルゴリズムを選択できます。これは、アルゴリズムのインターフェース（または抽象クラス）に対してプログラムを行うことで可能になります。",
+            "answer": "// ストラテジーパターンの例\n\n// ストラテジーインターフェース\ninterface PaymentStrategy {\n    public void pay(int amount);\n}\n\n// 具体的なストラテジー\nclass CreditCardPaymentStrategy implements PaymentStrategy {\n    public void pay(int amount) {\n        System.out.println(\"Paid \" + amount + \" using Credit Card.\");\n        // 出力: \"Paid \" + amount + \" using Credit Card.\"\n    }\n}\n\nclass PaypalPaymentStrategy implements PaymentStrategy {\n    public void pay(int amount) {\n        System.out.println(\"Paid \" + amount + \" using Paypal.\");\n        // 出力: \"Paid \" + amount + \" using Paypal.\"\n    }\n}\n\n// クライアント\nclass ShoppingCart {\n    private PaymentStrategy paymentStrategy;\n\n    public void setPaymentStrategy(PaymentStrategy paymentStrategy) {\n        this.paymentStrategy = paymentStrategy;\n    }\n\n    public void checkout(int amount) {\n        paymentStrategy.pay(amount);\n    }\n}"
+        }
+    ]
+}

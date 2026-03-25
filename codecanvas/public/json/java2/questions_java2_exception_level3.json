@@ -1,0 +1,86 @@
+{
+    "contentsId": "java5",
+    "title": "Javaの基本ライブラリ、例外処理問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java5_1",
+            "title": "Javaの例外階層と基本ライブラリ",
+            "question": "Javaでは、例外の種類によってスローされる例外クラスが異なります。例外階層について理解するために、Exception、RuntimeException、IOException、FileNotFoundExceptionの各例外がJavaの例外階層でどのような位置づけになっているか説明してください。\nまた、次のJavaコードがあるとします。\n\nimport java.io.File;\nimport java.io.FileInputStream;\nimport java.io.FileNotFoundException;\n\npublic class Main {\n    public static void main(String[] args) {\n        File file = new File(\"non_existent_file.txt\");\n        try {\n            FileInputStream fis = new FileInputStream(file);\n        } catch (FileNotFoundException e) {\n            e.printStackTrace();\n        }\n    }\n}\n```\n\nこのコードがどのように動作するか説明し、FileNotFoundExceptionが何を意味しているか説明してください。",
+            "explanation": "Javaの例外階層では、Throwableが最上位にあり、その下にExceptionとErrorがあります。Exceptionはチェック例外のスーパークラスであり、そのサブクラスにはIOExceptionなどがあります。RuntimeExceptionは非チェック例外のスーパークラスで、プログラムエラーを示します。IOExceptionは入出力に関する例外を示し、そのサブクラスとしてFileNotFoundExceptionが存在します。\n\n上記のコードは、存在しないファイルに対してFileInputStreamを作成しようとしています。この操作はFileNotFoundExceptionをスローします。FileNotFoundExceptionは、要求されたファイルが存在しない場合にスローされるチェック例外です。この例外はtry-catch文で捕捉され、スタックトレースが出力されます。",
+            "answer": "import java.io.File;\nimport java.io.FileInputStream;\nimport java.io.FileNotFoundException;\n\npublic class Main {\n    public static void main(String[] args) {\n        // 存在しないファイルを表すFileオブジェクトを作成します。\n        File file = new File(\"non_existent_file.txt\");\n        // FileInputStreamを作成しようとすると、FileNotFoundExceptionがスローされます。\n        try {\n            FileInputStream fis = new FileInputStream(file);\n        } catch (FileNotFoundException e) {\n            // FileNotFoundExceptionがスローされた場合、スタックトレースを出力します。\n            e.printStackTrace();\n        }\n    }\n}\n```"
+        },
+        {
+            "id": 2,
+            "questionId": "java5_2",
+            "title": "カスタム例外クラスの作成",
+            "question": "Javaでは、独自の例外を定義することが可能です。次の要件に基づいて、カスタム例外クラスを作成してください。\n\n1. \"InvalidUserAgeException\"という名前のチェック例外クラスを作成します。\n2. このクラスは、年齢が不適切なユーザーを表すためのものです。\n3. コンストラクタで年齢を受け取り、その年齢が不適切であることを示すエラーメッセージを設定します。\n4. \"InvalidUserAgeException\"がスローされた場合、そのエラーメッセージを表示するコードも作成します。",
+            "explanation": "カスタム例外クラスは、Javaで提供される例外クラスが具体的な問題を表現できない場合や、特定のビジネスロジックに適合させるために使用されます。カスタム例外クラスを作成するには、Exceptionクラスまたはそのサブクラスを継承します。また、エラーメッセージは例外クラスのコンストラクタで設定することが一般的です。",
+            "answer": "// チェック例外クラスを継承してカスタム例外クラスを作成します。\npublic class InvalidUserAgeException extends Exception {\n    // コンストラクタでエラーメッセージを設定します。\n    public InvalidUserAgeException(int age) {\n        super(\"Invalid age: \" + age);\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        try {\n            // 年齢が不適切な場合に例外をスローします。\n            throw new InvalidUserAgeException(-1);\n        } catch (InvalidUserAgeException e) {\n            // エラーメッセージを表示します。\n            System.out.println(e.getMessage());\n        }\n    }\n}\n```"
+        },
+        {
+            "id": 3,
+            "questionId": "java5_3",
+            "title": "try-with-resources の利用",
+            "question": "Java7から導入されたtry-with-resources構文を使用して、リソースの自動クローズを実装してみましょう。FileWriterクラスを使用して、指定されたテキストファイルに文字列を書き込む処理を作成してください。その際、例外が発生した場合でも確実にリソースがクローズされることを確認してください。",
+            "explanation": "Java7以降、try-with-resources構文を使用すると、リソースを自動的にクローズすることができます。これにより、finallyブロックでリソースのクローズを手動で行う必要がなくなります。FileWriterクラスは、この機能をサポートしています。",
+            "answer": "import java.io.FileWriter;\nimport java.io.IOException;\n\npublic class Main {\n    public static void main(String[] args) {\n        // try-with-resourcesを利用してリソースの自動クローズを実装します。\n        try (FileWriter writer = new FileWriter(\"file.txt\")) {\n            writer.write(\"Hello, World!\");\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n    }\n}\n```"
+        },
+        {
+            "id": 4,
+            "questionId": "java5_4",
+            "title": "自作例外の作成と利用",
+            "question": "独自の例外を作成して利用してみましょう。例えば、特定の条件（たとえば、引数が負の数の場合）で独自の例外をスローするメソッドを作成し、そのメソッドを呼び出すコードを書いてみてください。",
+            "explanation": "Javaでは、独自の例外を定義してそれをスローすることが可能です。これにより、特定のビジネスロジックに対するエラー処理を柔軟に行うことができます。独自の例外を作成するには、通常はExceptionクラスまたはそのサブクラスを拡張します。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        try {\n            checkNumber(-5);\n        } catch (NegativeNumberException e) {\n            e.printStackTrace();\n        }\n    }\n\n    public static void checkNumber(int number) throws NegativeNumberException {\n        if (number < 0) {\n            throw new NegativeNumberException(\"Negative number: \" + number);\n        }\n    }\n}\n\n// 独自の例外クラス\nclass NegativeNumberException extends Exception {\n    public NegativeNumberException(String message) {\n        super(message);\n    }\n}\n```"
+        },
+        {
+            "id": 5,
+            "questionId": "java5_5",
+            "title": "例外チェーンの理解と利用",
+            "question": "例外チェーンとは何か、またそれがどのように役立つか説明してください。また、それを実装するJavaコードを書いてみてください。",
+            "explanation": "例外チェーンとは、例外が別の例外を引き起こすことで、一連の例外が連鎖的に発生する状況を指します。これは、原因となる例外が上位の例外を引き起こし、それがさらに別の例外を引き起こすという形で発生します。Javaでは、catch句で捕捉した例外を別の例外の原因として設定し、再度スローすることで例外チェーンを作成することができます。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        try {\n            methodA();\n        } catch (Exception e) {\n            e.printStackTrace();\n        }\n    }\n\n    public static void methodA() throws Exception {\n        try {\n            methodB();\n        } catch (Exception e) {\n            throw new Exception(\"Failure in methodA\", e);\n        }\n    }\n\n    public static void methodB() throws Exception {\n        throw new Exception(\"Failure in methodB\");\n    }\n}\n```"
+        },
+        {
+            "id": 6,
+            "questionId": "java5_6",
+            "title": "カスタム例外の作成と利用",
+            "question": "カスタム例外とは何か、またそれがどのように役立つか説明してください。また、それを実装するJavaコードを書いてみてください。",
+            "explanation": "カスタム例外とは、プログラマーが自分で定義した例外のことを指します。Javaの標準ライブラリには様々な例外クラスが含まれていますが、それらでは表現しきれない特定の状況に対するエラーハンドリングを行いたい場合などに、カスタム例外を定義して使用することがあります。カスタム例外を作成するには、Exceptionクラスまたはそのサブクラスを継承したクラスを定義します。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        try {\n            throw new CustomException(\"This is a custom exception\");\n        } catch (CustomException e) {\n            System.out.println(e.getMessage());\n        }\n    }\n}\n\nclass CustomException extends Exception {\n    public CustomException(String message) {\n        super(message);\n    }\n}\n```\n// 出力結果: This is a custom exception"
+        },
+        {
+            "id": 7,
+            "questionId": "java5_7",
+            "title": "複数の例外処理",
+            "question": "複数の例外が投げられる場合のエラーハンドリングについて説明し、Javaでの実装例を書いてください。",
+            "explanation": "Javaでは1つのtryブロック内で複数の例外をキャッチすることができます。複数のcatchブロックを用意し、それぞれの例外タイプに対して異なる処理を行うことが可能です。これにより、異なる例外が投げられた時にそれぞれ適切に対応することができます。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        try {\n            // 値が奇数ならArithmeticExceptionを、偶数ならNullPointerExceptionをスローします\n            if (args.length % 2 == 0) {\n                throw new NullPointerException(\"Even length\");\n            } else {\n                throw new ArithmeticException(\"Odd length\");\n            }\n        } catch (NullPointerException e) {\n            System.out.println(\"Caught NullPointerException: \" + e.getMessage());\n        } catch (ArithmeticException e) {\n            System.out.println(\"Caught ArithmeticException: \" + e.getMessage());\n        }\n    }\n}\n```\n// 出力結果: Caught NullPointerException: Even length\n// もしくは\n// 出力結果: Caught ArithmeticException: Odd length"
+        },
+        {
+            "id": 8,
+            "questionId": "java5_8",
+            "title": "finallyブロック",
+            "question": "finallyブロックの役割について説明し、その使用例をJavaのコードで示してください。",
+            "explanation": "finallyブロックはtry-catch構文の最後に配置され、例外が発生しようとしまいと関係なく、必ず実行されるブロックです。これは例えばファイルを開いて操作した後、エラーが発生してもしなくてもファイルを閉じる必要があるようなケースで便利です。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        try {\n            // ファイルを開いて操作するコード\n            throw new Exception(\"A test exception\");\n        } catch (Exception e) {\n            System.out.println(\"Caught exception: \" + e.getMessage());\n        } finally {\n            // 例外が発生しようとしまいと、ここは必ず実行されます。\n            System.out.println(\"Executing finally block.\");\n        }\n    }\n}\n```\n// 出力結果:\n// Caught exception: A test exception\n// Executing finally block."
+        },
+        {
+            "id": 9,
+            "questionId": "java5_9",
+            "title": "カスタム例外",
+            "question": "Javaで独自の例外を作成する方法を説明し、その使用例をJavaのコードで示してください。",
+            "explanation": "Javaでは、Exceptionクラスを継承して独自の例外を作成することができます。これは、特定のアプリケーションに固有の問題をモデル化するのに便利です。その後、throwキーワードを使用してこれらのカスタム例外をスローできます。",
+            "answer": "// 独自の例外クラスを作成\nclass CustomException extends Exception {\n    public CustomException(String message) {\n        super(message);\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        try {\n            throw new CustomException(\"This is a custom exception.\");\n        } catch (CustomException e) {\n            System.out.println(\"Caught custom exception: \" + e.getMessage());\n        }\n    }\n}\n```\n// 出力結果:\n// Caught custom exception: This is a custom exception."
+        },
+        {
+            "id": 10,
+            "questionId": "java5_10",
+            "title": "リソースのクローズと例外処理",
+            "question": "Java 7以降では、try-with-resourcesという機能を使用して、リソースのクローズを自動化することができます。この機能を使用して、ファイルを開き、その内容を読み取り、ファイルを自動的に閉じるJavaのコードを作成してください。",
+            "explanation": "try-with-resources文は、リソースを開き、使用し、適切に閉じるための声明的なアプローチを提供します。この機能を使用すると、Javaランタイムは、tryブロックが終了したときにリソースを自動的に閉じます。これにより、開いたリソースが適切に閉じられることが保証され、リソースリークを防ぐことができます。",
+            "answer": "import java.io.BufferedReader;\nimport java.io.FileReader;\nimport java.io.IOException;\n\npublic class Main {\n    public static void main(String[] args) {\n        // try-with-resourcesを使用してファイルを開きます\n        try (BufferedReader br = new BufferedReader(new FileReader(\"file.txt\"))) {\n            String line;\n            while ((line = br.readLine()) != null) {\n                System.out.println(line);\n            }\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n    }\n}\n```\n// 出力結果:\n// file.txtの内容がコンソールに表示されます"
+        }
+    ]
+}

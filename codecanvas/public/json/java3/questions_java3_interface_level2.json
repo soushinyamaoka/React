@@ -1,0 +1,86 @@
+{
+    "contentsId": "java3",
+    "title": "Javaのインターフェース問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java3_1",
+            "title": "インターフェースとデフォルトメソッド",
+            "question": "Java 8ではインターフェースに新機能が追加されました。それは何でしょうか？",
+            "explanation": "Java 8では「デフォルトメソッド」がインターフェースに追加されました。これは、インターフェースに抽象メソッドだけでなく、デフォルトの実装を持つメソッドを追加できる機能です。これにより、既存のコードを壊すことなくインターフェースに新しいメソッドを追加できます。",
+            "answer": "// インターフェースの定義\npublic interface MyInterface {\n    // デフォルトメソッドの定義\n    default void myMethod() {\n        System.out.println(\"Hello from MyInterface\");\n    }\n}\n\n// インターフェースを実装するクラス\npublic class MyClass implements MyInterface {\n    // デフォルトメソッドをオーバーライドすることも可能です\n}\n\n// メインクラス\npublic class Main {\n    public static void main(String[] args) {\n        MyClass myClass = new MyClass();\n        myClass.myMethod(); // Hello from MyInterface\n    }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java3_2",
+            "title": "複数インターフェースのデフォルトメソッド",
+            "question": "クラスが複数のインターフェースを実装し、それぞれが同じデフォルトメソッドを持つ場合、どのメソッドが使用されますか？",
+            "explanation": "クラスが複数のインターフェースを実装し、それぞれが同じデフォルトメソッドを持つ場合、Javaはどのメソッドを使用するべきか判断できません。このような場合、クラスは明示的にデフォルトメソッドをオーバーライドし、どのインターフェースのメソッドを使用するか指定する必要があります。",
+            "answer": "// インターフェースの定義\npublic interface MyInterface1 {\n    // デフォルトメソッドの定義\n    default void myMethod() {\n        System.out.println(\"Hello from MyInterface1\");\n    }\n}\n\npublic interface MyInterface2 {\n    // 同じ名前のデフォルトメソッドの定義\n    default void myMethod() {\n        System.out.println(\"Hello from MyInterface2\");\n    }\n}\n\n// 両方のインターフェースを実装するクラス\npublic class MyClass implements MyInterface1, MyInterface2 {\n    // 明示的にデフォルトメソッドをオーバーライドする\n    public void myMethod() {\n        // MyInterface1のデフォルトメソッドを使用する\n        MyInterface1.super.myMethod();\n    }\n}\n\n// メインクラス\npublic class Main {\n    public static void main(String[] args) {\n        MyClass myClass = new MyClass();\n        myClass.myMethod(); // Hello from MyInterface1\n    }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java3_3",
+            "title": "インターフェースの継承",
+            "question": "Javaでインターフェースは他のインターフェースを継承できますか？またその際のキーワードは何でしょうか？",
+            "explanation": "はい、Javaではインターフェースは他のインターフェースを継承することができます。その際に使用するキーワードは「extends」です。クラスの継承と同じく、インターフェースの継承により、一つのインターフェースは他のインターフェースのメソッドを引き継ぐことができます。",
+            "answer": "// インターフェースの定義\npublic interface MyInterface1 {\n    void myMethod1();\n}\n\n// MyInterface1を継承する新しいインターフェース\npublic interface MyInterface2 extends MyInterface1 {\n    void myMethod2();\n}\n\n// インターフェースを実装するクラス\npublic class MyClass implements MyInterface2 {\n    // MyInterface1から継承したメソッド\n    public void myMethod1() {\n        System.out.println(\"My Method 1\");\n    }\n\n    // MyInterface2のメソッド\n    public void myMethod2() {\n        System.out.println(\"My Method 2\");\n    }\n}\n\n// メインクラス\npublic class Main {\n    public static void main(String[] args) {\n        MyClass myClass = new MyClass();\n        myClass.myMethod1(); // My Method 1\n        myClass.myMethod2(); // My Method 2\n    }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java3_4",
+            "title": "インターフェースの型",
+            "question": "インターフェースを型として使用できますか？",
+            "explanation": "はい、インターフェースは型として使用することができます。インターフェースを型として使用すると、そのインターフェースを実装した任意のオブジェクトを受け取ることができます。これにより、メソッドのパラメータや戻り値、変数の型としてインターフェースを使用することができます。",
+            "answer": "// インターフェースの定義\npublic interface MyInterface {\n    void myMethod();\n}\n\n// インターフェースを実装するクラス\npublic class MyClass implements MyInterface {\n    public void myMethod() {\n        System.out.println(\"Hello from MyClass\");\n    }\n}\n\n// インターフェースを引数に取るメソッドを持つクラス\npublic class MyMethodClass {\n    public void callMyMethod(MyInterface mi) {\n        mi.myMethod();\n    }\n}\n\n// メインクラス\npublic class Main {\n    public static void main(String[] args) {\n        MyMethodClass mmc = new MyMethodClass();\n        mmc.callMyMethod(new MyClass()); // Hello from MyClass\n    }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java3_5",
+            "title": "関数型インターフェース",
+            "question": "関数型インターフェースとは何でしょうか？また、それはどのように使用されますか？",
+            "explanation": "関数型インターフェースは、正確に一つの抽象メソッドを持つインターフェースのことを指します。それらはラムダ式のターゲット型として使用されます。Javaではjava.util.functionパッケージに多くの標準的な関数型インターフェースが定義されています。",
+            "answer": "// 関数型インターフェースの定義\n@FunctionalInterface\npublic interface MyFunctionalInterface {\n    void execute();\n}\n\n// メインクラス\npublic class Main {\n    public static void main(String[] args) {\n        // ラムダ式を使用して関数型インターフェースの実装を作成する\n        MyFunctionalInterface mfi = () -> System.out.println(\"Hello from MyFunctionalInterface\");\n        mfi.execute(); // Hello from MyFunctionalInterface\n    }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java3_6",
+            "title": "関数型インターフェースの引数と戻り値",
+            "question": "関数型インターフェースの抽象メソッドは、引数と戻り値を持つことができますか？その場合の例を挙げてください。",
+            "explanation": "はい、関数型インターフェースの抽象メソッドは、引数と戻り値を持つことができます。以下の例では、Integer型の引数を受け取り、String型の戻り値を返す関数型インターフェースを定義しています。",
+            "answer": "// 関数型インターフェースの定義\n@FunctionalInterface\npublic interface MyFunctionalInterface {\n    // Integer型の引数を受け取り、String型の戻り値を返す抽象メソッド\n    String execute(Integer i);\n}\n\n// メインクラス\npublic class Main {\n    public static void main(String[] args) {\n        // ラムダ式を使用して関数型インターフェースの実装を作成する\n        MyFunctionalInterface mfi = (i) -> \"The number is \" + i;\n        System.out.println(mfi.execute(5)); // The number is 5\n    }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java3_7",
+            "title": "関数型インターフェースとラムダ式",
+            "question": "ラムダ式と関数型インターフェースの関係性について説明してください。",
+            "explanation": "ラムダ式は関数型インターフェースのインスタンスを作成するための一つの方法です。関数型インターフェースは一つの抽象メソッドしか持たないため、そのメソッドの実装を提供するラムダ式を直接書くことができます。",
+            "answer": "// 関数型インターフェースの定義\n@FunctionalInterface\npublic interface MyFunctionalInterface {\n    void execute();\n}\n\n// メインクラス\npublic class Main {\n    public static void main(String[] args) {\n        // ラムダ式を使用して関数型インターフェースの実装を作成する\n        MyFunctionalInterface mfi = () -> System.out.println(\"Hello from lambda expression\");\n        mfi.execute(); // Hello from lambda expression\n    }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java3_8",
+            "title": "関数型インターフェースの種類",
+            "question": "Javaにはどのような標準的な関数型インターフェースが存在しますか？また、それぞれのインターフェースの使用例を提供してください。",
+            "explanation": "Javaには標準的な関数型インターフェースがいくつか存在します。その中でもよく使用されるものとして、Consumer、Supplier、Function、Predicateがあります。これらのインターフェースはそれぞれ、引数を受け取って何も返さない処理、何も受け取らずに値を提供する処理、一つの引数を受け取って結果を返す処理、一つの引数を受け取ってboolean値を返す処理を表現するために使用されます。",
+            "answer": "// Consumerの使用例\nConsumer<String> consumer = (s) -> System.out.println(s);\nconsumer.accept(\"Hello from Consumer\"); // Hello from Consumer\n\n// Supplierの使用例\nSupplier<String> supplier = () -> \"Hello from Supplier\";\nSystem.out.println(supplier.get()); // Hello from Supplier\n\n// Functionの使用例\nFunction<Integer, String> function = (i) -> \"The number is \" + i;\nSystem.out.println(function.apply(5)); // The number is 5\n\n// Predicateの使用例\nPredicate<Integer> predicate = (i) -> i > 0;\nSystem.out.println(predicate.test(5)); // true"
+        },
+        {
+            "id": 9,
+            "questionId": "java3_9",
+            "title": "デフォルトメソッドと静的メソッド",
+            "question": "Java 8以降、インターフェースに新たに追加されたデフォルトメソッドと静的メソッドについて説明してください。また、それぞれの使用例を提供してください。",
+            "explanation": "デフォルトメソッドは、インターフェースにメソッドのデフォルト実装を提供するための機能です。これにより、既存のインターフェースを変更して新たなメソッドを追加しても、そのインターフェースを実装しているすべてのクラスに影響を与えることなく、新たなメソッドを追加することが可能になりました。一方、静的メソッドはインターフェース内に直接定義することができ、インターフェース名を使って直接呼び出すことができます。",
+            "answer": "// デフォルトメソッドの使用例\npublic interface MyInterface {\n    default void myMethod() {\n        System.out.println(\"Hello from default method\");\n    }\n}\n\npublic class MyClass implements MyInterface {\n}\n\nMyClass mc = new MyClass();\nmc.myMethod(); // Hello from default method\n\n// 静的メソッドの使用例\npublic interface MyInterface {\n    static void myMethod() {\n        System.out.println(\"Hello from static method\");\n    }\n}\n\nMyInterface.myMethod(); // Hello from static method"
+        },
+        {
+            "id": 10,
+            "questionId": "java3_10",
+            "title": "インターフェースの継承",
+            "question": "Javaのインターフェースは他のインターフェースから継承することができますか？また、その継承には何か特別なルールがありますか？",
+            "explanation": "はい、Javaのインターフェースは他のインターフェースから継承することができます。また、一つのインターフェースは複数のインターフェースを継承することも可能です。ただし、同じメソッドに対して異なるデフォルト実装が継承された場合、そのインターフェースはそのメソッドをオーバーライドする必要があります。",
+            "answer": "// 複数のインターフェースを継承するインターフェースの例\npublic interface Interface1 {\n    default void myMethod() {\n        System.out.println(\"Hello from Interface1\");\n    }\n}\n\npublic interface Interface2 {\n    default void myMethod() {\n        System.out.println(\"Hello from Interface2\");\n    }\n}\n\npublic interface MyInterface extends Interface1, Interface2 {\n    // Interface1とInterface2から継承したmyMethodをオーバーライドする\n    @Override\n    default void myMethod() {\n        Interface1.super.myMethod();\n        Interface2.super.myMethod();\n    }\n}\n\npublic class MyClass implements MyInterface {\n}\n\nMyClass mc = new MyClass();\nmc.myMethod(); // Hello from Interface1\n               // Hello from Interface2"
+        }
+    ]
+}

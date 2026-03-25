@@ -1,0 +1,86 @@
+{
+    "contentsId": "js_chn_attribute",
+    "title": "JavaScriptのDOM操作：属性の変更問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_chn_attribute_1",
+            "title": "属性の取得",
+            "question": "HTML内の特定の要素の属性を取得するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「getAttribute」メソッドを用いて、特定の要素の属性を取得することができます。",
+            "answer": "// idが\"example\"の要素のclass属性を取得\nlet attr = document.getElementById('example').getAttribute('class');\n// このコードを実行すると、idが\"example\"の要素のclass属性の値を取得することができます。"
+        },
+        {
+            "id": 2,
+            "questionId": "js_chn_attribute_2",
+            "title": "属性の設定",
+            "question": "HTML内の特定の要素に新たな属性を設定するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「setAttribute」メソッドを用いて、特定の要素に新たな属性を設定することができます。",
+            "answer": "// idが\"example\"の要素にclass属性を設定\ndocument.getElementById('example').setAttribute('class', 'new-class');\n// このコードを実行すると、idが\"example\"の要素にclass属性が設定され、その値は'new-class'となります。"
+        },
+        {
+            "id": 3,
+            "questionId": "js_chn_attribute_3",
+            "title": "属性の削除",
+            "question": "HTML内の特定の要素の属性を削除するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「removeAttribute」メソッドを用いて、特定の要素の属性を削除することができます。",
+            "answer": "// idが\"example\"の要素のclass属性を削除\ndocument.getElementById('example').removeAttribute('class');\n// このコードを実行すると、idが\"example\"の要素のclass属性が削除されます。"
+        },
+        {
+            "id": 4,
+            "questionId": "js_chn_attribute_4",
+            "title": "属性の確認",
+            "question": "HTML内の特定の要素が特定の属性を持っているかどうかを確認するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「hasAttribute」メソッドを用いて、特定の要素が特定の属性を持っているかどうかを確認することができます。",
+            "answer": "// idが\"example\"の要素がclass属性を持っているか確認\nlet hasAttr = document.getElementById('example').hasAttribute('class');\n// このコードを実行すると、idが\"example\"の要素がclass属性を持っているかどうかの真偽値が取得できます。"
+        },
+        {
+            "id": 5,
+            "questionId": "js_chn_attribute_5",
+            "title": "クラス属性の追加",
+            "question": "HTML内の特定の要素に新たなクラスを追加するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「classList.add」メソッドを用いて、特定の要素に新たなクラスを追加することができます。",
+            "answer": "// idが\"example\"の要素に新たなクラスを追加\ndocument.getElementById('example').classList.add('new-class');\n// このコードを実行すると、idが\"example\"の要素に'new-class'というクラスが追加されます。"
+        },
+        {
+            "id": 6,
+            "questionId": "js_chn_attribute_6",
+            "title": "クラス属性の削除",
+            "question": "HTML内の特定の要素から特定のクラスを削除するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「classList.remove」メソッドを用いて、特定の要素から特定のクラスを削除することができます。",
+            "answer": "// idが\"example\"の要素から特定のクラスを削除\ndocument.getElementById('example').classList.remove('class-to-remove');\n// このコードを実行すると、idが\"example\"の要素から'class-to-remove'というクラスが削除されます。"
+        },
+        {
+            "id": 7,
+            "questionId": "js_chn_attribute_7",
+            "title": "クラス属性のトグル",
+            "question": "HTML内の特定の要素で特定のクラスをトグルするJavaScriptコードを記述してください。すなわち、クラスがすでに存在する場合はそのクラスを削除し、存在しない場合はそのクラスを追加してください。",
+            "explanation": "JavaScriptでは、「classList.toggle」メソッドを用いて、特定の要素で特定のクラスをトグルすることができます。",
+            "answer": "// idが\"example\"の要素で特定のクラスをトグル\ndocument.getElementById('example').classList.toggle('class-to-toggle');\n// このコードを実行すると、idが\"example\"の要素で'class-to-toggle'というクラスが存在する場合はそのクラスが削除され、存在しない場合はそのクラスが追加されます。"
+        },
+        {
+            "id": 8,
+            "questionId": "js_chn_attribute_8",
+            "title": "クラス属性の確認",
+            "question": "HTML内の特定の要素が特定のクラスを持っているかどうかを確認するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「classList.contains」メソッドを用いて、特定の要素が特定のクラスを持っているかどうかを確認することができます。",
+            "answer": "// idが\"example\"の要素が特定のクラスを持っているか確認\nlet hasClass = document.getElementById('example').classList.contains('class-to-check');\n// このコードを実行すると、idが\"example\"の要素が'class-to-check'というクラスを持っているかどうかの真偽値が取得できます。"
+        },
+        {
+            "id": 9,
+            "questionId": "js_chn_attribute_9",
+            "title": "複数クラス属性の追加",
+            "question": "HTML内の特定の要素に複数の新たなクラスを追加するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「classList.add」メソッドを用いて、特定の要素に新たなクラスを追加することができます。複数のクラスを追加する場合は、引数をカンマで区切って指定します。",
+            "answer": "// idが\"example\"の要素に新たなクラスを追加\ndocument.getElementById('example').classList.add('new-class1', 'new-class2');\n// このコードを実行すると、idが\"example\"の要素に'new-class1'と'new-class2'というクラスが追加されます。"
+        },
+        {
+            "id": 10,
+            "questionId": "js_chn_attribute_10",
+            "title": "複数クラス属性の削除",
+            "question": "HTML内の特定の要素から複数のクラスを削除するJavaScriptコードを記述してください。",
+            "explanation": "JavaScriptでは、「classList.remove」メソッドを用いて、特定の要素から特定のクラスを削除することができます。複数のクラスを削除する場合は、引数をカンマで区切って指定します。",
+            "answer": "// idが\"example\"の要素から特定のクラスを削除\ndocument.getElementById('example').classList.remove('class-to-remove1', 'class-to-remove2');\n// このコードを実行すると、idが\"example\"の要素から'class-to-remove1'と'class-to-remove2'というクラスが削除されます。"
+        }
+    ]
+}

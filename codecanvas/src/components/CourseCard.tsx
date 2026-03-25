@@ -2,17 +2,15 @@ import React from 'react';
 import Link from 'next/link';
 
 type CourseCardProps = {
-  imageUrl: string;
   title: string;
   description: string;
   link: string;
 };
 
-const CourseCard = ({ imageUrl, title, description, link }: CourseCardProps) => {
+const CourseCard = ({title, description, link }: CourseCardProps) => {
   return (
     <div className="course-card">
       <Link href={link}>
-        {/* <img src={imageUrl} alt={title} /> */}
         <h2 className="title">{title}</h2>
         <p className="description">{description}</p>
       </Link>

@@ -1,0 +1,86 @@
+{
+    "contentsId": "java3",
+    "title": "Javaのオーバーライド問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java3_1",
+            "title": "オーバーライドの理解",
+            "question": "以下のソースコードについて、AnimalクラスとDogクラスを作成し、AnimalクラスのsoundメソッドをDogクラスでオーバーライドしてください。また、mainメソッドからオーバーライドしたsoundメソッドを呼び出してください。\n\npublic class Animal {\n    public String sound() {\n        return \"Generic sound\";\n    }\n}\n\npublic class Dog extends Animal {\n    // ここにコードを記述\n}",
+            "explanation": "Dogクラスでsoundメソッドをオーバーライドするには、同じメソッド名でメソッドを作成し、中身を犬の鳴き声（例えば\"Woof!\"）に変更します。そして、mainメソッドからオブジェクトを作成し、メソッドを呼び出します。",
+            "answer": "public class Dog extends Animal {\n    @Override\n    public String sound() {\n        return \"Woof!\";\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Animal myDog = new Dog();\n        System.out.println(myDog.sound()); // 予想される出力: Woof!\n    }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java3_2",
+            "title": "オーバーライドとアクセス修飾子",
+            "question": "以下のソースコードについて、オーバーライドするメソッドのアクセス修飾子を変更してもいいのか、その理由とともに説明してください。\n\npublic class Animal {\n    protected String sound() {\n        return \"Generic sound\";\n    }\n}\n\npublic class Dog extends Animal {\n    @Override\n    public String sound() {\n        return \"Woof!\";\n    }\n}",
+            "explanation": "オーバーライドする際、アクセス修飾子は元のメソッドと同じまたはより広範囲の修飾子にする必要があります。したがって、protectedからpublicに変更することは可能です。",
+            "answer": "// 以下のコードは正しく動作します。なぜなら、オーバーライドする際にはアクセス修飾子は元のメソッドと同じまたはより広範囲の修飾子にすることが許されているからです。\npublic class Dog extends Animal {\n    @Override\n    public String sound() {\n        return \"Woof!\";\n    }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java3_3",
+            "title": "オーバーライドと返り値",
+            "question": "以下のソースコードについて、オーバーライドするメソッドの返り値の型を変更してもいいのか、その理由とともに説明してください。\n\npublic class Animal {\n    public String sound() {\n        return \"Generic sound\";\n    }\n}\n\npublic class Dog extends Animal {\n    @Override\n    public void sound() {\n        System.out.println(\"Woof!\");\n    }\n}",
+            "explanation": "オーバーライドする際、返り値の型は元のメソッドと同じである必要があります。したがって、返り値の型をStringからvoidに変更することは許されていません。",
+            "answer": "// 以下のコードはエラーとなります。なぜなら、オーバーライドする際には返り値の型は元のメソッドと同じである必要があるからです。\npublic class Dog extends Animal {\n    @Override\n    public void sound() {\n        System.out.println(\"Woof!\");\n    }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java3_4",
+            "title": "オーバーライドと例外",
+            "question": "以下のソースコードについて、オーバーライドするメソッドで新しく例外を追加することは許されているのか、その理由とともに説明してください。\n\npublic class Animal {\n    public String sound() {\n        return \"Generic sound\";\n    }\n}\n\npublic class Dog extends Animal {\n    @Override\n    public String sound() throws IOException {\n        return \"Woof!\";\n    }\n}",
+            "explanation": "オーバーライドする際、新たにチェック例外を追加することは許されていません。したがって、IOExceptionを新たに追加することは許されていません。",
+            "answer": "// 以下のコードはエラーとなります。なぜなら、オーバーライドする際には新たにチェック例外を追加することが許されていないからです。\npublic class Dog extends Animal {\n    @Override\n    public String sound() throws IOException {\n        return \"Woof!\";\n    }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java3_5",
+            "title": "オーバーライドとsuperキーワード",
+            "question": "以下のソースコードについて、Dogクラスのsoundメソッドでsuperキーワードを用いて、Animalクラスのsoundメソッドを呼び出すように改修してください。\n\npublic class Animal {\n    public String sound() {\n        return \"Generic sound\";\n    }\n}\n\npublic class Dog extends Animal {\n    @Override\n    public String sound() {\n        return \"Woof!\";\n    }\n}",
+            "explanation": "superキーワードを使用すると、親クラスのメソッドを呼び出すことができます。したがって、Dogクラスのsoundメソッドでsuper.sound()を呼び出すことにより、Animalクラスのsoundメソッドを呼び出すことができます。",
+            "answer": "public class Dog extends Animal {\n    @Override\n    public String sound() {\n        return super.sound() + \", but also Woof!\";\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Animal myDog = new Dog();\n        System.out.println(myDog.sound()); // 予想される出力: Generic sound, but also Woof!\n    }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java3_6",
+            "title": "オーバーライドとオーバーロード",
+            "question": "オーバーライドとオーバーロードの違いを説明してください。",
+            "explanation": "オーバーライドは、親クラスのメソッドを子クラスで再定義することを指します。一方、オーバーロードは、同じクラス内で同じ名前のメソッドを複数定義することを指しますが、パラメータの型または数が異なる必要があります。",
+            "answer": "// オーバーライドとオーバーロードの説明は上記に記載しています。"
+        },
+        {
+            "id": 7,
+            "questionId": "java3_7",
+            "title": "オーバーライドとインターフェース",
+            "question": "以下のソースコードについて、DogクラスがインターフェースCanBarkを実装するように改修してください。\n\npublic interface CanBark {\n    String bark();\n}\n\npublic class Animal {\n    public String sound() {\n        return \"Generic sound\";\n    }\n}\n\npublic class Dog extends Animal {\n    @Override\n    public String sound() {\n        return \"Woof!\";\n    }\n}",
+            "explanation": "Javaでは、クラスがインターフェースを実装するということは、そのクラスがインターフェースで定義されたすべてのメソッドを実装することを意味します。したがって、DogクラスがCanBarkインターフェースを実装するということは、Dogクラスにはbarkメソッドが含まれていなければならないということを意味します。",
+            "answer": "public class Dog extends Animal implements CanBark {\n    @Override\n    public String sound() {\n        return \"Woof!\";\n    }\n\n    @Override\n    public String bark() {\n        return \"Bark! Bark!\";\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        CanBark myDog = new Dog();\n        System.out.println(myDog.bark()); // 予想される出力: Bark! Bark!\n    }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java3_8",
+            "title": "オーバーライドとポリモーフィズム",
+            "question": "オーバーライドとポリモーフィズムの関係を説明し、それを示すソースコードを作成してください。",
+            "explanation": "ポリモーフィズムは、オブジェクトが多くの「形」を持つ能力を指します。Javaでは、親クラスの参照が子クラスのオブジェクトを参照することによってポリモーフィズムが達成されます。オーバーライドは、ポリモーフィズムを実現するための一つの手段であり、親クラスのメソッドが子クラスで再定義されると、親クラスの参照が子クラスのオブジェクトを指すときに、オーバーライドされたメソッドが呼び出されます。",
+            "answer": "public class Main {\n    public static void main(String[] args) {\n        // Animalクラスの参照を使用してDogクラスのオブジェクトを参照する\n        Animal myDog = new Dog();\n        System.out.println(myDog.sound()); // 予想される出力: Woof!\n    }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java3_9",
+            "title": "オーバーライドとアクセス修飾子",
+            "question": "以下のソースコードについて、Dogクラスのsoundメソッドのアクセス修飾子を変更しても、親クラスのsoundメソッドを正しくオーバーライドできるかどうか考えてみてください。\n\npublic class Animal {\n    public String sound() {\n        return \"Generic sound\";\n    }\n}\n\npublic class Dog extends Animal {\n    @Override\n    public String sound() {\n        return \"Woof!\";\n    }\n}",
+            "explanation": "オーバーライドするメソッドのアクセス修飾子は、親クラスのメソッドの修飾子と同じか、それ以上に公開範囲が広いものである必要があります。つまり、親クラスのメソッドがpublicであれば、オーバーライドするメソッドもpublicである必要があります。",
+            "answer": "// アクセス修飾子をprivateまたはprotectedに変更すると、オーバーライドは正しく機能しません。"
+        },
+        {
+            "id": 10,
+            "questionId": "java3_10",
+            "title": "オーバーライドとfinalキーワード",
+            "question": "以下のソースコードについて、DogクラスがAnimalクラスのsoundメソッドをオーバーライドできないように、Animalクラスを修正してください。\n\npublic class Animal {\n    public String sound() {\n        return \"Generic sound\";\n    }\n}\n\npublic class Dog extends Animal {\n    @Override\n    public String sound() {\n        return \"Woof!\";\n    }\n}",
+            "explanation": "Javaでは、finalキーワードをメソッドに使用すると、そのメソッドは子クラスでオーバーライドできなくなります。したがって、Animalクラスのsoundメソッドをfinalにすると、Dogクラスはそれをオーバーライドできなくなります。",
+            "answer": "public class Animal {\n    // finalキーワードを使用してメソッドをオーバーライド不可能にする\n    public final String sound() {\n        return \"Generic sound\";\n    }\n}\n\npublic class Dog extends Animal {\n    // 以下の行はエラーとなります。Animalクラスのsoundメソッドがfinalなので、オーバーライドできません。\n    // @Override\n    // public String sound() {\n    //     return \"Woof!\";\n    // }\n}"
+        }
+    ]
+}

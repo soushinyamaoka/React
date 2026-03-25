@@ -1,0 +1,166 @@
+{
+    "contentsId": "js_method1",
+    "title": "Javascriptの引数問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_mthd2_1",
+            "title": "mapメソッド",
+            "question": "配列 [1, 2, 3, 4, 5] の各要素を二倍にした新しい配列を生成するコードを書いてください。",
+            "explanation": "JavaScriptのmapメソッドを使うと、配列の全ての要素に対して関数を呼び出すことができます。この問題では、各要素を二倍にする関数を適用します。",
+            "answer": "var arr = [1, 2, 3, 4, 5];\nvar newArr = arr.map(function(num) {\nreturn num * 2;\n});\nconsole.log(newArr);\n// Expected output: [2, 4, 6, 8, 10]"
+        },
+        {
+            "id": 2,
+            "questionId": "js_mthd2_2",
+            "title": "filterメソッド",
+            "question": "配列 [1, 2, 3, 4, 5] から偶数だけを抽出した新しい配列を生成するコードを書いてください。",
+            "explanation": "JavaScriptのfilterメソッドを使うと、配列の要素から特定の条件を満たす要素だけを抽出できます。この問題では、偶数だけを抽出します。",
+            "answer": "var arr = [1, 2, 3, 4, 5];\nvar newArr = arr.filter(function(num) {\nreturn num % 2 === 0;\n});\nconsole.log(newArr);\n// Expected output: [2, 4]"
+        },
+        {
+            "id": 3,
+            "questionId": "js_mthd2_3",
+            "title": "reduceメソッド",
+            "question": "配列 [1, 2, 3, 4, 5] の全ての要素の合計値を計算するコードを書いてください。",
+            "explanation": "JavaScriptのreduceメソッドを使うと、配列の全ての要素に対して累積的な操作を行うことができます。この問題では、全ての要素を足し合わせる操作を行います。",
+            "answer": "var arr = [1, 2, 3, 4, 5];\nvar sum = arr.reduce(function(total, num) {\nreturn total + num;\n}, 0);\nconsole.log(sum);\n// Expected output: 15"
+        },
+        {
+            "id": 4,
+            "questionId": "js_mthd2_4",
+            "title": "sortメソッド",
+            "question": "配列 [5, 2, 1, 3, 4] を昇順にソートするコードを書いてください。",
+            "explanation": "JavaScriptのsortメソッドを使うと、配列の要素をソートすることができます。ただし、デフォルトでは文字列としての比較が行われるため、数値のソートを行う場合は比較関数を提供する必要があります。",
+            "answer": "var arr = [5, 2, 1, 3, 4];\narr.sort(function(a, b) {\nreturn a - b;\n});\nconsole.log(arr);\n// Expected output: [1, 2, 3, 4, 5]"
+        },
+        {
+            "id": 5,
+            "questionId": "js_mthd2_5",
+            "title": "mapメソッド",
+            "question": "配列 [1, 2, 3, 4, 5] の全ての要素を2倍した新しい配列を作成するコードを書いてください。",
+            "explanation": "JavaScriptのmapメソッドを使うと、配列の全ての要素に関数を適用した結果を元に新しい配列を作成できます。この問題では、全ての要素を2倍する関数を適用します。",
+            "answer": "var arr = [1, 2, 3, 4, 5];\nvar newArr = arr.map(function(num) {\nreturn num * 2;\n});\nconsole.log(newArr);\n// Expected output: [2, 4, 6, 8, 10]"
+        },
+        {
+            "id": 6,
+            "questionId": "js_mthd2_6",
+            "title": "filterメソッド",
+            "question": "配列 [1, 2, 3, 4, 5] の中で2より大きい要素だけを抽出した新しい配列を作成するコードを書いてください。",
+            "explanation": "JavaScriptのfilterメソッドを使うと、配列の要素の中から条件に一致する要素だけを抽出した新しい配列を作成できます。この問題では、2より大きい要素を抽出します。",
+            "answer": "var arr = [1, 2, 3, 4, 5];\nvar newArr = arr.filter(function(num) {\nreturn num > 2;\n});\nconsole.log(newArr);\n// Expected output: [3, 4, 5]"
+        },
+        {
+            "id": 7,
+            "questionId": "js_mthd2_7",
+            "title": "reduceメソッド",
+            "question": "配列 [1, 2, 3, 4, 5] の全ての要素の合計値を求めるコードを書いてください。",
+            "explanation": "JavaScriptのreduceメソッドを使うと、配列の全ての要素に対して指定した関数を適用し、一つの値にまとめることができます。この問題では、全ての要素の合計値を求めます。",
+            "answer": "var arr = [1, 2, 3, 4, 5];\nvar sum = arr.reduce(function(accumulator, currentValue) {\nreturn accumulator + currentValue;\n}, 0);\nconsole.log(sum);\n// Expected output: 15"
+        },
+        {
+            "id": 8,
+            "questionId": "js_mthd2_8",
+            "title": "includesメソッド",
+            "question": "配列 ['apple', 'banana', 'cherry'] に 'banana' が含まれているかどうかを確認するコードを書いてください。",
+            "explanation": "JavaScriptのincludesメソッドを使うと、配列に指定した要素が含まれているかどうかを確認できます。この問題では、'banana'が含まれているかどうかを確認します。",
+            "answer": "var arr = ['apple', 'banana', 'cherry'];\nvar isIncludes = arr.includes('banana');\nconsole.log(isIncludes);\n// Expected output: true"
+        },
+        {
+            "id": 9,
+            "questionId": "js_mthd2_9",
+            "title": "sortメソッド",
+            "question": "配列 [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5] を昇順に並び替えるコードを書いてください。",
+            "explanation": "JavaScriptのsortメソッドを使うと、配列の要素を任意の基準で並び替えることができます。この問題では、数字の昇順に並び替えます。",
+            "answer": "var arr = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5];\narr.sort(function(a, b) {\nreturn a - b;\n});\nconsole.log(arr);\n// Expected output: [1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9]"
+        },
+        {
+            "id": 10,
+            "questionId": "js_mthd2_10",
+            "title": "splitメソッドとjoinメソッド",
+            "question": "文字列 'Hello, JavaScript!' を単語ごとに分割し、その後、単語を '-' で結合した新たな文字列を作成するコードを書いてください。",
+            "explanation": "JavaScriptのsplitメソッドとjoinメソッドを使うと、文字列を分割し、その後、新たな文字列を作成することができます。",
+            "answer": "var str = 'Hello, JavaScript!';\nvar words = str.split(' ');\nvar newStr = words.join('-');\nconsole.log(newStr);\n// Expected output: 'Hello,-JavaScript!'"
+        },
+        {
+            "id": 11,
+            "questionId": "js_mthd2_11",
+            "title": "reduceメソッド",
+            "question": "配列 [1, 2, 3, 4, 5] の全ての要素の和を求めるコードを書いてください。",
+            "explanation": "JavaScriptのreduceメソッドを使うと、配列の全ての要素に対して特定の操作を行い、その結果を一つの値にまとめることができます。この問題では、配列の全ての要素の和を求めます。",
+            "answer": "var arr = [1, 2, 3, 4, 5];\nvar sum = arr.reduce(function(a, b) {\nreturn a + b;\n}, 0);\nconsole.log(sum);\n// Expected output: 15"
+        },
+        {
+            "id": 12,
+            "questionId": "js_mthd2_12",
+            "title": "filterメソッド",
+            "question": "配列 [1, 2, 3, 4, 5] から偶数だけを取り出すコードを書いてください。",
+            "explanation": "JavaScriptのfilterメソッドを使うと、配列の要素から特定の条件を満たす要素だけを取り出し、新たな配列を作成することができます。この問題では、配列から偶数だけを取り出します。",
+            "answer": "var arr = [1, 2, 3, 4, 5];\nvar even = arr.filter(function(num) {\nreturn num % 2 === 0;\n});\nconsole.log(even);\n// Expected output: [2, 4]"
+        },
+        {
+            "id": 13,
+            "questionId": "js_mthd2_13",
+            "title": "sortメソッド",
+            "question": "文字列型の配列 ['dog', 'cat', 'elephant', 'ant', 'bird'] をアルファベット順にソートするコードを書いてください。",
+            "explanation": "JavaScriptのsortメソッドを使うと、配列の要素をある基準に従って並べ替えることができます。この問題では、文字列をアルファベット順に並べ替えます。",
+            "answer": "var arr = ['dog', 'cat', 'elephant', 'ant', 'bird'];\narr.sort();\nconsole.log(arr);\n// Expected output: ['ant', 'bird', 'cat', 'dog', 'elephant']"
+        },
+        {
+            "id": 14,
+            "questionId": "js_mthd2_14",
+            "title": "concatメソッド",
+            "question": "配列 [1, 2, 3] と配列 [4, 5, 6] を結合して、新しい配列 [1, 2, 3, 4, 5, 6] を作るコードを書いてください。",
+            "explanation": "JavaScriptのconcatメソッドを使うと、複数の配列を一つに結合することができます。この問題では、二つの配列を結合して新しい配列を作ります。",
+            "answer": "var arr1 = [1, 2, 3];\nvar arr2 = [4, 5, 6];\nvar arr3 = arr1.concat(arr2);\nconsole.log(arr3);\n// Expected output: [1, 2, 3, 4, 5, 6]"
+        },
+        {
+            "id": 15,
+            "questionId": "js_mthd2_15",
+            "title": "sliceメソッド",
+            "question": "配列 ['apple', 'banana', 'cherry', 'date', 'elderberry'] から 'banana', 'cherry', 'date' のみを抽出して新たな配列を作るコードを書いてください。",
+            "explanation": "JavaScriptのsliceメソッドを使用すると、配列から特定の範囲の要素を抽出して新たな配列を作ることができます。この問題では、配列から中間の3つの要素を抽出します。",
+            "answer": "var arr = ['apple', 'banana', 'cherry', 'date', 'elderberry'];\nvar newArr = arr.slice(1, 4);\nconsole.log(newArr);\n// Expected output: ['banana', 'cherry', 'date']"
+        },
+        {
+            "id": 16,
+            "questionId": "js_mthd2_16",
+            "title": "pushメソッドとpopメソッド",
+            "question": "空の配列に対して、'apple', 'banana', 'cherry' を順に追加し、その後最後の要素を削除するコードを書いてください。",
+            "explanation": "JavaScriptのpushメソッドを使うと、配列の最後に新たな要素を追加することができます。また、popメソッドを使うと、配列の最後の要素を削除することができます。",
+            "answer": "var arr = [];\narr.push('apple');\narr.push('banana');\narr.push('cherry');\nconsole.log(arr);\n// Expected output: ['apple', 'banana', 'cherry']\narr.pop();\nconsole.log(arr);\n// Expected output: ['apple', 'banana']"
+        },
+        {
+            "id": 17,
+            "questionId": "js_mthd2_17",
+            "title": "shiftメソッドとunshiftメソッド",
+            "question": "配列 ['apple', 'banana', 'cherry'] から最初の要素を削除し、その後に 'grape' を先頭に追加するコードを書いてください。",
+            "explanation": "JavaScriptのshiftメソッドを使用すると、配列の最初の要素を削除することができます。また、unshiftメソッドを使用すると、新たな要素を配列の先頭に追加することができます。",
+            "answer": "var arr = ['apple', 'banana', 'cherry'];\narr.shift();\nconsole.log(arr);\n// Expected output: ['banana', 'cherry']\narr.unshift('grape');\nconsole.log(arr);\n// Expected output: ['grape', 'banana', 'cherry']"
+        },
+        {
+            "id": 18,
+            "questionId": "js_mthd2_18",
+            "title": "forEachメソッド",
+            "question": "配列 ['apple', 'banana', 'cherry'] の各要素をコンソールに表示するコードを書いてください。",
+            "explanation": "JavaScriptのforEachメソッドを使用すると、配列の各要素に対して関数を実行することができます。この問題では、配列の各要素をconsole.logを使ってコンソールに表示します。",
+            "answer": "var arr = ['apple', 'banana', 'cherry'];\narr.forEach(function(item) {\n  console.log(item);\n});\n// Expected output: 'apple'\n// Expected output: 'banana'\n// Expected output: 'cherry'"
+        },
+        {
+            "id": 19,
+            "questionId": "js_mthd2_19",
+            "title": "filterメソッド",
+            "question": "配列 [1, 2, 3, 4, 5] の中で2より大きい要素だけを新しい配列に格納するコードを書いてください。",
+            "explanation": "JavaScriptのfilterメソッドを使用すると、配列の要素をフィルタリングすることができます。この問題では、配列の各要素が2より大きいかどうかを評価し、その結果に基づいて新しい配列を作成します。",
+            "answer": "var arr = [1, 2, 3, 4, 5];\nvar newArr = arr.filter(function(item) {\n  return item > 2;\n});\nconsole.log(newArr);\n// Expected output: [3, 4, 5]"
+        },
+        {
+            "id": 20,
+            "questionId": "js_mthd2_20",
+            "title": "reduceメソッド",
+            "question": "配列 [1, 2, 3, 4, 5] の全ての要素の合計を計算するコードを書いてください。",
+            "explanation": "JavaScriptのreduceメソッドを使用すると、配列の全ての要素を単一の値に集約することができます。この問題では、配列の全ての要素の合計を求めます。",
+            "answer": "var arr = [1, 2, 3, 4, 5];\nvar total = arr.reduce(function(sum, item) {\n  return sum + item;\n}, 0);\nconsole.log(total);\n// Expected output: 15"
+        }
+    ]
+}

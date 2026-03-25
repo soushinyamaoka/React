@@ -1,0 +1,78 @@
+{
+    "contentsId": "java3",
+    "title": "Javaの基本ライブラリ、日付問題集ページ",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java4_1",
+            "title": "現在の日時の取得",
+            "question": "Javaで現在の日時を取得し、それを表示するプログラムを作成してください。出力形式は「年-月-日 時:分:秒」にしてください。",
+            "explanation": "Javaでは、LocalDateTimeクラスを用いて現在の日時を取得できます。また、DateTimeFormatterクラスを用いて日時の表示形式をカスタマイズすることもできます。",
+            "answer": "import java.time.LocalDateTime;\nimport java.time.format.DateTimeFormatter;\n\npublic class Main {\n    public static void main(String[] args) {\n        // 現在の日時を取得\n        LocalDateTime now = LocalDateTime.now();\n\n        // 日時の表示形式を定義\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"yyyy-MM-dd HH:mm:ss\");\n\n        // 現在の日時を定義した形式で出力\n        System.out.println(now.format(formatter));\n        // Expected output: \"2023-05-18 15:30:00\"  ※ 実行時の日時による\n    }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java4_2",
+            "title": "特定の日時の生成",
+            "question": "Javaで2023年5月18日15時30分の日時を生成し、それを表示するプログラムを作成してください。出力形式は「年-月-日 時:分」にしてください。",
+            "explanation": "Javaでは、LocalDateTimeクラスのofメソッドを用いて特定の日時を生成できます。また、DateTimeFormatterクラスを用いて日時の表示形式をカスタマイズすることもできます。",
+            "answer": "import java.time.LocalDateTime;\nimport java.time.format.DateTimeFormatter;\n\npublic class Main {\n    public static void main(String[] args) {\n        // 特定の日時を生成\n        LocalDateTime dateTime = LocalDateTime.of(2023, 5, 18, 15, 30);\n\n        // 日時の表示形式を定義\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"yyyy-MM-dd HH:mm\");\n\n        // 生成した日時を定義した形式で出力\n        System.out.println(dateTime.format(formatter));\n        // Expected output: \"2023-05-18 15:30\"\n    }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java4_3",
+            "title": "現在日時の取得",
+            "question": "Javaで現在日時を取得し、それを表示するプログラムを作成してください。出力形式は「年-月-日 時:分」にしてください。",
+            "explanation": "Javaでは、LocalDateTimeクラスのnowメソッドを用いて現在日時を取得できます。また、DateTimeFormatterクラスを用いて日時の表示形式をカスタマイズすることもできます。",
+            "answer": "import java.time.LocalDateTime;\nimport java.time.format.DateTimeFormatter;\n\npublic class Main {\n    public static void main(String[] args) {\n        // 現在日時を取得\n        LocalDateTime now = LocalDateTime.now();\n\n        // 日時の表示形式を定義\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"yyyy-MM-dd HH:mm\");\n\n        // 取得した現在日時を定義した形式で出力\n        System.out.println(now.format(formatter));\n        // Expected output: \"現在の日付と時間\"\n    }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java4_4",
+            "title": "特定日時の取得",
+            "question": "Javaで2023年5月18日12時30分の日時を生成し、それを表示するプログラムを作成してください。出力形式は「年-月-日 時:分」にしてください。",
+            "explanation": "Javaでは、LocalDateTimeクラスのofメソッドを用いて特定の日時を生成することができます。また、DateTimeFormatterクラスを用いて日時の表示形式をカスタマイズすることもできます。",
+            "answer": "import java.time.LocalDateTime;\nimport java.time.format.DateTimeFormatter;\n\npublic class Main {\n    public static void main(String[] args) {\n        // 特定の日時を生成\n        LocalDateTime specificDateTime = LocalDateTime.of(2023, 5, 18, 12, 30);\n\n        // 日時の表示形式を定義\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"yyyy-MM-dd HH:mm\");\n\n        // 生成した特定の日時を定義した形式で出力\n        System.out.println(specificDateTime.format(formatter));\n        // Expected output: \"2023-05-18 12:30\"\n    }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java4_5",
+            "title": "現在日時の取得",
+            "question": "Javaで現在の日時を取得し、それを表示するプログラムを作成してください。出力形式は「年-月-日 時:分」にしてください。",
+            "explanation": "Javaでは、LocalDateTimeクラスのnowメソッドを用いて現在の日時を取得することができます。また、DateTimeFormatterクラスを用いて日時の表示形式をカスタマイズすることもできます。",
+            "answer": "import java.time.LocalDateTime;\nimport java.time.format.DateTimeFormatter;\n\npublic class Main {\n    public static void main(String[] args) {\n        // 現在の日時を取得\n        LocalDateTime nowDateTime = LocalDateTime.now();\n\n        // 日時の表示形式を定義\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"yyyy-MM-dd HH:mm\");\n\n        // 取得した現在の日時を定義した形式で出力\n        System.out.println(nowDateTime.format(formatter));\n        // Expected output: \"現在の年-月-日 時:分\"\n    }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java4_6",
+            "title": "日付の差分計算",
+            "question": "Javaで「2023-05-01」と現在の日付との差分を日数で表示するプログラムを作成してください。",
+            "explanation": "JavaのLocalDateクラスを用いて特定の日付と現在日付を表現し、それらの差分を計算します。差分はPeriodクラスのbetweenメソッドを使って計算できます。",
+            "answer": "import java.time.LocalDate;\nimport java.time.Period;\n\npublic class Main {\n    public static void main(String[] args) {\n        // 特定の日付を設定\n        LocalDate date1 = LocalDate.of(2023, 5, 1);\n\n        // 現在日付を取得\n        LocalDate now = LocalDate.now();\n\n        // 二つの日付の差分を計算\n        Period diff = Period.between(now, date1);\n\n        // 差分を日数で表示\n        System.out.println(diff.getDays());\n        // Expected output: \"現在日付と2023-05-01との差分日数\"\n    }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java4_7",
+            "title": "日付のフォーマット変換",
+            "question": "Javaで「2023-05-01」の日付を、「1st May, 2023」の形式に変換して表示するプログラムを作成してください。",
+            "explanation": "JavaのDateTimeFormatterクラスを用いて日付のフォーマットを変換します。特定の日付を表現するためにLocalDateクラスを使用し、その日付を新しいフォーマットで表示します。",
+            "answer": "import java.time.LocalDate;\nimport java.time.format.DateTimeFormatter;\n\npublic class Main {\n    public static void main(String[] args) {\n        // 特定の日付を設定\n        LocalDate date = LocalDate.of(2023, 5, 1);\n\n        // 日付のフォーマットを定義\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"d'th' MMMM, yyyy\");\n\n        // 日付を新しいフォーマットで表示\n        System.out.println(date.format(formatter));\n        // Expected output: \"1st May, 2023\"\n    }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java4_8",
+            "title": "日付の比較",
+            "question": "Javaで、「2023-05-01」と現在の日付を比較して、現在の日付が後であれば「The current date is after 2023-05-01」、そうでなければ「The current date is not after 2023-05-01」と表示するプログラムを作成してください。",
+            "explanation": "JavaのLocalDateクラスを用いて日付を比較します。現在の日付はLocalDate.now()メソッドで取得できます。",
+            "answer": "import java.time.LocalDate;\n\npublic class Main {\n    public static void main(String[] args) {\n        // 特定の日付を設定\n        LocalDate date = LocalDate.of(2023, 5, 1);\n\n        // 現在の日付を取得\n        LocalDate currentDate = LocalDate.now();\n\n        // 現在の日付が設定した日付より後であるかチェック\n        if (currentDate.isAfter(date)) {\n            System.out.println(\"The current date is after 2023-05-01\");\n            // Expected output: Depends on the current date\n        } else {\n            System.out.println(\"The current date is not after 2023-05-01\");\n            // Expected output: Depends on the current date\n        }\n    }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java4_10",
+            "title": "日付の比較",
+            "question": "Javaで、「2023-05-01」と「2023-06-01」の2つの日付を比較し、どちらが未来であるかを表示するプログラムを作成してください。",
+            "explanation": "JavaのLocalDateクラスを用いて日付を比較します。比較にはLocalDate.isBefore()メソッドまたはLocalDate.isAfter()メソッドを使用します。",
+            "answer": "import java.time.LocalDate;\n\npublic class Main {\n    public static void main(String[] args) {\n        // 特定の日付を設定\n        LocalDate date1 = LocalDate.of(2023, 5, 1);\n        LocalDate date2 = LocalDate.of(2023, 6, 1);\n\n        // 日付を比較\n        if (date1.isBefore(date2)) {\n            System.out.println(date1 + \" is before \" + date2);\n            // Expected output: 2023-05-01 is before 2023-06-01\n        } else if (date1.isAfter(date2)) {\n            System.out.println(date1 + \" is after \" + date2);\n        } else {\n            System.out.println(\"Both dates are equal\");\n        }\n    }\n}"
+        }
+    ]
+}

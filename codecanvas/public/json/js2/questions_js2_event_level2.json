@@ -1,0 +1,86 @@
+{
+    "contentsId": "js3",
+    "title": "JavaScriptのDOMの操作：イベントの設定問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_dom_event2_1",
+            "title": "input要素のキーボードイベント",
+            "question": "idが'myInput'のinput要素に対して、ユーザーがキーを押すたびに、押されたキーの'key'プロパティがコンソールに表示されるイベントリスナーを設定するJavaScriptコードを書いてください。",
+            "explanation": "'keydown'イベントを利用することで、ユーザーがキーボードを操作したときのイベントを取得することができます。イベントオブジェクトの'key'プロパティを使うことで、どのキーが押されたかを取得できます。",
+            "answer": "// 'myInput'というidを持つ要素に対するkeydownイベントの設定\nlet myInput = document.getElementById('myInput');\nmyInput.addEventListener('keydown', function(event) {\n  console.log('You pressed: ' + event.key);\n});\n// これを実行すると、キーが押されるたびに、押されたキーがコンソールに表示されます。"
+        },
+        {
+            "id": 2,
+            "questionId": "js_dom_event2_2",
+            "title": "マウス移動イベントの取得",
+            "question": "マウスカーソルの移動を追跡し、その位置を(x, y)の形式でコンソールに表示するJavaScriptコードを書いてください。",
+            "explanation": "'mousemove'イベントを利用することで、マウスカーソルの移動を追跡することができます。イベントオブジェクトの'clientX'と'clientY'プロパティを使うことで、マウスカーソルの位置を取得できます。",
+            "answer": "// マウスカーソルの移動を追跡するイベントリスナーの設定\nwindow.addEventListener('mousemove', function(event) {\n  console.log('Mouse position: (' + event.clientX + ', ' + event.clientY + ')');\n});\n// これを実行すると、マウスを動かすたびにその位置がコンソールに表示されます。"
+        },
+        {
+            "id": 3,
+            "questionId": "js_dom_event2_3",
+            "title": "スクロールイベントの取得",
+            "question": "ページがスクロールされるたびに、スクロールされた量をピクセル単位でコンソールに表示するJavaScriptコードを書いてください。",
+            "explanation": "'scroll'イベントを利用することで、ページがスクロールされたときのイベントを取得することができます。windowオブジェクトの'pageYOffset'プロパティを使うことで、スクロールされた量を取得できます。",
+            "answer": "// ページのスクロールを追跡するイベントリスナーの設定\nwindow.addEventListener('scroll', function() {\n  console.log('Scrolled: ' + window.pageYOffset + 'px');\n});\n// これを実行すると、スクロールするたびにスクロール量がコンソールに表示されます。"
+        },
+        {
+            "id": 4,
+            "questionId": "js_dom_event2_4",
+            "title": "フォーム送信イベントの取得",
+            "question": "idが'myForm'のform要素が送信されるとき、ページがリロードされずに、代わりに'Form submitted'とコンソールに表示するJavaScriptコードを書いてください。",
+            "explanation": "'submit'イベントを利用することで、フォームの送信を検出できます。イベントオブジェクトの'preventDefault'メソッドを呼び出すことで、フォーム送信によるページのリロードを防げます。",
+            "answer": "// 'myForm'というidを持つ要素に対するsubmitイベントの設定\nlet myForm = document.getElementById('myForm');\nmyForm.addEventListener('submit', function(event) {\n  event.preventDefault();\n  console.log('Form submitted');\n});\n// これを実行すると、フォームが送信されるとき、ページがリロードされずにコンソールに'Form submitted'と表示されます。"
+        },
+        {
+            "id": 5,
+            "questionId": "js_dom_event2_5",
+            "title": "複数のイベントリスナーの設定",
+            "question": "idが'myButton'のボタン要素に対して、ボタンがクリックされると'Clicked'と表示し、マウスがボタンの上に乗ると'Hovered'と表示するイベントリスナーをそれぞれ設定するJavaScriptコードを書いてください。",
+            "explanation": "一つの要素に対して複数のイベントリスナーを設定することができます。'click'と'mouseover'イベントをそれぞれ設定します。",
+            "answer": "// 'myButton'というidを持つ要素に対するclickイベントとmouseoverイベントの設定\nlet myButton = document.getElementById('myButton');\nmyButton.addEventListener('click', function() {\n  console.log('Clicked');\n});\nmyButton.addEventListener('mouseover', function() {\n  console.log('Hovered');\n});\n// これを実行すると、ボタンがクリックされると'Clicked'と表示し、マウスがボタンの上に乗ると'Hovered'と表示します。"
+        },
+        {
+            "id": 6,
+            "questionId": "js_dom_event2_6",
+            "title": "イベントの伝播の停止",
+            "question": "idが'myDiv'のdiv要素とその子要素であるidが'myButton'のボタン要素に対して、それぞれクリックイベントのリスナーを設定し、ボタンがクリックされたときにイベントの伝播が停止するJavaScriptコードを書いてください。",
+            "explanation": "イベントの伝播を止めるためには、イベントオブジェクトの'stopPropagation'メソッドを使用します。これにより、親要素へのイベントの伝播を止めることができます。",
+            "answer": "// 'myDiv'と'myButton'というidを持つ要素に対するclickイベントの設定\nlet myDiv = document.getElementById('myDiv');\nlet myButton = document.getElementById('myButton');\nmyDiv.addEventListener('click', function() {\n  console.log('Div clicked');\n});\nmyButton.addEventListener('click', function(event) {\n  event.stopPropagation();\n  console.log('Button clicked');\n});\n// これを実行すると、ボタンがクリックされたとき、'Button clicked'だけが表示され、'Div clicked'は表示されません。"
+        },
+        {
+            "id": 7,
+            "questionId": "js_dom_event2_7",
+            "title": "イベントリスナーの削除",
+            "question": "idが'myButton'のボタン要素に対して、クリックイベントのリスナーを設定し、その後でそのリスナーを削除するJavaScriptコードを書いてください。",
+            "explanation": "removeEventListenerメソッドを利用して、設定したイベントリスナーを削除することができます。ただし、削除するためには、リスナーを具体的な関数として参照できる必要があります。",
+            "answer": "// 'myButton'というidを持つ要素に対するclickイベントの設定とその削除\nlet myButton = document.getElementById('myButton');\nlet clickHandler = function() {\n  console.log('Clicked');\n};\nmyButton.addEventListener('click', clickHandler);\nmyButton.removeEventListener('click', clickHandler);\n// これを実行すると、ボタンがクリックされても何も表示されません。"
+        },
+        {
+            "id": 8,
+            "questionId": "js_dom_event2_8",
+            "title": "一度だけ発火するイベントリスナー",
+            "question": "idが'myButton'のボタン要素に対して、一度だけ発火するクリックイベントのリスナーを設定するJavaScriptコードを書いてください。",
+            "explanation": "addEventListenerメソッドの第三引数にオブジェクトを指定し、その中の'once'プロパティをtrueに設定することで、一度だけ発火するイベントリスナーを設定することができます。",
+            "answer": "// 'myButton'というidを持つ要素に対する一度だけ発火するclickイベントの設定\nlet myButton = document.getElementById('myButton');\nmyButton.addEventListener('click', function() {\n  console.log('Clicked');\n}, { once: true });\n// これを実行すると、ボタンがクリックされると一度だけ'Clicked'と表示されます。"
+        },
+        {
+            "id": 9,
+            "questionId": "js_dom_event2_9",
+            "title": "イベントオブジェクトの利用",
+            "question": "idが'myLink'のa要素がクリックされたときに、そのリンク先のURLをコンソールに表示するJavaScriptコードを書いてください。",
+            "explanation": "イベントオブジェクトの'target'プロパティから、イベントが発生した要素を取得することができます。その要素の'href'プロパティを使うことで、リンク先のURLを取得できます。",
+            "answer": "// 'myLink'というidを持つ要素に対するclickイベントの設定\nlet myLink = document.getElementById('myLink');\nmyLink.addEventListener('click', function(event) {\n  console.log('Link URL: ' + event.target.href);\n});\n// これを実行すると、リンクがクリックされたときに、そのリンク先のURLがコンソールに表示されます。"
+        },
+        {
+            "id": 10,
+            "questionId": "js_dom_event2_10",
+            "title": "動的に要素を追加するイベントリスナー",
+            "question": "idが'myButton'のボタン要素がクリックされたときに、その要素のテキストが'Clicked'に変わるイベントリスナーを設定するJavaScriptコードを書いてください。",
+            "explanation": "イベントオブジェクトの'target'プロパティから、イベントが発生した要素を取得することができます。その要素の'innerText'プロパティを使うことで、要素のテキストを変更できます。",
+            "answer": "// 'myButton'というidを持つ要素に対するclickイベントの設定\nlet myButton = document.getElementById('myButton');\nmyButton.addEventListener('click', function(event) {\n  event.target.innerText = 'Clicked';\n});\n// これを実行すると、ボタンがクリックされたときに、そのボタンのテキストが'Clicked'に変わります。"
+        }
+    ]
+}

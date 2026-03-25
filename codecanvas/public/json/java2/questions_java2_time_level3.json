@@ -1,0 +1,86 @@
+{
+    "contentsId": "java2",
+    "title": "Javaの基本ライブラリ、時間処理問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java2_1",
+            "title": "日時の比較",
+            "question": "現在日時と指定された日時を比較し、現在日時が指定された日時よりも後の場合はtrue、そうでない場合はfalseを返すJavaのメソッドを作成してください。\n\nメソッド名：isAfterCurrentDateTime\n引数：String targetDateTime (指定された日時を表す文字列、フォーマットは\"yyyy-MM-dd HH:mm:ss\")\n戻り値：boolean\n\nヒント：JavaのLocalDateTimeクラスとDateTimeFormatterクラスを使用します。",
+            "explanation": "指定された日時を現在日時と比較するためには、文字列からLocalDateTimeオブジェクトへの変換と、LocalDateTimeオブジェクト間の比較が必要です。DateTimeFormatterクラスを使用して文字列からLocalDateTimeオブジェクトへの変換を行い、isAfterメソッドを使用して比較を行います。",
+            "answer": "import java.time.LocalDateTime;\nimport java.time.format.DateTimeFormatter;\n\npublic class DateTimeUtils {\n    public static boolean isAfterCurrentDateTime(String targetDateTime) {\n        // 指定された日時をLocalDateTimeオブジェクトに変換\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"yyyy-MM-dd HH:mm:ss\");\n        LocalDateTime target = LocalDateTime.parse(targetDateTime, formatter);\n\n        // 現在の日時を取得\n        LocalDateTime now = LocalDateTime.now();\n\n        // 比較結果を返す\n        return now.isAfter(target);\n    }\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java2_2",
+            "title": "指定した日時のN秒後の時刻",
+            "question": "指定した日時のN秒後の時刻を計算するJavaのメソッドを作成してください。\n\nメソッド名：calculateDateTimeAfterNSeconds\n引数：String baseDateTime (基準となる日時を表す文字列、フォーマットは\"yyyy-MM-dd HH:mm:ss\")\n　　　　int seconds (N秒)\n戻り値：String (N秒後の時刻を表す文字列、フォーマットは\"yyyy-MM-dd HH:mm:ss\")\n\nヒント：JavaのLocalDateTimeクラスとDateTimeFormatterクラスを使用します。",
+            "explanation": "指定した日時のN秒後の時刻を計算するためには、文字列からLocalDateTimeオブジェクトへの変換と、LocalDateTimeオブジェクトに対する加算処理が必要です。DateTimeFormatterクラスを使用して文字列からLocalDateTimeオブジェクトへの変換を行い、plusSecondsメソッドを使用して加算処理を行います。",
+            "answer": "import java.time.LocalDateTime;\nimport java.time.format.DateTimeFormatter;\n\npublic class DateTimeUtils {\n    public static String calculateDateTimeAfterNSeconds(String baseDateTime, int seconds) {\n        // 指定された日時をLocalDateTimeオブジェクトに変換\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"yyyy-MM-dd HH:mm:ss\");\n        LocalDateTime base = LocalDateTime.parse(baseDateTime, formatter);\n\n        // N秒後の時刻を計算\n        LocalDateTime result = base.plusSeconds(seconds);\n\n        // 計算結果を文字列に変換して返す\n        return result.format(formatter);\n    }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java2_3",
+            "title": "日時間隔の計算",
+            "question": "二つの日時間の間隔を秒で計算するJavaのメソッドを作成してください。\n\nメソッド名：calculateIntervalInSeconds\n引数：String dateTime1 (日時を表す文字列、フォーマットは\"yyyy-MM-dd HH:mm:ss\")\n　　　　String dateTime2 (日時を表す文字列、フォーマットは\"yyyy-MM-dd HH:mm:ss\")\n戻り値：long (二つの日時間の間隔を秒で表した数値)\n\nヒント：JavaのLocalDateTimeクラス、DateTimeFormatterクラス、ChronoUnitクラスを使用します。",
+            "explanation": "二つの日時間の間隔を計算するためには、文字列からLocalDateTimeオブジェクトへの変換と、二つのLocalDateTimeオブジェクト間の時間差の計算が必要です。DateTimeFormatterクラスを使用して文字列からLocalDateTimeオブジェクトへの変換を行い、ChronoUnitクラスのbetweenメソッドを使用して時間差を計算します。",
+            "answer": "import java.time.LocalDateTime;\nimport java.time.format.DateTimeFormatter;\nimport java.time.temporal.ChronoUnit;\n\npublic class DateTimeUtils {\n    public static long calculateIntervalInSeconds(String dateTime1, String dateTime2) {\n        // 指定された日時をLocalDateTimeオブジェクトに変換\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"yyyy-MM-dd HH:mm:ss\");\n        LocalDateTime dt1 = LocalDateTime.parse(dateTime1, formatter);\n        LocalDateTime dt2 = LocalDateTime.parse(dateTime2, formatter);\n\n        // 二つの日時間の間隔を秒で計算\n        return ChronoUnit.SECONDS.between(dt1, dt2);\n    }\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java2_4",
+            "title": "日付の差の計算",
+            "question": "二つの日付間の差を日数で計算するJavaのメソッドを作成してください。\n\nメソッド名：calculateDaysBetween\n引数：String date1 (日付を表す文字列、フォーマットは\"yyyy-MM-dd\")\n　　　　String date2 (日付を表す文字列、フォーマットは\"yyyy-MM-dd\")\n戻り値：long (二つの日付間の差を日数で表した数値)\n\nヒント：JavaのLocalDateクラス、DateTimeFormatterクラス、ChronoUnitクラスを使用します。",
+            "explanation": "二つの日付間の差を計算するためには、文字列からLocalDateオブジェクトへの変換と、二つのLocalDateオブジェクト間の日数差の計算が必要です。DateTimeFormatterクラスを使用して文字列からLocalDateオブジェクトへの変換を行い、ChronoUnitクラスのbetweenメソッドを使用して日数差を計算します。",
+            "answer": "import java.time.LocalDate;\nimport java.time.format.DateTimeFormatter;\nimport java.time.temporal.ChronoUnit;\n\npublic class DateUtils {\n    public static long calculateDaysBetween(String date1, String date2) {\n        // 指定された日時をLocalDateオブジェクトに変換\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"yyyy-MM-dd\");\n        LocalDate d1 = LocalDate.parse(date1, formatter);\n        LocalDate d2 = LocalDate.parse(date2, formatter);\n\n        // 二つの日付間の差を日数で計算\n        return ChronoUnit.DAYS.between(d1, d2);\n    }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java2_5",
+            "title": "特定の日付までの残り時間",
+            "question": "現在から特定の日時までの残り時間を時間、分、秒で表示するJavaのメソッドを作成してください。\n\nメソッド名：printRemainingTime\n引数：String futureDateTime (将来の日時を表す文字列、フォーマットは\"yyyy-MM-dd HH:mm:ss\")\n戻り値：なし\n\nヒント：JavaのLocalDateTimeクラス、DateTimeFormatterクラス、ChronoUnitクラスを使用します。また、出力はSystem.out.printlnを用いてください。",
+            "explanation": "現在から特定の日時までの残り時間を計算するためには、文字列からLocalDateTimeオブジェクトへの変換と、現在の日時との間の時間差の計算が必要です。DateTimeFormatterクラスを使用して文字列からLocalDateTimeオブジェクトへの変換を行い、ChronoUnitクラスのbetweenメソッドを使用して時間差を計算します。",
+            "answer": "import java.time.LocalDateTime;\nimport java.time.format.DateTimeFormatter;\nimport java.time.temporal.ChronoUnit;\n\npublic class DateTimeUtils {\n    public static void printRemainingTime(String futureDateTime) {\n        // 指定された日時をLocalDateTimeオブジェクトに変換\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"yyyy-MM-dd HH:mm:ss\");\n        LocalDateTime futureDt = LocalDateTime.parse(futureDateTime, formatter);\n        LocalDateTime now = LocalDateTime.now();\n\n        // 現在から特定の日時までの残り時間を計算\n        long hours = ChronoUnit.HOURS.between(now, futureDt);\n        long minutes = ChronoUnit.MINUTES.between(now.plusHours(hours), futureDt);\n        long seconds = ChronoUnit.SECONDS.between(now.plusHours(hours).plusMinutes(minutes), futureDt);\n\n        // 残り時間を表示\n        System.out.println(\"Remaining time: \" + hours + \" hours \" + minutes + \" minutes \" + seconds + \" seconds\");\n    }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java2_6",
+            "title": "特定の日付の次の週の同じ曜日",
+            "question": "指定した日付から一週間後の同じ曜日の日付を表示するJavaのメソッドを作成してください。\n\nメソッド名：printNextWeekDay\n引数：String date (日付を表す文字列、フォーマットは\"yyyy-MM-dd\")\n戻り値：なし\n\nヒント：JavaのLocalDateクラス、DateTimeFormatterクラスを使用します。また、出力はSystem.out.printlnを用いてください。",
+            "explanation": "指定した日付から一週間後の同じ曜日の日付を計算するためには、文字列からLocalDateオブジェクトへの変換と、一週間後の日付の計算が必要です。DateTimeFormatterクラスを使用して文字列からLocalDateオブジェクトへの変換を行い、LocalDateクラスのplusDaysメソッドを使用して一週間後の日付を計算します。",
+            "answer": "import java.time.LocalDate;\nimport java.time.format.DateTimeFormatter;\n\npublic class DateUtils {\n    public static void printNextWeekDay(String date) {\n        // 指定された日時をLocalDateオブジェクトに変換\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"yyyy-MM-dd\");\n        LocalDate ld = LocalDate.parse(date, formatter);\n\n        // 一週間後の日付を計算\n        LocalDate nextWeekDay = ld.plusDays(7);\n\n        // 一週間後の日付を表示\n        System.out.println(\"Next week day: \" + nextWeekDay.format(formatter));\n    }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java2_7",
+            "title": "特定の期間内の総秒数の計算",
+            "question": "指定した日時から別の指定した日時までの総秒数を表示するJavaのメソッドを作成してください。\n\nメソッド名：printTotalSeconds\n引数：\nString startDateTime (開始日時を表す文字列、フォーマットは\"yyyy-MM-dd HH:mm:ss\")\nString endDateTime (終了日時を表す文字列、フォーマットは\"yyyy-MM-dd HH:mm:ss\")\n戻り値：なし\n\nヒント：JavaのLocalDateTimeクラス、DateTimeFormatterクラスを使用します。また、出力はSystem.out.printlnを用いてください。",
+            "explanation": "指定した日時間隔内の総秒数を計算するためには、文字列からLocalDateTimeオブジェクトへの変換と、二つの日時間隔の差分を秒で計算する処理が必要です。DateTimeFormatterクラスを使用して文字列からLocalDateTimeオブジェクトへの変換を行い、Durationクラスのbetweenメソッドを使用して二つの日時間隔の差分を計算します。",
+            "answer": "import java.time.LocalDateTime;\nimport java.time.format.DateTimeFormatter;\nimport java.time.Duration;\n\npublic class DateTimeUtils {\n    public static void printTotalSeconds(String startDateTime, String endDateTime) {\n        // 指定された日時をLocalDateTimeオブジェクトに変換\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"yyyy-MM-dd HH:mm:ss\");\n        LocalDateTime start = LocalDateTime.parse(startDateTime, formatter);\n        LocalDateTime end = LocalDateTime.parse(endDateTime, formatter);\n\n        // 二つの日時間隔の差分を秒で計算\n        Duration duration = Duration.between(start, end);\n        long seconds = duration.getSeconds();\n\n        // 総秒数を表示\n        System.out.println(\"Total seconds: \" + seconds);\n    }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java2_8",
+            "title": "特定の日付からn日後の日付を求める",
+            "question": "指定した日付からn日後の日付を表示するJavaのメソッドを作成してください。\n\nメソッド名：printDateAfterNDays\n引数：\nString date (基準日を表す文字列、フォーマットは\"yyyy-MM-dd\")\nint days (基準日からの日数)\n戻り値：なし\n\nヒント：JavaのLocalDateクラスを使用します。また、出力はSystem.out.printlnを用いてください。",
+            "explanation": "指定した日付からn日後の日付を求めるためには、文字列からLocalDateオブジェクトへの変換と、そのLocalDateオブジェクトにn日を加算する処理が必要です。LocalDateクラスのplusDaysメソッドを使用してn日後の日付を求めます。",
+            "answer": "import java.time.LocalDate;\nimport java.time.format.DateTimeFormatter;\n\npublic class DateTimeUtils {\n    public static void printDateAfterNDays(String date, int days) {\n        // 指定された日付をLocalDateオブジェクトに変換\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"yyyy-MM-dd\");\n        LocalDate localDate = LocalDate.parse(date, formatter);\n\n        // 指定された日数を加算\n        LocalDate resultDate = localDate.plusDays(days);\n\n        // n日後の日付を表示\n        System.out.println(\"Date after \" + days + \" days: \" + resultDate);\n    }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java2_9",
+            "title": "特定の期間内の各曜日の回数をカウントする",
+            "question": "指定した期間内に各曜日が何回あるかをカウントするJavaのメソッドを作成してください。\n\nメソッド名：printDaysCount\n引数：\nString startDate (開始日を表す文字列、フォーマットは\"yyyy-MM-dd\")\nString endDate (終了日を表す文字列、フォーマットは\"yyyy-MM-dd\")\n戻り値：なし\n\nヒント：JavaのLocalDateクラスとDayOfWeekクラスを使用します。また、出力はSystem.out.printlnを用いてください。",
+            "explanation": "指定した期間内に各曜日が何回あるかをカウントするには、開始日から終了日までの各日付の曜日を取得し、それぞれの曜日のカウントを保持するためのマップを使用します。",
+            "answer": "import java.time.LocalDate;\nimport java.time.DayOfWeek;\nimport java.time.format.DateTimeFormatter;\nimport java.util.HashMap;\nimport java.util.Map;\n\npublic class DateTimeUtils {\n    public static void printDaysCount(String startDate, String endDate) {\n        // 文字列をLocalDateに変換\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"yyyy-MM-dd\");\n        LocalDate start = LocalDate.parse(startDate, formatter);\n        LocalDate end = LocalDate.parse(endDate, formatter);\n\n        Map<DayOfWeek, Integer> countMap = new HashMap<>();\n\n        // 開始日から終了日までループ\n        for (LocalDate date = start; !date.isAfter(end); date = date.plusDays(1)) {\n            // 曜日を取得し、カウントマップに追加\n            DayOfWeek dayOfWeek = date.getDayOfWeek();\n            countMap.put(dayOfWeek, countMap.getOrDefault(dayOfWeek, 0) + 1);\n        }\n\n        // 各曜日のカウントを出力\n        for (DayOfWeek dayOfWeek : DayOfWeek.values()) {\n            System.out.println(dayOfWeek + \": \" + countMap.getOrDefault(dayOfWeek, 0));\n        }\n    }\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java2_10",
+            "title": "2つの時間の差を求める",
+            "question": "指定した2つの時刻の間の時間差（分）を求めるJavaのメソッドを作成してください。\n\nメソッド名：differenceInMinutes\n引数：\nString time1 (時刻1を表す文字列、フォーマットは\"HH:mm\")\nString time2 (時刻2を表す文字列、フォーマットは\"HH:mm\")\n戻り値：int (2つの時間の差（分）)\n\nヒント：JavaのLocalTimeクラスを使用します。",
+            "explanation": "JavaのLocalTimeクラスを使用して、指定したフォーマット（\"HH:mm\"）の時刻文字列をLocalTimeオブジェクトに変換します。その後、2つのLocalTimeオブジェクト間の時間差を分単位で計算します。",
+            "answer": "import java.time.LocalTime;\nimport java.time.format.DateTimeFormatter;\nimport java.time.temporal.ChronoUnit;\n\npublic class DateTimeUtils {\n    public static int differenceInMinutes(String time1, String time2) {\n        // 文字列をLocalTimeに変換\n        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"HH:mm\");\n        LocalTime localTime1 = LocalTime.parse(time1, formatter);\n        LocalTime localTime2 = LocalTime.parse(time2, formatter);\n\n        // 2つの時間の差（分）を計算\n        long difference = ChronoUnit.MINUTES.between(localTime1, localTime2);\n\n        return (int)difference;\n    }\n}"
+        }
+    ]
+}

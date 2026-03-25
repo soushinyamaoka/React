@@ -1,0 +1,86 @@
+{
+    "contentsId": "java3",
+    "title": "Javaのクラスの継承問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_inheritance2_1",
+            "title": "継承とオーバーライド",
+            "question": "親クラスAnimalがあり、その中にmakeSoundというメソッドがあります。このクラスを継承して、Dogというクラスを作成し、makeSoundメソッドをオーバーライドして犬の鳴き声（\"Woof\"）を出力するようにしてください。",
+            "explanation": "Javaでは、親クラスで定義されたメソッドは子クラスでオーバーライドすることができます。これにより、同じメソッド名でも異なる動作を定義することが可能になります。",
+            "answer": "```java\n// 親クラスAnimalを作成します\npublic class Animal {\n    public void makeSound() {\n        System.out.println(\"Animal sound\");\n    }\n}\n\n// Animalクラスを継承してDogクラスを作成します\npublic class Dog extends Animal {\n    // 親クラスのmakeSoundメソッドをオーバーライドします\n    @Override\n    public void makeSound() {\n        System.out.println(\"Woof\"); // 犬の鳴き声を出力\n    }\n}\n```\n// コメントに記載されているように、DogクラスのmakeSoundメソッドでは\"Woof\"と出力されます。"
+        },
+        {
+            "id": 2,
+            "questionId": "java_inheritance2_2",
+            "title": "親クラスのフィールドとメソッド",
+            "question": "親クラスVehicleに、フィールドとしてspeedとname、メソッドとしてmoveを持つものがあります。このクラスを継承したCarクラスを作成し、その中でmoveメソッドをオーバーライドして、「(name) is moving at (speed) km/h」の形式で出力してください。",
+            "explanation": "親クラスで定義されたフィールドとメソッドは、子クラスでも利用可能です。この性質を利用して、同一の基本的な性質を持つクラスを簡単に作成することができます。",
+            "answer": "```java\n// 親クラスVehicleを作成します\npublic class Vehicle {\n    protected String name;\n    protected int speed;\n\n    public void move() {\n        System.out.println(\"The vehicle is moving.\");\n    }\n}\n\n// Vehicleクラスを継承してCarクラスを作成します\npublic class Car extends Vehicle {\n    // 親クラスのmoveメソッドをオーバーライドします\n    @Override\n    public void move() {\n        System.out.println(name + \" is moving at \" + speed + \" km/h\"); // カーの動きを出力\n    }\n}\n```\n// コメントに記載されているように、Carクラスのmoveメソッドでは\"(name) is moving at (speed) km/h\"と出力されます。"
+        },
+        {
+            "id": 3,
+            "questionId": "java_inheritance2_3",
+            "title": "親クラスのコンストラクタ",
+            "question": "親クラスAnimalに、nameというフィールドを持ち、このフィールドはコンストラクタで設定されるものがあります。このクラスを継承したDogクラスを作成し、そのコンストラクタでnameを設定するようにしてください。",
+            "explanation": "子クラスのコンストラクタから親クラスのコンストラクタを呼び出すことで、親クラスのフィールドを初期化することができます。この際、superキーワードを使って親クラスのコンストラクタを呼び出します。",
+            "answer": "```java\n// 親クラスAnimalを作成します\npublic class Animal {\n    protected String name;\n\n    public Animal(String name) {\n        this.name = name; // nameフィールドを初期化\n    }\n}\n\n// Animalクラスを継承してDogクラスを作成します\npublic class Dog extends Animal {\n    public Dog(String name) {\n        super(name); // 親クラスのコンストラクタを呼び出し\n    }\n}\n```\n// コメントに記載されているように、Dogクラスのコンストラクタではsuperを使って親クラスのコンストラクタを呼び出しています。これにより、Dogクラスのインスタンスを作成する際に、親クラスのフィールドであるnameが設定されます。"
+        },
+        {
+            "id": 4,
+            "questionId": "java_inheritance2_4",
+            "title": "メソッドオーバライド",
+            "question": "親クラスAnimalが「void speak()」というメソッドを持っているとします。DogクラスはAnimalクラスを継承しています。Dogクラス内でspeakメソッドをオーバライドし、「I am a dog named: [name]」と出力するようにコードを書いてください。",
+            "explanation": "Javaでは、親クラスのメソッドを子クラスで再定義（オーバライド）することができます。これにより、同じメソッド名であっても、子クラスの型に基づいて異なる動作をさせることができます。オーバライドされたメソッドは、子クラスのオブジェクトが呼び出すときには子クラスのメソッドが呼び出されます。",
+            "answer": "```java\n// 親クラスAnimalを作成します\npublic class Animal {\n    protected String name;\n\n    public Animal(String name) {\n        this.name = name;\n    }\n\n    public void speak() {\n        System.out.println(\"I am an animal.\");\n    }\n}\n\n// Animalクラスを継承してDogクラスを作成します\npublic class Dog extends Animal {\n    public Dog(String name) {\n        super(name);\n    }\n\n    @Override\n    public void speak() {\n        System.out.println(\"I am a dog named: \" + this.name);\n        // Output: I am a dog named: [name]\n    }\n}\n```\n// Dogクラスでspeakメソッドをオーバライドしました。このメソッドは、'I am a dog named: [name]'と出力します。[name]の部分は、Dogクラスのコンストラクタで設定された名前に置き換えられます。"
+        },
+        {
+            "id": 5,
+            "questionId": "java_inheritance2_5",
+            "title": "スーパークラスのメソッド呼び出し",
+            "question": "親クラスAnimalが「void speak()」というメソッドを持っているとします。DogクラスはAnimalクラスを継承しています。Dogクラス内でspeakメソッドをオーバライドし、「I am a dog named: [name]」と出力するようにコードを書いてください。さらに、その後に親クラスのspeakメソッドも呼び出してください。",
+            "explanation": "Javaでは、親クラスのメソッドを子クラスでオーバライドすることができます。また、子クラスから親クラスのメソッドを直接呼び出すことも可能です。これにより、親クラスの振る舞いを保持しつつ、新たな振る舞いを追加することができます。親クラスのメソッドを呼び出すには、「super.メソッド名」を使用します。",
+            "answer": "```java\n// 親クラスAnimalを作成します\npublic class Animal {\n    protected String name;\n\n    public Animal(String name) {\n        this.name = name;\n    }\n\n    public void speak() {\n        System.out.println(\"I am an animal.\");\n    }\n}\n\n// Animalクラスを継承してDogクラスを作成します\npublic class Dog extends Animal {\n    public Dog(String name) {\n        super(name);\n    }\n\n    @Override\n    public void speak() {\n        System.out.println(\"I am a dog named: \" + this.name);\n        // Output: I am a dog named: [name]\n        super.speak();\n        // Output: I am an animal.\n    }\n}\n```\n// Dogクラスでspeakメソッドをオーバライドしました。このメソッドは、'I am a dog named: [name]'と出力した後、親クラスのspeakメソッドを呼び出します。これにより、'I am an animal.'というメッセージも出力されます。"
+        },
+        {
+            "id": 6,
+            "questionId": "java_inheritance2_6",
+            "title": "抽象クラス",
+            "question": "「Animal」という名前の抽象クラスを作成し、「speak」メソッドを抽象メソッドとして定義してください。その後、「Dog」というクラスを作成し、Animalクラスを継承するようにしてください。Dogクラスには、「speak」メソッドをオーバーライドして、「I am a dog named: [name]」と表示するようにしてください。",
+            "explanation": "Javaにおける抽象クラスは、一部または全部のメソッドが実装されていないクラスで、これらの未実装のメソッドを抽象メソッドと呼びます。抽象クラスはインスタンス化することはできませんが、サブクラスを作成し、抽象メソッドをオーバーライドすることで使用することができます。",
+            "answer": "```java\n// 抽象クラスAnimalを作成します\npublic abstract class Animal {\n    protected String name;\n\n    public Animal(String name) {\n        this.name = name;\n    }\n\n    // 抽象メソッドspeakを定義します\n    public abstract void speak();\n}\n\n// Animalクラスを継承してDogクラスを作成します\npublic class Dog extends Animal {\n    public Dog(String name) {\n        super(name);\n    }\n\n    // speakメソッドをオーバーライドします\n    @Override\n    public void speak() {\n        System.out.println(\"I am a dog named: \" + this.name);\n        // Output: I am a dog named: [name]\n    }\n}\n```\n// Dogクラスでは、抽象クラスAnimalの抽象メソッドspeakをオーバーライドしています。これにより、Dogクラスのspeakメソッドは「I am a dog named: [name]」というメッセージを出力します。"
+        },
+        {
+            "id": 7,
+            "questionId": "java_inheritance2_7",
+            "title": "インターフェースの継承",
+            "question": "「Flyable」インターフェースを作成し、その中に「fly」メソッドを定義してください。その後、「Bird」という名前のクラスを作成し、「Flyable」インターフェースを実装するようにしてください。「fly」メソッドは「I am flying」というメッセージを表示するように実装してください。",
+            "explanation": "インターフェースは、あるクラスが特定の動作を保証するための契約のようなものです。それにより、インターフェースを実装するクラスはインターフェースで定義されたメソッドをすべて持つことが保証されます。これにより、同じインターフェースを実装したオブジェクトに対して一貫した動作を期待することができます。",
+            "answer": "```java\n// Flyableインターフェースを作成します\npublic interface Flyable {\n    void fly();\n}\n\n// Flyableインターフェースを実装してBirdクラスを作成します\npublic class Bird implements Flyable {\n    @Override\n    public void fly() {\n        System.out.println(\"I am flying\");\n        // Output: I am flying\n    }\n}\n```\n// Birdクラスでは、Flyableインターフェースのflyメソッドをオーバーライドしています。これにより、Birdクラスのflyメソッドは「I am flying」というメッセージを出力します。"
+        },
+        {
+            "id": 8,
+            "questionId": "java_inheritance2_8",
+            "title": "オーバーライド",
+            "question": "「Animal」というクラスを作成し、「makeSound」メソッドを作成して、「Unknown sound...」と出力するようにしてください。次に、「Dog」というクラスを作成し、「Animal」クラスを継承してください。「Dog」クラスでは、「makeSound」メソッドをオーバーライドして、「Bark bark!」と出力するようにしてください。",
+            "explanation": "クラスの継承では、親クラスのメソッドを子クラスでオーバーライド（再定義）することができます。これにより、子クラスのオブジェクトが親クラスのメソッドを呼び出した場合でも、オーバーライドした子クラスのメソッドが実行されます。",
+            "answer": "```java\n// Animalクラスを作成します\npublic class Animal {\n    public void makeSound() {\n        System.out.println(\"Unknown sound...\");\n        // Output: Unknown sound...\n    }\n}\n\n// Animalクラスを継承してDogクラスを作成します\npublic class Dog extends Animal {\n    @Override\n    public void makeSound() {\n        System.out.println(\"Bark bark!\");\n        // Output: Bark bark!\n    }\n}\n```\n// このソースコードでは、DogクラスがAnimalクラスのmakeSoundメソッドをオーバーライドしています。これにより、DogクラスのオブジェクトがmakeSoundメソッドを呼び出すと、「Bark bark!」というメッセージが出力されます。"
+        },
+        {
+            "id": 9,
+            "questionId": "java_inheritance2_9",
+            "title": "superキーワードの利用",
+            "question": "「Person」というクラスを作成し、String型のフィールド「name」を持たせ、コンストラクタで初期化できるようにしてください。次に、「Student」というクラスを作成し、「Person」クラスを継承してください。さらに、「Student」クラスには「int」型のフィールド「grade」を追加し、コンストラクタで「name」と「grade」を初期化できるようにしてください。この時、「super」キーワードを用いて、「Person」クラスのコンストラクタを呼び出してください。",
+            "explanation": "Javaの「super」キーワードは、子クラスから親クラスのフィールドやメソッドにアクセスするために使われます。特にコンストラクタ内での使用が一般的で、親クラスのコンストラクタを呼び出すために使われます。",
+            "answer": "```java\n// Personクラスを作成します\npublic class Person {\n    protected String name;\n\n    public Person(String name) {\n        this.name = name;\n    }\n}\n\n// Personクラスを継承してStudentクラスを作成します\npublic class Student extends Person {\n    private int grade;\n\n    public Student(String name, int grade) {\n        super(name);  // 親クラスPersonのコンストラクタを呼び出す\n        this.grade = grade;\n    }\n}\n```\n// このソースコードでは、Studentクラスのコンストラクタ内でsuperキーワードを使用して、親クラスPersonのコンストラクタを呼び出しています。これにより、Studentクラスのオブジェクトが作成されるときに、Personクラスのnameフィールドも適切に初期化されます。"
+        },
+        {
+            "id": 10,
+            "questionId": "java_inheritance2_10",
+            "title": "abstractキーワードの使用",
+            "question": "Javaの「abstract」キーワードを使用して、「Animal」クラスを作成してください。「Animal」クラスには、「abstract void sound()」という抽象メソッドを定義してください。次に、「Dog」というクラスを作成し、「Animal」クラスを継承し、「sound」メソッドをオーバーライドして、「\"Bark!\"」と出力するようにしてください。",
+            "explanation": "Javaの「abstract」キーワードは、抽象クラスや抽象メソッドを定義するために使用されます。抽象クラスは具体的な実装を持たないメソッド（抽象メソッド）を持つことができ、これらの抽象メソッドは、そのクラスを継承した子クラスで実装されなければなりません。",
+            "answer": "```java\n// 抽象クラスAnimalを作成します\npublic abstract class Animal {\n    // 抽象メソッドsoundを定義します\n    public abstract void sound();\n}\n\n// Animalクラスを継承してDogクラスを作成します\npublic class Dog extends Animal {\n    // soundメソッドをオーバーライドします\n    public void sound() {\n        System.out.println(\"Bark!\");  // \"Bark!\"を出力します\n    }\n}\n```\n// このソースコードでは、Animalという抽象クラスにsoundという抽象メソッドを定義し、Dogクラスでそのメソッドをオーバーライドしています。"
+        }
+    ]
+}

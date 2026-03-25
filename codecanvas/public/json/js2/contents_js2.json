@@ -1,0 +1,34 @@
+{
+    "contentsId": "js2",
+    "title": "JavaScriptの基本構文問題集ページ",
+    "subtitle": "DOMの操作",
+    "questions": [{
+            "id": 1,
+            "questionId": "js2_dom",
+            "title": "要素の取得",
+            "question": "JavaScriptでは、DOM（Document Object Model）を操作することでHTMLの要素を取得、追加、削除したりスタイルを変更したりすることが可能です。要素の取得には主にgetElementById、getElementsByClassName、getElementsByTagName、querySelector、querySelectorAllなどのメソッドが使われます。",
+            "answer": "/* 要素の取得の例 */\n\n// idによる要素の取得\nvar elementById = document.getElementById('myId');\n\n// class名による要素の取得\nvar elementsByClassName = document.getElementsByClassName('myClass');\n\n// タグ名による要素の取得\nvar elementsByTagName = document.getElementsByTagName('div');\n\n// CSSセレクタによる要素の取得 (最初の一つ)\nvar elementByQuery = document.querySelector('.myClass');\n\n// CSSセレクタによる要素の取得 (すべて)\nvar elementsByQueryAll = document.querySelectorAll('.myClass');"
+        },
+        {
+            "id": 2,
+            "questionId": "js2_attribute",
+            "title": "属性の変更",
+            "question": "JavaScriptでは、DOM（Document Object Model）を操作してHTML要素の属性を変更することができます。属性の変更には、setAttribute、removeAttribute、className、idなどのメソッドやプロパティが使われます。",
+            "answer": "/* 属性の変更の例 */\n\n// idによる要素の取得\nvar element = document.getElementById('myId');\n\n// 属性の追加・変更\nelement.setAttribute('data-custom', 'customValue');\n\n// 属性の削除\nelement.removeAttribute('data-custom');\n\n// class名の変更\nelement.className = 'newClass';\n\n// idの変更\nelement.id = 'newId';"
+        },
+        {
+            "id": 3,
+            "questionId": "js3_class",
+            "title": "クラスの操作",
+            "question": "JavaScriptでは、DOM（Document Object Model）を操作してHTML要素のクラスを操作することができます。クラスの操作には、classListプロパティとそのメソッドであるadd、remove、toggle、containsが使われます。",
+            "answer": "/* クラスの操作の例 */\n\n// idによる要素の取得\nvar element = document.getElementById('myId');\n\n// クラスの追加\nelement.classList.add('newClass');\n\n// クラスの削除\nelement.classList.remove('newClass');\n\n// クラスの存在チェック\nelement.classList.contains('newClass');\n\n// クラスの存在による追加・削除（トグル操作）\nelement.classList.toggle('newClass');"
+        },
+        {
+            "id": 4,
+            "questionId": "js4_event",
+            "title": "イベントの設定",
+            "question": "JavaScriptでは、DOM（Document Object Model）を操作してHTML要素にイベントを設定することができます。イベントの設定には、addEventListenerやremoveEventListenerメソッドが使われます。これらを用いて、クリックやマウスオーバー、キープレスなどのイベントに応じた動作を設定することが可能です。",
+            "answer": "/* イベントの設定の例 */\n\n// idによる要素の取得\nvar element = document.getElementById('myId');\n\n// イベントリスナの追加\nelement.addEventListener('click', function(event) {\n  alert('Element was clicked!');\n});\n\n// イベントリスナの削除\nvar listener = function(event) {\n  alert('Element was clicked!');\n};\nelement.addEventListener('click', listener);\nelement.removeEventListener('click', listener);"
+        }
+    ]
+}

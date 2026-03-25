@@ -1,0 +1,86 @@
+{
+    "contentsId": "java_abstract_classes",
+    "title": "Javaの抽象クラス問題集ページ",
+    "subtitle": "上級",
+    "questions": [{
+            "id": 1,
+            "questionId": "java_abstract_classes_1",
+            "title": "抽象クラスとインタフェース",
+            "question": "抽象クラスとインタフェースの違いを説明し、それぞれの使用例をJavaコードで示してください。",
+            "explanation": "抽象クラスとインタフェースはともに、完全に実装されていないクラスを作るための機能です。しかし、抽象クラスは一部のメソッドを実装することができ、また状態（フィールド）を保持することができます。一方、インタフェースは全てのメソッドが抽象で、状態を保持することができません。",
+            "answer": "/* 抽象クラスの例 */\npublic abstract class AbstractClass {\n    abstract void abstractMethod();\n}\n\n/* インタフェースの例 */\npublic interface Interface {\n    void interfaceMethod();\n}"
+        },
+        {
+            "id": 2,
+            "questionId": "java_abstract_classes_2",
+            "title": "抽象メソッド",
+            "question": "抽象クラスの抽象メソッドをオーバーライドして具体的な実装を提供する具体クラスを作成してください。抽象メソッドの名前は 'performAction' とします。",
+            "explanation": "抽象クラスに定義されている抽象メソッドは、そのクラスを継承する具体クラスでオーバーライド（再定義）する必要があります。オーバーライドすることで、具体的な実装を提供します。",
+            "answer": "public abstract class AbstractClass {\n    abstract void performAction();\n}\n\npublic class ConcreteClass extends AbstractClass {\n    void performAction() {\n        // 実装を提供\n        System.out.println(\"Performing action...\");\n    }\n}"
+        },
+        {
+            "id": 3,
+            "questionId": "java_abstract_classes_3",
+            "title": "抽象クラスの継承",
+            "question": "抽象クラスを継承し、その抽象クラスに新たな抽象メソッドを追加した抽象クラスを作成してください。最初の抽象クラスの名前は 'FirstAbstractClass'、追加の抽象メソッドの名前は 'additionalAction' とします。",
+            "explanation": "抽象クラスは他のクラスと同じく継承することができます。そして、その継承した抽象クラスに新たな抽象メソッドを追加することが可能です。",
+            "answer": "public abstract class FirstAbstractClass {\n    abstract void performAction();\n}\n\npublic abstract class SecondAbstractClass extends FirstAbstractClass {\n    abstract void additionalAction();\n}"
+        },
+        {
+            "id": 4,
+            "questionId": "java_abstract_classes_4",
+            "title": "抽象クラスの利用",
+            "question": "抽象クラス 'FirstAbstractClass' を利用するためのメソッド 'useFirstAbstractClass' を作成してください。このメソッドは 'FirstAbstractClass' のオブジェクトを引数に取り、'performAction' メソッドを呼び出します。",
+            "explanation": "抽象クラス自体はインスタンス化できませんが、その具体クラス（抽象クラスを継承し、すべての抽象メソッドをオーバーライドしたクラス）のオブジェクトとして利用することが可能です。",
+            "answer": "public abstract class FirstAbstractClass {\n    abstract void performAction();\n}\n\npublic class MyClass {\n    void useFirstAbstractClass(FirstAbstractClass fac) {\n        fac.performAction();\n    }\n}"
+        },
+        {
+            "id": 5,
+            "questionId": "java_abstract_classes_5",
+            "title": "抽象クラスの具体化",
+            "question": "以下の抽象クラス 'Animal' を具体化するクラス 'Dog' を作成してください。'Dog' クラスは 'speak' メソッドをオーバーライドし、'Bark!' と表示します。",
+            "explanation": "抽象クラスは、すべての抽象メソッドをオーバーライドした具体クラスを作成することで、具体化（インスタンス化）できます。ここでは、'Dog' クラスが 'Animal' クラスを具体化します。",
+            "answer": "public abstract class Animal {\n    abstract void speak();\n}\n\npublic class Dog extends Animal {\n    void speak() {\n        System.out.println(\"Bark!\");\n    }\n}"
+        },
+        {
+            "id": 6,
+            "questionId": "java_abstract_classes_6",
+            "title": "抽象クラスとポリモーフィズム",
+            "question": "抽象クラスを使用したポリモーフィズムについて説明し、具体的なJavaコードでその例を示してください。",
+            "explanation": "ポリモーフィズムとは、一つの型に複数の実装を持たせることができるというオブジェクト指向プログラミングの重要な概念です。抽象クラスを利用することで、その抽象クラスを継承した具体クラスが、それぞれ異なる実装を持つことが可能となり、これがポリモーフィズムを実現します。",
+            "answer": "public abstract class AbstractClass {\n    abstract void performAction();\n}\n\npublic class ConcreteClassA extends AbstractClass {\n    void performAction() {\n        System.out.println(\"Action in ConcreteClassA\");\n    }\n}\n\npublic class ConcreteClassB extends AbstractClass {\n    void performAction() {\n        System.out.println(\"Action in ConcreteClassB\");\n    }\n}\n\npublic class Test {\n    public static void main(String[] args) {\n        AbstractClass a = new ConcreteClassA();\n        a.performAction();\n\n        AbstractClass b = new ConcreteClassB();\n        b.performAction();\n    }\n}"
+        },
+        {
+            "id": 7,
+            "questionId": "java_abstract_classes_7",
+            "title": "抽象クラスの具体クラスの利用",
+            "question": "以下の抽象クラス 'Animal' を具体化する 'Dog' クラスを作成し、そのインスタンスを生成して 'speak' メソッドを呼び出してください。",
+            "explanation": "抽象クラスを継承した具体クラスを作成し、その具体クラスのインスタンスを生成することで、抽象クラスの抽象メソッドの具体的な実装を呼び出すことができます。",
+            "answer": "public abstract class Animal {\n    abstract void speak();\n}\n\npublic class Dog extends Animal {\n    void speak() {\n        System.out.println(\"Bark!\");\n    }\n}\n\npublic class Test {\n    public static void main(String[] args) {\n        Dog dog = new Dog();\n        dog.speak();\n    }\n}"
+        },
+        {
+            "id": 8,
+            "questionId": "java_abstract_classes_8",
+            "title": "抽象クラスのメソッド",
+            "question": "抽象クラスは具体的なメソッドを持つことができますか？その理由と共に説明してください。",
+            "explanation": "はい、抽象クラスは具体的なメソッドを持つことができます。抽象クラスは一部のメソッドが具体的に実装されていてもよく、その実装は具体クラスに継承されます。しかし、少なくとも1つの抽象メソッドを含む必要があります。",
+            "answer": "public abstract class AbstractClass {\n    // 抽象メソッド\n    abstract void abstractMethod();\n\n    // 具体的なメソッド\n    void concreteMethod() {\n        System.out.println(\"This is a concrete method.\");\n    }\n}"
+        },
+        {
+            "id": 9,
+            "questionId": "java_abstract_classes_9",
+            "title": "抽象クラスのフィールド",
+            "question": "抽象クラスはフィールド（状態）を持つことができますか？その理由と共に説明してください。",
+            "explanation": "はい、抽象クラスはフィールド（状態）を持つことができます。抽象クラスは一部が未定義の通常のクラスであり、通常のクラスが持つことのできるフィールドを持つことができます。",
+            "answer": "public abstract class AbstractClass {\n    // フィールド\n    protected int number;\n\n    abstract void abstractMethod();\n}"
+        },
+        {
+            "id": 10,
+            "questionId": "java_abstract_classes_10",
+            "title": "抽象クラスのコンストラクタ",
+            "question": "抽象クラスはコンストラクタを持つことができますか？その理由と共に説明してください。",
+            "explanation": "はい、抽象クラスはコンストラクタを持つことができます。抽象クラスはインスタンス化することはできませんが、抽象クラスのコンストラクタは具体クラス（抽象クラスを継承したクラス）がインスタンス化されるときに呼び出されます。",
+            "answer": "public abstract class AbstractClass {\n    // コンストラクタ\n    public AbstractClass() {\n        System.out.println(\"AbstractClass constructor called.\");\n    }\n\n    abstract void abstractMethod();\n}\n\npublic class ConcreteClass extends AbstractClass {\n    // ConcreteClassのコンストラクタからAbstractClassのコンストラクタが呼び出される\n    public ConcreteClass() {\n        super();\n    }\n\n    void abstractMethod() {\n        System.out.println(\"Abstract method implementation.\");\n    }\n}"
+        }
+    ]
+}

@@ -1,0 +1,46 @@
+{
+    "contentsId": "js_dom_event1",
+    "title": "JavascriptのDOMの操作：イベントの設定",
+    "subtitle": "初級",
+    "questions": [{
+            "id": 6,
+            "questionId": "js_dom_event1_6",
+            "title": "フォームの送信イベント",
+            "question": "idが'myForm'のform要素に対して、'submit'イベント（フォームの送信時に発生するイベント）を設定し、イベント発生時に'Form submitted!'とコンソールに表示するJavaScriptコードを書いてください。ただし、実際のフォーム送信はキャンセルしてください。",
+            "explanation": "'addEventListener'メソッドを用いて'提交'イベントを設定できます。そして、イベントオブジェクトの'preventDefault'メソッドを用いることで、イベントのデフォルトの動作をキャンセルすることができます。この場合、デフォルトの動作とはフォームの送信、つまりページ遷移です。",
+            "answer": "// 'myForm'というidを持つ要素に対する'submit'イベントの設定\nlet myForm = document.getElementById('myForm');\nmyForm.addEventListener('submit', function(event) {\n  console.log('Form submitted!');\n  // ここでフォームの送信をキャンセルします\n  event.preventDefault();\n});\n// これを実行すると、'myForm'が送信されたとき、\n// コンソールに'Form submitted!'が表示され、ページ遷移は発生しません。"
+        },
+        {
+            "id": 7,
+            "questionId": "js_dom_event1_7",
+            "title": "キー押下イベントの取得",
+            "question": "ユーザーがキーボードの'a'キーを押下したときに'Key a was pressed!'とコンソールに表示するJavaScriptコードを書いてください。",
+            "explanation": "'keydown'イベントを使用して、キー押下イベントを取得できます。イベントオブジェクトの'key'プロパティを用いることで、押下されたキーを特定することができます。",
+            "answer": "// キーボードの'a'キーの押下イベントの取得\nwindow.addEventListener('keydown', function(event) {\n  if (event.key === 'a') {\n    console.log('Key a was pressed!');\n  }\n});\n// これを実行すると、'a'キーが押されたとき、\n// コンソールに'Key a was pressed!'と表示されます。"
+        },
+        {
+            "id": 8,
+            "questionId": "js_dom_event1_8",
+            "title": "複数のイベントリスナー",
+            "question": "idが'myButton'のボタン要素に対して、2つのクリックイベントリスナーを設定し、それぞれクリックイベントが発生すると'First listener!'と'Second listener!'とコンソールに表示されるJavaScriptコードを書いてください。",
+            "explanation": "1つの要素に対して複数のイベントリスナーを設定することができます。それぞれのイベントリスナーは独立して動作し、設定された順番に呼び出されます。",
+            "answer": "// 'myButton'というidを持つ要素に対する2つのクリックイベントリスナーの設定\nlet myButton = document.getElementById('myButton');\nmyButton.addEventListener('click', function() {\n  console.log('First listener!');\n});\nmyButton.addEventListener('click', function() {\n  console.log('Second listener!');\n});\n// これを実行すると、'myButton'がクリックされたとき、\n// コンソールには'First listener!'と'Second listener!'が順番に表示されます。"
+        },
+        {
+            "id": 9,
+            "questionId": "js_dom_event1_9",
+            "title": "イベントリスナーの削除",
+            "question": "idが'myButton'のボタン要素に対して、クリックイベントリスナーを設定し、クリックイベントが発生すると'Button was clicked!'とコンソールに表示されます。その後、そのイベントリスナーを削除するJavaScriptコードを書いてください。",
+            "explanation": "'removeEventListener'メソッドを用いて、既に設定されたイベントリスナーを削除することができます。ただし、匿名関数をイベントリスナーとして設定した場合、そのイベントリスナーは削除できません。そのため、削除可能なイベントリスナーを設定するには、関数を別途定義してそれをイベントリスナーとして設定する必要があります。",
+            "answer": "// 'myButton'というidを持つ要素に対するクリックイベントリスナーの設定と削除\nlet myButton = document.getElementById('myButton');\n// 関数を別途定義します\nlet myListener = function() {\n  console.log('Button was clicked!');\n};\n// イベントリスナーを設定\nmyButton.addEventListener('click', myListener);\n// イベントリスナーを削除\nmyButton.removeEventListener('click', myListener);\n// これを実行すると、'myButton'がクリックされたとき、何も表示されません。\n// (イベントリスナーはすでに削除されているためです)"
+        },
+        {
+            "id": 10,
+            "questionId": "js_dom_event1_10",
+            "title": "マウスオーバーイベント",
+            "question": "idが'myElement'の要素に対して、マウスオーバーイベント（マウスが要素の上に乗ったときに発生するイベント）を設定し、イベント発生時に'You're hovering over me!'とコンソールに表示するJavaScriptコードを書いてください。",
+            "explanation": "'mouseover'イベントを使用して、マウスオーバーイベントを取得できます。イベントリスナーは要素に対して設定します。",
+            "answer": "// 'myElement'というidを持つ要素に対するマウスオーバーイベントの設定\nlet myElement = document.getElementById('myElement');\nmyElement.addEventListener('mouseover', function() {\n  console.log(\"You're hovering over me!\");\n});\n// これを実行すると、マウスが'myElement'の上に乗ったとき、\n// コンソールに'You're hovering over me!'と表示されます。"
+        }
+    ]
+}

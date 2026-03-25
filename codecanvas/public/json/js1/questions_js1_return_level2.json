@@ -1,0 +1,166 @@
+{
+    "contentsId": "js_return",
+    "title": "Javascriptの戻り値問題集ページ",
+    "subtitle": "中級",
+    "questions": [{
+            "id": 1,
+            "questionId": "js_ret2_1",
+            "title": "文字列の逆順",
+            "question": "文字列を引数に取り、その文字列を逆順にしたものを返す関数を作成してください。",
+            "explanation": "JavaScriptの文字列は配列と同様の方法で操作できます。文字列を配列に変換し、逆順にし、再び文字列に戻すことで実装できます。",
+            "answer": "function reverseString(str) {\n  return str.split('').reverse().join('');\n}\n\nconsole.log(reverseString('hello'));  // console.logで 'olleh' を表示"
+        },
+        {
+            "id": 2,
+            "questionId": "js_ret2_2",
+            "title": "配列の最大値",
+            "question": "数値の配列を引数に取り、その配列の最大値を返す関数を作成してください。",
+            "explanation": "JavaScriptの Math.max() メソッドとスプレッド演算子を使用して配列の最大値を取得できます。",
+            "answer": "function findMax(arr) {\n  return Math.max(...arr);\n}\n\nconsole.log(findMax([1, 2, 3, 4, 5]));  // console.logで '5' を表示"
+        },
+        {
+            "id": 3,
+            "questionId": "js_ret2_3",
+            "title": "文字列の長さ",
+            "question": "文字列を引数に取り、その文字列の長さを返す関数を作成してください。",
+            "explanation": "JavaScriptの文字列には、length プロパティがあり、これを用いて文字列の長さを取得できます。",
+            "answer": "function stringLength(str) {\n  return str.length;\n}\n\nconsole.log(stringLength('hello'));  // console.logで '5' を表示"
+        },
+        {
+            "id": 4,
+            "questionId": "js_ret2_4",
+            "title": "文字列の結合",
+            "question": "2つの文字列を引数に取り、それらを結合した結果を返す関数を作成してください。",
+            "explanation": "JavaScriptでは '+' 演算子または concat() メソッドを使用して文字列を結合できます。",
+            "answer": "function concatStrings(str1, str2) {\n  return str1 + str2;\n}\n\nconsole.log(concatStrings('Hello', ' World!'));  // console.logで 'Hello World!' を表示"
+        },
+        {
+            "id": 5,
+            "questionId": "js_ret2_5",
+            "title": "条件分岐",
+            "question": "数値を引数に取り、その数値が0より大きければ 'Positive'、0なら 'Zero'、0より小さければ 'Negative' を返す関数を作成してください。",
+            "explanation": "if-else 文を使用して数値を評価し、該当する文字列を返します。",
+            "answer": "function evaluateNumber(n) {\n  if (n > 0) {\n    return 'Positive';\n  } else if (n === 0) {\n    return 'Zero';\n  } else {\n    return 'Negative';\n  }\n}\n\nconsole.log(evaluateNumber(0));  // console.logで 'Zero' を表示"
+        },
+        {
+            "id": 6,
+            "questionId": "js_ret2_6",
+            "title": "文字列の分割",
+            "question": "文字列と区切り文字を引数に取り、その文字列を指定した区切り文字で分割した配列を返す関数を作成してください。",
+            "explanation": "JavaScriptの split() メソッドを使用して文字列を分割できます。",
+            "answer": "function splitString(str, delimiter) {\n  return str.split(delimiter);\n}\n\nconsole.log(splitString('apple,banana,orange', ','));  // console.logで ['apple', 'banana', 'orange'] を表示"
+        },
+        {
+            "id": 7,
+            "questionId": "js_ret2_7",
+            "title": "配列の要素数",
+            "question": "配列を引数に取り、その配列の要素数を返す関数を作成してください。",
+            "explanation": "JavaScriptの配列には、length プロパティがあり、これを用いて配列の要素数を取得できます。",
+            "answer": "function countElements(arr) {\n  return arr.length;\n}\n\nconsole.log(countElements(['apple', 'banana', 'orange']));  // console.logで '3' を表示"
+        },
+        {
+            "id": 8,
+            "questionId": "js_ret2_8",
+            "title": "真偽値の反転",
+            "question": "真偽値を引数に取り、その真偽値を反転させたものを返す関数を作成してください。",
+            "explanation": "JavaScriptでは、'!' 演算子を使用して真偽値を反転させることができます。",
+            "answer": "function negateBool(b) {\n  return !b;\n}\n\nconsole.log(negateBool(true));  // console.logで 'false' を表示"
+        },
+        {
+            "id": 9,
+            "questionId": "js_ret2_9",
+            "title": "配列の合計",
+            "question": "数値の配列を引数に取り、その配列のすべての要素の合計を返す関数を作成してください。",
+            "explanation": "JavaScriptの reduce() メソッドを使用して配列の要素の合計を求めることができます。",
+            "answer": "function sumArray(arr) {\n  return arr.reduce((acc, curr) => acc + curr, 0);\n}\n\nconsole.log(sumArray([1, 2, 3, 4, 5]));  // console.logで '15' を表示"
+        },
+        {
+            "id": 10,
+            "questionId": "js_ret2_10",
+            "title": "文字列の繰り返し",
+            "question": "文字列と数値を引数に取り、その文字列を指定した数値の回数だけ繰り返した文字列を返す関数を作成してください。",
+            "explanation": "JavaScriptの repeat() メソッドを使用して文字列を繰り返し生成することができます。",
+            "answer": "function repeatString(str, n) {\n  return str.repeat(n);\n}\n\nconsole.log(repeatString('abc', 3));  // console.logで 'abcabcabc' を表示"
+        },
+        {
+            "id": 11,
+            "questionId": "js_ret2_11",
+            "title": "配列のフィルタリング",
+            "question": "数値の配列と数値を引数に取り、その数値より大きい要素だけを含む新たな配列を返す関数を作成してください。",
+            "explanation": "JavaScriptの filter() メソッドを使用して配列から特定の条件を満たす要素だけを取り出すことができます。",
+            "answer": "function filterArray(arr, num) {\n  return arr.filter(x => x > num);\n}\n\nconsole.log(filterArray([1, 2, 3, 4, 5], 3));  // console.logで '[4, 5]' を表示"
+        },
+        {
+            "id": 12,
+            "questionId": "js_ret2_12",
+            "title": "文字列の反転",
+            "question": "文字列を引数に取り、その文字列を反転させた新たな文字列を返す関数を作成してください。",
+            "explanation": "JavaScriptでは、配列の reverse() メソッドを利用して文字列を反転させることができます。",
+            "answer": "function reverseString(str) {\n  return str.split('').reverse().join('');\n}\n\nconsole.log(reverseString('javascript'));  // console.logで 'tpircsavaj' を表示"
+        },
+        {
+            "id": 13,
+            "questionId": "js_ret2_13",
+            "title": "配列の最大値",
+            "question": "数値の配列を引数に取り、その配列の最大値を返す関数を作成してください。",
+            "explanation": "JavaScriptの Math.max() 関数とスプレッド演算子を使用して配列の最大値を求めることができます。",
+            "answer": "function maxOfArray(arr) {\n  return Math.max(...arr);\n}\n\nconsole.log(maxOfArray([1, 2, 3, 4, 5]));  // console.logで '5' を表示"
+        },
+        {
+            "id": 14,
+            "questionId": "js_ret2_14",
+            "title": "配列の重複除去",
+            "question": "配列を引数に取り、その配列から重複した要素を除去した新たな配列を返す関数を作成してください。",
+            "explanation": "JavaScriptの Set オブジェクトとスプレッド演算子を使用して配列から重複を除去することができます。",
+            "answer": "function removeDuplicates(arr) {\n  return [...new Set(arr)];\n}\n\nconsole.log(removeDuplicates([1, 2, 2, 3, 3, 3]));  // console.logで '[1, 2, 3]' を表示"
+        },
+        {
+            "id": 15,
+            "questionId": "js_ret2_15",
+            "title": "配列の要素数計算",
+            "question": "配列と値を引数に取り、その配列内に引数の値がいくつ存在するかを返す関数を作成してください。",
+            "explanation": "JavaScriptの filter() メソッドを利用して、特定の値が配列内にいくつ存在するかを計算することができます。",
+            "answer": "function countOccurrences(arr, val) {\n  return arr.filter(x => x === val).length;\n}\n\nconsole.log(countOccurrences([1, 2, 2, 3, 3, 3], 2));  // console.logで '2' を表示"
+        },
+        {
+            "id": 16,
+            "questionId": "js_ret2_16",
+            "title": "特定の範囲の数値配列の生成",
+            "question": "最小値と最大値を引数に取り、その範囲内のすべての数値を含む配列を返す関数を作成してください。",
+            "explanation": "JavaScriptの Array.from() メソッドと箭印関数を使用して、特定の範囲内のすべての数値を含む配列を生成することができます。",
+            "answer": "function range(start, end) {\n  return Array.from({length: end - start + 1}, (_, i) => start + i);\n}\n\nconsole.log(range(2, 5));  // console.logで '[2, 3, 4, 5]' を表示"
+        },
+        {
+            "id": 17,
+            "questionId": "js_ret2_17",
+            "title": "配列のシャッフル",
+            "question": "配列を引数に取り、その配列の要素の順序をランダムにした新たな配列を返す関数を作成してください。",
+            "explanation": "Fisher-Yatesのシャッフルアルゴリズムを使用して、配列の要素の順序をランダムにします。",
+            "answer": "function shuffle(arr) {\n  let array = arr.slice();\n  for (let i = array.length - 1; i > 0; i--) {\n    let j = Math.floor(Math.random() * (i + 1));\n    [array[i], array[j]] = [array[j], array[i]];\n  }\n  return array;\n}\n\nconsole.log(shuffle([1, 2, 3, 4, 5]));  // console.logで '[3, 1, 2, 5, 4]' のようなランダムな配列を表示"
+        },
+        {
+            "id": 18,
+            "questionId": "js_ret2_18",
+            "title": "文字列の頻出文字列",
+            "question": "文字列を引数に取り、その文字列内に最も頻繁に出現する文字を返す関数を作成してください。",
+            "explanation": "JavaScriptの Array.prototype.reduce() を使用して、文字列内の各文字の出現回数をカウントし、最も頻繁に出現する文字を返します。",
+            "answer": "function mostFrequentCharacter(str) {\n  const frequency = str.split('').reduce((a, v) => (a[v] = (a[v] || 0) + 1, a), {});\n  return Object.keys(frequency).reduce((a, v) => frequency[v] > frequency[a] ? v : a);\n}\n\nconsole.log(mostFrequentCharacter('javascript'));  // console.logで 'a' を表示"
+        },
+        {
+            "id": 19,
+            "questionId": "js_ret2_19",
+            "title": "パリティビット",
+            "question": "バイナリ文字列を引数に取り、そのパリティビット（偶数なら0、奇数なら1）を返す関数を作成してください。",
+            "explanation": "文字列のsplitメソッドとreduceメソッドを用いて、1の数をカウントします。その後、1の数が偶数か奇数かを判定し、パリティビットを決定します。",
+            "answer": "function parityBit(binStr) {\n  const count = binStr.split('').reduce((a, b) => a + Number(b), 0);\n  return count % 2 === 0 ? '0' : '1';\n}\n\nconsole.log(parityBit('1011'));  // console.logで '1' を表示"
+        },
+        {
+            "id": 20,
+            "questionId": "js_ret2_20",
+            "title": "デジタルルート",
+            "question": "数字を引数に取り、その数字のデジタルルート（各桁の数字を足し合わせて1桁の数字になるまで繰り返す）を返す関数を作成してください。",
+            "explanation": "各桁の数字を足し合わせる処理を、結果が一桁になるまで再帰的に繰り返します。",
+            "answer": "function digitalRoot(num) {\n  if (num < 10) return num;\n  return digitalRoot(num.toString().split('').reduce((a, b) => a + Number(b), 0));\n}\n\nconsole.log(digitalRoot(123456));  // console.logで '3' を表示"
+        }
+    ]
+}
