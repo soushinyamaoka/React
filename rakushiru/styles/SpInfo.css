@@ -1,0 +1,358 @@
+#wrapper {
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+}
+
+.partial-spa-root {
+    background-color: #fff;
+}
+
+.SpApp {
+    background-color: #fff;
+}
+
+.SpApp-titleAndIntroduction {
+    margin: 16px 0;
+}
+
+.TitleAndIntroductionSp-title {
+    -ms-flex-line-pack: center;
+    align-content: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin: 0 16px;
+}
+
+.TitleAndIntroductionSp-titleBody {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: .15px;
+    line-height: 130%;
+    color: #151413;
+}
+
+.TitleAndIntroductionSp-drop {
+    color: #635f5a;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 20px;
+    flex: 0 0 20px;
+    height: 20px;
+    margin: 0 0 0 16px;
+    width: 20px;
+}
+
+.TitleAndIntroductionSp-introduction {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    -webkit-transition-duration: 225ms;
+    transition-duration: 225ms;
+    -webkit-transition-property: height;
+    transition-property: height;
+    -webkit-transition-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    transition-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    width: 100%;
+}
+
+.TitleAndIntroductionSp-introductionContent {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #635f5a;
+    left: 0;
+    padding: 16px 16px 0;
+    position: relative;
+    top: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.TitleAndIntroductionSp-tags {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    padding: 16px 16px 0;
+}
+
+.TitleAndIntroductionSp-tagListItem {
+    background-color: #efedeb;
+    border-radius: 3px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 8px 8px 0 0;
+}
+
+.TitleAndIntroductionSp-tagListItemLink {
+    color: #151413;
+    font-size: 14px;
+    padding: 8px;
+    text-align: center;
+}
+
+.SpApp-mainContent {
+    margin: 16px 0 24px;
+}
+
+.RecipeDetail-metadata.is-nutrient-appeal {
+    margin: 0 16px;
+}
+
+.RecipeDetail-metadataItem {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 130%;
+    color: #151413;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: column;
+    flex-flow: column;
+    height: 38px;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.RecipeDetail-metadataItemTitle {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.RecipeDetail-metadataItemIcon {
+    display: inline;
+    height: 16px;
+    margin-right: 4px;
+    width: 16px;
+}
+
+.RecipeDetail-metadataItemValue {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: .15px;
+    line-height: 130%;
+    line-height: 1;
+}
+
+.RecipeDetail-metadataItemValue-link {
+    color: #151413;
+    text-decoration: underline;
+}
+
+.RecipeDetail-metadataItemValueUnit {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 130%;
+}
+
+.RecipeDetail-metadataItem {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 130%;
+    color: #151413;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: column;
+    flex-flow: column;
+    height: 38px;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.RecipeDetail-metadataItemTitle {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.RecipeDetail-metadataItemIcon {
+    display: inline;
+    height: 16px;
+    margin-right: 4px;
+    width: 16px;
+}
+
+.RecipeDetail-metadataItemValueNutrient {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 130%;
+    -webkit-box-align: baseline;
+    -ms-flex-align: baseline;
+    align-items: baseline;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.RecipeDetail-metadataItemValueIcon {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .1px;
+    line-height: 130%;
+    height: 16px;
+    margin-right: 4px;
+    width: 16px;
+}
+
+.MainContentWta-ingredients {
+    margin: 48px 16px 16px;
+    position: relative;
+}
+
+.MainContentWta-ingredients ul {
+    padding-left: 0px;
+}
+
+.MainContentWta-sectionTitle {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 130%;
+    margin-top: 48px;
+}
+
+.MainContentWta-sectionTitleIngredients {
+    margin: 0;
+}
+
+.MainContentWta-sectionTitleIngredientsServings {
+    display: block;
+    font-size: 12px;
+}
+
+.MainContentWta-ingredientsListItem {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-bottom: 2px dotted #f0efef;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 8px 0;
+}
+
+.MainContentWta-ingredientsListItemValue {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #151413;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: .25px;
+    line-height: 150%;
+}
+
+.MainContentWta-instructions {
+    margin: 48px 16px;
+    position: relative;
+}
+
+.MainContentWta-instructions ul {
+    padding-left: 0px;
+}
+
+.MainContentWta-anchorForScroll {
+    left: 0;
+    position: absolute;
+    top: -8px;
+    visibility: hidden;
+}
+
+.MainContentWta-sectionTitle--instructions {
+    margin: 0 0 8px;
+}
+
+.MainContentWta-instructionsListItem {
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    border-bottom: 2px dotted #f0efef;
+    color: #151413;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 8px 0;
+}
+
+.MainContentWta-instructionsListItemOrder {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    font-weight: bold;
+    margin: 0 4px 0 0;
+}
+
+.MainContentWta-memo {
+    margin: 0 16px;
+}
+
+.MainContentWta-sectionTitle--memo {
+    margin-bottom: 24px;
+    padding: 0;
+}
+
+.MainContentWta-memoContent {
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: .5px;
+    line-height: 150%;
+    color: #151413;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.resizeimage {
+    width: 90%;
+}
+
+.image-wrapper {
+    text-align: center;
+}
+
+
+/* コントロール */
+
+.info-control-area {
+    width: 30%;
+    margin: auto;
+}

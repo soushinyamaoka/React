@@ -1,0 +1,591 @@
+.recipe-edit {
+    overflow: hidden;
+    padding-bottom: 50px;
+}
+
+.sblock .title {
+    margin: 0;
+}
+
+.title {
+    background: #fbf9f3;
+    color: #4c4a40;
+    border-bottom: 1px solid #E8E4D8;
+    border-top: 1px solid #E8E4D8;
+    display: block;
+    padding: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.2;
+    position: relative;
+    letter-spacing: 0.02em;
+}
+
+.open-modal-window {
+    min-width: 60px;
+    text-decoration: none;
+}
+
+.sblock .content {
+    padding: 10px;
+}
+
+#update-photo {
+    position: relative;
+    width: auto;
+    padding: 0 0 10px 0;
+    margin: 0 auto;
+}
+
+#update-photo .inner {
+    position: absolute;
+    top: 86px;
+    left: 50%;
+}
+
+#update-photo .recipe-photo-update-form-container {
+    margin-top: 5px;
+    position: relative;
+}
+
+.center {
+    text-align: center;
+}
+
+.photo-icon {
+    vertical-align: middle;
+    padding-bottom: 3px;
+}
+
+#update-photo .file-field {
+    top: -245px;
+    width: 100%;
+    height: 240px;
+    margin: 0 auto;
+    opacity: 0;
+    position: absolute;
+    display: block;
+    border: 1px solid #000;
+}
+
+.hidden {
+    display: none;
+    overflow: hidden;
+    text-indent: -9999px;
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+a:link,
+a:visited,
+a:hover {
+    color: #4c4a40;
+}
+
+
+/* 編集画面 */
+
+.button.action,
+a.button.action,
+input[type='submit'].button.action {
+    text-shadow: 0 -1px 0 #d4d0c6;
+    border: 0;
+    background: #eae8e3;
+    background: #eae8e3;
+    background: -moz-linear-gradient(top, #eae8e3, #eae8e3);
+    background: -webkit-gradient(linear, left top, left bottom, from(#eae8e3), to(#eae8e3));
+    background: linear-gradient(to bottom, #eae8e3, #eae8e3);
+    text-shadow: none;
+    margin: 0;
+}
+
+.button.min,
+a.button.min,
+input[type='submit'].button.min {
+    display: inline-block;
+    min-width: 0;
+    padding: 5px 8px;
+    font-size: 12px;
+    font-weight: normal !important;
+}
+
+a:link,
+a:visited,
+a:hover {
+    color: #4c4a40;
+}
+
+a.button {
+    text-decoration: none;
+}
+
+.navi .save-and-lenth-check {
+    text-align: right;
+}
+
+.navi .cancel,
+.navi .save-and-lenth-check {
+    width: 33%;
+}
+
+.navi .cancel,
+.navi .save-and-lenth-check {
+    float: left;
+}
+
+.recipe-update-form #counter {
+    min-height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    font-weight: 600;
+    padding-right: 5px;
+}
+
+.recipe-update-form .save-button,
+.recipe-update-form .cancel-button {
+    min-width: 70px;
+}
+
+.navi:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#recipe-update-form .inner textarea {
+    height: 110px;
+    padding: 5px;
+    font-size: 0.9em;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="search"],
+input[type="number"],
+textarea {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #4c4a40;
+    border: 1px solid #bfbcb0;
+    padding: 0 8px;
+    width: 100%;
+    font-size: 16px;
+    -webkit-appearance: textfield;
+    border-radius: 5px;
+}
+
+#recipe-update-form .serving-for-container {
+    padding: 10px 5px;
+    margin-top: 3px;
+    border-top: 1px solid #eae8e3;
+}
+
+#recipe-update-form table.ingredients {
+    width: 100%;
+    border-top: 1px solid #eae8e3;
+}
+
+table {
+    border-spacing: 0;
+}
+
+table {
+    font-size: inherit;
+    font: 100%;
+}
+
+table {
+    border-spacing: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: gray;
+}
+
+#smartphone-page input[type="text"],
+#smartphone-page input[type="password"],
+#smartphone-page input[type="email"],
+#smartphone-page input[type="tel"],
+#smartphone-page input[type="number"],
+#smartphone-page textarea {
+    -webkit-appearance: none;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="search"],
+input[type="number"] {
+    height: 40px;
+}
+
+#recipe-update-form .inner {
+    margin: 0 5px;
+}
+
+#recipe-update-form .inner .navi {
+    *zoom: 1;
+    padding: 5px 0;
+}
+
+#recipe-update-form .inner .navi .cancel,
+#recipe-update-form .inner .navi .save-and-lenth-check {
+    width: 33%;
+}
+
+#recipe-update-form .inner .navi .save-and-lenth-check {
+    text-align: right;
+}
+
+#recipe-update-form .inner .navi .cancel,
+#recipe-update-form .inner .navi .save-and-lenth-check {
+    width: 33%;
+}
+
+#recipe-update-form .inner .navi .cancel,
+#recipe-update-form .inner .navi .save-and-lenth-check {
+    float: left;
+}
+
+#recipe-update-form .inner .navi:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.IngredientList {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.IngredientListItem {
+    align-items: center;
+    border-bottom: 2px dotted #f0efef;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+}
+
+.IngredientListItemValue {
+    align-items: center;
+    color: #151413;
+    display: inline-flex;
+    flex-flow: row nowrap;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: .25px;
+    line-height: 150%;
+}
+
+.HowList {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.HowListItem {
+    font-size: 14px;
+    line-height: 1.5;
+    align-items: flex-start;
+    border-bottom: 2px dotted #f0efef;
+    color: #151413;
+    display: flex;
+    padding: 8px 0;
+}
+
+.HowListItemOrder {
+    flex: 0 0 auto;
+    font-weight: bold;
+    margin: 0 4px 0 0;
+}
+
+.finish-edit {
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    box-shadow: #efefef 1px -1px;
+    background: #fbf9f3;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #bfbcb0;
+    width: 100%;
+    *zoom: 1;
+}
+
+
+/* モーダル共通 */
+
+#modal-window {
+    height: 100%;
+    width: 100%;
+    background-color: #fbf9f3;
+    position: absolute;
+    /* top: 0; */
+    /* padding: 2%; */
+    box-sizing: border-box;
+    z-index: 9999;
+    overflow: auto;
+    overflow: scroll;
+}
+
+.edit-header {
+    position: fixed;
+    padding: 5px 0;
+    z-index: 10;
+    box-shadow: #efefef 1px -1px;
+    background: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    *zoom: 1;
+}
+
+.edit-control {
+    width: 30%;
+}
+
+.edit-Button {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 130%;
+    height: 35px;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(1.28%, #ffaa4e), color-stop(74.02%, #febc56));
+    background-image: linear-gradient(180deg, #ffaa4e 1.28%, #febc56 74.02%);
+    border-radius: 10px;
+    color: #fff;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: block;
+    outline: none;
+    padding: 10px;
+    position: relative;
+    text-decoration: none;
+    margin: 10px;
+}
+
+.edit-Button .edit-Button-body {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: relative;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(1.28%, #ffaa4e), color-stop(74.02%, #febc56));
+    background-image: linear-gradient(180deg, #ffaa4e 1.28%, #febc56 74.02%);
+    border-radius: 100px;
+    color: #fff;
+}
+
+.button-left {
+    /* margin: 10px; */
+}
+
+.button-right {
+    /* margin-right: auto; */
+}
+
+.edit-item-name {
+    font-size: large;
+    text-align: center;
+    margin: auto;
+}
+
+.edit-main {
+    padding-top: 70px;
+    padding-right: 2%;
+    padding-left: 2%;
+}
+
+.recipe-update-form {
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #eae8e3;
+    padding: 5px;
+}
+
+.navi {
+    *zoom: 1;
+    padding: 5px 0;
+}
+
+.navi .cancel,
+.navi .save-and-lenth-check {
+    width: 33%;
+}
+
+.navi .cancel {
+    height: 30px;
+    min-height: 30px;
+    line-height: 30px;
+}
+
+.navi .cancel,
+.navi .save-and-lenth-check {
+    float: left;
+}
+
+.navi .edit-button {
+    min-width: 60px;
+    line-height: 1.9;
+}
+
+
+/* モーダル共通 */
+
+.control-area {
+    width: 100%;
+    min-height: 30px;
+    display: inline-block;
+}
+
+.control-area .delete-area {
+    width: 80%;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+.control-area .up-down-area {
+    width: 10%;
+    min-height: 30px;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+.control-area .delete-area .delete {
+    background: linear-gradient(to bottom, #eae8e3, #eae8e3);
+    border: 0;
+    border-radius: 5px;
+    padding: 5px 8px;
+}
+
+.control-area .up-down-area .up-button {
+    background: linear-gradient(to bottom, #eae8e3, #eae8e3);
+    border: 0;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.control-area .up-down-area .down-button {
+    background: linear-gradient(to bottom, #eae8e3, #eae8e3);
+    border: 0;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.add-area {
+    text-align: center;
+}
+
+.add-area .add {
+    background: linear-gradient(to bottom, #eae8e3, #eae8e3);
+    border: 0;
+    border-radius: 5px;
+    padding: 5px 8px;
+}
+
+.description {
+    font-size: 108%;
+    margin-bottom: 15px;
+    word-wrap: break-word;
+}
+
+
+/* キャッチコピー */
+
+.introduction {
+    margin-bottom: 15px;
+    word-wrap: break-word;
+}
+
+
+/* 作り方追加モーダル */
+
+.instructions {
+    width: 100%;
+    height: auto;
+}
+
+.instructions-container {
+    margin-top: 10px;
+    border-top: 1px solid #eae8e3;
+    padding-top: 5px;
+}
+
+
+/* 材料追加モーダル */
+
+.ingredients {
+    width: 100%;
+    height: auto;
+    border-top: 1px solid #eae8e3;
+}
+
+.ingredient-container {
+    width: 100%;
+    margin-top: 10px;
+    display: inline-block;
+    border-top: 1px solid #eae8e3;
+}
+
+.name {
+    *zoom: 1;
+    width: 63%;
+    vertical-align: top;
+    padding: 10px 10px 10px 5px;
+    /* border-bottom: 1px solid #eae8e3;
+    border-top: 1px solid #ffffff; */
+    display: inline-block;
+}
+
+.name input {
+    width: 100%;
+}
+
+.quantity {
+    width: 30%;
+    vertical-align: top;
+    padding: 10px 0px 10px 5px;
+    /* border-bottom: 1px solid #eae8e3;
+    border-top: 1px solid #ffffff; */
+    table-layout: fixed;
+    display: inline-block;
+}
+
+.quantity input {
+    width: 100%;
+}
