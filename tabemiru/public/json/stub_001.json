@@ -1,0 +1,33 @@
+{
+    "siteInfo": {
+        "nav": [{
+                "name": "人気",
+                "link": "Home"
+            },
+            {
+                "name": "カテゴリ",
+                "link": "Home"
+            },
+            {
+                "name": "季節",
+                "link": "Home"
+            }
+        ]
+    },
+    "recipeInfo": [{
+        "title": "人気レシピ",
+        "videos": [{
+                "id": "ZWvXweioDx4",
+                "title": "下茹で不要！チーズ大根ステーキの作り方 #レシピ #shorts #料理 #cooking #recipe"
+            },
+            {
+                "id": "Vvm7eHsTMp8",
+                "title": "【糖質制限レシピ】コスパ最強！低糖質・高タンパク！「鶏むね肉と白菜のトマト煮」の作り方"
+            },
+            {
+                "id": "5WLd2A4z_3o",
+                "title": "【炙ったら全部美味しい】炙り〇〇レシピ BEST10"
+            }
+        ]
+    }]
+}
