@@ -1,0 +1,610 @@
+.logo h1 {
+    margin-top: 5px;
+    font-size: 200%;
+    /* 文字サイズを250%に大きく */
+    color: #dbb34d;
+    /* 文字色は青 */
+    background-color: white;
+    /* 背景色は白 */
+}
+
+h5 {
+    /* margin-bottom: 3px; */
+}
+
+.logo-sub {
+    font-size: 50%;
+}
+
+.SpApp {
+    position: relative;
+    width: 100%;
+    z-index: 10001;
+}
+
+.header-app-banner {
+    max-height: 102px;
+    position: relative;
+}
+
+.header-app-banner::before {
+    content: '';
+    display: block;
+    padding-top: 13.6%;
+}
+
+.header-app-banner-root {
+    background-color: #fff;
+    border-bottom: 1px solid #f0efef;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10001;
+}
+
+.header-app-banner-root a {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.header-app-banner-root a img {
+    max-width: 768px;
+    width: 100%;
+}
+
+.SpApp-logoImg {
+    height: 21px;
+    width: auto;
+}
+
+.SpApp-inner {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #fff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    height: 48px;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 0 16px;
+    position: relative;
+    width: 100%;
+    z-index: 4;
+}
+
+.SpApp-inner-sub {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #fff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    height: 30px;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 0 16px;
+    position: relative;
+    width: 100%;
+    z-index: 4;
+}
+
+.SpApp-logo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.SpApp-actions {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+.global-menu-root {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    position: relative;
+}
+
+.global-menu-root .button-wrapper {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+
+.global-menu-root .global-menu-button.mobile {
+    margin: 0;
+}
+
+.dly-button-root {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.dly-button-root[dly-flat]>.dly-button-content,
+.dly-button-root.dly-flat>.dly-button-content {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.global-menu-root .global-menu-button .global-menu-image {
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+}
+
+.global-menu-root .global-menu-items {
+    border: 1px solid #ddd;
+    top: 56px;
+}
+
+.global-menu-root .global-menu-items {
+    -webkit-box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .08), 0 -2.66667px 12px 0 rgba(36, 36, 36, .04);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .08), 0 -2.66667px 12px 0 rgba(36, 36, 36, .04);
+    position: absolute;
+    right: 0;
+    width: 208px;
+    z-index: 10;
+}
+
+.dly-menu-root .dly-button-root {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+.dly-button-root,
+.dly-button-root.dly-menu-item {
+    position: relative;
+    z-index: 1;
+}
+
+.search-box-wrapper {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+}
+
+.search-box-wrapper #search_box {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    position: relative;
+}
+
+.search-box-wrapper #search_box form {
+    background-color: #fff;
+    padding: 0 12px;
+    position: relative;
+    z-index: 2;
+}
+
+.search-box-wrapper #search_box form input {
+    font-size: 14px;
+}
+
+.search-box-wrapper #search_box form .search-icon {
+    bottom: 0;
+    cursor: pointer;
+    height: 20px;
+    left: 28px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    width: 20px;
+}
+
+.SuggestWordsSp {
+    background: rgba(0, 0, 0, .4);
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+}
+
+.SuggestWordsSp-list {
+    background: #fff;
+    position: relative;
+    width: 100%;
+    z-index: 3;
+}
+
+#wrapper {
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+}
+
+.partial-spa-root {
+    background-color: #fff;
+}
+
+.partial-spa-root::before {
+    background-color: #fefefe;
+    content: '';
+    display: block;
+    height: 100vh;
+    left: 0;
+    opacity: 1;
+    position: fixed;
+    top: 0;
+    -webkit-transform: translateY(-100vh);
+    transform: translateY(-100vh);
+    width: 100vw;
+    z-index: 20000;
+}
+
+.DlyToast {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #dbb34d;
+    bottom: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    left: 0;
+    padding: 9px 16px;
+    position: fixed;
+    -webkit-transition: .5s ease-out;
+    transition: .5s ease-out;
+    width: 100%;
+    z-index: 99999999;
+}
+
+.SpRoot-topBannerWrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+    padding: 16px;
+}
+
+.SpRoot-attentionLinkWrapper {
+    background-color: #f4f2f0;
+    padding: 8px;
+}
+
+.TopToAppBanner-link {
+    display: block;
+}
+
+.DlyImg-root {
+    position: relative;
+}
+
+.DlyImg-img {
+    opacity: 1;
+    position: relative;
+}
+
+.DlyImg-img+.DlyImg-placeholder {
+    -webkit-animation: none;
+    animation: none;
+    background-color: #ccc;
+    position: absolute;
+}
+
+.SpRoot-globalNav {
+    border-bottom: 1px solid #d5d2cd;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 4px 0;
+}
+
+.SpRoot-globalNavItem {
+    color: #151413;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    font-size: 14px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 12px 0;
+}
+
+.SpRoot-categories {
+    background-color: #f4f2f0;
+    padding-top: 16px;
+}
+
+.SpRoot-categoryTabs {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.SpRoot-categoryList {
+    background-color: #fff;
+    border-bottom: 0.5px solid #efedeb;
+    border-top: 0.5px solid #efedeb;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.SpRoot-categoryTabItem--active {
+    background-color: #fff;
+    color: #dbb34d;
+}
+
+.SpRoot-categoryTabItem {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #d5d2cd;
+    border-radius: 10px 10px 0 0;
+    color: #635f5a;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 50%;
+    flex: 1 1 50%;
+    font-size: 14px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 18px 0 15px;
+    width: 50%;
+}
+
+.SpRoot-categoryList {
+    background-color: #fff;
+    border-bottom: 0.5px solid #efedeb;
+    border-top: 0.5px solid #efedeb;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.SpRoot-categoryListItem {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border: 0.5px solid #efedeb;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #635f5a;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    font-size: 14px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 16px 0;
+    text-align: center;
+    width: 25%;
+}
+
+.SpRoot-categoryListItem--forIngredient {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 33.33333%;
+    flex: 1 1 33.33333%;
+    width: 33.33333%;
+}
+
+.SpRoot-categoryListItemContent {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.SpRoot-adsWrapper {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    max-width: 100%;
+    width: 100%;
+    margin: 24px 0;
+}
+
+.SpRoot-ads {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    margin: 0 16px;
+    max-width: 336px;
+    width: calc(100% - 32px);
+}
+
+.SpRoot-popularRecipesTitle,
+.SpRoot-listsTitle {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 130%;
+    margin: 48px 16px 0;
+}
+
+.SpRoot-popularRecipeItem {
+    padding-bottom: 13px;
+}
+
+.SpRoot-popularRecipeItem:first-child .SpRoot-popularRecipeSectionTitle {
+    border-top: none;
+}
+
+.SpRoot-popularRecipeWord {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.SpRoot-popularRecipeMore {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #93918f;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.SpRoot-popularRecipeRecipes {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: scroll;
+    padding-left: 6px;
+}
+
+.SpRoot-popularRecipeRecipes::-webkit-scrollbar {
+    /* Chrome, Safari 対応 */
+    display: none;
+}
+
+.SpRoot-popularRecipe {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    padding: 0 6px;
+    width: 40%;
+    list-style: none;
+}
+
+.dly-video-item-root {
+    position: relative;
+}
+
+.dly-video-item-root .thumbnail-wrapper {
+    height: auto;
+    position: relative;
+    width: 100%;
+}
+
+.dly-video-item-thumbnail-root:not(.is-premium-appeal-displayable)::before {
+    content: '';
+    z-index: 3;
+}
+
+.dly-video-item-thumbnail-root .video-list-img {
+    display: block;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    height: auto;
+    width: 100%;
+    z-index: 0;
+}
+
+.video-list-img:before {
+    content: '';
+}
