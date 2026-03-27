@@ -39,4 +39,5 @@ next-env.d.ts
 todo.txt
 
 # test
-.test
+*.test
+*.env
