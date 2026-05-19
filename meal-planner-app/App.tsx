@@ -21,14 +21,35 @@ import { HouseholdSetupScreen, HouseholdSettingsPanel } from "./src/screens/Hous
 // ═══════════════════════════════════════════
 export default function App() {
   const { user, loading: authLoading, authLoading: signingIn, error: authError, setError: clearAuthError, signIn, signUp, resetPassword, logout } = useAuth();
-  const { household, loadingHousehold, pendingInvite, createHousehold, joinHousehold, declineInvite, inviteByEmail } = useHousehold(user);
-  const { menus, setMenus, recipes, setRecipes, categories, setCategories, loadingData } = useFirestore(household?.id ?? null);
+  const { household, loadingHousehold, pendingInvite, loadError: householdError, createHousehold, joinHousehold, declineInvite, inviteByEmail } = useHousehold(user);
+  const { menus, setMenus, recipes, setRecipes, categories, setCategories, loadingData, loadError: dataError } = useFirestore(household?.id ?? null);
 
   const [tab, setTab] = useState<"meals" | "recipes" | "coop" | "settings">("meals");
   const [modalState, setModalState] = useState<ModalState | null>(null);
   const [editingRecipe, setEditingRecipe] = useState<Recipe | "new" | "websearch" | null>(null);
   const [viewRecipe, setViewRecipe] = useState<Recipe | null>(null);
   const [addToMealRecipe, setAddToMealRecipe] = useState<Recipe | null>(null);
+
+  // ─── 初期化エラー ─────────────────────────────────────────────────────────────
+  const fatalError = householdError || dataError;
+  if (fatalError && user) {
+    return (
+      <SafeAreaView style={{ flex: 1, backgroundColor: "#faf5ef", alignItems: "center", justifyContent: "center", padding: 24 }}>
+        <StatusBar style="dark" />
+        <Text style={{ fontSize: 32, marginBottom: 12 }}>⚠️</Text>
+        <Text style={{ color: "#c0564e", fontSize: 14, textAlign: "center", marginBottom: 8 }}>{fatalError}</Text>
+        <Text style={{ color: "#a08979", fontSize: 12, textAlign: "center", marginBottom: 20 }}>
+          通信状態を確認のうえ、アプリを再起動してください
+        </Text>
+        <TouchableOpacity
+          style={{ paddingVertical: 10, paddingHorizontal: 20, backgroundColor: "#f5ebe2", borderRadius: 10 }}
+          onPress={logout}
+        >
+          <Text style={{ color: "#8a7e72", fontSize: 13 }}>ログアウト</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
+    );
+  }
 
   // ─── 読み込み中 ───────────────────────────────────────────────────────────────
   if (authLoading || loadingHousehold || (household && loadingData)) {
@@ -75,8 +96,8 @@ export default function App() {
       const recipe = recipes.find(r => r.id === item.recipeId);
       if (recipe) { setModalState({ mode: "view", recipe, menuRef: { dateKey, index } }); return; }
     }
-    // recipeIdがない場合はメニュー名でレシピを検索
-    const recipeByName = recipes.find(r => r.name === item.name);
+    // recipeIdがない場合はメニュー名でレシピを検索（献立専用レシピは除外）
+    const recipeByName = recipes.find(r => r.name === item.name && r.showInList !== false);
     if (recipeByName) { setModalState({ mode: "view", recipe: recipeByName, menuRef: { dateKey, index } }); return; }
     setModalState({ mode: "unlinked", prefillName: item.name, menuRef: { dateKey, index } });
   };
@@ -90,7 +111,7 @@ export default function App() {
       const { dateKey, index } = modalState.menuRef;
       setMenus(p => {
         const items = [...(p[dateKey] || [])];
-        if (items[index]) items[index] = { ...items[index], name: full.name, recipeId: id };
+        if (items[index]) items[index] = { ...items[index], id: items[index].id ?? genId(), name: full.name, recipeId: id };
         return { ...p, [dateKey]: items };
       });
     }
@@ -110,7 +131,7 @@ export default function App() {
   };
 
   const handleAddRecipeToMeal = (recipe: Recipe, dateKey: string): void => {
-    setMenus(p => ({ ...p, [dateKey]: [...(p[dateKey] || []), { name: recipe.name, recipeId: recipe.id }] }));
+    setMenus(p => ({ ...p, [dateKey]: [...(p[dateKey] || []), { id: genId(), name: recipe.name, recipeId: recipe.id }] }));
     setAddToMealRecipe(null); setViewRecipe(null);
   };
 
@@ -120,7 +141,7 @@ export default function App() {
       ? { ...savedRecipe, id }
       : { ...savedRecipe, id, showInList: false };
     setRecipes(p => [...p, full]);
-    setMenus(p => ({ ...p, [dateKey]: [...(p[dateKey] || []), { name: full.name, recipeId: id }] }));
+    setMenus(p => ({ ...p, [dateKey]: [...(p[dateKey] || []), { id: genId(), name: full.name, recipeId: id }] }));
     setModalState(null);
   };
 
@@ -169,9 +190,10 @@ export default function App() {
           setEditingRecipe={setEditingRecipe} onAddToMeal={setAddToMealRecipe}
           categories={categories} setCategories={setCategories} />
       )}
-      {tab === "coop" && (
+      {/* CoopTabはタブ切替時もマウント維持（提案結果のsavedFlags等を保持） */}
+      <View style={{ flex: 1, display: tab === "coop" ? "flex" : "none" }}>
         <CoopTab recipes={recipes} setRecipes={setRecipes} menus={menus} setMenus={setMenus} />
-      )}
+      </View>
       {tab === "settings" && (
         <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 40 }}>
           <HouseholdSettingsPanel
@@ -251,7 +273,7 @@ function MealsTab({ menus, setMenus, recipes, onChipTap, onManualAdd }: MealsTab
   const handleManualInput = (): void => { if (addingDate) { onManualAdd(addingDate); setAddingDate(null); setAddMode(null); } };
   const handlePickRecipe = (recipe: Recipe): void => {
     if (!addingDate) return;
-    setMenus(p => ({ ...p, [addingDate]: [...(p[addingDate] || []), { name: recipe.name, recipeId: recipe.id }] }));
+    setMenus(p => ({ ...p, [addingDate]: [...(p[addingDate] || []), { id: genId(), name: recipe.name, recipeId: recipe.id }] }));
     setAddingDate(null); setAddMode(null);
   };
   const handleCancel = (): void => { setAddingDate(null); setAddMode(null); };
@@ -328,7 +350,7 @@ function MealsTab({ menus, setMenus, recipes, onChipTap, onManualAdd }: MealsTab
           {items.length > 0 && (
             <View style={s.chipWrap}>
               {items.map((item, i) => (
-                <TouchableOpacity key={i}
+                <TouchableOpacity key={item.id ?? `${i}-${item.recipeId ?? ''}-${item.name}`}
                   onPress={() => { if (swapSourceDate) { handleDatePressForSwap(key); } else { onChipTap(key, i, item); } }}
                   onLongPress={() => !isArchive && handleChipLongPress(key, i, item)}
                   delayLongPress={400}
@@ -466,6 +488,7 @@ function RecipesTab({ recipes, setRecipes, onViewRecipe, editingRecipe, setEditi
           <RecipeFormFull recipe={editingRecipe === "new" ? null : editingRecipe}
             categories={categories}
             setCategories={setCategories}
+            setRecipes={setRecipes}
             onSave={(r) => {
               if (editingRecipe === "new") setRecipes(p => [...p, { ...r, id: genId() } as Recipe]);
               else setRecipes(p => p.map(x => x.id === r.id ? { ...r, id: r.id! } as Recipe : x));
@@ -640,7 +663,9 @@ function CoopTab({ recipes, setRecipes, menus, setMenus }: CoopTabProps) {
   };
   const handleSaveRecipe = (r: SuggestRecipe, key: string): void => {
     const id = genId();
-    setRecipes(p => [...p, { id, name: r.name, ingredients: r.ingredients || [], steps: r.steps || [], url: r.url }]);
+    const base = { id, name: r.name, ingredients: r.ingredients || [], steps: r.steps || [] };
+    const recipe: Recipe = r.url ? { ...base, url: r.url } : base;
+    setRecipes(p => [...p, recipe]);
     setSavedFlags(p => ({ ...p, [key]: true }));
   };
   const handleAddToMealFromPlan = (dayItem: PlanDayItem, idx: number): void => {
@@ -648,8 +673,11 @@ function CoopTab({ recipes, setRecipes, menus, setMenus }: CoopTabProps) {
     const dateKey = getDateKey(d);
     const recipeId = genId();
     const r = dayItem.recipe;
-    setRecipes(p => [...p, { id: recipeId, name: r.name, ingredients: r.ingredients || [], steps: r.steps || [], url: dayItem.web_recipe?.url }]);
-    setMenus(p => ({ ...p, [dateKey]: [...(p[dateKey] || []), { name: r.name, recipeId }] }));
+    const url = dayItem.web_recipe?.url;
+    const base = { id: recipeId, name: r.name, ingredients: r.ingredients || [], steps: r.steps || [] };
+    const recipe: Recipe = url ? { ...base, url } : base;
+    setRecipes(p => [...p, recipe]);
+    setMenus(p => ({ ...p, [dateKey]: [...(p[dateKey] || []), { id: genId(), name: r.name, recipeId }] }));
     setSavedFlags(p => ({ ...p, [`plan-${dayItem.day}`]: true }));
   };
 
@@ -1015,10 +1043,11 @@ function RecipeFormInline({ recipe, prefillName, showSaveAsRecipe = false, onSav
       setExtractMsg("情報を取得できませんでした");
       return;
     }
-    if (result.title) setName(result.title);
-    if (result.ingredients) setIngredients(result.ingredients.join("\n"));
-    else if (!result.instructions) setExtractMsg("材料・作り方を取得できませんでした");
-    if (result.instructions) setSteps(result.instructions.join("\n"));
+    // 既入力データは保護し、空欄のみを埋める
+    if (result.title && !name.trim()) setName(result.title);
+    if (result.ingredients && !ingredients.trim()) setIngredients(result.ingredients.join("\n"));
+    if (result.instructions && !steps.trim()) setSteps(result.instructions.join("\n"));
+    if (!result.ingredients && !result.instructions) setExtractMsg("材料・作り方を取得できませんでした");
   };
 
   const handleSave = (): void => {
@@ -1183,9 +1212,10 @@ type RecipeFormFullProps = {
   onDelete: ((id: string) => void) | null;
   categories: RecipeCategory[];
   setCategories: React.Dispatch<React.SetStateAction<RecipeCategory[]>>;
+  setRecipes: React.Dispatch<React.SetStateAction<Recipe[]>>;
 };
 
-function RecipeFormFull({ recipe, onSave, onCancel, onDelete, categories, setCategories }: RecipeFormFullProps) {
+function RecipeFormFull({ recipe, onSave, onCancel, onDelete, categories, setCategories, setRecipes }: RecipeFormFullProps) {
   const [name, setName] = useState(recipe?.name || "");
   const [url, setUrl] = useState(recipe?.url || "");
   const [ingredients, setIngredients] = useState(recipe?.ingredients?.join("\n") || "");
@@ -1217,10 +1247,11 @@ function RecipeFormFull({ recipe, onSave, onCancel, onDelete, categories, setCat
       setExtractMsg("情報を取得できませんでした");
       return;
     }
-    if (result.title) setName(result.title);
-    if (result.ingredients) setIngredients(result.ingredients.join("\n"));
-    else if (!result.instructions) setExtractMsg("材料・作り方を取得できませんでした");
-    if (result.instructions) setSteps(result.instructions.join("\n"));
+    // 既入力データは保護し、空欄のみを埋める
+    if (result.title && !name.trim()) setName(result.title);
+    if (result.ingredients && !ingredients.trim()) setIngredients(result.ingredients.join("\n"));
+    if (result.instructions && !steps.trim()) setSteps(result.instructions.join("\n"));
+    if (!result.ingredients && !result.instructions) setExtractMsg("材料・作り方を取得できませんでした");
   };
 
   const toggleCat = (id: string): void => {
@@ -1229,6 +1260,12 @@ function RecipeFormFull({ recipe, onSave, onCancel, onDelete, categories, setCat
   const handleDeleteCategory = (id: string): void => {
     setCategories(p => p.filter(c => c.id !== id));
     setSelectedCatIds(p => p.filter(x => x !== id));
+    // 全レシピのcategoryIdsからも削除（孤立参照のクリーンアップ）
+    setRecipes(p => p.map(r =>
+      r.categoryIds?.includes(id)
+        ? { ...r, categoryIds: r.categoryIds.filter(c => c !== id) }
+        : r
+    ));
   };
 
   const handleSave = (): void => {

@@ -32,6 +32,7 @@ export type RecipeFormData = {
 };
 
 export type MenuItem = {
+  id?: string; // React keyの安定化用。古いデータでは存在しない可能性あり
   name: string;
   recipeId?: string;
 };

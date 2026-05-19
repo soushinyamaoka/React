@@ -51,8 +51,16 @@ export function useAuth() {
     setError(null);
     try {
       const result = await createUserWithEmailAndPassword(auth, email.trim(), password);
-      if (displayName.trim()) {
-        await updateProfile(result.user, { displayName: displayName.trim() });
+      const trimmedName = displayName.trim();
+      if (trimmedName) {
+        await updateProfile(result.user, { displayName: trimmedName });
+        // onAuthStateChangedはupdateProfile前に発火しているため、手動でstateを更新
+        setUser({
+          uid: result.user.uid,
+          email: result.user.email ?? "",
+          displayName: trimmedName,
+          photoURL: result.user.photoURL,
+        });
       }
     } catch (e) {
       setError(toMessage(e));

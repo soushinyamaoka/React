@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   collection,
   doc,
@@ -30,7 +30,7 @@ export function useFirestore(householdId: string | null) {
   const [recipes, setRecipesLocal] = useState<Recipe[]>([]);
   const [categories, setCategoriesLocal] = useState<RecipeCategory[]>([]);
   const [loadingData, setLoadingData] = useState(true);
-  const cleanupDoneRef = useRef(false);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   // ─── Firestoreリスナー ───────────────────────────────────────────────────────
   useEffect(() => {
@@ -39,53 +39,78 @@ export function useFirestore(householdId: string | null) {
       return;
     }
     setLoadingData(true);
+    setLoadError(null);
     const base = `households/${householdId}`;
 
-    const unsubMenus = onSnapshot(collection(db, `${base}/menus`), (snap) => {
-      const data: Menus = {};
-      snap.docs.forEach((d) => { data[d.id] = (d.data().items ?? []) as MenuItem[]; });
-      setMenusLocal((prev) => {
-        // Firestoreにまだ反映されていないローカル追加分を保持してマージ
-        const merged: Menus = { ...data };
-        Object.keys(prev).forEach((dateKey) => {
-          if (!(dateKey in data)) merged[dateKey] = prev[dateKey];
+    const handleSnapshotError = (label: string) => (err: unknown) => {
+      console.error(`[useFirestore] ${label} snapshot error:`, err);
+      setLoadError(`データの取得に失敗しました（${label}）`);
+      setLoadingData(false);
+    };
+
+    const unsubMenus = onSnapshot(
+      collection(db, `${base}/menus`),
+      (snap) => {
+        const data: Menus = {};
+        snap.docs.forEach((d) => { data[d.id] = (d.data().items ?? []) as MenuItem[]; });
+        setMenusLocal((prev) => {
+          // Firestoreにまだ反映されていないローカル追加分を保持してマージ
+          const merged: Menus = { ...data };
+          Object.keys(prev).forEach((dateKey) => {
+            if (!(dateKey in data)) merged[dateKey] = prev[dateKey];
+          });
+          return JSON.stringify(prev) === JSON.stringify(merged) ? prev : merged;
         });
-        return JSON.stringify(prev) === JSON.stringify(merged) ? prev : merged;
-      });
-    });
+      },
+      handleSnapshotError("menus")
+    );
 
-    const unsubRecipes = onSnapshot(collection(db, `${base}/recipes`), (snap) => {
-      const data = snap.docs.map((d) => ({ id: d.id, ...d.data() } as Recipe));
-      setRecipesLocal((prev) => {
-        // Firestoreにまだ反映されていないローカル追加分を保持してマージ
-        const pending = prev.filter((p) => !data.find((d) => d.id === p.id));
-        const merged = [...data, ...pending];
-        return JSON.stringify(prev) === JSON.stringify(merged) ? prev : merged;
-      });
-    });
+    const unsubRecipes = onSnapshot(
+      collection(db, `${base}/recipes`),
+      (snap) => {
+        const data = snap.docs.map((d) => ({ id: d.id, ...d.data() } as Recipe));
+        setRecipesLocal((prev) => {
+          // Firestoreにまだ反映されていないローカル追加分を保持してマージ
+          const pending = prev.filter((p) => !data.find((d) => d.id === p.id));
+          const merged = [...data, ...pending];
+          return JSON.stringify(prev) === JSON.stringify(merged) ? prev : merged;
+        });
+      },
+      handleSnapshotError("recipes")
+    );
 
-    const unsubCategories = onSnapshot(collection(db, `${base}/categories`), async (snap) => {
-      if (snap.empty) {
-        await initDefaultCategories(householdId);
-      } else {
-        const data = snap.docs.map((d) => ({ id: d.id, name: d.data().name as string }));
-        setCategoriesLocal((prev) =>
-          JSON.stringify(prev) === JSON.stringify(data) ? prev : data
-        );
-        setLoadingData(false);
-      }
-    });
+    const unsubCategories = onSnapshot(
+      collection(db, `${base}/categories`),
+      async (snap) => {
+        try {
+          if (snap.empty) {
+            await initDefaultCategories(householdId);
+            // 初期化後に新しいsnapshotが届くまでにロードは未完
+            // 次のsnapshotで通常パスに入る
+          } else {
+            const data = snap.docs.map((d) => ({ id: d.id, name: d.data().name as string }));
+            setCategoriesLocal((prev) =>
+              JSON.stringify(prev) === JSON.stringify(data) ? prev : data
+            );
+          }
+          setLoadingData(false);
+        } catch (e) {
+          handleSnapshotError("categories init")(e);
+        }
+      },
+      handleSnapshotError("categories")
+    );
 
     return () => {
       unsubMenus(); unsubRecipes(); unsubCategories();
-      cleanupDoneRef.current = false;
     };
   }, [householdId]);
 
   // ─── 献立専用レシピの自動削除（アーカイブ期間外になったら削除） ──────────────
+  // menus/recipes が更新されるたびに評価し、対象があれば削除する。
+  // 削除後はonSnapshotでrecipesが更新され、stale条件を満たすものがなくなれば再帰せず収束する。
   useEffect(() => {
-    if (loadingData || cleanupDoneRef.current || !householdId) return;
-    cleanupDoneRef.current = true;
+    if (loadingData || !householdId) return;
 
     const today = new Date(); today.setHours(0, 0, 0, 0);
     const archiveCutoff = new Date(today);
@@ -93,22 +118,20 @@ export function useFirestore(householdId: string | null) {
 
     const staleRecipes = recipes.filter((r) => r.showInList === false);
     staleRecipes.forEach((recipe) => {
-      // このレシピを参照しているメニュー日付をすべて取得
       const refDates = Object.entries(menus)
         .filter(([, items]) => items.some((item) => item.recipeId === recipe.id))
         .map(([dateKey]) => new Date(dateKey));
 
-      // 参照が1件もない、または全参照がアーカイブ期間より古い場合は削除
       const allExpired =
         refDates.length === 0 ||
         refDates.every((d) => d < archiveCutoff);
 
       if (allExpired) {
         deleteDoc(doc(db, `households/${householdId}/recipes`, recipe.id)).catch(console.error);
-        setRecipesLocal((prev) => prev.filter((r) => r.id !== recipe.id));
+        // ローカル状態はonSnapshotで自動更新されるので明示的なsetは不要
       }
     });
-  }, [loadingData, householdId]);
+  }, [loadingData, householdId, recipes, menus]);
 
   // ─── デフォルトカテゴリ初期書き込み ────────────────────────────────────────
   const initDefaultCategories = async (hid: string): Promise<void> => {
@@ -183,9 +206,11 @@ export function useFirestore(householdId: string | null) {
         if (householdId) {
           const batch = writeBatch(db);
           // 削除されたカテゴリ
+          const deletedIds: string[] = [];
           prev.forEach((cat) => {
             if (!next.find((c) => c.id === cat.id)) {
               batch.delete(doc(db, `households/${householdId}/categories`, cat.id));
+              deletedIds.push(cat.id);
             }
           });
           // 追加・更新されたカテゴリ
@@ -196,6 +221,23 @@ export function useFirestore(householdId: string | null) {
             }
           });
           batch.commit().catch(console.error);
+
+          // 削除されたカテゴリを参照しているレシピの categoryIds からも除去（孤立参照を防ぐ）
+          if (deletedIds.length > 0) {
+            setRecipesLocal((prevRecipes) => {
+              const updated = prevRecipes.map((r) => {
+                if (!r.categoryIds || r.categoryIds.length === 0) return r;
+                const filtered = r.categoryIds.filter((cid) => !deletedIds.includes(cid));
+                if (filtered.length === r.categoryIds.length) return r;
+                const updatedRecipe = { ...r, categoryIds: filtered };
+                // Firestoreにも反映
+                const { id, ...data } = updatedRecipe;
+                setDoc(doc(db, `households/${householdId}/recipes`, id), stripUndefined(data)).catch(console.error);
+                return updatedRecipe;
+              });
+              return updated;
+            });
+          }
         }
         return next;
       });
@@ -208,6 +250,7 @@ export function useFirestore(householdId: string | null) {
     recipes,
     categories,
     loadingData,
+    loadError,
     setMenus,
     setRecipes,
     setCategories,
