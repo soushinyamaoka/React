@@ -11,13 +11,44 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFavorites } from '../hooks/useFavorites';
 import { FONTS } from '../constants/fonts';
 import RecipeCard from '../components/RecipeCard';
+import MealPlanSelectorModal from '../components/MealPlanSelectorModal';
+import { MealEntry } from '../hooks/useMealPlans';
+import { FavoriteRecipe } from '../types/recipe';
+
+function favToEntry(r: FavoriteRecipe): Omit<MealEntry, 'id'> {
+  if (r.isWeb) {
+    return {
+      webRecipe: { name: r.name, url: r.url ?? null, source: r.source ?? '', description: r.description ?? '' },
+    };
+  }
+  return {
+    recipe: {
+      name: r.name,
+      time: r.time ?? '',
+      difficulty: r.difficulty ?? '',
+      calories: r.calories ?? '',
+      ingredients: r.ingredients ?? [],
+      steps: r.steps ?? [],
+      tips: r.tips ?? [],
+    },
+  };
+}
 
 export default function FavoritesScreen() {
   const { favorites, favLoaded, toggleFavorite, clearAllFavorites } = useFavorites();
   const [showClearConfirm, setShowClearConfirm] = useState(false);
+  const [modalEntry, setModalEntry] = useState<Omit<MealEntry, 'id'> | null>(null);
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
+      {modalEntry && (
+        <MealPlanSelectorModal
+          visible={true}
+          entry={modalEntry}
+          onClose={() => setModalEntry(null)}
+          onAdded={() => setModalEntry(null)}
+        />
+      )}
       {/* ヘッダー */}
       <LinearGradient
         colors={['#BF360C', '#E65100']}
@@ -90,6 +121,7 @@ export default function FavoritesScreen() {
                   isWeb={r.isWeb}
                   isFav={true}
                   onToggleFav={() => toggleFavorite(r as unknown as Record<string, unknown>, r.isWeb)}
+                  onAddToMealPlan={() => setModalEntry(favToEntry(r))}
                 />
               </View>
             ))}

@@ -9,6 +9,7 @@ import {
   Alert,
   Easing,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import FavButton from './FavButton';
 import { FONTS } from '../constants/fonts';
 
@@ -20,9 +21,10 @@ interface RecipeCardProps {
   isWeb: boolean;
   isFav: boolean;
   onToggleFav: () => void;
+  onAddToMealPlan?: () => void;
 }
 
-export default function RecipeCard({ recipe, index, isWeb, isFav, onToggleFav }: RecipeCardProps) {
+export default function RecipeCard({ recipe, index, isWeb, isFav, onToggleFav, onAddToMealPlan }: RecipeCardProps) {
   const [expanded, setExpanded] = useState(false);
   const fadeAnim    = useRef(new Animated.Value(0)).current;
   const translateAnim = useRef(new Animated.Value(20)).current;
@@ -190,6 +192,16 @@ export default function RecipeCard({ recipe, index, isWeb, isFav, onToggleFav }:
           )}
         </View>
       )}
+
+      {/* 献立に追加ボタン */}
+      {onAddToMealPlan && (
+        <View style={styles.addMealRow}>
+          <TouchableOpacity style={styles.addMealBtn} onPress={onAddToMealPlan} activeOpacity={0.8}>
+            <Ionicons name="calendar-outline" size={15} color="#fff" />
+            <Text style={styles.addMealBtnText}>献立に追加</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </Animated.View>
   );
 }
@@ -339,4 +351,24 @@ const styles = StyleSheet.create({
   webLinkBtnText: { color: 'white', fontSize: 13, fontWeight: '600', fontFamily: FONTS.sans },
   webSourceText: { fontSize: 12, color: '#999', fontFamily: FONTS.sans },
   noLinkText: { fontSize: 13, color: '#888', fontFamily: FONTS.sans },
+  addMealRow: {
+    paddingHorizontal: 20,
+    paddingBottom: 16,
+    paddingTop: 4,
+  },
+  addMealBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    backgroundColor: '#E65100',
+    paddingVertical: 10,
+    borderRadius: 10,
+  },
+  addMealBtnText: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#fff',
+    fontFamily: FONTS.sans,
+  },
 });

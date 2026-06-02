@@ -17,6 +17,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFavorites } from '../hooks/useFavorites';
 import { useSettings, RECIPE_LIMIT_OPTIONS, RecipeLimit } from '../hooks/useSettings';
 import RecipeCard from '../components/RecipeCard';
+import MealPlanSelectorModal from '../components/MealPlanSelectorModal';
 import CategorySelector from '../components/CategorySelector';
 import FamilySizeSelector from '../components/FamilySizeSelector';
 import { fetchAIRecipes } from '../services/claudeAI';
@@ -25,6 +26,7 @@ import { fetchCustomRecipes, fetchCustomWebRecipes } from '../services/customAPI
 import { SEASONS, getCurrentSeason, FAMILY_SIZES } from '../constants';
 import { FONTS } from '../constants/fonts';
 import { Recipe, WebRecipe } from '../types/recipe';
+import { MealEntry } from '../hooks/useMealPlans';
 
 type SourceTab = 'all' | 'ai' | 'web';
 
@@ -44,6 +46,7 @@ export default function HomeScreen() {
   const [webTotal, setWebTotal] = useState(0);
   const [webOffset, setWebOffset] = useState(0);
   const [simpleMode, setSimpleMode] = useState(false);
+  const [modalEntry, setModalEntry] = useState<Omit<MealEntry, 'id'> | null>(null);
 
   const season = getCurrentSeason();
   const seasonInfo = SEASONS[season];
@@ -152,6 +155,14 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
+      {modalEntry && (
+        <MealPlanSelectorModal
+          visible={true}
+          entry={modalEntry}
+          onClose={() => setModalEntry(null)}
+          onAdded={() => setModalEntry(null)}
+        />
+      )}
       <KeyboardAvoidingView
         style={styles.flex}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -297,6 +308,7 @@ export default function HomeScreen() {
                     isWeb={false}
                     isFav={isFavorite(r)}
                     onToggleFav={() => toggleFavorite(r as unknown as Record<string, unknown>, false)}
+                    onAddToMealPlan={() => setModalEntry({ recipe: r })}
                   />
                 ))}
 
@@ -309,6 +321,7 @@ export default function HomeScreen() {
                     isWeb={true}
                     isFav={isFavorite(r)}
                     onToggleFav={() => toggleFavorite(r as unknown as Record<string, unknown>, true)}
+                    onAddToMealPlan={() => setModalEntry({ webRecipe: r })}
                   />
                 ))}
 

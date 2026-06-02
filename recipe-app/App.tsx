@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { FavoritesProvider, useFavorites } from './src/hooks/useFavorites';
 import { SettingsProvider } from './src/hooks/useSettings';
 import { MealPlansProvider } from './src/hooks/useMealPlans';
@@ -90,15 +91,17 @@ export default function App() {
   if (!fontsLoaded && !fontError) return null;
 
   return (
-    <SettingsProvider>
-      <FavoritesProvider>
-        <MealPlansProvider>
-        <NavigationContainer>
-          <StatusBar style="light" />
-          <TabNavigator />
-        </NavigationContainer>
-        </MealPlansProvider>
-      </FavoritesProvider>
-    </SettingsProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SettingsProvider>
+        <FavoritesProvider>
+          <MealPlansProvider>
+            <NavigationContainer>
+              <StatusBar style="light" />
+              <TabNavigator />
+            </NavigationContainer>
+          </MealPlansProvider>
+        </FavoritesProvider>
+      </SettingsProvider>
+    </GestureHandlerRootView>
   );
 }

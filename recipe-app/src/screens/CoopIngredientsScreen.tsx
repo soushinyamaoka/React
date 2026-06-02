@@ -515,12 +515,16 @@ export default function CoopIngredientsScreen() {
   const handleSaveAsMyPlan = async () => {
     const now = new Date().toISOString();
     const id = `plan_${Date.now()}`;
-    const days: MyMealPlanDay[] = mealPlan.map((day) => ({
-      day: day.day,
-      label: day.label,
-      recipe: day.recipe || null,
-      webRecipe: day.web_recipe || null,
-    }));
+    const days: MyMealPlanDay[] = mealPlan.map((day) => {
+      const entries = [];
+      if (day.recipe) entries.push({ id: `entry_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`, recipe: day.recipe, isCustom: false });
+      if (day.web_recipe) entries.push({ id: `entry_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`, webRecipe: day.web_recipe, isCustom: false });
+      return {
+        day: day.day,
+        label: day.label,
+        entries,
+      };
+    });
 
     const newPlan: MyMealPlan = {
       id,

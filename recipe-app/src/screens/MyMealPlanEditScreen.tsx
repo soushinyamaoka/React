@@ -10,28 +10,22 @@ import {
   ActivityIndicator,
   Linking,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { useMealPlans, MyMealPlan, MyMealPlanDay } from '../hooks/useMealPlans';
+import { useMealPlans, MyMealPlan, MyMealPlanDay, MealEntry, getDayLabel, calcDate, formatDateLabel, generateEntryId } from '../hooks/useMealPlans';
 import { useFavorites } from '../hooks/useFavorites';
 import { coopApi } from '../services/coopApi';
 import { SEASONS, getCurrentSeason } from '../constants';
 import RecipeCard from '../components/RecipeCard';
 import { FONTS } from '../constants/fonts';
 import { Recipe, WebRecipe } from '../types/recipe';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import type { RouteProp } from '@react-navigation/native';
-import type { MealPlanStackParamList } from './MealPlanNavigator';
 
 type Props = {
-  navigation: NativeStackNavigationProp<MealPlanStackParamList, 'MealPlanEdit'>;
-  route: RouteProp<MealPlanStackParamList, 'MealPlanEdit'>;
+  planId: string;
 };
 
 type InputMode = 'none' | 'text' | 'url' | 'search';
 
-export default function MyMealPlanEditScreen({ navigation, route }: Props) {
+export default function MyMealPlanEditScreen({ planId }: Props) {
   const { getPlan, updatePlan } = useMealPlans();
   const { isFavorite, toggleFavorite } = useFavorites();
 
@@ -43,24 +37,22 @@ export default function MyMealPlanEditScreen({ navigation, route }: Props) {
   const [urlInput, setUrlInput] = useState('');
   const [urlTitleInput, setUrlTitleInput] = useState('');
   const [inputMode, setInputMode] = useState<InputMode>('none');
-  const [editingTitle, setEditingTitle] = useState(false);
-  const [titleDraft, setTitleDraft] = useState('');
 
   const season = getCurrentSeason();
   const seasonInfo = SEASONS[season];
 
   useEffect(() => {
-    const p = getPlan(route.params.planId);
+    const p = getPlan(planId);
     if (p) setPlan(p);
-  }, [route.params.planId, getPlan]);
+  }, [planId, getPlan]);
 
   if (!plan) {
     return (
-      <SafeAreaView style={styles.safeArea} edges={['top']}>
+      <View style={styles.safeArea}>
         <View style={styles.center}>
           <ActivityIndicator size="large" color="#E65100" />
         </View>
-      </SafeAreaView>
+      </View>
     );
   }
 
@@ -91,11 +83,15 @@ export default function MyMealPlanEditScreen({ navigation, route }: Props) {
         style: 'destructive',
         onPress: () => {
           const newDays = plan.days.filter((_, i) => i !== dayIndex);
-          const renumbered = newDays.map((d, i) => ({
-            ...d,
-            day: i + 1,
-            label: `${i + 1}日目`,
-          }));
+          const renumbered = newDays.map((d, i) => {
+            const date = plan.startDate ? calcDate(plan.startDate, i) : undefined;
+            return {
+              ...d,
+              day: i + 1,
+              label: date ? formatDateLabel(date) : `${i + 1}日目`,
+              date,
+            };
+          });
           save({ ...plan, days: renumbered });
           setEditingDay(null);
           resetInputState();
@@ -109,22 +105,47 @@ export default function MyMealPlanEditScreen({ navigation, route }: Props) {
     if (toIndex < 0 || toIndex >= plan.days.length) return;
     const newDays = [...plan.days];
     [newDays[fromIndex], newDays[toIndex]] = [newDays[toIndex], newDays[fromIndex]];
-    const renumbered = newDays.map((d, i) => ({
-      ...d,
-      day: i + 1,
-      label: `${i + 1}日目`,
-    }));
+    const renumbered = newDays.map((d, i) => {
+      const date = plan.startDate ? calcDate(plan.startDate, i) : undefined;
+      return {
+        ...d,
+        day: i + 1,
+        label: date ? formatDateLabel(date) : `${i + 1}日目`,
+        date,
+      };
+    });
     save({ ...plan, days: renumbered });
     setEditingDay(toIndex);
   };
 
+  // --- エントリ操作 ---
+
+  const addEntry = (dayIndex: number, entry: Omit<MealEntry, 'id'>) => {
+    const newDays = [...plan.days];
+    const newEntry: MealEntry = { ...entry, id: generateEntryId() };
+    newDays[dayIndex] = {
+      ...newDays[dayIndex],
+      entries: [...(newDays[dayIndex].entries || []), newEntry],
+    };
+    save({ ...plan, days: newDays });
+  };
+
+  const removeEntry = (dayIndex: number, entryId: string) => {
+    const newDays = [...plan.days];
+    newDays[dayIndex] = {
+      ...newDays[dayIndex],
+      entries: newDays[dayIndex].entries.filter((e) => e.id !== entryId),
+    };
+    save({ ...plan, days: newDays });
+  };
+
   const handleSearchAlt = async (day: MyMealPlanDay) => {
-    const recipeName = day.customTitle || day.recipe?.name || day.webRecipe?.name || day.memo || '';
+    const names = day.entries.map((e) => e.customTitle || e.recipe?.name || e.webRecipe?.name || e.memo || '').filter(Boolean);
+    const recipeName = names[0] || '';
     if (!recipeName) {
       Alert.alert('検索できません', 'レシピ情報がありません');
       return;
     }
-
     setSearching(true);
     setAltResults(null);
     try {
@@ -147,100 +168,49 @@ export default function MyMealPlanEditScreen({ navigation, route }: Props) {
     }
   };
 
-  const handleReplaceWithAi = (dayIndex: number, recipe: Recipe) => {
-    const newDays = [...plan.days];
-    newDays[dayIndex] = {
-      ...newDays[dayIndex],
-      recipe,
-      webRecipe: null,
-      memo: undefined,
-      customUrl: undefined,
-      customTitle: undefined,
-      isCustom: false,
-    };
-    save({ ...plan, days: newDays });
+  const handleAddAiEntry = (dayIndex: number, recipe: Recipe) => {
+    addEntry(dayIndex, { recipe, webRecipe: null, isCustom: false });
     setAltResults(null);
   };
 
-  const handleReplaceWithWeb = (dayIndex: number, webRecipe: WebRecipe) => {
-    const newDays = [...plan.days];
-    newDays[dayIndex] = {
-      ...newDays[dayIndex],
-      recipe: null,
-      webRecipe,
-      memo: undefined,
-      customUrl: undefined,
-      customTitle: undefined,
-      isCustom: false,
-    };
-    save({ ...plan, days: newDays });
+  const handleAddWebEntry = (dayIndex: number, webRecipe: WebRecipe) => {
+    addEntry(dayIndex, { webRecipe, recipe: null, isCustom: false });
     setAltResults(null);
   };
 
-  const handleReplaceWithCustom = (dayIndex: number) => {
+  const handleAddCustomEntry = (dayIndex: number) => {
     if (!customInput.trim()) return;
-    const newDays = [...plan.days];
-    newDays[dayIndex] = {
-      ...newDays[dayIndex],
-      recipe: null,
-      webRecipe: null,
-      memo: customInput.trim(),
-      customUrl: undefined,
-      customTitle: undefined,
-      isCustom: true,
-    };
-    save({ ...plan, days: newDays });
+    addEntry(dayIndex, { memo: customInput.trim(), isCustom: true });
     resetInputState();
   };
 
-  const handleReplaceWithUrl = (dayIndex: number) => {
+  const handleAddUrlEntry = (dayIndex: number) => {
     if (!urlInput.trim()) return;
-    const newDays = [...plan.days];
-    newDays[dayIndex] = {
-      ...newDays[dayIndex],
-      recipe: null,
-      webRecipe: null,
-      memo: undefined,
+    addEntry(dayIndex, {
       customUrl: urlInput.trim(),
       customTitle: urlTitleInput.trim() || urlInput.trim(),
       isCustom: true,
-    };
-    save({ ...plan, days: newDays });
+    });
     resetInputState();
   };
 
   const handleClearDay = (dayIndex: number) => {
     const newDays = [...plan.days];
-    newDays[dayIndex] = {
-      ...newDays[dayIndex],
-      recipe: null,
-      webRecipe: null,
-      memo: '',
-      customUrl: undefined,
-      customTitle: undefined,
-      isCustom: true,
-    };
+    newDays[dayIndex] = { ...newDays[dayIndex], entries: [] };
     save({ ...plan, days: newDays });
     resetInputState();
   };
 
   const handleAddDay = () => {
+    const newIndex = plan.days.length;
+    const date = plan.startDate ? calcDate(plan.startDate, newIndex) : undefined;
     const newDay: MyMealPlanDay = {
-      day: plan.days.length + 1,
-      label: `${plan.days.length + 1}日目`,
-      recipe: null,
-      webRecipe: null,
-      memo: '',
-      isCustom: true,
+      day: newIndex + 1,
+      label: date ? formatDateLabel(date) : `${newIndex + 1}日目`,
+      date,
+      entries: [],
     };
     save({ ...plan, days: [...plan.days, newDay] });
-  };
-
-  const handleSaveTitle = () => {
-    if (titleDraft.trim()) {
-      save({ ...plan, title: titleDraft.trim() });
-    }
-    setEditingTitle(false);
   };
 
   const handleOpenUrl = (url: string) => {
@@ -261,8 +231,8 @@ export default function MyMealPlanEditScreen({ navigation, route }: Props) {
     }
   };
 
-  const getDisplayName = (day: MyMealPlanDay) => {
-    return day.customTitle || day.memo || day.recipe?.name || day.webRecipe?.name || '';
+  const getEntryName = (entry: MealEntry) => {
+    return entry.customTitle || entry.memo || entry.recipe?.name || entry.webRecipe?.name || '';
   };
 
   // ============================================================
@@ -270,154 +240,70 @@ export default function MyMealPlanEditScreen({ navigation, route }: Props) {
   // ============================================================
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top']}>
-      <LinearGradient
-        colors={['#BF360C', '#E65100', '#FF8A65']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.header}
-      >
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
-        >
-          <Ionicons name="arrow-back" size={20} color="rgba(255,255,255,0.85)" />
-          <Text style={styles.backButtonText}>戻る</Text>
-        </TouchableOpacity>
-
-        {editingTitle ? (
-          <View style={styles.titleEditRow}>
-            <TextInput
-              style={styles.titleInput}
-              value={titleDraft}
-              onChangeText={setTitleDraft}
-              autoFocus
-              onSubmitEditing={handleSaveTitle}
-              onBlur={handleSaveTitle}
-              placeholder="献立名を入力"
-              placeholderTextColor="rgba(255,255,255,0.5)"
-            />
-          </View>
-        ) : (
-          <TouchableOpacity
-            onPress={() => { setTitleDraft(plan.title); setEditingTitle(true); }}
-            activeOpacity={0.7}
-          >
-            <Text style={styles.headerTitle}>{plan.title}</Text>
-            <Text style={styles.headerHint}>タップで名前を変更</Text>
-          </TouchableOpacity>
-        )}
-      </LinearGradient>
-
+    <View style={styles.safeArea}>
       <ScrollView style={styles.flex} contentContainerStyle={styles.scrollContent}>
-        {/* 献立表 */}
-        <View style={styles.table}>
-          <View style={styles.tableHeaderRow}>
-            <View style={styles.tableDayCell}>
-              <Text style={styles.tableHeaderText}>日</Text>
-            </View>
-            <View style={styles.tableRecipeCell}>
-              <Text style={styles.tableHeaderText}>メニュー</Text>
-            </View>
-            <View style={styles.tableActionCell}>
-              <Text style={styles.tableHeaderText}>操作</Text>
-            </View>
-          </View>
+        {plan.days.map((day, idx) => {
+          const isEditing = editingDay === idx;
+          const entries = day.entries || [];
+          const hasContent = entries.length > 0;
 
-          {plan.days.map((day, idx) => {
-            const isEditing = editingDay === idx;
-            const displayName = getDisplayName(day) || '未設定';
-            const hasUrl = !!day.customUrl;
-            const hasContent = !!(day.recipe || day.webRecipe || day.memo || day.customUrl);
-
-            return (
-              <View key={`day-${idx}`}>
+          return (
+            <View key={`day-${idx}`} style={styles.dayCard}>
+              {/* 日付ヘッダー */}
+              <View style={styles.dayCardHeader}>
+                <Text style={styles.dayCardDate}>{getDayLabel(day)}</Text>
                 <TouchableOpacity
-                  style={[
-                    styles.tableRow,
-                    idx % 2 === 1 && styles.tableRowEven,
-                    isEditing && styles.tableRowSelected,
-                  ]}
+                  style={[styles.editToggleBtn, isEditing && styles.editToggleBtnActive]}
                   onPress={() => {
                     setEditingDay(isEditing ? null : idx);
                     if (isEditing) resetInputState();
                   }}
-                  activeOpacity={0.6}
+                  activeOpacity={0.7}
                 >
-                  <View style={styles.tableDayCell}>
-                    <Text style={styles.tableDayText}>{day.label}</Text>
-                  </View>
-                  <View style={styles.tableRecipeCell}>
-                    {hasUrl && (
-                      <View style={styles.urlBadge}>
-                        <Text style={styles.urlBadgeText}>URL</Text>
-                      </View>
-                    )}
-                    {!hasUrl && day.isCustom && hasContent && (
-                      <View style={styles.customBadge}>
-                        <Text style={styles.customBadgeText}>自作</Text>
-                      </View>
-                    )}
-                    <Text
-                      style={[styles.tableRecipeText, !hasContent && styles.tableRecipeEmpty]}
-                      numberOfLines={isEditing ? undefined : 1}
-                    >
-                      {displayName}
-                    </Text>
-                  </View>
-                  <View style={styles.tableActionCell}>
-                    <Text style={styles.tableChevron}>{isEditing ? '▲' : '▼'}</Text>
-                  </View>
+                  <Ionicons name={isEditing ? 'close' : 'add'} size={16} color={isEditing ? '#fff' : '#E65100'} />
+                  <Text style={[styles.editToggleBtnText, isEditing && styles.editToggleBtnTextActive]}>
+                    {isEditing ? '閉じる' : '編集'}
+                  </Text>
                 </TouchableOpacity>
+              </View>
 
-                {/* 編集パネル */}
-                {isEditing && (
-                  <View style={styles.editPanel}>
-                    {/* 現在のレシピ詳細 */}
-                    {day.recipe && !day.isCustom && (
-                      <RecipeCard
-                        recipe={day.recipe as unknown as Record<string, unknown> & { name: string }}
-                        index={0}
-                        isWeb={false}
-                        isFav={isFavorite(day.recipe)}
-                        onToggleFav={() => toggleFavorite(day.recipe as unknown as Record<string, unknown>, false)}
-                      />
-                    )}
-                    {day.webRecipe && !day.isCustom && (
-                      <RecipeCard
-                        recipe={day.webRecipe as unknown as Record<string, unknown> & { name: string }}
-                        index={0}
-                        isWeb={true}
-                        isFav={isFavorite(day.webRecipe)}
-                        onToggleFav={() => toggleFavorite(day.webRecipe as unknown as Record<string, unknown>, true)}
-                      />
-                    )}
-
-                    {/* URL付きレシピ表示 */}
-                    {day.customUrl && (
+              {/* レシピ一覧（料理名のみ表示） */}
+              {entries.map((entry) => {
+                const name = getEntryName(entry);
+                const url = entry.customUrl || entry.webRecipe?.url || null;
+                return (
+                  <View key={entry.id} style={styles.entryRow}>
+                    <Text style={styles.entryBullet}>・</Text>
+                    {url ? (
                       <TouchableOpacity
-                        style={styles.urlCard}
-                        onPress={() => handleOpenUrl(day.customUrl!)}
-                        activeOpacity={0.7}
+                        style={styles.entryNameTouchable}
+                        onPress={() => handleOpenUrl(url)}
+                        activeOpacity={0.6}
                       >
-                        <View style={styles.urlCardHeader}>
-                          <Ionicons name="link" size={16} color="#E65100" />
-                          <Text style={styles.urlCardTitle} numberOfLines={2}>
-                            {day.customTitle || day.customUrl}
-                          </Text>
-                        </View>
-                        <Text style={styles.urlCardUrl} numberOfLines={1}>{day.customUrl}</Text>
-                        <Text style={styles.urlCardHint}>タップでブラウザで開く</Text>
+                        <Ionicons name="link-outline" size={13} color="#1976D2" />
+                        <Text style={[styles.entryName, styles.entryNameUrl]} numberOfLines={1}>{name}</Text>
+                      </TouchableOpacity>
+                    ) : (
+                      <Text style={styles.entryName} numberOfLines={1}>{name}</Text>
+                    )}
+                    {isEditing && (
+                      <TouchableOpacity
+                        style={styles.entryRemoveBtn}
+                        onPress={() => removeEntry(idx, entry.id)}
+                      >
+                        <Ionicons name="close-circle" size={18} color="#BCAAA4" />
                       </TouchableOpacity>
                     )}
+                  </View>
+                );
+              })}
+              {!hasContent && (
+                <Text style={styles.emptyDayText}>未設定</Text>
+              )}
 
-                    {/* 自由入力メモ（URL無し） */}
-                    {day.isCustom && day.memo && !day.customUrl && (
-                      <View style={styles.customMemoCard}>
-                        <Text style={styles.customMemoText}>{day.memo}</Text>
-                      </View>
-                    )}
-
+              {/* 編集パネル（タップで展開） */}
+              {isEditing && (
+                <View style={styles.editPanel}>
                     {/* 操作ボタン */}
                     <View style={styles.editActions}>
                       <TouchableOpacity
@@ -425,14 +311,14 @@ export default function MyMealPlanEditScreen({ navigation, route }: Props) {
                         onPress={() => toggleInputMode('url')}
                       >
                         <Ionicons name="link" size={14} color="#fff" />
-                        <Text style={styles.editActionBtnText}>URLで追加</Text>
+                        <Text style={styles.editActionBtnText}>URL追加</Text>
                       </TouchableOpacity>
                       <TouchableOpacity
                         style={[styles.editActionBtn, styles.editActionBtnCustom, inputMode === 'text' && styles.editActionBtnActive]}
                         onPress={() => toggleInputMode('text')}
                       >
                         <Ionicons name="create-outline" size={14} color="#fff" />
-                        <Text style={styles.editActionBtnText}>自由入力</Text>
+                        <Text style={styles.editActionBtnText}>入力追加</Text>
                       </TouchableOpacity>
                       <TouchableOpacity
                         style={[styles.editActionBtn, inputMode === 'search' && styles.editActionBtnActive]}
@@ -477,10 +363,10 @@ export default function MyMealPlanEditScreen({ navigation, route }: Props) {
                         </View>
                         <TouchableOpacity
                           style={[styles.urlSubmitBtn, !urlInput.trim() && styles.btnDisabled]}
-                          onPress={() => handleReplaceWithUrl(idx)}
+                          onPress={() => handleAddUrlEntry(idx)}
                           disabled={!urlInput.trim()}
                         >
-                          <Text style={styles.urlSubmitBtnText}>決定</Text>
+                          <Text style={styles.urlSubmitBtnText}>追加</Text>
                         </TouchableOpacity>
                       </View>
                     )}
@@ -492,15 +378,15 @@ export default function MyMealPlanEditScreen({ navigation, route }: Props) {
                           style={styles.customInputField}
                           value={customInput}
                           onChangeText={setCustomInput}
-                          placeholder="レシピ名やメモを入力"
+                          placeholder="料理名を入力"
                           placeholderTextColor="#BCAAA4"
                         />
                         <TouchableOpacity
                           style={[styles.customInputBtn, !customInput.trim() && styles.btnDisabled]}
-                          onPress={() => handleReplaceWithCustom(idx)}
+                          onPress={() => handleAddCustomEntry(idx)}
                           disabled={!customInput.trim()}
                         >
-                          <Text style={styles.customInputBtnText}>決定</Text>
+                          <Text style={styles.customInputBtnText}>追加</Text>
                         </TouchableOpacity>
                       </View>
                     )}
@@ -508,33 +394,33 @@ export default function MyMealPlanEditScreen({ navigation, route }: Props) {
                     {/* 検索結果 */}
                     {inputMode === 'search' && altResults && (
                       <View style={styles.altSection}>
-                        <Text style={styles.altSectionTitle}>候補から選んでください</Text>
+                        <Text style={styles.altSectionTitle}>タップで追加</Text>
                         {altResults.ai.map((r, i) => (
                           <TouchableOpacity
                             key={`alt-ai-${i}`}
                             style={styles.altItem}
-                            onPress={() => handleReplaceWithAi(idx, r)}
+                            onPress={() => handleAddAiEntry(idx, r)}
                             activeOpacity={0.6}
                           >
                             <View style={styles.altBadge}>
                               <Text style={styles.altBadgeText}>AI</Text>
                             </View>
                             <Text style={styles.altItemText} numberOfLines={2}>{r.name}</Text>
-                            <Text style={styles.altSelectText}>選択</Text>
+                            <Text style={styles.altSelectText}>追加</Text>
                           </TouchableOpacity>
                         ))}
                         {altResults.web.map((r, i) => (
                           <TouchableOpacity
                             key={`alt-web-${i}`}
                             style={styles.altItem}
-                            onPress={() => handleReplaceWithWeb(idx, r)}
+                            onPress={() => handleAddWebEntry(idx, r)}
                             activeOpacity={0.6}
                           >
                             <View style={[styles.altBadge, styles.altBadgeWeb]}>
                               <Text style={styles.altBadgeText}>Web</Text>
                             </View>
                             <Text style={styles.altItemText} numberOfLines={2}>{r.name}</Text>
-                            <Text style={styles.altSelectText}>選択</Text>
+                            <Text style={styles.altSelectText}>追加</Text>
                           </TouchableOpacity>
                         ))}
                       </View>
@@ -573,23 +459,13 @@ export default function MyMealPlanEditScreen({ navigation, route }: Props) {
                     </View>
                   </View>
                 )}
-              </View>
-            );
-          })}
-        </View>
-
-        {/* 日を追加 */}
-        <TouchableOpacity
-          style={styles.addDayButton}
-          onPress={handleAddDay}
-          activeOpacity={0.7}
-        >
-          <Text style={styles.addDayButtonText}>+ 日を追加</Text>
-        </TouchableOpacity>
+            </View>
+          );
+        })}
 
         <View style={{ height: 40 }} />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -603,67 +479,91 @@ const styles = StyleSheet.create({
   scrollContent: { padding: 20 },
   center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
 
-  // ヘッダー
-  header: { padding: 20, paddingTop: 16, paddingBottom: 16, overflow: 'hidden' },
-  backButton: { flexDirection: 'row', alignItems: 'center', gap: 4, marginBottom: 8 },
-  backButtonText: { color: 'rgba(255,255,255,0.85)', fontSize: 14, fontFamily: FONTS.sans },
-  headerTitle: { fontSize: 22, fontWeight: '700', color: 'white', fontFamily: FONTS.serifBold },
-  headerHint: { fontSize: 11, color: 'rgba(255,255,255,0.6)', marginTop: 2, fontFamily: FONTS.sans },
-  titleEditRow: { flexDirection: 'row', alignItems: 'center' },
-  titleInput: {
-    flex: 1,
-    fontSize: 20,
+  // 日カード
+  dayCard: {
+    backgroundColor: '#fff',
+    borderRadius: 14,
+    padding: 14,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.06)',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  dayCardHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 10,
+  },
+  dayCardDate: {
+    fontSize: 16,
     fontWeight: '700',
-    color: 'white',
-    borderBottomWidth: 2,
-    borderBottomColor: 'rgba(255,255,255,0.6)',
-    paddingVertical: 4,
+    color: '#E65100',
     fontFamily: FONTS.serifBold,
   },
-
-  // 献立表
-  table: {
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: '#E0E0E0',
-  },
-  tableHeaderRow: {
+  editToggleBtn: {
+    marginLeft: 'auto',
     flexDirection: 'row',
-    backgroundColor: '#E65100',
-    paddingVertical: 10,
-    paddingHorizontal: 12,
+    alignItems: 'center',
+    gap: 3,
+    backgroundColor: '#FFF3E0',
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 14,
   },
-  tableHeaderText: {
-    fontSize: 13,
+  editToggleBtnActive: {
+    backgroundColor: '#E65100',
+  },
+  editToggleBtnText: {
+    fontSize: 12,
     fontWeight: '700',
-    color: '#fff',
+    color: '#E65100',
     fontFamily: FONTS.sans,
   },
-  tableDayCell: { width: 52, justifyContent: 'center' },
-  tableRecipeCell: {
+  editToggleBtnTextActive: {
+    color: '#fff',
+  },
+  emptyDayText: {
+    fontSize: 14,
+    color: '#BDBDBD',
+    fontStyle: 'italic',
+    fontFamily: FONTS.sans,
+  },
+
+  // エントリ行
+  entryRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 4,
+    gap: 2,
+  },
+  entryBullet: {
+    fontSize: 14,
+    color: '#E65100',
+    fontFamily: FONTS.sans,
+  },
+  entryName: {
+    fontSize: 15,
+    color: '#333',
     flex: 1,
+    fontFamily: FONTS.sans,
+  },
+  entryNameTouchable: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingLeft: 8,
-    gap: 6,
+    flex: 1,
+    gap: 4,
   },
-  tableActionCell: { width: 36, alignItems: 'center', justifyContent: 'center' },
-  tableRow: {
-    flexDirection: 'row',
-    paddingVertical: 12,
-    paddingHorizontal: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#F0F0F0',
-    alignItems: 'center',
+  entryNameUrl: {
+    color: '#1976D2',
   },
-  tableRowEven: { backgroundColor: '#FAFAFA' },
-  tableRowSelected: { backgroundColor: '#FFF3E0' },
-  tableDayText: { fontSize: 13, fontWeight: '700', color: '#E65100', fontFamily: FONTS.sans },
-  tableRecipeText: { fontSize: 14, color: '#333', flex: 1, fontFamily: FONTS.sans },
-  tableRecipeEmpty: { color: '#BDBDBD', fontStyle: 'italic' },
-  tableChevron: { fontSize: 11, color: '#999' },
+  entryRemoveBtn: {
+    padding: 4,
+  },
 
   // バッジ
   customBadge: {
@@ -683,10 +583,10 @@ const styles = StyleSheet.create({
 
   // 編集パネル
   editPanel: {
-    padding: 14,
-    backgroundColor: '#FFF8F0',
-    borderBottomWidth: 1,
-    borderBottomColor: '#E0E0E0',
+    marginTop: 10,
+    paddingTop: 10,
+    borderTopWidth: 1,
+    borderTopColor: '#F0F0F0',
   },
   editActions: {
     flexDirection: 'row',

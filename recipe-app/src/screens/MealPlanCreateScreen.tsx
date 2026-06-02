@@ -6,49 +6,115 @@ import {
   StyleSheet,
   TextInput,
   ScrollView,
+  Platform,
+  ActivityIndicator,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { useMealPlans, MyMealPlan, MyMealPlanDay } from '../hooks/useMealPlans';
+import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
+import {
+  useMealPlans,
+  MyMealPlan,
+  MyMealPlanDay,
+  MealEntry,
+  formatDateLabel,
+  generateEntryId,
+} from '../hooks/useMealPlans';
 import { FONTS } from '../constants/fonts';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import type { MealPlanStackParamList } from './MealPlanNavigator';
 
 type Props = {
-  navigation: NativeStackNavigationProp<MealPlanStackParamList, 'MealPlanCreate'>;
+  onBack: () => void;
+  onCreated: () => void;
+  /** 既存プランがある場合はそのIDを渡す。なければ新規プランを作成する。 */
+  existingPlanId?: string;
 };
 
-const DAY_OPTIONS = [1, 3, 5, 7, 10, 14];
+/** Date を "YYYY-MM-DD" に変換 */
+function toISODate(d: Date): string {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
 
-export default function MealPlanCreateScreen({ navigation }: Props) {
-  const { savePlan } = useMealPlans();
+/** URLからページタイトルを取得 */
+async function fetchPageTitle(url: string): Promise<string | null> {
+  try {
+    const res = await fetch(url);
+    const html = await res.text();
+    const match = html.match(/<title[^>]*>([^<]+)<\/title>/i);
+    return match ? match[1].trim().replace(/\s+/g, ' ') : null;
+  } catch {
+    return null;
+  }
+}
+
+export default function MealPlanCreateScreen({ onBack, onCreated, existingPlanId }: Props) {
+  const { savePlan, addDay } = useMealPlans();
   const [title, setTitle] = useState('');
-  const [dayCount, setDayCount] = useState(7);
+  const [urlInput, setUrlInput] = useState('');
+  const [fetchingTitle, setFetchingTitle] = useState(false);
+  const [date, setDate] = useState(new Date());
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [saving, setSaving] = useState(false);
+
+  const onDateChange = (_event: DateTimePickerEvent, selectedDate?: Date) => {
+    if (Platform.OS === 'android') setShowDatePicker(false);
+    if (selectedDate) setDate(selectedDate);
+  };
+
+  const handleUrlBlur = async () => {
+    const url = urlInput.trim();
+    if (!url || title.trim()) return;
+    if (!url.startsWith('http://') && !url.startsWith('https://')) return;
+    setFetchingTitle(true);
+    try {
+      const pageTitle = await fetchPageTitle(url);
+      if (pageTitle) setTitle(pageTitle);
+    } finally {
+      setFetchingTitle(false);
+    }
+  };
 
   const handleCreate = async () => {
-    const now = new Date().toISOString();
-    const id = `plan_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+    setSaving(true);
+    try {
+      const dateStr = toISODate(date);
+      const url = urlInput.trim();
+      const entryTitle = title.trim() || (url ? url : '');
 
-    const days: MyMealPlanDay[] = Array.from({ length: dayCount }, (_, i) => ({
-      day: i + 1,
-      label: `${i + 1}日目`,
-      recipe: null,
-      webRecipe: null,
-      memo: '',
-      isCustom: true,
-    }));
+      const entries: MealEntry[] = url
+        ? [{ id: generateEntryId(), customUrl: url, customTitle: entryTitle, isCustom: true }]
+        : [];
 
-    const newPlan: MyMealPlan = {
-      id,
-      title: title.trim() || `献立 ${new Date().toLocaleDateString('ja-JP')}`,
-      createdAt: now,
-      updatedAt: now,
-      days,
-    };
-
-    await savePlan(newPlan);
-    navigation.replace('MealPlanEdit', { planId: id });
+      if (existingPlanId) {
+        // 既存プランに1日追加
+        await addDay(existingPlanId, dateStr, entries);
+      } else {
+        // 新規プランを作成（1日分）
+        const now = new Date().toISOString();
+        const id = `plan_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+        const day: MyMealPlanDay = {
+          day: 1,
+          label: formatDateLabel(dateStr),
+          date: dateStr,
+          entries,
+        };
+        const newPlan: MyMealPlan = {
+          id,
+          title: entryTitle || `献立 ${formatDateLabel(dateStr)}`,
+          startDate: dateStr,
+          createdAt: now,
+          updatedAt: now,
+          days: [day],
+        };
+        await savePlan(newPlan);
+      }
+      onCreated();
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
@@ -59,66 +125,86 @@ export default function MealPlanCreateScreen({ navigation }: Props) {
         end={{ x: 1, y: 1 }}
         style={styles.header}
       >
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
-        >
+        <TouchableOpacity style={styles.backButton} onPress={onBack}>
           <Ionicons name="arrow-back" size={20} color="rgba(255,255,255,0.85)" />
           <Text style={styles.backButtonText}>戻る</Text>
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>新しい献立を作成</Text>
+        <Text style={styles.headerTitle}>献立を追加</Text>
       </LinearGradient>
 
       <ScrollView style={styles.content} contentContainerStyle={styles.contentInner}>
+
+        {/* 日付 */}
+        <Text style={styles.sectionLabel}>日付</Text>
+        <TouchableOpacity
+          style={styles.dateButton}
+          onPress={() => setShowDatePicker(true)}
+          activeOpacity={0.7}
+        >
+          <Ionicons name="calendar-outline" size={18} color="#E65100" />
+          <Text style={styles.dateButtonText}>{formatDateLabel(toISODate(date))}</Text>
+          <Text style={styles.dateButtonHint}>タップで変更</Text>
+        </TouchableOpacity>
+        {showDatePicker && (
+          <View style={styles.datePickerWrapper}>
+            <DateTimePicker
+              value={date}
+              mode="date"
+              display={Platform.OS === 'ios' ? 'inline' : 'default'}
+              onChange={onDateChange}
+              locale="ja"
+            />
+            {Platform.OS === 'ios' && (
+              <TouchableOpacity
+                style={styles.datePickerDone}
+                onPress={() => setShowDatePicker(false)}
+              >
+                <Text style={styles.datePickerDoneText}>決定</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        )}
+
+        {/* URL添付 */}
+        <Text style={styles.sectionLabel}>レシピURL（任意）</Text>
+        <View style={styles.urlRow}>
+          <Ionicons name="link-outline" size={18} color="#E65100" style={styles.urlIcon} />
+          <TextInput
+            style={styles.urlInput}
+            value={urlInput}
+            onChangeText={setUrlInput}
+            onBlur={handleUrlBlur}
+            placeholder="https://... レシピURLを貼り付け"
+            placeholderTextColor="#BCAAA4"
+            keyboardType="url"
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
+          {fetchingTitle && <ActivityIndicator size="small" color="#E65100" style={styles.urlSpinner} />}
+        </View>
+
         {/* 献立名 */}
-        <Text style={styles.sectionLabel}>献立名</Text>
+        <Text style={styles.sectionLabel}>献立名（任意）</Text>
         <TextInput
           style={styles.titleInput}
           value={title}
           onChangeText={setTitle}
-          placeholder="例: 今週の献立、来客用メニュー"
+          placeholder="URLから自動入力、または直接入力"
           placeholderTextColor="#BCAAA4"
         />
 
-        {/* 日数選択 */}
-        <Text style={styles.sectionLabel}>日数</Text>
-        <View style={styles.dayOptions}>
-          {DAY_OPTIONS.map((d) => (
-            <TouchableOpacity
-              key={d}
-              style={[styles.dayOption, dayCount === d && styles.dayOptionSelected]}
-              onPress={() => setDayCount(d)}
-              activeOpacity={0.7}
-            >
-              <Text style={[styles.dayOptionText, dayCount === d && styles.dayOptionTextSelected]}>
-                {d}日
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
-
-        {/* プレビュー */}
-        <View style={styles.previewCard}>
-          <View style={styles.previewHeader}>
-            <Ionicons name="calendar-outline" size={18} color="#E65100" />
-            <Text style={styles.previewTitle}>
-              {title.trim() || `献立 ${new Date().toLocaleDateString('ja-JP')}`}
-            </Text>
-          </View>
-          <Text style={styles.previewSub}>{dayCount}日分の空の献立が作成されます</Text>
-          <Text style={styles.previewHint}>
-            作成後、各日にレシピURLの貼り付けや自由入力で{'\n'}メニューを設定できます
-          </Text>
-        </View>
-
-        {/* 作成ボタン */}
+        {/* 追加ボタン */}
         <TouchableOpacity
-          style={styles.createButton}
+          style={[styles.createButton, saving && styles.createButtonDisabled]}
           onPress={handleCreate}
           activeOpacity={0.85}
+          disabled={saving}
         >
-          <Ionicons name="checkmark-circle" size={22} color="#fff" />
-          <Text style={styles.createButtonText}>作成する</Text>
+          {saving
+            ? <ActivityIndicator color="#fff" size="small" />
+            : <Ionicons name="checkmark-circle" size={22} color="#fff" />
+          }
+          <Text style={styles.createButtonText}>追加する</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
@@ -132,14 +218,72 @@ const styles = StyleSheet.create({
   backButtonText: { color: 'rgba(255,255,255,0.85)', fontSize: 14, fontFamily: FONTS.sans },
   headerTitle: { fontSize: 22, fontWeight: '700', color: 'white', fontFamily: FONTS.serifBold },
   content: { flex: 1 },
-  contentInner: { padding: 24 },
+  contentInner: { padding: 24, gap: 10 },
   sectionLabel: {
     fontSize: 14,
     fontWeight: '700',
     color: '#5D4037',
-    marginBottom: 10,
+    fontFamily: FONTS.sans,
+    marginTop: 8,
+  },
+  dateButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+  },
+  dateButtonText: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#333',
     fontFamily: FONTS.sans,
   },
+  dateButtonHint: {
+    fontSize: 12,
+    color: '#BCAAA4',
+    marginLeft: 'auto',
+    fontFamily: FONTS.sans,
+  },
+  datePickerWrapper: {
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    padding: 12,
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+  },
+  datePickerDone: {
+    alignSelf: 'flex-end',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    backgroundColor: '#E65100',
+    borderRadius: 8,
+    marginTop: 8,
+  },
+  datePickerDoneText: { color: '#fff', fontSize: 14, fontWeight: '700', fontFamily: FONTS.sans },
+  urlRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderWidth: 2,
+    borderColor: '#E65100',
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+  },
+  urlIcon: { marginRight: 6 },
+  urlInput: {
+    flex: 1,
+    fontSize: 14,
+    fontFamily: FONTS.sans,
+    color: '#333',
+    paddingVertical: 10,
+  },
+  urlSpinner: { marginLeft: 6 },
   titleInput: {
     backgroundColor: '#fff',
     borderWidth: 1,
@@ -147,70 +291,9 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 16,
     paddingVertical: 14,
-    fontSize: 16,
-    fontFamily: FONTS.sans,
-    color: '#333',
-    marginBottom: 28,
-  },
-  dayOptions: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 10,
-    marginBottom: 28,
-  },
-  dayOption: {
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    borderRadius: 12,
-    backgroundColor: '#fff',
-    borderWidth: 2,
-    borderColor: '#E0E0E0',
-  },
-  dayOptionSelected: {
-    backgroundColor: '#FFF3E0',
-    borderColor: '#E65100',
-  },
-  dayOptionText: {
     fontSize: 15,
-    fontWeight: '600',
-    color: '#999',
     fontFamily: FONTS.sans,
-  },
-  dayOptionTextSelected: {
-    color: '#E65100',
-  },
-  previewCard: {
-    backgroundColor: '#fff',
-    borderRadius: 14,
-    padding: 20,
-    borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0.06)',
-    marginBottom: 28,
-  },
-  previewHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    marginBottom: 8,
-  },
-  previewTitle: {
-    fontSize: 16,
-    fontWeight: '700',
     color: '#333',
-    flex: 1,
-    fontFamily: FONTS.serifBold,
-  },
-  previewSub: {
-    fontSize: 14,
-    color: '#666',
-    marginBottom: 8,
-    fontFamily: FONTS.sans,
-  },
-  previewHint: {
-    fontSize: 12,
-    color: '#999',
-    lineHeight: 18,
-    fontFamily: FONTS.sans,
   },
   createButton: {
     flexDirection: 'row',
@@ -220,16 +303,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#E65100',
     paddingVertical: 16,
     borderRadius: 14,
+    marginTop: 16,
     shadowColor: '#E65100',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 8,
     elevation: 6,
   },
-  createButtonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: '700',
-    fontFamily: FONTS.sans,
-  },
+  createButtonDisabled: { opacity: 0.6 },
+  createButtonText: { color: '#fff', fontSize: 18, fontWeight: '700', fontFamily: FONTS.sans },
 });
