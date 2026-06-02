@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "HomeAsset",
+    "slug": "homeasset",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#1565C0"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.example.homeasset"
+    },
+    "android": {
+      "package": "com.example.homeasset"
+    },
+    "extra": {
+      "apiBaseUrl": "http://192.168.1.18:4001"
+    },
+    "plugins": [
+      "expo-secure-store",
+      "@react-native-community/datetimepicker"
+    ]
+  }
+}
