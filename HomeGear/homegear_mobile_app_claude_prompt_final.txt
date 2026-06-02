@@ -1,0 +1,1622 @@
+あなたは優秀なモバイルアプリ・バックエンド開発者です。
+家庭内にある機器を管理するスマホアプリを開発したいです。
+以下の仕様に沿って、まずは設計方針・DB設計・画面構成・ディレクトリ構成・実装手順を提示したうえで、MVPを実装してください。
+
+重要：
+- このアプリはWebアプリではなく、スマホアプリとして作成してください。
+- 対象はAndroid / iPhoneです。
+- 開発はExpo + React Native + TypeScriptを前提にしてください。
+- 家族間で同じデータを共有したいので、端末内SQLiteをメインDBにするのではなく、バックエンドAPI + PostgreSQLをメイン構成にしてください。
+- 端末内SQLiteを使う場合は、オフラインキャッシュや下書き保存などの補助用途に留めてください。
+- 回答とコード内コメントは日本語を基本にしてください。
+
+# 家庭内機器管理スマホアプリ 仕様書
+
+## 1. アプリの目的
+
+家庭内にある家電、IT機器、ネットワーク機器、スマートホーム機器、防犯カメラ、自宅サーバー関連機器、工具、生活設備などを一元管理するスマホアプリを作成する。
+
+単なる所有物リストではなく、以下をまとめて管理できる「家庭内機器台帳」として使いたい。
+
+- 何を持っているか
+- どこに置いてあるか
+- いつ買ったか
+- 保証期間はいつまでか
+- 取扱説明書・保証書・購入履歴はどこにあるか
+- メンテナンスや修理履歴はどうなっているか
+- 型番・シリアル番号・付属品・消耗品は何か
+- PCやNASなどのスペックは何か
+- ネットワーク機器やスマート家電のIPアドレス、管理URL、連携情報は何か
+- AIで調べた機器情報を、アプリ側にコピペで取り込めるようにする
+
+## 2. 想定利用者
+
+- 家庭内の大人ユーザー
+- 主に管理者1名が登録・更新する
+- 家族も同じ台帳を閲覧・編集できる
+- スマホから使いやすいことを最重視する
+- Android / iPhoneの両方で利用できるようにする
+
+## 3. 技術構成
+
+### 3.1 スマホアプリ
+
+- Expo
+- React Native
+- TypeScript
+- Expo Router または React Navigation
+- React Hook Formなどのフォームライブラリを使ってもよい
+- Zodなどでバリデーションしてもよい
+- TanStack QueryなどでAPI通信・キャッシュ管理をしてもよい
+
+### 3.2 バックエンドAPI
+
+以下のいずれかで実装する。
+
+- Node.js + Express
+- NestJS
+- Fastify
+- Hono
+- Next.js API Routesではなく、スマホアプリから使う独立APIとして設計するのが望ましい
+
+### 3.3 データベース
+
+- PostgreSQLを第一候補とする
+- PrismaなどのORMを使ってもよい
+- 将来的にさくらVPS、自宅サーバー、または他のVPS上で運用できる構成にする
+
+### 3.4 端末内DBについて
+
+- 端末内SQLiteをメインDBにはしない
+- 家族間でデータを共有するため、正式データはサーバー側PostgreSQLに保存する
+- SQLiteを使う場合は以下の用途に限定する
+  - オフラインキャッシュ
+  - 一時保存
+  - 下書き保存
+  - 通信失敗時の再送キュー
+
+MVPでは端末内SQLiteは必須ではない。
+まずはオンライン前提のスマホアプリとして作成する。
+
+### 3.5 配布方針
+
+開発中：
+- Expo GoまたはDevelopment Buildで確認する
+
+家族利用・長期運用：
+- Android: EAS BuildのInternal Distribution
+- iPhone: TestFlight
+- 必要に応じてDevelopment Buildを使う
+
+Expo Goによる長期共有は仕様変更やログイン制限の影響を受ける可能性があるため、家族で長期利用する場合はEAS BuildやTestFlightを前提にする。
+
+## 4. MVPで作る機能
+
+最初に作る範囲は以下。
+
+1. ログイン機能
+2. 機器登録
+3. 機器一覧
+4. 機器詳細
+5. 機器編集
+6. カテゴリ管理
+7. 設置場所管理
+8. 保証期限表示
+9. 取扱説明書・保証書URL管理
+10. 機器スペック管理
+11. メンテナンス履歴管理
+12. 修理履歴管理
+13. 消耗品管理
+14. 付属品管理
+15. ネットワーク・管理URL情報管理
+16. AI調査結果取り込み
+17. ダッシュボード
+18. JSONエクスポート
+
+## 5. MVPでは後回しにする機能
+
+以下は将来拡張として、MVPでは必須実装しなくてよい。
+
+- QRコード読み取り・発行
+- プッシュ通知
+- LINE通知
+- Googleカレンダー連携
+- ファイルアップロード
+- OCR
+- カメラ撮影からの型番読み取り
+- 購入メール自動取り込み
+- 家庭内API管理アプリとの連携
+- 自宅サーバー監視アプリとの連携
+- 端末内SQLiteによる本格的なオフライン同期
+- AI APIの直接利用
+
+ただし、将来拡張しやすい設計にはしてほしい。
+
+## 6. 管理対象の機器
+
+以下のような家庭内機器を管理対象にする。
+
+### 家電
+
+- テレビ
+- 冷蔵庫
+- 洗濯機
+- エアコン
+- 電子レンジ
+- 掃除機
+- 空気清浄機
+
+### IT機器
+
+- PC
+- タブレット
+- スマートフォン
+- プリンター
+- NAS
+- 外付けHDD
+
+### ネットワーク機器
+
+- ルーター
+- Wi-Fiアクセスポイント
+- スイッチングハブ
+- ONU
+
+### スマートホーム機器
+
+- Google Home / Nest
+- スマートリモコン
+- スマートプラグ
+- スマートロック
+
+### 防犯・監視機器
+
+- 防犯カメラ
+- センサー
+- ドアベル
+
+### 生活設備
+
+- 給湯器
+- 照明
+- 換気扇
+- 浄水器
+
+### 工具・備品
+
+- 電動工具
+- 脚立
+- 充電器
+- バッテリー
+
+## 7. 認証・家族共有
+
+### MVP方針
+
+- ユーザー登録・ログイン機能を設ける
+- 複雑な権限管理はMVPでは最小限でよい
+- 家庭単位のデータ共有を前提にする
+
+### データ共有の考え方
+
+- householdという単位を作る
+- userは1つ以上のhouseholdに所属できる設計にする
+- MVPでは1ユーザー1家庭でもよいが、将来の拡張を考えてhousehold_idを主要テーブルに持たせる
+
+### 権限
+
+MVPでは以下の2種類程度でよい。
+
+- owner: 家庭の管理者
+- member: 家族メンバー
+
+将来的には以下に拡張できるようにする。
+
+- 管理者
+- 編集者
+- 閲覧者
+
+## 8. 機器登録機能
+
+家庭内の機器を登録できるようにする。
+
+### 基本方針
+
+- 機器名だけで登録できること
+- その他の項目は任意入力
+- 登録後に詳細編集できること
+- 同じ型番の機器を複数登録できること
+- 廃棄済みの機器も履歴として残せること
+- スマホで入力しやすいように、フォームをセクション分けすること
+
+### 入力項目
+
+#### 基本情報
+
+- 機器名
+- カテゴリ
+- メーカー
+- 型番
+- シリアル番号
+- 設置場所
+- ステータス
+  - 使用中
+  - 予備
+  - 故障中
+  - 修理中
+  - 廃棄済み
+  - 売却済み
+- 優先度
+  - 高
+  - 中
+  - 低
+- メモ
+
+#### 購入情報
+
+- 購入日
+- 購入店舗
+- 購入価格
+- 購入ページURL
+- 注文番号
+- レシート・領収書URL
+
+#### 保証情報
+
+- 保証開始日
+- 保証終了日
+- 延長保証の有無
+- 保証書URL
+- 保証メモ
+
+#### 取扱説明書・サポート情報
+
+- 取扱説明書URL
+- メーカー公式ページURL
+- サポートページURL
+
+#### 写真情報
+
+MVPではファイルアップロードは必須ではない。
+URLを保存できればよい。
+
+- 機器写真URL
+- 型番ラベル写真URL
+- 設置状況写真URL
+
+将来的にはスマホのカメラで写真を撮影してアップロードできるようにする。
+
+## 9. 機器一覧機能
+
+登録済み機器を一覧表示する。
+
+### スマホUI方針
+
+- カード形式で表示する
+- 検索バーを画面上部に置く
+- 絞り込みはボトムシートやモーダルで表示してもよい
+- カードをタップすると詳細画面へ遷移する
+
+### 表示項目
+
+- 機器名
+- カテゴリ
+- メーカー
+- 型番
+- 設置場所
+- ステータス
+- 保証期限
+- 次回メンテナンス予定日
+
+### 検索・絞り込み
+
+以下で検索・絞り込みできるようにする。
+
+- キーワード検索
+  - 機器名
+  - メーカー
+  - 型番
+  - シリアル番号
+  - メモ
+- カテゴリ絞り込み
+- 設置場所絞り込み
+- ステータス絞り込み
+- 保証期限切れ
+- 保証期限間近
+- メンテナンス予定あり
+
+### 並び替え
+
+以下の並び替えに対応する。
+
+- 登録日順
+- 更新日順
+- 機器名順
+- 保証期限が近い順
+- 購入日が新しい順
+- 次回メンテナンス日が近い順
+
+## 10. 機器詳細画面
+
+1つの機器に関する情報をまとめて確認できる画面を作る。
+
+### 表示セクション
+
+- 基本情報
+- 購入情報
+- 保証情報
+- 取扱説明書・関連リンク
+- 写真URL
+- スペック情報
+- メンテナンス履歴
+- 修理履歴
+- 消耗品情報
+- ネットワーク情報
+- 付属品情報
+- メモ
+
+### 操作
+
+- 編集
+- スペック追加
+- メンテナンス履歴追加
+- 修理履歴追加
+- 消耗品追加
+- 付属品追加
+- AI調査結果取り込み
+- 複製登録
+- 廃棄済みに変更
+- 削除
+
+### 削除方針
+
+基本は物理削除ではなく、ステータスを「廃棄済み」に変更する。
+誤登録の場合のみ削除できるようにする。
+
+## 11. 機器スペック管理機能
+
+機器ごとにスペック情報を記録できるようにする。
+
+PC、スマートフォン、タブレット、NAS、防犯カメラ、ネットワーク機器などは、機器カテゴリによって記録したいスペック項目が大きく異なる。
+
+そのため、devicesテーブルにcpuやmemoryなどの固定カラムを直接追加するのではなく、device_specsという別テーブルに自由項目として保持する。
+
+### 入力方式
+
+MVPでは、カテゴリ別の固定フォームではなく、以下のような自由入力形式とする。
+
+- スペック項目名
+- 値
+- 単位
+- メモ
+- 表示順
+
+### PCで記録する例
+
+- CPU：Intel Core i5 / Ryzen 5など
+- メモリ：16GB
+- ストレージ：512GB SSD
+- GPU：NVIDIA GeForceなど
+- OS：Windows 11 Pro
+- 画面サイズ：14インチ
+- 解像度：1920x1080
+- Office有無：あり
+- 増設履歴：メモリを8GBから16GBに増設
+
+### スマートフォン・タブレットで記録する例
+
+- 容量：256GB
+- カラー：ブラック
+- SIM種別：eSIM
+- キャリア：docomoなど
+- OSバージョン：Android / iOS
+
+### NASで記録する例
+
+- ベイ数：2
+- 搭載HDD：4TB x 2
+- RAID構成：RAID1
+- CPU
+- メモリ
+
+### 防犯カメラで記録する例
+
+- 解像度：2K / 4K
+- 電源方式：バッテリー / 常時給電
+- microSD最大容量：512GB
+- Wi-Fi対応：2.4GHzのみ / 5GHz対応
+
+### 仕様
+
+- 1つの機器に複数のスペック情報を登録できる
+- 項目名は自由入力できる
+- 表示順を指定できる
+- AI調査結果から取り込んだスペックもdevice_specsに登録する
+- 将来的にはカテゴリごとのスペックテンプレートを追加できる設計にする
+- MVPでは汎用的な自由入力欄として実装する
+
+## 12. メンテナンス履歴機能
+
+機器ごとに掃除、点検、電池交換、フィルター交換などの履歴を登録できるようにする。
+
+### 入力項目
+
+- 対象機器
+- 実施日
+- メンテナンス種別
+  - 掃除
+  - 点検
+  - 電池交換
+  - フィルター交換
+  - ファームウェア更新
+  - 部品交換
+  - その他
+- 作業内容
+- 費用
+- 実施者
+- 次回予定日
+- メモ
+- 関連写真URL
+
+### 仕様
+
+- 機器詳細画面から履歴を追加できる
+- 履歴は時系列で表示する
+- 次回予定日がある場合、一覧やダッシュボードに表示する
+
+## 13. 修理履歴機能
+
+故障や修理の履歴を登録できるようにする。
+
+### 入力項目
+
+- 対象機器
+- 発生日
+- 症状
+- 原因
+- 対応内容
+- 修理依頼先
+- 修理受付番号
+- 修理費用
+- 保証利用の有無
+- 完了日
+- ステータス
+  - 未対応
+  - 対応中
+  - 修理済み
+  - 買い替え
+  - 廃棄
+- メモ
+
+### 仕様
+
+- 修理中の機器は機器ステータスにも反映できる
+- 修理完了後も履歴として残す
+
+## 14. 保証期限管理機能
+
+保証期限を管理し、期限切れや期限間近の機器を把握できるようにする。
+
+### 表示分類
+
+- 保証期限内
+- 保証期限まで30日以内
+- 保証期限切れ
+- 保証情報未登録
+
+### ダッシュボード表示
+
+- 保証期限が近い機器一覧
+- 保証期限切れ機器一覧
+- 保証情報未登録の高額機器一覧
+
+## 15. 取扱説明書・保証書リンク管理機能
+
+機器ごとに取扱説明書、保証書、メーカーサポートページなどのリンクを保存する。
+
+### 入力項目
+
+- リンク種別
+  - 取扱説明書
+  - 保証書
+  - レシート
+  - 領収書
+  - メーカー公式ページ
+  - サポートページ
+  - 購入ページ
+  - その他
+- URL
+- 表示名
+- メモ
+
+### 仕様
+
+- 1機器に複数リンクを登録可能
+- 詳細画面からすぐ開ける
+- Google Drive上のPDFや画像URLも登録可能
+- AI調査結果から取り込んだリンクもdevice_linksに登録する
+- スマホでは外部ブラウザまたはWebViewで開けるようにする
+
+## 16. 消耗品管理機能
+
+機器に関連する消耗品を管理する。
+
+### 対象例
+
+- リモコンの電池
+- 空気清浄機フィルター
+- 掃除機紙パック
+- プリンターインク
+- 防犯カメラ用microSDカード
+- 浄水器カートリッジ
+
+### 入力項目
+
+- 対象機器
+- 消耗品名
+- 型番
+- メーカー
+- 交換目安
+- 最終交換日
+- 次回交換予定日
+- 購入URL
+- メモ
+
+## 17. ネットワーク・管理URL情報機能
+
+ネットワーク機器、スマート家電、自宅サーバー関連機器について、管理に必要な情報を記録できるようにする。
+
+### 入力項目
+
+- 対象機器
+- IPアドレス
+- ホスト名
+- MACアドレス
+- 管理URL
+- ポート番号
+- 接続方式
+  - Wi-Fi
+  - 有線LAN
+  - Bluetooth
+  - Zigbee
+  - Matter
+  - その他
+- 設定メモ
+- 管理画面ログインIDの保管場所メモ
+
+### セキュリティ方針
+
+- パスワードや秘密鍵はMVPでは保存しない
+- APIキーやアクセストークンも保存しない
+- 保存する場合は将来機能として暗号化対応を行う
+- MVPでは「1Passwordに保存」「紙の保管場所」「別管理」などのメモだけ保存する
+
+## 18. 付属品管理機能
+
+機器に付属するリモコン、ケーブル、アダプタ、説明書、箱などを記録する。
+
+### 入力項目
+
+- 対象機器
+- 付属品名
+- 数量
+- 保管場所
+- メモ
+
+## 19. 設置場所管理機能
+
+機器の設置場所をマスタ管理する。
+
+### 場所例
+
+- リビング
+- キッチン
+- 寝室
+- 子供部屋
+- 玄関
+- 洗面所
+- 浴室
+- トイレ
+- ベランダ
+- 物置
+- サーバー棚
+- テレビ台
+
+### 仕様
+
+- 場所は自由追加可能
+- 場所ごとに機器一覧を表示できる
+- parent_idを使って階層化できると望ましい
+
+## 20. カテゴリ管理機能
+
+機器カテゴリをマスタ管理する。
+
+### 初期カテゴリ
+
+- 家電
+- IT機器
+- ネットワーク機器
+- スマートホーム
+- 防犯カメラ
+- 生活設備
+- 工具
+- その他
+
+### 仕様
+
+- カテゴリは自由追加可能
+- カテゴリごとにアイコンを設定できると望ましい
+
+## 21. AI調査結果取り込み機能
+
+機器を最初に登録する際、メーカー名・型番などをもとに、ChatGPT、Claude、GeminiなどのAIに機器情報を調査してもらい、その結果をアプリに貼り付けて反映できるようにする。
+
+アプリ内でAI APIを直接呼び出す方式も考えられるが、MVPでは以下の理由により見送る。
+
+- API利用料金が発生する可能性がある
+- トークン制限を考慮する必要がある
+- 各AIサービスごとのAPIキー管理が必要になる
+- 家庭内利用のMVPとしては仕組みが重くなる
+
+そのため、MVPでは「AIチャットの出力をコピペで取り込む方式」を採用する。
+
+### 基本方針
+
+- アプリ側でAIに渡す調査用プロンプトを生成する
+- ユーザーがそのプロンプトを任意のAIチャットに貼り付ける
+- AIは指定されたJSON形式で機器情報を出力する
+- ユーザーがAIの出力JSONをアプリに貼り付ける
+- アプリ側でJSONを解析し、登録内容のプレビューを表示する
+- ユーザーが確認してから機器情報に反映する
+
+### 対象情報
+
+AI調査結果から、以下の情報を取り込めるようにする。
+
+- メーカー
+- 正式な製品名
+- 型番
+- カテゴリ
+- 製品概要
+- 主なスペック
+- 取扱説明書URL
+- メーカー公式ページURL
+- サポートページURL
+- 消耗品情報
+- 付属品情報
+- 注意事項
+- メンテナンス目安
+
+### 取り込み手順
+
+1. ユーザーが機器名、メーカー、型番など分かる範囲で入力する
+2. アプリがAI調査用プロンプトを生成する
+3. ユーザーがプロンプトをコピーする
+4. ChatGPT、Claude、Geminiなど任意のAIに貼り付ける
+5. AIがJSON形式で回答する
+6. ユーザーがJSONをアプリに貼り付ける
+7. アプリが内容を解析する
+8. 反映前プレビューを表示する
+9. ユーザーが確認して登録・更新する
+
+### 重要な仕様
+
+- AIの回答は正しいとは限らないため、即時反映せず必ずプレビュー画面を挟む
+- 既存の入力値を勝手に上書きしない
+- 初期設定では、空欄項目のみ補完する
+- 上書きする場合は項目ごとにユーザーが選択する
+- URLは形式チェックを行う
+- 不明な項目は無理に埋めず、nullにする
+- AIが返したスペック情報はdevice_specsに登録する
+- AIが返したリンク情報はdevice_linksに登録する
+- AIが返した消耗品情報はconsumablesに登録する
+- AIが返した付属品情報はaccessoriesに登録する
+
+### AI調査用プロンプト生成機能
+
+アプリ側で、以下のようなプロンプトを生成できるようにする。
+
+【AI調査用プロンプト本文】
+
+以下の家庭内機器について、製品情報を調査し、指定のJSON形式だけで出力してください。
+推測で断定せず、不明な項目はnullにしてください。
+URLは可能であればメーカー公式ページ、取扱説明書、サポートページを優先してください。
+
+機器名: {device_name}
+メーカー: {manufacturer}
+型番: {model_number}
+カテゴリ: {category}
+
+出力形式:
+{
+  "device": {
+    "name": "",
+    "manufacturer": "",
+    "model_number": "",
+    "category_suggestion": "",
+    "summary": ""
+  },
+  "specs": [
+    {
+      "spec_name": "",
+      "spec_value": "",
+      "unit": "",
+      "memo": ""
+    }
+  ],
+  "links": [
+    {
+      "link_type": "official|manual|support|purchase|other",
+      "title": "",
+      "url": "",
+      "memo": ""
+    }
+  ],
+  "consumables": [
+    {
+      "name": "",
+      "manufacturer": "",
+      "model_number": "",
+      "replacement_interval_text": "",
+      "purchase_url": "",
+      "memo": ""
+    }
+  ],
+  "accessories": [
+    {
+      "name": "",
+      "quantity": null,
+      "memo": ""
+    }
+  ],
+  "maintenance_suggestions": [
+    {
+      "maintenance_type": "",
+      "description": "",
+      "suggested_interval": "",
+      "memo": ""
+    }
+  ],
+  "notes": [
+    ""
+  ]
+}
+
+JSON以外の文章は出力しないでください。
+
+【AI調査用プロンプト本文ここまで】
+
+### AI回答JSONの取り込み先
+
+#### device
+
+- devices.name
+- devices.manufacturer
+- devices.model_number
+- devices.memo
+
+#### specs
+
+- device_specs.spec_name
+- device_specs.spec_value
+- device_specs.unit
+- device_specs.memo
+
+#### links
+
+- device_links.link_type
+- device_links.title
+- device_links.url
+- device_links.memo
+
+#### consumables
+
+- consumables.name
+- consumables.manufacturer
+- consumables.model_number
+- consumables.replacement_interval_text
+- consumables.purchase_url
+- consumables.memo
+
+#### accessories
+
+- accessories.name
+- accessories.quantity
+- accessories.memo
+
+#### maintenance_suggestions
+
+MVPでは直接メンテナンス履歴には登録しない。
+将来的に「メンテナンステンプレート」または「予定」として扱えるようにする。
+MVPではプレビュー表示、またはdevices.memoへの追記に留める。
+
+### AI入力支援画面
+
+以下のUIを用意する。
+
+- 機器名、メーカー、型番の入力欄
+- AI調査用プロンプト生成ボタン
+- プロンプトコピー用ボタン
+- AI回答JSON貼り付け欄
+- JSON解析ボタン
+- 取り込みプレビュー
+- 反映ボタン
+
+スマホでは、長いJSONを貼り付けやすいように、複数行テキストエリアを十分な高さで表示する。
+解析後は、基本情報・スペック・リンクなどをカード形式でプレビューする。
+
+### 取り込みプレビュー画面
+
+以下のように、反映予定の内容を確認できるようにする。
+
+- 基本情報
+- スペック情報
+- 関連リンク
+- 消耗品
+- 付属品
+- 注意事項
+- メンテナンス候補
+
+各項目について、以下を選択できると望ましい。
+
+- 反映する
+- 反映しない
+- 既存値を上書きする
+- 空欄の場合のみ反映する
+
+### AI取り込み履歴
+
+将来的には以下のテーブルでAI取り込み履歴を残せるようにする。
+MVPでは必須ではない。
+
+#### ai_import_logs
+
+- id
+- household_id
+- device_id
+- source_ai_name
+- input_prompt
+- raw_response
+- parsed_json
+- imported_at
+- memo
+
+### MVPでの扱い
+
+MVPでは、最低限以下を実装する。
+
+- AI調査用プロンプト生成
+- AI回答JSON貼り付け欄
+- JSONバリデーション
+- 取り込みプレビュー
+- 空欄項目のみ反映
+- specs、linksへの取り込み
+
+消耗品、付属品、メンテナンス候補への取り込みは、余裕があれば対応する。
+
+## 22. ダッシュボード機能
+
+アプリを開いたときに、今確認すべき情報を表示する。
+
+### 表示内容
+
+- 登録機器数
+- 保証期限が近い機器
+- 保証期限切れ機器
+- 次回メンテナンス予定が近い機器
+- 修理中・故障中の機器
+- 最近更新した機器
+- 情報不足の機器
+  - 型番未登録
+  - 保証期限未登録
+  - 設置場所未登録
+  - スペック未登録
+
+### スマホUI方針
+
+- 縦スクロールのカードレイアウト
+- 重要なものから上に表示する
+- 各カードをタップすると該当機器の詳細へ遷移する
+- 画面下部にタブナビゲーションを置いてもよい
+
+## 23. 画面一覧
+
+以下の画面を作成する。
+
+1. ログイン画面
+2. ダッシュボード画面
+3. 機器一覧画面
+4. 機器登録画面
+5. 機器詳細画面
+6. 機器編集画面
+7. スペック追加・編集画面
+8. メンテナンス履歴追加画面
+9. 修理履歴追加画面
+10. カテゴリ管理画面
+11. 設置場所管理画面
+12. AI入力支援画面
+13. 設定画面
+
+## 24. データベース設計案
+
+以下のテーブルをPostgreSQLで作成する。
+
+### households
+
+- id
+- name
+- created_at
+- updated_at
+
+### users
+
+- id
+- email
+- name
+- password_hash
+- created_at
+- updated_at
+
+### household_members
+
+- id
+- household_id
+- user_id
+- role
+- created_at
+- updated_at
+
+role:
+- owner
+- member
+
+### devices
+
+- id
+- household_id
+- name
+- category_id
+- manufacturer
+- model_number
+- serial_number
+- location_id
+- status
+- purchase_date
+- purchase_store
+- purchase_price
+- purchase_url
+- order_number
+- warranty_start_date
+- warranty_end_date
+- has_extended_warranty
+- manual_url
+- support_url
+- photo_url
+- label_photo_url
+- priority
+- memo
+- created_at
+- updated_at
+- deleted_at
+
+### categories
+
+- id
+- household_id
+- name
+- icon
+- sort_order
+- created_at
+- updated_at
+
+### locations
+
+- id
+- household_id
+- name
+- parent_id
+- memo
+- sort_order
+- created_at
+- updated_at
+
+### device_specs
+
+- id
+- household_id
+- device_id
+- spec_name
+- spec_value
+- unit
+- memo
+- sort_order
+- created_at
+- updated_at
+
+重要方針：
+PCのCPUやメモリ、NASのRAID構成、防犯カメラの解像度など、カテゴリによって必要なスペック項目が異なるため、devicesテーブルに固定カラムとして持たせない。
+device_specsに自由項目として保持する。
+
+### device_links
+
+- id
+- household_id
+- device_id
+- link_type
+- title
+- url
+- memo
+- created_at
+- updated_at
+
+### maintenance_records
+
+- id
+- household_id
+- device_id
+- maintenance_date
+- maintenance_type
+- description
+- cost
+- performed_by
+- next_due_date
+- photo_url
+- memo
+- created_at
+- updated_at
+
+### repair_records
+
+- id
+- household_id
+- device_id
+- occurred_date
+- symptom
+- cause
+- action_taken
+- repair_vendor
+- repair_ticket_number
+- cost
+- used_warranty
+- completed_date
+- status
+- memo
+- created_at
+- updated_at
+
+### consumables
+
+- id
+- household_id
+- device_id
+- name
+- manufacturer
+- model_number
+- replacement_interval_text
+- last_replaced_date
+- next_replacement_date
+- purchase_url
+- memo
+- created_at
+- updated_at
+
+### network_infos
+
+- id
+- household_id
+- device_id
+- ip_address
+- host_name
+- mac_address
+- admin_url
+- port
+- connection_type
+- credential_storage_memo
+- settings_memo
+- created_at
+- updated_at
+
+### accessories
+
+- id
+- household_id
+- device_id
+- name
+- quantity
+- storage_location
+- memo
+- created_at
+- updated_at
+
+### ai_import_logs
+
+MVPでは必須ではないが、将来拡張用に設計だけ考慮する。
+
+- id
+- household_id
+- device_id
+- source_ai_name
+- input_prompt
+- raw_response
+- parsed_json
+- imported_at
+- memo
+
+## 25. API仕様案
+
+スマホアプリから利用するREST APIを用意する。
+認証が必要なAPIは、ログイン済みユーザーが所属するhouseholdのデータのみアクセスできるようにする。
+
+### auth
+
+- POST /api/auth/register
+- POST /api/auth/login
+- POST /api/auth/logout
+- GET /api/auth/me
+
+### households
+
+- GET /api/households/current
+- GET /api/households/current/members
+
+### devices
+
+- GET /api/devices
+- GET /api/devices/:id
+- POST /api/devices
+- PUT /api/devices/:id
+- DELETE /api/devices/:id
+- POST /api/devices/:id/dispose
+
+### device_specs
+
+- GET /api/devices/:id/specs
+- POST /api/devices/:id/specs
+- PUT /api/device-specs/:specId
+- DELETE /api/device-specs/:specId
+
+### device_links
+
+- GET /api/devices/:id/links
+- POST /api/devices/:id/links
+- PUT /api/device-links/:linkId
+- DELETE /api/device-links/:linkId
+
+### maintenance_records
+
+- GET /api/devices/:id/maintenance-records
+- POST /api/devices/:id/maintenance-records
+- PUT /api/maintenance-records/:recordId
+- DELETE /api/maintenance-records/:recordId
+
+### repair_records
+
+- GET /api/devices/:id/repair-records
+- POST /api/devices/:id/repair-records
+- PUT /api/repair-records/:recordId
+- DELETE /api/repair-records/:recordId
+
+### consumables
+
+- GET /api/devices/:id/consumables
+- POST /api/devices/:id/consumables
+- PUT /api/consumables/:consumableId
+- DELETE /api/consumables/:consumableId
+
+### network_infos
+
+- GET /api/devices/:id/network-info
+- POST /api/devices/:id/network-info
+- PUT /api/network-infos/:networkInfoId
+- DELETE /api/network-infos/:networkInfoId
+
+### accessories
+
+- GET /api/devices/:id/accessories
+- POST /api/devices/:id/accessories
+- PUT /api/accessories/:accessoryId
+- DELETE /api/accessories/:accessoryId
+
+### AI import
+
+- POST /api/ai-import/parse
+- POST /api/devices/:id/ai-import/apply
+
+仕様：
+- JSON形式が不正な場合はエラーを返す
+- URL形式チェックを行う
+- 既存値の上書き有無を指定できる
+- 初期値では空欄項目のみ反映する
+- specsはdevice_specsに登録する
+- linksはdevice_linksに登録する
+- consumablesはconsumablesに登録する
+- accessoriesはaccessoriesに登録する
+- maintenance_suggestionsはMVPでは履歴に直接登録せず、プレビューまたはメモ扱いにする
+
+### master data
+
+- GET /api/categories
+- POST /api/categories
+- PUT /api/categories/:id
+- DELETE /api/categories/:id
+- GET /api/locations
+- POST /api/locations
+- PUT /api/locations/:id
+- DELETE /api/locations/:id
+
+### dashboard
+
+- GET /api/dashboard
+
+返却内容は以下。
+
+- warrantyExpiringSoonDevices
+- warrantyExpiredDevices
+- upcomingMaintenanceDevices
+- brokenDevices
+- recentDevices
+- incompleteDevices
+
+### export
+
+- GET /api/export/json
+
+## 26. バリデーション仕様
+
+### 機器登録
+
+- 機器名は必須
+- URL項目はURL形式であること
+- 購入価格は0以上の数値
+- 保証終了日は保証開始日以降
+- 購入日は未来日でも許可するが警告を出す
+
+### スペック
+
+- spec_nameは必須
+- spec_valueは任意
+- unitは任意
+- sort_orderは数値
+
+### メンテナンス履歴
+
+- 実施日は必須
+- 次回予定日は実施日以降が望ましい
+
+### 修理履歴
+
+- 発生日は必須
+- 完了日は発生日以降が望ましい
+
+### AI取り込み
+
+- JSONとして解析できること
+- 想定スキーマと異なる場合はエラーまたは警告を出す
+- URLはURL形式チェックを行う
+- 不明項目はnullまたは空欄として扱う
+- 既存データは初期状態では上書きしない
+- 取り込み前に必ずプレビューを表示する
+
+## 27. 非機能要件
+
+### 操作性
+
+- スマホで片手操作しやすいこと
+- 登録フォームは長すぎないようにセクション分けすること
+- 必須入力を少なくすること
+- 検索しやすいこと
+- ダッシュボードで今見るべき情報が分かること
+- 入力画面ではキーボードに隠れないようにすること
+- Android / iPhoneの両方で自然に使えるUIにすること
+
+### パフォーマンス
+
+- 家庭内利用として、登録機器数は最大500件程度を想定
+- 一覧表示は検索・絞り込み込みで快適に動作すること
+- スマホアプリ側ではAPIレスポンスを適度にキャッシュしてよい
+
+### セキュリティ
+
+- ログイン機能を設ける
+- パスワードはハッシュ化して保存する
+- パスワード、APIキー、秘密鍵はMVPでは機器情報として保存しない
+- 認証情報の保存場所メモのみ登録可能とする
+- APIはHTTPS前提にする
+- 管理画面URLなどは不用意に外部公開しない
+- AI APIキーはMVPでは扱わない
+
+### バックアップ
+
+- JSONエクスポート機能を用意する
+- PostgreSQLのバックアップを取りやすい構成にする
+- 将来的には定期バックアップに対応する
+
+## 28. スマホUI方針
+
+### ナビゲーション
+
+以下のようなタブ構成を推奨する。
+
+- ホーム
+- 機器
+- 追加
+- 検索
+- 設定
+
+または、Expo Routerで以下のようなルートを設計する。
+
+- /(auth)/login
+- /(tabs)/index
+- /(tabs)/devices
+- /devices/new
+- /devices/[id]
+- /devices/[id]/edit
+- /devices/[id]/specs
+- /devices/[id]/maintenance
+- /devices/[id]/repairs
+- /devices/[id]/ai-import
+- /settings
+
+### ダッシュボード
+
+アプリ起動時に以下をカード形式で表示する。
+
+- 保証期限が近い機器
+- メンテナンス予定が近い機器
+- 故障中・修理中の機器
+- 情報不足の機器
+- 最近追加・更新した機器
+- 機器登録ボタン
+
+### 機器一覧
+
+スマホではカード一覧にする。
+
+表示項目は以下。
+
+- 機器名
+- カテゴリ
+- 設置場所
+- メーカー
+- 型番
+- ステータス
+- 保証期限
+
+### 機器登録・編集
+
+入力項目が多いため、以下のようにセクション分けする。
+
+- 基本情報
+- 購入・保証
+- リンク・写真
+- スペック
+- ネットワーク情報
+- メモ
+
+機器名のみ必須にする。
+
+### 機器詳細
+
+以下を見やすく表示する。
+
+- 機器名
+- ステータスバッジ
+- カテゴリ
+- 設置場所
+- メーカー
+- 型番
+- 購入情報
+- 保証情報
+- スペック情報
+- 関連リンク
+- メンテナンス履歴
+- 修理履歴
+- 消耗品
+- 付属品
+- ネットワーク情報
+
+保証期限が近い場合は警告表示する。
+
+## 29. 推奨ディレクトリ構成
+
+モノレポ構成を推奨する。
+
+### 例
+
+homegear/
+- apps/
+  - mobile/
+    - app/
+    - src/
+      - components/
+      - features/
+      - hooks/
+      - lib/
+      - screens/
+      - types/
+  - api/
+    - src/
+      - modules/
+      - routes/
+      - services/
+      - repositories/
+      - middlewares/
+      - utils/
+- packages/
+  - shared/
+    - types/
+    - schemas/
+- prisma/
+  - schema.prisma
+  - migrations/
+- docker-compose.yml
+- README.md
+
+MVPでは、mobileとapiを分けて実装する。
+型定義やZodスキーマをpackages/sharedに置けると望ましい。
+
+## 30. 開発順序
+
+以下の順序で実装してください。
+
+### Step 1: 土台
+
+- Expoプロジェクト作成
+- TypeScript設定
+- バックエンドAPI作成
+- PostgreSQL設定
+- ORM設定
+- 認証の土台作成
+- 基本レイアウト作成
+- カテゴリ・設置場所の初期データ作成
+
+### Step 2: 機器台帳
+
+- 機器登録
+- 機器一覧
+- 機器詳細
+- 機器編集
+- 論理削除
+
+### Step 3: 関連情報
+
+- スペック情報
+- リンク管理
+- メンテナンス履歴
+- 修理履歴
+- 消耗品
+- 付属品
+- ネットワーク情報
+
+### Step 4: AI取り込み
+
+- AI調査用プロンプト生成
+- JSON貼り付け欄
+- JSON解析
+- バリデーション
+- 取り込みプレビュー
+- 空欄項目のみ反映
+- device_specsとdevice_linksへの取り込み
+- 余裕があればconsumablesとaccessoriesへの取り込み
+
+### Step 5: ダッシュボード
+
+- 保証期限が近い機器
+- メンテナンス予定が近い機器
+- 故障中・修理中の機器
+- 情報不足の機器
+
+### Step 6: バックアップ
+
+- JSONエクスポート
+- CSVエクスポートは余裕があれば対応
+
+### Step 7: 配布準備
+
+- EAS Build設定
+- Android Internal Distribution
+- iOS TestFlightを見据えた設定
+- .envの整理
+- API URLの環境別切り替え
+
+## 31. 受け入れ条件
+
+### スマホアプリ
+
+- ExpoでAndroid / iPhone向けに起動できる
+- スマホ画面で操作しやすい
+- 機器一覧・詳細・登録・編集がスマホUIとして成立している
+
+### 認証・共有
+
+- ログインできる
+- ログインユーザーが所属する家庭のデータだけ見られる
+- household_idにより家庭単位でデータを分離できる
+
+### 機器登録
+
+- 機器名だけで登録できる
+- 任意項目を後から編集できる
+- 登録後、一覧と詳細に表示される
+
+### 一覧
+
+- キーワード検索できる
+- カテゴリ、場所、ステータスで絞り込める
+- 保証期限が近い機器を把握できる
+
+### 詳細
+
+- 購入情報、保証情報、スペック、リンク、履歴を1画面で確認できる
+- スペック情報を複数登録できる
+- メンテナンス履歴を追加できる
+- 修理履歴を追加できる
+
+### スペック管理
+
+- PC、NAS、防犯カメラなどカテゴリが違っても自由項目として登録できる
+- devicesテーブルにCPUやメモリなどの固定カラムを追加していない
+- device_specsテーブルに複数行で保持している
+
+### AI取り込み
+
+- アプリ側でAI調査用プロンプトを生成できる
+- AIのJSON回答を貼り付けできる
+- JSON解析エラーを表示できる
+- 反映前プレビューを表示できる
+- 既存値を勝手に上書きしない
+- 初期状態では空欄項目のみ反映する
+- AIが返したdevice情報をdevicesの該当項目に反映できる
+- AIが返したspecsをdevice_specsに登録できる
+- AIが返したlinksをdevice_linksに登録できる
+- AIが返したconsumablesをconsumablesに登録できる設計になっている
+- AIが返したaccessoriesをaccessoriesに登録できる設計になっている
+- maintenance_suggestionsはMVPではメンテナンス履歴に直接登録せず、プレビューまたはメモ扱いにする
+
+### ダッシュボード
+
+- 保証期限が近い機器が表示される
+- メンテナンス予定が近い機器が表示される
+- 故障中・修理中の機器が表示される
+- 情報不足の機器が表示される
+
+### セキュリティ
+
+- パスワードや秘密鍵そのものを機器情報として保存しない
+- APIキーやアクセストークンを機器情報として保存しない
+- APIは認証必須にする
+- 自分の家庭以外のデータにアクセスできない
+
+## 32. Claudeへの依頼内容
+
+まず最初に、コードを書き始める前に以下を提示してください。
+
+1. 推奨する技術構成
+2. モノレポのディレクトリ構成
+3. スマホアプリ側の画面構成
+4. バックエンドAPI設計
+5. PostgreSQLのDB設計
+6. 認証・家庭共有の設計
+7. 実装手順
+8. MVPで最初に作るべき最小機能
+
+その後、MVPのコードを作成してください。
+
+実装時は以下を重視してください。
+
+- WebアプリではなくExpo + React Nativeのスマホアプリとして作る
+- TypeScriptで型安全にする
+- スマホで使いやすいUIにする
+- 入力フォームをセクション分けする
+- DBスキーマを将来拡張しやすくする
+- 正式データはPostgreSQLに保存する
+- 端末内SQLiteはMVPでは必須ではなく、使う場合もキャッシュや下書き用途にする
+- パスワードや秘密情報を機器情報として保存しない
+- AI APIはMVPでは使わず、AIチャットの出力JSONをコピペで取り込めるようにする
+- 機器名だけで登録できる
+- 論理削除を基本にする
+- PCスペックなどはdevicesの固定カラムではなくdevice_specsで自由項目として保持する
+- JSONエクスポートできる
+- 家族共有を見据えてhousehold_idでデータを分離する
+- まずはMVPを完成させ、その後に将来拡張へ進める構成にする

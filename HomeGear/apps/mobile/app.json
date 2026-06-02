@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "HomeGear",
+    "slug": "homegear",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#1B5E20"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.example.homegear"
+    },
+    "android": {
+      "package": "com.example.homegear"
+    },
+    "extra": {
+      "apiBaseUrl": "http://192.168.1.18:4000"
+    },
+    "plugins": [
+      "expo-secure-store",
+      "@react-native-community/datetimepicker"
+    ]
+  }
+}

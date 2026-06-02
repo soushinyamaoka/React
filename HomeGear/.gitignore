@@ -1,0 +1,23 @@
+node_modules/
+dist/
+build/
+.expo/
+.expo-shared/
+.env
+.env.local
+.DS_Store
+*.log
+coverage/
+.turbo/
+.cache/
+
+# Prisma
+apps/api/prisma/*.db
+
+# Mobile
+apps/mobile/web-build/
+apps/mobile/android/
+apps/mobile/ios/
+
+# Dev scripts
+.homegear-dev-pids.json

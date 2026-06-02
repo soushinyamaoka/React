@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: homegear-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: homegear
+      POSTGRES_PASSWORD: homegear_dev_password
+      POSTGRES_DB: homegear
+      TZ: Asia/Tokyo
+    ports:
+      - "5432:5432"
+    volumes:
+      - homegear_pgdata:/var/lib/postgresql/data
+
+volumes:
+  homegear_pgdata:

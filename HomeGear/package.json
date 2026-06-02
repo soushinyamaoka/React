@@ -1,0 +1,25 @@
+{
+  "name": "homegear",
+  "version": "0.1.0",
+  "private": true,
+  "description": "家庭内機器管理アプリ HomeGear（モバイル + API モノレポ）",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start-dev.ps1",
+    "stop": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/stop-dev.ps1",
+    "restart": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/restart-dev.ps1",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:logs": "docker compose logs -f postgres",
+    "api:dev": "npm run dev --workspace=@homegear/api",
+    "api:migrate": "npm run prisma:migrate --workspace=@homegear/api",
+    "api:seed": "npm run prisma:seed --workspace=@homegear/api",
+    "export:migration": "npm run export:migration --workspace=@homegear/api",
+    "mobile:start": "npm run start --workspace=@homegear/mobile",
+    "mobile:android": "npm run android --workspace=@homegear/mobile",
+    "mobile:ios": "npm run ios --workspace=@homegear/mobile"
+  }
+}

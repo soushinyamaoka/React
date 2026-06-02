@@ -1,0 +1,181 @@
+import React from 'react';
+import { ActivityIndicator, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
+
+import { useAuth } from '../hooks/useAuth';
+import { COLORS } from '../theme';
+
+import LoginScreen from '../screens/auth/LoginScreen';
+import RegisterScreen from '../screens/auth/RegisterScreen';
+import DashboardScreen from '../screens/DashboardScreen';
+import DeviceListScreen from '../screens/devices/DeviceListScreen';
+import DeviceDetailScreen from '../screens/devices/DeviceDetailScreen';
+import DeviceFormScreen from '../screens/devices/DeviceFormScreen';
+import SpecFormScreen from '../screens/devices/SpecFormScreen';
+import LinkFormScreen from '../screens/devices/LinkFormScreen';
+import MaintenanceFormScreen from '../screens/devices/MaintenanceFormScreen';
+import RepairFormScreen from '../screens/devices/RepairFormScreen';
+import ConsumableFormScreen from '../screens/devices/ConsumableFormScreen';
+import AccessoryFormScreen from '../screens/devices/AccessoryFormScreen';
+import NetworkInfoFormScreen from '../screens/devices/NetworkInfoFormScreen';
+import AiImportScreen from '../screens/aiImport/AiImportScreen';
+import SettingsScreen from '../screens/settings/SettingsScreen';
+import CategoryManageScreen from '../screens/settings/CategoryManageScreen';
+import LocationManageScreen from '../screens/settings/LocationManageScreen';
+import ExportScreen from '../screens/settings/ExportScreen';
+
+import type {
+  AuthStackParamList,
+  DevicesStackParamList,
+  MainTabParamList,
+  DashboardStackParamList,
+  SettingsStackParamList,
+  AiImportStackParamList,
+} from './types';
+
+const AuthStack = createNativeStackNavigator<AuthStackParamList>();
+const Tab = createBottomTabNavigator<MainTabParamList>();
+const DashStack = createNativeStackNavigator<DashboardStackParamList>();
+const DevicesStack = createNativeStackNavigator<DevicesStackParamList>();
+const SettingsStack = createNativeStackNavigator<SettingsStackParamList>();
+const AiStack = createNativeStackNavigator<AiImportStackParamList>();
+
+const screenHeaderOptions = {
+  headerStyle: { backgroundColor: COLORS.primary },
+  headerTintColor: '#fff',
+  headerTitleStyle: { fontWeight: '700' as const },
+};
+
+function AuthNavigator() {
+  return (
+    <AuthStack.Navigator screenOptions={screenHeaderOptions}>
+      <AuthStack.Screen name="Login" component={LoginScreen} options={{ title: 'ログイン' }} />
+      <AuthStack.Screen name="Register" component={RegisterScreen} options={{ title: 'アカウント作成' }} />
+    </AuthStack.Navigator>
+  );
+}
+
+function DashboardNavigator() {
+  return (
+    <DashStack.Navigator screenOptions={screenHeaderOptions}>
+      <DashStack.Screen name="Dashboard" component={DashboardScreen} options={{ title: 'ホーム' }} />
+    </DashStack.Navigator>
+  );
+}
+
+function DevicesNavigator() {
+  return (
+    <DevicesStack.Navigator screenOptions={screenHeaderOptions}>
+      <DevicesStack.Screen name="DeviceList" component={DeviceListScreen} options={{ title: '機器一覧' }} />
+      <DevicesStack.Screen name="DeviceDetail" component={DeviceDetailScreen} options={{ title: '機器詳細' }} />
+      <DevicesStack.Screen name="DeviceForm" component={DeviceFormScreen} options={{ title: '機器登録' }} />
+      <DevicesStack.Screen name="SpecForm" component={SpecFormScreen} options={{ title: 'スペック' }} />
+      <DevicesStack.Screen name="LinkForm" component={LinkFormScreen} options={{ title: 'リンク' }} />
+      <DevicesStack.Screen name="MaintenanceForm" component={MaintenanceFormScreen} options={{ title: 'メンテナンス履歴' }} />
+      <DevicesStack.Screen name="RepairForm" component={RepairFormScreen} options={{ title: '修理履歴' }} />
+      <DevicesStack.Screen name="ConsumableForm" component={ConsumableFormScreen} options={{ title: '消耗品' }} />
+      <DevicesStack.Screen name="AccessoryForm" component={AccessoryFormScreen} options={{ title: '付属品' }} />
+      <DevicesStack.Screen name="NetworkInfoForm" component={NetworkInfoFormScreen} options={{ title: 'ネットワーク情報' }} />
+      <DevicesStack.Screen name="AiImportFromDevice" component={AiImportScreen} options={{ title: 'AI取り込み' }} />
+    </DevicesStack.Navigator>
+  );
+}
+
+function AiImportNavigator() {
+  return (
+    <AiStack.Navigator screenOptions={screenHeaderOptions}>
+      <AiStack.Screen name="AiImport" component={AiImportScreen} options={{ title: 'AI入力支援' }} />
+    </AiStack.Navigator>
+  );
+}
+
+function SettingsNavigator() {
+  return (
+    <SettingsStack.Navigator screenOptions={screenHeaderOptions}>
+      <SettingsStack.Screen name="Settings" component={SettingsScreen} options={{ title: '設定' }} />
+      <SettingsStack.Screen name="CategoryManage" component={CategoryManageScreen} options={{ title: 'カテゴリ管理' }} />
+      <SettingsStack.Screen name="LocationManage" component={LocationManageScreen} options={{ title: '設置場所管理' }} />
+      <SettingsStack.Screen name="Export" component={ExportScreen} options={{ title: 'データエクスポート' }} />
+    </SettingsStack.Navigator>
+  );
+}
+
+// 「追加」タブはタップ時に DeviceForm を直接開く
+function AddPlaceholder() {
+  return <View />;
+}
+
+function MainNavigator() {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarActiveTintColor: COLORS.primary,
+        tabBarInactiveTintColor: COLORS.textMuted,
+        tabBarIcon: ({ color, size }) => {
+          const map: Record<string, any> = {
+            DashboardTab: 'home',
+            DevicesTab: 'list',
+            AddTab: 'add-circle',
+            AiImportTab: 'sparkles',
+            SettingsTab: 'settings',
+          };
+          return <Ionicons name={map[route.name]} size={size} color={color} />;
+        },
+      })}
+    >
+      <Tab.Screen name="DashboardTab" component={DashboardNavigator} options={{ tabBarLabel: 'ホーム' }} />
+      <Tab.Screen
+        name="DevicesTab"
+        component={DevicesNavigator}
+        options={{ tabBarLabel: '機器' }}
+        listeners={({ navigation, route }) => ({
+          // 既にフォーカス中のタブを再タップしたらネストされたスタックを一覧へ戻す
+          tabPress: (e) => {
+            const parentState = navigation.getState();
+            const isFocused = parentState.routes[parentState.index].name === route.name;
+            if (isFocused) {
+              e.preventDefault();
+              navigation.navigate('DevicesTab', { screen: 'DeviceList' } as any);
+            }
+          },
+        })}
+      />
+      <Tab.Screen
+        name="AddTab"
+        component={AddPlaceholder}
+        options={{ tabBarLabel: '追加' }}
+        listeners={({ navigation }) => ({
+          tabPress: (e) => {
+            e.preventDefault();
+            navigation.navigate('DevicesTab', {
+              screen: 'DeviceForm',
+              params: {},
+            } as any);
+          },
+        })}
+      />
+      <Tab.Screen name="AiImportTab" component={AiImportNavigator} options={{ tabBarLabel: 'AI取込' }} />
+      <Tab.Screen name="SettingsTab" component={SettingsNavigator} options={{ tabBarLabel: '設定' }} />
+    </Tab.Navigator>
+  );
+}
+
+export const RootNavigator: React.FC = () => {
+  const { user, loading } = useAuth();
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: COLORS.bg }}>
+        <ActivityIndicator color={COLORS.primary} />
+      </View>
+    );
+  }
+  return (
+    <NavigationContainer>
+      {user ? <MainNavigator /> : <AuthNavigator />}
+    </NavigationContainer>
+  );
+};

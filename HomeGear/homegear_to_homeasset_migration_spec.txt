@@ -1,0 +1,974 @@
+あなたは優秀なフルスタックエンジニアです。
+既存の「家庭内機器管理アプリ」から、新しい「家庭内資産・住宅設備管理アプリ HomeAsset」へデータ移行を行いたいです。
+以下の仕様に沿って、移行方針・DB差分・マッピング・移行スクリプト・検証手順・ロールバック手順を提示し、実装してください。
+
+# HomeGear から HomeAsset へのデータ移行仕様書
+
+## 1. 背景
+
+既に前回仕様で、家庭内機器管理アプリを作成済みである。
+
+前回アプリでは、主に以下の考え方で設計されている。
+
+- 管理対象は「機器」
+- 中心テーブルは devices
+- スペック情報は device_specs
+- リンク情報は device_links
+- メンテナンス履歴、修理履歴、消耗品、付属品、ネットワーク情報は device_id に紐づく
+
+今回、新仕様として、家電・IT機器だけでなく、住宅設備や建物部位も管理対象に含めたい。
+
+新仕様では、中心概念を「機器」ではなく「家庭内資産」に広げる。
+
+- devices → home_assets
+- device_specs → asset_specs
+- device_links → asset_links
+- device_id → asset_id
+- 家電・PC・ルーターだけでなく、給湯器、システムキッチン、外壁、屋根、浴室、トイレなども管理対象にする
+
+そのため、既存データを新仕様のDBへ移行する必要がある。
+
+## 2. 移行の目的
+
+既存アプリに登録済みの機器データを失わず、新しいHomeAsset仕様へ移行する。
+
+移行後は、既存の機器データがすべて「家庭内資産」として扱えるようにする。
+
+移行対象：
+
+- 機器本体情報
+- カテゴリ
+- 設置場所
+- スペック情報
+- リンク情報
+- メンテナンス履歴
+- 修理履歴
+- 消耗品
+- 付属品
+- ネットワーク情報
+- AI取り込み履歴がある場合は可能な範囲で移行
+
+## 3. 前提
+
+### 3.1 旧アプリ
+
+旧アプリ名は仮に HomeGear とする。
+
+旧アプリの中心テーブルは以下を想定する。
+
+- households
+- users
+- household_members
+- devices
+- categories
+- locations
+- device_specs
+- device_links
+- maintenance_records
+- repair_records
+- consumables
+- network_infos
+- accessories
+- ai_import_logs
+
+ただし、実際の旧アプリに存在しないテーブルがあってもよい。
+存在しないテーブルはスキップできるようにする。
+
+### 3.2 新アプリ
+
+新アプリ名は HomeAsset とする。
+
+新アプリの中心テーブルは以下。
+
+- households
+- users
+- household_members
+- home_assets
+- categories
+- locations
+- asset_specs
+- asset_links
+- maintenance_records
+- repair_records
+- consumables
+- network_infos
+- accessories
+- ai_import_logs
+
+### 3.3 DB
+
+旧アプリ・新アプリともにPostgreSQLを想定する。
+
+ただし、旧アプリがSQLiteの場合にも対応できるように、以下の2方式を想定する。
+
+#### 方式A: DB直接移行
+
+旧DBと新DBの両方に接続して、スクリプトで移行する。
+
+#### 方式B: JSONエクスポート・インポート移行
+
+旧アプリからJSONエクスポートし、新アプリ側でJSONをインポートする。
+
+MVPでは、実装しやすく安全な方式として、方式Bを優先してもよい。
+ただし、データ量が少なく、DB構造が明確であれば方式Aでもよい。
+
+## 4. 移行方針
+
+### 4.1 基本方針
+
+- 移行前に必ずバックアップを取る
+- 移行処理は一括実行できるようにする
+- 移行処理はdry-runできるようにする
+- 移行処理は冪等性を意識する
+- 移行後に件数チェックを行う
+- 旧DBは削除せず、一定期間保持する
+- 旧IDと新IDの対応表を残す
+- 既存データを勝手に破棄しない
+- 不明な値はnullまたはmemoへ退避する
+- 旧仕様で「devices」として登録されていたものは、原則としてasset_type = device として移行する
+
+### 4.2 安全性
+
+移行スクリプトには以下のモードを用意する。
+
+- dry-run
+  - 実際にはDBへ書き込まず、移行予定件数・マッピング・警告だけ表示する
+- execute
+  - 実際に移行する
+- verify
+  - 移行後の件数・整合性を確認する
+
+### 4.3 冪等性
+
+同じ移行を複数回実行しても、重複登録されにくいようにする。
+
+そのため、以下のような移行管理テーブルを新DBに作成することを推奨する。
+
+## 5. 移行管理テーブル
+
+### migration_mappings
+
+旧テーブルのIDと新テーブルのIDの対応を記録する。
+
+#### カラム案
+
+- id
+- migration_name
+- source_table
+- source_id
+- target_table
+- target_id
+- created_at
+
+#### ユニーク制約
+
+- migration_name
+- source_table
+- source_id
+- target_table
+
+### migration_logs
+
+移行実行ログを記録する。
+
+#### カラム案
+
+- id
+- migration_name
+- mode
+- status
+- started_at
+- finished_at
+- summary_json
+- error_message
+
+### 仕様
+
+- migration_mappingsを見て、既に移行済みのデータは再作成しない
+- dry-runではmigration_mappingsには書き込まない
+- executeで成功した場合のみmigration_mappingsへ書き込む
+- 失敗時はmigration_logsにエラーを記録する
+
+## 6. 旧DBから新DBへのテーブル対応
+
+## 6.1 全体対応
+
+| 旧テーブル | 新テーブル | 方針 |
+|---|---|---|
+| households | households | 基本的にそのまま移行 |
+| users | users | 基本的にそのまま移行 |
+| household_members | household_members | 基本的にそのまま移行 |
+| devices | home_assets | 中心の移行対象 |
+| categories | categories | asset_type列を追加して移行 |
+| locations | locations | 基本的にそのまま移行 |
+| device_specs | asset_specs | device_idをasset_idへ変換 |
+| device_links | asset_links | device_idをasset_idへ変換 |
+| maintenance_records | maintenance_records | device_idをasset_idへ変換 |
+| repair_records | repair_records | device_idをasset_idへ変換 |
+| consumables | consumables | device_idをasset_idへ変換 |
+| network_infos | network_infos | device_idをasset_idへ変換 |
+| accessories | accessories | device_idをasset_idへ変換 |
+| ai_import_logs | ai_import_logs | device_idをasset_idへ変換し、任意で移行 |
+
+## 7. devices → home_assets のマッピング
+
+旧devicesのデータを新home_assetsへ移行する。
+
+### 7.1 基本方針
+
+旧devicesに存在するデータは、原則として以下で移行する。
+
+- home_assets.asset_type = device
+- home_assets.name = devices.name
+- home_assets.status = devices.statusを新statusへ変換
+- devicesにしかない値は可能な限りhome_assetsへ移す
+- 新仕様で追加された設置日・施工日・施工業者などはnullでよい
+- 旧devices.memoはhome_assets.memoへ移行する
+
+### 7.2 カラム対応
+
+| 旧 devices | 新 home_assets | 備考 |
+|---|---|---|
+| id | migration_mappings.source_id | 旧IDとして保持 |
+| household_id | household_id | そのまま |
+| name | name | そのまま |
+| なし | asset_type | 原則 device |
+| category_id | category_id | 旧カテゴリを新カテゴリへマッピング |
+| manufacturer | manufacturer | そのまま |
+| model_number | model_number | そのまま |
+| serial_number | serial_number | そのまま |
+| location_id | location_id | 旧場所を新場所へマッピング |
+| status | status | ステータス変換表に従う |
+| purchase_date | purchase_date | そのまま |
+| なし | installed_date | null |
+| なし | construction_date | null |
+| purchase_store | purchase_store | そのまま |
+| なし | contractor_name | null |
+| なし | contractor_contact | null |
+| なし | contact_person | null |
+| purchase_price | purchase_price | そのまま |
+| なし | construction_cost | null |
+| purchase_url | purchase_url | そのまま |
+| order_number | order_number | そのまま |
+| なし | contract_number | null |
+| receipt_url | receipt_url | そのまま |
+| なし | construction_document_url | null |
+| warranty_start_date | warranty_start_date | そのまま |
+| warranty_end_date | warranty_end_date | そのまま |
+| has_extended_warranty | has_extended_warranty | そのまま |
+| manual_url | manual_url | そのまま |
+| support_url | support_url | そのまま |
+| photo_url | photo_url | そのまま |
+| label_photo_url | label_photo_url | そのまま |
+| なし | before_photo_url | null |
+| なし | after_photo_url | null |
+| priority | priority | そのまま |
+| なし | expected_lifespan_years | null |
+| なし | replacement_due_date | null |
+| memo | memo | そのまま |
+| created_at | created_at | 可能なら維持 |
+| updated_at | updated_at | 可能なら維持 |
+| deleted_at | deleted_at | そのまま |
+
+## 8. asset_type の決定ルール
+
+### 8.1 既存devicesの基本ルール
+
+旧アプリでは全て機器として管理しているため、基本は以下でよい。
+
+```text
+asset_type = device
+```
+
+### 8.2 カテゴリ名から推測する場合
+
+旧アプリのカテゴリ名に住宅設備や建物部位が混ざっている可能性がある場合は、以下のルールで推測する。
+
+| 旧カテゴリ名 | asset_type |
+|---|---|
+| 家電 | device |
+| IT機器 | device |
+| ネットワーク機器 | device |
+| スマートホーム | device |
+| 防犯カメラ | device |
+| 生活設備 | housing_equipment |
+| 住宅設備 | housing_equipment |
+| キッチン | housing_equipment |
+| 浴室 | housing_equipment |
+| トイレ | housing_equipment |
+| 洗面台 | housing_equipment |
+| 給湯器 | housing_equipment |
+| 建物部位 | building_part |
+| 外壁 | building_part |
+| 屋根 | building_part |
+| 窓 | building_part |
+| 玄関ドア | building_part |
+| ベランダ | building_part |
+| 家具 | furniture |
+| 工具 | tool |
+| その他 | other |
+
+### 8.3 手動補正
+
+移行前にカテゴリごとのasset_type候補を表示し、必要に応じて手動補正できると望ましい。
+
+MVPでは、JSONや設定ファイルでカテゴリ名とasset_typeの対応を指定できるようにする。
+
+例：
+
+```json
+{
+  "categoryAssetTypeMap": {
+    "家電": "device",
+    "IT機器": "device",
+    "ネットワーク機器": "device",
+    "住宅設備": "housing_equipment",
+    "外壁": "building_part",
+    "工具": "tool"
+  }
+}
+```
+
+## 9. ステータス変換
+
+旧devices.statusを新home_assets.statusへ変換する。
+
+| 旧status | 新status | 備考 |
+|---|---|---|
+| active | active | 使用中 |
+| spare | spare | 予備 |
+| broken | broken | 故障中 |
+| repairing | repairing | 修理中 |
+| disposed | disposed | 廃棄済み |
+| sold | sold | 売却済み |
+| maintenance_planned | maintenance_planned | 旧DBに存在する場合 |
+| replacement_planned | replacement_planned | 旧DBに存在する場合 |
+| replaced | replaced | 旧DBに存在する場合 |
+| 不明 | active | 警告を出してactiveへ |
+
+## 10. categories の移行
+
+旧categoriesを新categoriesへ移行する。
+
+### 10.1 方針
+
+新categoriesにはasset_typeを追加する。
+
+旧categoriesにasset_typeがない場合は、カテゴリ名から推測する。
+
+### 10.2 カラム対応
+
+| 旧 categories | 新 categories | 備考 |
+|---|---|---|
+| id | migration_mappings.source_id | 旧IDとして保持 |
+| household_id | household_id | そのまま |
+| name | name | そのまま |
+| なし | asset_type | カテゴリ名から推測、またはdevice |
+| icon | icon | そのまま |
+| sort_order | sort_order | そのまま |
+| created_at | created_at | 可能なら維持 |
+| updated_at | updated_at | 可能なら維持 |
+
+### 10.3 重複対応
+
+既に新DBに同名カテゴリがある場合は、原則として再作成せず既存カテゴリへ紐づける。
+
+一致条件：
+
+- household_id
+- name
+- asset_type
+
+## 11. locations の移行
+
+旧locationsを新locationsへ移行する。
+
+### 11.1 方針
+
+locationsは基本的にそのまま移行する。
+
+parent_idがある場合は、親ロケーションを先に移行してから子ロケーションを移行する。
+
+### 11.2 カラム対応
+
+| 旧 locations | 新 locations | 備考 |
+|---|---|---|
+| id | migration_mappings.source_id | 旧IDとして保持 |
+| household_id | household_id | そのまま |
+| name | name | そのまま |
+| parent_id | parent_id | 新location idへ変換 |
+| memo | memo | そのまま |
+| sort_order | sort_order | そのまま |
+| created_at | created_at | 可能なら維持 |
+| updated_at | updated_at | 可能なら維持 |
+
+### 11.3 重複対応
+
+既に新DBに同名場所がある場合は、原則として再作成せず既存場所へ紐づける。
+
+一致条件：
+
+- household_id
+- name
+- parent_id
+
+## 12. device_specs → asset_specs の移行
+
+### 12.1 方針
+
+旧device_specsは新asset_specsへ移行する。
+
+device_idは、migration_mappingsを使ってasset_idへ変換する。
+
+### 12.2 カラム対応
+
+| 旧 device_specs | 新 asset_specs | 備考 |
+|---|---|---|
+| id | migration_mappings.source_id | 旧IDとして保持 |
+| household_id | household_id | 旧DBにない場合はdevice経由で補完 |
+| device_id | asset_id | device→home_assetの対応表から変換 |
+| spec_name | spec_name | そのまま |
+| spec_value | spec_value | そのまま |
+| unit | unit | そのまま |
+| memo | memo | そのまま |
+| sort_order | sort_order | そのまま |
+| created_at | created_at | 可能なら維持 |
+| updated_at | updated_at | 可能なら維持 |
+
+### 12.3 注意
+
+home_assetsへ直接CPUやメモリなどの固定カラムを追加しない。
+旧device_specsは必ずasset_specsへ移行する。
+
+## 13. device_links → asset_links の移行
+
+### 13.1 方針
+
+旧device_linksは新asset_linksへ移行する。
+
+device_idはasset_idへ変換する。
+
+### 13.2 link_type変換
+
+| 旧link_type | 新link_type |
+|---|---|
+| manual | manual |
+| warranty | warranty |
+| receipt | receipt |
+| invoice | invoice |
+| support | support |
+| purchase | purchase |
+| official | official |
+| other | other |
+| 不明 | other |
+
+### 13.3 カラム対応
+
+| 旧 device_links | 新 asset_links |
+|---|---|
+| id | migration_mappings.source_id |
+| household_id | household_id |
+| device_id | asset_id |
+| link_type | link_type |
+| title | title |
+| url | url |
+| memo | memo |
+| created_at | created_at |
+| updated_at | updated_at |
+
+## 14. maintenance_records の移行
+
+### 14.1 方針
+
+旧maintenance_recordsはテーブル名は同じでも、device_idをasset_idへ変更する。
+
+### 14.2 カラム対応
+
+| 旧 maintenance_records | 新 maintenance_records | 備考 |
+|---|---|---|
+| id | migration_mappings.source_id | 旧IDとして保持 |
+| household_id | household_id | 旧DBにない場合はdevice経由で補完 |
+| device_id | asset_id | 対応表から変換 |
+| maintenance_date | maintenance_date | そのまま |
+| maintenance_type | maintenance_type | そのまま |
+| description | description | そのまま |
+| cost | cost | そのまま |
+| performed_by | performed_by | そのまま |
+| なし | vendor_name | null |
+| next_due_date | next_due_date | そのまま |
+| photo_url | photo_url | そのまま |
+| なし | document_url | null |
+| memo | memo | そのまま |
+| created_at | created_at | 可能なら維持 |
+| updated_at | updated_at | 可能なら維持 |
+
+## 15. repair_records の移行
+
+### 15.1 方針
+
+旧repair_recordsは新repair_recordsへ移行する。
+device_idをasset_idへ変換する。
+
+旧仕様でrepair_vendorだったものは新仕様のvendor_nameへ移す。
+
+### 15.2 カラム対応
+
+| 旧 repair_records | 新 repair_records | 備考 |
+|---|---|---|
+| id | migration_mappings.source_id | 旧IDとして保持 |
+| household_id | household_id | 旧DBにない場合はdevice経由で補完 |
+| device_id | asset_id | 対応表から変換 |
+| occurred_date | occurred_date | そのまま |
+| symptom | symptom | そのまま |
+| cause | cause | そのまま |
+| action_taken | action_taken | そのまま |
+| repair_vendor | vendor_name | 名称変更 |
+| repair_ticket_number | ticket_number | 名称変更 |
+| なし | estimated_cost | null |
+| cost | cost | そのまま |
+| used_warranty | used_warranty | そのまま |
+| completed_date | completed_date | そのまま |
+| status | status | 変換表に従う |
+| なし | photo_url | null |
+| なし | estimate_url | null |
+| なし | invoice_url | null |
+| memo | memo | そのまま |
+| created_at | created_at | 可能なら維持 |
+| updated_at | updated_at | 可能なら維持 |
+
+## 16. consumables の移行
+
+### 16.1 方針
+
+旧consumablesは新consumablesへ移行する。
+device_idをasset_idへ変換する。
+
+### 16.2 カラム対応
+
+| 旧 consumables | 新 consumables |
+|---|---|
+| id | migration_mappings.source_id |
+| household_id | household_id |
+| device_id | asset_id |
+| name | name |
+| manufacturer | manufacturer |
+| model_number | model_number |
+| replacement_interval_text | replacement_interval_text |
+| last_replaced_date | last_replaced_date |
+| next_replacement_date | next_replacement_date |
+| purchase_url | purchase_url |
+| memo | memo |
+| created_at | created_at |
+| updated_at | updated_at |
+
+## 17. network_infos の移行
+
+### 17.1 方針
+
+旧network_infosは新network_infosへ移行する。
+device_idをasset_idへ変換する。
+
+### 17.2 カラム対応
+
+| 旧 network_infos | 新 network_infos |
+|---|---|
+| id | migration_mappings.source_id |
+| household_id | household_id |
+| device_id | asset_id |
+| ip_address | ip_address |
+| host_name | host_name |
+| mac_address | mac_address |
+| admin_url | admin_url |
+| port | port |
+| connection_type | connection_type |
+| credential_storage_memo | credential_storage_memo |
+| settings_memo | settings_memo |
+| created_at | created_at |
+| updated_at | updated_at |
+
+## 18. accessories の移行
+
+### 18.1 方針
+
+旧accessoriesは新accessoriesへ移行する。
+device_idをasset_idへ変換する。
+
+### 18.2 カラム対応
+
+| 旧 accessories | 新 accessories |
+|---|---|
+| id | migration_mappings.source_id |
+| household_id | household_id |
+| device_id | asset_id |
+| name | name |
+| quantity | quantity |
+| storage_location | storage_location |
+| memo | memo |
+| created_at | created_at |
+| updated_at | updated_at |
+
+## 19. ai_import_logs の移行
+
+### 19.1 方針
+
+ai_import_logsはMVPでは移行必須ではない。
+ただし、履歴を保持したい場合は移行する。
+
+### 19.2 カラム対応
+
+| 旧 ai_import_logs | 新 ai_import_logs |
+|---|---|
+| id | migration_mappings.source_id |
+| household_id | household_id |
+| device_id | asset_id |
+| source_ai_name | source_ai_name |
+| input_prompt | input_prompt |
+| raw_response | raw_response |
+| parsed_json | parsed_json |
+| imported_at | imported_at |
+| memo | memo |
+
+### 19.3 parsed_json の扱い
+
+旧parsed_json内に device や specs というキーがある場合でも、過去ログとしてそのまま保存してよい。
+無理に asset 形式へ変換しなくてよい。
+
+## 20. 移行順序
+
+移行は依存関係を考慮して以下の順序で実行する。
+
+1. バックアップ作成
+2. 新DBスキーマ作成
+3. migration_mappings / migration_logs 作成
+4. households 移行
+5. users 移行
+6. household_members 移行
+7. categories 移行
+8. locations 移行
+9. devices → home_assets 移行
+10. device_specs → asset_specs 移行
+11. device_links → asset_links 移行
+12. maintenance_records 移行
+13. repair_records 移行
+14. consumables 移行
+15. network_infos 移行
+16. accessories 移行
+17. ai_import_logs 移行
+18. 件数チェック
+19. 参照整合性チェック
+20. アプリ上で動作確認
+21. 旧DBを保管
+
+## 21. JSONエクスポート・インポート方式の仕様
+
+旧アプリからJSONをエクスポートし、新アプリへインポートする方式も用意する。
+
+### 21.1 旧アプリ側エクスポートJSON形式
+
+旧アプリから以下の形式でエクスポートする。
+
+```json
+{
+  "exported_at": "2026-01-01T00:00:00.000Z",
+  "source_app": "HomeGear",
+  "schema_version": "device-v1",
+  "households": [],
+  "users": [],
+  "household_members": [],
+  "categories": [],
+  "locations": [],
+  "devices": [],
+  "device_specs": [],
+  "device_links": [],
+  "maintenance_records": [],
+  "repair_records": [],
+  "consumables": [],
+  "network_infos": [],
+  "accessories": [],
+  "ai_import_logs": []
+}
+```
+
+### 21.2 新アプリ側インポート処理
+
+新アプリ側では、上記JSONを読み込み、以下へ変換する。
+
+- devices → home_assets
+- device_specs → asset_specs
+- device_links → asset_links
+- device_id → asset_id
+
+### 21.3 インポート画面
+
+新アプリに移行用の管理画面または一時的なCLIを用意する。
+
+MVPではCLIでよい。
+
+#### CLI例
+
+```bash
+pnpm migrate:homegear --input ./exports/homegear-export.json --dry-run
+pnpm migrate:homegear --input ./exports/homegear-export.json --execute
+pnpm migrate:homegear --verify
+```
+
+## 22. DB直接移行方式の仕様
+
+旧DBと新DBの両方に接続できる場合、直接移行スクリプトを使ってもよい。
+
+### 22.1 環境変数
+
+```text
+OLD_DATABASE_URL=postgresql://...
+NEW_DATABASE_URL=postgresql://...
+MIGRATION_NAME=homegear_to_homeasset_v1
+```
+
+### 22.2 CLI例
+
+```bash
+pnpm migrate:homegear-db --dry-run
+pnpm migrate:homegear-db --execute
+pnpm migrate:homegear-db --verify
+```
+
+## 23. 検証仕様
+
+移行後に以下を検証する。
+
+### 23.1 件数チェック
+
+以下の件数が一致または期待通りであること。
+
+| 旧 | 新 |
+|---|---|
+| devices件数 | home_assets件数 |
+| device_specs件数 | asset_specs件数 |
+| device_links件数 | asset_links件数 |
+| maintenance_records件数 | maintenance_records件数 |
+| repair_records件数 | repair_records件数 |
+| consumables件数 | consumables件数 |
+| network_infos件数 | network_infos件数 |
+| accessories件数 | accessories件数 |
+
+### 23.2 参照整合性チェック
+
+以下を確認する。
+
+- asset_specs.asset_id が存在するhome_assets.idを参照している
+- asset_links.asset_id が存在するhome_assets.idを参照している
+- maintenance_records.asset_id が存在するhome_assets.idを参照している
+- repair_records.asset_id が存在するhome_assets.idを参照している
+- consumables.asset_id が存在するhome_assets.idを参照している
+- network_infos.asset_id が存在するhome_assets.idを参照している
+- accessories.asset_id が存在するhome_assets.idを参照している
+- home_assets.category_id が存在するcategories.idを参照している
+- home_assets.location_id が存在するlocations.idを参照している
+
+### 23.3 サンプルデータ確認
+
+移行後、代表的なデータをアプリ画面で確認する。
+
+確認対象例：
+
+- テレビ
+- PC
+- ルーター
+- 防犯カメラ
+- メンテナンス履歴がある機器
+- スペックが複数ある機器
+- リンクが複数ある機器
+- 修理履歴がある機器
+
+確認内容：
+
+- 一覧に表示される
+- 詳細画面が開ける
+- スペックが表示される
+- リンクが表示される
+- メンテナンス履歴が表示される
+- 修理履歴が表示される
+- ステータスが正しい
+- 保証期限が正しい
+- カテゴリ・設置場所が正しい
+
+## 24. ロールバック仕様
+
+移行に失敗した場合に備えて、ロールバック手順を用意する。
+
+### 24.1 原則
+
+- 移行前に旧DBと新DBのバックアップを取る
+- execute前にdry-runを必ず行う
+- execute中にエラーが出た場合は、トランザクションをロールバックする
+- 大量データを分割移行する場合も、テーブル単位または全体単位でロールバックできるようにする
+
+### 24.2 PostgreSQLバックアップ例
+
+```bash
+pg_dump "$OLD_DATABASE_URL" > backup_old_before_migration.sql
+pg_dump "$NEW_DATABASE_URL" > backup_new_before_migration.sql
+```
+
+### 24.3 復元例
+
+```bash
+psql "$OLD_DATABASE_URL" < backup_old_before_migration.sql
+psql "$NEW_DATABASE_URL" < backup_new_before_migration.sql
+```
+
+## 25. エラー・警告仕様
+
+移行中に以下のような問題があれば警告として出力する。
+
+- category_idが存在しない
+- location_idが存在しない
+- device_idに対応するasset_idがない
+- statusが変換表にない
+- link_typeが変換表にない
+- URL形式が不正
+- 日付形式が不正
+- required項目が空
+- 同じ旧IDが既に移行済み
+
+警告の扱い：
+
+- 致命的でないものは移行を継続
+- 参照先が存在しないなど重大なものは該当レコードをスキップし、ログに記録
+- スキップ件数を最後に表示
+- 可能であればCSVまたはJSONでエラーレポートを出力する
+
+## 26. 実装してほしいもの
+
+以下を実装してください。
+
+### 26.1 移行スクリプト
+
+TypeScriptで移行スクリプトを作成する。
+
+必要なコマンド：
+
+```bash
+pnpm migrate:homegear --input ./exports/homegear-export.json --dry-run
+pnpm migrate:homegear --input ./exports/homegear-export.json --execute
+pnpm migrate:homegear --verify
+```
+
+可能であればDB直接移行も実装する。
+
+```bash
+pnpm migrate:homegear-db --dry-run
+pnpm migrate:homegear-db --execute
+pnpm migrate:homegear-db --verify
+```
+
+### 26.2 マッピング処理
+
+以下のマッピング関数を実装する。
+
+- mapDeviceToHomeAsset
+- mapDeviceSpecToAssetSpec
+- mapDeviceLinkToAssetLink
+- mapMaintenanceRecord
+- mapRepairRecord
+- mapConsumable
+- mapNetworkInfo
+- mapAccessory
+- mapCategory
+- mapLocation
+- mapStatus
+- inferAssetTypeFromCategory
+
+### 26.3 検証処理
+
+以下の検証関数を実装する。
+
+- validateExportJson
+- validateRequiredFields
+- validateReferences
+- verifyMigrationCounts
+- verifyAssetRelations
+
+### 26.4 ログ出力
+
+移行結果として以下を出力する。
+
+- 移行対象件数
+- 移行成功件数
+- スキップ件数
+- 警告件数
+- エラー件数
+- テーブル別件数
+- 旧ID→新IDの対応件数
+- エラーレポートファイルのパス
+
+## 27. 受け入れ条件
+
+### 27.1 dry-run
+
+- dry-runで実DBに書き込まない
+- 移行予定件数が表示される
+- カテゴリごとのasset_type推測結果が表示される
+- スキップ予定のレコードが表示される
+- 警告が表示される
+
+### 27.2 execute
+
+- 旧devicesが新home_assetsへ移行される
+- 旧device_specsが新asset_specsへ移行される
+- 旧device_linksが新asset_linksへ移行される
+- 各関連テーブルのdevice_idがasset_idへ正しく変換される
+- migration_mappingsに旧IDと新IDの対応が保存される
+- 途中で致命的エラーが起きた場合はロールバックされる
+
+### 27.3 verify
+
+- 旧件数と新件数を比較できる
+- 関連データの参照整合性を確認できる
+- 問題があればエラーレポートを出力する
+
+### 27.4 アプリ確認
+
+移行後のHomeAssetアプリで以下が確認できる。
+
+- 既存機器が資産一覧に表示される
+- 既存機器の詳細が開ける
+- スペックが表示される
+- リンクが表示される
+- メンテナンス履歴が表示される
+- 修理履歴が表示される
+- 消耗品が表示される
+- 付属品が表示される
+- ネットワーク情報が表示される
+- 保証期限・ステータスが正しい
+
+## 28. Claudeへの依頼内容
+
+まず最初に、コードを書き始める前に以下を提示してください。
+
+1. 移行方式の推奨
+2. 旧DBと新DBの差分整理
+3. テーブル別マッピング表
+4. asset_type推測ルール
+5. ステータス変換ルール
+6. 移行順序
+7. dry-run / execute / verify の設計
+8. ロールバック方針
+9. 実装するファイル構成
+
+その後、TypeScriptで移行スクリプトを作成してください。
+
+実装時は以下を重視してください。
+
+- データを失わないこと
+- dry-runを必ず用意すること
+- execute前にバックアップを促すこと
+- 旧IDと新IDの対応表を保存すること
+- 参照整合性を壊さないこと
+- device_idをasset_idへ正しく変換すること
+- devicesをhome_assetsへ正しく変換すること
+- device_specsをasset_specsへ正しく変換すること
+- device_linksをasset_linksへ正しく変換すること
+- 不明な値は破棄せず、memoまたは警告ログに残すこと
+- 移行後にverifyできること
+- 途中失敗時にロールバックできること
