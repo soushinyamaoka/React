@@ -118,6 +118,13 @@ export default function App() {
     setModalState({ mode: "view", recipe: full, menuRef: modalState?.menuRef });
   };
 
+  const handlePromoteRecipe = (): void => {
+    if (!modalState?.recipe) return;
+    const updated: Recipe = { ...modalState.recipe, showInList: true };
+    setRecipes(p => p.map(r => r.id === updated.id ? updated : r));
+    setModalState({ ...modalState, recipe: updated });
+  };
+
   const handleModalDeleteMenu = (): void => {
     if (!modalState?.menuRef) return;
     const { dateKey, index } = modalState.menuRef;
@@ -214,6 +221,7 @@ export default function App() {
           onSave={handleModalSaveRecipe} onSaveForMeal={handleSaveForMeal}
           onEdit={() => setModalState({ ...modalState, mode: "edit" })}
           onCreateRecipe={() => setModalState({ ...modalState, mode: "create" })}
+          onPromote={handlePromoteRecipe}
           onDeleteMenu={handleModalDeleteMenu}
           onWebSearch={() => setModalState({ ...modalState, mode: "search" })} />
       )}
@@ -918,11 +926,12 @@ type RecipeModalProps = {
   onSaveForMeal: (recipe: RecipeFormData, dateKey: string, saveAsRecipe: boolean) => void;
   onEdit: () => void;
   onCreateRecipe: () => void;
+  onPromote: () => void;
   onDeleteMenu: () => void;
   onWebSearch: () => void;
 };
 
-function RecipeModal({ state, onClose, onSave, onSaveForMeal, onEdit, onCreateRecipe, onDeleteMenu, onWebSearch }: RecipeModalProps) {
+function RecipeModal({ state, onClose, onSave, onSaveForMeal, onEdit, onCreateRecipe, onPromote, onDeleteMenu, onWebSearch }: RecipeModalProps) {
   const { mode, recipe, prefillName, dateKey } = state;
   return (
     <Modal visible={true} animationType="slide" transparent>
@@ -966,6 +975,11 @@ function RecipeModal({ state, onClose, onSave, onSaveForMeal, onEdit, onCreateRe
                   <TouchableOpacity style={[s.primaryBtn, { flex: 1 }]} onPress={onEdit}><Text style={s.primaryBtnText}>📝 レシピを編集</Text></TouchableOpacity>
                   <TouchableOpacity style={s.dangerBtn} onPress={onDeleteMenu}><Text style={s.dangerBtnText}>献立から外す</Text></TouchableOpacity>
                 </View>
+                {recipe.showInList === false && (
+                  <TouchableOpacity style={s.promoteBtn} onPress={onPromote}>
+                    <Text style={s.promoteBtnText}>📖 レシピ一覧に追加</Text>
+                  </TouchableOpacity>
+                )}
                 <TouchableOpacity style={[s.closeBtn, { marginTop: 12 }]} onPress={onClose}><Text style={s.closeBtnText}>閉じる</Text></TouchableOpacity>
               </View>
             )}
@@ -1671,6 +1685,8 @@ const s = StyleSheet.create({
   closeBtnText: { color: "#8a7e72", fontWeight: "600", fontSize: 14 },
   dangerBtn: { padding: 12, backgroundColor: "#fdeeed", borderRadius: 10, alignItems: "center" },
   dangerBtnText: { color: "#c0564e", fontWeight: "500", fontSize: 12 },
+  promoteBtn: { padding: 12, backgroundColor: "#5f9e7a", borderRadius: 10, alignItems: "center", marginTop: 8 },
+  promoteBtnText: { color: "#fff", fontWeight: "700", fontSize: 14 },
   saveBtn: { padding: 10, backgroundColor: "#d4725c", borderRadius: 8, alignItems: "center" },
   saveBtnText: { color: "#fff", fontWeight: "600", fontSize: 12 },
   cancelBtn: { padding: 5, paddingHorizontal: 12, backgroundColor: "#f5ebe2", borderRadius: 8 },
