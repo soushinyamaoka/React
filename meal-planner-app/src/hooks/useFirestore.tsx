@@ -120,7 +120,8 @@ export function useFirestore(householdId: string | null) {
     staleRecipes.forEach((recipe) => {
       const refDates = Object.entries(menus)
         .filter(([, items]) => items.some((item) => item.recipeId === recipe.id))
-        .map(([dateKey]) => new Date(dateKey));
+        // ローカルタイムの0時として解釈（cleanOldMenusと統一。UTC解釈による日跨ぎズレを防ぐ）
+        .map(([dateKey]) => new Date(dateKey + "T00:00:00"));
 
       const allExpired =
         refDates.length === 0 ||

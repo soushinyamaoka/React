@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -11,6 +11,7 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Household, AppUser } from "../types";
 import { PendingInvite } from "../hooks/useHousehold";
+import { getCoopConfig, getWebApiUrl, setCoopToken, setCoopUrl, setWebApiUrl, getDefaultApiSettings } from "../config/coopConfig";
 
 // ─── 招待バナー（設定タブ・グループ未所属画面の両方で使用） ──────────────────────
 type InviteBannerProps = {
@@ -146,6 +147,7 @@ type HouseholdSettingsPanelProps = {
   onJoinHousehold: (invite: PendingInvite) => Promise<void>;
   onDeclineInvite: () => Promise<void>;
   onLogout: () => void;
+  children?: React.ReactNode;
 };
 
 export function HouseholdSettingsPanel({
@@ -156,6 +158,7 @@ export function HouseholdSettingsPanel({
   onJoinHousehold,
   onDeclineInvite,
   onLogout,
+  children,
 }: HouseholdSettingsPanelProps) {
   const [inviteEmail, setInviteEmail] = useState("");
   const [inviting, setInviting] = useState(false);
@@ -241,9 +244,137 @@ export function HouseholdSettingsPanel({
         </>
       )}
 
+      {children}
+
       <TouchableOpacity onPress={onLogout} style={[s.logoutBtn, { marginTop: 32 }]}>
         <Text style={s.logoutText}>ログアウト</Text>
       </TouchableOpacity>
+    </View>
+  );
+}
+
+// ─── 設定タブ内のAPI設定パネル（上級者向け・折りたたみ） ──────────────────────────
+export function ApiSettingsPanel() {
+  const [coopUrl, setCoopUrlState] = useState("");
+  const [coopToken, setCoopTokenState] = useState("");
+  const [webUrl, setWebUrlState] = useState("");
+  const [showToken, setShowToken] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [savedMsg, setSavedMsg] = useState<string | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { url, token } = await getCoopConfig();
+        const w = await getWebApiUrl();
+        setCoopUrlState(url);
+        setCoopTokenState(token);
+        setWebUrlState(w);
+      } catch {
+        /* SecureStore未対応環境などは無視（初期値のまま） */
+      }
+    })();
+  }, []);
+
+  const handleSave = async (): Promise<void> => {
+    setSaving(true);
+    setSavedMsg(null);
+    try {
+      await setCoopUrl(coopUrl.trim());
+      await setCoopToken(coopToken.trim());
+      await setWebApiUrl(webUrl.trim());
+      setSavedMsg("保存しました ✓");
+      setTimeout(() => setSavedMsg(null), 3000);
+    } catch (e) {
+      setSavedMsg("保存に失敗しました: " + (e instanceof Error ? e.message : String(e)));
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleReset = (): void => {
+    const d = getDefaultApiSettings();
+    setCoopUrlState(d.coopUrl);
+    setCoopTokenState(d.coopToken);
+    setWebUrlState(d.webUrl);
+    setSavedMsg(null);
+  };
+
+  return (
+    <View style={{ marginTop: 16 }}>
+      <TouchableOpacity onPress={() => setOpen((o) => !o)} style={s.apiToggle} activeOpacity={0.7}>
+        <Text style={s.sectionTitle}>🔧 API設定（上級者向け）</Text>
+        <Text style={{ marginLeft: "auto", color: "#a09585", fontSize: 14 }}>{open ? "▾" : "▸"}</Text>
+      </TouchableOpacity>
+
+      {open && (
+        <View style={{ gap: 8 }}>
+          <Text style={s.cardDesc}>
+            COOP連携サーバーやWEB検索APIの接続先を変更できます。{"\n"}通常は変更不要です。
+          </Text>
+
+          <Text style={s.apiLabel}>COOP API URL</Text>
+          <TextInput
+            style={s.input}
+            value={coopUrl}
+            onChangeText={setCoopUrlState}
+            placeholder="https://..."
+            placeholderTextColor="#c9a88c"
+            autoCapitalize="none"
+            autoCorrect={false}
+            keyboardType="url"
+            editable={!saving}
+          />
+
+          <Text style={s.apiLabel}>COOP API トークン</Text>
+          <View>
+            <TextInput
+              style={[s.input, { paddingRight: 60 }]}
+              value={coopToken}
+              onChangeText={setCoopTokenState}
+              placeholder="トークン"
+              placeholderTextColor="#c9a88c"
+              autoCapitalize="none"
+              autoCorrect={false}
+              secureTextEntry={!showToken}
+              editable={!saving}
+            />
+            <TouchableOpacity style={s.tokenToggle} onPress={() => setShowToken((v) => !v)}>
+              <Text style={{ fontSize: 12, color: "#8a7e72" }}>{showToken ? "隠す" : "表示"}</Text>
+            </TouchableOpacity>
+          </View>
+
+          <Text style={s.apiLabel}>WEB検索 API URL</Text>
+          <TextInput
+            style={s.input}
+            value={webUrl}
+            onChangeText={setWebUrlState}
+            placeholder="https://..."
+            placeholderTextColor="#c9a88c"
+            autoCapitalize="none"
+            autoCorrect={false}
+            keyboardType="url"
+            editable={!saving}
+          />
+
+          <View style={{ flexDirection: "row", gap: 8, marginTop: 4 }}>
+            <TouchableOpacity
+              style={[s.primaryBtn, { flex: 1 }, saving && s.btnDisabled]}
+              onPress={handleSave}
+              disabled={saving}
+            >
+              {saving ? <ActivityIndicator color="#fff" /> : <Text style={s.primaryBtnText}>保存する</Text>}
+            </TouchableOpacity>
+            <TouchableOpacity style={[s.closeBtn, saving && s.btnDisabled]} onPress={handleReset} disabled={saving}>
+              <Text style={s.closeBtnText}>初期値に戻す</Text>
+            </TouchableOpacity>
+          </View>
+          {savedMsg && (
+            <Text style={savedMsg.includes("✓") ? s.successText : s.errorText}>{savedMsg}</Text>
+          )}
+        </View>
+      )}
     </View>
   );
 }
@@ -338,4 +469,8 @@ const s = StyleSheet.create({
     borderColor: "rgba(220,200,180,0.3)",
   },
   pendingInviteEmail: { fontSize: 13, color: "#a08979" },
+
+  apiToggle: { flexDirection: "row", alignItems: "center", paddingVertical: 6 },
+  apiLabel: { fontSize: 12, fontWeight: "600", color: "#8a7e72", marginTop: 6 },
+  tokenToggle: { position: "absolute", right: 6, top: 0, bottom: 0, justifyContent: "center", paddingHorizontal: 8 },
 });

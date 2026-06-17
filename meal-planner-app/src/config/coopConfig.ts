@@ -22,6 +22,11 @@ export async function getCoopConfig(): Promise<{ url: string; token: string }> {
   return { url, token };
 }
 
+/** 環境変数（.env）由来の初期値。設定画面の「初期値に戻す」で使用 */
+export function getDefaultApiSettings(): { coopUrl: string; coopToken: string; webUrl: string } {
+  return { coopUrl: INITIAL_COOP_URL, coopToken: INITIAL_TOKEN, webUrl: INITIAL_WEB_URL };
+}
+
 export async function getWebApiUrl(): Promise<string> {
   const storedUrl = await SecureStore.getItemAsync(KEY_WEB_URL);
   const url = storedUrl ?? INITIAL_WEB_URL;

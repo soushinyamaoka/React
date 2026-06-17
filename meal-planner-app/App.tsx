@@ -6,7 +6,7 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { StatusBar } from "expo-status-bar";
 
-import { getDateKey, getDayLabel, formatDate, genFutureDates, genArchiveDates, getEmoji, genId } from "./src/utils/helpers";
+import { getDateKey, getDayLabel, formatDate, genFutureDates, genArchiveDates, getEmoji, genId, getGreeting } from "./src/utils/helpers";
 import { searchRecipeFromWeb, fetchCoopIngredients, triggerCoopFetch, suggestCoopRecipes, createCoopMealPlan, fetchRecipeTitle, extractRecipe } from "./src/api";
 import { COOP_CATEGORIES } from "./src/data/sampleData";
 import { Recipe, RecipeFormData, MenuItem, Menus, CoopData, CoopCategoryKey, SuggestResult, SuggestRecipe, PlanResult, PlanDayItem, ModalState, WebSearchItem, RecipeCategory } from "./src/types";
@@ -14,7 +14,7 @@ import { useAuth } from "./src/hooks/useAuth";
 import { useHousehold } from "./src/hooks/useHousehold";
 import { useFirestore } from "./src/hooks/useFirestore";
 import LoginScreen from "./src/screens/LoginScreen";
-import { HouseholdSetupScreen, HouseholdSettingsPanel } from "./src/screens/HouseholdScreen";
+import { HouseholdSetupScreen, HouseholdSettingsPanel, ApiSettingsPanel } from "./src/screens/HouseholdScreen";
 
 // ═══════════════════════════════════════════
 // Main App
@@ -153,6 +153,7 @@ export default function App() {
   };
 
   const clearModals = (): void => { setModalState(null); setEditingRecipe(null); setViewRecipe(null); setAddToMealRecipe(null); };
+  const greeting = getGreeting();
 
   return (
     <SafeAreaView style={s.container}>
@@ -165,9 +166,10 @@ export default function App() {
           <Text style={s.title}>献立ノート</Text>
           <Text style={s.subtitle}>毎日のごはんを、たのしく記録</Text>
         </View>
-        <Text style={{ fontSize: 11, color: "rgba(255,255,255,0.7)" }} numberOfLines={1}>
-          {household.name}
-        </Text>
+        <View style={{ alignItems: "flex-end" }}>
+          <Text style={s.headerGreeting} numberOfLines={1}>{greeting.text} {greeting.emoji}</Text>
+          <Text style={s.headerHouse} numberOfLines={1}>{household.name}</Text>
+        </View>
       </View>
 
       {/* Tabs */}
@@ -179,8 +181,10 @@ export default function App() {
           { key: "settings", icon: "👥", label: "設定" },
         ].map(t => (
           <TouchableOpacity key={t.key} style={[s.tabBtn, tab === t.key && s.tabActive]}
+            activeOpacity={0.7}
             onPress={() => { setTab(t.key as "meals" | "recipes" | "coop" | "settings"); clearModals(); }}>
-            <Text style={[s.tabText, tab === t.key && s.tabTextActive]}>{t.icon} {t.label}</Text>
+            <Text style={[s.tabIcon, tab === t.key && s.tabIconActive]}>{t.icon}</Text>
+            <Text style={[s.tabText, tab === t.key && s.tabTextActive]}>{t.label}</Text>
           </TouchableOpacity>
         ))}
       </View>
@@ -202,7 +206,7 @@ export default function App() {
         <CoopTab recipes={recipes} setRecipes={setRecipes} menus={menus} setMenus={setMenus} />
       </View>
       {tab === "settings" && (
-        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 40 }}>
+        <KeyboardAwareScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 40 }} enableOnAndroid extraScrollHeight={16}>
           <HouseholdSettingsPanel
             household={household}
             user={user}
@@ -211,8 +215,10 @@ export default function App() {
             onJoinHousehold={joinHousehold}
             onDeclineInvite={declineInvite}
             onLogout={logout}
-          />
-        </ScrollView>
+          >
+            <ApiSettingsPanel />
+          </HouseholdSettingsPanel>
+        </KeyboardAwareScrollView>
       )}
 
       {/* Modals */}
@@ -259,6 +265,7 @@ function MealsTab({ menus, setMenus, recipes, onChipTap, onManualAdd }: MealsTab
   const archiveDates = genArchiveDates();
   const todayKey = getDateKey(new Date());
   const futureDateKeys = futureDates.map(d => getDateKey(d));
+  const hasUpcomingMeal = futureDates.slice(1).some(d => (menus[getDateKey(d)] || []).length > 0);
 
   const flashAnims = useRef<Record<string, Animated.Value>>({});
   const getFlashAnim = (key: string): Animated.Value => {
@@ -326,6 +333,107 @@ function MealsTab({ menus, setMenus, recipes, onChipTap, onManualAdd }: MealsTab
     triggerFlash([targetKey]);
   };
 
+  // 追加フロー（手入力 / レシピから）。ヒーローカードと通常カードで共通利用
+  const renderAddFlow = () => {
+    // 献立専用レシピ（showInList === false）は候補に出さない
+    const pickableRecipes = recipes.filter(r => r.showInList !== false);
+    return (
+    <View>
+      {!addMode && (
+        <View style={s.addModeSelect}>
+          <TouchableOpacity style={s.modeBtn} onPress={handleManualInput}>
+            <Text>✏️ 手入力</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={s.modeBtn} onPress={() => setAddMode("recipe")}>
+            <Text>📖 レシピから</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={s.modeCancelBtn} onPress={handleCancel}>
+            <Text style={{ color: "#a08979", fontSize: 16 }}>×</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+      {addMode === "recipe" && (
+        <View>
+          <Text style={{ fontSize: 12, fontWeight: "600", color: "#8a7e72", marginBottom: 6 }}>レシピを選択</Text>
+          {pickableRecipes.length === 0 && <Text style={{ fontSize: 12, color: "#c9a88c", fontStyle: "italic" }}>レシピがまだありません</Text>}
+          {pickableRecipes.map(r => (
+            <TouchableOpacity key={r.id} style={s.recipePickerItem} onPress={() => handlePickRecipe(r)}>
+              <Text>{getEmoji(r.name)} {r.name}</Text>
+            </TouchableOpacity>
+          ))}
+          <TouchableOpacity style={[s.cancelBtn, { marginTop: 4 }]} onPress={handleCancel}>
+            <Text style={s.cancelBtnText}>やめる</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+    </View>
+    );
+  };
+
+  // 「今日のごはん」ヒーローカード（献立リスト最上部）
+  const renderHeroCard = (date: Date) => {
+    const key = getDateKey(date);
+    const { month, day, weekday } = formatDate(date);
+    const items = menus[key] || [];
+    const isAddingToday = addingDate === key;
+    const isSwapSource = swapSourceDate === key;
+    const isSwapTarget = swapSourceDate !== null && swapSourceDate !== key;
+
+    return (
+      <View style={[s.hero, isSwapSource && s.heroSwapActive, isSwapTarget && s.heroSwapActive]}>
+        <View style={s.heroRow}>
+          <Text style={s.heroTag}>🍳 今日のごはん</Text>
+          <TouchableOpacity
+            style={s.heroDate}
+            activeOpacity={isSwapTarget ? 0.6 : 1}
+            onLongPress={() => handleDateLongPress(key)}
+            onPress={() => isSwapTarget && handleDatePressForSwap(key)}
+            delayLongPress={400}>
+            <Text style={s.heroDateText}>{isSwapSource ? "選択中" : `${month}/${day} (${weekday})`}</Text>
+          </TouchableOpacity>
+        </View>
+
+        {items.length > 0 && (
+          <View style={s.heroMeals}>
+            {items.map((item, i) => (
+              <TouchableOpacity key={item.id ?? `${i}-${item.recipeId ?? ''}-${item.name}`}
+                onPress={() => { if (swapSourceDate) { handleDatePressForSwap(key); } else { onChipTap(key, i, item); } }}
+                onLongPress={() => handleChipLongPress(key, i, item)}
+                delayLongPress={400}
+                style={s.heroMeal}>
+                <Text style={{ fontSize: 26 }}>{getEmoji(item.name)}</Text>
+                <Text style={s.heroMealName}>{item.name}</Text>
+                {item.recipeId && recipes.find(r => r.id === item.recipeId)?.showInList !== false && <Text style={{ fontSize: 12, opacity: 0.55 }}>📖</Text>}
+              </TouchableOpacity>
+            ))}
+          </View>
+        )}
+
+        {items.length === 0 && !isAddingToday && !swapSourceDate && (
+          <Text style={s.heroEmpty}>今日の献立はまだ決まっていません</Text>
+        )}
+
+        {isSwapTarget ? (
+          <TouchableOpacity style={s.heroSwapHint} onPress={() => handleDatePressForSwap(key)}>
+            <Text style={{ fontSize: 12, color: "#5a8a4a", fontWeight: "700" }}>↔ ここに入れ替える</Text>
+          </TouchableOpacity>
+        ) : isSwapSource ? (
+          <TouchableOpacity style={s.heroCancelSwap} onPress={() => setSwapSourceDate(null)}>
+            <Text style={{ fontSize: 12, color: "#a08979" }}>入れ替えをやめる</Text>
+          </TouchableOpacity>
+        ) : isAddingToday ? (
+          <View style={{ marginTop: 2 }}>{renderAddFlow()}</View>
+        ) : (
+          <TouchableOpacity style={s.heroAdd} onPress={() => handleAddClick(key)}>
+            <Text style={s.heroAddText}>＋ メニューを追加</Text>
+          </TouchableOpacity>
+        )}
+
+        <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: "#5a8a4a", borderRadius: 22, opacity: getFlashAnim(key) }]} />
+      </View>
+    );
+  };
+
   const renderCard = (date: Date, idx: number, isArchive = false) => {
     const key = getDateKey(date);
     const { month, day, weekday } = formatDate(date);
@@ -370,37 +478,7 @@ function MealsTab({ menus, setMenus, recipes, onChipTap, onManualAdd }: MealsTab
               ))}
             </View>
           )}
-          {isAdding ? (
-            <View>
-              {!addMode && (
-                <View style={s.addModeSelect}>
-                  <TouchableOpacity style={s.modeBtn} onPress={handleManualInput}>
-                    <Text>✏️ 手入力</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={s.modeBtn} onPress={() => setAddMode("recipe")}>
-                    <Text>📖 レシピから</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={s.modeCancelBtn} onPress={handleCancel}>
-                    <Text style={{ color: "#a08979", fontSize: 16 }}>×</Text>
-                  </TouchableOpacity>
-                </View>
-              )}
-              {addMode === "recipe" && (
-                <View>
-                  <Text style={{ fontSize: 12, fontWeight: "600", color: "#8a7e72", marginBottom: 6 }}>レシピを選択</Text>
-                  {recipes.length === 0 && <Text style={{ fontSize: 12, color: "#c9a88c", fontStyle: "italic" }}>レシピがまだありません</Text>}
-                  {recipes.map(r => (
-                    <TouchableOpacity key={r.id} style={s.recipePickerItem} onPress={() => handlePickRecipe(r)}>
-                      <Text>{getEmoji(r.name)} {r.name}</Text>
-                    </TouchableOpacity>
-                  ))}
-                  <TouchableOpacity style={[s.cancelBtn, { marginTop: 4 }]} onPress={handleCancel}>
-                    <Text style={s.cancelBtnText}>やめる</Text>
-                  </TouchableOpacity>
-                </View>
-              )}
-            </View>
-          ) : (
+          {isAdding ? renderAddFlow() : (
             !isArchive && !swapSourceDate && (
               <TouchableOpacity style={[s.addBtn, items.length === 0 && s.addBtnEmpty]} onPress={() => handleAddClick(key)}>
                 <Text style={{ fontSize: 15, color: "#c9a88c" }}>+ </Text>
@@ -426,7 +504,29 @@ function MealsTab({ menus, setMenus, recipes, onChipTap, onManualAdd }: MealsTab
         </View>
       )}
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 14, paddingBottom: 40 }}>
-        {futureDates.map((d, i) => renderCard(d, i))}
+        {renderHeroCard(futureDates[0])}
+
+        <View style={s.nbDivider}>
+          <View style={s.nbDividerLine} />
+          <Text style={s.nbDividerLabel}>これからの献立</Text>
+          <View style={s.nbDividerLine} />
+        </View>
+
+        {!hasUpcomingMeal && !swapSourceDate && (
+          <View style={s.mealsEmptyHint}>
+            <Text style={{ fontSize: 28 }}>🗓️</Text>
+            <Text style={{ fontSize: 13, fontWeight: "700", color: "#6a5d50", marginTop: 6 }}>これからの献立を登録しましょう</Text>
+            <Text style={{ fontSize: 12, color: "#a09585", marginTop: 4, textAlign: "center", lineHeight: 18 }}>
+              各日付の「＋ メニューを追加」から、{"\n"}手入力 または 保存したレシピで登録できます
+            </Text>
+          </View>
+        )}
+
+        <View style={s.nlist}>
+          <View style={s.nlistBindLine} pointerEvents="none" />
+          {futureDates.slice(1).map((d, i) => renderCard(d, i + 1))}
+        </View>
+
         <View style={{ marginTop: 20 }}>
           <TouchableOpacity style={s.archiveToggle} onPress={() => setArchiveOpen(!archiveOpen)}>
             <Text style={{ fontSize: 12, color: "#a09585" }}>{archiveOpen ? "▾" : "▸"}</Text>
@@ -467,11 +567,14 @@ type RecipesTabProps = {
 
 function RecipesTab({ recipes, setRecipes, onViewRecipe, editingRecipe, setEditingRecipe, onAddToMeal, categories, setCategories }: RecipesTabProps) {
   const [filterCatId, setFilterCatId] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const listedRecipes = recipes.filter(r => r.showInList !== false);
-  const filteredRecipes = filterCatId
+  const q = searchQuery.trim().toLowerCase();
+  const filteredRecipes = (filterCatId
     ? listedRecipes.filter(r => r.categoryIds?.includes(filterCatId))
-    : listedRecipes;
+    : listedRecipes
+  ).filter(r => q === "" || r.name.toLowerCase().includes(q));
 
   if (editingRecipe === "websearch") {
     return (
@@ -518,6 +621,26 @@ function RecipesTab({ recipes, setRecipes, onViewRecipe, editingRecipe, setEditi
         <Text style={{ fontSize: 14, fontWeight: "600", color: "#fff" }}>🔍 WEB検索でレシピ作成</Text>
       </TouchableOpacity>
 
+      {/* レシピ名検索 */}
+      {listedRecipes.length > 0 && (
+        <View style={s.recipeSearchBox}>
+          <Text style={{ fontSize: 14 }}>🔍</Text>
+          <TextInput
+            style={s.recipeSearchInput}
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+            placeholder="レシピ名で検索"
+            placeholderTextColor="#c9a88c"
+            returnKeyType="search"
+          />
+          {searchQuery !== "" && (
+            <TouchableOpacity onPress={() => setSearchQuery("")} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+              <Text style={{ fontSize: 16, color: "#b8a594" }}>×</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      )}
+
       {/* カテゴリフィルター */}
       {categories.length > 0 && (
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginBottom: 12 }} contentContainerStyle={{ gap: 6, paddingVertical: 2 }}>
@@ -538,9 +661,10 @@ function RecipesTab({ recipes, setRecipes, onViewRecipe, editingRecipe, setEditi
 
       {filteredRecipes.length === 0 && (
         <View style={{ alignItems: "center", padding: 40 }}>
-          <Text style={{ fontSize: 40 }}>📖</Text>
+          <Text style={{ fontSize: 40 }}>{q !== "" ? "🔍" : "📖"}</Text>
           <Text style={{ color: "#b8a594", fontSize: 14, marginTop: 8 }}>
-            {filterCatId ? "このカテゴリのレシピはありません" : "レシピはまだありません"}
+            {q !== "" ? `「${searchQuery.trim()}」に一致するレシピはありません`
+              : filterCatId ? "このカテゴリのレシピはありません" : "レシピはまだありません"}
           </Text>
         </View>
       )}
@@ -1627,12 +1751,16 @@ const s = StyleSheet.create({
   headerIcon: { fontSize: 28, width: 48, height: 48, backgroundColor: "rgba(255,255,255,0.2)", borderRadius: 14, textAlign: "center", lineHeight: 48, overflow: "hidden" },
   title: { fontSize: 22, fontWeight: "900", color: "#fff", letterSpacing: 1.5 },
   subtitle: { fontSize: 11, color: "rgba(255,255,255,0.85)", marginTop: 1 },
+  headerGreeting: { fontSize: 12, fontWeight: "700", color: "#fff" },
+  headerHouse: { fontSize: 10, color: "rgba(255,255,255,0.7)", marginTop: 2 },
 
-  tabBar: { flexDirection: "row", gap: 4, paddingHorizontal: 14, paddingVertical: 10 },
-  tabBtn: { flex: 1, alignItems: "center", padding: 10, backgroundColor: "#fff", borderRadius: 12, borderWidth: 1.5, borderColor: "#e8ddd0" },
-  tabActive: { backgroundColor: "#d4725c", borderColor: "transparent" },
-  tabText: { fontSize: 12, fontWeight: "500", color: "#a09080" },
-  tabTextActive: { color: "#fff" },
+  tabBar: { flexDirection: "row", gap: 6, paddingHorizontal: 14, paddingVertical: 10 },
+  tabBtn: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 8, paddingHorizontal: 4, gap: 2, backgroundColor: "#fff", borderRadius: 14, borderWidth: 1.5, borderColor: "#e8ddd0" },
+  tabActive: { backgroundColor: "#d4725c", borderColor: "transparent", shadowColor: "#d4725c", shadowOffset: { width: 0, height: 3 }, shadowOpacity: 0.28, shadowRadius: 6, elevation: 4 },
+  tabIcon: { fontSize: 18, opacity: 0.55 },
+  tabIconActive: { opacity: 1 },
+  tabText: { fontSize: 11, fontWeight: "600", color: "#a09080" },
+  tabTextActive: { color: "#fff", fontWeight: "700" },
 
   card: { flexDirection: "row", backgroundColor: "#fffcf8", borderRadius: 16, marginBottom: 8, borderWidth: 1, borderColor: "rgba(220,200,180,0.3)", minHeight: 76 },
   cardSwapSource: { borderColor: "#5a8a4a", borderWidth: 2 },
@@ -1660,12 +1788,39 @@ const s = StyleSheet.create({
   addBtnEmpty: { paddingVertical: 8, paddingHorizontal: 16 },
   recipePickerItem: { padding: 10, backgroundColor: "#fff7ef", borderRadius: 10, borderWidth: 1, borderColor: "rgba(232,149,110,0.15)", marginBottom: 4 },
 
+  mealsEmptyHint: { alignItems: "center", padding: 20, paddingVertical: 24, marginBottom: 10, backgroundColor: "#fffcf8", borderRadius: 16, borderWidth: 1.5, borderColor: "rgba(220,200,180,0.5)", borderStyle: "dashed" },
+
+  // ── 今日のごはん ヒーローカード ──
+  hero: { position: "relative", overflow: "hidden", backgroundColor: "#fff7ef", borderRadius: 22, padding: 16, paddingBottom: 18, borderWidth: 2, borderColor: "#e8956e", marginBottom: 14, shadowColor: "#d4725c", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.18, shadowRadius: 12, elevation: 5 },
+  heroSwapActive: { borderColor: "#5a8a4a", backgroundColor: "rgba(90,138,74,0.1)" },
+  heroRow: { flexDirection: "row", alignItems: "center", gap: 8, marginBottom: 14 },
+  heroTag: { fontSize: 15, fontWeight: "900", color: "#c0563f", letterSpacing: 0.5 },
+  heroDate: { marginLeft: "auto", backgroundColor: "#d4725c", paddingVertical: 4, paddingHorizontal: 12, borderRadius: 20 },
+  heroDateText: { fontSize: 12, fontWeight: "700", color: "#fff" },
+  heroMeals: { flexDirection: "row", flexWrap: "wrap", gap: 10, marginBottom: 14 },
+  heroMeal: { flexDirection: "row", alignItems: "center", gap: 8, backgroundColor: "#fff", borderRadius: 16, paddingVertical: 10, paddingHorizontal: 16, borderWidth: 1, borderColor: "rgba(232,149,110,0.3)", shadowColor: "#b4785a", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.08, shadowRadius: 4, elevation: 1 },
+  heroMealName: { fontSize: 15, fontWeight: "700", color: "#4a3f36" },
+  heroEmpty: { fontSize: 13, color: "#b8a594", fontStyle: "italic", marginBottom: 12 },
+  heroAdd: { paddingVertical: 11, backgroundColor: "#d4725c", borderRadius: 12, alignItems: "center" },
+  heroAddText: { color: "#fff", fontSize: 13, fontWeight: "700" },
+  heroSwapHint: { paddingVertical: 11, backgroundColor: "rgba(90,138,74,0.15)", borderRadius: 12, alignItems: "center", borderWidth: 1, borderColor: "rgba(90,138,74,0.4)" },
+  heroCancelSwap: { paddingVertical: 8, alignItems: "center" },
+
+  // ── ノート風の区切り / 綴じ線 ──
+  nbDivider: { flexDirection: "row", alignItems: "center", gap: 10, marginTop: 2, marginBottom: 12, paddingHorizontal: 2 },
+  nbDividerLine: { flex: 1, height: 1.5, backgroundColor: "rgba(201,168,140,0.5)", borderRadius: 1 },
+  nbDividerLabel: { fontSize: 11, fontWeight: "700", color: "#a09585", letterSpacing: 1 },
+  nlist: { position: "relative", paddingLeft: 14 },
+  nlistBindLine: { position: "absolute", left: 4, top: 6, bottom: 6, width: 2, backgroundColor: "rgba(232,149,110,0.35)", borderRadius: 2 },
+
   archiveToggle: { flexDirection: "row", alignItems: "center", gap: 8, padding: 10, paddingHorizontal: 16, backgroundColor: "rgba(180,165,148,0.1)", borderRadius: 12, borderWidth: 1, borderColor: "rgba(180,165,148,0.2)" },
   archiveBadge: { marginLeft: "auto", backgroundColor: "rgba(201,168,140,0.15)", paddingVertical: 2, paddingHorizontal: 8, borderRadius: 10 },
 
   // Recipe tab
   newRecipeBtn: { alignItems: "center", padding: 14, backgroundColor: "#fff7ef", borderRadius: 14, borderWidth: 1.5, borderColor: "#e8c8ae", borderStyle: "dashed", marginBottom: 8 },
   webSearchBtn: { alignItems: "center", padding: 14, backgroundColor: "#4a7ab5", borderRadius: 14, marginBottom: 12 },
+  recipeSearchBox: { flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 14, paddingVertical: 4, backgroundColor: "#fffaf5", borderRadius: 12, borderWidth: 1.5, borderColor: "#e8c8ae", marginBottom: 12 },
+  recipeSearchInput: { flex: 1, fontSize: 14, color: "#4a3f36", paddingVertical: 8 },
   recipeCard: { flexDirection: "row", alignItems: "center", gap: 12, padding: 14, backgroundColor: "#fffcf8", borderRadius: 14, borderWidth: 1, borderColor: "rgba(220,200,180,0.3)", marginBottom: 8 },
   recipeCardLeft: { width: 44, height: 44, borderRadius: 12, backgroundColor: "#fff7ef", alignItems: "center", justifyContent: "center" },
   recipeAddMealBtn: { paddingVertical: 5, paddingHorizontal: 10, backgroundColor: "#d4725c", borderRadius: 7 },

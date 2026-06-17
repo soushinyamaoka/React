@@ -11,6 +11,30 @@ import { getCoopConfig, getWebApiUrl } from '../config/coopConfig';
 import { WebSearchApiResult, CoopData, SuggestResult, PlanResult, SuggestOptions, MealPlanOptions, RecipeExtractResponse } from '../types';
 
 // ═══════════════════════════════════════════
+// 共通: タイムアウト付きfetch
+// ═══════════════════════════════════════════
+// 用途別の目安。AI生成系は応答が遅いため長め、単純な取得は短めに設定する。
+const TIMEOUT_FAST = 15000;    // DB読み取り等（COOP食材取得）
+const TIMEOUT_NORMAL = 30000;  // スクレイピング / メール取得
+const TIMEOUT_SEARCH = 60000;  // WEB検索
+const TIMEOUT_AI = 90000;      // AI生成（レシピ提案・献立作成）
+
+async function fetchWithTimeout(url: string, options: RequestInit = {}, timeoutMs: number = TIMEOUT_NORMAL): Promise<Response> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await fetch(url, { ...options, signal: controller.signal });
+  } catch (e) {
+    if (e instanceof Error && e.name === "AbortError") {
+      throw new Error("通信がタイムアウトしました。時間をおいて再試行してください。");
+    }
+    throw e;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+// ═══════════════════════════════════════════
 // レシピWEB検索
 // ═══════════════════════════════════════════
 // POST /api/recipes/search (port 8002, 認証不要)
@@ -20,7 +44,7 @@ import { WebSearchApiResult, CoopData, SuggestResult, PlanResult, SuggestOptions
 // @returns { recipes[], total }
 export async function searchRecipeFromWeb(query: string, offset: number = 0): Promise<WebSearchApiResult> {
   const baseUrl = await getWebApiUrl();
-  const res = await fetch(`${baseUrl}/api/recipes/search`, {
+  const res = await fetchWithTimeout(`${baseUrl}/api/recipes/search`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -31,7 +55,7 @@ export async function searchRecipeFromWeb(query: string, offset: number = 0): Pr
       offset,
       simple_mode: false,
     }),
-  });
+  }, TIMEOUT_SEARCH);
   if (!res.ok) throw new Error(`Web検索APIエラー (${res.status})`);
   const data = await res.json();
   if (!data.recipes || !Array.isArray(data.recipes)) throw new Error("レシピが見つかりませんでした");
@@ -57,7 +81,7 @@ export async function extractRecipe(url: string): Promise<RecipeExtractResponse 
   const baseUrl = process.env.EXPO_PUBLIC_SCRAPER_API_URL;
   if (!baseUrl) return null;
   try {
-    const res = await fetch(`${baseUrl}/api/recipe/extract?url=${encodeURIComponent(url)}`);
+    const res = await fetchWithTimeout(`${baseUrl}/api/recipe/extract?url=${encodeURIComponent(url)}`, {}, TIMEOUT_NORMAL);
     if (!res.ok) return null;
     return res.json();
   } catch {
@@ -90,10 +114,10 @@ export async function fetchRecipeTitle(url: string): Promise<string | null> {
  */
 export async function triggerCoopFetch(daysBack: number = 14): Promise<{ status: "success" | "no_data"; message: string; orders?: number }> {
   const { url, token } = await getCoopConfig();
-  const res = await fetch(`${url}/api/coop/fetch?days_back=${daysBack}`, {
+  const res = await fetchWithTimeout(`${url}/api/coop/fetch?days_back=${daysBack}`, {
     method: "POST",
     headers: { Authorization: `Bearer ${token}` },
-  });
+  }, TIMEOUT_NORMAL);
   if (res.status === 401) throw new Error("認証に失敗しました。トークンを確認してください。");
   if (!res.ok) throw new Error(`サーバーエラー (${res.status})`);
   return res.json();
@@ -101,11 +125,9 @@ export async function triggerCoopFetch(daysBack: number = 14): Promise<{ status:
 
 export async function fetchCoopIngredients(): Promise<CoopData> {
   const { url, token } = await getCoopConfig();
-  console.log("[COOP] url:", url, "token:", token ? "***" + token.slice(-4) : "(empty)");
-  const res = await fetch(`${url}/api/coop/ingredients`, {
+  const res = await fetchWithTimeout(`${url}/api/coop/ingredients`, {
     headers: { Authorization: `Bearer ${token}` },
-  });
-  console.log("[COOP] status:", res.status);
+  }, TIMEOUT_FAST);
   if (res.status === 401) throw new Error("認証に失敗しました。トークンを確認してください。");
   if (res.status === 404) throw new Error("注文データが見つかりません。");
   if (!res.ok) throw new Error(`サーバーエラー (${res.status})`);
@@ -125,14 +147,14 @@ export async function suggestCoopRecipes(
   options: SuggestOptions = {}
 ): Promise<SuggestResult> {
   const { url, token } = await getCoopConfig();
-  const res = await fetch(`${url}/api/coop/suggest-recipes`, {
+  const res = await fetchWithTimeout(`${url}/api/coop/suggest-recipes`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ ingredients, ...options }),
-  });
+  }, TIMEOUT_AI);
   if (res.status === 401) throw new Error("認証に失敗しました。トークンを確認してください。");
   if (res.status === 400) throw new Error("リクエストが不正です。食材を選択し直してください。");
   if (!res.ok) throw new Error(`サーバーエラー (${res.status})`);
@@ -152,14 +174,14 @@ export async function createCoopMealPlan(
   options: MealPlanOptions = {}
 ): Promise<PlanResult> {
   const { url, token } = await getCoopConfig();
-  const res = await fetch(`${url}/api/coop/meal-plan`, {
+  const res = await fetchWithTimeout(`${url}/api/coop/meal-plan`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ ingredients, ...options }),
-  });
+  }, TIMEOUT_AI);
   if (res.status === 401) throw new Error("認証に失敗しました。トークンを確認してください。");
   if (res.status === 400) throw new Error("リクエストが不正です。食材を選択し直してください。");
   if (!res.ok) throw new Error(`サーバーエラー (${res.status})`);
