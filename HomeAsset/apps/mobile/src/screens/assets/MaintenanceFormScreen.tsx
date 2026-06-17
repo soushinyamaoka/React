@@ -10,20 +10,19 @@ import { ChipSelector } from '../../components/ChipSelector';
 import { COLORS, SPACING } from '../../theme';
 import { createMaintenance, updateMaintenance } from '../../api/children';
 import { fetchAsset } from '../../api/assets';
+import { invalidateAssetRelated } from '../../lib/invalidate';
+import { todayStr } from '../../lib/dateUtils';
+import { useToast } from '../../components/Toast';
 import { MAINTENANCE_TYPES, MAINTENANCE_TYPE_LABELS } from '@homeasset/shared';
 import type { AssetsStackParamList } from '../../navigation/types';
 
 type Rt = RouteProp<AssetsStackParamList, 'MaintenanceForm'>;
 
-function todayStr(): string {
-  const d = new Date();
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-}
-
 const MaintenanceFormScreen: React.FC = () => {
   const route = useRoute<Rt>();
   const navigation = useNavigation<any>();
   const qc = useQueryClient();
+  const toast = useToast();
   const { assetId, recordId } = route.params;
 
   const [maintenanceDate, setMaintenanceDate] = useState(todayStr());
@@ -83,8 +82,8 @@ const MaintenanceFormScreen: React.FC = () => {
       return createMaintenance(assetId, input as any);
     },
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['asset', assetId] });
-      qc.invalidateQueries({ queryKey: ['dashboard'] });
+      invalidateAssetRelated(qc, assetId);
+      toast.show(recordId ? '更新しました' : '追加しました');
       navigation.goBack();
     },
     onError: (e: any) => Alert.alert('保存失敗', e?.response?.data?.message ?? String(e)),

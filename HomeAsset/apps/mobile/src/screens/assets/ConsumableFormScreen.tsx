@@ -9,6 +9,8 @@ import { DateField } from '../../components/DateField';
 import { COLORS, SPACING } from '../../theme';
 import { createConsumable, updateConsumable } from '../../api/children';
 import { fetchAsset } from '../../api/assets';
+import { invalidateAssetRelated } from '../../lib/invalidate';
+import { useToast } from '../../components/Toast';
 import type { AssetsStackParamList } from '../../navigation/types';
 
 type Rt = RouteProp<AssetsStackParamList, 'ConsumableForm'>;
@@ -17,6 +19,7 @@ const ConsumableFormScreen: React.FC = () => {
   const route = useRoute<Rt>();
   const navigation = useNavigation<any>();
   const qc = useQueryClient();
+  const toast = useToast();
   const { assetId, consumableId } = route.params;
 
   const [name, setName] = useState('');
@@ -70,7 +73,8 @@ const ConsumableFormScreen: React.FC = () => {
       return createConsumable(assetId, input as any);
     },
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['asset', assetId] });
+      invalidateAssetRelated(qc, assetId);
+      toast.show(consumableId ? '更新しました' : '追加しました');
       navigation.goBack();
     },
     onError: (e: any) => Alert.alert('保存失敗', e?.response?.data?.message ?? String(e)),

@@ -1,6 +1,21 @@
 import { z } from 'zod';
 import { ASSET_PRIORITIES, ASSET_STATUSES, ASSET_TYPES } from '../constants';
 
+// AI 出力に混入しがちな URL 表記の揺れを吸収する。
+// - Markdown リンク [表示文字](URL) → URL 部分を取り出す
+// - <URL> の山括弧囲みを除去
+// 文字列以外（null/undefined/数値等）はそのまま返す。
+function extractUrl(raw: unknown): unknown {
+  if (typeof raw !== 'string') return raw;
+  let s = raw.trim();
+  const md = s.match(/^\[[^\]]*\]\(([^)]+)\)$/);
+  if (md) {
+    s = md[1].trim().split(/\s+/)[0]; // (URL "タイトル") の余分なタイトルを除去
+  }
+  s = s.replace(/^<([\s\S]*)>$/, '$1').trim();
+  return s;
+}
+
 // AI 出力 JSON 用（緩め）
 const optionalString = z
   .string()
@@ -9,7 +24,7 @@ const optionalString = z
   .transform((v) => (v == null || v === '' ? undefined : v));
 
 const optionalUrl = z
-  .union([z.string().url(), z.literal('')])
+  .preprocess(extractUrl, z.union([z.string().url(), z.literal('')]))
   .optional()
   .nullable()
   .transform((v) => (v == null || v === '' ? undefined : v));
@@ -39,23 +54,36 @@ export const aiImportPayloadSchema = z.object({
     .optional(),
 
   links: z
-    .array(
-      z.object({
-        link_type: z
-          .enum([
-            'official',
-            'manual',
-            'support',
-            'purchase',
-            'warranty',
-            'construction_document',
-            'other',
-          ])
-          .default('other'),
-        title: optionalString,
-        url: z.string().url('linkのurlがURL形式ではありません'),
-        memo: optionalString,
-      })
+    .preprocess(
+      // url が空 / null / 未指定（Markdown崩れ含む）のリンクは検証前に除外する。
+      // データモデル上リンクは url 必須のため、URL の無いリンクは取り込み対象外。
+      (val) => {
+        if (!Array.isArray(val)) return val;
+        return val.filter((item) => {
+          if (item == null || typeof item !== 'object') return false;
+          const u = extractUrl((item as { url?: unknown }).url);
+          return typeof u === 'string' && u.length > 0;
+        });
+      },
+      z.array(
+        z.object({
+          link_type: z
+            .enum([
+              'official',
+              'manual',
+              'support',
+              'purchase',
+              'warranty',
+              'construction_document',
+              'other',
+            ])
+            .default('other'),
+          title: optionalString,
+          // Markdownリンク [..](..) や <..> はURL部分に正規化してから検証
+          url: z.preprocess(extractUrl, z.string().url('linkのurlがURL形式ではありません')),
+          memo: optionalString,
+        })
+      )
     )
     .optional(),
 
@@ -141,6 +169,8 @@ export function buildAiResearchPrompt(input: {
   return `以下の家庭内資産について、製品情報・設備情報・仕様情報を調査し、指定のJSON形式だけで出力してください。
 推測で断定せず、不明な項目はnullにしてください。
 URLは可能であればメーカー公式ページ、取扱説明書、サポートページを優先してください。
+URLはMarkdownリンク記法（[表示文字](URL)）にせず、プレーンなURL文字列（例: https://example.com/page）で記載してください。
+links には有効なURLがあるものだけを含め、URLが不明なリンクは出力しないでください（url を null や空文字にしないこと）。
 
 名称: ${assetName}
 管理対象種別: ${assetType ?? ''}

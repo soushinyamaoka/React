@@ -28,6 +28,8 @@ export type AssetsStackParamList = {
   ConsumableForm: { assetId: string; consumableId?: string };
   AccessoryForm: { assetId: string; accessoryId?: string };
   NetworkInfoForm: { assetId: string };
+  ActionPlanForm: { assetId: string };
+  AiActionPlanForm: { assetId: string };
   AiImportFromAsset: { assetId: string };
 };
 

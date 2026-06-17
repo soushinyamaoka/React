@@ -15,6 +15,7 @@ import {
   updateLocation,
   type Location,
 } from '../../api/master';
+import { invalidateAssetRelated } from '../../lib/invalidate';
 
 const LocationManageScreen: React.FC = () => {
   const qc = useQueryClient();
@@ -44,7 +45,12 @@ const LocationManageScreen: React.FC = () => {
 
   const deleteMutation = useMutation({
     mutationFn: (id: string) => deleteLocation(id),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['locations'] }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['locations'] });
+      // 削除で資産側の locationId が外れるため、資産系キャッシュも更新
+      invalidateAssetRelated(qc);
+    },
+    onError: (e: any) => Alert.alert('削除失敗', e?.response?.data?.message ?? String(e)),
   });
 
   const handleSubmit = () => {

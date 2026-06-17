@@ -48,3 +48,13 @@ export const RADIUS = {
   md: 10,
   lg: 16,
 };
+
+// フォントサイズ・ウェイトの階層（ハードコード分散を防ぐ）
+export const TYPOGRAPHY = {
+  screenTitle: { fontSize: 20, fontWeight: '800' },
+  sectionTitle: { fontSize: 16, fontWeight: '700' },
+  itemTitle: { fontSize: 15, fontWeight: '700' },
+  body: { fontSize: 14 },
+  label: { fontSize: 13 },
+  caption: { fontSize: 12 },
+} as const;

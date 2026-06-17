@@ -15,6 +15,7 @@ import {
   updateCategory,
   type Category,
 } from '../../api/master';
+import { invalidateAssetRelated } from '../../lib/invalidate';
 import { ASSET_TYPES, ASSET_TYPE_LABELS } from '@homeasset/shared';
 
 const CategoryManageScreen: React.FC = () => {
@@ -45,7 +46,12 @@ const CategoryManageScreen: React.FC = () => {
 
   const deleteMutation = useMutation({
     mutationFn: (id: string) => deleteCategory(id),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['categories'] }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['categories'] });
+      // 削除で資産側の categoryId が外れるため、資産系キャッシュも更新
+      invalidateAssetRelated(qc);
+    },
+    onError: (e: any) => Alert.alert('削除失敗', e?.response?.data?.message ?? String(e)),
   });
 
   const handleSubmit = () => {

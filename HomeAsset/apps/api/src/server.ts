@@ -13,6 +13,7 @@ import maintenanceRoutes from './routes/maintenance';
 import repairRoutes from './routes/repairs';
 import consumableRoutes from './routes/consumables';
 import accessoryRoutes from './routes/accessories';
+import actionPlanRoutes from './routes/actionPlans';
 import networkRoutes from './routes/networkInfos';
 import aiImportRoutes from './routes/aiImport';
 import dashboardRoutes from './routes/dashboard';
@@ -63,6 +64,7 @@ async function buildServer() {
     await instance.register(repairRoutes, { prefix: '/api' });
     await instance.register(consumableRoutes, { prefix: '/api' });
     await instance.register(accessoryRoutes, { prefix: '/api' });
+    await instance.register(actionPlanRoutes, { prefix: '/api' });
     await instance.register(networkRoutes, { prefix: '/api' });
     await instance.register(aiImportRoutes, { prefix: '/api' });
     await instance.register(dashboardRoutes, { prefix: '/api/dashboard' });

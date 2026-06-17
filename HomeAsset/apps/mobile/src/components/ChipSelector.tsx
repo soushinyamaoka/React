@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { COLORS, SPACING } from '../theme';
 
 export interface ChipOption {
@@ -25,7 +25,7 @@ export const ChipSelector: React.FC<Props> = ({
   return (
     <View style={styles.container}>
       {label ? <Text style={styles.label}>{label}</Text> : null}
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      <View style={styles.chipWrap}>
         {allowClear && (
           <TouchableOpacity
             style={[styles.chip, !value && styles.chipActive]}
@@ -46,7 +46,7 @@ export const ChipSelector: React.FC<Props> = ({
             </TouchableOpacity>
           );
         })}
-      </ScrollView>
+      </View>
     </View>
   );
 };
@@ -54,6 +54,8 @@ export const ChipSelector: React.FC<Props> = ({
 const styles = StyleSheet.create({
   container: { marginBottom: SPACING.md },
   label: { fontSize: 14, color: COLORS.textSub, marginBottom: SPACING.xs, fontWeight: '600' },
+  // 横スクロールではなく折返しで全選択肢を表示する
+  chipWrap: { flexDirection: 'row', flexWrap: 'wrap' },
   chip: {
     paddingHorizontal: SPACING.md,
     paddingVertical: 6,
@@ -62,6 +64,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: COLORS.surface,
     marginRight: SPACING.sm,
+    marginBottom: SPACING.sm,
   },
   chipActive: { backgroundColor: COLORS.primary, borderColor: COLORS.primary },
   chipText: { color: COLORS.text, fontSize: 13 },

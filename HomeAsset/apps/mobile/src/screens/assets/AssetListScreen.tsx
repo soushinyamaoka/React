@@ -17,10 +17,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { fetchAssets, type AssetSummary } from '../../api/assets';
 import { fetchCategories, fetchLocations } from '../../api/master';
 import { Card } from '../../components/Card';
+import { Button } from '../../components/Button';
 import { ChipSelector } from '../../components/ChipSelector';
 import { StatusBadge } from '../../components/StatusBadge';
 import { AssetTypeBadge } from '../../components/AssetTypeBadge';
-import { COLORS, RADIUS, SPACING } from '../../theme';
+import { useDebouncedValue } from '../../lib/useDebouncedValue';
+import { daysUntil } from '../../lib/dateUtils';
+import { COLORS, RADIUS, SPACING, TYPOGRAPHY } from '../../theme';
 import {
   ASSET_STATUSES,
   ASSET_STATUS_LABELS,
@@ -31,6 +34,14 @@ import type { AssetsStackParamList } from '../../navigation/types';
 
 type Nav = NativeStackNavigationProp<AssetsStackParamList, 'AssetList'>;
 
+const SORT_OPTIONS = [
+  { value: 'updated_desc', label: '更新が新しい順' },
+  { value: 'name_asc', label: '名称順' },
+  { value: 'warranty_asc', label: '保証期限が近い順' },
+  { value: 'purchase_desc', label: '購入が新しい順' },
+  { value: 'created_desc', label: '登録が新しい順' },
+];
+
 const AssetListScreen: React.FC = () => {
   const navigation = useNavigation<Nav>();
   const [search, setSearch] = useState('');
@@ -38,6 +49,7 @@ const AssetListScreen: React.FC = () => {
   const [categoryId, setCategoryId] = useState<string | null>(null);
   const [locationId, setLocationId] = useState<string | null>(null);
   const [status, setStatus] = useState<string | null>(null);
+  const [sort, setSort] = useState<string>('updated_desc');
   const [filterOpen, setFilterOpen] = useState(false);
 
   const activeFilterCount =
@@ -46,17 +58,29 @@ const AssetListScreen: React.FC = () => {
   const categoriesQuery = useQuery({ queryKey: ['categories'], queryFn: fetchCategories });
   const locationsQuery = useQuery({ queryKey: ['locations'], queryFn: fetchLocations });
 
+  // 検索はデバウンスし、キーストロークごとのリクエストを間引く
+  const debouncedSearch = useDebouncedValue(search, 300);
+
   const assetsQuery = useQuery({
-    queryKey: ['assets', search, assetType, categoryId, locationId, status],
+    queryKey: ['assets', debouncedSearch, assetType, categoryId, locationId, status, sort],
     queryFn: () =>
       fetchAssets({
-        search: search || undefined,
+        search: debouncedSearch || undefined,
         assetType: (assetType as any) || undefined,
         categoryId: categoryId || undefined,
         locationId: locationId || undefined,
         status: (status as any) || undefined,
+        sort: sort as any,
       }),
   });
+
+  const clearAllFilters = () => {
+    setSearch('');
+    setAssetType(null);
+    setCategoryId(null);
+    setLocationId(null);
+    setStatus(null);
+  };
 
   const assetTypeOptions = ASSET_TYPES.map((t) => ({ value: t, label: ASSET_TYPE_LABELS[t] }));
   const categoryOptions = useMemo(
@@ -69,9 +93,52 @@ const AssetListScreen: React.FC = () => {
   );
   const statusOptions = ASSET_STATUSES.map((s) => ({ value: s, label: ASSET_STATUS_LABELS[s] }));
 
+  // 適用中フィルタのチップ（パネルを閉じていても何で絞っているか見える＋個別解除）
+  const appliedFilters: { key: string; label: string; clear: () => void }[] = [];
+  if (assetType) {
+    appliedFilters.push({
+      key: 'assetType',
+      label: ASSET_TYPE_LABELS[assetType as keyof typeof ASSET_TYPE_LABELS] ?? assetType,
+      clear: () => setAssetType(null),
+    });
+  }
+  if (categoryId) {
+    appliedFilters.push({
+      key: 'category',
+      label: categoryOptions.find((o) => o.value === categoryId)?.label ?? 'カテゴリ',
+      clear: () => setCategoryId(null),
+    });
+  }
+  if (locationId) {
+    appliedFilters.push({
+      key: 'location',
+      label: locationOptions.find((o) => o.value === locationId)?.label ?? '設置場所',
+      clear: () => setLocationId(null),
+    });
+  }
+  if (status) {
+    appliedFilters.push({
+      key: 'status',
+      label: ASSET_STATUS_LABELS[status as keyof typeof ASSET_STATUS_LABELS] ?? status,
+      clear: () => setStatus(null),
+    });
+  }
+
+  const renderWarranty = (item: AssetSummary) => {
+    if (!item.warrantyEndDate) return null;
+    const days = daysUntil(item.warrantyEndDate);
+    if (days < 0) {
+      return <Text style={[styles.meta, { color: COLORS.danger }]}>保証期限切れ（{item.warrantyEndDate}）</Text>;
+    }
+    if (days <= 30) {
+      return <Text style={[styles.meta, { color: COLORS.warning }]}>保証期限まで{days}日（{item.warrantyEndDate}）</Text>;
+    }
+    return <Text style={styles.meta}>保証期限: {item.warrantyEndDate}</Text>;
+  };
+
   const renderItem = ({ item }: { item: AssetSummary }) => (
     <TouchableOpacity onPress={() => navigation.navigate('AssetDetail', { assetId: item.id })}>
-      <Card>
+      <Card style={{ borderLeftWidth: 3, borderLeftColor: COLORS.assetType[item.assetType] ?? COLORS.border }}>
         <View style={styles.row}>
           <View style={{ flex: 1 }}>
             <Text style={styles.name}>{item.name}</Text>
@@ -87,14 +154,43 @@ const AssetListScreen: React.FC = () => {
               {[item.manufacturer, item.modelNumber].filter(Boolean).join(' / ') ||
                 '型番情報なし'}
             </Text>
-            {item.warrantyEndDate ? (
-              <Text style={styles.meta}>保証期限: {item.warrantyEndDate}</Text>
-            ) : null}
+            {renderWarranty(item)}
           </View>
         </View>
       </Card>
     </TouchableOpacity>
   );
+
+  const isFiltered = activeFilterCount > 0 || !!debouncedSearch;
+
+  // 0件時: フィルタ起因なら解除導線、純粋に未登録なら初回ガイド
+  const renderEmpty = () => {
+    if (isFiltered) {
+      return (
+        <View style={styles.emptyWrap}>
+          <Ionicons name="filter" size={32} color={COLORS.textMuted} />
+          <Text style={styles.empty}>条件に一致する資産がありません</Text>
+          <Button title="検索・絞り込みをクリア" variant="outline" onPress={clearAllFilters} />
+        </View>
+      );
+    }
+    return (
+      <View style={styles.emptyWrap}>
+        <Ionicons name="home-outline" size={40} color={COLORS.primaryLight} />
+        <Text style={styles.emptyTitle}>最初の資産を登録しましょう</Text>
+        <Text style={styles.emptyGuide}>
+          家電・住宅設備・家具などを登録すると、保証期限やメンテナンス時期をまとめて管理できます。
+        </Text>
+        <Button title="資産を追加" onPress={() => navigation.navigate('AssetForm', {})} />
+        <View style={{ height: SPACING.sm }} />
+        <Button
+          title="AI取込でまとめて登録"
+          variant="outline"
+          onPress={() => (navigation as any).navigate('AiImportTab')}
+        />
+      </View>
+    );
+  };
 
   return (
     <View style={{ flex: 1, backgroundColor: COLORS.bg }}>
@@ -155,6 +251,23 @@ const AssetListScreen: React.FC = () => {
             onChange={setStatus}
             allowClear
           />
+          <ChipSelector
+            label="並び替え"
+            options={SORT_OPTIONS}
+            value={sort}
+            onChange={(v) => v && setSort(v)}
+          />
+        </View>
+      ) : null}
+
+      {!filterOpen && appliedFilters.length > 0 ? (
+        <View style={styles.appliedRow}>
+          {appliedFilters.map((f) => (
+            <TouchableOpacity key={f.key} style={styles.appliedChip} onPress={f.clear} hitSlop={4}>
+              <Text style={styles.appliedChipText}>{f.label}</Text>
+              <Ionicons name="close" size={14} color={COLORS.primary} />
+            </TouchableOpacity>
+          ))}
         </View>
       ) : null}
 
@@ -173,7 +286,7 @@ const AssetListScreen: React.FC = () => {
               tintColor={COLORS.primary}
             />
           }
-          ListEmptyComponent={<Text style={styles.empty}>該当する資産がありません</Text>}
+          ListEmptyComponent={renderEmpty()}
         />
       )}
 
@@ -212,10 +325,40 @@ const styles = StyleSheet.create({
   },
   filterBadgeText: { color: '#fff', fontSize: 10, fontWeight: '700' },
   row: { flexDirection: 'row', alignItems: 'flex-start' },
-  name: { fontSize: 16, fontWeight: '700', color: COLORS.text },
+  name: { ...TYPOGRAPHY.sectionTitle, color: COLORS.text },
   badgeRow: { flexDirection: 'row', marginTop: 4, marginBottom: 2 },
   meta: { fontSize: 12, color: COLORS.textSub, marginTop: 2 },
-  empty: { textAlign: 'center', color: COLORS.textMuted, marginTop: SPACING.xxl },
+  empty: { textAlign: 'center', color: COLORS.textMuted, marginVertical: SPACING.lg },
+  emptyWrap: { alignItems: 'center', marginTop: SPACING.xxl, paddingHorizontal: SPACING.xl },
+  emptyTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: COLORS.text,
+    marginTop: SPACING.md,
+  },
+  emptyGuide: {
+    fontSize: 13,
+    color: COLORS.textSub,
+    textAlign: 'center',
+    marginVertical: SPACING.md,
+    lineHeight: 19,
+  },
+  appliedRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    paddingHorizontal: SPACING.md,
+    gap: SPACING.sm,
+  },
+  appliedChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#E3F2FD',
+    borderRadius: 999,
+    paddingHorizontal: SPACING.md,
+    paddingVertical: 4,
+    gap: 4,
+  },
+  appliedChipText: { color: COLORS.primary, fontSize: 12, fontWeight: '600' },
   fab: {
     position: 'absolute',
     right: 20,

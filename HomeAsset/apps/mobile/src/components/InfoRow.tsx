@@ -5,10 +5,14 @@ import { COLORS, SPACING } from '../theme';
 interface Props {
   label: string;
   value?: string | number | null;
+  // true なら値が空のとき行ごと非表示（詳細画面の「—」ノイズ削減用）
+  hideEmpty?: boolean;
 }
 
-export const InfoRow: React.FC<Props> = ({ label, value }) => {
-  const display = value === null || value === undefined || value === '' ? '—' : String(value);
+export const InfoRow: React.FC<Props> = ({ label, value, hideEmpty }) => {
+  const isEmpty = value === null || value === undefined || value === '';
+  if (hideEmpty && isEmpty) return null;
+  const display = isEmpty ? '—' : String(value);
   return (
     <View style={styles.row}>
       <Text style={styles.label}>{label}</Text>

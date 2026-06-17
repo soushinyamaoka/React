@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { fetchMe, loginRequest, registerRequest, type AuthUser } from '../api/auth';
-import { getStoredToken, setStoredToken } from '../api/client';
+import { getStoredToken, setOnUnauthorized, setStoredToken } from '../api/client';
+import { queryClient } from '../lib/queryClient';
 
 interface AuthContextValue {
   user: AuthUser | null;
@@ -20,6 +21,15 @@ const AuthContext = createContext<AuthContextValue | null>(null);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // トークン失効（401）時は自動ログアウト
+    setOnUnauthorized(() => {
+      setUser(null);
+      queryClient.clear();
+    });
+    return () => setOnUnauthorized(null);
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -58,6 +68,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const logout = useCallback(async () => {
     await setStoredToken(null);
     setUser(null);
+    queryClient.clear();
   }, []);
 
   return (

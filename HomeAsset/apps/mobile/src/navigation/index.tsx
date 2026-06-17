@@ -21,6 +21,8 @@ import RepairFormScreen from '../screens/assets/RepairFormScreen';
 import ConsumableFormScreen from '../screens/assets/ConsumableFormScreen';
 import AccessoryFormScreen from '../screens/assets/AccessoryFormScreen';
 import NetworkInfoFormScreen from '../screens/assets/NetworkInfoFormScreen';
+import ActionPlanFormScreen from '../screens/assets/ActionPlanFormScreen';
+import AiActionPlanScreen from '../screens/assets/AiActionPlanScreen';
 import AiImportScreen from '../screens/aiImport/AiImportScreen';
 import SettingsScreen from '../screens/settings/SettingsScreen';
 import CategoryManageScreen from '../screens/settings/CategoryManageScreen';
@@ -90,6 +92,16 @@ function AssetsNavigator() {
         name="NetworkInfoForm"
         component={NetworkInfoFormScreen}
         options={{ title: 'ネットワーク情報' }}
+      />
+      <AssetsStack.Screen
+        name="ActionPlanForm"
+        component={ActionPlanFormScreen}
+        options={{ title: 'メンテ計画' }}
+      />
+      <AssetsStack.Screen
+        name="AiActionPlanForm"
+        component={AiActionPlanScreen}
+        options={{ title: 'AIでメンテ計画作成' }}
       />
       <AssetsStack.Screen name="AiImportFromAsset" component={AiImportScreen} options={{ title: 'AI取り込み' }} />
     </AssetsStack.Navigator>

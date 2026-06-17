@@ -22,6 +22,7 @@ const exportRoutes: FastifyPluginAsync = async (app) => {
           consumables: true,
           accessories: true,
           networkInfo: true,
+          actionPlan: true,
         },
       }),
     ]);

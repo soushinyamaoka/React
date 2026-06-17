@@ -17,9 +17,11 @@
     }
   },
   "scripts": {
-    "app:start": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/app.ps1 start",
+    "app:start": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/app.ps1 start vps",
+    "app:start:local": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/app.ps1 start local",
     "app:stop": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/app.ps1 stop",
-    "app:restart": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/app.ps1 restart",
+    "app:restart": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/app.ps1 restart vps",
+    "app:restart:local": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/app.ps1 restart local",
     "app:status": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/app.ps1 status",
     "db:up": "docker compose up -d",
     "db:down": "docker compose down",
@@ -30,6 +32,9 @@
     "mobile:start": "npm run start --workspace=@homeasset/mobile",
     "mobile:android": "npm run android --workspace=@homeasset/mobile",
     "mobile:ios": "npm run ios --workspace=@homeasset/mobile",
-    "migrate:homegear": "npm run migrate:homegear --workspace=@homeasset/api --"
+    "migrate:homegear": "npm run migrate:homegear --workspace=@homeasset/api --",
+    "deploy": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/deploy.ps1",
+    "export:analysis": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/export-analysis.ps1",
+    "import:action-plans": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/import-action-plans.ps1"
   }
 }

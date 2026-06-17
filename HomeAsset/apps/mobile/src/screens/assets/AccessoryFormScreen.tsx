@@ -8,6 +8,8 @@ import { TextField } from '../../components/TextField';
 import { COLORS, SPACING } from '../../theme';
 import { createAccessory, updateAccessory } from '../../api/children';
 import { fetchAsset } from '../../api/assets';
+import { invalidateAssetRelated } from '../../lib/invalidate';
+import { useToast } from '../../components/Toast';
 import type { AssetsStackParamList } from '../../navigation/types';
 
 type Rt = RouteProp<AssetsStackParamList, 'AccessoryForm'>;
@@ -16,6 +18,7 @@ const AccessoryFormScreen: React.FC = () => {
   const route = useRoute<Rt>();
   const navigation = useNavigation<any>();
   const qc = useQueryClient();
+  const toast = useToast();
   const { assetId, accessoryId } = route.params;
 
   const [name, setName] = useState('');
@@ -57,7 +60,8 @@ const AccessoryFormScreen: React.FC = () => {
       return createAccessory(assetId, input as any);
     },
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['asset', assetId] });
+      invalidateAssetRelated(qc, assetId);
+      toast.show(accessoryId ? '更新しました' : '追加しました');
       navigation.goBack();
     },
     onError: (e: any) => Alert.alert('保存失敗', e?.response?.data?.message ?? String(e)),

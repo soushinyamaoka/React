@@ -23,6 +23,7 @@ import { ChipSelector } from '../../components/ChipSelector';
 import { COLORS, RADIUS, SPACING } from '../../theme';
 import { applyAiImport, createAndApplyAiImport, parseAiImport } from '../../api/aiImport';
 import { fetchAssets, fetchAsset } from '../../api/assets';
+import { invalidateAssetRelated } from '../../lib/invalidate';
 import { fetchCategories, fetchLocations } from '../../api/master';
 import {
   buildAiResearchPrompt,
@@ -129,8 +130,7 @@ const AiImportScreen: React.FC = () => {
       });
     },
     onSuccess: (data) => {
-      qc.invalidateQueries({ queryKey: ['asset', targetAssetId] });
-      qc.invalidateQueries({ queryKey: ['assets'] });
+      invalidateAssetRelated(qc, targetAssetId ?? undefined);
       Alert.alert(
         '反映しました',
         `基本情報: ${data.counts.assetFieldsUpdated}項目\nスペック: ${data.counts.specsCreated}件\nリンク: ${data.counts.linksCreated}件\n消耗品: ${data.counts.consumablesCreated}件\n付属品: ${data.counts.accessoriesCreated}件`
@@ -159,8 +159,7 @@ const AiImportScreen: React.FC = () => {
       );
     },
     onSuccess: (data) => {
-      qc.invalidateQueries({ queryKey: ['assets'] });
-      qc.invalidateQueries({ queryKey: ['dashboard'] });
+      invalidateAssetRelated(qc);
       resetForm();
       Alert.alert(
         '作成しました',

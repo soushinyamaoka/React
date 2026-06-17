@@ -29,8 +29,11 @@ import { Section } from '../../components/Section';
 import { InfoRow } from '../../components/InfoRow';
 import { StatusBadge } from '../../components/StatusBadge';
 import { AssetTypeBadge } from '../../components/AssetTypeBadge';
-import { Button } from '../../components/Button';
-import { COLORS, RADIUS, SPACING } from '../../theme';
+import { useToast } from '../../components/Toast';
+import { invalidateAssetRelated } from '../../lib/invalidate';
+import { confirmDestructive } from '../../lib/confirm';
+import { daysUntil } from '../../lib/dateUtils';
+import { COLORS, RADIUS, SPACING, TYPOGRAPHY } from '../../theme';
 import {
   LINK_TYPE_LABELS,
   MAINTENANCE_TYPE_LABELS,
@@ -46,22 +49,19 @@ const AssetDetailScreen: React.FC = () => {
   const route = useRoute<Rt>();
   const navigation = useNavigation<Nav>();
   const qc = useQueryClient();
+  const toast = useToast();
   const { assetId } = route.params;
 
   const query = useQuery({ queryKey: ['asset', assetId], queryFn: () => fetchAsset(assetId) });
   const d = query.data;
 
-  const invalidate = () => {
-    qc.invalidateQueries({ queryKey: ['asset', assetId] });
-    qc.invalidateQueries({ queryKey: ['assets'] });
-    qc.invalidateQueries({ queryKey: ['dashboard'] });
-  };
+  const invalidate = () => invalidateAssetRelated(qc, assetId);
 
   const disposeMutation = useMutation({
     mutationFn: () => disposeAsset(assetId),
     onSuccess: () => {
       invalidate();
-      Alert.alert('完了', '廃棄済みに変更しました');
+      toast.show('廃棄済みに変更しました');
     },
     onError: (e: any) => Alert.alert('エラー', e?.response?.data?.message ?? String(e)),
   });
@@ -70,7 +70,7 @@ const AssetDetailScreen: React.FC = () => {
     mutationFn: () => replaceAsset(assetId),
     onSuccess: () => {
       invalidate();
-      Alert.alert('完了', '交換済みに変更しました');
+      toast.show('交換済みに変更しました');
     },
     onError: (e: any) => Alert.alert('エラー', e?.response?.data?.message ?? String(e)),
   });
@@ -104,33 +104,47 @@ const AssetDetailScreen: React.FC = () => {
           return deleteAccessory(op.id);
       }
     },
-    onSuccess: () => invalidate(),
+    onSuccess: () => {
+      invalidate();
+      toast.show('削除しました');
+    },
+    onError: (e: any) => Alert.alert('エラー', e?.response?.data?.message ?? String(e)),
   });
 
-  const confirmDispose = () => {
-    Alert.alert('廃棄済みに変更', 'この資産を廃棄済みに変更します。よろしいですか？', [
-      { text: 'キャンセル', style: 'cancel' },
-      { text: '廃棄済みにする', style: 'destructive', onPress: () => disposeMutation.mutate() },
-    ]);
-  };
+  // 子項目（スペック/リンク/履歴など）の削除は必ず確認を挟む
+  const confirmChildDelete = (
+    kind: 'spec' | 'link' | 'maintenance' | 'repair' | 'consumable' | 'accessory',
+    id: string,
+    name: string
+  ) =>
+    confirmDestructive({
+      title: '削除確認',
+      message: `${name} を削除しますか？`,
+      onConfirm: () => childDeleteMutation.mutate({ kind, id }),
+    });
 
-  const confirmReplace = () => {
-    Alert.alert('交換済みに変更', 'この資産を交換済みに変更します。よろしいですか？', [
-      { text: 'キャンセル', style: 'cancel' },
-      { text: '交換済みにする', onPress: () => replaceMutation.mutate() },
-    ]);
-  };
+  const confirmDispose = () =>
+    confirmDestructive({
+      title: '廃棄済みに変更',
+      message: 'この資産を廃棄済みに変更します。よろしいですか？',
+      confirmLabel: '廃棄済みにする',
+      onConfirm: () => disposeMutation.mutate(),
+    });
 
-  const confirmDelete = () => {
-    Alert.alert(
-      '完全削除',
-      'この資産を物理削除します（履歴も含めて消えます）。よろしいですか？',
-      [
-        { text: 'キャンセル', style: 'cancel' },
-        { text: '削除', style: 'destructive', onPress: () => deleteMutation.mutate() },
-      ]
-    );
-  };
+  const confirmReplace = () =>
+    confirmDestructive({
+      title: '交換済みに変更',
+      message: 'この資産を交換済みに変更します。よろしいですか？',
+      confirmLabel: '交換済みにする',
+      onConfirm: () => replaceMutation.mutate(),
+    });
+
+  const confirmDelete = () =>
+    confirmDestructive({
+      title: '完全削除',
+      message: 'この資産を物理削除します（履歴も含めて消えます）。よろしいですか？',
+      onConfirm: () => deleteMutation.mutate(),
+    });
 
   if (query.isLoading || !d) {
     return (
@@ -152,16 +166,23 @@ const AssetDetailScreen: React.FC = () => {
     Linking.openURL(url).catch(() => Alert.alert('エラー', 'URLを開けませんでした'));
   };
 
-  // 保証期限警告
+  // 保証期限警告（タイムゾーンずれ防止のため daysUntil で計算）
   let warrantyWarning: string | null = null;
   if (d.warrantyEndDate) {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const end = new Date(d.warrantyEndDate);
-    const diffDays = Math.floor((end.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+    const diffDays = daysUntil(d.warrantyEndDate);
     if (diffDays < 0) warrantyWarning = '保証期限切れ';
     else if (diffDays <= 30) warrantyWarning = `保証期限まで残り${diffDays}日`;
   }
+
+  // 各情報セクションに値があるか（無ければ「未入力」を1行表示）
+  const purchaseHasAny = [
+    d.purchaseDate, d.installedDate, d.constructionDate, d.purchaseStore,
+    d.contractorName, d.contractorContact, d.contactPerson, d.purchasePrice,
+    d.constructionCost, d.orderNumber, d.contractNumber, d.purchaseUrl,
+    d.receiptUrl, d.constructionDocumentUrl,
+  ].some((v) => v != null && v !== '');
+  const warrantyHasAny =
+    !!d.warrantyStartDate || !!d.warrantyEndDate || d.hasExtendedWarranty || !!d.warrantyMemo;
 
   return (
     <ScrollView
@@ -210,32 +231,35 @@ const AssetDetailScreen: React.FC = () => {
 
       <Section title="基本情報">
         <Card>
-          <InfoRow label="メーカー" value={d.manufacturer} />
-          <InfoRow label="型番" value={d.modelNumber} />
-          <InfoRow label="シリアル番号" value={d.serialNumber} />
+          <InfoRow label="メーカー" value={d.manufacturer} hideEmpty />
+          <InfoRow label="型番" value={d.modelNumber} hideEmpty />
+          <InfoRow label="シリアル番号" value={d.serialNumber} hideEmpty />
           <InfoRow label="優先度" value={d.priority} />
         </Card>
       </Section>
 
       <Section title="購入・設置・施工情報">
         <Card>
-          <InfoRow label="購入日" value={d.purchaseDate} />
-          <InfoRow label="設置日" value={d.installedDate} />
-          <InfoRow label="施工日" value={d.constructionDate} />
-          <InfoRow label="購入店舗" value={d.purchaseStore} />
-          <InfoRow label="施工業者" value={d.contractorName} />
-          <InfoRow label="業者連絡先" value={d.contractorContact} />
-          <InfoRow label="担当者" value={d.contactPerson} />
+          {!purchaseHasAny ? <Text style={styles.empty}>未入力</Text> : null}
+          <InfoRow label="購入日" value={d.purchaseDate} hideEmpty />
+          <InfoRow label="設置日" value={d.installedDate} hideEmpty />
+          <InfoRow label="施工日" value={d.constructionDate} hideEmpty />
+          <InfoRow label="購入店舗" value={d.purchaseStore} hideEmpty />
+          <InfoRow label="施工業者" value={d.contractorName} hideEmpty />
+          <InfoRow label="業者連絡先" value={d.contractorContact} hideEmpty />
+          <InfoRow label="担当者" value={d.contactPerson} hideEmpty />
           <InfoRow
             label="購入価格"
             value={d.purchasePrice != null ? `¥${d.purchasePrice.toLocaleString()}` : null}
+            hideEmpty
           />
           <InfoRow
             label="施工費用"
             value={d.constructionCost != null ? `¥${d.constructionCost.toLocaleString()}` : null}
+            hideEmpty
           />
-          <InfoRow label="注文番号" value={d.orderNumber} />
-          <InfoRow label="契約番号" value={d.contractNumber} />
+          <InfoRow label="注文番号" value={d.orderNumber} hideEmpty />
+          <InfoRow label="契約番号" value={d.contractNumber} hideEmpty />
           {d.purchaseUrl ? (
             <TouchableOpacity onPress={() => openUrl(d.purchaseUrl)}>
               <Text style={styles.linkText}>購入ページを開く</Text>
@@ -256,15 +280,98 @@ const AssetDetailScreen: React.FC = () => {
 
       <Section title="保証情報">
         <Card>
-          <InfoRow label="保証開始日" value={d.warrantyStartDate} />
-          <InfoRow label="保証終了日" value={d.warrantyEndDate} />
-          <InfoRow label="延長保証" value={d.hasExtendedWarranty ? 'あり' : 'なし'} />
-          <InfoRow label="保証メモ" value={d.warrantyMemo} />
+          {warrantyHasAny ? (
+            <>
+              <InfoRow label="保証開始日" value={d.warrantyStartDate} hideEmpty />
+              <InfoRow label="保証終了日" value={d.warrantyEndDate} hideEmpty />
+              <InfoRow label="延長保証" value={d.hasExtendedWarranty ? 'あり' : 'なし'} />
+              <InfoRow label="保証メモ" value={d.warrantyMemo} hideEmpty />
+            </>
+          ) : (
+            <Text style={styles.empty}>未入力</Text>
+          )}
         </Card>
       </Section>
 
       <Section
+        title="メンテ計画"
+        action={
+          <View style={{ flexDirection: 'row', gap: 6 }}>
+            <SmallAddButton
+              label="AIで作成"
+              onPress={() => navigation.navigate('AiActionPlanForm', { assetId })}
+            />
+            <SmallAddButton
+              label={d.actionPlan ? '編集' : '追加'}
+              onPress={() => navigation.navigate('ActionPlanForm', { assetId })}
+            />
+          </View>
+        }
+      >
+        {d.actionPlan ? (
+          <Card>
+            <PlanText label="方針" value={d.actionPlan.managementPolicy} />
+            <InfoRow label="段階" value={d.actionPlan.actionPhase} />
+            <PlanText label="次にやること" value={d.actionPlan.nextAction} />
+            <PlanText label="業者相談トリガー" value={d.actionPlan.professionalTrigger} />
+            <PlanText label="見積タイミング" value={d.actionPlan.estimateTiming} />
+            <PlanText label="更新判断" value={d.actionPlan.replacementDecisionTiming} />
+            <InfoRow
+              label="更新予定"
+              value={formatYearWindow(
+                d.actionPlan.replacementYearFrom,
+                d.actionPlan.replacementYearTo,
+                d.actionPlan.replacementStatus
+              )}
+            />
+            <InfoRow
+              label="更新費(概算)"
+              value={formatCostRange(
+                d.actionPlan.replacementCostMin,
+                d.actionPlan.replacementCostMax
+              )}
+            />
+            <InfoRow
+              label="通常メンテ費"
+              value={formatCostRange(d.actionPlan.routineCostMin, d.actionPlan.routineCostMax)}
+            />
+            <InfoRow
+              label="業者費(必要時)"
+              value={formatCostRange(
+                d.actionPlan.professionalCostMin,
+                d.actionPlan.professionalCostMax
+              )}
+            />
+            <InfoRow label="計画の優先度" value={d.actionPlan.priority} />
+            {d.actionPlan.notes && d.actionPlan.notes.length > 0 ? (
+              <View style={{ marginTop: SPACING.sm }}>
+                <Text style={styles.planLabel}>補足</Text>
+                {d.actionPlan.notes.map((n, i) => (
+                  <Text key={i} style={styles.planBody}>
+                    ・{n}
+                  </Text>
+                ))}
+              </View>
+            ) : null}
+            {d.actionPlan.generatedAt ? (
+              <Text style={[styles.itemMemo, { marginTop: SPACING.sm }]}>
+                AI生成: {d.actionPlan.generatedAt.slice(0, 10)}
+                {d.actionPlan.source ? `（${d.actionPlan.source}）` : ''}
+              </Text>
+            ) : null}
+          </Card>
+        ) : (
+          <Card>
+            <Text style={styles.empty}>メンテ計画はまだ登録されていません</Text>
+          </Card>
+        )}
+      </Section>
+
+      <Section
         title="スペック・仕様"
+        collapsible
+        defaultCollapsed
+        count={d.specs.length}
         action={<SmallAddButton onPress={() => navigation.navigate('SpecForm', { assetId })} />}
       >
         {d.specs.length === 0 ? (
@@ -284,16 +391,7 @@ const AssetDetailScreen: React.FC = () => {
                 </View>
                 <RowActions
                   onEdit={() => navigation.navigate('SpecForm', { assetId, specId: s.id })}
-                  onDelete={() =>
-                    Alert.alert('削除確認', `${s.specName} を削除しますか？`, [
-                      { text: 'キャンセル', style: 'cancel' },
-                      {
-                        text: '削除',
-                        style: 'destructive',
-                        onPress: () => childDeleteMutation.mutate({ kind: 'spec', id: s.id }),
-                      },
-                    ])
-                  }
+                  onDelete={() => confirmChildDelete('spec', s.id, s.specName)}
                 />
               </View>
             </Card>
@@ -303,6 +401,9 @@ const AssetDetailScreen: React.FC = () => {
 
       <Section
         title="関連リンク"
+        collapsible
+        defaultCollapsed
+        count={d.links.length}
         action={<SmallAddButton onPress={() => navigation.navigate('LinkForm', { assetId })} />}
       >
         {d.links.length === 0 ? (
@@ -327,7 +428,7 @@ const AssetDetailScreen: React.FC = () => {
                 </View>
                 <RowActions
                   onEdit={() => navigation.navigate('LinkForm', { assetId, linkId: l.id })}
-                  onDelete={() => childDeleteMutation.mutate({ kind: 'link', id: l.id })}
+                  onDelete={() => confirmChildDelete('link', l.id, l.title || 'このリンク')}
                 />
               </View>
             </Card>
@@ -337,6 +438,9 @@ const AssetDetailScreen: React.FC = () => {
 
       <Section
         title="メンテナンス履歴"
+        collapsible
+        defaultCollapsed
+        count={d.maintenanceRecords.length}
         action={
           <SmallAddButton onPress={() => navigation.navigate('MaintenanceForm', { assetId })} />
         }
@@ -371,7 +475,9 @@ const AssetDetailScreen: React.FC = () => {
                   onEdit={() =>
                     navigation.navigate('MaintenanceForm', { assetId, recordId: r.id })
                   }
-                  onDelete={() => childDeleteMutation.mutate({ kind: 'maintenance', id: r.id })}
+                  onDelete={() =>
+                    confirmChildDelete('maintenance', r.id, `${r.maintenanceDate} の履歴`)
+                  }
                 />
               </View>
             </Card>
@@ -381,6 +487,9 @@ const AssetDetailScreen: React.FC = () => {
 
       <Section
         title="修理履歴"
+        collapsible
+        defaultCollapsed
+        count={d.repairRecords.length}
         action={<SmallAddButton onPress={() => navigation.navigate('RepairForm', { assetId })} />}
       >
         {d.repairRecords.length === 0 ? (
@@ -407,7 +516,7 @@ const AssetDetailScreen: React.FC = () => {
                 </View>
                 <RowActions
                   onEdit={() => navigation.navigate('RepairForm', { assetId, recordId: r.id })}
-                  onDelete={() => childDeleteMutation.mutate({ kind: 'repair', id: r.id })}
+                  onDelete={() => confirmChildDelete('repair', r.id, `${r.occurredDate} の修理履歴`)}
                 />
               </View>
             </Card>
@@ -417,6 +526,9 @@ const AssetDetailScreen: React.FC = () => {
 
       <Section
         title="消耗品"
+        collapsible
+        defaultCollapsed
+        count={d.consumables.length}
         action={
           <SmallAddButton onPress={() => navigation.navigate('ConsumableForm', { assetId })} />
         }
@@ -445,7 +557,7 @@ const AssetDetailScreen: React.FC = () => {
                   onEdit={() =>
                     navigation.navigate('ConsumableForm', { assetId, consumableId: c.id })
                   }
-                  onDelete={() => childDeleteMutation.mutate({ kind: 'consumable', id: c.id })}
+                  onDelete={() => confirmChildDelete('consumable', c.id, c.name)}
                 />
               </View>
             </Card>
@@ -455,6 +567,9 @@ const AssetDetailScreen: React.FC = () => {
 
       <Section
         title="付属品"
+        collapsible
+        defaultCollapsed
+        count={d.accessories.length}
         action={
           <SmallAddButton onPress={() => navigation.navigate('AccessoryForm', { assetId })} />
         }
@@ -481,7 +596,7 @@ const AssetDetailScreen: React.FC = () => {
                   onEdit={() =>
                     navigation.navigate('AccessoryForm', { assetId, accessoryId: a.id })
                   }
-                  onDelete={() => childDeleteMutation.mutate({ kind: 'accessory', id: a.id })}
+                  onDelete={() => confirmChildDelete('accessory', a.id, a.name)}
                 />
               </View>
             </Card>
@@ -491,6 +606,9 @@ const AssetDetailScreen: React.FC = () => {
 
       <Section
         title="ネットワーク情報"
+        collapsible
+        defaultCollapsed
+        count={d.networkInfo ? 1 : 0}
         action={
           <SmallAddButton onPress={() => navigation.navigate('NetworkInfoForm', { assetId })} />
         }
@@ -498,11 +616,11 @@ const AssetDetailScreen: React.FC = () => {
         <Card>
           {d.networkInfo ? (
             <>
-              <InfoRow label="IPアドレス" value={d.networkInfo.ipAddress} />
-              <InfoRow label="ホスト名" value={d.networkInfo.hostName} />
-              <InfoRow label="MACアドレス" value={d.networkInfo.macAddress} />
-              <InfoRow label="管理URL" value={d.networkInfo.adminUrl} />
-              <InfoRow label="ポート" value={d.networkInfo.port} />
+              <InfoRow label="IPアドレス" value={d.networkInfo.ipAddress} hideEmpty />
+              <InfoRow label="ホスト名" value={d.networkInfo.hostName} hideEmpty />
+              <InfoRow label="MACアドレス" value={d.networkInfo.macAddress} hideEmpty />
+              <InfoRow label="管理URL" value={d.networkInfo.adminUrl} hideEmpty />
+              <InfoRow label="ポート" value={d.networkInfo.port} hideEmpty />
               <InfoRow
                 label="接続方式"
                 value={
@@ -513,8 +631,8 @@ const AssetDetailScreen: React.FC = () => {
                     : null
                 }
               />
-              <InfoRow label="認証情報の保管先" value={d.networkInfo.credentialStorageMemo} />
-              <InfoRow label="設定メモ" value={d.networkInfo.settingsMemo} />
+              <InfoRow label="認証情報の保管先" value={d.networkInfo.credentialStorageMemo} hideEmpty />
+              <InfoRow label="設定メモ" value={d.networkInfo.settingsMemo} hideEmpty />
             </>
           ) : (
             <Text style={styles.empty}>ネットワーク情報は未登録です</Text>
@@ -528,16 +646,53 @@ const AssetDetailScreen: React.FC = () => {
         </Card>
       </Section>
 
-      <Button title="この資産を完全削除（誤登録用）" onPress={confirmDelete} variant="danger" />
+      {/* 誤タップ防止のため控えめなテキストリンクにする（確認ダイアログあり） */}
+      <TouchableOpacity onPress={confirmDelete} style={styles.dangerLink} hitSlop={8}>
+        <Text style={styles.dangerLinkText}>この資産を完全削除（誤登録用）</Text>
+      </TouchableOpacity>
       <View style={{ height: SPACING.xxl }} />
     </ScrollView>
   );
 };
 
-const SmallAddButton: React.FC<{ onPress: () => void }> = ({ onPress }) => (
+// 金額レンジを「¥80,000〜¥250,000」表記に
+const formatCostRange = (min: number | null, max: number | null): string | null => {
+  if (min == null && max == null) return null;
+  const f = (n: number) => `¥${n.toLocaleString()}`;
+  if (min != null && max != null) return min === max ? f(min) : `${f(min)}〜${f(max)}`;
+  return f((min ?? max) as number);
+};
+
+// 更新予定の年レンジ＋ステータスを「2036〜2042年（当面はセルフ管理）」表記に
+const formatYearWindow = (
+  from: number | null,
+  to: number | null,
+  status: string | null
+): string | null => {
+  let base: string | null = null;
+  if (from != null && to != null) base = from === to ? `${from}年` : `${from}〜${to}年`;
+  else if (from != null) base = `${from}年〜`;
+  else if (to != null) base = `〜${to}年`;
+  if (base && status) return `${base}（${status}）`;
+  return base ?? status ?? null;
+};
+
+// 長文項目（切り詰めずラベル＋本文で表示）。値が無ければ非表示。
+const PlanText: React.FC<{ label: string; value?: string | null }> = ({ label, value }) =>
+  value ? (
+    <View style={styles.planTextBlock}>
+      <Text style={styles.planLabel}>{label}</Text>
+      <Text style={styles.planBody}>{value}</Text>
+    </View>
+  ) : null;
+
+const SmallAddButton: React.FC<{ onPress: () => void; label?: string }> = ({
+  onPress,
+  label = '追加',
+}) => (
   <TouchableOpacity onPress={onPress} style={styles.smallAdd}>
     <Ionicons name="add" size={16} color="#fff" />
-    <Text style={styles.smallAddText}>追加</Text>
+    <Text style={styles.smallAddText}>{label}</Text>
   </TouchableOpacity>
 );
 
@@ -557,10 +712,10 @@ const RowActions: React.FC<{ onEdit: () => void; onDelete: () => void }> = ({
   onDelete,
 }) => (
   <View style={{ flexDirection: 'row', marginLeft: SPACING.sm }}>
-    <TouchableOpacity onPress={onEdit} style={styles.iconBtn}>
+    <TouchableOpacity onPress={onEdit} style={styles.iconBtn} hitSlop={8}>
       <Ionicons name="create-outline" size={20} color={COLORS.textSub} />
     </TouchableOpacity>
-    <TouchableOpacity onPress={onDelete} style={styles.iconBtn}>
+    <TouchableOpacity onPress={onDelete} style={styles.iconBtn} hitSlop={8}>
       <Ionicons name="trash-outline" size={20} color={COLORS.danger} />
     </TouchableOpacity>
   </View>
@@ -599,11 +754,20 @@ const styles = StyleSheet.create({
   },
   smallAddText: { color: '#fff', marginLeft: 2, fontSize: 12, fontWeight: '700' },
   itemRow: { flexDirection: 'row', alignItems: 'flex-start' },
-  itemTitle: { fontSize: 14, fontWeight: '700', color: COLORS.text },
+  itemTitle: { ...TYPOGRAPHY.itemTitle, color: COLORS.text },
   itemValue: { fontSize: 13, color: COLORS.text, marginTop: 2 },
   itemMemo: { fontSize: 12, color: COLORS.textSub, marginTop: 2 },
+  planTextBlock: {
+    paddingVertical: SPACING.sm,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.border,
+  },
+  planLabel: { fontSize: 12, color: COLORS.textSub },
+  planBody: { fontSize: 14, color: COLORS.text, marginTop: 2 },
   iconBtn: { padding: 4 },
   empty: { color: COLORS.textMuted, textAlign: 'center', paddingVertical: SPACING.sm },
+  dangerLink: { alignItems: 'center', paddingVertical: SPACING.md },
+  dangerLinkText: { color: COLORS.danger, fontSize: 13, textDecorationLine: 'underline' },
   linkText: {
     color: COLORS.primary,
     fontSize: 13,

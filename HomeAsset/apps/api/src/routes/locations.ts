@@ -51,8 +51,14 @@ const locationRoutes: FastifyPluginAsync = async (app) => {
       where: { id, householdId: req.auth.householdId },
     });
     if (!exists) return reply.code(404).send({ message: '設置場所が見つかりません' });
-    await prisma.homeAsset.updateMany({ where: { locationId: id }, data: { locationId: null } });
-    await prisma.location.delete({ where: { id } });
+    // 参照解除と削除を同一トランザクションで行う（途中失敗時の不整合防止）
+    await prisma.$transaction([
+      prisma.homeAsset.updateMany({
+        where: { locationId: id, householdId: req.auth.householdId },
+        data: { locationId: null },
+      }),
+      prisma.location.delete({ where: { id } }),
+    ]);
     return reply.code(204).send();
   });
 };

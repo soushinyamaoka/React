@@ -30,6 +30,7 @@ model Household {
   networkInfos       NetworkInfo[]
   accessories        Accessory[]
   aiImportLogs       AiImportLog[]
+  actionPlans        ActionPlan[]
 
   @@map("households")
 }
@@ -167,6 +168,7 @@ model HomeAsset {
   networkInfo        NetworkInfo?
   accessories        Accessory[]
   aiImportLogs       AiImportLog[]
+  actionPlan         ActionPlan?
 
   @@index([householdId])
   @@index([householdId, status])
@@ -307,6 +309,49 @@ model NetworkInfo {
   asset     HomeAsset @relation(fields: [assetId], references: [id], onDelete: Cascade)
 
   @@map("network_infos")
+}
+
+// 資産ごとのメンテ・更新アクション計画（AI生成 / 1資産1件）
+model ActionPlan {
+  id                        String    @id @default(cuid())
+  householdId               String    @map("household_id")
+  assetId                   String    @unique @map("asset_id")
+
+  managementPolicy          String?   @map("management_policy")             // 方針
+  actionPhase               String?   @map("action_phase")                  // 段階
+  nextAction                String?   @map("next_action")                   // 次にやること
+  professionalTrigger       String?   @map("professional_trigger")          // 業者相談トリガー
+  estimateTiming            String?   @map("estimate_timing")               // 見積タイミング
+  replacementDecisionTiming String?   @map("replacement_decision_timing")   // 更新判断の条件
+
+  replacementYearFrom       Int?      @map("replacement_year_from")         // 更新予定 年(From)
+  replacementYearTo         Int?      @map("replacement_year_to")           // 更新予定 年(To)
+  replacementStatus         String?   @map("replacement_status")            // 例: 当面はセルフ管理
+
+  replacementCostMin        Int?      @map("replacement_cost_min")          // 概算更新費(円)
+  replacementCostMax        Int?      @map("replacement_cost_max")
+  routineCostMin            Int?      @map("routine_cost_min")              // 通常メンテ費(円)
+  routineCostMax            Int?      @map("routine_cost_max")
+  professionalCostMin       Int?      @map("professional_cost_min")         // 業者費(円)
+  professionalCostMax       Int?      @map("professional_cost_max")
+
+  baselineYear              Int?      @map("baseline_year")                 // 基準年(購入年等)
+  priority                  String?                                         // high | medium | low
+  notes                     String[]                                        // 補足
+
+  source                    String?   @default("ai_action_plan") @map("source") // 生成元
+  schemaVersion             String?   @map("schema_version")
+  generatedAt               DateTime? @map("generated_at")
+
+  createdAt                 DateTime  @default(now()) @map("created_at")
+  updatedAt                 DateTime  @updatedAt @map("updated_at")
+
+  household Household @relation(fields: [householdId], references: [id], onDelete: Cascade)
+  asset     HomeAsset @relation(fields: [assetId], references: [id], onDelete: Cascade)
+
+  @@index([householdId])
+  @@index([householdId, replacementYearFrom])
+  @@map("action_plans")
 }
 
 model Accessory {

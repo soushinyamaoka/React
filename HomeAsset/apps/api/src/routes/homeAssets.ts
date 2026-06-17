@@ -123,6 +123,7 @@ const homeAssetRoutes: FastifyPluginAsync = async (app) => {
         consumables: { orderBy: { createdAt: 'asc' } },
         accessories: { orderBy: { createdAt: 'asc' } },
         networkInfo: true,
+        actionPlan: true,
       },
     });
     if (!asset) return reply.code(404).send({ message: '資産が見つかりません' });

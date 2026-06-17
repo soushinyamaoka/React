@@ -21,6 +21,8 @@ import { Section } from '../../components/Section';
 import { COLORS, SPACING } from '../../theme';
 import { createAsset, fetchAsset, updateAsset } from '../../api/assets';
 import { fetchCategories, fetchLocations } from '../../api/master';
+import { invalidateAssetRelated } from '../../lib/invalidate';
+import { useToast } from '../../components/Toast';
 import {
   ASSET_TYPES,
   ASSET_TYPE_LABELS,
@@ -28,6 +30,7 @@ import {
   ASSET_STATUS_LABELS,
   ASSET_PRIORITIES,
   ASSET_PRIORITY_LABELS,
+  assetInputSchema,
   type AssetInput,
 } from '@homeasset/shared';
 import type { AssetsStackParamList } from '../../navigation/types';
@@ -35,11 +38,24 @@ import type { AssetsStackParamList } from '../../navigation/types';
 type Nav = NativeStackNavigationProp<AssetsStackParamList, 'AssetForm'>;
 type Rt = RouteProp<AssetsStackParamList, 'AssetForm'>;
 
+// zod の fieldErrors（{key: string[]}）を {key: string} に畳む
+const flattenFieldErrors = (
+  fe: Record<string, string[] | undefined>
+): Record<string, string> => {
+  const out: Record<string, string> = {};
+  for (const k of Object.keys(fe)) {
+    const arr = fe[k];
+    if (arr && arr.length > 0) out[k] = arr[0];
+  }
+  return out;
+};
+
 const AssetFormScreen: React.FC = () => {
   const navigation = useNavigation<Nav>();
   const route = useRoute<Rt>();
   const assetId = route.params?.assetId;
   const qc = useQueryClient();
+  const toast = useToast();
 
   const categoriesQuery = useQuery({ queryKey: ['categories'], queryFn: fetchCategories });
   const locationsQuery = useQuery({ queryKey: ['locations'], queryFn: fetchLocations });
@@ -56,6 +72,7 @@ const AssetFormScreen: React.FC = () => {
     status: 'active',
     priority: 'medium',
   } as AssetInput);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     navigation.setOptions({ title: assetId ? '資産編集' : '資産登録' });
@@ -111,10 +128,9 @@ const AssetFormScreen: React.FC = () => {
       if (assetId) return updateAsset(assetId, input);
       return createAsset(input);
     },
-    onSuccess: async (data) => {
-      await qc.invalidateQueries({ queryKey: ['assets'] });
-      await qc.invalidateQueries({ queryKey: ['dashboard'] });
-      if (assetId) await qc.invalidateQueries({ queryKey: ['asset', assetId] });
+    onSuccess: (data) => {
+      invalidateAssetRelated(qc, assetId);
+      toast.show(assetId ? '更新しました' : '登録しました');
       if (assetId) {
         navigation.goBack();
       } else {
@@ -122,18 +138,39 @@ const AssetFormScreen: React.FC = () => {
       }
     },
     onError: (e: any) => {
+      // サーバ検証エラーを項目ごとに表示
+      const fe = e?.response?.data?.errors?.fieldErrors;
+      if (fe && typeof fe === 'object') {
+        const mapped = flattenFieldErrors(fe);
+        if (Object.keys(mapped).length > 0) {
+          setErrors(mapped);
+          Alert.alert('入力エラー', '赤字の項目を確認してください');
+          return;
+        }
+      }
       Alert.alert('保存失敗', e?.response?.data?.message ?? String(e));
     },
   });
 
-  const set = <K extends keyof AssetInput>(key: K, value: AssetInput[K]) =>
+  const set = <K extends keyof AssetInput>(key: K, value: AssetInput[K]) => {
     setForm((prev) => ({ ...prev, [key]: value }));
+    setErrors((prev) => {
+      if (!prev[key as string]) return prev;
+      const next = { ...prev };
+      delete next[key as string];
+      return next;
+    });
+  };
 
   const onSubmit = () => {
-    if (!form.name?.trim()) {
-      Alert.alert('入力エラー', '名称を入力してください');
+    // 共有スキーマで項目ごとに検証
+    const result = assetInputSchema.safeParse(form);
+    if (!result.success) {
+      setErrors(flattenFieldErrors(result.error.flatten().fieldErrors as any));
+      Alert.alert('入力エラー', '赤字の項目を確認してください');
       return;
     }
+    setErrors({});
     mutation.mutate(form);
   };
 
@@ -154,6 +191,7 @@ const AssetFormScreen: React.FC = () => {
             value={form.name}
             onChangeText={(v) => set('name', v)}
             placeholder="例: リビングのテレビ／外壁／給湯器"
+            error={errors.name}
           />
           <ChipSelector
             label="管理対象種別"
@@ -172,16 +210,19 @@ const AssetFormScreen: React.FC = () => {
             label="メーカー"
             value={form.manufacturer ?? ''}
             onChangeText={(v) => set('manufacturer', v)}
+            error={errors.manufacturer}
           />
           <TextField
             label="型番"
             value={form.modelNumber ?? ''}
             onChangeText={(v) => set('modelNumber', v)}
+            error={errors.modelNumber}
           />
           <TextField
             label="シリアル番号"
             value={form.serialNumber ?? ''}
             onChangeText={(v) => set('serialNumber', v)}
+            error={errors.serialNumber}
           />
           <ChipSelector
             label="設置場所"
@@ -204,94 +245,110 @@ const AssetFormScreen: React.FC = () => {
           />
         </Section>
 
-        <Section title="購入・設置・施工">
+        <Section title="購入・設置・施工" collapsible defaultCollapsed>
           <DateField
             label="購入日"
             value={form.purchaseDate ?? ''}
             onChange={(v) => set('purchaseDate', v)}
+            error={errors.purchaseDate}
           />
           <DateField
             label="設置日"
             value={form.installedDate ?? ''}
             onChange={(v) => set('installedDate', v)}
+            error={errors.installedDate}
           />
           <DateField
             label="施工日"
             value={form.constructionDate ?? ''}
             onChange={(v) => set('constructionDate', v)}
+            error={errors.constructionDate}
           />
           <TextField
             label="購入店舗"
             value={form.purchaseStore ?? ''}
             onChangeText={(v) => set('purchaseStore', v)}
+            error={errors.purchaseStore}
           />
           <TextField
             label="施工業者"
             value={form.contractorName ?? ''}
             onChangeText={(v) => set('contractorName', v)}
+            error={errors.contractorName}
           />
           <TextField
             label="施工業者連絡先"
             value={form.contractorContact ?? ''}
             onChangeText={(v) => set('contractorContact', v)}
+            error={errors.contractorContact}
           />
           <TextField
             label="担当者名"
             value={form.contactPerson ?? ''}
             onChangeText={(v) => set('contactPerson', v)}
+            error={errors.contactPerson}
           />
           <TextField
             label="購入価格 (円)"
             value={form.purchasePrice == null ? '' : String(form.purchasePrice)}
             onChangeText={(v) => set('purchasePrice', v as any)}
             keyboardType="numeric"
+            error={errors.purchasePrice}
           />
           <TextField
             label="施工費用 (円)"
             value={form.constructionCost == null ? '' : String(form.constructionCost)}
             onChangeText={(v) => set('constructionCost', v as any)}
             keyboardType="numeric"
+            error={errors.constructionCost}
           />
           <TextField
             label="購入ページURL"
             value={form.purchaseUrl ?? ''}
             onChangeText={(v) => set('purchaseUrl', v)}
             autoCapitalize="none"
+            error={errors.purchaseUrl}
           />
           <TextField
             label="注文番号"
             value={form.orderNumber ?? ''}
             onChangeText={(v) => set('orderNumber', v)}
+            error={errors.orderNumber}
           />
           <TextField
             label="契約番号"
             value={form.contractNumber ?? ''}
             onChangeText={(v) => set('contractNumber', v)}
+            error={errors.contractNumber}
           />
           <TextField
             label="レシート・領収書URL"
             value={form.receiptUrl ?? ''}
             onChangeText={(v) => set('receiptUrl', v)}
             autoCapitalize="none"
+            error={errors.receiptUrl}
           />
           <TextField
             label="施工資料URL"
             value={form.constructionDocumentUrl ?? ''}
             onChangeText={(v) => set('constructionDocumentUrl', v)}
             autoCapitalize="none"
+            error={errors.constructionDocumentUrl}
           />
         </Section>
 
-        <Section title="保証情報">
+        <Section title="保証情報" collapsible defaultCollapsed>
           <DateField
             label="保証開始日"
             value={form.warrantyStartDate ?? ''}
             onChange={(v) => set('warrantyStartDate', v)}
+            error={errors.warrantyStartDate}
           />
           <DateField
             label="保証終了日"
             value={form.warrantyEndDate ?? ''}
             onChange={(v) => set('warrantyEndDate', v)}
+            error={errors.warrantyEndDate}
           />
           <View style={styles.switchRow}>
             <Text style={styles.switchLabel}>延長保証あり</Text>
@@ -307,74 +364,85 @@ const AssetFormScreen: React.FC = () => {
             value={form.warrantyMemo ?? ''}
             onChangeText={(v) => set('warrantyMemo', v)}
             multiline
+            error={errors.warrantyMemo}
           />
         </Section>
 
-        <Section title="取扱説明書・サポート・写真">
+        <Section title="取扱説明書・サポート・写真" collapsible defaultCollapsed>
           <TextField
             label="取扱説明書URL"
             value={form.manualUrl ?? ''}
             onChangeText={(v) => set('manualUrl', v)}
             autoCapitalize="none"
+            error={errors.manualUrl}
           />
           <TextField
             label="メーカー公式ページURL"
             value={form.officialUrl ?? ''}
             onChangeText={(v) => set('officialUrl', v)}
             autoCapitalize="none"
+            error={errors.officialUrl}
           />
           <TextField
             label="サポートページURL"
             value={form.supportUrl ?? ''}
             onChangeText={(v) => set('supportUrl', v)}
             autoCapitalize="none"
+            error={errors.supportUrl}
           />
           <TextField
             label="写真URL"
             value={form.photoUrl ?? ''}
             onChangeText={(v) => set('photoUrl', v)}
             autoCapitalize="none"
+            error={errors.photoUrl}
           />
           <TextField
             label="型番ラベル写真URL"
             value={form.labelPhotoUrl ?? ''}
             onChangeText={(v) => set('labelPhotoUrl', v)}
             autoCapitalize="none"
+            error={errors.labelPhotoUrl}
           />
           <TextField
             label="施工前写真URL"
             value={form.beforePhotoUrl ?? ''}
             onChangeText={(v) => set('beforePhotoUrl', v)}
             autoCapitalize="none"
+            error={errors.beforePhotoUrl}
           />
           <TextField
             label="施工後写真URL"
             value={form.afterPhotoUrl ?? ''}
             onChangeText={(v) => set('afterPhotoUrl', v)}
             autoCapitalize="none"
+            error={errors.afterPhotoUrl}
           />
         </Section>
 
-        <Section title="寿命・交換予定">
+        <Section title="寿命・交換予定" collapsible defaultCollapsed>
           <TextField
             label="想定寿命 (年)"
             value={form.expectedLifespanYears == null ? '' : String(form.expectedLifespanYears)}
             onChangeText={(v) => set('expectedLifespanYears', v as any)}
             keyboardType="numeric"
+            error={errors.expectedLifespanYears}
           />
           <DateField
             label="交換予定日"
             value={form.replacementDueDate ?? ''}
             onChange={(v) => set('replacementDueDate', v)}
+            error={errors.replacementDueDate}
           />
         </Section>
 
-        <Section title="メモ">
+        <Section title="メモ" collapsible defaultCollapsed>
           <TextField
             label="自由メモ"
             value={form.memo ?? ''}
             onChangeText={(v) => set('memo', v)}
             multiline
+            error={errors.memo}
           />
         </Section>
 

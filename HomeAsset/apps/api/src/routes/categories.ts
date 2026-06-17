@@ -51,8 +51,14 @@ const categoryRoutes: FastifyPluginAsync = async (app) => {
       where: { id, householdId: req.auth.householdId },
     });
     if (!exists) return reply.code(404).send({ message: 'カテゴリが見つかりません' });
-    await prisma.homeAsset.updateMany({ where: { categoryId: id }, data: { categoryId: null } });
-    await prisma.category.delete({ where: { id } });
+    // 参照解除と削除を同一トランザクションで行う（途中失敗時の不整合防止）
+    await prisma.$transaction([
+      prisma.homeAsset.updateMany({
+        where: { categoryId: id, householdId: req.auth.householdId },
+        data: { categoryId: null },
+      }),
+      prisma.category.delete({ where: { id } }),
+    ]);
     return reply.code(204).send();
   });
 };

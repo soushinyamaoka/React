@@ -8,6 +8,8 @@ export * from './schemas/maintenance';
 export * from './schemas/repair';
 export * from './schemas/consumable';
 export * from './schemas/accessory';
+export * from './schemas/actionPlan';
+export * from './schemas/actionPlanAi';
 export * from './schemas/network';
 export * from './schemas/master';
 export * from './schemas/aiImport';

@@ -148,6 +148,16 @@ HomeAsset/
 ## 起動コマンド
 
 ```powershell
+npm run app:start       アプリ起動[vps]   Expoのみ。VPSのAPI/DBに接続（Docker不要）
+npm run app:start:local アプリ起動[local] DB(Docker)+ローカルAPI+Expo を一括起動
+npm run app:stop        アプリ停止        API/Expo終了、（起動中なら）DB停止
+npm run app:status      状態確認
+
+npm run deploy          VPS再デプロイ     ソース転送→APIイメージ再ビルド→入れ替え→/health確認
+                        （-- -DryRun で送信内容確認 / -- -NoCache でキャッシュ無し）
+npm run export:analysis 分析用データ抽出   VPSのDBから exports/<日時>/ にCSV一式＋ネストJSON（全ID付き）
+npm run import:action-plans アクション計画投入 構造化JSONを action_plans に upsert（-- -Target vps / -- -DryRun）
+
 npm run db:up           PostgreSQL（Docker）起動 → localhost:5433
 npm run db:down         PostgreSQL停止
 npm run api:dev         API 開発サーバ起動（tsx watch、localhost:4001）
@@ -156,7 +166,8 @@ npm run api:seed        Prisma seed
 npm run mobile:start    Expo起動
 ```
 
-初回セットアップは `README.md` を参照。
+- Expo の接続先は環境変数 `EXPO_PUBLIC_API_TARGET`（`vps`=既定 / `local`）で切り替わる（`apps/mobile/src/api/client.ts`）。`vps` は `app.json` の `extra.apiBaseUrl`、`local` は PC の LAN IP:4001 に自動解決。`EXPO_PUBLIC_API_BASE_URL=<URL>` で明示上書き可。
+- 初回セットアップは `README.md` を参照。
 
 ---
 

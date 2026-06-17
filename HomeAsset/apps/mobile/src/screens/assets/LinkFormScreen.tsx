@@ -9,6 +9,8 @@ import { ChipSelector } from '../../components/ChipSelector';
 import { COLORS, SPACING } from '../../theme';
 import { createLink, updateLink } from '../../api/children';
 import { fetchAsset } from '../../api/assets';
+import { invalidateAssetRelated } from '../../lib/invalidate';
+import { useToast } from '../../components/Toast';
 import { LINK_TYPES, LINK_TYPE_LABELS } from '@homeasset/shared';
 import type { AssetsStackParamList } from '../../navigation/types';
 
@@ -18,6 +20,7 @@ const LinkFormScreen: React.FC = () => {
   const route = useRoute<Rt>();
   const navigation = useNavigation<any>();
   const qc = useQueryClient();
+  const toast = useToast();
   const { assetId, linkId } = route.params;
 
   const [linkType, setLinkType] = useState<string>('manual');
@@ -59,7 +62,8 @@ const LinkFormScreen: React.FC = () => {
       return createLink(assetId, input as any);
     },
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['asset', assetId] });
+      invalidateAssetRelated(qc, assetId);
+      toast.show(linkId ? '更新しました' : '追加しました');
       navigation.goBack();
     },
     onError: (e: any) => Alert.alert('保存失敗', e?.response?.data?.message ?? String(e)),

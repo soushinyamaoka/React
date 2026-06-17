@@ -64,6 +64,7 @@ export interface AssetDetail extends AssetSummary {
   consumables: Consumable[];
   accessories: Accessory[];
   networkInfo: NetworkInfo | null;
+  actionPlan: ActionPlan | null;
 }
 
 export interface AssetSpec {
@@ -153,6 +154,34 @@ export interface NetworkInfo {
   connectionType: string | null;
   credentialStorageMemo: string | null;
   settingsMemo: string | null;
+}
+
+export interface ActionPlan {
+  id: string;
+  assetId: string;
+  managementPolicy: string | null;
+  actionPhase: string | null;
+  nextAction: string | null;
+  professionalTrigger: string | null;
+  estimateTiming: string | null;
+  replacementDecisionTiming: string | null;
+  replacementYearFrom: number | null;
+  replacementYearTo: number | null;
+  replacementStatus: string | null;
+  replacementCostMin: number | null;
+  replacementCostMax: number | null;
+  routineCostMin: number | null;
+  routineCostMax: number | null;
+  professionalCostMin: number | null;
+  professionalCostMax: number | null;
+  baselineYear: number | null;
+  priority: string | null;
+  notes: string[];
+  source: string | null;
+  schemaVersion: string | null;
+  generatedAt: string | null;
+  // /api/action-plans 一覧時のみ同梱
+  asset?: { id: string; name: string; assetType: string } | null;
 }
 
 export async function fetchAssets(query: Partial<AssetListQuery> = {}): Promise<AssetSummary[]> {

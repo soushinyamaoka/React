@@ -13,16 +13,63 @@
 
 DB・API・Expo をまとめて操作できます。ルート（`HomeAsset/`）で実行してください。
 
+起動には接続先別に2系統あります。
+
 ```powershell
-npm run app:start     # 起動    : DB(Docker) + API + Expo を一括起動（API/Expoは別ウィンドウ）
-npm run app:stop      # 停止    : API・Expo を終了し DB を停止
-npm run app:restart   # 再起動  : stop → start
-npm run app:status    # 状態確認: 各サービスの稼働状況を表示
+npm run app:start        # 既定(vps) : Expo のみ起動。VPS の API/DB に接続（Docker・ローカルAPI不要）
+npm run app:start:local  # local     : DB(Docker) + ローカルAPI + Expo を一括起動し、Expoをローカルに接続
+npm run app:stop         # 停止      : API・Expo を終了し、（起動していれば）DB を停止
+npm run app:restart      # 再起動    : stop → start(vps)
+npm run app:status       # 状態確認  : 各サービスの稼働状況を表示
 ```
 
-- 初回のみ別途セットアップが必要です（下記「セットアップ手順」を参照）。
-- `app:start` は Docker Desktop の起動が前提です。
-- 実機で動かすときは `apps/mobile/app.json` の `expo.extra.apiBaseUrl` をPCのLAN IPに設定し、スマホとPCを同じWi-Fiに接続してください。
+- **`app:start`（vps）**: 普段使い。VPS にデプロイ済みの API/DB を参照するため Docker Desktop もローカル API も不要です。
+- **`app:start:local`（local）**: API のローカル開発用。`apps/api/.env` のローカル DB（localhost:5433）を使います。Docker Desktop が起動していない場合は**自動で起動を試み**、デーモンが応答するまで（最大約3分）待機します。
+- 接続先は Expo 起動時の環境変数 `EXPO_PUBLIC_API_TARGET`（`vps` / `local`）で切り替わります。`EXPO_PUBLIC_API_BASE_URL=<URL>` を指定すると最優先で上書きできます。
+- local モードを実機（Expo Go）で使うときは、スマホとPCを同じ Wi-Fi に接続してください（アプリは自動で PC の LAN IP:4001 を参照します）。
+
+## VPS へ再デプロイ
+
+API（バックエンド）を VPS に再デプロイするには、ルートで次の1コマンドを実行します（`ssh vps` が使える前提）。
+
+```powershell
+npm run deploy              # ソース転送 → APIイメージ再ビルド → api入れ替え → /health 確認
+npm run deploy -- -DryRun   # 送信内容（tar.gz の中身）だけ確認（転送・デプロイはしない）
+npm run deploy -- -NoCache  # Docker キャッシュ無しで再ビルド
+```
+
+- `packages/shared` と `apps/api` 等のソースのみ転送し、VPS の `.env`（本番秘密情報）・DB・`node_modules` は送信／変更しません。
+- Prisma migration がある場合はコンテナ起動時に `prisma migrate deploy` が自動適用されます。
+- 失敗時はログ確認: `ssh vps "docker logs --tail 50 homeasset-api-prod"`
+
+## 分析用データの抽出
+
+VPS の DB から分析用データを抽出します（`ssh vps` 経由で DB を外部公開せずに取得。`npm run deploy` と同様 `ssh vps` が使える前提）。
+
+```powershell
+npm run export:analysis    # exports/<日時>/ に CSV一式 + ネストJSON を出力
+```
+
+- 出力（すべて主キー `id`・外部キー付きで、分析後に `id` をキーに更新へつなげられる）:
+  - `export.json` … 資産に子テーブル（specs/links/…）と category/location をネストした全体（AI分析・俯瞰向け）
+  - `<テーブル>.csv` … テーブル別CSV（UTF-8 BOM、Excel／往復更新向け）
+  - `_assets_overview.csv` … 資産1行＝カテゴリ名・設置場所名・各子テーブル件数 の集計（人向け）
+- 出力先 `exports/` は `.gitignore` 済み（コミットされません）。
+
+## メンテ計画の取り込み
+
+AIが生成した「資産ごとのメンテ・更新アクション計画」（構造化JSON）を `action_plans` テーブルへ投入します（`asset_id` 一致で upsert＝再生成プランの再投入も可）。
+
+```powershell
+npm run import:action-plans                 # 既定(local) のDBへ投入
+npm run import:action-plans -- -Target vps  # VPS(本番) へ投入
+npm run import:action-plans -- -DryRun      # 生成SQLの先頭だけ確認（投入しない）
+npm run import:action-plans -- -JsonPath <path>  # 取り込むJSONを指定
+```
+
+- JSON→ `INSERT … ON CONFLICT(asset_id) DO UPDATE` のSQLを生成し、**投入前バックアップ**＋**単一トランザクション**（失敗時ロールバック）で適用します。
+- `local` は資産31件・`vps` は64件など、**対象DBに存在する資産の分だけ**投入されます（該当資産が無い計画はスキップ）。
+- VPS へ投入する前に、`npm run deploy` で `action_plans` テーブル（マイグレーション）を本番へ反映しておく必要があります。
 
 ## 仕様書
 

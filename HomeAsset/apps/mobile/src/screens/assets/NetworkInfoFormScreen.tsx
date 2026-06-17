@@ -9,6 +9,8 @@ import { ChipSelector } from '../../components/ChipSelector';
 import { COLORS, SPACING } from '../../theme';
 import { upsertNetworkInfo } from '../../api/children';
 import { fetchAsset } from '../../api/assets';
+import { invalidateAssetRelated } from '../../lib/invalidate';
+import { useToast } from '../../components/Toast';
 import { CONNECTION_TYPES, CONNECTION_TYPE_LABELS } from '@homeasset/shared';
 import type { AssetsStackParamList } from '../../navigation/types';
 
@@ -18,6 +20,7 @@ const NetworkInfoFormScreen: React.FC = () => {
   const route = useRoute<Rt>();
   const navigation = useNavigation<any>();
   const qc = useQueryClient();
+  const toast = useToast();
   const { assetId } = route.params;
 
   const [ipAddress, setIpAddress] = useState('');
@@ -58,7 +61,8 @@ const NetworkInfoFormScreen: React.FC = () => {
         settingsMemo: settingsMemo || null,
       } as any),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['asset', assetId] });
+      invalidateAssetRelated(qc, assetId);
+      toast.show('保存しました');
       navigation.goBack();
     },
     onError: (e: any) => Alert.alert('保存失敗', e?.response?.data?.message ?? String(e)),
