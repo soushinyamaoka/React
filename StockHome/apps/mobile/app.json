@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "StockHome",
+    "slug": "stockhome",
+    "version": "0.1.0",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#F6F0E3"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.example.stockhome",
+      "infoPlist": {
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true
+        }
+      }
+    },
+    "android": {
+      "package": "com.example.stockhome"
+    },
+    "extra": {
+      "gmailSettingsUrl": "https://script.google.com/macros/s/AKfycbzKFI_fiTSmHXX_WWuzVdiNCxBjFIREtaZcRqYx-NxEp8zFsjWV9PbTiV58Y1WL3-GwhQ/exec?page=gmailSettings"
+    },
+    "plugins": [
+      "expo-secure-store",
+      "@react-native-community/datetimepicker",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ]
+    ],
+    "owner": "soushin.yamaoka"
+  }
+}
