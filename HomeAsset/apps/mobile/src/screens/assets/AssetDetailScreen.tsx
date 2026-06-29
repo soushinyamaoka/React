@@ -14,6 +14,7 @@ import { useNavigation, useRoute, type RouteProp } from '@react-navigation/nativ
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Ionicons } from '@expo/vector-icons';
+import * as Clipboard from 'expo-clipboard';
 
 import { deleteAsset, disposeAsset, fetchAsset, replaceAsset } from '../../api/assets';
 import {
@@ -166,6 +167,20 @@ const AssetDetailScreen: React.FC = () => {
     Linking.openURL(url).catch(() => Alert.alert('エラー', 'URLを開けませんでした'));
   };
 
+  // 値をクリップボードへコピー（空値は無視）してトースト通知
+  const copyText = (value?: string | null, label = '値') => {
+    if (!value) return;
+    Clipboard.setStringAsync(String(value));
+    toast.show(`${label}をコピーしました`);
+  };
+
+  // メーカー・型番・機器名で既定ブラウザの Google 検索を開く
+  const webSearch = () => {
+    const q = [d.manufacturer, d.modelNumber, d.name].filter(Boolean).join(' ');
+    if (!q) return;
+    openUrl(`https://www.google.com/search?q=${encodeURIComponent(q)}`);
+  };
+
   // 保証期限警告（タイムゾーンずれ防止のため daysUntil で計算）
   let warrantyWarning: string | null = null;
   if (d.warrantyEndDate) {
@@ -197,7 +212,12 @@ const AssetDetailScreen: React.FC = () => {
     >
       <Card>
         <View style={styles.headerRow}>
-          <Text style={styles.name}>{d.name}</Text>
+          <Text style={styles.name} selectable>
+            {d.name}
+          </Text>
+          <TouchableOpacity onPress={() => copyText(d.name, '機器名')} hitSlop={8}>
+            <Ionicons name="copy-outline" size={20} color={COLORS.textSub} />
+          </TouchableOpacity>
         </View>
         <View style={styles.badgeRow}>
           <AssetTypeBadge assetType={d.assetType} />
@@ -224,6 +244,7 @@ const AssetDetailScreen: React.FC = () => {
             label="AI取込"
             onPress={() => navigation.navigate('AiImportFromAsset', { assetId })}
           />
+          <ActionButton icon="search" label="検索" onPress={webSearch} />
           <ActionButton icon="swap-horizontal" label="交換済" onPress={confirmReplace} />
           <ActionButton icon="trash" label="廃棄" onPress={confirmDispose} />
         </View>
@@ -231,9 +252,9 @@ const AssetDetailScreen: React.FC = () => {
 
       <Section title="基本情報">
         <Card>
-          <InfoRow label="メーカー" value={d.manufacturer} hideEmpty />
-          <InfoRow label="型番" value={d.modelNumber} hideEmpty />
-          <InfoRow label="シリアル番号" value={d.serialNumber} hideEmpty />
+          <InfoRow label="メーカー" value={d.manufacturer} hideEmpty copyable />
+          <InfoRow label="型番" value={d.modelNumber} hideEmpty copyable />
+          <InfoRow label="シリアル番号" value={d.serialNumber} hideEmpty copyable />
           <InfoRow label="優先度" value={d.priority} />
         </Card>
       </Section>
@@ -616,9 +637,9 @@ const AssetDetailScreen: React.FC = () => {
         <Card>
           {d.networkInfo ? (
             <>
-              <InfoRow label="IPアドレス" value={d.networkInfo.ipAddress} hideEmpty />
-              <InfoRow label="ホスト名" value={d.networkInfo.hostName} hideEmpty />
-              <InfoRow label="MACアドレス" value={d.networkInfo.macAddress} hideEmpty />
+              <InfoRow label="IPアドレス" value={d.networkInfo.ipAddress} hideEmpty copyable />
+              <InfoRow label="ホスト名" value={d.networkInfo.hostName} hideEmpty copyable />
+              <InfoRow label="MACアドレス" value={d.networkInfo.macAddress} hideEmpty copyable />
               <InfoRow label="管理URL" value={d.networkInfo.adminUrl} hideEmpty />
               <InfoRow label="ポート" value={d.networkInfo.port} hideEmpty />
               <InfoRow
