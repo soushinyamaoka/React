@@ -15,12 +15,19 @@ const dashboardRoutes: FastifyPluginAsync = async (app) => {
       include: { stockSnapshot: true, runtimeState: true },
     });
 
-    // アラート品目を notify_target_type でユーザー別フィルタ（GAS 30.2 準拠）
-    //   all → 全員 / representative → admin のみ / specific_user → 指定ユーザーのみ
+    // アラート品目のフィルタ。夜間バッチ(LINE通知)の抑止条件とホーム表示を揃える:
+    //   - 通知OFF の品目は出さない
+    //   - スヌーズ中（snooze_until が未来）は出さない
+    //   - notify_target_type でユーザー別フィルタ（GAS 30.2 準拠）
+    //     all → 全員 / representative → admin のみ / specific_user → 指定ユーザーのみ
+    const now = new Date();
     const alerts = items
       .filter((item) => {
         const s = item.stockSnapshot;
         if (!s || !s.alertNeeded || s.estimatedRemainingQty == null) return false;
+        if (!item.notificationEnabled) return false;
+        const snoozeUntil = item.runtimeState?.snoozeUntil;
+        if (snoozeUntil && snoozeUntil > now) return false;
         if (item.notifyTargetType === 'representative') return role === 'admin';
         if (item.notifyTargetType === 'specific_user') return item.notifyTargetUserId === userId;
         return true;

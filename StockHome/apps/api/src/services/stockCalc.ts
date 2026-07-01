@@ -84,22 +84,36 @@ export function calculateStock(
   const hasOverride =
     state != null && state.manualOverrideQty != null && state.manualOverrideAt != null;
 
-  if (!latestPurchase && !hasOverride) {
-    // 購入履歴も補正もなければ在庫不明
+  // 補正の基準日（UTC 日付）
+  const overrideDate =
+    hasOverride && state
+      ? new Date(
+          Date.UTC(
+            state.manualOverrideAt!.getUTCFullYear(),
+            state.manualOverrideAt!.getUTCMonth(),
+            state.manualOverrideAt!.getUTCDate()
+          )
+        )
+      : null;
+
+  // 補正と最新購入のうち「より新しい基準イベント」を起点にする。
+  // 補正日より後の購入（補正後に買い足した分）は補正を上書きして在庫へ反映する。
+  // GAS では手動購入時のみ override をクリアしていたが、候補確定経由の購入はクリアされず
+  // 古い補正が残って在庫へ反映されなかった。計算側で新しい方を選ぶことで全経路を正す。
+  let useOverride = false;
+  if (hasOverride && overrideDate) {
+    useOverride = !latestPurchase || diffDays(latestPurchase.purchasedAt, overrideDate) <= 0;
+  }
+
+  if (!latestPurchase && !useOverride) {
+    // 購入履歴も（有効な）補正もなければ在庫不明
     return result;
   }
 
   // --- 推定残数 ---
   let estimatedRemainingQty: number;
-  if (hasOverride && state) {
+  if (useOverride && state && overrideDate) {
     // 補正値起点: 補正日時からの消費を引く
-    const overrideDate = new Date(
-      Date.UTC(
-        state.manualOverrideAt!.getUTCFullYear(),
-        state.manualOverrideAt!.getUTCMonth(),
-        state.manualOverrideAt!.getUTCDate()
-      )
-    );
     const daysSinceOverride = Math.max(0, diffDays(today, overrideDate));
     estimatedRemainingQty = state.manualOverrideQty! - daysSinceOverride / daysPerUnit;
     if (latestPurchase) {

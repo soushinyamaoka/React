@@ -11,9 +11,27 @@ import { prisma } from '../lib/prisma';
 import { refreshStockSnapshotForItem, todayDateOnly } from './stockCalc';
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
+const JST_OFFSET_MS = 9 * 60 * 60 * 1000;
 
-function dateOnly(d: Date): Date {
-  return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
+// メール日時の「JST カレンダー日付」を UTC 0時の Date で返す。
+// GAS は mailDate.toISOString()（UTC）で送ってくるため、UTC の年月日で切ると
+// JST 早朝(0–8時台)のメールが前日扱いになる。+9h してから日付を取り JST 基準に揃える。
+function jstDateOnly(d: Date): Date {
+  const jst = new Date(d.getTime() + JST_OFFSET_MS);
+  return new Date(Date.UTC(jst.getUTCFullYear(), jst.getUTCMonth(), jst.getUTCDate()));
+}
+
+// 取込候補の数量換算（過大カウント防止ガード付き）。
+// モデル: detected_qty=「セット数」, default_purchase_qty=「1セットの個数」→ qty = セット数 × 個数。
+// パーサーが「24缶」等の個数をセット数として拾うと 24×24=576 のような過大値になるため、
+// 1注文明細としてあり得ないセット数（MAX_PLAUSIBLE_SETS 超）は取り違えとみなし 1 セット扱いにする。
+const MAX_PLAUSIBLE_SETS = 12;
+function resolvePurchaseQty(detectedQty: number | null, defaultPurchaseQty: number) {
+  const unitsPerSet = Math.max(1, Math.round(defaultPurchaseQty));
+  const rawSets = Math.max(1, Math.round(detectedQty ?? 1));
+  const suspicious = rawSets > MAX_PLAUSIBLE_SETS;
+  const sets = suspicious ? 1 : rawSets;
+  return { qty: sets * unitsPerSet, sets, rawSets, unitsPerSet, suspicious };
 }
 
 async function getDeliveryBufferDays(householdId: string): Promise<number> {
@@ -42,13 +60,20 @@ export async function createPurchaseLogFromCandidate(
     throw Object.assign(new Error('品目が見つからないか削除済みです'), { statusCode: 404 });
   }
 
-  const multiplier = Math.max(1, Math.round(item.defaultPurchaseQty));
-  const qty = Math.max(1, Math.round(candidate.detectedQty ?? 1)) * multiplier;
+  const { qty, suspicious, rawSets, unitsPerSet } = resolvePurchaseQty(
+    candidate.detectedQty,
+    item.defaultPurchaseQty
+  );
 
   const bufferDays = await getDeliveryBufferDays(candidate.householdId);
-  const mailDate = dateOnly(candidate.mailDate);
+  const mailDate = jstDateOnly(candidate.mailDate);
   const inventoryEffectiveAt = new Date(mailDate.getTime() + bufferDays * MS_PER_DAY);
   const counted = inventoryEffectiveAt <= todayDateOnly();
+
+  const baseNote = `自動取込: ${candidate.itemNameRaw ?? ''}`;
+  const note = suspicious
+    ? `${baseNote}（数量要確認: 検出${rawSets}×${unitsPerSet}→1セット扱い）`
+    : baseNote;
 
   const user = confirmedByUserId
     ? await prisma.user.findUnique({ where: { id: confirmedByUserId } })
@@ -68,7 +93,7 @@ export async function createPurchaseLogFromCandidate(
       importCandidateId: candidate.id,
       purchasedByUserId: confirmedByUserId,
       purchasedByUserName: user?.name ?? null,
-      note: `自動取込: ${candidate.itemNameRaw ?? ''}`,
+      note,
       fulfillmentStatus: candidate.fulfillmentStatus ?? 'shipped',
       shippedAt: mailDate,
       inventoryEffectiveAt,
@@ -82,10 +107,15 @@ export async function createPurchaseLogFromCandidate(
   return log;
 }
 
+// 商品名/品名の正規化（小文字化・連続空白の圧縮・前後空白除去）
+function normalizeName(raw: string | null): string {
+  if (!raw) return '';
+  return raw.replace(/\s+/g, ' ').trim().toLowerCase();
+}
+
 // 品名部分一致でアクティブ品目を検索（GAS findItemsByPartialMatch 相当）
 async function findItemsByPartialMatch(householdId: string, rawName: string | null) {
-  if (!rawName) return [];
-  const normalized = rawName.replace(/\s+/g, ' ').trim().toLowerCase();
+  const normalized = normalizeName(rawName);
   if (normalized.length < 2) return [];
 
   const items = await prisma.item.findMany({
@@ -95,6 +125,90 @@ async function findItemsByPartialMatch(householdId: string, rawName: string | nu
     const name = item.itemName.toLowerCase();
     return normalized.includes(name) || name.includes(normalized);
   });
+}
+
+// 学習型マッピング: 過去にユーザーが（手動 or 自動で）同じ商品名を紐付けた品目を引く。
+// 部分一致は語順や表記の差に弱い（例: 在庫「アサヒ ドライゼロ」 vs メール「ドライゼロ アサヒ」）ため、
+// 一度確定した item_name_raw → matched_item の対応を household 単位の学習として再利用する。
+// 家族で共有される知識なので vendor 非依存。アクティブ品目のみ、曖昧（複数品目）なら null。
+async function findLearnedItemMapping(householdId: string, itemNameRaw: string | null) {
+  const key = normalizeName(itemNameRaw);
+  if (key.length < 2) return null;
+
+  const priors = await prisma.importOrderCandidate.findMany({
+    where: {
+      householdId,
+      candidateStatus: { in: ['confirmed', 'auto_confirmed'] },
+      matchedItemId: { not: null },
+    },
+    select: { itemNameRaw: true, matchedItemId: true },
+  });
+
+  const ids = new Set(
+    priors.filter((p) => normalizeName(p.itemNameRaw) === key).map((p) => p.matchedItemId!)
+  );
+  if (ids.size === 0) return null;
+
+  const items = await prisma.item.findMany({
+    where: { id: { in: [...ids] }, householdId, isActive: true },
+  });
+  // 同じ商品名が複数のアクティブ品目に割れている場合は曖昧として自動反映しない（誤反映防止）
+  return items.length === 1 ? items[0] : null;
+}
+
+// 候補の自動確定を試みる（新規取込・ordered→shipped 昇格の両方から呼ぶ）。
+//   対象品目決定: ①学習型マッピング → ②品名の部分一致1件
+//   数量が不審（セット数取り違えの疑い）なら自動反映せず手動確認に回す
+async function tryAutoConfirmCandidate(
+  candidate: ImportOrderCandidate,
+  importedByEmail: string | null | undefined,
+  result: IntakeResult
+) {
+  if (['confirmed', 'auto_confirmed', 'ignored'].includes(candidate.candidateStatus)) return;
+
+  let target = await findLearnedItemMapping(candidate.householdId, candidate.itemNameRaw);
+  let note = '自動確定（学習: 過去の紐付けと一致）';
+  let multiSkip: string | null = null;
+  if (!target) {
+    const matches = await findItemsByPartialMatch(candidate.householdId, candidate.itemNameRaw);
+    if (matches.length === 1) {
+      target = matches[0];
+      note = '自動確定（部分一致1件）';
+    } else if (matches.length > 1) {
+      multiSkip = `自動確定スキップ: 複数一致 (${matches.map((m) => m.itemName).join(', ')})`;
+    }
+  }
+
+  if (target) {
+    // 数量が不審なら自動反映せず手動確認へ（過大カウント防止）
+    const { suspicious, rawSets } = resolvePurchaseQty(candidate.detectedQty, target.defaultPurchaseQty);
+    if (suspicious) {
+      await prisma.importOrderCandidate.update({
+        where: { id: candidate.id },
+        data: { parseResult: `自動確定保留: 数量要確認（検出セット数 ${rawSets}）。手動で確認してください` },
+      });
+      return;
+    }
+    const confirmedUser = importedByEmail
+      ? await prisma.user.findUnique({ where: { email: importedByEmail } })
+      : null;
+    await createPurchaseLogFromCandidate(
+      candidate,
+      target.id,
+      confirmedUser?.id ?? null,
+      'gmail_auto_confirmed'
+    );
+    await prisma.importOrderCandidate.update({
+      where: { id: candidate.id },
+      data: { candidateStatus: 'auto_confirmed', matchedItemId: target.id, parseResult: note },
+    });
+    result.autoConfirmed++;
+  } else if (multiSkip) {
+    await prisma.importOrderCandidate.update({
+      where: { id: candidate.id },
+      data: { parseResult: multiSkip },
+    });
+  }
 }
 
 export interface IntakeResult {
@@ -159,12 +273,34 @@ async function processSingleCandidate(c: BridgeCandidate, result: IntakeResult) 
     throw new Error('household が見つかりません');
   }
 
-  // 重複排除 2: vendor + order_id + item_name_raw
+  // 重複排除/昇格 2: vendor + order_id + item_name_raw が一致する既存候補がある場合
+  //   - 確定/無視済み → 真の重複（スキップ）
+  //   - 発送メールで既存が未発送(detected/ordered) → 同じ行を shipped に昇格して再評価
+  //     （新規行を作らない。これにより「注文→発送」の重複行や二重反映を防ぐ）
+  //   - それ以外（同状態の再送など）→ 重複スキップ
   if (c.orderId && c.itemNameRaw) {
-    const dup = await prisma.importOrderCandidate.findFirst({
-      where: { vendor: c.vendor, orderId: c.orderId, itemNameRaw: c.itemNameRaw },
+    const existing = await prisma.importOrderCandidate.findFirst({
+      where: { householdId, vendor: c.vendor, orderId: c.orderId, itemNameRaw: c.itemNameRaw },
     });
-    if (dup) {
+    if (existing) {
+      const resolved = ['confirmed', 'auto_confirmed', 'ignored'].includes(existing.candidateStatus);
+      if (!resolved && c.mailPhase === 'shipped' && existing.candidateStatus !== 'shipped') {
+        const upgraded = await prisma.importOrderCandidate.update({
+          where: { id: existing.id },
+          data: {
+            candidateStatus: 'shipped',
+            fulfillmentStatus: 'shipped',
+            mailPhase: 'shipped',
+            mailMessageId: c.mailMessageId,
+            mailDate: new Date(c.mailDate),
+            detectedQty: c.detectedQty ?? existing.detectedQty,
+            detectedPrice: c.detectedPrice ?? existing.detectedPrice,
+          },
+        });
+        result.upgraded++;
+        await tryAutoConfirmCandidate(upgraded, c.importedByEmail, result);
+        return;
+      }
       result.duplicates++;
       return;
     }
@@ -175,7 +311,7 @@ async function processSingleCandidate(c: BridgeCandidate, result: IntakeResult) 
   // 重複排除 3: vendor + imported_by_email + mail_date(日付) + raw_subject
   // （order_id が取れないメールのフォールバック）
   if (!c.orderId && c.rawSubject) {
-    const dayStart = dateOnly(mailDate);
+    const dayStart = jstDateOnly(mailDate);
     const dayEnd = new Date(dayStart.getTime() + MS_PER_DAY);
     const dup = await prisma.importOrderCandidate.findFirst({
       where: {
@@ -222,50 +358,6 @@ async function processSingleCandidate(c: BridgeCandidate, result: IntakeResult) 
   });
   result.saved++;
 
-  // 発送メールなら同一注文の ordered 候補を shipped に昇格
-  if (c.mailPhase === 'shipped' && c.orderId) {
-    const upgraded = await prisma.importOrderCandidate.updateMany({
-      where: {
-        vendor: c.vendor,
-        orderId: c.orderId,
-        candidateStatus: 'ordered',
-      },
-      data: {
-        candidateStatus: 'shipped',
-        fulfillmentStatus: 'shipped',
-        mailPhase: 'shipped',
-      },
-    });
-    result.upgraded += upgraded.count;
-  }
-
-  // 自動確定: 品名部分一致が1件のみなら purchase_log まで反映
-  const matches = await findItemsByPartialMatch(householdId, saved.itemNameRaw);
-  if (matches.length === 1) {
-    const confirmedUser = c.importedByEmail
-      ? await prisma.user.findUnique({ where: { email: c.importedByEmail } })
-      : null;
-    await createPurchaseLogFromCandidate(
-      saved,
-      matches[0].id,
-      confirmedUser?.id ?? null,
-      'gmail_auto_confirmed'
-    );
-    await prisma.importOrderCandidate.update({
-      where: { id: saved.id },
-      data: {
-        candidateStatus: 'auto_confirmed',
-        matchedItemId: matches[0].id,
-        parseResult: '自動確定（部分一致1件）',
-      },
-    });
-    result.autoConfirmed++;
-  } else if (matches.length > 1) {
-    await prisma.importOrderCandidate.update({
-      where: { id: saved.id },
-      data: {
-        parseResult: `自動確定スキップ: 複数一致 (${matches.map((m) => m.itemName).join(', ')})`,
-      },
-    });
-  }
+  // 自動確定を試みる（学習型マッピング → 部分一致1件、数量ガード込み）
+  await tryAutoConfirmCandidate(saved, c.importedByEmail, result);
 }
